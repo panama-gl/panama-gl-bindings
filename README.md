@@ -9,6 +9,46 @@ JDK 17 incubation comes with [JEP-412 : Foreign Function & Memory API](https://o
 
 We here show how to use Panama to generate an OpenGL wrapper for Jzy3D, which already uses JOGL for GPU rendering and EmulGL for CPU rendering.
 
+## Get Panama GL Bindings via Maven
+
+Dependencies:
+```xml
+<dependencies>
+  <dependency>
+    <groupId>org.jzy3d</groupId>
+    <artifactId>panama-gl-bindings-linux</artifactId>
+    <version>2.1.0-SNAPSHOT</version>
+  </dependency>
+  <dependency>
+    <groupId>org.jzy3d</groupId>
+    <artifactId>panama-gl-bindings-macos</artifactId>
+    <version>2.1.0-SNAPSHOT</version>
+  </dependency>
+  <dependency>
+    <groupId>org.jzy3d</groupId>
+    <artifactId>panama-gl-bindings-windows</artifactId>
+    <version>2.1.0-SNAPSHOT</version>
+  </dependency>
+</dependencies>
+```
+
+Repositories:
+```xml
+<repositories>
+  <repository>
+    <id>jzy3d-snapshots</id>
+    <name>Jzy3d Snapshots</name>
+    <url>https://maven.jzy3d.org/snapshots/</url>
+  </repository>
+  <repository>
+    <id>jzy3d-releases</id>
+    <name>Jzy3d Releases</name>
+    <url>https://maven.jzy3d.org/releases/</url>
+  </repository>
+</repositories>
+```
+
+
 ## Documentation
 
 ### Setup your computer
