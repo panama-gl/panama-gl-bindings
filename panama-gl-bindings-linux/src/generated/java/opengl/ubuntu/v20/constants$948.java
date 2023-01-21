@@ -2,65 +2,60 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_INT;
-import static jdk.incubator.foreign.CLinker.C_POINTER;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$948 {
 
     static final FunctionDescriptor glutAddMenuEntry$FUNC = FunctionDescriptor.ofVoid(
-        C_POINTER,
-        C_INT
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle glutAddMenuEntry$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "glutAddMenuEntry",
-        "(Ljdk/incubator/foreign/MemoryAddress;I)V",
-        constants$948.glutAddMenuEntry$FUNC, false
+        "glutAddMenuEntry",
+        constants$948.glutAddMenuEntry$FUNC
     );
     static final FunctionDescriptor glutAddSubMenu$FUNC = FunctionDescriptor.ofVoid(
-        C_POINTER,
-        C_INT
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle glutAddSubMenu$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "glutAddSubMenu",
-        "(Ljdk/incubator/foreign/MemoryAddress;I)V",
-        constants$948.glutAddSubMenu$FUNC, false
+        "glutAddSubMenu",
+        constants$948.glutAddSubMenu$FUNC
     );
     static final FunctionDescriptor glutChangeToMenuEntry$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_POINTER,
-        C_INT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle glutChangeToMenuEntry$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "glutChangeToMenuEntry",
-        "(ILjdk/incubator/foreign/MemoryAddress;I)V",
-        constants$948.glutChangeToMenuEntry$FUNC, false
+        "glutChangeToMenuEntry",
+        constants$948.glutChangeToMenuEntry$FUNC
     );
     static final FunctionDescriptor glutChangeToSubMenu$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_POINTER,
-        C_INT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle glutChangeToSubMenu$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "glutChangeToSubMenu",
-        "(ILjdk/incubator/foreign/MemoryAddress;I)V",
-        constants$948.glutChangeToSubMenu$FUNC, false
+        "glutChangeToSubMenu",
+        constants$948.glutChangeToSubMenu$FUNC
     );
     static final FunctionDescriptor glutRemoveMenuItem$FUNC = FunctionDescriptor.ofVoid(
-        C_INT
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle glutRemoveMenuItem$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "glutRemoveMenuItem",
-        "(I)V",
-        constants$948.glutRemoveMenuItem$FUNC, false
+        "glutRemoveMenuItem",
+        constants$948.glutRemoveMenuItem$FUNC
     );
     static final FunctionDescriptor glutAttachMenu$FUNC = FunctionDescriptor.ofVoid(
-        C_INT
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle glutAttachMenu$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "glutAttachMenu",
-        "(I)V",
-        constants$948.glutAttachMenu$FUNC, false
+        "glutAttachMenu",
+        constants$948.glutAttachMenu$FUNC
     );
 }
 

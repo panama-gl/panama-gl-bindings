@@ -2,48 +2,46 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_FLOAT;
-import static jdk.incubator.foreign.CLinker.C_INT;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$282 {
 
     static final FunctionDescriptor PFNGLCLEARNAMEDFRAMEBUFFERFIPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_INT,
-        C_FLOAT,
-        C_INT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLCLEARNAMEDFRAMEBUFFERFIPROC$MH = RuntimeHelper.downcallHandle(
-        "(IIIFI)V",
-        constants$282.PFNGLCLEARNAMEDFRAMEBUFFERFIPROC$FUNC, false
+        constants$282.PFNGLCLEARNAMEDFRAMEBUFFERFIPROC$FUNC
     );
     static final FunctionDescriptor PFNGLBLITNAMEDFRAMEBUFFERPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLBLITNAMEDFRAMEBUFFERPROC$MH = RuntimeHelper.downcallHandle(
-        "(IIIIIIIIIIII)V",
-        constants$282.PFNGLBLITNAMEDFRAMEBUFFERPROC$FUNC, false
+        constants$282.PFNGLBLITNAMEDFRAMEBUFFERPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLCHECKNAMEDFRAMEBUFFERSTATUSPROC$FUNC = FunctionDescriptor.of(C_INT,
-        C_INT,
-        C_INT
+    static final FunctionDescriptor PFNGLCHECKNAMEDFRAMEBUFFERSTATUSPROC$FUNC = FunctionDescriptor.of(Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLCHECKNAMEDFRAMEBUFFERSTATUSPROC$MH = RuntimeHelper.downcallHandle(
-        "(II)I",
-        constants$282.PFNGLCHECKNAMEDFRAMEBUFFERSTATUSPROC$FUNC, false
+        constants$282.PFNGLCHECKNAMEDFRAMEBUFFERSTATUSPROC$FUNC
     );
 }
 

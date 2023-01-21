@@ -2,22 +2,22 @@
 
 package opengl.ubuntu.v20;
 
-import jdk.incubator.foreign.Addressable;
-import jdk.incubator.foreign.MemoryAddress;
-import jdk.incubator.foreign.ResourceScope;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public interface PFNGLCREATESHADEROBJECTARBPROC {
 
-    int apply(int x0);
-    static MemoryAddress allocate(PFNGLCREATESHADEROBJECTARBPROC fi) {
-        return RuntimeHelper.upcallStub(PFNGLCREATESHADEROBJECTARBPROC.class, fi, constants$358.PFNGLCREATESHADEROBJECTARBPROC$FUNC, "(I)I");
+    int apply(int shaderType);
+    static MemorySegment allocate(PFNGLCREATESHADEROBJECTARBPROC fi, MemorySession session) {
+        return RuntimeHelper.upcallStub(PFNGLCREATESHADEROBJECTARBPROC.class, fi, constants$358.PFNGLCREATESHADEROBJECTARBPROC$FUNC, session);
     }
-    static MemoryAddress allocate(PFNGLCREATESHADEROBJECTARBPROC fi, ResourceScope scope) {
-        return RuntimeHelper.upcallStub(PFNGLCREATESHADEROBJECTARBPROC.class, fi, constants$358.PFNGLCREATESHADEROBJECTARBPROC$FUNC, "(I)I", scope);
-    }
-    static PFNGLCREATESHADEROBJECTARBPROC ofAddress(MemoryAddress addr) {
-        return (int x0) -> {
+    static PFNGLCREATESHADEROBJECTARBPROC ofAddress(MemoryAddress addr, MemorySession session) {
+        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
+        return (int _shaderType) -> {
             try {
-                return (int)constants$358.PFNGLCREATESHADEROBJECTARBPROC$MH.invokeExact((Addressable)addr, x0);
+                return (int)constants$358.PFNGLCREATESHADEROBJECTARBPROC$MH.invokeExact((Addressable)symbol, _shaderType);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

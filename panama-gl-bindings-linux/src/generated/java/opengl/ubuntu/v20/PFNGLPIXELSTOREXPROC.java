@@ -2,22 +2,22 @@
 
 package opengl.ubuntu.v20;
 
-import jdk.incubator.foreign.Addressable;
-import jdk.incubator.foreign.MemoryAddress;
-import jdk.incubator.foreign.ResourceScope;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public interface PFNGLPIXELSTOREXPROC {
 
-    void apply(int x0, int x1);
-    static MemoryAddress allocate(PFNGLPIXELSTOREXPROC fi) {
-        return RuntimeHelper.upcallStub(PFNGLPIXELSTOREXPROC.class, fi, constants$438.PFNGLPIXELSTOREXPROC$FUNC, "(II)V");
+    void apply(int pname, int param);
+    static MemorySegment allocate(PFNGLPIXELSTOREXPROC fi, MemorySession session) {
+        return RuntimeHelper.upcallStub(PFNGLPIXELSTOREXPROC.class, fi, constants$438.PFNGLPIXELSTOREXPROC$FUNC, session);
     }
-    static MemoryAddress allocate(PFNGLPIXELSTOREXPROC fi, ResourceScope scope) {
-        return RuntimeHelper.upcallStub(PFNGLPIXELSTOREXPROC.class, fi, constants$438.PFNGLPIXELSTOREXPROC$FUNC, "(II)V", scope);
-    }
-    static PFNGLPIXELSTOREXPROC ofAddress(MemoryAddress addr) {
-        return (int x0, int x1) -> {
+    static PFNGLPIXELSTOREXPROC ofAddress(MemoryAddress addr, MemorySession session) {
+        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
+        return (int _pname, int _param) -> {
             try {
-                constants$438.PFNGLPIXELSTOREXPROC$MH.invokeExact((Addressable)addr, x0, x1);
+                constants$438.PFNGLPIXELSTOREXPROC$MH.invokeExact((Addressable)symbol, _pname, _param);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

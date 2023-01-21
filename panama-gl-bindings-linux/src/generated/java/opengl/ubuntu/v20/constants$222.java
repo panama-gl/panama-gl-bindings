@@ -2,37 +2,35 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_INT;
-import static jdk.incubator.foreign.CLinker.C_POINTER;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$222 {
 
     static final FunctionDescriptor PFNGLUSEPROGRAMSTAGESPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_INT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLUSEPROGRAMSTAGESPROC$MH = RuntimeHelper.downcallHandle(
-        "(III)V",
-        constants$222.PFNGLUSEPROGRAMSTAGESPROC$FUNC, false
+        constants$222.PFNGLUSEPROGRAMSTAGESPROC$FUNC
     );
     static final FunctionDescriptor PFNGLACTIVESHADERPROGRAMPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLACTIVESHADERPROGRAMPROC$MH = RuntimeHelper.downcallHandle(
-        "(II)V",
-        constants$222.PFNGLACTIVESHADERPROGRAMPROC$FUNC, false
+        constants$222.PFNGLACTIVESHADERPROGRAMPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLCREATESHADERPROGRAMVPROC$FUNC = FunctionDescriptor.of(C_INT,
-        C_INT,
-        C_INT,
-        C_POINTER
+    static final FunctionDescriptor PFNGLCREATESHADERPROGRAMVPROC$FUNC = FunctionDescriptor.of(Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLCREATESHADERPROGRAMVPROC$MH = RuntimeHelper.downcallHandle(
-        "(IILjdk/incubator/foreign/MemoryAddress;)I",
-        constants$222.PFNGLCREATESHADERPROGRAMVPROC$FUNC, false
+        constants$222.PFNGLCREATESHADERPROGRAMVPROC$FUNC
     );
 }
 

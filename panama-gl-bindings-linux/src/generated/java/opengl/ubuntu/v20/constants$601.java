@@ -2,41 +2,39 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_INT;
-import static jdk.incubator.foreign.CLinker.C_LONG;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$601 {
 
     static final FunctionDescriptor PFNGLTEXTURERENDERBUFFEREXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_INT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLTEXTURERENDERBUFFEREXTPROC$MH = RuntimeHelper.downcallHandle(
-        "(III)V",
-        constants$601.PFNGLTEXTURERENDERBUFFEREXTPROC$FUNC, false
+        constants$601.PFNGLTEXTURERENDERBUFFEREXTPROC$FUNC
     );
     static final FunctionDescriptor PFNGLMULTITEXRENDERBUFFEREXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_INT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLMULTITEXRENDERBUFFEREXTPROC$MH = RuntimeHelper.downcallHandle(
-        "(III)V",
-        constants$601.PFNGLMULTITEXRENDERBUFFEREXTPROC$FUNC, false
+        constants$601.PFNGLMULTITEXRENDERBUFFEREXTPROC$FUNC
     );
     static final FunctionDescriptor PFNGLVERTEXARRAYVERTEXOFFSETEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_LONG
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT
     );
     static final MethodHandle PFNGLVERTEXARRAYVERTEXOFFSETEXTPROC$MH = RuntimeHelper.downcallHandle(
-        "(IIIIIJ)V",
-        constants$601.PFNGLVERTEXARRAYVERTEXOFFSETEXTPROC$FUNC, false
+        constants$601.PFNGLVERTEXARRAYVERTEXOFFSETEXTPROC$FUNC
     );
 }
 

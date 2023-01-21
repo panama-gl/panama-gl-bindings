@@ -2,43 +2,40 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_INT;
-import static jdk.incubator.foreign.CLinker.C_LONG;
-import static jdk.incubator.foreign.CLinker.C_POINTER;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$754 {
 
     static final FunctionDescriptor PFNGLRENDERGPUMASKNVPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLRENDERGPUMASKNVPROC$MH = RuntimeHelper.downcallHandle(
-        "(I)V",
-        constants$754.PFNGLRENDERGPUMASKNVPROC$FUNC, false
+        constants$754.PFNGLRENDERGPUMASKNVPROC$FUNC
     );
     static final FunctionDescriptor PFNGLMULTICASTBUFFERSUBDATANVPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_LONG,
-        C_LONG,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLMULTICASTBUFFERSUBDATANVPROC$MH = RuntimeHelper.downcallHandle(
-        "(IIJJLjdk/incubator/foreign/MemoryAddress;)V",
-        constants$754.PFNGLMULTICASTBUFFERSUBDATANVPROC$FUNC, false
+        constants$754.PFNGLMULTICASTBUFFERSUBDATANVPROC$FUNC
     );
     static final FunctionDescriptor PFNGLMULTICASTCOPYBUFFERSUBDATANVPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_LONG,
-        C_LONG,
-        C_LONG
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT
     );
     static final MethodHandle PFNGLMULTICASTCOPYBUFFERSUBDATANVPROC$MH = RuntimeHelper.downcallHandle(
-        "(IIIIJJJ)V",
-        constants$754.PFNGLMULTICASTCOPYBUFFERSUBDATANVPROC$FUNC, false
+        constants$754.PFNGLMULTICASTCOPYBUFFERSUBDATANVPROC$FUNC
     );
 }
 

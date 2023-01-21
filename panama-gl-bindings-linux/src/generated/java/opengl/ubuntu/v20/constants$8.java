@@ -2,72 +2,66 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_DOUBLE;
-import static jdk.incubator.foreign.CLinker.C_FLOAT;
-import static jdk.incubator.foreign.CLinker.C_INT;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$8 {
 
     static final FunctionDescriptor glAccum$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_FLOAT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT
     );
     static final MethodHandle glAccum$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "glAccum",
-        "(IF)V",
-        constants$8.glAccum$FUNC, false
+        "glAccum",
+        constants$8.glAccum$FUNC
     );
     static final FunctionDescriptor glMatrixMode$FUNC = FunctionDescriptor.ofVoid(
-        C_INT
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle glMatrixMode$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "glMatrixMode",
-        "(I)V",
-        constants$8.glMatrixMode$FUNC, false
+        "glMatrixMode",
+        constants$8.glMatrixMode$FUNC
     );
     static final FunctionDescriptor glOrtho$FUNC = FunctionDescriptor.ofVoid(
-        C_DOUBLE,
-        C_DOUBLE,
-        C_DOUBLE,
-        C_DOUBLE,
-        C_DOUBLE,
-        C_DOUBLE
+        Constants$root.C_DOUBLE$LAYOUT,
+        Constants$root.C_DOUBLE$LAYOUT,
+        Constants$root.C_DOUBLE$LAYOUT,
+        Constants$root.C_DOUBLE$LAYOUT,
+        Constants$root.C_DOUBLE$LAYOUT,
+        Constants$root.C_DOUBLE$LAYOUT
     );
     static final MethodHandle glOrtho$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "glOrtho",
-        "(DDDDDD)V",
-        constants$8.glOrtho$FUNC, false
+        "glOrtho",
+        constants$8.glOrtho$FUNC
     );
     static final FunctionDescriptor glFrustum$FUNC = FunctionDescriptor.ofVoid(
-        C_DOUBLE,
-        C_DOUBLE,
-        C_DOUBLE,
-        C_DOUBLE,
-        C_DOUBLE,
-        C_DOUBLE
+        Constants$root.C_DOUBLE$LAYOUT,
+        Constants$root.C_DOUBLE$LAYOUT,
+        Constants$root.C_DOUBLE$LAYOUT,
+        Constants$root.C_DOUBLE$LAYOUT,
+        Constants$root.C_DOUBLE$LAYOUT,
+        Constants$root.C_DOUBLE$LAYOUT
     );
     static final MethodHandle glFrustum$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "glFrustum",
-        "(DDDDDD)V",
-        constants$8.glFrustum$FUNC, false
+        "glFrustum",
+        constants$8.glFrustum$FUNC
     );
     static final FunctionDescriptor glViewport$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle glViewport$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "glViewport",
-        "(IIII)V",
-        constants$8.glViewport$FUNC, false
+        "glViewport",
+        constants$8.glViewport$FUNC
     );
     static final FunctionDescriptor glPushMatrix$FUNC = FunctionDescriptor.ofVoid();
     static final MethodHandle glPushMatrix$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "glPushMatrix",
-        "()V",
-        constants$8.glPushMatrix$FUNC, false
+        "glPushMatrix",
+        constants$8.glPushMatrix$FUNC
     );
 }
 

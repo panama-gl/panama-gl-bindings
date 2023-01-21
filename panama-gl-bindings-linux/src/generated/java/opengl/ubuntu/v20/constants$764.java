@@ -2,35 +2,33 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_POINTER;
-import static jdk.incubator.foreign.CLinker.C_SHORT;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$764 {
 
     static final FunctionDescriptor PFNGLVERTEX2HNVPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_SHORT,
-        C_SHORT
+        Constants$root.C_SHORT$LAYOUT,
+        Constants$root.C_SHORT$LAYOUT
     );
     static final MethodHandle PFNGLVERTEX2HNVPROC$MH = RuntimeHelper.downcallHandle(
-        "(SS)V",
-        constants$764.PFNGLVERTEX2HNVPROC$FUNC, false
+        constants$764.PFNGLVERTEX2HNVPROC$FUNC
     );
     static final FunctionDescriptor PFNGLVERTEX2HVNVPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_POINTER
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLVERTEX2HVNVPROC$MH = RuntimeHelper.downcallHandle(
-        "(Ljdk/incubator/foreign/MemoryAddress;)V",
-        constants$764.PFNGLVERTEX2HVNVPROC$FUNC, false
+        constants$764.PFNGLVERTEX2HVNVPROC$FUNC
     );
     static final FunctionDescriptor PFNGLVERTEX3HNVPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_SHORT,
-        C_SHORT,
-        C_SHORT
+        Constants$root.C_SHORT$LAYOUT,
+        Constants$root.C_SHORT$LAYOUT,
+        Constants$root.C_SHORT$LAYOUT
     );
     static final MethodHandle PFNGLVERTEX3HNVPROC$MH = RuntimeHelper.downcallHandle(
-        "(SSS)V",
-        constants$764.PFNGLVERTEX3HNVPROC$FUNC, false
+        constants$764.PFNGLVERTEX3HNVPROC$FUNC
     );
 }
 

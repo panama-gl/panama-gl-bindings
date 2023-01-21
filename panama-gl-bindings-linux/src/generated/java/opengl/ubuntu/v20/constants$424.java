@@ -2,38 +2,36 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_INT;
-import static jdk.incubator.foreign.CLinker.C_POINTER;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$424 {
 
     static final FunctionDescriptor PFNGLTEXENVXVOESPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLTEXENVXVOESPROC$MH = RuntimeHelper.downcallHandle(
-        "(IILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$424.PFNGLTEXENVXVOESPROC$FUNC, false
+        constants$424.PFNGLTEXENVXVOESPROC$FUNC
     );
     static final FunctionDescriptor PFNGLTEXPARAMETERXOESPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_INT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLTEXPARAMETERXOESPROC$MH = RuntimeHelper.downcallHandle(
-        "(III)V",
-        constants$424.PFNGLTEXPARAMETERXOESPROC$FUNC, false
+        constants$424.PFNGLTEXPARAMETERXOESPROC$FUNC
     );
     static final FunctionDescriptor PFNGLTEXPARAMETERXVOESPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLTEXPARAMETERXVOESPROC$MH = RuntimeHelper.downcallHandle(
-        "(IILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$424.PFNGLTEXPARAMETERXVOESPROC$FUNC, false
+        constants$424.PFNGLTEXPARAMETERXVOESPROC$FUNC
     );
 }
 

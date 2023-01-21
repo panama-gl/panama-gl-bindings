@@ -2,22 +2,22 @@
 
 package opengl.ubuntu.v20;
 
-import jdk.incubator.foreign.Addressable;
-import jdk.incubator.foreign.MemoryAddress;
-import jdk.incubator.foreign.ResourceScope;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public interface PFNGLISRENDERBUFFERPROC {
 
-    byte apply(int x0);
-    static MemoryAddress allocate(PFNGLISRENDERBUFFERPROC fi) {
-        return RuntimeHelper.upcallStub(PFNGLISRENDERBUFFERPROC.class, fi, constants$165.PFNGLISRENDERBUFFERPROC$FUNC, "(I)B");
+    byte apply(int renderbuffer);
+    static MemorySegment allocate(PFNGLISRENDERBUFFERPROC fi, MemorySession session) {
+        return RuntimeHelper.upcallStub(PFNGLISRENDERBUFFERPROC.class, fi, constants$165.PFNGLISRENDERBUFFERPROC$FUNC, session);
     }
-    static MemoryAddress allocate(PFNGLISRENDERBUFFERPROC fi, ResourceScope scope) {
-        return RuntimeHelper.upcallStub(PFNGLISRENDERBUFFERPROC.class, fi, constants$165.PFNGLISRENDERBUFFERPROC$FUNC, "(I)B", scope);
-    }
-    static PFNGLISRENDERBUFFERPROC ofAddress(MemoryAddress addr) {
-        return (int x0) -> {
+    static PFNGLISRENDERBUFFERPROC ofAddress(MemoryAddress addr, MemorySession session) {
+        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
+        return (int _renderbuffer) -> {
             try {
-                return (byte)constants$165.PFNGLISRENDERBUFFERPROC$MH.invokeExact((Addressable)addr, x0);
+                return (byte)constants$165.PFNGLISRENDERBUFFERPROC$MH.invokeExact((Addressable)symbol, _renderbuffer);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

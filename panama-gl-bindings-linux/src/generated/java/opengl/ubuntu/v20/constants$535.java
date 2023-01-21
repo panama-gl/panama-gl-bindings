@@ -2,33 +2,30 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_DOUBLE;
-import static jdk.incubator.foreign.CLinker.C_INT;
-import static jdk.incubator.foreign.CLinker.C_POINTER;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$535 {
 
     static final FunctionDescriptor PFNGLPUSHGROUPMARKEREXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLPUSHGROUPMARKEREXTPROC$MH = RuntimeHelper.downcallHandle(
-        "(ILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$535.PFNGLPUSHGROUPMARKEREXTPROC$FUNC, false
+        constants$535.PFNGLPUSHGROUPMARKEREXTPROC$FUNC
     );
     static final FunctionDescriptor PFNGLPOPGROUPMARKEREXTPROC$FUNC = FunctionDescriptor.ofVoid();
     static final MethodHandle PFNGLPOPGROUPMARKEREXTPROC$MH = RuntimeHelper.downcallHandle(
-        "()V",
-        constants$535.PFNGLPOPGROUPMARKEREXTPROC$FUNC, false
+        constants$535.PFNGLPOPGROUPMARKEREXTPROC$FUNC
     );
     static final FunctionDescriptor PFNGLDEPTHBOUNDSEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_DOUBLE,
-        C_DOUBLE
+        Constants$root.C_DOUBLE$LAYOUT,
+        Constants$root.C_DOUBLE$LAYOUT
     );
     static final MethodHandle PFNGLDEPTHBOUNDSEXTPROC$MH = RuntimeHelper.downcallHandle(
-        "(DD)V",
-        constants$535.PFNGLDEPTHBOUNDSEXTPROC$FUNC, false
+        constants$535.PFNGLDEPTHBOUNDSEXTPROC$FUNC
     );
 }
 

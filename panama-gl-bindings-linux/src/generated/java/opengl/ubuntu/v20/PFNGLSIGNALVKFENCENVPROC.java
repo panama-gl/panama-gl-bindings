@@ -2,22 +2,22 @@
 
 package opengl.ubuntu.v20;
 
-import jdk.incubator.foreign.Addressable;
-import jdk.incubator.foreign.MemoryAddress;
-import jdk.incubator.foreign.ResourceScope;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public interface PFNGLSIGNALVKFENCENVPROC {
 
-    void apply(long x0);
-    static MemoryAddress allocate(PFNGLSIGNALVKFENCENVPROC fi) {
-        return RuntimeHelper.upcallStub(PFNGLSIGNALVKFENCENVPROC.class, fi, constants$742.PFNGLSIGNALVKFENCENVPROC$FUNC, "(J)V");
+    void apply(long vkFence);
+    static MemorySegment allocate(PFNGLSIGNALVKFENCENVPROC fi, MemorySession session) {
+        return RuntimeHelper.upcallStub(PFNGLSIGNALVKFENCENVPROC.class, fi, constants$742.PFNGLSIGNALVKFENCENVPROC$FUNC, session);
     }
-    static MemoryAddress allocate(PFNGLSIGNALVKFENCENVPROC fi, ResourceScope scope) {
-        return RuntimeHelper.upcallStub(PFNGLSIGNALVKFENCENVPROC.class, fi, constants$742.PFNGLSIGNALVKFENCENVPROC$FUNC, "(J)V", scope);
-    }
-    static PFNGLSIGNALVKFENCENVPROC ofAddress(MemoryAddress addr) {
-        return (long x0) -> {
+    static PFNGLSIGNALVKFENCENVPROC ofAddress(MemoryAddress addr, MemorySession session) {
+        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
+        return (long _vkFence) -> {
             try {
-                constants$742.PFNGLSIGNALVKFENCENVPROC$MH.invokeExact((Addressable)addr, x0);
+                constants$742.PFNGLSIGNALVKFENCENVPROC$MH.invokeExact((Addressable)symbol, _vkFence);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

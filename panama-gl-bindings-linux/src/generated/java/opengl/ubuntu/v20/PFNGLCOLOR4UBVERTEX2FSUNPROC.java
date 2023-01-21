@@ -2,22 +2,22 @@
 
 package opengl.ubuntu.v20;
 
-import jdk.incubator.foreign.Addressable;
-import jdk.incubator.foreign.MemoryAddress;
-import jdk.incubator.foreign.ResourceScope;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public interface PFNGLCOLOR4UBVERTEX2FSUNPROC {
 
-    void apply(byte x0, byte x1, byte x2, byte x3, float x4, float x5);
-    static MemoryAddress allocate(PFNGLCOLOR4UBVERTEX2FSUNPROC fi) {
-        return RuntimeHelper.upcallStub(PFNGLCOLOR4UBVERTEX2FSUNPROC.class, fi, constants$915.PFNGLCOLOR4UBVERTEX2FSUNPROC$FUNC, "(BBBBFF)V");
+    void apply(byte r, byte g, byte b, byte a, float x, float y);
+    static MemorySegment allocate(PFNGLCOLOR4UBVERTEX2FSUNPROC fi, MemorySession session) {
+        return RuntimeHelper.upcallStub(PFNGLCOLOR4UBVERTEX2FSUNPROC.class, fi, constants$915.PFNGLCOLOR4UBVERTEX2FSUNPROC$FUNC, session);
     }
-    static MemoryAddress allocate(PFNGLCOLOR4UBVERTEX2FSUNPROC fi, ResourceScope scope) {
-        return RuntimeHelper.upcallStub(PFNGLCOLOR4UBVERTEX2FSUNPROC.class, fi, constants$915.PFNGLCOLOR4UBVERTEX2FSUNPROC$FUNC, "(BBBBFF)V", scope);
-    }
-    static PFNGLCOLOR4UBVERTEX2FSUNPROC ofAddress(MemoryAddress addr) {
-        return (byte x0, byte x1, byte x2, byte x3, float x4, float x5) -> {
+    static PFNGLCOLOR4UBVERTEX2FSUNPROC ofAddress(MemoryAddress addr, MemorySession session) {
+        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
+        return (byte _r, byte _g, byte _b, byte _a, float _x, float _y) -> {
             try {
-                constants$915.PFNGLCOLOR4UBVERTEX2FSUNPROC$MH.invokeExact((Addressable)addr, x0, x1, x2, x3, x4, x5);
+                constants$915.PFNGLCOLOR4UBVERTEX2FSUNPROC$MH.invokeExact((Addressable)symbol, _r, _g, _b, _a, _x, _y);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

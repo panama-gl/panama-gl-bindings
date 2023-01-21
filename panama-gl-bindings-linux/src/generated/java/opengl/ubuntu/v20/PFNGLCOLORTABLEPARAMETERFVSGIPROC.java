@@ -2,22 +2,22 @@
 
 package opengl.ubuntu.v20;
 
-import jdk.incubator.foreign.Addressable;
-import jdk.incubator.foreign.MemoryAddress;
-import jdk.incubator.foreign.ResourceScope;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public interface PFNGLCOLORTABLEPARAMETERFVSGIPROC {
 
-    void apply(int x0, int x1, jdk.incubator.foreign.MemoryAddress x2);
-    static MemoryAddress allocate(PFNGLCOLORTABLEPARAMETERFVSGIPROC fi) {
-        return RuntimeHelper.upcallStub(PFNGLCOLORTABLEPARAMETERFVSGIPROC.class, fi, constants$907.PFNGLCOLORTABLEPARAMETERFVSGIPROC$FUNC, "(IILjdk/incubator/foreign/MemoryAddress;)V");
+    void apply(int target, int pname, java.lang.foreign.MemoryAddress params);
+    static MemorySegment allocate(PFNGLCOLORTABLEPARAMETERFVSGIPROC fi, MemorySession session) {
+        return RuntimeHelper.upcallStub(PFNGLCOLORTABLEPARAMETERFVSGIPROC.class, fi, constants$907.PFNGLCOLORTABLEPARAMETERFVSGIPROC$FUNC, session);
     }
-    static MemoryAddress allocate(PFNGLCOLORTABLEPARAMETERFVSGIPROC fi, ResourceScope scope) {
-        return RuntimeHelper.upcallStub(PFNGLCOLORTABLEPARAMETERFVSGIPROC.class, fi, constants$907.PFNGLCOLORTABLEPARAMETERFVSGIPROC$FUNC, "(IILjdk/incubator/foreign/MemoryAddress;)V", scope);
-    }
-    static PFNGLCOLORTABLEPARAMETERFVSGIPROC ofAddress(MemoryAddress addr) {
-        return (int x0, int x1, jdk.incubator.foreign.MemoryAddress x2) -> {
+    static PFNGLCOLORTABLEPARAMETERFVSGIPROC ofAddress(MemoryAddress addr, MemorySession session) {
+        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
+        return (int _target, int _pname, java.lang.foreign.MemoryAddress _params) -> {
             try {
-                constants$907.PFNGLCOLORTABLEPARAMETERFVSGIPROC$MH.invokeExact((Addressable)addr, x0, x1, x2);
+                constants$907.PFNGLCOLORTABLEPARAMETERFVSGIPROC$MH.invokeExact((Addressable)symbol, _target, _pname, (java.lang.foreign.Addressable)_params);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

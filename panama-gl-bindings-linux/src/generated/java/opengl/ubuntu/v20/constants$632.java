@@ -2,37 +2,35 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_INT;
-import static jdk.incubator.foreign.CLinker.C_POINTER;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$632 {
 
     static final FunctionDescriptor PFNGLGETUNIFORMUIVEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLGETUNIFORMUIVEXTPROC$MH = RuntimeHelper.downcallHandle(
-        "(IILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$632.PFNGLGETUNIFORMUIVEXTPROC$FUNC, false
+        constants$632.PFNGLGETUNIFORMUIVEXTPROC$FUNC
     );
     static final FunctionDescriptor PFNGLBINDFRAGDATALOCATIONEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLBINDFRAGDATALOCATIONEXTPROC$MH = RuntimeHelper.downcallHandle(
-        "(IILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$632.PFNGLBINDFRAGDATALOCATIONEXTPROC$FUNC, false
+        constants$632.PFNGLBINDFRAGDATALOCATIONEXTPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLGETFRAGDATALOCATIONEXTPROC$FUNC = FunctionDescriptor.of(C_INT,
-        C_INT,
-        C_POINTER
+    static final FunctionDescriptor PFNGLGETFRAGDATALOCATIONEXTPROC$FUNC = FunctionDescriptor.of(Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLGETFRAGDATALOCATIONEXTPROC$MH = RuntimeHelper.downcallHandle(
-        "(ILjdk/incubator/foreign/MemoryAddress;)I",
-        constants$632.PFNGLGETFRAGDATALOCATIONEXTPROC$FUNC, false
+        constants$632.PFNGLGETFRAGDATALOCATIONEXTPROC$FUNC
     );
 }
 

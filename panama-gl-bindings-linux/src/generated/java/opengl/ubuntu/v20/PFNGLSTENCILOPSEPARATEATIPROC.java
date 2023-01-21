@@ -2,22 +2,22 @@
 
 package opengl.ubuntu.v20;
 
-import jdk.incubator.foreign.Addressable;
-import jdk.incubator.foreign.MemoryAddress;
-import jdk.incubator.foreign.ResourceScope;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public interface PFNGLSTENCILOPSEPARATEATIPROC {
 
-    void apply(int x0, int x1, int x2, int x3);
-    static MemoryAddress allocate(PFNGLSTENCILOPSEPARATEATIPROC fi) {
-        return RuntimeHelper.upcallStub(PFNGLSTENCILOPSEPARATEATIPROC.class, fi, constants$495.PFNGLSTENCILOPSEPARATEATIPROC$FUNC, "(IIII)V");
+    void apply(int face, int sfail, int dpfail, int dppass);
+    static MemorySegment allocate(PFNGLSTENCILOPSEPARATEATIPROC fi, MemorySession session) {
+        return RuntimeHelper.upcallStub(PFNGLSTENCILOPSEPARATEATIPROC.class, fi, constants$495.PFNGLSTENCILOPSEPARATEATIPROC$FUNC, session);
     }
-    static MemoryAddress allocate(PFNGLSTENCILOPSEPARATEATIPROC fi, ResourceScope scope) {
-        return RuntimeHelper.upcallStub(PFNGLSTENCILOPSEPARATEATIPROC.class, fi, constants$495.PFNGLSTENCILOPSEPARATEATIPROC$FUNC, "(IIII)V", scope);
-    }
-    static PFNGLSTENCILOPSEPARATEATIPROC ofAddress(MemoryAddress addr) {
-        return (int x0, int x1, int x2, int x3) -> {
+    static PFNGLSTENCILOPSEPARATEATIPROC ofAddress(MemoryAddress addr, MemorySession session) {
+        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
+        return (int _face, int _sfail, int _dpfail, int _dppass) -> {
             try {
-                constants$495.PFNGLSTENCILOPSEPARATEATIPROC$MH.invokeExact((Addressable)addr, x0, x1, x2, x3);
+                constants$495.PFNGLSTENCILOPSEPARATEATIPROC$MH.invokeExact((Addressable)symbol, _face, _sfail, _dpfail, _dppass);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

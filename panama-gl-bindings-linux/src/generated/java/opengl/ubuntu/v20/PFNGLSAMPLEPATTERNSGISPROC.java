@@ -2,22 +2,22 @@
 
 package opengl.ubuntu.v20;
 
-import jdk.incubator.foreign.Addressable;
-import jdk.incubator.foreign.MemoryAddress;
-import jdk.incubator.foreign.ResourceScope;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public interface PFNGLSAMPLEPATTERNSGISPROC {
 
-    void apply(int x0);
-    static MemoryAddress allocate(PFNGLSAMPLEPATTERNSGISPROC fi) {
-        return RuntimeHelper.upcallStub(PFNGLSAMPLEPATTERNSGISPROC.class, fi, constants$885.PFNGLSAMPLEPATTERNSGISPROC$FUNC, "(I)V");
+    void apply(int pattern);
+    static MemorySegment allocate(PFNGLSAMPLEPATTERNSGISPROC fi, MemorySession session) {
+        return RuntimeHelper.upcallStub(PFNGLSAMPLEPATTERNSGISPROC.class, fi, constants$885.PFNGLSAMPLEPATTERNSGISPROC$FUNC, session);
     }
-    static MemoryAddress allocate(PFNGLSAMPLEPATTERNSGISPROC fi, ResourceScope scope) {
-        return RuntimeHelper.upcallStub(PFNGLSAMPLEPATTERNSGISPROC.class, fi, constants$885.PFNGLSAMPLEPATTERNSGISPROC$FUNC, "(I)V", scope);
-    }
-    static PFNGLSAMPLEPATTERNSGISPROC ofAddress(MemoryAddress addr) {
-        return (int x0) -> {
+    static PFNGLSAMPLEPATTERNSGISPROC ofAddress(MemoryAddress addr, MemorySession session) {
+        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
+        return (int _pattern) -> {
             try {
-                constants$885.PFNGLSAMPLEPATTERNSGISPROC$MH.invokeExact((Addressable)addr, x0);
+                constants$885.PFNGLSAMPLEPATTERNSGISPROC$MH.invokeExact((Addressable)symbol, _pattern);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

@@ -2,36 +2,34 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_INT;
-import static jdk.incubator.foreign.CLinker.C_POINTER;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$878 {
 
     static final FunctionDescriptor PFNGLGETVERTEXATTRIBIIVEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLGETVERTEXATTRIBIIVEXTPROC$MH = RuntimeHelper.downcallHandle(
-        "(IILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$878.PFNGLGETVERTEXATTRIBIIVEXTPROC$FUNC, false
+        constants$878.PFNGLGETVERTEXATTRIBIIVEXTPROC$FUNC
     );
     static final FunctionDescriptor PFNGLGETVERTEXATTRIBIUIVEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLGETVERTEXATTRIBIUIVEXTPROC$MH = RuntimeHelper.downcallHandle(
-        "(IILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$878.PFNGLGETVERTEXATTRIBIUIVEXTPROC$FUNC, false
+        constants$878.PFNGLGETVERTEXATTRIBIUIVEXTPROC$FUNC
     );
     static final FunctionDescriptor PFNGLBEGINVIDEOCAPTURENVPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLBEGINVIDEOCAPTURENVPROC$MH = RuntimeHelper.downcallHandle(
-        "(I)V",
-        constants$878.PFNGLBEGINVIDEOCAPTURENVPROC$FUNC, false
+        constants$878.PFNGLBEGINVIDEOCAPTURENVPROC$FUNC
     );
 }
 

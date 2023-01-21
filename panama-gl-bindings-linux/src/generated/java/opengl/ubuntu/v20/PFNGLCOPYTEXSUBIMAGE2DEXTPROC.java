@@ -2,22 +2,22 @@
 
 package opengl.ubuntu.v20;
 
-import jdk.incubator.foreign.Addressable;
-import jdk.incubator.foreign.MemoryAddress;
-import jdk.incubator.foreign.ResourceScope;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public interface PFNGLCOPYTEXSUBIMAGE2DEXTPROC {
 
-    void apply(int x0, int x1, int x2, int x3, int x4, int x5, int x6, int x7);
-    static MemoryAddress allocate(PFNGLCOPYTEXSUBIMAGE2DEXTPROC fi) {
-        return RuntimeHelper.upcallStub(PFNGLCOPYTEXSUBIMAGE2DEXTPROC.class, fi, constants$532.PFNGLCOPYTEXSUBIMAGE2DEXTPROC$FUNC, "(IIIIIIII)V");
+    void apply(int target, int level, int xoffset, int yoffset, int x, int y, int width, int height);
+    static MemorySegment allocate(PFNGLCOPYTEXSUBIMAGE2DEXTPROC fi, MemorySession session) {
+        return RuntimeHelper.upcallStub(PFNGLCOPYTEXSUBIMAGE2DEXTPROC.class, fi, constants$532.PFNGLCOPYTEXSUBIMAGE2DEXTPROC$FUNC, session);
     }
-    static MemoryAddress allocate(PFNGLCOPYTEXSUBIMAGE2DEXTPROC fi, ResourceScope scope) {
-        return RuntimeHelper.upcallStub(PFNGLCOPYTEXSUBIMAGE2DEXTPROC.class, fi, constants$532.PFNGLCOPYTEXSUBIMAGE2DEXTPROC$FUNC, "(IIIIIIII)V", scope);
-    }
-    static PFNGLCOPYTEXSUBIMAGE2DEXTPROC ofAddress(MemoryAddress addr) {
-        return (int x0, int x1, int x2, int x3, int x4, int x5, int x6, int x7) -> {
+    static PFNGLCOPYTEXSUBIMAGE2DEXTPROC ofAddress(MemoryAddress addr, MemorySession session) {
+        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
+        return (int _target, int _level, int _xoffset, int _yoffset, int _x, int _y, int _width, int _height) -> {
             try {
-                constants$532.PFNGLCOPYTEXSUBIMAGE2DEXTPROC$MH.invokeExact((Addressable)addr, x0, x1, x2, x3, x4, x5, x6, x7);
+                constants$532.PFNGLCOPYTEXSUBIMAGE2DEXTPROC$MH.invokeExact((Addressable)symbol, _target, _level, _xoffset, _yoffset, _x, _y, _width, _height);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

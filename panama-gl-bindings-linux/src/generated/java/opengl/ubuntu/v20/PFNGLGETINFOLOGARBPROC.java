@@ -2,22 +2,22 @@
 
 package opengl.ubuntu.v20;
 
-import jdk.incubator.foreign.Addressable;
-import jdk.incubator.foreign.MemoryAddress;
-import jdk.incubator.foreign.ResourceScope;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public interface PFNGLGETINFOLOGARBPROC {
 
-    void apply(int x0, int x1, jdk.incubator.foreign.MemoryAddress x2, jdk.incubator.foreign.MemoryAddress x3);
-    static MemoryAddress allocate(PFNGLGETINFOLOGARBPROC fi) {
-        return RuntimeHelper.upcallStub(PFNGLGETINFOLOGARBPROC.class, fi, constants$368.PFNGLGETINFOLOGARBPROC$FUNC, "(IILjdk/incubator/foreign/MemoryAddress;Ljdk/incubator/foreign/MemoryAddress;)V");
+    void apply(int obj, int maxLength, java.lang.foreign.MemoryAddress length, java.lang.foreign.MemoryAddress infoLog);
+    static MemorySegment allocate(PFNGLGETINFOLOGARBPROC fi, MemorySession session) {
+        return RuntimeHelper.upcallStub(PFNGLGETINFOLOGARBPROC.class, fi, constants$368.PFNGLGETINFOLOGARBPROC$FUNC, session);
     }
-    static MemoryAddress allocate(PFNGLGETINFOLOGARBPROC fi, ResourceScope scope) {
-        return RuntimeHelper.upcallStub(PFNGLGETINFOLOGARBPROC.class, fi, constants$368.PFNGLGETINFOLOGARBPROC$FUNC, "(IILjdk/incubator/foreign/MemoryAddress;Ljdk/incubator/foreign/MemoryAddress;)V", scope);
-    }
-    static PFNGLGETINFOLOGARBPROC ofAddress(MemoryAddress addr) {
-        return (int x0, int x1, jdk.incubator.foreign.MemoryAddress x2, jdk.incubator.foreign.MemoryAddress x3) -> {
+    static PFNGLGETINFOLOGARBPROC ofAddress(MemoryAddress addr, MemorySession session) {
+        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
+        return (int _obj, int _maxLength, java.lang.foreign.MemoryAddress _length, java.lang.foreign.MemoryAddress _infoLog) -> {
             try {
-                constants$368.PFNGLGETINFOLOGARBPROC$MH.invokeExact((Addressable)addr, x0, x1, x2, x3);
+                constants$368.PFNGLGETINFOLOGARBPROC$MH.invokeExact((Addressable)symbol, _obj, _maxLength, (java.lang.foreign.Addressable)_length, (java.lang.foreign.Addressable)_infoLog);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

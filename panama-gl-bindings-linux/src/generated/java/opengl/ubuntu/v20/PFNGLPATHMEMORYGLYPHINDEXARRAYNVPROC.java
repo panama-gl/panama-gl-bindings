@@ -2,22 +2,22 @@
 
 package opengl.ubuntu.v20;
 
-import jdk.incubator.foreign.Addressable;
-import jdk.incubator.foreign.MemoryAddress;
-import jdk.incubator.foreign.ResourceScope;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public interface PFNGLPATHMEMORYGLYPHINDEXARRAYNVPROC {
 
-    int apply(int x0, int x1, long x2, jdk.incubator.foreign.MemoryAddress x3, int x4, int x5, int x6, int x7, float x8);
-    static MemoryAddress allocate(PFNGLPATHMEMORYGLYPHINDEXARRAYNVPROC fi) {
-        return RuntimeHelper.upcallStub(PFNGLPATHMEMORYGLYPHINDEXARRAYNVPROC.class, fi, constants$804.PFNGLPATHMEMORYGLYPHINDEXARRAYNVPROC$FUNC, "(IIJLjdk/incubator/foreign/MemoryAddress;IIIIF)I");
+    int apply(int firstPathName, int fontTarget, long fontSize, java.lang.foreign.MemoryAddress fontData, int faceIndex, int firstGlyphIndex, int numGlyphs, int pathParameterTemplate, float emScale);
+    static MemorySegment allocate(PFNGLPATHMEMORYGLYPHINDEXARRAYNVPROC fi, MemorySession session) {
+        return RuntimeHelper.upcallStub(PFNGLPATHMEMORYGLYPHINDEXARRAYNVPROC.class, fi, constants$804.PFNGLPATHMEMORYGLYPHINDEXARRAYNVPROC$FUNC, session);
     }
-    static MemoryAddress allocate(PFNGLPATHMEMORYGLYPHINDEXARRAYNVPROC fi, ResourceScope scope) {
-        return RuntimeHelper.upcallStub(PFNGLPATHMEMORYGLYPHINDEXARRAYNVPROC.class, fi, constants$804.PFNGLPATHMEMORYGLYPHINDEXARRAYNVPROC$FUNC, "(IIJLjdk/incubator/foreign/MemoryAddress;IIIIF)I", scope);
-    }
-    static PFNGLPATHMEMORYGLYPHINDEXARRAYNVPROC ofAddress(MemoryAddress addr) {
-        return (int x0, int x1, long x2, jdk.incubator.foreign.MemoryAddress x3, int x4, int x5, int x6, int x7, float x8) -> {
+    static PFNGLPATHMEMORYGLYPHINDEXARRAYNVPROC ofAddress(MemoryAddress addr, MemorySession session) {
+        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
+        return (int _firstPathName, int _fontTarget, long _fontSize, java.lang.foreign.MemoryAddress _fontData, int _faceIndex, int _firstGlyphIndex, int _numGlyphs, int _pathParameterTemplate, float _emScale) -> {
             try {
-                return (int)constants$804.PFNGLPATHMEMORYGLYPHINDEXARRAYNVPROC$MH.invokeExact((Addressable)addr, x0, x1, x2, x3, x4, x5, x6, x7, x8);
+                return (int)constants$804.PFNGLPATHMEMORYGLYPHINDEXARRAYNVPROC$MH.invokeExact((Addressable)symbol, _firstPathName, _fontTarget, _fontSize, (java.lang.foreign.Addressable)_fontData, _faceIndex, _firstGlyphIndex, _numGlyphs, _pathParameterTemplate, _emScale);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

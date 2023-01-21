@@ -2,22 +2,22 @@
 
 package opengl.ubuntu.v20;
 
-import jdk.incubator.foreign.Addressable;
-import jdk.incubator.foreign.MemoryAddress;
-import jdk.incubator.foreign.ResourceScope;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public interface PFNGLBLENDFUNCSEPARATEIPROC {
 
-    void apply(int x0, int x1, int x2, int x3, int x4);
-    static MemoryAddress allocate(PFNGLBLENDFUNCSEPARATEIPROC fi) {
-        return RuntimeHelper.upcallStub(PFNGLBLENDFUNCSEPARATEIPROC.class, fi, constants$205.PFNGLBLENDFUNCSEPARATEIPROC$FUNC, "(IIIII)V");
+    void apply(int buf, int srcRGB, int dstRGB, int srcAlpha, int dstAlpha);
+    static MemorySegment allocate(PFNGLBLENDFUNCSEPARATEIPROC fi, MemorySession session) {
+        return RuntimeHelper.upcallStub(PFNGLBLENDFUNCSEPARATEIPROC.class, fi, constants$205.PFNGLBLENDFUNCSEPARATEIPROC$FUNC, session);
     }
-    static MemoryAddress allocate(PFNGLBLENDFUNCSEPARATEIPROC fi, ResourceScope scope) {
-        return RuntimeHelper.upcallStub(PFNGLBLENDFUNCSEPARATEIPROC.class, fi, constants$205.PFNGLBLENDFUNCSEPARATEIPROC$FUNC, "(IIIII)V", scope);
-    }
-    static PFNGLBLENDFUNCSEPARATEIPROC ofAddress(MemoryAddress addr) {
-        return (int x0, int x1, int x2, int x3, int x4) -> {
+    static PFNGLBLENDFUNCSEPARATEIPROC ofAddress(MemoryAddress addr, MemorySession session) {
+        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
+        return (int _buf, int _srcRGB, int _dstRGB, int _srcAlpha, int _dstAlpha) -> {
             try {
-                constants$205.PFNGLBLENDFUNCSEPARATEIPROC$MH.invokeExact((Addressable)addr, x0, x1, x2, x3, x4);
+                constants$205.PFNGLBLENDFUNCSEPARATEIPROC$MH.invokeExact((Addressable)symbol, _buf, _srcRGB, _dstRGB, _srcAlpha, _dstAlpha);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

@@ -2,37 +2,35 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_INT;
-import static jdk.incubator.foreign.CLinker.C_POINTER;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$890 {
 
     static final FunctionDescriptor PFNGLGETTEXFILTERFUNCSGISPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLGETTEXFILTERFUNCSGISPROC$MH = RuntimeHelper.downcallHandle(
-        "(IILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$890.PFNGLGETTEXFILTERFUNCSGISPROC$FUNC, false
+        constants$890.PFNGLGETTEXFILTERFUNCSGISPROC$FUNC
     );
     static final FunctionDescriptor PFNGLTEXFILTERFUNCSGISPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLTEXFILTERFUNCSGISPROC$MH = RuntimeHelper.downcallHandle(
-        "(IIILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$890.PFNGLTEXFILTERFUNCSGISPROC$FUNC, false
+        constants$890.PFNGLTEXFILTERFUNCSGISPROC$FUNC
     );
     static final FunctionDescriptor PFNGLASYNCMARKERSGIXPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLASYNCMARKERSGIXPROC$MH = RuntimeHelper.downcallHandle(
-        "(I)V",
-        constants$890.PFNGLASYNCMARKERSGIXPROC$FUNC, false
+        constants$890.PFNGLASYNCMARKERSGIXPROC$FUNC
     );
 }
 

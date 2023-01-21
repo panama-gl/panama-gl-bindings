@@ -2,22 +2,22 @@
 
 package opengl.ubuntu.v20;
 
-import jdk.incubator.foreign.Addressable;
-import jdk.incubator.foreign.MemoryAddress;
-import jdk.incubator.foreign.ResourceScope;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public interface PFNGLISIMAGEHANDLERESIDENTNVPROC {
 
-    byte apply(long x0);
-    static MemoryAddress allocate(PFNGLISIMAGEHANDLERESIDENTNVPROC fi) {
-        return RuntimeHelper.upcallStub(PFNGLISIMAGEHANDLERESIDENTNVPROC.class, fi, constants$730.PFNGLISIMAGEHANDLERESIDENTNVPROC$FUNC, "(J)B");
+    byte apply(long handle);
+    static MemorySegment allocate(PFNGLISIMAGEHANDLERESIDENTNVPROC fi, MemorySession session) {
+        return RuntimeHelper.upcallStub(PFNGLISIMAGEHANDLERESIDENTNVPROC.class, fi, constants$730.PFNGLISIMAGEHANDLERESIDENTNVPROC$FUNC, session);
     }
-    static MemoryAddress allocate(PFNGLISIMAGEHANDLERESIDENTNVPROC fi, ResourceScope scope) {
-        return RuntimeHelper.upcallStub(PFNGLISIMAGEHANDLERESIDENTNVPROC.class, fi, constants$730.PFNGLISIMAGEHANDLERESIDENTNVPROC$FUNC, "(J)B", scope);
-    }
-    static PFNGLISIMAGEHANDLERESIDENTNVPROC ofAddress(MemoryAddress addr) {
-        return (long x0) -> {
+    static PFNGLISIMAGEHANDLERESIDENTNVPROC ofAddress(MemoryAddress addr, MemorySession session) {
+        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
+        return (long _handle) -> {
             try {
-                return (byte)constants$730.PFNGLISIMAGEHANDLERESIDENTNVPROC$MH.invokeExact((Addressable)addr, x0);
+                return (byte)constants$730.PFNGLISIMAGEHANDLERESIDENTNVPROC$MH.invokeExact((Addressable)symbol, _handle);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

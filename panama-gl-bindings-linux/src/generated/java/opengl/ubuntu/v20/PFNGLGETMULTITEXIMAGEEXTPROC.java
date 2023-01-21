@@ -2,22 +2,22 @@
 
 package opengl.ubuntu.v20;
 
-import jdk.incubator.foreign.Addressable;
-import jdk.incubator.foreign.MemoryAddress;
-import jdk.incubator.foreign.ResourceScope;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public interface PFNGLGETMULTITEXIMAGEEXTPROC {
 
-    void apply(int x0, int x1, int x2, int x3, int x4, jdk.incubator.foreign.MemoryAddress x5);
-    static MemoryAddress allocate(PFNGLGETMULTITEXIMAGEEXTPROC fi) {
-        return RuntimeHelper.upcallStub(PFNGLGETMULTITEXIMAGEEXTPROC.class, fi, constants$558.PFNGLGETMULTITEXIMAGEEXTPROC$FUNC, "(IIIIILjdk/incubator/foreign/MemoryAddress;)V");
+    void apply(int texunit, int target, int level, int format, int type, java.lang.foreign.MemoryAddress pixels);
+    static MemorySegment allocate(PFNGLGETMULTITEXIMAGEEXTPROC fi, MemorySession session) {
+        return RuntimeHelper.upcallStub(PFNGLGETMULTITEXIMAGEEXTPROC.class, fi, constants$558.PFNGLGETMULTITEXIMAGEEXTPROC$FUNC, session);
     }
-    static MemoryAddress allocate(PFNGLGETMULTITEXIMAGEEXTPROC fi, ResourceScope scope) {
-        return RuntimeHelper.upcallStub(PFNGLGETMULTITEXIMAGEEXTPROC.class, fi, constants$558.PFNGLGETMULTITEXIMAGEEXTPROC$FUNC, "(IIIIILjdk/incubator/foreign/MemoryAddress;)V", scope);
-    }
-    static PFNGLGETMULTITEXIMAGEEXTPROC ofAddress(MemoryAddress addr) {
-        return (int x0, int x1, int x2, int x3, int x4, jdk.incubator.foreign.MemoryAddress x5) -> {
+    static PFNGLGETMULTITEXIMAGEEXTPROC ofAddress(MemoryAddress addr, MemorySession session) {
+        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
+        return (int _texunit, int _target, int _level, int _format, int _type, java.lang.foreign.MemoryAddress _pixels) -> {
             try {
-                constants$558.PFNGLGETMULTITEXIMAGEEXTPROC$MH.invokeExact((Addressable)addr, x0, x1, x2, x3, x4, x5);
+                constants$558.PFNGLGETMULTITEXIMAGEEXTPROC$MH.invokeExact((Addressable)symbol, _texunit, _target, _level, _format, _type, (java.lang.foreign.Addressable)_pixels);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

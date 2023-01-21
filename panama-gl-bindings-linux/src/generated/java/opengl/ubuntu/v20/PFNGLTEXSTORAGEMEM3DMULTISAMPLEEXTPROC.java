@@ -2,22 +2,22 @@
 
 package opengl.ubuntu.v20;
 
-import jdk.incubator.foreign.Addressable;
-import jdk.incubator.foreign.MemoryAddress;
-import jdk.incubator.foreign.ResourceScope;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public interface PFNGLTEXSTORAGEMEM3DMULTISAMPLEEXTPROC {
 
-    void apply(int x0, int x1, int x2, int x3, int x4, int x5, byte x6, int x7, long x8);
-    static MemoryAddress allocate(PFNGLTEXSTORAGEMEM3DMULTISAMPLEEXTPROC fi) {
-        return RuntimeHelper.upcallStub(PFNGLTEXSTORAGEMEM3DMULTISAMPLEEXTPROC.class, fi, constants$644.PFNGLTEXSTORAGEMEM3DMULTISAMPLEEXTPROC$FUNC, "(IIIIIIBIJ)V");
+    void apply(int target, int samples, int internalFormat, int width, int height, int depth, byte fixedSampleLocations, int memory, long offset);
+    static MemorySegment allocate(PFNGLTEXSTORAGEMEM3DMULTISAMPLEEXTPROC fi, MemorySession session) {
+        return RuntimeHelper.upcallStub(PFNGLTEXSTORAGEMEM3DMULTISAMPLEEXTPROC.class, fi, constants$644.PFNGLTEXSTORAGEMEM3DMULTISAMPLEEXTPROC$FUNC, session);
     }
-    static MemoryAddress allocate(PFNGLTEXSTORAGEMEM3DMULTISAMPLEEXTPROC fi, ResourceScope scope) {
-        return RuntimeHelper.upcallStub(PFNGLTEXSTORAGEMEM3DMULTISAMPLEEXTPROC.class, fi, constants$644.PFNGLTEXSTORAGEMEM3DMULTISAMPLEEXTPROC$FUNC, "(IIIIIIBIJ)V", scope);
-    }
-    static PFNGLTEXSTORAGEMEM3DMULTISAMPLEEXTPROC ofAddress(MemoryAddress addr) {
-        return (int x0, int x1, int x2, int x3, int x4, int x5, byte x6, int x7, long x8) -> {
+    static PFNGLTEXSTORAGEMEM3DMULTISAMPLEEXTPROC ofAddress(MemoryAddress addr, MemorySession session) {
+        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
+        return (int _target, int _samples, int _internalFormat, int _width, int _height, int _depth, byte _fixedSampleLocations, int _memory, long _offset) -> {
             try {
-                constants$644.PFNGLTEXSTORAGEMEM3DMULTISAMPLEEXTPROC$MH.invokeExact((Addressable)addr, x0, x1, x2, x3, x4, x5, x6, x7, x8);
+                constants$644.PFNGLTEXSTORAGEMEM3DMULTISAMPLEEXTPROC$MH.invokeExact((Addressable)symbol, _target, _samples, _internalFormat, _width, _height, _depth, _fixedSampleLocations, _memory, _offset);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

@@ -2,43 +2,40 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_INT;
-import static jdk.incubator.foreign.CLinker.C_LONG;
-import static jdk.incubator.foreign.CLinker.C_POINTER;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$343 {
 
     static final FunctionDescriptor PFNGLMULTIDRAWARRAYSINDIRECTCOUNTARBPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_POINTER,
-        C_LONG,
-        C_INT,
-        C_INT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLMULTIDRAWARRAYSINDIRECTCOUNTARBPROC$MH = RuntimeHelper.downcallHandle(
-        "(ILjdk/incubator/foreign/MemoryAddress;JII)V",
-        constants$343.PFNGLMULTIDRAWARRAYSINDIRECTCOUNTARBPROC$FUNC, false
+        constants$343.PFNGLMULTIDRAWARRAYSINDIRECTCOUNTARBPROC$FUNC
     );
     static final FunctionDescriptor PFNGLMULTIDRAWELEMENTSINDIRECTCOUNTARBPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_POINTER,
-        C_LONG,
-        C_INT,
-        C_INT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLMULTIDRAWELEMENTSINDIRECTCOUNTARBPROC$MH = RuntimeHelper.downcallHandle(
-        "(IILjdk/incubator/foreign/MemoryAddress;JII)V",
-        constants$343.PFNGLMULTIDRAWELEMENTSINDIRECTCOUNTARBPROC$FUNC, false
+        constants$343.PFNGLMULTIDRAWELEMENTSINDIRECTCOUNTARBPROC$FUNC
     );
     static final FunctionDescriptor PFNGLVERTEXATTRIBDIVISORARBPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLVERTEXATTRIBDIVISORARBPROC$MH = RuntimeHelper.downcallHandle(
-        "(II)V",
-        constants$343.PFNGLVERTEXATTRIBDIVISORARBPROC$FUNC, false
+        constants$343.PFNGLVERTEXATTRIBDIVISORARBPROC$FUNC
     );
 }
 

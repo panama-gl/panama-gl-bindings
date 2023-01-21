@@ -2,22 +2,22 @@
 
 package opengl.ubuntu.v20;
 
-import jdk.incubator.foreign.Addressable;
-import jdk.incubator.foreign.MemoryAddress;
-import jdk.incubator.foreign.ResourceScope;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public interface PFNGLPROGRAMLOCALPARAMETERI4IVNVPROC {
 
-    void apply(int x0, int x1, jdk.incubator.foreign.MemoryAddress x2);
-    static MemoryAddress allocate(PFNGLPROGRAMLOCALPARAMETERI4IVNVPROC fi) {
-        return RuntimeHelper.upcallStub(PFNGLPROGRAMLOCALPARAMETERI4IVNVPROC.class, fi, constants$758.PFNGLPROGRAMLOCALPARAMETERI4IVNVPROC$FUNC, "(IILjdk/incubator/foreign/MemoryAddress;)V");
+    void apply(int target, int index, java.lang.foreign.MemoryAddress params);
+    static MemorySegment allocate(PFNGLPROGRAMLOCALPARAMETERI4IVNVPROC fi, MemorySession session) {
+        return RuntimeHelper.upcallStub(PFNGLPROGRAMLOCALPARAMETERI4IVNVPROC.class, fi, constants$758.PFNGLPROGRAMLOCALPARAMETERI4IVNVPROC$FUNC, session);
     }
-    static MemoryAddress allocate(PFNGLPROGRAMLOCALPARAMETERI4IVNVPROC fi, ResourceScope scope) {
-        return RuntimeHelper.upcallStub(PFNGLPROGRAMLOCALPARAMETERI4IVNVPROC.class, fi, constants$758.PFNGLPROGRAMLOCALPARAMETERI4IVNVPROC$FUNC, "(IILjdk/incubator/foreign/MemoryAddress;)V", scope);
-    }
-    static PFNGLPROGRAMLOCALPARAMETERI4IVNVPROC ofAddress(MemoryAddress addr) {
-        return (int x0, int x1, jdk.incubator.foreign.MemoryAddress x2) -> {
+    static PFNGLPROGRAMLOCALPARAMETERI4IVNVPROC ofAddress(MemoryAddress addr, MemorySession session) {
+        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
+        return (int _target, int _index, java.lang.foreign.MemoryAddress _params) -> {
             try {
-                constants$758.PFNGLPROGRAMLOCALPARAMETERI4IVNVPROC$MH.invokeExact((Addressable)addr, x0, x1, x2);
+                constants$758.PFNGLPROGRAMLOCALPARAMETERI4IVNVPROC$MH.invokeExact((Addressable)symbol, _target, _index, (java.lang.foreign.Addressable)_params);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

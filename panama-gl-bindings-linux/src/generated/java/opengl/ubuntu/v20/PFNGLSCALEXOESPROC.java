@@ -2,22 +2,22 @@
 
 package opengl.ubuntu.v20;
 
-import jdk.incubator.foreign.Addressable;
-import jdk.incubator.foreign.MemoryAddress;
-import jdk.incubator.foreign.ResourceScope;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public interface PFNGLSCALEXOESPROC {
 
-    void apply(int x0, int x1, int x2);
-    static MemoryAddress allocate(PFNGLSCALEXOESPROC fi) {
-        return RuntimeHelper.upcallStub(PFNGLSCALEXOESPROC.class, fi, constants$423.PFNGLSCALEXOESPROC$FUNC, "(III)V");
+    void apply(int x, int y, int z);
+    static MemorySegment allocate(PFNGLSCALEXOESPROC fi, MemorySession session) {
+        return RuntimeHelper.upcallStub(PFNGLSCALEXOESPROC.class, fi, constants$423.PFNGLSCALEXOESPROC$FUNC, session);
     }
-    static MemoryAddress allocate(PFNGLSCALEXOESPROC fi, ResourceScope scope) {
-        return RuntimeHelper.upcallStub(PFNGLSCALEXOESPROC.class, fi, constants$423.PFNGLSCALEXOESPROC$FUNC, "(III)V", scope);
-    }
-    static PFNGLSCALEXOESPROC ofAddress(MemoryAddress addr) {
-        return (int x0, int x1, int x2) -> {
+    static PFNGLSCALEXOESPROC ofAddress(MemoryAddress addr, MemorySession session) {
+        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
+        return (int _x, int _y, int _z) -> {
             try {
-                constants$423.PFNGLSCALEXOESPROC$MH.invokeExact((Addressable)addr, x0, x1, x2);
+                constants$423.PFNGLSCALEXOESPROC$MH.invokeExact((Addressable)symbol, _x, _y, _z);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

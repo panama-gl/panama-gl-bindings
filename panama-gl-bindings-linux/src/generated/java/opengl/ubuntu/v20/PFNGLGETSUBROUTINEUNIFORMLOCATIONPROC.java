@@ -2,22 +2,22 @@
 
 package opengl.ubuntu.v20;
 
-import jdk.incubator.foreign.Addressable;
-import jdk.incubator.foreign.MemoryAddress;
-import jdk.incubator.foreign.ResourceScope;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public interface PFNGLGETSUBROUTINEUNIFORMLOCATIONPROC {
 
-    int apply(int x0, int x1, jdk.incubator.foreign.MemoryAddress x2);
-    static MemoryAddress allocate(PFNGLGETSUBROUTINEUNIFORMLOCATIONPROC fi) {
-        return RuntimeHelper.upcallStub(PFNGLGETSUBROUTINEUNIFORMLOCATIONPROC.class, fi, constants$212.PFNGLGETSUBROUTINEUNIFORMLOCATIONPROC$FUNC, "(IILjdk/incubator/foreign/MemoryAddress;)I");
+    int apply(int program, int shadertype, java.lang.foreign.MemoryAddress name);
+    static MemorySegment allocate(PFNGLGETSUBROUTINEUNIFORMLOCATIONPROC fi, MemorySession session) {
+        return RuntimeHelper.upcallStub(PFNGLGETSUBROUTINEUNIFORMLOCATIONPROC.class, fi, constants$212.PFNGLGETSUBROUTINEUNIFORMLOCATIONPROC$FUNC, session);
     }
-    static MemoryAddress allocate(PFNGLGETSUBROUTINEUNIFORMLOCATIONPROC fi, ResourceScope scope) {
-        return RuntimeHelper.upcallStub(PFNGLGETSUBROUTINEUNIFORMLOCATIONPROC.class, fi, constants$212.PFNGLGETSUBROUTINEUNIFORMLOCATIONPROC$FUNC, "(IILjdk/incubator/foreign/MemoryAddress;)I", scope);
-    }
-    static PFNGLGETSUBROUTINEUNIFORMLOCATIONPROC ofAddress(MemoryAddress addr) {
-        return (int x0, int x1, jdk.incubator.foreign.MemoryAddress x2) -> {
+    static PFNGLGETSUBROUTINEUNIFORMLOCATIONPROC ofAddress(MemoryAddress addr, MemorySession session) {
+        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
+        return (int _program, int _shadertype, java.lang.foreign.MemoryAddress _name) -> {
             try {
-                return (int)constants$212.PFNGLGETSUBROUTINEUNIFORMLOCATIONPROC$MH.invokeExact((Addressable)addr, x0, x1, x2);
+                return (int)constants$212.PFNGLGETSUBROUTINEUNIFORMLOCATIONPROC$MH.invokeExact((Addressable)symbol, _program, _shadertype, (java.lang.foreign.Addressable)_name);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

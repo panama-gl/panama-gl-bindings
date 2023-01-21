@@ -2,39 +2,38 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_INT;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$453 {
 
     static final FunctionDescriptor PFNGLBLENDEQUATIONINDEXEDAMDPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLBLENDEQUATIONINDEXEDAMDPROC$MH = RuntimeHelper.downcallHandle(
-        "(II)V",
-        constants$453.PFNGLBLENDEQUATIONINDEXEDAMDPROC$FUNC, false
+        constants$453.PFNGLBLENDEQUATIONINDEXEDAMDPROC$FUNC
     );
     static final FunctionDescriptor PFNGLBLENDEQUATIONSEPARATEINDEXEDAMDPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_INT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLBLENDEQUATIONSEPARATEINDEXEDAMDPROC$MH = RuntimeHelper.downcallHandle(
-        "(III)V",
-        constants$453.PFNGLBLENDEQUATIONSEPARATEINDEXEDAMDPROC$FUNC, false
+        constants$453.PFNGLBLENDEQUATIONSEPARATEINDEXEDAMDPROC$FUNC
     );
     static final FunctionDescriptor PFNGLRENDERBUFFERSTORAGEMULTISAMPLEADVANCEDAMDPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLRENDERBUFFERSTORAGEMULTISAMPLEADVANCEDAMDPROC$MH = RuntimeHelper.downcallHandle(
-        "(IIIIII)V",
-        constants$453.PFNGLRENDERBUFFERSTORAGEMULTISAMPLEADVANCEDAMDPROC$FUNC, false
+        constants$453.PFNGLRENDERBUFFERSTORAGEMULTISAMPLEADVANCEDAMDPROC$FUNC
     );
 }
 

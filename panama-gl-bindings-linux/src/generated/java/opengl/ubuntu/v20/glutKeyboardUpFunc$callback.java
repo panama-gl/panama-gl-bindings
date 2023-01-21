@@ -2,22 +2,22 @@
 
 package opengl.ubuntu.v20;
 
-import jdk.incubator.foreign.Addressable;
-import jdk.incubator.foreign.MemoryAddress;
-import jdk.incubator.foreign.ResourceScope;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public interface glutKeyboardUpFunc$callback {
 
-    void apply(byte x0, int x1, int x2);
-    static MemoryAddress allocate(glutKeyboardUpFunc$callback fi) {
-        return RuntimeHelper.upcallStub(glutKeyboardUpFunc$callback.class, fi, constants$954.glutKeyboardUpFunc$callback$FUNC, "(BII)V");
+    void apply(byte _x0, int _x1, int _x2);
+    static MemorySegment allocate(glutKeyboardUpFunc$callback fi, MemorySession session) {
+        return RuntimeHelper.upcallStub(glutKeyboardUpFunc$callback.class, fi, constants$954.glutKeyboardUpFunc$callback$FUNC, session);
     }
-    static MemoryAddress allocate(glutKeyboardUpFunc$callback fi, ResourceScope scope) {
-        return RuntimeHelper.upcallStub(glutKeyboardUpFunc$callback.class, fi, constants$954.glutKeyboardUpFunc$callback$FUNC, "(BII)V", scope);
-    }
-    static glutKeyboardUpFunc$callback ofAddress(MemoryAddress addr) {
-        return (byte x0, int x1, int x2) -> {
+    static glutKeyboardUpFunc$callback ofAddress(MemoryAddress addr, MemorySession session) {
+        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
+        return (byte __x0, int __x1, int __x2) -> {
             try {
-                constants$954.glutKeyboardUpFunc$callback$MH.invokeExact((Addressable)addr, x0, x1, x2);
+                constants$954.glutKeyboardUpFunc$callback$MH.invokeExact((Addressable)symbol, __x0, __x1, __x2);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

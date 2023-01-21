@@ -2,50 +2,47 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_CHAR;
-import static jdk.incubator.foreign.CLinker.C_INT;
-import static jdk.incubator.foreign.CLinker.C_POINTER;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$287 {
 
     static final FunctionDescriptor PFNGLTEXTURESTORAGE2DMULTISAMPLEPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_CHAR
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_CHAR$LAYOUT
     );
     static final MethodHandle PFNGLTEXTURESTORAGE2DMULTISAMPLEPROC$MH = RuntimeHelper.downcallHandle(
-        "(IIIIIB)V",
-        constants$287.PFNGLTEXTURESTORAGE2DMULTISAMPLEPROC$FUNC, false
+        constants$287.PFNGLTEXTURESTORAGE2DMULTISAMPLEPROC$FUNC
     );
     static final FunctionDescriptor PFNGLTEXTURESTORAGE3DMULTISAMPLEPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_CHAR
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_CHAR$LAYOUT
     );
     static final MethodHandle PFNGLTEXTURESTORAGE3DMULTISAMPLEPROC$MH = RuntimeHelper.downcallHandle(
-        "(IIIIIIB)V",
-        constants$287.PFNGLTEXTURESTORAGE3DMULTISAMPLEPROC$FUNC, false
+        constants$287.PFNGLTEXTURESTORAGE3DMULTISAMPLEPROC$FUNC
     );
     static final FunctionDescriptor PFNGLTEXTURESUBIMAGE1DPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLTEXTURESUBIMAGE1DPROC$MH = RuntimeHelper.downcallHandle(
-        "(IIIIIILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$287.PFNGLTEXTURESUBIMAGE1DPROC$FUNC, false
+        constants$287.PFNGLTEXTURESUBIMAGE1DPROC$FUNC
     );
 }
 

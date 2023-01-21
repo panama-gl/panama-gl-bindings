@@ -2,34 +2,31 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_INT;
-import static jdk.incubator.foreign.CLinker.C_LONG;
-import static jdk.incubator.foreign.CLinker.C_POINTER;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$698 {
 
-    static final FunctionDescriptor PFNGLIMPORTSYNCEXTPROC$FUNC = FunctionDescriptor.of(C_POINTER,
-        C_INT,
-        C_LONG,
-        C_INT
+    static final FunctionDescriptor PFNGLIMPORTSYNCEXTPROC$FUNC = FunctionDescriptor.of(Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLIMPORTSYNCEXTPROC$MH = RuntimeHelper.downcallHandle(
-        "(IJI)Ljdk/incubator/foreign/MemoryAddress;",
-        constants$698.PFNGLIMPORTSYNCEXTPROC$FUNC, false
+        constants$698.PFNGLIMPORTSYNCEXTPROC$FUNC
     );
     static final FunctionDescriptor PFNGLFRAMETERMINATORGREMEDYPROC$FUNC = FunctionDescriptor.ofVoid();
     static final MethodHandle PFNGLFRAMETERMINATORGREMEDYPROC$MH = RuntimeHelper.downcallHandle(
-        "()V",
-        constants$698.PFNGLFRAMETERMINATORGREMEDYPROC$FUNC, false
+        constants$698.PFNGLFRAMETERMINATORGREMEDYPROC$FUNC
     );
     static final FunctionDescriptor PFNGLSTRINGMARKERGREMEDYPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLSTRINGMARKERGREMEDYPROC$MH = RuntimeHelper.downcallHandle(
-        "(ILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$698.PFNGLSTRINGMARKERGREMEDYPROC$FUNC, false
+        constants$698.PFNGLSTRINGMARKERGREMEDYPROC$FUNC
     );
 }
 

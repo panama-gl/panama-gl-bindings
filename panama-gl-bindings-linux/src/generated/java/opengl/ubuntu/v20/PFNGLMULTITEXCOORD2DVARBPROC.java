@@ -2,22 +2,22 @@
 
 package opengl.ubuntu.v20;
 
-import jdk.incubator.foreign.Addressable;
-import jdk.incubator.foreign.MemoryAddress;
-import jdk.incubator.foreign.ResourceScope;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public interface PFNGLMULTITEXCOORD2DVARBPROC {
 
-    void apply(int x0, jdk.incubator.foreign.MemoryAddress x1);
-    static MemoryAddress allocate(PFNGLMULTITEXCOORD2DVARBPROC fi) {
-        return RuntimeHelper.upcallStub(PFNGLMULTITEXCOORD2DVARBPROC.class, fi, constants$83.PFNGLMULTITEXCOORD2DVARBPROC$FUNC, "(ILjdk/incubator/foreign/MemoryAddress;)V");
+    void apply(int target, java.lang.foreign.MemoryAddress v);
+    static MemorySegment allocate(PFNGLMULTITEXCOORD2DVARBPROC fi, MemorySession session) {
+        return RuntimeHelper.upcallStub(PFNGLMULTITEXCOORD2DVARBPROC.class, fi, constants$83.PFNGLMULTITEXCOORD2DVARBPROC$FUNC, session);
     }
-    static MemoryAddress allocate(PFNGLMULTITEXCOORD2DVARBPROC fi, ResourceScope scope) {
-        return RuntimeHelper.upcallStub(PFNGLMULTITEXCOORD2DVARBPROC.class, fi, constants$83.PFNGLMULTITEXCOORD2DVARBPROC$FUNC, "(ILjdk/incubator/foreign/MemoryAddress;)V", scope);
-    }
-    static PFNGLMULTITEXCOORD2DVARBPROC ofAddress(MemoryAddress addr) {
-        return (int x0, jdk.incubator.foreign.MemoryAddress x1) -> {
+    static PFNGLMULTITEXCOORD2DVARBPROC ofAddress(MemoryAddress addr, MemorySession session) {
+        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
+        return (int _target, java.lang.foreign.MemoryAddress _v) -> {
             try {
-                constants$83.PFNGLMULTITEXCOORD2DVARBPROC$MH.invokeExact((Addressable)addr, x0, x1);
+                constants$83.PFNGLMULTITEXCOORD2DVARBPROC$MH.invokeExact((Addressable)symbol, _target, (java.lang.foreign.Addressable)_v);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

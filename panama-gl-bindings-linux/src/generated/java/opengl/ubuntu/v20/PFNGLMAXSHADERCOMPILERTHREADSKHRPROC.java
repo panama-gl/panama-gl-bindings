@@ -2,22 +2,22 @@
 
 package opengl.ubuntu.v20;
 
-import jdk.incubator.foreign.Addressable;
-import jdk.incubator.foreign.MemoryAddress;
-import jdk.incubator.foreign.ResourceScope;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public interface PFNGLMAXSHADERCOMPILERTHREADSKHRPROC {
 
-    void apply(int x0);
-    static MemoryAddress allocate(PFNGLMAXSHADERCOMPILERTHREADSKHRPROC fi) {
-        return RuntimeHelper.upcallStub(PFNGLMAXSHADERCOMPILERTHREADSKHRPROC.class, fi, constants$406.PFNGLMAXSHADERCOMPILERTHREADSKHRPROC$FUNC, "(I)V");
+    void apply(int count);
+    static MemorySegment allocate(PFNGLMAXSHADERCOMPILERTHREADSKHRPROC fi, MemorySession session) {
+        return RuntimeHelper.upcallStub(PFNGLMAXSHADERCOMPILERTHREADSKHRPROC.class, fi, constants$406.PFNGLMAXSHADERCOMPILERTHREADSKHRPROC$FUNC, session);
     }
-    static MemoryAddress allocate(PFNGLMAXSHADERCOMPILERTHREADSKHRPROC fi, ResourceScope scope) {
-        return RuntimeHelper.upcallStub(PFNGLMAXSHADERCOMPILERTHREADSKHRPROC.class, fi, constants$406.PFNGLMAXSHADERCOMPILERTHREADSKHRPROC$FUNC, "(I)V", scope);
-    }
-    static PFNGLMAXSHADERCOMPILERTHREADSKHRPROC ofAddress(MemoryAddress addr) {
-        return (int x0) -> {
+    static PFNGLMAXSHADERCOMPILERTHREADSKHRPROC ofAddress(MemoryAddress addr, MemorySession session) {
+        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
+        return (int _count) -> {
             try {
-                constants$406.PFNGLMAXSHADERCOMPILERTHREADSKHRPROC$MH.invokeExact((Addressable)addr, x0);
+                constants$406.PFNGLMAXSHADERCOMPILERTHREADSKHRPROC$MH.invokeExact((Addressable)symbol, _count);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

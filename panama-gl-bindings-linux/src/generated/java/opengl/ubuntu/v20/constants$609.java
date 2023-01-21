@@ -2,45 +2,42 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_INT;
-import static jdk.incubator.foreign.CLinker.C_LONG;
-import static jdk.incubator.foreign.CLinker.C_POINTER;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$609 {
 
     static final FunctionDescriptor PFNGLCLEARNAMEDBUFFERDATAEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLCLEARNAMEDBUFFERDATAEXTPROC$MH = RuntimeHelper.downcallHandle(
-        "(IIIILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$609.PFNGLCLEARNAMEDBUFFERDATAEXTPROC$FUNC, false
+        constants$609.PFNGLCLEARNAMEDBUFFERDATAEXTPROC$FUNC
     );
     static final FunctionDescriptor PFNGLCLEARNAMEDBUFFERSUBDATAEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_LONG,
-        C_LONG,
-        C_INT,
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLCLEARNAMEDBUFFERSUBDATAEXTPROC$MH = RuntimeHelper.downcallHandle(
-        "(IIJJIILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$609.PFNGLCLEARNAMEDBUFFERSUBDATAEXTPROC$FUNC, false
+        constants$609.PFNGLCLEARNAMEDBUFFERSUBDATAEXTPROC$FUNC
     );
     static final FunctionDescriptor PFNGLNAMEDFRAMEBUFFERPARAMETERIEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_INT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLNAMEDFRAMEBUFFERPARAMETERIEXTPROC$MH = RuntimeHelper.downcallHandle(
-        "(III)V",
-        constants$609.PFNGLNAMEDFRAMEBUFFERPARAMETERIEXTPROC$FUNC, false
+        constants$609.PFNGLNAMEDFRAMEBUFFERPARAMETERIEXTPROC$FUNC
     );
 }
 

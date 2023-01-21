@@ -2,37 +2,35 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_INT;
-import static jdk.incubator.foreign.CLinker.C_POINTER;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$308 {
 
     static final FunctionDescriptor PFNGLGETNPIXELMAPUIVPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLGETNPIXELMAPUIVPROC$MH = RuntimeHelper.downcallHandle(
-        "(IILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$308.PFNGLGETNPIXELMAPUIVPROC$FUNC, false
+        constants$308.PFNGLGETNPIXELMAPUIVPROC$FUNC
     );
     static final FunctionDescriptor PFNGLGETNPIXELMAPUSVPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLGETNPIXELMAPUSVPROC$MH = RuntimeHelper.downcallHandle(
-        "(IILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$308.PFNGLGETNPIXELMAPUSVPROC$FUNC, false
+        constants$308.PFNGLGETNPIXELMAPUSVPROC$FUNC
     );
     static final FunctionDescriptor PFNGLGETNPOLYGONSTIPPLEPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLGETNPOLYGONSTIPPLEPROC$MH = RuntimeHelper.downcallHandle(
-        "(ILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$308.PFNGLGETNPOLYGONSTIPPLEPROC$FUNC, false
+        constants$308.PFNGLGETNPOLYGONSTIPPLEPROC$FUNC
     );
 }
 

@@ -2,34 +2,32 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_INT;
-import static jdk.incubator.foreign.CLinker.C_POINTER;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$419 {
 
     static final FunctionDescriptor PFNGLLIGHTXVOESPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLLIGHTXVOESPROC$MH = RuntimeHelper.downcallHandle(
-        "(IILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$419.PFNGLLIGHTXVOESPROC$FUNC, false
+        constants$419.PFNGLLIGHTXVOESPROC$FUNC
     );
     static final FunctionDescriptor PFNGLLINEWIDTHXOESPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLLINEWIDTHXOESPROC$MH = RuntimeHelper.downcallHandle(
-        "(I)V",
-        constants$419.PFNGLLINEWIDTHXOESPROC$FUNC, false
+        constants$419.PFNGLLINEWIDTHXOESPROC$FUNC
     );
     static final FunctionDescriptor PFNGLLOADMATRIXXOESPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_POINTER
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLLOADMATRIXXOESPROC$MH = RuntimeHelper.downcallHandle(
-        "(Ljdk/incubator/foreign/MemoryAddress;)V",
-        constants$419.PFNGLLOADMATRIXXOESPROC$FUNC, false
+        constants$419.PFNGLLOADMATRIXXOESPROC$FUNC
     );
 }
 

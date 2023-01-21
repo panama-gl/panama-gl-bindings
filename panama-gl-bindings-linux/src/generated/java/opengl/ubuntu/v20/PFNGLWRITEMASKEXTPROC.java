@@ -2,22 +2,22 @@
 
 package opengl.ubuntu.v20;
 
-import jdk.incubator.foreign.Addressable;
-import jdk.incubator.foreign.MemoryAddress;
-import jdk.incubator.foreign.ResourceScope;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public interface PFNGLWRITEMASKEXTPROC {
 
-    void apply(int x0, int x1, int x2, int x3, int x4, int x5);
-    static MemoryAddress allocate(PFNGLWRITEMASKEXTPROC fi) {
-        return RuntimeHelper.upcallStub(PFNGLWRITEMASKEXTPROC.class, fi, constants$685.PFNGLWRITEMASKEXTPROC$FUNC, "(IIIIII)V");
+    void apply(int res, int in, int outX, int outY, int outZ, int outW);
+    static MemorySegment allocate(PFNGLWRITEMASKEXTPROC fi, MemorySession session) {
+        return RuntimeHelper.upcallStub(PFNGLWRITEMASKEXTPROC.class, fi, constants$685.PFNGLWRITEMASKEXTPROC$FUNC, session);
     }
-    static MemoryAddress allocate(PFNGLWRITEMASKEXTPROC fi, ResourceScope scope) {
-        return RuntimeHelper.upcallStub(PFNGLWRITEMASKEXTPROC.class, fi, constants$685.PFNGLWRITEMASKEXTPROC$FUNC, "(IIIIII)V", scope);
-    }
-    static PFNGLWRITEMASKEXTPROC ofAddress(MemoryAddress addr) {
-        return (int x0, int x1, int x2, int x3, int x4, int x5) -> {
+    static PFNGLWRITEMASKEXTPROC ofAddress(MemoryAddress addr, MemorySession session) {
+        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
+        return (int _res, int _in, int _outX, int _outY, int _outZ, int _outW) -> {
             try {
-                constants$685.PFNGLWRITEMASKEXTPROC$MH.invokeExact((Addressable)addr, x0, x1, x2, x3, x4, x5);
+                constants$685.PFNGLWRITEMASKEXTPROC$MH.invokeExact((Addressable)symbol, _res, _in, _outX, _outY, _outZ, _outW);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

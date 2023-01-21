@@ -2,22 +2,22 @@
 
 package opengl.ubuntu.v20;
 
-import jdk.incubator.foreign.Addressable;
-import jdk.incubator.foreign.MemoryAddress;
-import jdk.incubator.foreign.ResourceScope;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public interface PFNGLWINDOWPOS2SVARBPROC {
 
-    void apply(jdk.incubator.foreign.MemoryAddress x0);
-    static MemoryAddress allocate(PFNGLWINDOWPOS2SVARBPROC fi) {
-        return RuntimeHelper.upcallStub(PFNGLWINDOWPOS2SVARBPROC.class, fi, constants$402.PFNGLWINDOWPOS2SVARBPROC$FUNC, "(Ljdk/incubator/foreign/MemoryAddress;)V");
+    void apply(java.lang.foreign.MemoryAddress v);
+    static MemorySegment allocate(PFNGLWINDOWPOS2SVARBPROC fi, MemorySession session) {
+        return RuntimeHelper.upcallStub(PFNGLWINDOWPOS2SVARBPROC.class, fi, constants$402.PFNGLWINDOWPOS2SVARBPROC$FUNC, session);
     }
-    static MemoryAddress allocate(PFNGLWINDOWPOS2SVARBPROC fi, ResourceScope scope) {
-        return RuntimeHelper.upcallStub(PFNGLWINDOWPOS2SVARBPROC.class, fi, constants$402.PFNGLWINDOWPOS2SVARBPROC$FUNC, "(Ljdk/incubator/foreign/MemoryAddress;)V", scope);
-    }
-    static PFNGLWINDOWPOS2SVARBPROC ofAddress(MemoryAddress addr) {
-        return (jdk.incubator.foreign.MemoryAddress x0) -> {
+    static PFNGLWINDOWPOS2SVARBPROC ofAddress(MemoryAddress addr, MemorySession session) {
+        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
+        return (java.lang.foreign.MemoryAddress _v) -> {
             try {
-                constants$402.PFNGLWINDOWPOS2SVARBPROC$MH.invokeExact((Addressable)addr, x0);
+                constants$402.PFNGLWINDOWPOS2SVARBPROC$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)_v);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

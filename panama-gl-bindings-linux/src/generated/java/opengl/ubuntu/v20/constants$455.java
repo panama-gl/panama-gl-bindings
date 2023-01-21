@@ -2,44 +2,41 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_INT;
-import static jdk.incubator.foreign.CLinker.C_LONG;
-import static jdk.incubator.foreign.CLinker.C_POINTER;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$455 {
 
     static final FunctionDescriptor PFNGLGETFRAMEBUFFERPARAMETERFVAMDPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLGETFRAMEBUFFERPARAMETERFVAMDPROC$MH = RuntimeHelper.downcallHandle(
-        "(IIIIILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$455.PFNGLGETFRAMEBUFFERPARAMETERFVAMDPROC$FUNC, false
+        constants$455.PFNGLGETFRAMEBUFFERPARAMETERFVAMDPROC$FUNC
     );
     static final FunctionDescriptor PFNGLGETNAMEDFRAMEBUFFERPARAMETERFVAMDPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLGETNAMEDFRAMEBUFFERPARAMETERFVAMDPROC$MH = RuntimeHelper.downcallHandle(
-        "(IIIIILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$455.PFNGLGETNAMEDFRAMEBUFFERPARAMETERFVAMDPROC$FUNC, false
+        constants$455.PFNGLGETNAMEDFRAMEBUFFERPARAMETERFVAMDPROC$FUNC
     );
     static final FunctionDescriptor PFNGLUNIFORM1I64NVPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_LONG
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT
     );
     static final MethodHandle PFNGLUNIFORM1I64NVPROC$MH = RuntimeHelper.downcallHandle(
-        "(IJ)V",
-        constants$455.PFNGLUNIFORM1I64NVPROC$FUNC, false
+        constants$455.PFNGLUNIFORM1I64NVPROC$FUNC
     );
 }
 

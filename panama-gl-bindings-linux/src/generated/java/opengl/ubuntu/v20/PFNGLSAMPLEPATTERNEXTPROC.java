@@ -2,22 +2,22 @@
 
 package opengl.ubuntu.v20;
 
-import jdk.incubator.foreign.Addressable;
-import jdk.incubator.foreign.MemoryAddress;
-import jdk.incubator.foreign.ResourceScope;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public interface PFNGLSAMPLEPATTERNEXTPROC {
 
-    void apply(int x0);
-    static MemoryAddress allocate(PFNGLSAMPLEPATTERNEXTPROC fi) {
-        return RuntimeHelper.upcallStub(PFNGLSAMPLEPATTERNEXTPROC.class, fi, constants$649.PFNGLSAMPLEPATTERNEXTPROC$FUNC, "(I)V");
+    void apply(int pattern);
+    static MemorySegment allocate(PFNGLSAMPLEPATTERNEXTPROC fi, MemorySession session) {
+        return RuntimeHelper.upcallStub(PFNGLSAMPLEPATTERNEXTPROC.class, fi, constants$649.PFNGLSAMPLEPATTERNEXTPROC$FUNC, session);
     }
-    static MemoryAddress allocate(PFNGLSAMPLEPATTERNEXTPROC fi, ResourceScope scope) {
-        return RuntimeHelper.upcallStub(PFNGLSAMPLEPATTERNEXTPROC.class, fi, constants$649.PFNGLSAMPLEPATTERNEXTPROC$FUNC, "(I)V", scope);
-    }
-    static PFNGLSAMPLEPATTERNEXTPROC ofAddress(MemoryAddress addr) {
-        return (int x0) -> {
+    static PFNGLSAMPLEPATTERNEXTPROC ofAddress(MemoryAddress addr, MemorySession session) {
+        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
+        return (int _pattern) -> {
             try {
-                constants$649.PFNGLSAMPLEPATTERNEXTPROC$MH.invokeExact((Addressable)addr, x0);
+                constants$649.PFNGLSAMPLEPATTERNEXTPROC$MH.invokeExact((Addressable)symbol, _pattern);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

@@ -2,22 +2,22 @@
 
 package opengl.ubuntu.v20;
 
-import jdk.incubator.foreign.Addressable;
-import jdk.incubator.foreign.MemoryAddress;
-import jdk.incubator.foreign.ResourceScope;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public interface PFNGLGETCOMPRESSEDTEXTUREIMAGEPROC {
 
-    void apply(int x0, int x1, int x2, jdk.incubator.foreign.MemoryAddress x3);
-    static MemoryAddress allocate(PFNGLGETCOMPRESSEDTEXTUREIMAGEPROC fi) {
-        return RuntimeHelper.upcallStub(PFNGLGETCOMPRESSEDTEXTUREIMAGEPROC.class, fi, constants$293.PFNGLGETCOMPRESSEDTEXTUREIMAGEPROC$FUNC, "(IIILjdk/incubator/foreign/MemoryAddress;)V");
+    void apply(int texture, int level, int bufSize, java.lang.foreign.MemoryAddress pixels);
+    static MemorySegment allocate(PFNGLGETCOMPRESSEDTEXTUREIMAGEPROC fi, MemorySession session) {
+        return RuntimeHelper.upcallStub(PFNGLGETCOMPRESSEDTEXTUREIMAGEPROC.class, fi, constants$293.PFNGLGETCOMPRESSEDTEXTUREIMAGEPROC$FUNC, session);
     }
-    static MemoryAddress allocate(PFNGLGETCOMPRESSEDTEXTUREIMAGEPROC fi, ResourceScope scope) {
-        return RuntimeHelper.upcallStub(PFNGLGETCOMPRESSEDTEXTUREIMAGEPROC.class, fi, constants$293.PFNGLGETCOMPRESSEDTEXTUREIMAGEPROC$FUNC, "(IIILjdk/incubator/foreign/MemoryAddress;)V", scope);
-    }
-    static PFNGLGETCOMPRESSEDTEXTUREIMAGEPROC ofAddress(MemoryAddress addr) {
-        return (int x0, int x1, int x2, jdk.incubator.foreign.MemoryAddress x3) -> {
+    static PFNGLGETCOMPRESSEDTEXTUREIMAGEPROC ofAddress(MemoryAddress addr, MemorySession session) {
+        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
+        return (int _texture, int _level, int _bufSize, java.lang.foreign.MemoryAddress _pixels) -> {
             try {
-                constants$293.PFNGLGETCOMPRESSEDTEXTUREIMAGEPROC$MH.invokeExact((Addressable)addr, x0, x1, x2, x3);
+                constants$293.PFNGLGETCOMPRESSEDTEXTUREIMAGEPROC$MH.invokeExact((Addressable)symbol, _texture, _level, _bufSize, (java.lang.foreign.Addressable)_pixels);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

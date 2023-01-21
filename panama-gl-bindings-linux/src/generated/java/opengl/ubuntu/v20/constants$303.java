@@ -2,52 +2,50 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_INT;
-import static jdk.incubator.foreign.CLinker.C_POINTER;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$303 {
 
     static final FunctionDescriptor PFNGLMEMORYBARRIERBYREGIONPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLMEMORYBARRIERBYREGIONPROC$MH = RuntimeHelper.downcallHandle(
-        "(I)V",
-        constants$303.PFNGLMEMORYBARRIERBYREGIONPROC$FUNC, false
+        constants$303.PFNGLMEMORYBARRIERBYREGIONPROC$FUNC
     );
     static final FunctionDescriptor PFNGLGETTEXTURESUBIMAGEPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLGETTEXTURESUBIMAGEPROC$MH = RuntimeHelper.downcallHandle(
-        "(IIIIIIIIIIILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$303.PFNGLGETTEXTURESUBIMAGEPROC$FUNC, false
+        constants$303.PFNGLGETTEXTURESUBIMAGEPROC$FUNC
     );
     static final FunctionDescriptor PFNGLGETCOMPRESSEDTEXTURESUBIMAGEPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLGETCOMPRESSEDTEXTURESUBIMAGEPROC$MH = RuntimeHelper.downcallHandle(
-        "(IIIIIIIIILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$303.PFNGLGETCOMPRESSEDTEXTURESUBIMAGEPROC$FUNC, false
+        constants$303.PFNGLGETCOMPRESSEDTEXTURESUBIMAGEPROC$FUNC
     );
 }
 

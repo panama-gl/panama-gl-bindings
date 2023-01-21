@@ -2,51 +2,45 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_INT;
-import static jdk.incubator.foreign.CLinker.C_POINTER;
 import java.lang.invoke.MethodHandle;
 import java.lang.invoke.VarHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
-import jdk.incubator.foreign.MemoryHandles;
-import jdk.incubator.foreign.MemoryLayout;
-import jdk.incubator.foreign.MemorySegment;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$941 {
 
-    static final MemoryLayout glutBitmapHelvetica10$LAYOUT = C_POINTER;
-    static final VarHandle glutBitmapHelvetica10$VH = MemoryHandles.asAddressVarHandle(constants$941.glutBitmapHelvetica10$LAYOUT.varHandle(long.class));
-    static final MemorySegment glutBitmapHelvetica10$SEGMENT = RuntimeHelper.lookupGlobalVariable(glut_h.LIBRARIES, "glutBitmapHelvetica10", constants$941.glutBitmapHelvetica10$LAYOUT);
-    static final MemoryLayout glutBitmapHelvetica12$LAYOUT = C_POINTER;
-    static final VarHandle glutBitmapHelvetica12$VH = MemoryHandles.asAddressVarHandle(constants$941.glutBitmapHelvetica12$LAYOUT.varHandle(long.class));
-    static final MemorySegment glutBitmapHelvetica12$SEGMENT = RuntimeHelper.lookupGlobalVariable(glut_h.LIBRARIES, "glutBitmapHelvetica12", constants$941.glutBitmapHelvetica12$LAYOUT);
-    static final MemoryLayout glutBitmapHelvetica18$LAYOUT = C_POINTER;
-    static final VarHandle glutBitmapHelvetica18$VH = MemoryHandles.asAddressVarHandle(constants$941.glutBitmapHelvetica18$LAYOUT.varHandle(long.class));
-    static final MemorySegment glutBitmapHelvetica18$SEGMENT = RuntimeHelper.lookupGlobalVariable(glut_h.LIBRARIES, "glutBitmapHelvetica18", constants$941.glutBitmapHelvetica18$LAYOUT);
+    static final  OfAddress glutBitmapHelvetica10$LAYOUT = Constants$root.C_POINTER$LAYOUT;
+    static final VarHandle glutBitmapHelvetica10$VH = constants$941.glutBitmapHelvetica10$LAYOUT.varHandle();
+    static final MemorySegment glutBitmapHelvetica10$SEGMENT = RuntimeHelper.lookupGlobalVariable("glutBitmapHelvetica10", constants$941.glutBitmapHelvetica10$LAYOUT);
+    static final  OfAddress glutBitmapHelvetica12$LAYOUT = Constants$root.C_POINTER$LAYOUT;
+    static final VarHandle glutBitmapHelvetica12$VH = constants$941.glutBitmapHelvetica12$LAYOUT.varHandle();
+    static final MemorySegment glutBitmapHelvetica12$SEGMENT = RuntimeHelper.lookupGlobalVariable("glutBitmapHelvetica12", constants$941.glutBitmapHelvetica12$LAYOUT);
+    static final  OfAddress glutBitmapHelvetica18$LAYOUT = Constants$root.C_POINTER$LAYOUT;
+    static final VarHandle glutBitmapHelvetica18$VH = constants$941.glutBitmapHelvetica18$LAYOUT.varHandle();
+    static final MemorySegment glutBitmapHelvetica18$SEGMENT = RuntimeHelper.lookupGlobalVariable("glutBitmapHelvetica18", constants$941.glutBitmapHelvetica18$LAYOUT);
     static final FunctionDescriptor glutInit$FUNC = FunctionDescriptor.ofVoid(
-        C_POINTER,
-        C_POINTER
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle glutInit$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "glutInit",
-        "(Ljdk/incubator/foreign/MemoryAddress;Ljdk/incubator/foreign/MemoryAddress;)V",
-        constants$941.glutInit$FUNC, false
+        "glutInit",
+        constants$941.glutInit$FUNC
     );
     static final FunctionDescriptor glutInitWindowPosition$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle glutInitWindowPosition$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "glutInitWindowPosition",
-        "(II)V",
-        constants$941.glutInitWindowPosition$FUNC, false
+        "glutInitWindowPosition",
+        constants$941.glutInitWindowPosition$FUNC
     );
     static final FunctionDescriptor glutInitWindowSize$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle glutInitWindowSize$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "glutInitWindowSize",
-        "(II)V",
-        constants$941.glutInitWindowSize$FUNC, false
+        "glutInitWindowSize",
+        constants$941.glutInitWindowSize$FUNC
     );
 }
 

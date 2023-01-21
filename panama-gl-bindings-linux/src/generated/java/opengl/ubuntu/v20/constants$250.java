@@ -2,42 +2,39 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_CHAR;
-import static jdk.incubator.foreign.CLinker.C_INT;
-import static jdk.incubator.foreign.CLinker.C_POINTER;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$250 {
 
     static final FunctionDescriptor PFNGLGETACTIVEATOMICCOUNTERBUFFERIVPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLGETACTIVEATOMICCOUNTERBUFFERIVPROC$MH = RuntimeHelper.downcallHandle(
-        "(IIILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$250.PFNGLGETACTIVEATOMICCOUNTERBUFFERIVPROC$FUNC, false
+        constants$250.PFNGLGETACTIVEATOMICCOUNTERBUFFERIVPROC$FUNC
     );
     static final FunctionDescriptor PFNGLBINDIMAGETEXTUREPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_INT,
-        C_CHAR,
-        C_INT,
-        C_INT,
-        C_INT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_CHAR$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLBINDIMAGETEXTUREPROC$MH = RuntimeHelper.downcallHandle(
-        "(IIIBIII)V",
-        constants$250.PFNGLBINDIMAGETEXTUREPROC$FUNC, false
+        constants$250.PFNGLBINDIMAGETEXTUREPROC$FUNC
     );
     static final FunctionDescriptor PFNGLMEMORYBARRIERPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLMEMORYBARRIERPROC$MH = RuntimeHelper.downcallHandle(
-        "(I)V",
-        constants$250.PFNGLMEMORYBARRIERPROC$FUNC, false
+        constants$250.PFNGLMEMORYBARRIERPROC$FUNC
     );
 }
 

@@ -2,32 +2,30 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_INT;
-import static jdk.incubator.foreign.CLinker.C_POINTER;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$891 {
 
-    static final FunctionDescriptor PFNGLFINISHASYNCSGIXPROC$FUNC = FunctionDescriptor.of(C_INT,
-        C_POINTER
+    static final FunctionDescriptor PFNGLFINISHASYNCSGIXPROC$FUNC = FunctionDescriptor.of(Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLFINISHASYNCSGIXPROC$MH = RuntimeHelper.downcallHandle(
-        "(Ljdk/incubator/foreign/MemoryAddress;)I",
-        constants$891.PFNGLFINISHASYNCSGIXPROC$FUNC, false
+        constants$891.PFNGLFINISHASYNCSGIXPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLPOLLASYNCSGIXPROC$FUNC = FunctionDescriptor.of(C_INT,
-        C_POINTER
+    static final FunctionDescriptor PFNGLPOLLASYNCSGIXPROC$FUNC = FunctionDescriptor.of(Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLPOLLASYNCSGIXPROC$MH = RuntimeHelper.downcallHandle(
-        "(Ljdk/incubator/foreign/MemoryAddress;)I",
-        constants$891.PFNGLPOLLASYNCSGIXPROC$FUNC, false
+        constants$891.PFNGLPOLLASYNCSGIXPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLGENASYNCMARKERSSGIXPROC$FUNC = FunctionDescriptor.of(C_INT,
-        C_INT
+    static final FunctionDescriptor PFNGLGENASYNCMARKERSSGIXPROC$FUNC = FunctionDescriptor.of(Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLGENASYNCMARKERSSGIXPROC$MH = RuntimeHelper.downcallHandle(
-        "(I)I",
-        constants$891.PFNGLGENASYNCMARKERSSGIXPROC$FUNC, false
+        constants$891.PFNGLGENASYNCMARKERSSGIXPROC$FUNC
     );
 }
 

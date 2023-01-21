@@ -2,22 +2,22 @@
 
 package opengl.ubuntu.v20;
 
-import jdk.incubator.foreign.Addressable;
-import jdk.incubator.foreign.MemoryAddress;
-import jdk.incubator.foreign.ResourceScope;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public interface PFNGLASYNCMARKERSGIXPROC {
 
-    void apply(int x0);
-    static MemoryAddress allocate(PFNGLASYNCMARKERSGIXPROC fi) {
-        return RuntimeHelper.upcallStub(PFNGLASYNCMARKERSGIXPROC.class, fi, constants$890.PFNGLASYNCMARKERSGIXPROC$FUNC, "(I)V");
+    void apply(int marker);
+    static MemorySegment allocate(PFNGLASYNCMARKERSGIXPROC fi, MemorySession session) {
+        return RuntimeHelper.upcallStub(PFNGLASYNCMARKERSGIXPROC.class, fi, constants$890.PFNGLASYNCMARKERSGIXPROC$FUNC, session);
     }
-    static MemoryAddress allocate(PFNGLASYNCMARKERSGIXPROC fi, ResourceScope scope) {
-        return RuntimeHelper.upcallStub(PFNGLASYNCMARKERSGIXPROC.class, fi, constants$890.PFNGLASYNCMARKERSGIXPROC$FUNC, "(I)V", scope);
-    }
-    static PFNGLASYNCMARKERSGIXPROC ofAddress(MemoryAddress addr) {
-        return (int x0) -> {
+    static PFNGLASYNCMARKERSGIXPROC ofAddress(MemoryAddress addr, MemorySession session) {
+        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
+        return (int _marker) -> {
             try {
-                constants$890.PFNGLASYNCMARKERSGIXPROC$MH.invokeExact((Addressable)addr, x0);
+                constants$890.PFNGLASYNCMARKERSGIXPROC$MH.invokeExact((Addressable)symbol, _marker);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

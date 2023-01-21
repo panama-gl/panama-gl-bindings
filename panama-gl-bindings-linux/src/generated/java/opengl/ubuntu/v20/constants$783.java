@@ -2,35 +2,32 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_CHAR;
-import static jdk.incubator.foreign.CLinker.C_INT;
-import static jdk.incubator.foreign.CLinker.C_POINTER;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$783 {
 
     static final FunctionDescriptor PFNGLGENOCCLUSIONQUERIESNVPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLGENOCCLUSIONQUERIESNVPROC$MH = RuntimeHelper.downcallHandle(
-        "(ILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$783.PFNGLGENOCCLUSIONQUERIESNVPROC$FUNC, false
+        constants$783.PFNGLGENOCCLUSIONQUERIESNVPROC$FUNC
     );
     static final FunctionDescriptor PFNGLDELETEOCCLUSIONQUERIESNVPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLDELETEOCCLUSIONQUERIESNVPROC$MH = RuntimeHelper.downcallHandle(
-        "(ILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$783.PFNGLDELETEOCCLUSIONQUERIESNVPROC$FUNC, false
+        constants$783.PFNGLDELETEOCCLUSIONQUERIESNVPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLISOCCLUSIONQUERYNVPROC$FUNC = FunctionDescriptor.of(C_CHAR,
-        C_INT
+    static final FunctionDescriptor PFNGLISOCCLUSIONQUERYNVPROC$FUNC = FunctionDescriptor.of(Constants$root.C_CHAR$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLISOCCLUSIONQUERYNVPROC$MH = RuntimeHelper.downcallHandle(
-        "(I)B",
-        constants$783.PFNGLISOCCLUSIONQUERYNVPROC$FUNC, false
+        constants$783.PFNGLISOCCLUSIONQUERYNVPROC$FUNC
     );
 }
 

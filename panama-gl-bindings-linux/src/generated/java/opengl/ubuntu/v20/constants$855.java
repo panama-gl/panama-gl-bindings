@@ -2,46 +2,42 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_DOUBLE;
-import static jdk.incubator.foreign.CLinker.C_FLOAT;
-import static jdk.incubator.foreign.CLinker.C_INT;
-import static jdk.incubator.foreign.CLinker.C_POINTER;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$855 {
 
     static final FunctionDescriptor PFNGLPROGRAMPARAMETER4DNVPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_DOUBLE,
-        C_DOUBLE,
-        C_DOUBLE,
-        C_DOUBLE
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_DOUBLE$LAYOUT,
+        Constants$root.C_DOUBLE$LAYOUT,
+        Constants$root.C_DOUBLE$LAYOUT,
+        Constants$root.C_DOUBLE$LAYOUT
     );
     static final MethodHandle PFNGLPROGRAMPARAMETER4DNVPROC$MH = RuntimeHelper.downcallHandle(
-        "(IIDDDD)V",
-        constants$855.PFNGLPROGRAMPARAMETER4DNVPROC$FUNC, false
+        constants$855.PFNGLPROGRAMPARAMETER4DNVPROC$FUNC
     );
     static final FunctionDescriptor PFNGLPROGRAMPARAMETER4DVNVPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLPROGRAMPARAMETER4DVNVPROC$MH = RuntimeHelper.downcallHandle(
-        "(IILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$855.PFNGLPROGRAMPARAMETER4DVNVPROC$FUNC, false
+        constants$855.PFNGLPROGRAMPARAMETER4DVNVPROC$FUNC
     );
     static final FunctionDescriptor PFNGLPROGRAMPARAMETER4FNVPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_FLOAT,
-        C_FLOAT,
-        C_FLOAT,
-        C_FLOAT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT
     );
     static final MethodHandle PFNGLPROGRAMPARAMETER4FNVPROC$MH = RuntimeHelper.downcallHandle(
-        "(IIFFFF)V",
-        constants$855.PFNGLPROGRAMPARAMETER4FNVPROC$FUNC, false
+        constants$855.PFNGLPROGRAMPARAMETER4FNVPROC$FUNC
     );
 }
 

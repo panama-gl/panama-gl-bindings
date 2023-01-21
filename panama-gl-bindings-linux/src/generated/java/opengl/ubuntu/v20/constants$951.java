@@ -2,42 +2,39 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_INT;
-import static jdk.incubator.foreign.CLinker.C_POINTER;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$951 {
 
     static final FunctionDescriptor glutSpecialFunc$FUNC = FunctionDescriptor.ofVoid(
-        C_POINTER
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle glutSpecialFunc$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "glutSpecialFunc",
-        "(Ljdk/incubator/foreign/MemoryAddress;)V",
-        constants$951.glutSpecialFunc$FUNC, false
+        "glutSpecialFunc",
+        constants$951.glutSpecialFunc$FUNC
     );
     static final FunctionDescriptor glutReshapeFunc$callback$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle glutReshapeFunc$callback$MH = RuntimeHelper.downcallHandle(
-        "(II)V",
-        constants$951.glutReshapeFunc$callback$FUNC, false
+        constants$951.glutReshapeFunc$callback$FUNC
     );
     static final FunctionDescriptor glutReshapeFunc$FUNC = FunctionDescriptor.ofVoid(
-        C_POINTER
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle glutReshapeFunc$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "glutReshapeFunc",
-        "(Ljdk/incubator/foreign/MemoryAddress;)V",
-        constants$951.glutReshapeFunc$FUNC, false
+        "glutReshapeFunc",
+        constants$951.glutReshapeFunc$FUNC
     );
     static final FunctionDescriptor glutVisibilityFunc$callback$FUNC = FunctionDescriptor.ofVoid(
-        C_INT
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle glutVisibilityFunc$callback$MH = RuntimeHelper.downcallHandle(
-        "(I)V",
-        constants$951.glutVisibilityFunc$callback$FUNC, false
+        constants$951.glutVisibilityFunc$callback$FUNC
     );
 }
 

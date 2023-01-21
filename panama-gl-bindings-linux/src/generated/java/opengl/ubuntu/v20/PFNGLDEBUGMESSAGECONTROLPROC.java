@@ -2,22 +2,22 @@
 
 package opengl.ubuntu.v20;
 
-import jdk.incubator.foreign.Addressable;
-import jdk.incubator.foreign.MemoryAddress;
-import jdk.incubator.foreign.ResourceScope;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public interface PFNGLDEBUGMESSAGECONTROLPROC {
 
-    void apply(int x0, int x1, int x2, int x3, jdk.incubator.foreign.MemoryAddress x4, byte x5);
-    static MemoryAddress allocate(PFNGLDEBUGMESSAGECONTROLPROC fi) {
-        return RuntimeHelper.upcallStub(PFNGLDEBUGMESSAGECONTROLPROC.class, fi, constants$264.PFNGLDEBUGMESSAGECONTROLPROC$FUNC, "(IIIILjdk/incubator/foreign/MemoryAddress;B)V");
+    void apply(int source, int type, int severity, int count, java.lang.foreign.MemoryAddress ids, byte enabled);
+    static MemorySegment allocate(PFNGLDEBUGMESSAGECONTROLPROC fi, MemorySession session) {
+        return RuntimeHelper.upcallStub(PFNGLDEBUGMESSAGECONTROLPROC.class, fi, constants$264.PFNGLDEBUGMESSAGECONTROLPROC$FUNC, session);
     }
-    static MemoryAddress allocate(PFNGLDEBUGMESSAGECONTROLPROC fi, ResourceScope scope) {
-        return RuntimeHelper.upcallStub(PFNGLDEBUGMESSAGECONTROLPROC.class, fi, constants$264.PFNGLDEBUGMESSAGECONTROLPROC$FUNC, "(IIIILjdk/incubator/foreign/MemoryAddress;B)V", scope);
-    }
-    static PFNGLDEBUGMESSAGECONTROLPROC ofAddress(MemoryAddress addr) {
-        return (int x0, int x1, int x2, int x3, jdk.incubator.foreign.MemoryAddress x4, byte x5) -> {
+    static PFNGLDEBUGMESSAGECONTROLPROC ofAddress(MemoryAddress addr, MemorySession session) {
+        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
+        return (int _source, int _type, int _severity, int _count, java.lang.foreign.MemoryAddress _ids, byte _enabled) -> {
             try {
-                constants$264.PFNGLDEBUGMESSAGECONTROLPROC$MH.invokeExact((Addressable)addr, x0, x1, x2, x3, x4, x5);
+                constants$264.PFNGLDEBUGMESSAGECONTROLPROC$MH.invokeExact((Addressable)symbol, _source, _type, _severity, _count, (java.lang.foreign.Addressable)_ids, _enabled);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

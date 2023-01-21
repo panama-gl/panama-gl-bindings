@@ -2,35 +2,33 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_FLOAT;
-import static jdk.incubator.foreign.CLinker.C_INT;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$204 {
 
     static final FunctionDescriptor PFNGLMINSAMPLESHADINGPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_FLOAT
+        Constants$root.C_FLOAT$LAYOUT
     );
     static final MethodHandle PFNGLMINSAMPLESHADINGPROC$MH = RuntimeHelper.downcallHandle(
-        "(F)V",
-        constants$204.PFNGLMINSAMPLESHADINGPROC$FUNC, false
+        constants$204.PFNGLMINSAMPLESHADINGPROC$FUNC
     );
     static final FunctionDescriptor PFNGLBLENDEQUATIONIPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLBLENDEQUATIONIPROC$MH = RuntimeHelper.downcallHandle(
-        "(II)V",
-        constants$204.PFNGLBLENDEQUATIONIPROC$FUNC, false
+        constants$204.PFNGLBLENDEQUATIONIPROC$FUNC
     );
     static final FunctionDescriptor PFNGLBLENDEQUATIONSEPARATEIPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_INT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLBLENDEQUATIONSEPARATEIPROC$MH = RuntimeHelper.downcallHandle(
-        "(III)V",
-        constants$204.PFNGLBLENDEQUATIONSEPARATEIPROC$FUNC, false
+        constants$204.PFNGLBLENDEQUATIONSEPARATEIPROC$FUNC
     );
 }
 

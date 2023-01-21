@@ -2,43 +2,42 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_INT;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$251 {
 
     static final FunctionDescriptor PFNGLTEXSTORAGE1DPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLTEXSTORAGE1DPROC$MH = RuntimeHelper.downcallHandle(
-        "(IIII)V",
-        constants$251.PFNGLTEXSTORAGE1DPROC$FUNC, false
+        constants$251.PFNGLTEXSTORAGE1DPROC$FUNC
     );
     static final FunctionDescriptor PFNGLTEXSTORAGE2DPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLTEXSTORAGE2DPROC$MH = RuntimeHelper.downcallHandle(
-        "(IIIII)V",
-        constants$251.PFNGLTEXSTORAGE2DPROC$FUNC, false
+        constants$251.PFNGLTEXSTORAGE2DPROC$FUNC
     );
     static final FunctionDescriptor PFNGLTEXSTORAGE3DPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLTEXSTORAGE3DPROC$MH = RuntimeHelper.downcallHandle(
-        "(IIIIII)V",
-        constants$251.PFNGLTEXSTORAGE3DPROC$FUNC, false
+        constants$251.PFNGLTEXSTORAGE3DPROC$FUNC
     );
 }
 

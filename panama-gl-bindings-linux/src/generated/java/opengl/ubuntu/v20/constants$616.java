@@ -2,46 +2,44 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_INT;
-import static jdk.incubator.foreign.CLinker.C_LONG;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$616 {
 
     static final FunctionDescriptor PFNGLTEXTUREBUFFERRANGEEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_LONG,
-        C_LONG
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT
     );
     static final MethodHandle PFNGLTEXTUREBUFFERRANGEEXTPROC$MH = RuntimeHelper.downcallHandle(
-        "(IIIIJJ)V",
-        constants$616.PFNGLTEXTUREBUFFERRANGEEXTPROC$FUNC, false
+        constants$616.PFNGLTEXTUREBUFFERRANGEEXTPROC$FUNC
     );
     static final FunctionDescriptor PFNGLTEXTURESTORAGE1DEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLTEXTURESTORAGE1DEXTPROC$MH = RuntimeHelper.downcallHandle(
-        "(IIIII)V",
-        constants$616.PFNGLTEXTURESTORAGE1DEXTPROC$FUNC, false
+        constants$616.PFNGLTEXTURESTORAGE1DEXTPROC$FUNC
     );
     static final FunctionDescriptor PFNGLTEXTURESTORAGE2DEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLTEXTURESTORAGE2DEXTPROC$MH = RuntimeHelper.downcallHandle(
-        "(IIIIII)V",
-        constants$616.PFNGLTEXTURESTORAGE2DEXTPROC$FUNC, false
+        constants$616.PFNGLTEXTURESTORAGE2DEXTPROC$FUNC
     );
 }
 

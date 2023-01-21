@@ -2,45 +2,42 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_INT;
-import static jdk.incubator.foreign.CLinker.C_LONG;
-import static jdk.incubator.foreign.CLinker.C_POINTER;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$253 {
 
     static final FunctionDescriptor PFNGLCLEARBUFFERDATAPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLCLEARBUFFERDATAPROC$MH = RuntimeHelper.downcallHandle(
-        "(IIIILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$253.PFNGLCLEARBUFFERDATAPROC$FUNC, false
+        constants$253.PFNGLCLEARBUFFERDATAPROC$FUNC
     );
     static final FunctionDescriptor PFNGLCLEARBUFFERSUBDATAPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_LONG,
-        C_LONG,
-        C_INT,
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLCLEARBUFFERSUBDATAPROC$MH = RuntimeHelper.downcallHandle(
-        "(IIJJIILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$253.PFNGLCLEARBUFFERSUBDATAPROC$FUNC, false
+        constants$253.PFNGLCLEARBUFFERSUBDATAPROC$FUNC
     );
     static final FunctionDescriptor PFNGLDISPATCHCOMPUTEPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_INT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLDISPATCHCOMPUTEPROC$MH = RuntimeHelper.downcallHandle(
-        "(III)V",
-        constants$253.PFNGLDISPATCHCOMPUTEPROC$FUNC, false
+        constants$253.PFNGLDISPATCHCOMPUTEPROC$FUNC
     );
 }
 

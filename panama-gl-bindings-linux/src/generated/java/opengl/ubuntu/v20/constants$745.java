@@ -2,39 +2,37 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_INT;
-import static jdk.incubator.foreign.CLinker.C_POINTER;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$745 {
 
     static final FunctionDescriptor PFNGLGETMAPATTRIBPARAMETERIVNVPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLGETMAPATTRIBPARAMETERIVNVPROC$MH = RuntimeHelper.downcallHandle(
-        "(IIILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$745.PFNGLGETMAPATTRIBPARAMETERIVNVPROC$FUNC, false
+        constants$745.PFNGLGETMAPATTRIBPARAMETERIVNVPROC$FUNC
     );
     static final FunctionDescriptor PFNGLGETMAPATTRIBPARAMETERFVNVPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLGETMAPATTRIBPARAMETERFVNVPROC$MH = RuntimeHelper.downcallHandle(
-        "(IIILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$745.PFNGLGETMAPATTRIBPARAMETERFVNVPROC$FUNC, false
+        constants$745.PFNGLGETMAPATTRIBPARAMETERFVNVPROC$FUNC
     );
     static final FunctionDescriptor PFNGLEVALMAPSNVPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLEVALMAPSNVPROC$MH = RuntimeHelper.downcallHandle(
-        "(II)V",
-        constants$745.PFNGLEVALMAPSNVPROC$FUNC, false
+        constants$745.PFNGLEVALMAPSNVPROC$FUNC
     );
 }
 

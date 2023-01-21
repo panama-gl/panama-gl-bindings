@@ -2,22 +2,22 @@
 
 package opengl.ubuntu.v20;
 
-import jdk.incubator.foreign.Addressable;
-import jdk.incubator.foreign.MemoryAddress;
-import jdk.incubator.foreign.ResourceScope;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public interface PFNGLNAMEDFRAMEBUFFERTEXTURE1DEXTPROC {
 
-    void apply(int x0, int x1, int x2, int x3, int x4);
-    static MemoryAddress allocate(PFNGLNAMEDFRAMEBUFFERTEXTURE1DEXTPROC fi) {
-        return RuntimeHelper.upcallStub(PFNGLNAMEDFRAMEBUFFERTEXTURE1DEXTPROC.class, fi, constants$596.PFNGLNAMEDFRAMEBUFFERTEXTURE1DEXTPROC$FUNC, "(IIIII)V");
+    void apply(int framebuffer, int attachment, int textarget, int texture, int level);
+    static MemorySegment allocate(PFNGLNAMEDFRAMEBUFFERTEXTURE1DEXTPROC fi, MemorySession session) {
+        return RuntimeHelper.upcallStub(PFNGLNAMEDFRAMEBUFFERTEXTURE1DEXTPROC.class, fi, constants$596.PFNGLNAMEDFRAMEBUFFERTEXTURE1DEXTPROC$FUNC, session);
     }
-    static MemoryAddress allocate(PFNGLNAMEDFRAMEBUFFERTEXTURE1DEXTPROC fi, ResourceScope scope) {
-        return RuntimeHelper.upcallStub(PFNGLNAMEDFRAMEBUFFERTEXTURE1DEXTPROC.class, fi, constants$596.PFNGLNAMEDFRAMEBUFFERTEXTURE1DEXTPROC$FUNC, "(IIIII)V", scope);
-    }
-    static PFNGLNAMEDFRAMEBUFFERTEXTURE1DEXTPROC ofAddress(MemoryAddress addr) {
-        return (int x0, int x1, int x2, int x3, int x4) -> {
+    static PFNGLNAMEDFRAMEBUFFERTEXTURE1DEXTPROC ofAddress(MemoryAddress addr, MemorySession session) {
+        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
+        return (int _framebuffer, int _attachment, int _textarget, int _texture, int _level) -> {
             try {
-                constants$596.PFNGLNAMEDFRAMEBUFFERTEXTURE1DEXTPROC$MH.invokeExact((Addressable)addr, x0, x1, x2, x3, x4);
+                constants$596.PFNGLNAMEDFRAMEBUFFERTEXTURE1DEXTPROC$MH.invokeExact((Addressable)symbol, _framebuffer, _attachment, _textarget, _texture, _level);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

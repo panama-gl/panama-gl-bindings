@@ -2,22 +2,22 @@
 
 package opengl.ubuntu.v20;
 
-import jdk.incubator.foreign.Addressable;
-import jdk.incubator.foreign.MemoryAddress;
-import jdk.incubator.foreign.ResourceScope;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public interface PFNGLGETTEXTUREIMAGEEXTPROC {
 
-    void apply(int x0, int x1, int x2, int x3, int x4, jdk.incubator.foreign.MemoryAddress x5);
-    static MemoryAddress allocate(PFNGLGETTEXTUREIMAGEEXTPROC fi) {
-        return RuntimeHelper.upcallStub(PFNGLGETTEXTUREIMAGEEXTPROC.class, fi, constants$545.PFNGLGETTEXTUREIMAGEEXTPROC$FUNC, "(IIIIILjdk/incubator/foreign/MemoryAddress;)V");
+    void apply(int texture, int target, int level, int format, int type, java.lang.foreign.MemoryAddress pixels);
+    static MemorySegment allocate(PFNGLGETTEXTUREIMAGEEXTPROC fi, MemorySession session) {
+        return RuntimeHelper.upcallStub(PFNGLGETTEXTUREIMAGEEXTPROC.class, fi, constants$545.PFNGLGETTEXTUREIMAGEEXTPROC$FUNC, session);
     }
-    static MemoryAddress allocate(PFNGLGETTEXTUREIMAGEEXTPROC fi, ResourceScope scope) {
-        return RuntimeHelper.upcallStub(PFNGLGETTEXTUREIMAGEEXTPROC.class, fi, constants$545.PFNGLGETTEXTUREIMAGEEXTPROC$FUNC, "(IIIIILjdk/incubator/foreign/MemoryAddress;)V", scope);
-    }
-    static PFNGLGETTEXTUREIMAGEEXTPROC ofAddress(MemoryAddress addr) {
-        return (int x0, int x1, int x2, int x3, int x4, jdk.incubator.foreign.MemoryAddress x5) -> {
+    static PFNGLGETTEXTUREIMAGEEXTPROC ofAddress(MemoryAddress addr, MemorySession session) {
+        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
+        return (int _texture, int _target, int _level, int _format, int _type, java.lang.foreign.MemoryAddress _pixels) -> {
             try {
-                constants$545.PFNGLGETTEXTUREIMAGEEXTPROC$MH.invokeExact((Addressable)addr, x0, x1, x2, x3, x4, x5);
+                constants$545.PFNGLGETTEXTUREIMAGEEXTPROC$MH.invokeExact((Addressable)symbol, _texture, _target, _level, _format, _type, (java.lang.foreign.Addressable)_pixels);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

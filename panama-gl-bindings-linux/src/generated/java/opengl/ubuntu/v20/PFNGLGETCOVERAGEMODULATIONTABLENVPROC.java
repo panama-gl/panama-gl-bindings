@@ -2,22 +2,22 @@
 
 package opengl.ubuntu.v20;
 
-import jdk.incubator.foreign.Addressable;
-import jdk.incubator.foreign.MemoryAddress;
-import jdk.incubator.foreign.ResourceScope;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public interface PFNGLGETCOVERAGEMODULATIONTABLENVPROC {
 
-    void apply(int x0, jdk.incubator.foreign.MemoryAddress x1);
-    static MemoryAddress allocate(PFNGLGETCOVERAGEMODULATIONTABLENVPROC fi) {
-        return RuntimeHelper.upcallStub(PFNGLGETCOVERAGEMODULATIONTABLENVPROC.class, fi, constants$752.PFNGLGETCOVERAGEMODULATIONTABLENVPROC$FUNC, "(ILjdk/incubator/foreign/MemoryAddress;)V");
+    void apply(int bufsize, java.lang.foreign.MemoryAddress v);
+    static MemorySegment allocate(PFNGLGETCOVERAGEMODULATIONTABLENVPROC fi, MemorySession session) {
+        return RuntimeHelper.upcallStub(PFNGLGETCOVERAGEMODULATIONTABLENVPROC.class, fi, constants$752.PFNGLGETCOVERAGEMODULATIONTABLENVPROC$FUNC, session);
     }
-    static MemoryAddress allocate(PFNGLGETCOVERAGEMODULATIONTABLENVPROC fi, ResourceScope scope) {
-        return RuntimeHelper.upcallStub(PFNGLGETCOVERAGEMODULATIONTABLENVPROC.class, fi, constants$752.PFNGLGETCOVERAGEMODULATIONTABLENVPROC$FUNC, "(ILjdk/incubator/foreign/MemoryAddress;)V", scope);
-    }
-    static PFNGLGETCOVERAGEMODULATIONTABLENVPROC ofAddress(MemoryAddress addr) {
-        return (int x0, jdk.incubator.foreign.MemoryAddress x1) -> {
+    static PFNGLGETCOVERAGEMODULATIONTABLENVPROC ofAddress(MemoryAddress addr, MemorySession session) {
+        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
+        return (int _bufsize, java.lang.foreign.MemoryAddress _v) -> {
             try {
-                constants$752.PFNGLGETCOVERAGEMODULATIONTABLENVPROC$MH.invokeExact((Addressable)addr, x0, x1);
+                constants$752.PFNGLGETCOVERAGEMODULATIONTABLENVPROC$MH.invokeExact((Addressable)symbol, _bufsize, (java.lang.foreign.Addressable)_v);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

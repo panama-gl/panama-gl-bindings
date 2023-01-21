@@ -2,39 +2,37 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_INT;
-import static jdk.incubator.foreign.CLinker.C_POINTER;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$832 {
 
     static final FunctionDescriptor PFNGLGETTRANSFORMFEEDBACKVARYINGNVPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLGETTRANSFORMFEEDBACKVARYINGNVPROC$MH = RuntimeHelper.downcallHandle(
-        "(IILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$832.PFNGLGETTRANSFORMFEEDBACKVARYINGNVPROC$FUNC, false
+        constants$832.PFNGLGETTRANSFORMFEEDBACKVARYINGNVPROC$FUNC
     );
     static final FunctionDescriptor PFNGLTRANSFORMFEEDBACKSTREAMATTRIBSNVPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_POINTER,
-        C_INT,
-        C_POINTER,
-        C_INT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLTRANSFORMFEEDBACKSTREAMATTRIBSNVPROC$MH = RuntimeHelper.downcallHandle(
-        "(ILjdk/incubator/foreign/MemoryAddress;ILjdk/incubator/foreign/MemoryAddress;I)V",
-        constants$832.PFNGLTRANSFORMFEEDBACKSTREAMATTRIBSNVPROC$FUNC, false
+        constants$832.PFNGLTRANSFORMFEEDBACKSTREAMATTRIBSNVPROC$FUNC
     );
     static final FunctionDescriptor PFNGLBINDTRANSFORMFEEDBACKNVPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLBINDTRANSFORMFEEDBACKNVPROC$MH = RuntimeHelper.downcallHandle(
-        "(II)V",
-        constants$832.PFNGLBINDTRANSFORMFEEDBACKNVPROC$FUNC, false
+        constants$832.PFNGLBINDTRANSFORMFEEDBACKNVPROC$FUNC
     );
 }
 

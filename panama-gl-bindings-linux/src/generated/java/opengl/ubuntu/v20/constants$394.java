@@ -2,39 +2,36 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_FLOAT;
-import static jdk.incubator.foreign.CLinker.C_INT;
-import static jdk.incubator.foreign.CLinker.C_POINTER;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$394 {
 
     static final FunctionDescriptor PFNGLVERTEXATTRIB4DVARBPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLVERTEXATTRIB4DVARBPROC$MH = RuntimeHelper.downcallHandle(
-        "(ILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$394.PFNGLVERTEXATTRIB4DVARBPROC$FUNC, false
+        constants$394.PFNGLVERTEXATTRIB4DVARBPROC$FUNC
     );
     static final FunctionDescriptor PFNGLVERTEXATTRIB4FARBPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_FLOAT,
-        C_FLOAT,
-        C_FLOAT,
-        C_FLOAT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT
     );
     static final MethodHandle PFNGLVERTEXATTRIB4FARBPROC$MH = RuntimeHelper.downcallHandle(
-        "(IFFFF)V",
-        constants$394.PFNGLVERTEXATTRIB4FARBPROC$FUNC, false
+        constants$394.PFNGLVERTEXATTRIB4FARBPROC$FUNC
     );
     static final FunctionDescriptor PFNGLVERTEXATTRIB4FVARBPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLVERTEXATTRIB4FVARBPROC$MH = RuntimeHelper.downcallHandle(
-        "(ILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$394.PFNGLVERTEXATTRIB4FVARBPROC$FUNC, false
+        constants$394.PFNGLVERTEXATTRIB4FVARBPROC$FUNC
     );
 }
 

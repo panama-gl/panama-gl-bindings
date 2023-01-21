@@ -2,42 +2,38 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_FLOAT;
-import static jdk.incubator.foreign.CLinker.C_INT;
-import static jdk.incubator.foreign.CLinker.C_LONG;
-import static jdk.incubator.foreign.CLinker.C_POINTER;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$741 {
 
     static final FunctionDescriptor GLVULKANPROCNV$FUNC = FunctionDescriptor.ofVoid();
     static final MethodHandle GLVULKANPROCNV$MH = RuntimeHelper.downcallHandle(
-        "()V",
-        constants$741.GLVULKANPROCNV$FUNC, false
+        constants$741.GLVULKANPROCNV$FUNC
     );
     static final FunctionDescriptor PFNGLDRAWVKIMAGENVPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_LONG,
-        C_INT,
-        C_FLOAT,
-        C_FLOAT,
-        C_FLOAT,
-        C_FLOAT,
-        C_FLOAT,
-        C_FLOAT,
-        C_FLOAT,
-        C_FLOAT,
-        C_FLOAT
+        Constants$root.C_LONG_LONG$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT
     );
     static final MethodHandle PFNGLDRAWVKIMAGENVPROC$MH = RuntimeHelper.downcallHandle(
-        "(JIFFFFFFFFF)V",
-        constants$741.PFNGLDRAWVKIMAGENVPROC$FUNC, false
+        constants$741.PFNGLDRAWVKIMAGENVPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLGETVKPROCADDRNVPROC$FUNC = FunctionDescriptor.of(C_POINTER,
-        C_POINTER
+    static final FunctionDescriptor PFNGLGETVKPROCADDRNVPROC$FUNC = FunctionDescriptor.of(Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLGETVKPROCADDRNVPROC$MH = RuntimeHelper.downcallHandle(
-        "(Ljdk/incubator/foreign/MemoryAddress;)Ljdk/incubator/foreign/MemoryAddress;",
-        constants$741.PFNGLGETVKPROCADDRNVPROC$FUNC, false
+        constants$741.PFNGLGETVKPROCADDRNVPROC$FUNC
     );
 }
 

@@ -2,28 +2,27 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_INT;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$834 {
 
     static final FunctionDescriptor PFNGLPAUSETRANSFORMFEEDBACKNVPROC$FUNC = FunctionDescriptor.ofVoid();
     static final MethodHandle PFNGLPAUSETRANSFORMFEEDBACKNVPROC$MH = RuntimeHelper.downcallHandle(
-        "()V",
-        constants$834.PFNGLPAUSETRANSFORMFEEDBACKNVPROC$FUNC, false
+        constants$834.PFNGLPAUSETRANSFORMFEEDBACKNVPROC$FUNC
     );
     static final FunctionDescriptor PFNGLRESUMETRANSFORMFEEDBACKNVPROC$FUNC = FunctionDescriptor.ofVoid();
     static final MethodHandle PFNGLRESUMETRANSFORMFEEDBACKNVPROC$MH = RuntimeHelper.downcallHandle(
-        "()V",
-        constants$834.PFNGLRESUMETRANSFORMFEEDBACKNVPROC$FUNC, false
+        constants$834.PFNGLRESUMETRANSFORMFEEDBACKNVPROC$FUNC
     );
     static final FunctionDescriptor PFNGLDRAWTRANSFORMFEEDBACKNVPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLDRAWTRANSFORMFEEDBACKNVPROC$MH = RuntimeHelper.downcallHandle(
-        "(II)V",
-        constants$834.PFNGLDRAWTRANSFORMFEEDBACKNVPROC$FUNC, false
+        constants$834.PFNGLDRAWTRANSFORMFEEDBACKNVPROC$FUNC
     );
 }
 

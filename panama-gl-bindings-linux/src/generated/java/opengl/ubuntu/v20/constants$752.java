@@ -2,38 +2,36 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_INT;
-import static jdk.incubator.foreign.CLinker.C_POINTER;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$752 {
 
     static final FunctionDescriptor PFNGLGETCOVERAGEMODULATIONTABLENVPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLGETCOVERAGEMODULATIONTABLENVPROC$MH = RuntimeHelper.downcallHandle(
-        "(ILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$752.PFNGLGETCOVERAGEMODULATIONTABLENVPROC$FUNC, false
+        constants$752.PFNGLGETCOVERAGEMODULATIONTABLENVPROC$FUNC
     );
     static final FunctionDescriptor PFNGLCOVERAGEMODULATIONNVPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLCOVERAGEMODULATIONNVPROC$MH = RuntimeHelper.downcallHandle(
-        "(I)V",
-        constants$752.PFNGLCOVERAGEMODULATIONNVPROC$FUNC, false
+        constants$752.PFNGLCOVERAGEMODULATIONNVPROC$FUNC
     );
     static final FunctionDescriptor PFNGLRENDERBUFFERSTORAGEMULTISAMPLECOVERAGENVPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLRENDERBUFFERSTORAGEMULTISAMPLECOVERAGENVPROC$MH = RuntimeHelper.downcallHandle(
-        "(IIIIII)V",
-        constants$752.PFNGLRENDERBUFFERSTORAGEMULTISAMPLECOVERAGENVPROC$FUNC, false
+        constants$752.PFNGLRENDERBUFFERSTORAGEMULTISAMPLECOVERAGENVPROC$FUNC
     );
 }
 

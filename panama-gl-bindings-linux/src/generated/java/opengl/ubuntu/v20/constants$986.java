@@ -2,69 +2,63 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_INT;
-import static jdk.incubator.foreign.CLinker.C_LONG;
-import static jdk.incubator.foreign.CLinker.C_POINTER;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$986 {
 
-    static final FunctionDescriptor mbtowc$FUNC = FunctionDescriptor.of(C_INT,
-        C_POINTER,
-        C_POINTER,
-        C_LONG
+    static final FunctionDescriptor mbtowc$FUNC = FunctionDescriptor.of(Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT
     );
     static final MethodHandle mbtowc$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "mbtowc",
-        "(Ljdk/incubator/foreign/MemoryAddress;Ljdk/incubator/foreign/MemoryAddress;J)I",
-        constants$986.mbtowc$FUNC, false
+        "mbtowc",
+        constants$986.mbtowc$FUNC
     );
-    static final FunctionDescriptor wctomb$FUNC = FunctionDescriptor.of(C_INT,
-        C_POINTER,
-        C_INT
+    static final FunctionDescriptor wctomb$FUNC = FunctionDescriptor.of(Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle wctomb$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "wctomb",
-        "(Ljdk/incubator/foreign/MemoryAddress;I)I",
-        constants$986.wctomb$FUNC, false
+        "wctomb",
+        constants$986.wctomb$FUNC
     );
-    static final FunctionDescriptor mbstowcs$FUNC = FunctionDescriptor.of(C_LONG,
-        C_POINTER,
-        C_POINTER,
-        C_LONG
+    static final FunctionDescriptor mbstowcs$FUNC = FunctionDescriptor.of(Constants$root.C_LONG_LONG$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT
     );
     static final MethodHandle mbstowcs$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "mbstowcs",
-        "(Ljdk/incubator/foreign/MemoryAddress;Ljdk/incubator/foreign/MemoryAddress;J)J",
-        constants$986.mbstowcs$FUNC, false
+        "mbstowcs",
+        constants$986.mbstowcs$FUNC
     );
-    static final FunctionDescriptor wcstombs$FUNC = FunctionDescriptor.of(C_LONG,
-        C_POINTER,
-        C_POINTER,
-        C_LONG
+    static final FunctionDescriptor wcstombs$FUNC = FunctionDescriptor.of(Constants$root.C_LONG_LONG$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT
     );
     static final MethodHandle wcstombs$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "wcstombs",
-        "(Ljdk/incubator/foreign/MemoryAddress;Ljdk/incubator/foreign/MemoryAddress;J)J",
-        constants$986.wcstombs$FUNC, false
+        "wcstombs",
+        constants$986.wcstombs$FUNC
     );
-    static final FunctionDescriptor rpmatch$FUNC = FunctionDescriptor.of(C_INT,
-        C_POINTER
+    static final FunctionDescriptor rpmatch$FUNC = FunctionDescriptor.of(Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle rpmatch$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "rpmatch",
-        "(Ljdk/incubator/foreign/MemoryAddress;)I",
-        constants$986.rpmatch$FUNC, false
+        "rpmatch",
+        constants$986.rpmatch$FUNC
     );
-    static final FunctionDescriptor getsubopt$FUNC = FunctionDescriptor.of(C_INT,
-        C_POINTER,
-        C_POINTER,
-        C_POINTER
+    static final FunctionDescriptor getsubopt$FUNC = FunctionDescriptor.of(Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle getsubopt$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "getsubopt",
-        "(Ljdk/incubator/foreign/MemoryAddress;Ljdk/incubator/foreign/MemoryAddress;Ljdk/incubator/foreign/MemoryAddress;)I",
-        constants$986.getsubopt$FUNC, false
+        "getsubopt",
+        constants$986.getsubopt$FUNC
     );
 }
 

@@ -2,22 +2,22 @@
 
 package opengl.ubuntu.v20;
 
-import jdk.incubator.foreign.Addressable;
-import jdk.incubator.foreign.MemoryAddress;
-import jdk.incubator.foreign.ResourceScope;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public interface PFNGLPRIORITIZETEXTURESXOESPROC {
 
-    void apply(int x0, jdk.incubator.foreign.MemoryAddress x1, jdk.incubator.foreign.MemoryAddress x2);
-    static MemoryAddress allocate(PFNGLPRIORITIZETEXTURESXOESPROC fi) {
-        return RuntimeHelper.upcallStub(PFNGLPRIORITIZETEXTURESXOESPROC.class, fi, constants$439.PFNGLPRIORITIZETEXTURESXOESPROC$FUNC, "(ILjdk/incubator/foreign/MemoryAddress;Ljdk/incubator/foreign/MemoryAddress;)V");
+    void apply(int n, java.lang.foreign.MemoryAddress textures, java.lang.foreign.MemoryAddress priorities);
+    static MemorySegment allocate(PFNGLPRIORITIZETEXTURESXOESPROC fi, MemorySession session) {
+        return RuntimeHelper.upcallStub(PFNGLPRIORITIZETEXTURESXOESPROC.class, fi, constants$439.PFNGLPRIORITIZETEXTURESXOESPROC$FUNC, session);
     }
-    static MemoryAddress allocate(PFNGLPRIORITIZETEXTURESXOESPROC fi, ResourceScope scope) {
-        return RuntimeHelper.upcallStub(PFNGLPRIORITIZETEXTURESXOESPROC.class, fi, constants$439.PFNGLPRIORITIZETEXTURESXOESPROC$FUNC, "(ILjdk/incubator/foreign/MemoryAddress;Ljdk/incubator/foreign/MemoryAddress;)V", scope);
-    }
-    static PFNGLPRIORITIZETEXTURESXOESPROC ofAddress(MemoryAddress addr) {
-        return (int x0, jdk.incubator.foreign.MemoryAddress x1, jdk.incubator.foreign.MemoryAddress x2) -> {
+    static PFNGLPRIORITIZETEXTURESXOESPROC ofAddress(MemoryAddress addr, MemorySession session) {
+        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
+        return (int _n, java.lang.foreign.MemoryAddress _textures, java.lang.foreign.MemoryAddress _priorities) -> {
             try {
-                constants$439.PFNGLPRIORITIZETEXTURESXOESPROC$MH.invokeExact((Addressable)addr, x0, x1, x2);
+                constants$439.PFNGLPRIORITIZETEXTURESXOESPROC$MH.invokeExact((Addressable)symbol, _n, (java.lang.foreign.Addressable)_textures, (java.lang.foreign.Addressable)_priorities);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

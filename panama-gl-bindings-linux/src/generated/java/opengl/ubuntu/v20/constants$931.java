@@ -2,98 +2,92 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_CHAR;
-import static jdk.incubator.foreign.CLinker.C_INT;
-import static jdk.incubator.foreign.CLinker.C_POINTER;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$931 {
 
-    static final FunctionDescriptor gluBuild1DMipmaps$FUNC = FunctionDescriptor.of(C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_POINTER
+    static final FunctionDescriptor gluBuild1DMipmaps$FUNC = FunctionDescriptor.of(Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle gluBuild1DMipmaps$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "gluBuild1DMipmaps",
-        "(IIIIILjdk/incubator/foreign/MemoryAddress;)I",
-        constants$931.gluBuild1DMipmaps$FUNC, false
+        "gluBuild1DMipmaps",
+        constants$931.gluBuild1DMipmaps$FUNC
     );
-    static final FunctionDescriptor gluBuild2DMipmapLevels$FUNC = FunctionDescriptor.of(C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_POINTER
+    static final FunctionDescriptor gluBuild2DMipmapLevels$FUNC = FunctionDescriptor.of(Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle gluBuild2DMipmapLevels$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "gluBuild2DMipmapLevels",
-        "(IIIIIIIIILjdk/incubator/foreign/MemoryAddress;)I",
-        constants$931.gluBuild2DMipmapLevels$FUNC, false
+        "gluBuild2DMipmapLevels",
+        constants$931.gluBuild2DMipmapLevels$FUNC
     );
-    static final FunctionDescriptor gluBuild2DMipmaps$FUNC = FunctionDescriptor.of(C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_POINTER
+    static final FunctionDescriptor gluBuild2DMipmaps$FUNC = FunctionDescriptor.of(Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle gluBuild2DMipmaps$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "gluBuild2DMipmaps",
-        "(IIIIIILjdk/incubator/foreign/MemoryAddress;)I",
-        constants$931.gluBuild2DMipmaps$FUNC, false
+        "gluBuild2DMipmaps",
+        constants$931.gluBuild2DMipmaps$FUNC
     );
-    static final FunctionDescriptor gluBuild3DMipmapLevels$FUNC = FunctionDescriptor.of(C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_POINTER
+    static final FunctionDescriptor gluBuild3DMipmapLevels$FUNC = FunctionDescriptor.of(Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle gluBuild3DMipmapLevels$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "gluBuild3DMipmapLevels",
-        "(IIIIIIIIIILjdk/incubator/foreign/MemoryAddress;)I",
-        constants$931.gluBuild3DMipmapLevels$FUNC, false
+        "gluBuild3DMipmapLevels",
+        constants$931.gluBuild3DMipmapLevels$FUNC
     );
-    static final FunctionDescriptor gluBuild3DMipmaps$FUNC = FunctionDescriptor.of(C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_POINTER
+    static final FunctionDescriptor gluBuild3DMipmaps$FUNC = FunctionDescriptor.of(Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle gluBuild3DMipmaps$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "gluBuild3DMipmaps",
-        "(IIIIIIILjdk/incubator/foreign/MemoryAddress;)I",
-        constants$931.gluBuild3DMipmaps$FUNC, false
+        "gluBuild3DMipmaps",
+        constants$931.gluBuild3DMipmaps$FUNC
     );
-    static final FunctionDescriptor gluCheckExtension$FUNC = FunctionDescriptor.of(C_CHAR,
-        C_POINTER,
-        C_POINTER
+    static final FunctionDescriptor gluCheckExtension$FUNC = FunctionDescriptor.of(Constants$root.C_CHAR$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle gluCheckExtension$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "gluCheckExtension",
-        "(Ljdk/incubator/foreign/MemoryAddress;Ljdk/incubator/foreign/MemoryAddress;)B",
-        constants$931.gluCheckExtension$FUNC, false
+        "gluCheckExtension",
+        constants$931.gluCheckExtension$FUNC
     );
 }
 

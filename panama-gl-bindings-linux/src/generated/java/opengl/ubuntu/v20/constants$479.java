@@ -2,37 +2,35 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_INT;
-import static jdk.incubator.foreign.CLinker.C_LONG;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$479 {
 
     static final FunctionDescriptor PFNGLFINISHOBJECTAPPLEPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLFINISHOBJECTAPPLEPROC$MH = RuntimeHelper.downcallHandle(
-        "(II)V",
-        constants$479.PFNGLFINISHOBJECTAPPLEPROC$FUNC, false
+        constants$479.PFNGLFINISHOBJECTAPPLEPROC$FUNC
     );
     static final FunctionDescriptor PFNGLBUFFERPARAMETERIAPPLEPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_INT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLBUFFERPARAMETERIAPPLEPROC$MH = RuntimeHelper.downcallHandle(
-        "(III)V",
-        constants$479.PFNGLBUFFERPARAMETERIAPPLEPROC$FUNC, false
+        constants$479.PFNGLBUFFERPARAMETERIAPPLEPROC$FUNC
     );
     static final FunctionDescriptor PFNGLFLUSHMAPPEDBUFFERRANGEAPPLEPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_LONG,
-        C_LONG
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT
     );
     static final MethodHandle PFNGLFLUSHMAPPEDBUFFERRANGEAPPLEPROC$MH = RuntimeHelper.downcallHandle(
-        "(IJJ)V",
-        constants$479.PFNGLFLUSHMAPPEDBUFFERRANGEAPPLEPROC$FUNC, false
+        constants$479.PFNGLFLUSHMAPPEDBUFFERRANGEAPPLEPROC$FUNC
     );
 }
 

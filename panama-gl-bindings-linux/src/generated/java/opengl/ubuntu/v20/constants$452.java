@@ -2,44 +2,42 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_INT;
-import static jdk.incubator.foreign.CLinker.C_POINTER;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$452 {
 
-    static final FunctionDescriptor PFNGLGETDEBUGMESSAGELOGAMDPROC$FUNC = FunctionDescriptor.of(C_INT,
-        C_INT,
-        C_INT,
-        C_POINTER,
-        C_POINTER,
-        C_POINTER,
-        C_POINTER,
-        C_POINTER
+    static final FunctionDescriptor PFNGLGETDEBUGMESSAGELOGAMDPROC$FUNC = FunctionDescriptor.of(Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLGETDEBUGMESSAGELOGAMDPROC$MH = RuntimeHelper.downcallHandle(
-        "(IILjdk/incubator/foreign/MemoryAddress;Ljdk/incubator/foreign/MemoryAddress;Ljdk/incubator/foreign/MemoryAddress;Ljdk/incubator/foreign/MemoryAddress;Ljdk/incubator/foreign/MemoryAddress;)I",
-        constants$452.PFNGLGETDEBUGMESSAGELOGAMDPROC$FUNC, false
+        constants$452.PFNGLGETDEBUGMESSAGELOGAMDPROC$FUNC
     );
     static final FunctionDescriptor PFNGLBLENDFUNCINDEXEDAMDPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_INT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLBLENDFUNCINDEXEDAMDPROC$MH = RuntimeHelper.downcallHandle(
-        "(III)V",
-        constants$452.PFNGLBLENDFUNCINDEXEDAMDPROC$FUNC, false
+        constants$452.PFNGLBLENDFUNCINDEXEDAMDPROC$FUNC
     );
     static final FunctionDescriptor PFNGLBLENDFUNCSEPARATEINDEXEDAMDPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLBLENDFUNCSEPARATEINDEXEDAMDPROC$MH = RuntimeHelper.downcallHandle(
-        "(IIIII)V",
-        constants$452.PFNGLBLENDFUNCSEPARATEINDEXEDAMDPROC$FUNC, false
+        constants$452.PFNGLBLENDFUNCSEPARATEINDEXEDAMDPROC$FUNC
     );
 }
 

@@ -2,67 +2,61 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_DOUBLE;
-import static jdk.incubator.foreign.CLinker.C_INT;
-import static jdk.incubator.foreign.CLinker.C_POINTER;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$934 {
 
     static final FunctionDescriptor gluGetTessProperty$FUNC = FunctionDescriptor.ofVoid(
-        C_POINTER,
-        C_INT,
-        C_POINTER
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle gluGetTessProperty$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "gluGetTessProperty",
-        "(Ljdk/incubator/foreign/MemoryAddress;ILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$934.gluGetTessProperty$FUNC, false
+        "gluGetTessProperty",
+        constants$934.gluGetTessProperty$FUNC
     );
     static final FunctionDescriptor gluLoadSamplingMatrices$FUNC = FunctionDescriptor.ofVoid(
-        C_POINTER,
-        C_POINTER,
-        C_POINTER,
-        C_POINTER
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle gluLoadSamplingMatrices$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "gluLoadSamplingMatrices",
-        "(Ljdk/incubator/foreign/MemoryAddress;Ljdk/incubator/foreign/MemoryAddress;Ljdk/incubator/foreign/MemoryAddress;Ljdk/incubator/foreign/MemoryAddress;)V",
-        constants$934.gluLoadSamplingMatrices$FUNC, false
+        "gluLoadSamplingMatrices",
+        constants$934.gluLoadSamplingMatrices$FUNC
     );
     static final FunctionDescriptor gluLookAt$FUNC = FunctionDescriptor.ofVoid(
-        C_DOUBLE,
-        C_DOUBLE,
-        C_DOUBLE,
-        C_DOUBLE,
-        C_DOUBLE,
-        C_DOUBLE,
-        C_DOUBLE,
-        C_DOUBLE,
-        C_DOUBLE
+        Constants$root.C_DOUBLE$LAYOUT,
+        Constants$root.C_DOUBLE$LAYOUT,
+        Constants$root.C_DOUBLE$LAYOUT,
+        Constants$root.C_DOUBLE$LAYOUT,
+        Constants$root.C_DOUBLE$LAYOUT,
+        Constants$root.C_DOUBLE$LAYOUT,
+        Constants$root.C_DOUBLE$LAYOUT,
+        Constants$root.C_DOUBLE$LAYOUT,
+        Constants$root.C_DOUBLE$LAYOUT
     );
     static final MethodHandle gluLookAt$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "gluLookAt",
-        "(DDDDDDDDD)V",
-        constants$934.gluLookAt$FUNC, false
+        "gluLookAt",
+        constants$934.gluLookAt$FUNC
     );
-    static final FunctionDescriptor gluNewNurbsRenderer$FUNC = FunctionDescriptor.of(C_POINTER);
+    static final FunctionDescriptor gluNewNurbsRenderer$FUNC = FunctionDescriptor.of(Constants$root.C_POINTER$LAYOUT);
     static final MethodHandle gluNewNurbsRenderer$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "gluNewNurbsRenderer",
-        "()Ljdk/incubator/foreign/MemoryAddress;",
-        constants$934.gluNewNurbsRenderer$FUNC, false
+        "gluNewNurbsRenderer",
+        constants$934.gluNewNurbsRenderer$FUNC
     );
-    static final FunctionDescriptor gluNewQuadric$FUNC = FunctionDescriptor.of(C_POINTER);
+    static final FunctionDescriptor gluNewQuadric$FUNC = FunctionDescriptor.of(Constants$root.C_POINTER$LAYOUT);
     static final MethodHandle gluNewQuadric$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "gluNewQuadric",
-        "()Ljdk/incubator/foreign/MemoryAddress;",
-        constants$934.gluNewQuadric$FUNC, false
+        "gluNewQuadric",
+        constants$934.gluNewQuadric$FUNC
     );
-    static final FunctionDescriptor gluNewTess$FUNC = FunctionDescriptor.of(C_POINTER);
+    static final FunctionDescriptor gluNewTess$FUNC = FunctionDescriptor.of(Constants$root.C_POINTER$LAYOUT);
     static final MethodHandle gluNewTess$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "gluNewTess",
-        "()Ljdk/incubator/foreign/MemoryAddress;",
-        constants$934.gluNewTess$FUNC, false
+        "gluNewTess",
+        constants$934.gluNewTess$FUNC
     );
 }
 

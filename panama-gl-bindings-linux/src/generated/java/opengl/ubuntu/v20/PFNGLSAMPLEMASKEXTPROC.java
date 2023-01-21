@@ -2,22 +2,22 @@
 
 package opengl.ubuntu.v20;
 
-import jdk.incubator.foreign.Addressable;
-import jdk.incubator.foreign.MemoryAddress;
-import jdk.incubator.foreign.ResourceScope;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public interface PFNGLSAMPLEMASKEXTPROC {
 
-    void apply(float x0, byte x1);
-    static MemoryAddress allocate(PFNGLSAMPLEMASKEXTPROC fi) {
-        return RuntimeHelper.upcallStub(PFNGLSAMPLEMASKEXTPROC.class, fi, constants$648.PFNGLSAMPLEMASKEXTPROC$FUNC, "(FB)V");
+    void apply(float value, byte invert);
+    static MemorySegment allocate(PFNGLSAMPLEMASKEXTPROC fi, MemorySession session) {
+        return RuntimeHelper.upcallStub(PFNGLSAMPLEMASKEXTPROC.class, fi, constants$648.PFNGLSAMPLEMASKEXTPROC$FUNC, session);
     }
-    static MemoryAddress allocate(PFNGLSAMPLEMASKEXTPROC fi, ResourceScope scope) {
-        return RuntimeHelper.upcallStub(PFNGLSAMPLEMASKEXTPROC.class, fi, constants$648.PFNGLSAMPLEMASKEXTPROC$FUNC, "(FB)V", scope);
-    }
-    static PFNGLSAMPLEMASKEXTPROC ofAddress(MemoryAddress addr) {
-        return (float x0, byte x1) -> {
+    static PFNGLSAMPLEMASKEXTPROC ofAddress(MemoryAddress addr, MemorySession session) {
+        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
+        return (float _value, byte _invert) -> {
             try {
-                constants$648.PFNGLSAMPLEMASKEXTPROC$MH.invokeExact((Addressable)addr, x0, x1);
+                constants$648.PFNGLSAMPLEMASKEXTPROC$MH.invokeExact((Addressable)symbol, _value, _invert);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

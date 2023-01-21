@@ -2,41 +2,38 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_DOUBLE;
-import static jdk.incubator.foreign.CLinker.C_INT;
-import static jdk.incubator.foreign.CLinker.C_POINTER;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$324 {
 
     static final FunctionDescriptor PFNGLGENPROGRAMSARBPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLGENPROGRAMSARBPROC$MH = RuntimeHelper.downcallHandle(
-        "(ILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$324.PFNGLGENPROGRAMSARBPROC$FUNC, false
+        constants$324.PFNGLGENPROGRAMSARBPROC$FUNC
     );
     static final FunctionDescriptor PFNGLPROGRAMENVPARAMETER4DARBPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_DOUBLE,
-        C_DOUBLE,
-        C_DOUBLE,
-        C_DOUBLE
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_DOUBLE$LAYOUT,
+        Constants$root.C_DOUBLE$LAYOUT,
+        Constants$root.C_DOUBLE$LAYOUT,
+        Constants$root.C_DOUBLE$LAYOUT
     );
     static final MethodHandle PFNGLPROGRAMENVPARAMETER4DARBPROC$MH = RuntimeHelper.downcallHandle(
-        "(IIDDDD)V",
-        constants$324.PFNGLPROGRAMENVPARAMETER4DARBPROC$FUNC, false
+        constants$324.PFNGLPROGRAMENVPARAMETER4DARBPROC$FUNC
     );
     static final FunctionDescriptor PFNGLPROGRAMENVPARAMETER4DVARBPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLPROGRAMENVPARAMETER4DVARBPROC$MH = RuntimeHelper.downcallHandle(
-        "(IILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$324.PFNGLPROGRAMENVPARAMETER4DVARBPROC$FUNC, false
+        constants$324.PFNGLPROGRAMENVPARAMETER4DVARBPROC$FUNC
     );
 }
 

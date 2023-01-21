@@ -2,22 +2,22 @@
 
 package opengl.ubuntu.v20;
 
-import jdk.incubator.foreign.Addressable;
-import jdk.incubator.foreign.MemoryAddress;
-import jdk.incubator.foreign.ResourceScope;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public interface PFNGLTEXTURESTORAGE3DMULTISAMPLEEXTPROC {
 
-    void apply(int x0, int x1, int x2, int x3, int x4, int x5, int x6, byte x7);
-    static MemoryAddress allocate(PFNGLTEXTURESTORAGE3DMULTISAMPLEEXTPROC fi) {
-        return RuntimeHelper.upcallStub(PFNGLTEXTURESTORAGE3DMULTISAMPLEEXTPROC.class, fi, constants$617.PFNGLTEXTURESTORAGE3DMULTISAMPLEEXTPROC$FUNC, "(IIIIIIIB)V");
+    void apply(int texture, int target, int samples, int internalformat, int width, int height, int depth, byte fixedsamplelocations);
+    static MemorySegment allocate(PFNGLTEXTURESTORAGE3DMULTISAMPLEEXTPROC fi, MemorySession session) {
+        return RuntimeHelper.upcallStub(PFNGLTEXTURESTORAGE3DMULTISAMPLEEXTPROC.class, fi, constants$617.PFNGLTEXTURESTORAGE3DMULTISAMPLEEXTPROC$FUNC, session);
     }
-    static MemoryAddress allocate(PFNGLTEXTURESTORAGE3DMULTISAMPLEEXTPROC fi, ResourceScope scope) {
-        return RuntimeHelper.upcallStub(PFNGLTEXTURESTORAGE3DMULTISAMPLEEXTPROC.class, fi, constants$617.PFNGLTEXTURESTORAGE3DMULTISAMPLEEXTPROC$FUNC, "(IIIIIIIB)V", scope);
-    }
-    static PFNGLTEXTURESTORAGE3DMULTISAMPLEEXTPROC ofAddress(MemoryAddress addr) {
-        return (int x0, int x1, int x2, int x3, int x4, int x5, int x6, byte x7) -> {
+    static PFNGLTEXTURESTORAGE3DMULTISAMPLEEXTPROC ofAddress(MemoryAddress addr, MemorySession session) {
+        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
+        return (int _texture, int _target, int _samples, int _internalformat, int _width, int _height, int _depth, byte _fixedsamplelocations) -> {
             try {
-                constants$617.PFNGLTEXTURESTORAGE3DMULTISAMPLEEXTPROC$MH.invokeExact((Addressable)addr, x0, x1, x2, x3, x4, x5, x6, x7);
+                constants$617.PFNGLTEXTURESTORAGE3DMULTISAMPLEEXTPROC$MH.invokeExact((Addressable)symbol, _texture, _target, _samples, _internalformat, _width, _height, _depth, _fixedsamplelocations);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

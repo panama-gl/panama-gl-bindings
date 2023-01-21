@@ -2,35 +2,33 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_INT;
-import static jdk.incubator.foreign.CLinker.C_POINTER;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$391 {
 
     static final FunctionDescriptor PFNGLVERTEXATTRIB4NBVARBPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLVERTEXATTRIB4NBVARBPROC$MH = RuntimeHelper.downcallHandle(
-        "(ILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$391.PFNGLVERTEXATTRIB4NBVARBPROC$FUNC, false
+        constants$391.PFNGLVERTEXATTRIB4NBVARBPROC$FUNC
     );
     static final FunctionDescriptor PFNGLVERTEXATTRIB4NIVARBPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLVERTEXATTRIB4NIVARBPROC$MH = RuntimeHelper.downcallHandle(
-        "(ILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$391.PFNGLVERTEXATTRIB4NIVARBPROC$FUNC, false
+        constants$391.PFNGLVERTEXATTRIB4NIVARBPROC$FUNC
     );
     static final FunctionDescriptor PFNGLVERTEXATTRIB4NSVARBPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLVERTEXATTRIB4NSVARBPROC$MH = RuntimeHelper.downcallHandle(
-        "(ILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$391.PFNGLVERTEXATTRIB4NSVARBPROC$FUNC, false
+        constants$391.PFNGLVERTEXATTRIB4NSVARBPROC$FUNC
     );
 }
 

@@ -2,22 +2,22 @@
 
 package opengl.ubuntu.v20;
 
-import jdk.incubator.foreign.Addressable;
-import jdk.incubator.foreign.MemoryAddress;
-import jdk.incubator.foreign.ResourceScope;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public interface PFNGLENDTRANSFORMFEEDBACKPROC {
 
     void apply();
-    static MemoryAddress allocate(PFNGLENDTRANSFORMFEEDBACKPROC fi) {
-        return RuntimeHelper.upcallStub(PFNGLENDTRANSFORMFEEDBACKPROC.class, fi, constants$148.PFNGLENDTRANSFORMFEEDBACKPROC$FUNC, "()V");
+    static MemorySegment allocate(PFNGLENDTRANSFORMFEEDBACKPROC fi, MemorySession session) {
+        return RuntimeHelper.upcallStub(PFNGLENDTRANSFORMFEEDBACKPROC.class, fi, constants$148.PFNGLENDTRANSFORMFEEDBACKPROC$FUNC, session);
     }
-    static MemoryAddress allocate(PFNGLENDTRANSFORMFEEDBACKPROC fi, ResourceScope scope) {
-        return RuntimeHelper.upcallStub(PFNGLENDTRANSFORMFEEDBACKPROC.class, fi, constants$148.PFNGLENDTRANSFORMFEEDBACKPROC$FUNC, "()V", scope);
-    }
-    static PFNGLENDTRANSFORMFEEDBACKPROC ofAddress(MemoryAddress addr) {
+    static PFNGLENDTRANSFORMFEEDBACKPROC ofAddress(MemoryAddress addr, MemorySession session) {
+        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return () -> {
             try {
-                constants$148.PFNGLENDTRANSFORMFEEDBACKPROC$MH.invokeExact((Addressable)addr);
+                constants$148.PFNGLENDTRANSFORMFEEDBACKPROC$MH.invokeExact((Addressable)symbol);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

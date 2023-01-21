@@ -2,22 +2,22 @@
 
 package opengl.ubuntu.v20;
 
-import jdk.incubator.foreign.Addressable;
-import jdk.incubator.foreign.MemoryAddress;
-import jdk.incubator.foreign.ResourceScope;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public interface PFNGLENDVIDEOCAPTURENVPROC {
 
-    void apply(int x0);
-    static MemoryAddress allocate(PFNGLENDVIDEOCAPTURENVPROC fi) {
-        return RuntimeHelper.upcallStub(PFNGLENDVIDEOCAPTURENVPROC.class, fi, constants$879.PFNGLENDVIDEOCAPTURENVPROC$FUNC, "(I)V");
+    void apply(int video_capture_slot);
+    static MemorySegment allocate(PFNGLENDVIDEOCAPTURENVPROC fi, MemorySession session) {
+        return RuntimeHelper.upcallStub(PFNGLENDVIDEOCAPTURENVPROC.class, fi, constants$879.PFNGLENDVIDEOCAPTURENVPROC$FUNC, session);
     }
-    static MemoryAddress allocate(PFNGLENDVIDEOCAPTURENVPROC fi, ResourceScope scope) {
-        return RuntimeHelper.upcallStub(PFNGLENDVIDEOCAPTURENVPROC.class, fi, constants$879.PFNGLENDVIDEOCAPTURENVPROC$FUNC, "(I)V", scope);
-    }
-    static PFNGLENDVIDEOCAPTURENVPROC ofAddress(MemoryAddress addr) {
-        return (int x0) -> {
+    static PFNGLENDVIDEOCAPTURENVPROC ofAddress(MemoryAddress addr, MemorySession session) {
+        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
+        return (int _video_capture_slot) -> {
             try {
-                constants$879.PFNGLENDVIDEOCAPTURENVPROC$MH.invokeExact((Addressable)addr, x0);
+                constants$879.PFNGLENDVIDEOCAPTURENVPROC$MH.invokeExact((Addressable)symbol, _video_capture_slot);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

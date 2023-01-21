@@ -2,22 +2,22 @@
 
 package opengl.ubuntu.v20;
 
-import jdk.incubator.foreign.Addressable;
-import jdk.incubator.foreign.MemoryAddress;
-import jdk.incubator.foreign.ResourceScope;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public interface PFNGLTEXTUREBARRIERPROC {
 
     void apply();
-    static MemoryAddress allocate(PFNGLTEXTUREBARRIERPROC fi) {
-        return RuntimeHelper.upcallStub(PFNGLTEXTUREBARRIERPROC.class, fi, constants$310.PFNGLTEXTUREBARRIERPROC$FUNC, "()V");
+    static MemorySegment allocate(PFNGLTEXTUREBARRIERPROC fi, MemorySession session) {
+        return RuntimeHelper.upcallStub(PFNGLTEXTUREBARRIERPROC.class, fi, constants$310.PFNGLTEXTUREBARRIERPROC$FUNC, session);
     }
-    static MemoryAddress allocate(PFNGLTEXTUREBARRIERPROC fi, ResourceScope scope) {
-        return RuntimeHelper.upcallStub(PFNGLTEXTUREBARRIERPROC.class, fi, constants$310.PFNGLTEXTUREBARRIERPROC$FUNC, "()V", scope);
-    }
-    static PFNGLTEXTUREBARRIERPROC ofAddress(MemoryAddress addr) {
+    static PFNGLTEXTUREBARRIERPROC ofAddress(MemoryAddress addr, MemorySession session) {
+        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return () -> {
             try {
-                constants$310.PFNGLTEXTUREBARRIERPROC$MH.invokeExact((Addressable)addr);
+                constants$310.PFNGLTEXTUREBARRIERPROC$MH.invokeExact((Addressable)symbol);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

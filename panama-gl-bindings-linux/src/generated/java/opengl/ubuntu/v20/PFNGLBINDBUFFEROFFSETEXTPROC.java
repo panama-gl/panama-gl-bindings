@@ -2,22 +2,22 @@
 
 package opengl.ubuntu.v20;
 
-import jdk.incubator.foreign.Addressable;
-import jdk.incubator.foreign.MemoryAddress;
-import jdk.incubator.foreign.ResourceScope;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public interface PFNGLBINDBUFFEROFFSETEXTPROC {
 
-    void apply(int x0, int x1, int x2, long x3);
-    static MemoryAddress allocate(PFNGLBINDBUFFEROFFSETEXTPROC fi) {
-        return RuntimeHelper.upcallStub(PFNGLBINDBUFFEROFFSETEXTPROC.class, fi, constants$674.PFNGLBINDBUFFEROFFSETEXTPROC$FUNC, "(IIIJ)V");
+    void apply(int target, int index, int buffer, long offset);
+    static MemorySegment allocate(PFNGLBINDBUFFEROFFSETEXTPROC fi, MemorySession session) {
+        return RuntimeHelper.upcallStub(PFNGLBINDBUFFEROFFSETEXTPROC.class, fi, constants$674.PFNGLBINDBUFFEROFFSETEXTPROC$FUNC, session);
     }
-    static MemoryAddress allocate(PFNGLBINDBUFFEROFFSETEXTPROC fi, ResourceScope scope) {
-        return RuntimeHelper.upcallStub(PFNGLBINDBUFFEROFFSETEXTPROC.class, fi, constants$674.PFNGLBINDBUFFEROFFSETEXTPROC$FUNC, "(IIIJ)V", scope);
-    }
-    static PFNGLBINDBUFFEROFFSETEXTPROC ofAddress(MemoryAddress addr) {
-        return (int x0, int x1, int x2, long x3) -> {
+    static PFNGLBINDBUFFEROFFSETEXTPROC ofAddress(MemoryAddress addr, MemorySession session) {
+        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
+        return (int _target, int _index, int _buffer, long _offset) -> {
             try {
-                constants$674.PFNGLBINDBUFFEROFFSETEXTPROC$MH.invokeExact((Addressable)addr, x0, x1, x2, x3);
+                constants$674.PFNGLBINDBUFFEROFFSETEXTPROC$MH.invokeExact((Addressable)symbol, _target, _index, _buffer, _offset);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

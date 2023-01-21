@@ -2,59 +2,54 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_CHAR;
-import static jdk.incubator.foreign.CLinker.C_INT;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$11 {
 
-    static final FunctionDescriptor glIsList$FUNC = FunctionDescriptor.of(C_CHAR,
-        C_INT
+    static final FunctionDescriptor glIsList$FUNC = FunctionDescriptor.of(Constants$root.C_CHAR$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle glIsList$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "glIsList",
-        "(I)B",
-        constants$11.glIsList$FUNC, false
+        "glIsList",
+        constants$11.glIsList$FUNC
     );
     static final FunctionDescriptor glDeleteLists$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle glDeleteLists$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "glDeleteLists",
-        "(II)V",
-        constants$11.glDeleteLists$FUNC, false
+        "glDeleteLists",
+        constants$11.glDeleteLists$FUNC
     );
-    static final FunctionDescriptor glGenLists$FUNC = FunctionDescriptor.of(C_INT,
-        C_INT
+    static final FunctionDescriptor glGenLists$FUNC = FunctionDescriptor.of(Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle glGenLists$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "glGenLists",
-        "(I)I",
-        constants$11.glGenLists$FUNC, false
+        "glGenLists",
+        constants$11.glGenLists$FUNC
     );
     static final FunctionDescriptor glNewList$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle glNewList$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "glNewList",
-        "(II)V",
-        constants$11.glNewList$FUNC, false
+        "glNewList",
+        constants$11.glNewList$FUNC
     );
     static final FunctionDescriptor glEndList$FUNC = FunctionDescriptor.ofVoid();
     static final MethodHandle glEndList$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "glEndList",
-        "()V",
-        constants$11.glEndList$FUNC, false
+        "glEndList",
+        constants$11.glEndList$FUNC
     );
     static final FunctionDescriptor glCallList$FUNC = FunctionDescriptor.ofVoid(
-        C_INT
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle glCallList$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "glCallList",
-        "(I)V",
-        constants$11.glCallList$FUNC, false
+        "glCallList",
+        constants$11.glCallList$FUNC
     );
 }
 

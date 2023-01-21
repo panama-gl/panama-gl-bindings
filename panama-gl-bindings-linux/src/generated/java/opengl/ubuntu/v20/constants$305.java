@@ -2,41 +2,39 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_INT;
-import static jdk.incubator.foreign.CLinker.C_POINTER;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$305 {
 
     static final FunctionDescriptor PFNGLGETNUNIFORMDVPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLGETNUNIFORMDVPROC$MH = RuntimeHelper.downcallHandle(
-        "(IIILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$305.PFNGLGETNUNIFORMDVPROC$FUNC, false
+        constants$305.PFNGLGETNUNIFORMDVPROC$FUNC
     );
     static final FunctionDescriptor PFNGLGETNUNIFORMFVPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLGETNUNIFORMFVPROC$MH = RuntimeHelper.downcallHandle(
-        "(IIILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$305.PFNGLGETNUNIFORMFVPROC$FUNC, false
+        constants$305.PFNGLGETNUNIFORMFVPROC$FUNC
     );
     static final FunctionDescriptor PFNGLGETNUNIFORMIVPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLGETNUNIFORMIVPROC$MH = RuntimeHelper.downcallHandle(
-        "(IIILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$305.PFNGLGETNUNIFORMIVPROC$FUNC, false
+        constants$305.PFNGLGETNUNIFORMIVPROC$FUNC
     );
 }
 

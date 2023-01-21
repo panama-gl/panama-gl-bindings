@@ -2,37 +2,35 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_INT;
-import static jdk.incubator.foreign.CLinker.C_LONG;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$781 {
 
     static final FunctionDescriptor PFNGLTEXTUREATTACHMEMORYNVPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_LONG
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT
     );
     static final MethodHandle PFNGLTEXTUREATTACHMEMORYNVPROC$MH = RuntimeHelper.downcallHandle(
-        "(IIJ)V",
-        constants$781.PFNGLTEXTUREATTACHMEMORYNVPROC$FUNC, false
+        constants$781.PFNGLTEXTUREATTACHMEMORYNVPROC$FUNC
     );
     static final FunctionDescriptor PFNGLNAMEDBUFFERATTACHMEMORYNVPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_LONG
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT
     );
     static final MethodHandle PFNGLNAMEDBUFFERATTACHMEMORYNVPROC$MH = RuntimeHelper.downcallHandle(
-        "(IIJ)V",
-        constants$781.PFNGLNAMEDBUFFERATTACHMEMORYNVPROC$FUNC, false
+        constants$781.PFNGLNAMEDBUFFERATTACHMEMORYNVPROC$FUNC
     );
     static final FunctionDescriptor PFNGLDRAWMESHTASKSNVPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLDRAWMESHTASKSNVPROC$MH = RuntimeHelper.downcallHandle(
-        "(II)V",
-        constants$781.PFNGLDRAWMESHTASKSNVPROC$FUNC, false
+        constants$781.PFNGLDRAWMESHTASKSNVPROC$FUNC
     );
 }
 

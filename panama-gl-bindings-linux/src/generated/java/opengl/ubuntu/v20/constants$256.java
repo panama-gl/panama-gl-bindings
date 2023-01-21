@@ -2,35 +2,33 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_INT;
-import static jdk.incubator.foreign.CLinker.C_LONG;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$256 {
 
     static final FunctionDescriptor PFNGLINVALIDATETEXIMAGEPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLINVALIDATETEXIMAGEPROC$MH = RuntimeHelper.downcallHandle(
-        "(II)V",
-        constants$256.PFNGLINVALIDATETEXIMAGEPROC$FUNC, false
+        constants$256.PFNGLINVALIDATETEXIMAGEPROC$FUNC
     );
     static final FunctionDescriptor PFNGLINVALIDATEBUFFERSUBDATAPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_LONG,
-        C_LONG
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT
     );
     static final MethodHandle PFNGLINVALIDATEBUFFERSUBDATAPROC$MH = RuntimeHelper.downcallHandle(
-        "(IJJ)V",
-        constants$256.PFNGLINVALIDATEBUFFERSUBDATAPROC$FUNC, false
+        constants$256.PFNGLINVALIDATEBUFFERSUBDATAPROC$FUNC
     );
     static final FunctionDescriptor PFNGLINVALIDATEBUFFERDATAPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLINVALIDATEBUFFERDATAPROC$MH = RuntimeHelper.downcallHandle(
-        "(I)V",
-        constants$256.PFNGLINVALIDATEBUFFERDATAPROC$FUNC, false
+        constants$256.PFNGLINVALIDATEBUFFERDATAPROC$FUNC
     );
 }
 

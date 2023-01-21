@@ -2,40 +2,38 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_INT;
-import static jdk.incubator.foreign.CLinker.C_POINTER;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$676 {
 
     static final FunctionDescriptor PFNGLCOLORPOINTEREXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLCOLORPOINTEREXTPROC$MH = RuntimeHelper.downcallHandle(
-        "(IIIILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$676.PFNGLCOLORPOINTEREXTPROC$FUNC, false
+        constants$676.PFNGLCOLORPOINTEREXTPROC$FUNC
     );
     static final FunctionDescriptor PFNGLDRAWARRAYSEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_INT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLDRAWARRAYSEXTPROC$MH = RuntimeHelper.downcallHandle(
-        "(III)V",
-        constants$676.PFNGLDRAWARRAYSEXTPROC$FUNC, false
+        constants$676.PFNGLDRAWARRAYSEXTPROC$FUNC
     );
     static final FunctionDescriptor PFNGLEDGEFLAGPOINTEREXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLEDGEFLAGPOINTEREXTPROC$MH = RuntimeHelper.downcallHandle(
-        "(IILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$676.PFNGLEDGEFLAGPOINTEREXTPROC$FUNC, false
+        constants$676.PFNGLEDGEFLAGPOINTEREXTPROC$FUNC
     );
 }
 

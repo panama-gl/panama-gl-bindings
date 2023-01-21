@@ -2,22 +2,22 @@
 
 package opengl.ubuntu.v20;
 
-import jdk.incubator.foreign.Addressable;
-import jdk.incubator.foreign.MemoryAddress;
-import jdk.incubator.foreign.ResourceScope;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public interface PFNGLSHADINGRATEIMAGEBARRIERNVPROC {
 
-    void apply(byte x0);
-    static MemoryAddress allocate(PFNGLSHADINGRATEIMAGEBARRIERNVPROC fi) {
-        return RuntimeHelper.upcallStub(PFNGLSHADINGRATEIMAGEBARRIERNVPROC.class, fi, constants$825.PFNGLSHADINGRATEIMAGEBARRIERNVPROC$FUNC, "(B)V");
+    void apply(byte synchronize);
+    static MemorySegment allocate(PFNGLSHADINGRATEIMAGEBARRIERNVPROC fi, MemorySession session) {
+        return RuntimeHelper.upcallStub(PFNGLSHADINGRATEIMAGEBARRIERNVPROC.class, fi, constants$825.PFNGLSHADINGRATEIMAGEBARRIERNVPROC$FUNC, session);
     }
-    static MemoryAddress allocate(PFNGLSHADINGRATEIMAGEBARRIERNVPROC fi, ResourceScope scope) {
-        return RuntimeHelper.upcallStub(PFNGLSHADINGRATEIMAGEBARRIERNVPROC.class, fi, constants$825.PFNGLSHADINGRATEIMAGEBARRIERNVPROC$FUNC, "(B)V", scope);
-    }
-    static PFNGLSHADINGRATEIMAGEBARRIERNVPROC ofAddress(MemoryAddress addr) {
-        return (byte x0) -> {
+    static PFNGLSHADINGRATEIMAGEBARRIERNVPROC ofAddress(MemoryAddress addr, MemorySession session) {
+        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
+        return (byte _synchronize) -> {
             try {
-                constants$825.PFNGLSHADINGRATEIMAGEBARRIERNVPROC$MH.invokeExact((Addressable)addr, x0);
+                constants$825.PFNGLSHADINGRATEIMAGEBARRIERNVPROC$MH.invokeExact((Addressable)symbol, _synchronize);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

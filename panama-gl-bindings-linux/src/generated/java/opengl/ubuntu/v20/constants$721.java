@@ -2,42 +2,39 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_FLOAT;
-import static jdk.incubator.foreign.CLinker.C_INT;
-import static jdk.incubator.foreign.CLinker.C_POINTER;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$721 {
 
     static final FunctionDescriptor PFNGLMULTICASTVIEWPORTARRAYVNVXPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLMULTICASTVIEWPORTARRAYVNVXPROC$MH = RuntimeHelper.downcallHandle(
-        "(IIILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$721.PFNGLMULTICASTVIEWPORTARRAYVNVXPROC$FUNC, false
+        constants$721.PFNGLMULTICASTVIEWPORTARRAYVNVXPROC$FUNC
     );
     static final FunctionDescriptor PFNGLMULTICASTVIEWPORTPOSITIONWSCALENVXPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_FLOAT,
-        C_FLOAT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT
     );
     static final MethodHandle PFNGLMULTICASTVIEWPORTPOSITIONWSCALENVXPROC$MH = RuntimeHelper.downcallHandle(
-        "(IIFF)V",
-        constants$721.PFNGLMULTICASTVIEWPORTPOSITIONWSCALENVXPROC$FUNC, false
+        constants$721.PFNGLMULTICASTVIEWPORTPOSITIONWSCALENVXPROC$FUNC
     );
     static final FunctionDescriptor PFNGLMULTICASTSCISSORARRAYVNVXPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLMULTICASTSCISSORARRAYVNVXPROC$MH = RuntimeHelper.downcallHandle(
-        "(IIILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$721.PFNGLMULTICASTSCISSORARRAYVNVXPROC$FUNC, false
+        constants$721.PFNGLMULTICASTSCISSORARRAYVNVXPROC$FUNC
     );
 }
 

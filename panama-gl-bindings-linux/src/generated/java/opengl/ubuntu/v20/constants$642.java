@@ -2,37 +2,35 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_INT;
-import static jdk.incubator.foreign.CLinker.C_POINTER;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$642 {
 
     static final FunctionDescriptor PFNGLCREATEMEMORYOBJECTSEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLCREATEMEMORYOBJECTSEXTPROC$MH = RuntimeHelper.downcallHandle(
-        "(ILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$642.PFNGLCREATEMEMORYOBJECTSEXTPROC$FUNC, false
+        constants$642.PFNGLCREATEMEMORYOBJECTSEXTPROC$FUNC
     );
     static final FunctionDescriptor PFNGLMEMORYOBJECTPARAMETERIVEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLMEMORYOBJECTPARAMETERIVEXTPROC$MH = RuntimeHelper.downcallHandle(
-        "(IILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$642.PFNGLMEMORYOBJECTPARAMETERIVEXTPROC$FUNC, false
+        constants$642.PFNGLMEMORYOBJECTPARAMETERIVEXTPROC$FUNC
     );
     static final FunctionDescriptor PFNGLGETMEMORYOBJECTPARAMETERIVEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLGETMEMORYOBJECTPARAMETERIVEXTPROC$MH = RuntimeHelper.downcallHandle(
-        "(IILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$642.PFNGLGETMEMORYOBJECTPARAMETERIVEXTPROC$FUNC, false
+        constants$642.PFNGLGETMEMORYOBJECTPARAMETERIVEXTPROC$FUNC
     );
 }
 

@@ -2,22 +2,22 @@
 
 package opengl.ubuntu.v20;
 
-import jdk.incubator.foreign.Addressable;
-import jdk.incubator.foreign.MemoryAddress;
-import jdk.incubator.foreign.ResourceScope;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public interface PFNGLRESETHISTOGRAMEXTPROC {
 
-    void apply(int x0);
-    static MemoryAddress allocate(PFNGLRESETHISTOGRAMEXTPROC fi) {
-        return RuntimeHelper.upcallStub(PFNGLRESETHISTOGRAMEXTPROC.class, fi, constants$638.PFNGLRESETHISTOGRAMEXTPROC$FUNC, "(I)V");
+    void apply(int target);
+    static MemorySegment allocate(PFNGLRESETHISTOGRAMEXTPROC fi, MemorySession session) {
+        return RuntimeHelper.upcallStub(PFNGLRESETHISTOGRAMEXTPROC.class, fi, constants$638.PFNGLRESETHISTOGRAMEXTPROC$FUNC, session);
     }
-    static MemoryAddress allocate(PFNGLRESETHISTOGRAMEXTPROC fi, ResourceScope scope) {
-        return RuntimeHelper.upcallStub(PFNGLRESETHISTOGRAMEXTPROC.class, fi, constants$638.PFNGLRESETHISTOGRAMEXTPROC$FUNC, "(I)V", scope);
-    }
-    static PFNGLRESETHISTOGRAMEXTPROC ofAddress(MemoryAddress addr) {
-        return (int x0) -> {
+    static PFNGLRESETHISTOGRAMEXTPROC ofAddress(MemoryAddress addr, MemorySession session) {
+        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
+        return (int _target) -> {
             try {
-                constants$638.PFNGLRESETHISTOGRAMEXTPROC$MH.invokeExact((Addressable)addr, x0);
+                constants$638.PFNGLRESETHISTOGRAMEXTPROC$MH.invokeExact((Addressable)symbol, _target);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

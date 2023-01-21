@@ -2,22 +2,22 @@
 
 package opengl.ubuntu.v20;
 
-import jdk.incubator.foreign.Addressable;
-import jdk.incubator.foreign.MemoryAddress;
-import jdk.incubator.foreign.ResourceScope;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public interface PFNGLBITMAPXOESPROC {
 
-    void apply(int x0, int x1, int x2, int x3, int x4, int x5, jdk.incubator.foreign.MemoryAddress x6);
-    static MemoryAddress allocate(PFNGLBITMAPXOESPROC fi) {
-        return RuntimeHelper.upcallStub(PFNGLBITMAPXOESPROC.class, fi, constants$425.PFNGLBITMAPXOESPROC$FUNC, "(IIIIIILjdk/incubator/foreign/MemoryAddress;)V");
+    void apply(int width, int height, int xorig, int yorig, int xmove, int ymove, java.lang.foreign.MemoryAddress bitmap);
+    static MemorySegment allocate(PFNGLBITMAPXOESPROC fi, MemorySession session) {
+        return RuntimeHelper.upcallStub(PFNGLBITMAPXOESPROC.class, fi, constants$425.PFNGLBITMAPXOESPROC$FUNC, session);
     }
-    static MemoryAddress allocate(PFNGLBITMAPXOESPROC fi, ResourceScope scope) {
-        return RuntimeHelper.upcallStub(PFNGLBITMAPXOESPROC.class, fi, constants$425.PFNGLBITMAPXOESPROC$FUNC, "(IIIIIILjdk/incubator/foreign/MemoryAddress;)V", scope);
-    }
-    static PFNGLBITMAPXOESPROC ofAddress(MemoryAddress addr) {
-        return (int x0, int x1, int x2, int x3, int x4, int x5, jdk.incubator.foreign.MemoryAddress x6) -> {
+    static PFNGLBITMAPXOESPROC ofAddress(MemoryAddress addr, MemorySession session) {
+        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
+        return (int _width, int _height, int _xorig, int _yorig, int _xmove, int _ymove, java.lang.foreign.MemoryAddress _bitmap) -> {
             try {
-                constants$425.PFNGLBITMAPXOESPROC$MH.invokeExact((Addressable)addr, x0, x1, x2, x3, x4, x5, x6);
+                constants$425.PFNGLBITMAPXOESPROC$MH.invokeExact((Addressable)symbol, _width, _height, _xorig, _yorig, _xmove, _ymove, (java.lang.foreign.Addressable)_bitmap);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

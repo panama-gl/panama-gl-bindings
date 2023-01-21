@@ -2,49 +2,47 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_INT;
-import static jdk.incubator.foreign.CLinker.C_POINTER;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$374 {
 
     static final FunctionDescriptor PFNGLTEXBUFFERARBPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_INT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLTEXBUFFERARBPROC$MH = RuntimeHelper.downcallHandle(
-        "(III)V",
-        constants$374.PFNGLTEXBUFFERARBPROC$FUNC, false
+        constants$374.PFNGLTEXBUFFERARBPROC$FUNC
     );
     static final FunctionDescriptor PFNGLCOMPRESSEDTEXIMAGE3DARBPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLCOMPRESSEDTEXIMAGE3DARBPROC$MH = RuntimeHelper.downcallHandle(
-        "(IIIIIIIILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$374.PFNGLCOMPRESSEDTEXIMAGE3DARBPROC$FUNC, false
+        constants$374.PFNGLCOMPRESSEDTEXIMAGE3DARBPROC$FUNC
     );
     static final FunctionDescriptor PFNGLCOMPRESSEDTEXIMAGE2DARBPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLCOMPRESSEDTEXIMAGE2DARBPROC$MH = RuntimeHelper.downcallHandle(
-        "(IIIIIIILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$374.PFNGLCOMPRESSEDTEXIMAGE2DARBPROC$FUNC, false
+        constants$374.PFNGLCOMPRESSEDTEXIMAGE2DARBPROC$FUNC
     );
 }
 

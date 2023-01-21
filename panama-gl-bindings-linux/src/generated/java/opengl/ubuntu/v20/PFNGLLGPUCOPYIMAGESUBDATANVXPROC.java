@@ -2,22 +2,22 @@
 
 package opengl.ubuntu.v20;
 
-import jdk.incubator.foreign.Addressable;
-import jdk.incubator.foreign.MemoryAddress;
-import jdk.incubator.foreign.ResourceScope;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public interface PFNGLLGPUCOPYIMAGESUBDATANVXPROC {
 
-    void apply(int x0, int x1, int x2, int x3, int x4, int x5, int x6, int x7, int x8, int x9, int x10, int x11, int x12, int x13, int x14, int x15, int x16);
-    static MemoryAddress allocate(PFNGLLGPUCOPYIMAGESUBDATANVXPROC fi) {
-        return RuntimeHelper.upcallStub(PFNGLLGPUCOPYIMAGESUBDATANVXPROC.class, fi, constants$723.PFNGLLGPUCOPYIMAGESUBDATANVXPROC$FUNC, "(IIIIIIIIIIIIIIIII)V");
+    void apply(int sourceGpu, int destinationGpuMask, int srcName, int srcTarget, int srcLevel, int srcX, int srxY, int srcZ, int dstName, int dstTarget, int dstLevel, int dstX, int dstY, int dstZ, int width, int height, int depth);
+    static MemorySegment allocate(PFNGLLGPUCOPYIMAGESUBDATANVXPROC fi, MemorySession session) {
+        return RuntimeHelper.upcallStub(PFNGLLGPUCOPYIMAGESUBDATANVXPROC.class, fi, constants$723.PFNGLLGPUCOPYIMAGESUBDATANVXPROC$FUNC, session);
     }
-    static MemoryAddress allocate(PFNGLLGPUCOPYIMAGESUBDATANVXPROC fi, ResourceScope scope) {
-        return RuntimeHelper.upcallStub(PFNGLLGPUCOPYIMAGESUBDATANVXPROC.class, fi, constants$723.PFNGLLGPUCOPYIMAGESUBDATANVXPROC$FUNC, "(IIIIIIIIIIIIIIIII)V", scope);
-    }
-    static PFNGLLGPUCOPYIMAGESUBDATANVXPROC ofAddress(MemoryAddress addr) {
-        return (int x0, int x1, int x2, int x3, int x4, int x5, int x6, int x7, int x8, int x9, int x10, int x11, int x12, int x13, int x14, int x15, int x16) -> {
+    static PFNGLLGPUCOPYIMAGESUBDATANVXPROC ofAddress(MemoryAddress addr, MemorySession session) {
+        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
+        return (int _sourceGpu, int _destinationGpuMask, int _srcName, int _srcTarget, int _srcLevel, int _srcX, int _srxY, int _srcZ, int _dstName, int _dstTarget, int _dstLevel, int _dstX, int _dstY, int _dstZ, int _width, int _height, int _depth) -> {
             try {
-                constants$723.PFNGLLGPUCOPYIMAGESUBDATANVXPROC$MH.invokeExact((Addressable)addr, x0, x1, x2, x3, x4, x5, x6, x7, x8, x9, x10, x11, x12, x13, x14, x15, x16);
+                constants$723.PFNGLLGPUCOPYIMAGESUBDATANVXPROC$MH.invokeExact((Addressable)symbol, _sourceGpu, _destinationGpuMask, _srcName, _srcTarget, _srcLevel, _srcX, _srxY, _srcZ, _dstName, _dstTarget, _dstLevel, _dstX, _dstY, _dstZ, _width, _height, _depth);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

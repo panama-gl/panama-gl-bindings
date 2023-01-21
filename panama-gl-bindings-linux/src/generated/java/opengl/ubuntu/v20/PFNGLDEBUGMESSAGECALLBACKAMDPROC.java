@@ -2,22 +2,22 @@
 
 package opengl.ubuntu.v20;
 
-import jdk.incubator.foreign.Addressable;
-import jdk.incubator.foreign.MemoryAddress;
-import jdk.incubator.foreign.ResourceScope;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public interface PFNGLDEBUGMESSAGECALLBACKAMDPROC {
 
-    void apply(jdk.incubator.foreign.MemoryAddress x0, jdk.incubator.foreign.MemoryAddress x1);
-    static MemoryAddress allocate(PFNGLDEBUGMESSAGECALLBACKAMDPROC fi) {
-        return RuntimeHelper.upcallStub(PFNGLDEBUGMESSAGECALLBACKAMDPROC.class, fi, constants$451.PFNGLDEBUGMESSAGECALLBACKAMDPROC$FUNC, "(Ljdk/incubator/foreign/MemoryAddress;Ljdk/incubator/foreign/MemoryAddress;)V");
+    void apply(java.lang.foreign.MemoryAddress callback, java.lang.foreign.MemoryAddress userParam);
+    static MemorySegment allocate(PFNGLDEBUGMESSAGECALLBACKAMDPROC fi, MemorySession session) {
+        return RuntimeHelper.upcallStub(PFNGLDEBUGMESSAGECALLBACKAMDPROC.class, fi, constants$451.PFNGLDEBUGMESSAGECALLBACKAMDPROC$FUNC, session);
     }
-    static MemoryAddress allocate(PFNGLDEBUGMESSAGECALLBACKAMDPROC fi, ResourceScope scope) {
-        return RuntimeHelper.upcallStub(PFNGLDEBUGMESSAGECALLBACKAMDPROC.class, fi, constants$451.PFNGLDEBUGMESSAGECALLBACKAMDPROC$FUNC, "(Ljdk/incubator/foreign/MemoryAddress;Ljdk/incubator/foreign/MemoryAddress;)V", scope);
-    }
-    static PFNGLDEBUGMESSAGECALLBACKAMDPROC ofAddress(MemoryAddress addr) {
-        return (jdk.incubator.foreign.MemoryAddress x0, jdk.incubator.foreign.MemoryAddress x1) -> {
+    static PFNGLDEBUGMESSAGECALLBACKAMDPROC ofAddress(MemoryAddress addr, MemorySession session) {
+        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
+        return (java.lang.foreign.MemoryAddress _callback, java.lang.foreign.MemoryAddress _userParam) -> {
             try {
-                constants$451.PFNGLDEBUGMESSAGECALLBACKAMDPROC$MH.invokeExact((Addressable)addr, x0, x1);
+                constants$451.PFNGLDEBUGMESSAGECALLBACKAMDPROC$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)_callback, (java.lang.foreign.Addressable)_userParam);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

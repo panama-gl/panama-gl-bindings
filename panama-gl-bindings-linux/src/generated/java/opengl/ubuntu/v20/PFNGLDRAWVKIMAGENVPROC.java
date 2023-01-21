@@ -2,22 +2,22 @@
 
 package opengl.ubuntu.v20;
 
-import jdk.incubator.foreign.Addressable;
-import jdk.incubator.foreign.MemoryAddress;
-import jdk.incubator.foreign.ResourceScope;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public interface PFNGLDRAWVKIMAGENVPROC {
 
-    void apply(long x0, int x1, float x2, float x3, float x4, float x5, float x6, float x7, float x8, float x9, float x10);
-    static MemoryAddress allocate(PFNGLDRAWVKIMAGENVPROC fi) {
-        return RuntimeHelper.upcallStub(PFNGLDRAWVKIMAGENVPROC.class, fi, constants$741.PFNGLDRAWVKIMAGENVPROC$FUNC, "(JIFFFFFFFFF)V");
+    void apply(long vkImage, int sampler, float x0, float y0, float x1, float y1, float z, float s0, float t0, float s1, float t1);
+    static MemorySegment allocate(PFNGLDRAWVKIMAGENVPROC fi, MemorySession session) {
+        return RuntimeHelper.upcallStub(PFNGLDRAWVKIMAGENVPROC.class, fi, constants$741.PFNGLDRAWVKIMAGENVPROC$FUNC, session);
     }
-    static MemoryAddress allocate(PFNGLDRAWVKIMAGENVPROC fi, ResourceScope scope) {
-        return RuntimeHelper.upcallStub(PFNGLDRAWVKIMAGENVPROC.class, fi, constants$741.PFNGLDRAWVKIMAGENVPROC$FUNC, "(JIFFFFFFFFF)V", scope);
-    }
-    static PFNGLDRAWVKIMAGENVPROC ofAddress(MemoryAddress addr) {
-        return (long x0, int x1, float x2, float x3, float x4, float x5, float x6, float x7, float x8, float x9, float x10) -> {
+    static PFNGLDRAWVKIMAGENVPROC ofAddress(MemoryAddress addr, MemorySession session) {
+        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
+        return (long _vkImage, int _sampler, float _x0, float _y0, float _x1, float _y1, float _z, float _s0, float _t0, float _s1, float _t1) -> {
             try {
-                constants$741.PFNGLDRAWVKIMAGENVPROC$MH.invokeExact((Addressable)addr, x0, x1, x2, x3, x4, x5, x6, x7, x8, x9, x10);
+                constants$741.PFNGLDRAWVKIMAGENVPROC$MH.invokeExact((Addressable)symbol, _vkImage, _sampler, _x0, _y0, _x1, _y1, _z, _s0, _t0, _s1, _t1);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

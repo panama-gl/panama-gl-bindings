@@ -2,22 +2,22 @@
 
 package opengl.ubuntu.v20;
 
-import jdk.incubator.foreign.Addressable;
-import jdk.incubator.foreign.MemoryAddress;
-import jdk.incubator.foreign.ResourceScope;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public interface PFNGLREPLACEMENTCODEUICOLOR4UBVERTEX3FSUNPROC {
 
-    void apply(int x0, byte x1, byte x2, byte x3, byte x4, float x5, float x6, float x7);
-    static MemoryAddress allocate(PFNGLREPLACEMENTCODEUICOLOR4UBVERTEX3FSUNPROC fi) {
-        return RuntimeHelper.upcallStub(PFNGLREPLACEMENTCODEUICOLOR4UBVERTEX3FSUNPROC.class, fi, constants$924.PFNGLREPLACEMENTCODEUICOLOR4UBVERTEX3FSUNPROC$FUNC, "(IBBBBFFF)V");
+    void apply(int rc, byte r, byte g, byte b, byte a, float x, float y, float z);
+    static MemorySegment allocate(PFNGLREPLACEMENTCODEUICOLOR4UBVERTEX3FSUNPROC fi, MemorySession session) {
+        return RuntimeHelper.upcallStub(PFNGLREPLACEMENTCODEUICOLOR4UBVERTEX3FSUNPROC.class, fi, constants$924.PFNGLREPLACEMENTCODEUICOLOR4UBVERTEX3FSUNPROC$FUNC, session);
     }
-    static MemoryAddress allocate(PFNGLREPLACEMENTCODEUICOLOR4UBVERTEX3FSUNPROC fi, ResourceScope scope) {
-        return RuntimeHelper.upcallStub(PFNGLREPLACEMENTCODEUICOLOR4UBVERTEX3FSUNPROC.class, fi, constants$924.PFNGLREPLACEMENTCODEUICOLOR4UBVERTEX3FSUNPROC$FUNC, "(IBBBBFFF)V", scope);
-    }
-    static PFNGLREPLACEMENTCODEUICOLOR4UBVERTEX3FSUNPROC ofAddress(MemoryAddress addr) {
-        return (int x0, byte x1, byte x2, byte x3, byte x4, float x5, float x6, float x7) -> {
+    static PFNGLREPLACEMENTCODEUICOLOR4UBVERTEX3FSUNPROC ofAddress(MemoryAddress addr, MemorySession session) {
+        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
+        return (int _rc, byte _r, byte _g, byte _b, byte _a, float _x, float _y, float _z) -> {
             try {
-                constants$924.PFNGLREPLACEMENTCODEUICOLOR4UBVERTEX3FSUNPROC$MH.invokeExact((Addressable)addr, x0, x1, x2, x3, x4, x5, x6, x7);
+                constants$924.PFNGLREPLACEMENTCODEUICOLOR4UBVERTEX3FSUNPROC$MH.invokeExact((Addressable)symbol, _rc, _r, _g, _b, _a, _x, _y, _z);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

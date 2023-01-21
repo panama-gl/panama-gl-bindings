@@ -2,22 +2,22 @@
 
 package opengl.ubuntu.v20;
 
-import jdk.incubator.foreign.Addressable;
-import jdk.incubator.foreign.MemoryAddress;
-import jdk.incubator.foreign.ResourceScope;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public interface PFNGLMULTITEXIMAGE1DEXTPROC {
 
-    void apply(int x0, int x1, int x2, int x3, int x4, int x5, int x6, int x7, jdk.incubator.foreign.MemoryAddress x8);
-    static MemoryAddress allocate(PFNGLMULTITEXIMAGE1DEXTPROC fi) {
-        return RuntimeHelper.upcallStub(PFNGLMULTITEXIMAGE1DEXTPROC.class, fi, constants$555.PFNGLMULTITEXIMAGE1DEXTPROC$FUNC, "(IIIIIIIILjdk/incubator/foreign/MemoryAddress;)V");
+    void apply(int texunit, int target, int level, int internalformat, int width, int border, int format, int type, java.lang.foreign.MemoryAddress pixels);
+    static MemorySegment allocate(PFNGLMULTITEXIMAGE1DEXTPROC fi, MemorySession session) {
+        return RuntimeHelper.upcallStub(PFNGLMULTITEXIMAGE1DEXTPROC.class, fi, constants$555.PFNGLMULTITEXIMAGE1DEXTPROC$FUNC, session);
     }
-    static MemoryAddress allocate(PFNGLMULTITEXIMAGE1DEXTPROC fi, ResourceScope scope) {
-        return RuntimeHelper.upcallStub(PFNGLMULTITEXIMAGE1DEXTPROC.class, fi, constants$555.PFNGLMULTITEXIMAGE1DEXTPROC$FUNC, "(IIIIIIIILjdk/incubator/foreign/MemoryAddress;)V", scope);
-    }
-    static PFNGLMULTITEXIMAGE1DEXTPROC ofAddress(MemoryAddress addr) {
-        return (int x0, int x1, int x2, int x3, int x4, int x5, int x6, int x7, jdk.incubator.foreign.MemoryAddress x8) -> {
+    static PFNGLMULTITEXIMAGE1DEXTPROC ofAddress(MemoryAddress addr, MemorySession session) {
+        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
+        return (int _texunit, int _target, int _level, int _internalformat, int _width, int _border, int _format, int _type, java.lang.foreign.MemoryAddress _pixels) -> {
             try {
-                constants$555.PFNGLMULTITEXIMAGE1DEXTPROC$MH.invokeExact((Addressable)addr, x0, x1, x2, x3, x4, x5, x6, x7, x8);
+                constants$555.PFNGLMULTITEXIMAGE1DEXTPROC$MH.invokeExact((Addressable)symbol, _texunit, _target, _level, _internalformat, _width, _border, _format, _type, (java.lang.foreign.Addressable)_pixels);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

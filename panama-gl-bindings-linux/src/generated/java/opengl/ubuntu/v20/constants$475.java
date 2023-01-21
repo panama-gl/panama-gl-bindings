@@ -2,39 +2,37 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_INT;
-import static jdk.incubator.foreign.CLinker.C_POINTER;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$475 {
 
     static final FunctionDescriptor PFNGLELEMENTPOINTERAPPLEPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLELEMENTPOINTERAPPLEPROC$MH = RuntimeHelper.downcallHandle(
-        "(ILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$475.PFNGLELEMENTPOINTERAPPLEPROC$FUNC, false
+        constants$475.PFNGLELEMENTPOINTERAPPLEPROC$FUNC
     );
     static final FunctionDescriptor PFNGLDRAWELEMENTARRAYAPPLEPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_INT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLDRAWELEMENTARRAYAPPLEPROC$MH = RuntimeHelper.downcallHandle(
-        "(III)V",
-        constants$475.PFNGLDRAWELEMENTARRAYAPPLEPROC$FUNC, false
+        constants$475.PFNGLDRAWELEMENTARRAYAPPLEPROC$FUNC
     );
     static final FunctionDescriptor PFNGLDRAWRANGEELEMENTARRAYAPPLEPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLDRAWRANGEELEMENTARRAYAPPLEPROC$MH = RuntimeHelper.downcallHandle(
-        "(IIIII)V",
-        constants$475.PFNGLDRAWRANGEELEMENTARRAYAPPLEPROC$FUNC, false
+        constants$475.PFNGLDRAWRANGEELEMENTARRAYAPPLEPROC$FUNC
     );
 }
 

@@ -2,64 +2,59 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_FLOAT;
-import static jdk.incubator.foreign.CLinker.C_INT;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$967 {
 
-    static final FunctionDescriptor glutVideoResizeGet$FUNC = FunctionDescriptor.of(C_INT,
-        C_INT
+    static final FunctionDescriptor glutVideoResizeGet$FUNC = FunctionDescriptor.of(Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle glutVideoResizeGet$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "glutVideoResizeGet",
-        "(I)I",
-        constants$967.glutVideoResizeGet$FUNC, false
+        "glutVideoResizeGet",
+        constants$967.glutVideoResizeGet$FUNC
     );
     static final FunctionDescriptor glutSetupVideoResizing$FUNC = FunctionDescriptor.ofVoid();
     static final MethodHandle glutSetupVideoResizing$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "glutSetupVideoResizing",
-        "()V",
-        constants$967.glutSetupVideoResizing$FUNC, false
+        "glutSetupVideoResizing",
+        constants$967.glutSetupVideoResizing$FUNC
     );
     static final FunctionDescriptor glutStopVideoResizing$FUNC = FunctionDescriptor.ofVoid();
     static final MethodHandle glutStopVideoResizing$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "glutStopVideoResizing",
-        "()V",
-        constants$967.glutStopVideoResizing$FUNC, false
+        "glutStopVideoResizing",
+        constants$967.glutStopVideoResizing$FUNC
     );
     static final FunctionDescriptor glutVideoResize$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle glutVideoResize$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "glutVideoResize",
-        "(IIII)V",
-        constants$967.glutVideoResize$FUNC, false
+        "glutVideoResize",
+        constants$967.glutVideoResize$FUNC
     );
     static final FunctionDescriptor glutVideoPan$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle glutVideoPan$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "glutVideoPan",
-        "(IIII)V",
-        constants$967.glutVideoPan$FUNC, false
+        "glutVideoPan",
+        constants$967.glutVideoPan$FUNC
     );
     static final FunctionDescriptor glutSetColor$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_FLOAT,
-        C_FLOAT,
-        C_FLOAT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT
     );
     static final MethodHandle glutSetColor$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "glutSetColor",
-        "(IFFF)V",
-        constants$967.glutSetColor$FUNC, false
+        "glutSetColor",
+        constants$967.glutSetColor$FUNC
     );
 }
 

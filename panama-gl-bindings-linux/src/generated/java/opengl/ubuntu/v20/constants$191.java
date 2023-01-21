@@ -2,40 +2,37 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_CHAR;
-import static jdk.incubator.foreign.CLinker.C_INT;
-import static jdk.incubator.foreign.CLinker.C_POINTER;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$191 {
 
     static final FunctionDescriptor PFNGLVERTEXATTRIBDIVISORPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLVERTEXATTRIBDIVISORPROC$MH = RuntimeHelper.downcallHandle(
-        "(II)V",
-        constants$191.PFNGLVERTEXATTRIBDIVISORPROC$FUNC, false
+        constants$191.PFNGLVERTEXATTRIBDIVISORPROC$FUNC
     );
     static final FunctionDescriptor PFNGLVERTEXATTRIBP1UIPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_CHAR,
-        C_INT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_CHAR$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLVERTEXATTRIBP1UIPROC$MH = RuntimeHelper.downcallHandle(
-        "(IIBI)V",
-        constants$191.PFNGLVERTEXATTRIBP1UIPROC$FUNC, false
+        constants$191.PFNGLVERTEXATTRIBP1UIPROC$FUNC
     );
     static final FunctionDescriptor PFNGLVERTEXATTRIBP1UIVPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_CHAR,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_CHAR$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLVERTEXATTRIBP1UIVPROC$MH = RuntimeHelper.downcallHandle(
-        "(IIBLjdk/incubator/foreign/MemoryAddress;)V",
-        constants$191.PFNGLVERTEXATTRIBP1UIVPROC$FUNC, false
+        constants$191.PFNGLVERTEXATTRIBP1UIVPROC$FUNC
     );
 }
 

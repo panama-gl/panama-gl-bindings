@@ -2,22 +2,22 @@
 
 package opengl.ubuntu.v20;
 
-import jdk.incubator.foreign.Addressable;
-import jdk.incubator.foreign.MemoryAddress;
-import jdk.incubator.foreign.ResourceScope;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public interface PFNGLNAMEDFRAMEBUFFERTEXTUREPROC {
 
-    void apply(int x0, int x1, int x2, int x3);
-    static MemoryAddress allocate(PFNGLNAMEDFRAMEBUFFERTEXTUREPROC fi) {
-        return RuntimeHelper.upcallStub(PFNGLNAMEDFRAMEBUFFERTEXTUREPROC.class, fi, constants$278.PFNGLNAMEDFRAMEBUFFERTEXTUREPROC$FUNC, "(IIII)V");
+    void apply(int framebuffer, int attachment, int texture, int level);
+    static MemorySegment allocate(PFNGLNAMEDFRAMEBUFFERTEXTUREPROC fi, MemorySession session) {
+        return RuntimeHelper.upcallStub(PFNGLNAMEDFRAMEBUFFERTEXTUREPROC.class, fi, constants$278.PFNGLNAMEDFRAMEBUFFERTEXTUREPROC$FUNC, session);
     }
-    static MemoryAddress allocate(PFNGLNAMEDFRAMEBUFFERTEXTUREPROC fi, ResourceScope scope) {
-        return RuntimeHelper.upcallStub(PFNGLNAMEDFRAMEBUFFERTEXTUREPROC.class, fi, constants$278.PFNGLNAMEDFRAMEBUFFERTEXTUREPROC$FUNC, "(IIII)V", scope);
-    }
-    static PFNGLNAMEDFRAMEBUFFERTEXTUREPROC ofAddress(MemoryAddress addr) {
-        return (int x0, int x1, int x2, int x3) -> {
+    static PFNGLNAMEDFRAMEBUFFERTEXTUREPROC ofAddress(MemoryAddress addr, MemorySession session) {
+        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
+        return (int _framebuffer, int _attachment, int _texture, int _level) -> {
             try {
-                constants$278.PFNGLNAMEDFRAMEBUFFERTEXTUREPROC$MH.invokeExact((Addressable)addr, x0, x1, x2, x3);
+                constants$278.PFNGLNAMEDFRAMEBUFFERTEXTUREPROC$MH.invokeExact((Addressable)symbol, _framebuffer, _attachment, _texture, _level);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

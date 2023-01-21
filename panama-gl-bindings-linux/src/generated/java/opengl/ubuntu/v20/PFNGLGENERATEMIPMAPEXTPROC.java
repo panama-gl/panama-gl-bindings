@@ -2,22 +2,22 @@
 
 package opengl.ubuntu.v20;
 
-import jdk.incubator.foreign.Addressable;
-import jdk.incubator.foreign.MemoryAddress;
-import jdk.incubator.foreign.ResourceScope;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public interface PFNGLGENERATEMIPMAPEXTPROC {
 
-    void apply(int x0);
-    static MemoryAddress allocate(PFNGLGENERATEMIPMAPEXTPROC fi) {
-        return RuntimeHelper.upcallStub(PFNGLGENERATEMIPMAPEXTPROC.class, fi, constants$630.PFNGLGENERATEMIPMAPEXTPROC$FUNC, "(I)V");
+    void apply(int target);
+    static MemorySegment allocate(PFNGLGENERATEMIPMAPEXTPROC fi, MemorySession session) {
+        return RuntimeHelper.upcallStub(PFNGLGENERATEMIPMAPEXTPROC.class, fi, constants$630.PFNGLGENERATEMIPMAPEXTPROC$FUNC, session);
     }
-    static MemoryAddress allocate(PFNGLGENERATEMIPMAPEXTPROC fi, ResourceScope scope) {
-        return RuntimeHelper.upcallStub(PFNGLGENERATEMIPMAPEXTPROC.class, fi, constants$630.PFNGLGENERATEMIPMAPEXTPROC$FUNC, "(I)V", scope);
-    }
-    static PFNGLGENERATEMIPMAPEXTPROC ofAddress(MemoryAddress addr) {
-        return (int x0) -> {
+    static PFNGLGENERATEMIPMAPEXTPROC ofAddress(MemoryAddress addr, MemorySession session) {
+        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
+        return (int _target) -> {
             try {
-                constants$630.PFNGLGENERATEMIPMAPEXTPROC$MH.invokeExact((Addressable)addr, x0);
+                constants$630.PFNGLGENERATEMIPMAPEXTPROC$MH.invokeExact((Addressable)symbol, _target);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

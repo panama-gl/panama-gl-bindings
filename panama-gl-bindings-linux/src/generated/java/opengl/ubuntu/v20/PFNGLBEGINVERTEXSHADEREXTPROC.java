@@ -2,22 +2,22 @@
 
 package opengl.ubuntu.v20;
 
-import jdk.incubator.foreign.Addressable;
-import jdk.incubator.foreign.MemoryAddress;
-import jdk.incubator.foreign.ResourceScope;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public interface PFNGLBEGINVERTEXSHADEREXTPROC {
 
     void apply();
-    static MemoryAddress allocate(PFNGLBEGINVERTEXSHADEREXTPROC fi) {
-        return RuntimeHelper.upcallStub(PFNGLBEGINVERTEXSHADEREXTPROC.class, fi, constants$682.PFNGLBEGINVERTEXSHADEREXTPROC$FUNC, "()V");
+    static MemorySegment allocate(PFNGLBEGINVERTEXSHADEREXTPROC fi, MemorySession session) {
+        return RuntimeHelper.upcallStub(PFNGLBEGINVERTEXSHADEREXTPROC.class, fi, constants$682.PFNGLBEGINVERTEXSHADEREXTPROC$FUNC, session);
     }
-    static MemoryAddress allocate(PFNGLBEGINVERTEXSHADEREXTPROC fi, ResourceScope scope) {
-        return RuntimeHelper.upcallStub(PFNGLBEGINVERTEXSHADEREXTPROC.class, fi, constants$682.PFNGLBEGINVERTEXSHADEREXTPROC$FUNC, "()V", scope);
-    }
-    static PFNGLBEGINVERTEXSHADEREXTPROC ofAddress(MemoryAddress addr) {
+    static PFNGLBEGINVERTEXSHADEREXTPROC ofAddress(MemoryAddress addr, MemorySession session) {
+        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return () -> {
             try {
-                constants$682.PFNGLBEGINVERTEXSHADEREXTPROC$MH.invokeExact((Addressable)addr);
+                constants$682.PFNGLBEGINVERTEXSHADEREXTPROC$MH.invokeExact((Addressable)symbol);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

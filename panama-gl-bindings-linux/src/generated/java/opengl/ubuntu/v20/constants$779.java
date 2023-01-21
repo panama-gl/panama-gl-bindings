@@ -2,43 +2,41 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_INT;
-import static jdk.incubator.foreign.CLinker.C_POINTER;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$779 {
 
     static final FunctionDescriptor PFNGLVERTEXATTRIBS4HVNVPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLVERTEXATTRIBS4HVNVPROC$MH = RuntimeHelper.downcallHandle(
-        "(IILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$779.PFNGLVERTEXATTRIBS4HVNVPROC$FUNC, false
+        constants$779.PFNGLVERTEXATTRIBS4HVNVPROC$FUNC
     );
     static final FunctionDescriptor PFNGLGETINTERNALFORMATSAMPLEIVNVPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLGETINTERNALFORMATSAMPLEIVNVPROC$MH = RuntimeHelper.downcallHandle(
-        "(IIIIILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$779.PFNGLGETINTERNALFORMATSAMPLEIVNVPROC$FUNC, false
+        constants$779.PFNGLGETINTERNALFORMATSAMPLEIVNVPROC$FUNC
     );
     static final FunctionDescriptor PFNGLGETMEMORYOBJECTDETACHEDRESOURCESUIVNVPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLGETMEMORYOBJECTDETACHEDRESOURCESUIVNVPROC$MH = RuntimeHelper.downcallHandle(
-        "(IIIILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$779.PFNGLGETMEMORYOBJECTDETACHEDRESOURCESUIVNVPROC$FUNC, false
+        constants$779.PFNGLGETMEMORYOBJECTDETACHEDRESOURCESUIVNVPROC$FUNC
     );
 }
 

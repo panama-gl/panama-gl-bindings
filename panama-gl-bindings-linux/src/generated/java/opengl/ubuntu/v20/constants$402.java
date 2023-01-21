@@ -2,33 +2,31 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_POINTER;
-import static jdk.incubator.foreign.CLinker.C_SHORT;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$402 {
 
     static final FunctionDescriptor PFNGLWINDOWPOS2IVARBPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_POINTER
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLWINDOWPOS2IVARBPROC$MH = RuntimeHelper.downcallHandle(
-        "(Ljdk/incubator/foreign/MemoryAddress;)V",
-        constants$402.PFNGLWINDOWPOS2IVARBPROC$FUNC, false
+        constants$402.PFNGLWINDOWPOS2IVARBPROC$FUNC
     );
     static final FunctionDescriptor PFNGLWINDOWPOS2SARBPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_SHORT,
-        C_SHORT
+        Constants$root.C_SHORT$LAYOUT,
+        Constants$root.C_SHORT$LAYOUT
     );
     static final MethodHandle PFNGLWINDOWPOS2SARBPROC$MH = RuntimeHelper.downcallHandle(
-        "(SS)V",
-        constants$402.PFNGLWINDOWPOS2SARBPROC$FUNC, false
+        constants$402.PFNGLWINDOWPOS2SARBPROC$FUNC
     );
     static final FunctionDescriptor PFNGLWINDOWPOS2SVARBPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_POINTER
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLWINDOWPOS2SVARBPROC$MH = RuntimeHelper.downcallHandle(
-        "(Ljdk/incubator/foreign/MemoryAddress;)V",
-        constants$402.PFNGLWINDOWPOS2SVARBPROC$FUNC, false
+        constants$402.PFNGLWINDOWPOS2SVARBPROC$FUNC
     );
 }
 

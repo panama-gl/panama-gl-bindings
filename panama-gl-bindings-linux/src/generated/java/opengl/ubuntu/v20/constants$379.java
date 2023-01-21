@@ -2,35 +2,33 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_INT;
-import static jdk.incubator.foreign.CLinker.C_POINTER;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$379 {
 
     static final FunctionDescriptor PFNGLWEIGHTFVARBPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLWEIGHTFVARBPROC$MH = RuntimeHelper.downcallHandle(
-        "(ILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$379.PFNGLWEIGHTFVARBPROC$FUNC, false
+        constants$379.PFNGLWEIGHTFVARBPROC$FUNC
     );
     static final FunctionDescriptor PFNGLWEIGHTDVARBPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLWEIGHTDVARBPROC$MH = RuntimeHelper.downcallHandle(
-        "(ILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$379.PFNGLWEIGHTDVARBPROC$FUNC, false
+        constants$379.PFNGLWEIGHTDVARBPROC$FUNC
     );
     static final FunctionDescriptor PFNGLWEIGHTUBVARBPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLWEIGHTUBVARBPROC$MH = RuntimeHelper.downcallHandle(
-        "(ILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$379.PFNGLWEIGHTUBVARBPROC$FUNC, false
+        constants$379.PFNGLWEIGHTUBVARBPROC$FUNC
     );
 }
 

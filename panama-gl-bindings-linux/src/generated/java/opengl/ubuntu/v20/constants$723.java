@@ -2,43 +2,42 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_INT;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$723 {
 
     static final FunctionDescriptor PFNGLLGPUCOPYIMAGESUBDATANVXPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLLGPUCOPYIMAGESUBDATANVXPROC$MH = RuntimeHelper.downcallHandle(
-        "(IIIIIIIIIIIIIIIII)V",
-        constants$723.PFNGLLGPUCOPYIMAGESUBDATANVXPROC$FUNC, false
+        constants$723.PFNGLLGPUCOPYIMAGESUBDATANVXPROC$FUNC
     );
     static final FunctionDescriptor PFNGLLGPUINTERLOCKNVXPROC$FUNC = FunctionDescriptor.ofVoid();
     static final MethodHandle PFNGLLGPUINTERLOCKNVXPROC$MH = RuntimeHelper.downcallHandle(
-        "()V",
-        constants$723.PFNGLLGPUINTERLOCKNVXPROC$FUNC, false
+        constants$723.PFNGLLGPUINTERLOCKNVXPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLCREATEPROGRESSFENCENVXPROC$FUNC = FunctionDescriptor.of(C_INT);
+    static final FunctionDescriptor PFNGLCREATEPROGRESSFENCENVXPROC$FUNC = FunctionDescriptor.of(Constants$root.C_INT$LAYOUT);
     static final MethodHandle PFNGLCREATEPROGRESSFENCENVXPROC$MH = RuntimeHelper.downcallHandle(
-        "()I",
-        constants$723.PFNGLCREATEPROGRESSFENCENVXPROC$FUNC, false
+        constants$723.PFNGLCREATEPROGRESSFENCENVXPROC$FUNC
     );
 }
 

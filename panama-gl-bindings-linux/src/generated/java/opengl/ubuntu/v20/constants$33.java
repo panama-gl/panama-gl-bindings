@@ -2,58 +2,54 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_POINTER;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$33 {
 
     static final FunctionDescriptor glRasterPos2iv$FUNC = FunctionDescriptor.ofVoid(
-        C_POINTER
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle glRasterPos2iv$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "glRasterPos2iv",
-        "(Ljdk/incubator/foreign/MemoryAddress;)V",
-        constants$33.glRasterPos2iv$FUNC, false
+        "glRasterPos2iv",
+        constants$33.glRasterPos2iv$FUNC
     );
     static final FunctionDescriptor glRasterPos2sv$FUNC = FunctionDescriptor.ofVoid(
-        C_POINTER
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle glRasterPos2sv$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "glRasterPos2sv",
-        "(Ljdk/incubator/foreign/MemoryAddress;)V",
-        constants$33.glRasterPos2sv$FUNC, false
+        "glRasterPos2sv",
+        constants$33.glRasterPos2sv$FUNC
     );
     static final FunctionDescriptor glRasterPos3dv$FUNC = FunctionDescriptor.ofVoid(
-        C_POINTER
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle glRasterPos3dv$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "glRasterPos3dv",
-        "(Ljdk/incubator/foreign/MemoryAddress;)V",
-        constants$33.glRasterPos3dv$FUNC, false
+        "glRasterPos3dv",
+        constants$33.glRasterPos3dv$FUNC
     );
     static final FunctionDescriptor glRasterPos3fv$FUNC = FunctionDescriptor.ofVoid(
-        C_POINTER
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle glRasterPos3fv$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "glRasterPos3fv",
-        "(Ljdk/incubator/foreign/MemoryAddress;)V",
-        constants$33.glRasterPos3fv$FUNC, false
+        "glRasterPos3fv",
+        constants$33.glRasterPos3fv$FUNC
     );
     static final FunctionDescriptor glRasterPos3iv$FUNC = FunctionDescriptor.ofVoid(
-        C_POINTER
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle glRasterPos3iv$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "glRasterPos3iv",
-        "(Ljdk/incubator/foreign/MemoryAddress;)V",
-        constants$33.glRasterPos3iv$FUNC, false
+        "glRasterPos3iv",
+        constants$33.glRasterPos3iv$FUNC
     );
     static final FunctionDescriptor glRasterPos3sv$FUNC = FunctionDescriptor.ofVoid(
-        C_POINTER
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle glRasterPos3sv$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "glRasterPos3sv",
-        "(Ljdk/incubator/foreign/MemoryAddress;)V",
-        constants$33.glRasterPos3sv$FUNC, false
+        "glRasterPos3sv",
+        constants$33.glRasterPos3sv$FUNC
     );
 }
 

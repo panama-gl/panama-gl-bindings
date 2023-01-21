@@ -2,41 +2,38 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_CHAR;
-import static jdk.incubator.foreign.CLinker.C_INT;
-import static jdk.incubator.foreign.CLinker.C_POINTER;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$310 {
 
     static final FunctionDescriptor PFNGLGETNHISTOGRAMPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_CHAR,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_CHAR$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLGETNHISTOGRAMPROC$MH = RuntimeHelper.downcallHandle(
-        "(IBIIILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$310.PFNGLGETNHISTOGRAMPROC$FUNC, false
+        constants$310.PFNGLGETNHISTOGRAMPROC$FUNC
     );
     static final FunctionDescriptor PFNGLGETNMINMAXPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_CHAR,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_CHAR$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLGETNMINMAXPROC$MH = RuntimeHelper.downcallHandle(
-        "(IBIIILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$310.PFNGLGETNMINMAXPROC$FUNC, false
+        constants$310.PFNGLGETNMINMAXPROC$FUNC
     );
     static final FunctionDescriptor PFNGLTEXTUREBARRIERPROC$FUNC = FunctionDescriptor.ofVoid();
     static final MethodHandle PFNGLTEXTUREBARRIERPROC$MH = RuntimeHelper.downcallHandle(
-        "()V",
-        constants$310.PFNGLTEXTUREBARRIERPROC$FUNC, false
+        constants$310.PFNGLTEXTUREBARRIERPROC$FUNC
     );
 }
 

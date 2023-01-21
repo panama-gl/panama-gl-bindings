@@ -2,31 +2,29 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_INT;
-import static jdk.incubator.foreign.CLinker.C_POINTER;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$899 {
 
     static final FunctionDescriptor PFNGLFRAMEZOOMSGIXPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLFRAMEZOOMSGIXPROC$MH = RuntimeHelper.downcallHandle(
-        "(I)V",
-        constants$899.PFNGLFRAMEZOOMSGIXPROC$FUNC, false
+        constants$899.PFNGLFRAMEZOOMSGIXPROC$FUNC
     );
     static final FunctionDescriptor PFNGLIGLOOINTERFACESGIXPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLIGLOOINTERFACESGIXPROC$MH = RuntimeHelper.downcallHandle(
-        "(ILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$899.PFNGLIGLOOINTERFACESGIXPROC$FUNC, false
+        constants$899.PFNGLIGLOOINTERFACESGIXPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLGETINSTRUMENTSSGIXPROC$FUNC = FunctionDescriptor.of(C_INT);
+    static final FunctionDescriptor PFNGLGETINSTRUMENTSSGIXPROC$FUNC = FunctionDescriptor.of(Constants$root.C_INT$LAYOUT);
     static final MethodHandle PFNGLGETINSTRUMENTSSGIXPROC$MH = RuntimeHelper.downcallHandle(
-        "()I",
-        constants$899.PFNGLGETINSTRUMENTSSGIXPROC$FUNC, false
+        constants$899.PFNGLGETINSTRUMENTSSGIXPROC$FUNC
     );
 }
 

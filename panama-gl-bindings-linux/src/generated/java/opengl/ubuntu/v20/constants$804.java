@@ -2,53 +2,49 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_FLOAT;
-import static jdk.incubator.foreign.CLinker.C_INT;
-import static jdk.incubator.foreign.CLinker.C_LONG;
-import static jdk.incubator.foreign.CLinker.C_POINTER;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$804 {
 
-    static final FunctionDescriptor PFNGLPATHGLYPHINDEXARRAYNVPROC$FUNC = FunctionDescriptor.of(C_INT,
-        C_INT,
-        C_INT,
-        C_POINTER,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_FLOAT
+    static final FunctionDescriptor PFNGLPATHGLYPHINDEXARRAYNVPROC$FUNC = FunctionDescriptor.of(Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT
     );
     static final MethodHandle PFNGLPATHGLYPHINDEXARRAYNVPROC$MH = RuntimeHelper.downcallHandle(
-        "(IILjdk/incubator/foreign/MemoryAddress;IIIIF)I",
-        constants$804.PFNGLPATHGLYPHINDEXARRAYNVPROC$FUNC, false
+        constants$804.PFNGLPATHGLYPHINDEXARRAYNVPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLPATHMEMORYGLYPHINDEXARRAYNVPROC$FUNC = FunctionDescriptor.of(C_INT,
-        C_INT,
-        C_INT,
-        C_LONG,
-        C_POINTER,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_FLOAT
+    static final FunctionDescriptor PFNGLPATHMEMORYGLYPHINDEXARRAYNVPROC$FUNC = FunctionDescriptor.of(Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT
     );
     static final MethodHandle PFNGLPATHMEMORYGLYPHINDEXARRAYNVPROC$MH = RuntimeHelper.downcallHandle(
-        "(IIJLjdk/incubator/foreign/MemoryAddress;IIIIF)I",
-        constants$804.PFNGLPATHMEMORYGLYPHINDEXARRAYNVPROC$FUNC, false
+        constants$804.PFNGLPATHMEMORYGLYPHINDEXARRAYNVPROC$FUNC
     );
     static final FunctionDescriptor PFNGLPROGRAMPATHFRAGMENTINPUTGENNVPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLPROGRAMPATHFRAGMENTINPUTGENNVPROC$MH = RuntimeHelper.downcallHandle(
-        "(IIIILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$804.PFNGLPROGRAMPATHFRAGMENTINPUTGENNVPROC$FUNC, false
+        constants$804.PFNGLPROGRAMPATHFRAGMENTINPUTGENNVPROC$FUNC
     );
 }
 

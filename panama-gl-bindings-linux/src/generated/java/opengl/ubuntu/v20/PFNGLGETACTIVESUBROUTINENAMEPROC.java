@@ -2,22 +2,22 @@
 
 package opengl.ubuntu.v20;
 
-import jdk.incubator.foreign.Addressable;
-import jdk.incubator.foreign.MemoryAddress;
-import jdk.incubator.foreign.ResourceScope;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public interface PFNGLGETACTIVESUBROUTINENAMEPROC {
 
-    void apply(int x0, int x1, int x2, int x3, jdk.incubator.foreign.MemoryAddress x4, jdk.incubator.foreign.MemoryAddress x5);
-    static MemoryAddress allocate(PFNGLGETACTIVESUBROUTINENAMEPROC fi) {
-        return RuntimeHelper.upcallStub(PFNGLGETACTIVESUBROUTINENAMEPROC.class, fi, constants$213.PFNGLGETACTIVESUBROUTINENAMEPROC$FUNC, "(IIIILjdk/incubator/foreign/MemoryAddress;Ljdk/incubator/foreign/MemoryAddress;)V");
+    void apply(int program, int shadertype, int index, int bufsize, java.lang.foreign.MemoryAddress length, java.lang.foreign.MemoryAddress name);
+    static MemorySegment allocate(PFNGLGETACTIVESUBROUTINENAMEPROC fi, MemorySession session) {
+        return RuntimeHelper.upcallStub(PFNGLGETACTIVESUBROUTINENAMEPROC.class, fi, constants$213.PFNGLGETACTIVESUBROUTINENAMEPROC$FUNC, session);
     }
-    static MemoryAddress allocate(PFNGLGETACTIVESUBROUTINENAMEPROC fi, ResourceScope scope) {
-        return RuntimeHelper.upcallStub(PFNGLGETACTIVESUBROUTINENAMEPROC.class, fi, constants$213.PFNGLGETACTIVESUBROUTINENAMEPROC$FUNC, "(IIIILjdk/incubator/foreign/MemoryAddress;Ljdk/incubator/foreign/MemoryAddress;)V", scope);
-    }
-    static PFNGLGETACTIVESUBROUTINENAMEPROC ofAddress(MemoryAddress addr) {
-        return (int x0, int x1, int x2, int x3, jdk.incubator.foreign.MemoryAddress x4, jdk.incubator.foreign.MemoryAddress x5) -> {
+    static PFNGLGETACTIVESUBROUTINENAMEPROC ofAddress(MemoryAddress addr, MemorySession session) {
+        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
+        return (int _program, int _shadertype, int _index, int _bufsize, java.lang.foreign.MemoryAddress _length, java.lang.foreign.MemoryAddress _name) -> {
             try {
-                constants$213.PFNGLGETACTIVESUBROUTINENAMEPROC$MH.invokeExact((Addressable)addr, x0, x1, x2, x3, x4, x5);
+                constants$213.PFNGLGETACTIVESUBROUTINENAMEPROC$MH.invokeExact((Addressable)symbol, _program, _shadertype, _index, _bufsize, (java.lang.foreign.Addressable)_length, (java.lang.foreign.Addressable)_name);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

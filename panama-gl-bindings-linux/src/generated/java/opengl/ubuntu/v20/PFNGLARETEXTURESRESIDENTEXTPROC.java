@@ -2,22 +2,22 @@
 
 package opengl.ubuntu.v20;
 
-import jdk.incubator.foreign.Addressable;
-import jdk.incubator.foreign.MemoryAddress;
-import jdk.incubator.foreign.ResourceScope;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public interface PFNGLARETEXTURESRESIDENTEXTPROC {
 
-    byte apply(int x0, jdk.incubator.foreign.MemoryAddress x1, jdk.incubator.foreign.MemoryAddress x2);
-    static MemoryAddress allocate(PFNGLARETEXTURESRESIDENTEXTPROC fi) {
-        return RuntimeHelper.upcallStub(PFNGLARETEXTURESRESIDENTEXTPROC.class, fi, constants$670.PFNGLARETEXTURESRESIDENTEXTPROC$FUNC, "(ILjdk/incubator/foreign/MemoryAddress;Ljdk/incubator/foreign/MemoryAddress;)B");
+    byte apply(int n, java.lang.foreign.MemoryAddress textures, java.lang.foreign.MemoryAddress residences);
+    static MemorySegment allocate(PFNGLARETEXTURESRESIDENTEXTPROC fi, MemorySession session) {
+        return RuntimeHelper.upcallStub(PFNGLARETEXTURESRESIDENTEXTPROC.class, fi, constants$670.PFNGLARETEXTURESRESIDENTEXTPROC$FUNC, session);
     }
-    static MemoryAddress allocate(PFNGLARETEXTURESRESIDENTEXTPROC fi, ResourceScope scope) {
-        return RuntimeHelper.upcallStub(PFNGLARETEXTURESRESIDENTEXTPROC.class, fi, constants$670.PFNGLARETEXTURESRESIDENTEXTPROC$FUNC, "(ILjdk/incubator/foreign/MemoryAddress;Ljdk/incubator/foreign/MemoryAddress;)B", scope);
-    }
-    static PFNGLARETEXTURESRESIDENTEXTPROC ofAddress(MemoryAddress addr) {
-        return (int x0, jdk.incubator.foreign.MemoryAddress x1, jdk.incubator.foreign.MemoryAddress x2) -> {
+    static PFNGLARETEXTURESRESIDENTEXTPROC ofAddress(MemoryAddress addr, MemorySession session) {
+        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
+        return (int _n, java.lang.foreign.MemoryAddress _textures, java.lang.foreign.MemoryAddress _residences) -> {
             try {
-                return (byte)constants$670.PFNGLARETEXTURESRESIDENTEXTPROC$MH.invokeExact((Addressable)addr, x0, x1, x2);
+                return (byte)constants$670.PFNGLARETEXTURESRESIDENTEXTPROC$MH.invokeExact((Addressable)symbol, _n, (java.lang.foreign.Addressable)_textures, (java.lang.foreign.Addressable)_residences);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

@@ -2,22 +2,22 @@
 
 package opengl.ubuntu.v20;
 
-import jdk.incubator.foreign.Addressable;
-import jdk.incubator.foreign.MemoryAddress;
-import jdk.incubator.foreign.ResourceScope;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public interface PFNGLVDPAUMAPSURFACESNVPROC {
 
-    void apply(int x0, jdk.incubator.foreign.MemoryAddress x1);
-    static MemoryAddress allocate(PFNGLVDPAUMAPSURFACESNVPROC fi) {
-        return RuntimeHelper.upcallStub(PFNGLVDPAUMAPSURFACESNVPROC.class, fi, constants$837.PFNGLVDPAUMAPSURFACESNVPROC$FUNC, "(ILjdk/incubator/foreign/MemoryAddress;)V");
+    void apply(int numSurfaces, java.lang.foreign.MemoryAddress surfaces);
+    static MemorySegment allocate(PFNGLVDPAUMAPSURFACESNVPROC fi, MemorySession session) {
+        return RuntimeHelper.upcallStub(PFNGLVDPAUMAPSURFACESNVPROC.class, fi, constants$837.PFNGLVDPAUMAPSURFACESNVPROC$FUNC, session);
     }
-    static MemoryAddress allocate(PFNGLVDPAUMAPSURFACESNVPROC fi, ResourceScope scope) {
-        return RuntimeHelper.upcallStub(PFNGLVDPAUMAPSURFACESNVPROC.class, fi, constants$837.PFNGLVDPAUMAPSURFACESNVPROC$FUNC, "(ILjdk/incubator/foreign/MemoryAddress;)V", scope);
-    }
-    static PFNGLVDPAUMAPSURFACESNVPROC ofAddress(MemoryAddress addr) {
-        return (int x0, jdk.incubator.foreign.MemoryAddress x1) -> {
+    static PFNGLVDPAUMAPSURFACESNVPROC ofAddress(MemoryAddress addr, MemorySession session) {
+        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
+        return (int _numSurfaces, java.lang.foreign.MemoryAddress _surfaces) -> {
             try {
-                constants$837.PFNGLVDPAUMAPSURFACESNVPROC$MH.invokeExact((Addressable)addr, x0, x1);
+                constants$837.PFNGLVDPAUMAPSURFACESNVPROC$MH.invokeExact((Addressable)symbol, _numSurfaces, (java.lang.foreign.Addressable)_surfaces);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

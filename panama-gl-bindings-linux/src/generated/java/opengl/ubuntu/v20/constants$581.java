@@ -2,41 +2,39 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_INT;
-import static jdk.incubator.foreign.CLinker.C_POINTER;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$581 {
 
     static final FunctionDescriptor PFNGLMULTITEXBUFFEREXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLMULTITEXBUFFEREXTPROC$MH = RuntimeHelper.downcallHandle(
-        "(IIII)V",
-        constants$581.PFNGLMULTITEXBUFFEREXTPROC$FUNC, false
+        constants$581.PFNGLMULTITEXBUFFEREXTPROC$FUNC
     );
     static final FunctionDescriptor PFNGLTEXTUREPARAMETERIIVEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLTEXTUREPARAMETERIIVEXTPROC$MH = RuntimeHelper.downcallHandle(
-        "(IIILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$581.PFNGLTEXTUREPARAMETERIIVEXTPROC$FUNC, false
+        constants$581.PFNGLTEXTUREPARAMETERIIVEXTPROC$FUNC
     );
     static final FunctionDescriptor PFNGLTEXTUREPARAMETERIUIVEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLTEXTUREPARAMETERIUIVEXTPROC$MH = RuntimeHelper.downcallHandle(
-        "(IIILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$581.PFNGLTEXTUREPARAMETERIUIVEXTPROC$FUNC, false
+        constants$581.PFNGLTEXTUREPARAMETERIUIVEXTPROC$FUNC
     );
 }
 

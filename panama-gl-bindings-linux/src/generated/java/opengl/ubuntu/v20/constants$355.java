@@ -2,49 +2,46 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_CHAR;
-import static jdk.incubator.foreign.CLinker.C_INT;
-import static jdk.incubator.foreign.CLinker.C_POINTER;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$355 {
 
     static final FunctionDescriptor PFNGLGETNCONVOLUTIONFILTERARBPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLGETNCONVOLUTIONFILTERARBPROC$MH = RuntimeHelper.downcallHandle(
-        "(IIIILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$355.PFNGLGETNCONVOLUTIONFILTERARBPROC$FUNC, false
+        constants$355.PFNGLGETNCONVOLUTIONFILTERARBPROC$FUNC
     );
     static final FunctionDescriptor PFNGLGETNSEPARABLEFILTERARBPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_POINTER,
-        C_INT,
-        C_POINTER,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLGETNSEPARABLEFILTERARBPROC$MH = RuntimeHelper.downcallHandle(
-        "(IIIILjdk/incubator/foreign/MemoryAddress;ILjdk/incubator/foreign/MemoryAddress;Ljdk/incubator/foreign/MemoryAddress;)V",
-        constants$355.PFNGLGETNSEPARABLEFILTERARBPROC$FUNC, false
+        constants$355.PFNGLGETNSEPARABLEFILTERARBPROC$FUNC
     );
     static final FunctionDescriptor PFNGLGETNHISTOGRAMARBPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_CHAR,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_CHAR$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLGETNHISTOGRAMARBPROC$MH = RuntimeHelper.downcallHandle(
-        "(IBIIILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$355.PFNGLGETNHISTOGRAMARBPROC$FUNC, false
+        constants$355.PFNGLGETNHISTOGRAMARBPROC$FUNC
     );
 }
 

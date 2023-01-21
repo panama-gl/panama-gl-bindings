@@ -2,40 +2,39 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_INT;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$685 {
 
     static final FunctionDescriptor PFNGLWRITEMASKEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLWRITEMASKEXTPROC$MH = RuntimeHelper.downcallHandle(
-        "(IIIIII)V",
-        constants$685.PFNGLWRITEMASKEXTPROC$FUNC, false
+        constants$685.PFNGLWRITEMASKEXTPROC$FUNC
     );
     static final FunctionDescriptor PFNGLINSERTCOMPONENTEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_INT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLINSERTCOMPONENTEXTPROC$MH = RuntimeHelper.downcallHandle(
-        "(III)V",
-        constants$685.PFNGLINSERTCOMPONENTEXTPROC$FUNC, false
+        constants$685.PFNGLINSERTCOMPONENTEXTPROC$FUNC
     );
     static final FunctionDescriptor PFNGLEXTRACTCOMPONENTEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_INT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLEXTRACTCOMPONENTEXTPROC$MH = RuntimeHelper.downcallHandle(
-        "(III)V",
-        constants$685.PFNGLEXTRACTCOMPONENTEXTPROC$FUNC, false
+        constants$685.PFNGLEXTRACTCOMPONENTEXTPROC$FUNC
     );
 }
 

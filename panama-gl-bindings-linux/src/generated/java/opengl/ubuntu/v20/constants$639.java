@@ -2,34 +2,32 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_FLOAT;
-import static jdk.incubator.foreign.CLinker.C_INT;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$639 {
 
     static final FunctionDescriptor PFNGLINDEXFUNCEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_FLOAT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT
     );
     static final MethodHandle PFNGLINDEXFUNCEXTPROC$MH = RuntimeHelper.downcallHandle(
-        "(IF)V",
-        constants$639.PFNGLINDEXFUNCEXTPROC$FUNC, false
+        constants$639.PFNGLINDEXFUNCEXTPROC$FUNC
     );
     static final FunctionDescriptor PFNGLINDEXMATERIALEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLINDEXMATERIALEXTPROC$MH = RuntimeHelper.downcallHandle(
-        "(II)V",
-        constants$639.PFNGLINDEXMATERIALEXTPROC$FUNC, false
+        constants$639.PFNGLINDEXMATERIALEXTPROC$FUNC
     );
     static final FunctionDescriptor PFNGLAPPLYTEXTUREEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLAPPLYTEXTUREEXTPROC$MH = RuntimeHelper.downcallHandle(
-        "(I)V",
-        constants$639.PFNGLAPPLYTEXTUREEXTPROC$FUNC, false
+        constants$639.PFNGLAPPLYTEXTUREEXTPROC$FUNC
     );
 }
 

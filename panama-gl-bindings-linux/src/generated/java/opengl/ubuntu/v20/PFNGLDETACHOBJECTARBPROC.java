@@ -2,22 +2,22 @@
 
 package opengl.ubuntu.v20;
 
-import jdk.incubator.foreign.Addressable;
-import jdk.incubator.foreign.MemoryAddress;
-import jdk.incubator.foreign.ResourceScope;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public interface PFNGLDETACHOBJECTARBPROC {
 
-    void apply(int x0, int x1);
-    static MemoryAddress allocate(PFNGLDETACHOBJECTARBPROC fi) {
-        return RuntimeHelper.upcallStub(PFNGLDETACHOBJECTARBPROC.class, fi, constants$358.PFNGLDETACHOBJECTARBPROC$FUNC, "(II)V");
+    void apply(int containerObj, int attachedObj);
+    static MemorySegment allocate(PFNGLDETACHOBJECTARBPROC fi, MemorySession session) {
+        return RuntimeHelper.upcallStub(PFNGLDETACHOBJECTARBPROC.class, fi, constants$358.PFNGLDETACHOBJECTARBPROC$FUNC, session);
     }
-    static MemoryAddress allocate(PFNGLDETACHOBJECTARBPROC fi, ResourceScope scope) {
-        return RuntimeHelper.upcallStub(PFNGLDETACHOBJECTARBPROC.class, fi, constants$358.PFNGLDETACHOBJECTARBPROC$FUNC, "(II)V", scope);
-    }
-    static PFNGLDETACHOBJECTARBPROC ofAddress(MemoryAddress addr) {
-        return (int x0, int x1) -> {
+    static PFNGLDETACHOBJECTARBPROC ofAddress(MemoryAddress addr, MemorySession session) {
+        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
+        return (int _containerObj, int _attachedObj) -> {
             try {
-                constants$358.PFNGLDETACHOBJECTARBPROC$MH.invokeExact((Addressable)addr, x0, x1);
+                constants$358.PFNGLDETACHOBJECTARBPROC$MH.invokeExact((Addressable)symbol, _containerObj, _attachedObj);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

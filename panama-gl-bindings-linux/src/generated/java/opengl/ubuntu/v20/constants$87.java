@@ -2,37 +2,35 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_INT;
-import static jdk.incubator.foreign.CLinker.C_POINTER;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$87 {
 
     static final FunctionDescriptor PFNGLMULTITEXCOORD3FVARBPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLMULTITEXCOORD3FVARBPROC$MH = RuntimeHelper.downcallHandle(
-        "(ILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$87.PFNGLMULTITEXCOORD3FVARBPROC$FUNC, false
+        constants$87.PFNGLMULTITEXCOORD3FVARBPROC$FUNC
     );
     static final FunctionDescriptor PFNGLMULTITEXCOORD3IARBPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLMULTITEXCOORD3IARBPROC$MH = RuntimeHelper.downcallHandle(
-        "(IIII)V",
-        constants$87.PFNGLMULTITEXCOORD3IARBPROC$FUNC, false
+        constants$87.PFNGLMULTITEXCOORD3IARBPROC$FUNC
     );
     static final FunctionDescriptor PFNGLMULTITEXCOORD3IVARBPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLMULTITEXCOORD3IVARBPROC$MH = RuntimeHelper.downcallHandle(
-        "(ILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$87.PFNGLMULTITEXCOORD3IVARBPROC$FUNC, false
+        constants$87.PFNGLMULTITEXCOORD3IVARBPROC$FUNC
     );
 }
 

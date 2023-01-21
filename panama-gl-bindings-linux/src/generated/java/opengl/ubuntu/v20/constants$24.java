@@ -2,58 +2,54 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_POINTER;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$24 {
 
     static final FunctionDescriptor glColor4bv$FUNC = FunctionDescriptor.ofVoid(
-        C_POINTER
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle glColor4bv$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "glColor4bv",
-        "(Ljdk/incubator/foreign/MemoryAddress;)V",
-        constants$24.glColor4bv$FUNC, false
+        "glColor4bv",
+        constants$24.glColor4bv$FUNC
     );
     static final FunctionDescriptor glColor4dv$FUNC = FunctionDescriptor.ofVoid(
-        C_POINTER
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle glColor4dv$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "glColor4dv",
-        "(Ljdk/incubator/foreign/MemoryAddress;)V",
-        constants$24.glColor4dv$FUNC, false
+        "glColor4dv",
+        constants$24.glColor4dv$FUNC
     );
     static final FunctionDescriptor glColor4fv$FUNC = FunctionDescriptor.ofVoid(
-        C_POINTER
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle glColor4fv$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "glColor4fv",
-        "(Ljdk/incubator/foreign/MemoryAddress;)V",
-        constants$24.glColor4fv$FUNC, false
+        "glColor4fv",
+        constants$24.glColor4fv$FUNC
     );
     static final FunctionDescriptor glColor4iv$FUNC = FunctionDescriptor.ofVoid(
-        C_POINTER
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle glColor4iv$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "glColor4iv",
-        "(Ljdk/incubator/foreign/MemoryAddress;)V",
-        constants$24.glColor4iv$FUNC, false
+        "glColor4iv",
+        constants$24.glColor4iv$FUNC
     );
     static final FunctionDescriptor glColor4sv$FUNC = FunctionDescriptor.ofVoid(
-        C_POINTER
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle glColor4sv$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "glColor4sv",
-        "(Ljdk/incubator/foreign/MemoryAddress;)V",
-        constants$24.glColor4sv$FUNC, false
+        "glColor4sv",
+        constants$24.glColor4sv$FUNC
     );
     static final FunctionDescriptor glColor4ubv$FUNC = FunctionDescriptor.ofVoid(
-        C_POINTER
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle glColor4ubv$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "glColor4ubv",
-        "(Ljdk/incubator/foreign/MemoryAddress;)V",
-        constants$24.glColor4ubv$FUNC, false
+        "glColor4ubv",
+        constants$24.glColor4ubv$FUNC
     );
 }
 

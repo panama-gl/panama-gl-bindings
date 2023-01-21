@@ -2,22 +2,22 @@
 
 package opengl.ubuntu.v20;
 
-import jdk.incubator.foreign.Addressable;
-import jdk.incubator.foreign.MemoryAddress;
-import jdk.incubator.foreign.ResourceScope;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public interface PFNGLLGPUNAMEDBUFFERSUBDATANVXPROC {
 
-    void apply(int x0, int x1, long x2, long x3, jdk.incubator.foreign.MemoryAddress x4);
-    static MemoryAddress allocate(PFNGLLGPUNAMEDBUFFERSUBDATANVXPROC fi) {
-        return RuntimeHelper.upcallStub(PFNGLLGPUNAMEDBUFFERSUBDATANVXPROC.class, fi, constants$722.PFNGLLGPUNAMEDBUFFERSUBDATANVXPROC$FUNC, "(IIJJLjdk/incubator/foreign/MemoryAddress;)V");
+    void apply(int gpuMask, int buffer, long offset, long size, java.lang.foreign.MemoryAddress data);
+    static MemorySegment allocate(PFNGLLGPUNAMEDBUFFERSUBDATANVXPROC fi, MemorySession session) {
+        return RuntimeHelper.upcallStub(PFNGLLGPUNAMEDBUFFERSUBDATANVXPROC.class, fi, constants$722.PFNGLLGPUNAMEDBUFFERSUBDATANVXPROC$FUNC, session);
     }
-    static MemoryAddress allocate(PFNGLLGPUNAMEDBUFFERSUBDATANVXPROC fi, ResourceScope scope) {
-        return RuntimeHelper.upcallStub(PFNGLLGPUNAMEDBUFFERSUBDATANVXPROC.class, fi, constants$722.PFNGLLGPUNAMEDBUFFERSUBDATANVXPROC$FUNC, "(IIJJLjdk/incubator/foreign/MemoryAddress;)V", scope);
-    }
-    static PFNGLLGPUNAMEDBUFFERSUBDATANVXPROC ofAddress(MemoryAddress addr) {
-        return (int x0, int x1, long x2, long x3, jdk.incubator.foreign.MemoryAddress x4) -> {
+    static PFNGLLGPUNAMEDBUFFERSUBDATANVXPROC ofAddress(MemoryAddress addr, MemorySession session) {
+        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
+        return (int _gpuMask, int _buffer, long _offset, long _size, java.lang.foreign.MemoryAddress _data) -> {
             try {
-                constants$722.PFNGLLGPUNAMEDBUFFERSUBDATANVXPROC$MH.invokeExact((Addressable)addr, x0, x1, x2, x3, x4);
+                constants$722.PFNGLLGPUNAMEDBUFFERSUBDATANVXPROC$MH.invokeExact((Addressable)symbol, _gpuMask, _buffer, _offset, _size, (java.lang.foreign.Addressable)_data);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

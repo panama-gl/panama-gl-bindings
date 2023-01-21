@@ -2,34 +2,30 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_INT;
-import static jdk.incubator.foreign.CLinker.C_POINTER;
-import static jdk.incubator.foreign.CLinker.C_SHORT;
+import java.lang.invoke.MethodHandle;
 import java.lang.invoke.VarHandle;
-import jdk.incubator.foreign.MemoryAddress;
-import jdk.incubator.foreign.MemoryLayout;
-import jdk.incubator.foreign.MemorySegment;
-import jdk.incubator.foreign.ResourceScope;
-import jdk.incubator.foreign.SegmentAllocator;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public class __pthread_mutex_s {
 
-    static final MemoryLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        C_INT.withName("__lock"),
-        C_INT.withName("__count"),
-        C_INT.withName("__owner"),
-        C_INT.withName("__nusers"),
-        C_INT.withName("__kind"),
-        C_SHORT.withName("__spins"),
-        C_SHORT.withName("__elision"),
+    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
+        Constants$root.C_INT$LAYOUT.withName("__lock"),
+        Constants$root.C_INT$LAYOUT.withName("__count"),
+        Constants$root.C_INT$LAYOUT.withName("__owner"),
+        Constants$root.C_INT$LAYOUT.withName("__nusers"),
+        Constants$root.C_INT$LAYOUT.withName("__kind"),
+        Constants$root.C_SHORT$LAYOUT.withName("__spins"),
+        Constants$root.C_SHORT$LAYOUT.withName("__elision"),
         MemoryLayout.structLayout(
-            C_POINTER.withName("__prev"),
-            C_POINTER.withName("__next")
+            Constants$root.C_POINTER$LAYOUT.withName("__prev"),
+            Constants$root.C_POINTER$LAYOUT.withName("__next")
         ).withName("__list")
     ).withName("__pthread_mutex_s");
     public static MemoryLayout $LAYOUT() {
         return __pthread_mutex_s.$struct$LAYOUT;
     }
-    static final VarHandle __lock$VH = $struct$LAYOUT.varHandle(int.class, MemoryLayout.PathElement.groupElement("__lock"));
+    static final VarHandle __lock$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("__lock"));
     public static VarHandle __lock$VH() {
         return __pthread_mutex_s.__lock$VH;
     }
@@ -45,7 +41,7 @@ public class __pthread_mutex_s {
     public static void __lock$set(MemorySegment seg, long index, int x) {
         __pthread_mutex_s.__lock$VH.set(seg.asSlice(index*sizeof()), x);
     }
-    static final VarHandle __count$VH = $struct$LAYOUT.varHandle(int.class, MemoryLayout.PathElement.groupElement("__count"));
+    static final VarHandle __count$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("__count"));
     public static VarHandle __count$VH() {
         return __pthread_mutex_s.__count$VH;
     }
@@ -61,7 +57,7 @@ public class __pthread_mutex_s {
     public static void __count$set(MemorySegment seg, long index, int x) {
         __pthread_mutex_s.__count$VH.set(seg.asSlice(index*sizeof()), x);
     }
-    static final VarHandle __owner$VH = $struct$LAYOUT.varHandle(int.class, MemoryLayout.PathElement.groupElement("__owner"));
+    static final VarHandle __owner$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("__owner"));
     public static VarHandle __owner$VH() {
         return __pthread_mutex_s.__owner$VH;
     }
@@ -77,7 +73,7 @@ public class __pthread_mutex_s {
     public static void __owner$set(MemorySegment seg, long index, int x) {
         __pthread_mutex_s.__owner$VH.set(seg.asSlice(index*sizeof()), x);
     }
-    static final VarHandle __nusers$VH = $struct$LAYOUT.varHandle(int.class, MemoryLayout.PathElement.groupElement("__nusers"));
+    static final VarHandle __nusers$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("__nusers"));
     public static VarHandle __nusers$VH() {
         return __pthread_mutex_s.__nusers$VH;
     }
@@ -93,7 +89,7 @@ public class __pthread_mutex_s {
     public static void __nusers$set(MemorySegment seg, long index, int x) {
         __pthread_mutex_s.__nusers$VH.set(seg.asSlice(index*sizeof()), x);
     }
-    static final VarHandle __kind$VH = $struct$LAYOUT.varHandle(int.class, MemoryLayout.PathElement.groupElement("__kind"));
+    static final VarHandle __kind$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("__kind"));
     public static VarHandle __kind$VH() {
         return __pthread_mutex_s.__kind$VH;
     }
@@ -109,7 +105,7 @@ public class __pthread_mutex_s {
     public static void __kind$set(MemorySegment seg, long index, int x) {
         __pthread_mutex_s.__kind$VH.set(seg.asSlice(index*sizeof()), x);
     }
-    static final VarHandle __spins$VH = $struct$LAYOUT.varHandle(short.class, MemoryLayout.PathElement.groupElement("__spins"));
+    static final VarHandle __spins$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("__spins"));
     public static VarHandle __spins$VH() {
         return __pthread_mutex_s.__spins$VH;
     }
@@ -125,7 +121,7 @@ public class __pthread_mutex_s {
     public static void __spins$set(MemorySegment seg, long index, short x) {
         __pthread_mutex_s.__spins$VH.set(seg.asSlice(index*sizeof()), x);
     }
-    static final VarHandle __elision$VH = $struct$LAYOUT.varHandle(short.class, MemoryLayout.PathElement.groupElement("__elision"));
+    static final VarHandle __elision$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("__elision"));
     public static VarHandle __elision$VH() {
         return __pthread_mutex_s.__elision$VH;
     }
@@ -146,14 +142,10 @@ public class __pthread_mutex_s {
     }
     public static long sizeof() { return $LAYOUT().byteSize(); }
     public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocate(ResourceScope scope) { return allocate(SegmentAllocator.ofScope(scope)); }
     public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
         return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
     }
-    public static MemorySegment allocateArray(int len, ResourceScope scope) {
-        return allocateArray(len, SegmentAllocator.ofScope(scope));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, ResourceScope scope) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, scope); }
+    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
 }
 
 

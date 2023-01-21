@@ -2,38 +2,36 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_INT;
-import static jdk.incubator.foreign.CLinker.C_POINTER;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$807 {
 
     static final FunctionDescriptor PFNGLGETPATHTEXGENIVNVPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLGETPATHTEXGENIVNVPROC$MH = RuntimeHelper.downcallHandle(
-        "(IILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$807.PFNGLGETPATHTEXGENIVNVPROC$FUNC, false
+        constants$807.PFNGLGETPATHTEXGENIVNVPROC$FUNC
     );
     static final FunctionDescriptor PFNGLGETPATHTEXGENFVNVPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLGETPATHTEXGENFVNVPROC$MH = RuntimeHelper.downcallHandle(
-        "(IILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$807.PFNGLGETPATHTEXGENFVNVPROC$FUNC, false
+        constants$807.PFNGLGETPATHTEXGENFVNVPROC$FUNC
     );
     static final FunctionDescriptor PFNGLPIXELDATARANGENVPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLPIXELDATARANGENVPROC$MH = RuntimeHelper.downcallHandle(
-        "(IILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$807.PFNGLPIXELDATARANGENVPROC$FUNC, false
+        constants$807.PFNGLPIXELDATARANGENVPROC$FUNC
     );
 }
 

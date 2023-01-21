@@ -2,22 +2,22 @@
 
 package opengl.ubuntu.v20;
 
-import jdk.incubator.foreign.Addressable;
-import jdk.incubator.foreign.MemoryAddress;
-import jdk.incubator.foreign.ResourceScope;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public interface PFNGLGETOBJECTPTRLABELPROC {
 
-    void apply(jdk.incubator.foreign.MemoryAddress x0, int x1, jdk.incubator.foreign.MemoryAddress x2, jdk.incubator.foreign.MemoryAddress x3);
-    static MemoryAddress allocate(PFNGLGETOBJECTPTRLABELPROC fi) {
-        return RuntimeHelper.upcallStub(PFNGLGETOBJECTPTRLABELPROC.class, fi, constants$267.PFNGLGETOBJECTPTRLABELPROC$FUNC, "(Ljdk/incubator/foreign/MemoryAddress;ILjdk/incubator/foreign/MemoryAddress;Ljdk/incubator/foreign/MemoryAddress;)V");
+    void apply(java.lang.foreign.MemoryAddress ptr, int bufSize, java.lang.foreign.MemoryAddress length, java.lang.foreign.MemoryAddress label);
+    static MemorySegment allocate(PFNGLGETOBJECTPTRLABELPROC fi, MemorySession session) {
+        return RuntimeHelper.upcallStub(PFNGLGETOBJECTPTRLABELPROC.class, fi, constants$267.PFNGLGETOBJECTPTRLABELPROC$FUNC, session);
     }
-    static MemoryAddress allocate(PFNGLGETOBJECTPTRLABELPROC fi, ResourceScope scope) {
-        return RuntimeHelper.upcallStub(PFNGLGETOBJECTPTRLABELPROC.class, fi, constants$267.PFNGLGETOBJECTPTRLABELPROC$FUNC, "(Ljdk/incubator/foreign/MemoryAddress;ILjdk/incubator/foreign/MemoryAddress;Ljdk/incubator/foreign/MemoryAddress;)V", scope);
-    }
-    static PFNGLGETOBJECTPTRLABELPROC ofAddress(MemoryAddress addr) {
-        return (jdk.incubator.foreign.MemoryAddress x0, int x1, jdk.incubator.foreign.MemoryAddress x2, jdk.incubator.foreign.MemoryAddress x3) -> {
+    static PFNGLGETOBJECTPTRLABELPROC ofAddress(MemoryAddress addr, MemorySession session) {
+        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
+        return (java.lang.foreign.MemoryAddress _ptr, int _bufSize, java.lang.foreign.MemoryAddress _length, java.lang.foreign.MemoryAddress _label) -> {
             try {
-                constants$267.PFNGLGETOBJECTPTRLABELPROC$MH.invokeExact((Addressable)addr, x0, x1, x2, x3);
+                constants$267.PFNGLGETOBJECTPTRLABELPROC$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)_ptr, _bufSize, (java.lang.foreign.Addressable)_length, (java.lang.foreign.Addressable)_label);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

@@ -2,73 +2,67 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_FLOAT;
-import static jdk.incubator.foreign.CLinker.C_INT;
-import static jdk.incubator.foreign.CLinker.C_POINTER;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$935 {
 
     static final FunctionDescriptor gluNextContour$FUNC = FunctionDescriptor.ofVoid(
-        C_POINTER,
-        C_INT
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle gluNextContour$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "gluNextContour",
-        "(Ljdk/incubator/foreign/MemoryAddress;I)V",
-        constants$935.gluNextContour$FUNC, false
+        "gluNextContour",
+        constants$935.gluNextContour$FUNC
     );
     static final FunctionDescriptor gluNurbsCallback$FUNC = FunctionDescriptor.ofVoid(
-        C_POINTER,
-        C_INT,
-        C_POINTER
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle gluNurbsCallback$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "gluNurbsCallback",
-        "(Ljdk/incubator/foreign/MemoryAddress;ILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$935.gluNurbsCallback$FUNC, false
+        "gluNurbsCallback",
+        constants$935.gluNurbsCallback$FUNC
     );
     static final FunctionDescriptor gluNurbsCallbackData$FUNC = FunctionDescriptor.ofVoid(
-        C_POINTER,
-        C_POINTER
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle gluNurbsCallbackData$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "gluNurbsCallbackData",
-        "(Ljdk/incubator/foreign/MemoryAddress;Ljdk/incubator/foreign/MemoryAddress;)V",
-        constants$935.gluNurbsCallbackData$FUNC, false
+        "gluNurbsCallbackData",
+        constants$935.gluNurbsCallbackData$FUNC
     );
     static final FunctionDescriptor gluNurbsCallbackDataEXT$FUNC = FunctionDescriptor.ofVoid(
-        C_POINTER,
-        C_POINTER
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle gluNurbsCallbackDataEXT$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "gluNurbsCallbackDataEXT",
-        "(Ljdk/incubator/foreign/MemoryAddress;Ljdk/incubator/foreign/MemoryAddress;)V",
-        constants$935.gluNurbsCallbackDataEXT$FUNC, false
+        "gluNurbsCallbackDataEXT",
+        constants$935.gluNurbsCallbackDataEXT$FUNC
     );
     static final FunctionDescriptor gluNurbsCurve$FUNC = FunctionDescriptor.ofVoid(
-        C_POINTER,
-        C_INT,
-        C_POINTER,
-        C_INT,
-        C_POINTER,
-        C_INT,
-        C_INT
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle gluNurbsCurve$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "gluNurbsCurve",
-        "(Ljdk/incubator/foreign/MemoryAddress;ILjdk/incubator/foreign/MemoryAddress;ILjdk/incubator/foreign/MemoryAddress;II)V",
-        constants$935.gluNurbsCurve$FUNC, false
+        "gluNurbsCurve",
+        constants$935.gluNurbsCurve$FUNC
     );
     static final FunctionDescriptor gluNurbsProperty$FUNC = FunctionDescriptor.ofVoid(
-        C_POINTER,
-        C_INT,
-        C_FLOAT
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT
     );
     static final MethodHandle gluNurbsProperty$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "gluNurbsProperty",
-        "(Ljdk/incubator/foreign/MemoryAddress;IF)V",
-        constants$935.gluNurbsProperty$FUNC, false
+        "gluNurbsProperty",
+        constants$935.gluNurbsProperty$FUNC
     );
 }
 

@@ -2,43 +2,40 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_DOUBLE;
-import static jdk.incubator.foreign.CLinker.C_FLOAT;
-import static jdk.incubator.foreign.CLinker.C_INT;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$538 {
 
     static final FunctionDescriptor PFNGLMATRIXROTATEDEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_DOUBLE,
-        C_DOUBLE,
-        C_DOUBLE,
-        C_DOUBLE
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_DOUBLE$LAYOUT,
+        Constants$root.C_DOUBLE$LAYOUT,
+        Constants$root.C_DOUBLE$LAYOUT,
+        Constants$root.C_DOUBLE$LAYOUT
     );
     static final MethodHandle PFNGLMATRIXROTATEDEXTPROC$MH = RuntimeHelper.downcallHandle(
-        "(IDDDD)V",
-        constants$538.PFNGLMATRIXROTATEDEXTPROC$FUNC, false
+        constants$538.PFNGLMATRIXROTATEDEXTPROC$FUNC
     );
     static final FunctionDescriptor PFNGLMATRIXSCALEFEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_FLOAT,
-        C_FLOAT,
-        C_FLOAT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT
     );
     static final MethodHandle PFNGLMATRIXSCALEFEXTPROC$MH = RuntimeHelper.downcallHandle(
-        "(IFFF)V",
-        constants$538.PFNGLMATRIXSCALEFEXTPROC$FUNC, false
+        constants$538.PFNGLMATRIXSCALEFEXTPROC$FUNC
     );
     static final FunctionDescriptor PFNGLMATRIXSCALEDEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_DOUBLE,
-        C_DOUBLE,
-        C_DOUBLE
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_DOUBLE$LAYOUT,
+        Constants$root.C_DOUBLE$LAYOUT,
+        Constants$root.C_DOUBLE$LAYOUT
     );
     static final MethodHandle PFNGLMATRIXSCALEDEXTPROC$MH = RuntimeHelper.downcallHandle(
-        "(IDDD)V",
-        constants$538.PFNGLMATRIXSCALEDEXTPROC$FUNC, false
+        constants$538.PFNGLMATRIXSCALEDEXTPROC$FUNC
     );
 }
 

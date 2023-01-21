@@ -2,36 +2,35 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_INT;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$321 {
 
     static final FunctionDescriptor PFNGLBLENDEQUATIONIARBPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLBLENDEQUATIONIARBPROC$MH = RuntimeHelper.downcallHandle(
-        "(II)V",
-        constants$321.PFNGLBLENDEQUATIONIARBPROC$FUNC, false
+        constants$321.PFNGLBLENDEQUATIONIARBPROC$FUNC
     );
     static final FunctionDescriptor PFNGLBLENDEQUATIONSEPARATEIARBPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_INT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLBLENDEQUATIONSEPARATEIARBPROC$MH = RuntimeHelper.downcallHandle(
-        "(III)V",
-        constants$321.PFNGLBLENDEQUATIONSEPARATEIARBPROC$FUNC, false
+        constants$321.PFNGLBLENDEQUATIONSEPARATEIARBPROC$FUNC
     );
     static final FunctionDescriptor PFNGLBLENDFUNCIARBPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_INT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLBLENDFUNCIARBPROC$MH = RuntimeHelper.downcallHandle(
-        "(III)V",
-        constants$321.PFNGLBLENDFUNCIARBPROC$FUNC, false
+        constants$321.PFNGLBLENDFUNCIARBPROC$FUNC
     );
 }
 

@@ -2,22 +2,22 @@
 
 package opengl.ubuntu.v20;
 
-import jdk.incubator.foreign.Addressable;
-import jdk.incubator.foreign.MemoryAddress;
-import jdk.incubator.foreign.ResourceScope;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public interface PFNGLMULTITEXCOORDP2UIPROC {
 
-    void apply(int x0, int x1, int x2);
-    static MemoryAddress allocate(PFNGLMULTITEXCOORDP2UIPROC fi) {
-        return RuntimeHelper.upcallStub(PFNGLMULTITEXCOORDP2UIPROC.class, fi, constants$199.PFNGLMULTITEXCOORDP2UIPROC$FUNC, "(III)V");
+    void apply(int texture, int type, int coords);
+    static MemorySegment allocate(PFNGLMULTITEXCOORDP2UIPROC fi, MemorySession session) {
+        return RuntimeHelper.upcallStub(PFNGLMULTITEXCOORDP2UIPROC.class, fi, constants$199.PFNGLMULTITEXCOORDP2UIPROC$FUNC, session);
     }
-    static MemoryAddress allocate(PFNGLMULTITEXCOORDP2UIPROC fi, ResourceScope scope) {
-        return RuntimeHelper.upcallStub(PFNGLMULTITEXCOORDP2UIPROC.class, fi, constants$199.PFNGLMULTITEXCOORDP2UIPROC$FUNC, "(III)V", scope);
-    }
-    static PFNGLMULTITEXCOORDP2UIPROC ofAddress(MemoryAddress addr) {
-        return (int x0, int x1, int x2) -> {
+    static PFNGLMULTITEXCOORDP2UIPROC ofAddress(MemoryAddress addr, MemorySession session) {
+        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
+        return (int _texture, int _type, int _coords) -> {
             try {
-                constants$199.PFNGLMULTITEXCOORDP2UIPROC$MH.invokeExact((Addressable)addr, x0, x1, x2);
+                constants$199.PFNGLMULTITEXCOORDP2UIPROC$MH.invokeExact((Addressable)symbol, _texture, _type, _coords);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

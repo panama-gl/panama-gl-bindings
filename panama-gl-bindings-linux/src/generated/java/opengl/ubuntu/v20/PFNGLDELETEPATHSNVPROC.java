@@ -2,22 +2,22 @@
 
 package opengl.ubuntu.v20;
 
-import jdk.incubator.foreign.Addressable;
-import jdk.incubator.foreign.MemoryAddress;
-import jdk.incubator.foreign.ResourceScope;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public interface PFNGLDELETEPATHSNVPROC {
 
-    void apply(int x0, int x1);
-    static MemoryAddress allocate(PFNGLDELETEPATHSNVPROC fi) {
-        return RuntimeHelper.upcallStub(PFNGLDELETEPATHSNVPROC.class, fi, constants$786.PFNGLDELETEPATHSNVPROC$FUNC, "(II)V");
+    void apply(int path, int range);
+    static MemorySegment allocate(PFNGLDELETEPATHSNVPROC fi, MemorySession session) {
+        return RuntimeHelper.upcallStub(PFNGLDELETEPATHSNVPROC.class, fi, constants$786.PFNGLDELETEPATHSNVPROC$FUNC, session);
     }
-    static MemoryAddress allocate(PFNGLDELETEPATHSNVPROC fi, ResourceScope scope) {
-        return RuntimeHelper.upcallStub(PFNGLDELETEPATHSNVPROC.class, fi, constants$786.PFNGLDELETEPATHSNVPROC$FUNC, "(II)V", scope);
-    }
-    static PFNGLDELETEPATHSNVPROC ofAddress(MemoryAddress addr) {
-        return (int x0, int x1) -> {
+    static PFNGLDELETEPATHSNVPROC ofAddress(MemoryAddress addr, MemorySession session) {
+        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
+        return (int _path, int _range) -> {
             try {
-                constants$786.PFNGLDELETEPATHSNVPROC$MH.invokeExact((Addressable)addr, x0, x1);
+                constants$786.PFNGLDELETEPATHSNVPROC$MH.invokeExact((Addressable)symbol, _path, _range);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

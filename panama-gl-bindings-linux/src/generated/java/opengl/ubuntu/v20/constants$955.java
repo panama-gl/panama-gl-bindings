@@ -2,46 +2,43 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_INT;
-import static jdk.incubator.foreign.CLinker.C_POINTER;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$955 {
 
     static final FunctionDescriptor glutKeyboardUpFunc$FUNC = FunctionDescriptor.ofVoid(
-        C_POINTER
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle glutKeyboardUpFunc$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "glutKeyboardUpFunc",
-        "(Ljdk/incubator/foreign/MemoryAddress;)V",
-        constants$955.glutKeyboardUpFunc$FUNC, false
+        "glutKeyboardUpFunc",
+        constants$955.glutKeyboardUpFunc$FUNC
     );
     static final FunctionDescriptor glutSpecialUpFunc$callback$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_INT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle glutSpecialUpFunc$callback$MH = RuntimeHelper.downcallHandle(
-        "(III)V",
-        constants$955.glutSpecialUpFunc$callback$FUNC, false
+        constants$955.glutSpecialUpFunc$callback$FUNC
     );
     static final FunctionDescriptor glutSpecialUpFunc$FUNC = FunctionDescriptor.ofVoid(
-        C_POINTER
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle glutSpecialUpFunc$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "glutSpecialUpFunc",
-        "(Ljdk/incubator/foreign/MemoryAddress;)V",
-        constants$955.glutSpecialUpFunc$FUNC, false
+        "glutSpecialUpFunc",
+        constants$955.glutSpecialUpFunc$FUNC
     );
     static final FunctionDescriptor glutJoystickFunc$callback$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle glutJoystickFunc$callback$MH = RuntimeHelper.downcallHandle(
-        "(IIII)V",
-        constants$955.glutJoystickFunc$callback$FUNC, false
+        constants$955.glutJoystickFunc$callback$FUNC
     );
 }
 

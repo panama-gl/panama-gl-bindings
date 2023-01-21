@@ -2,41 +2,39 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_INT;
-import static jdk.incubator.foreign.CLinker.C_LONG;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$302 {
 
     static final FunctionDescriptor PFNGLGETQUERYBUFFEROBJECTIVPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_INT,
-        C_LONG
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT
     );
     static final MethodHandle PFNGLGETQUERYBUFFEROBJECTIVPROC$MH = RuntimeHelper.downcallHandle(
-        "(IIIJ)V",
-        constants$302.PFNGLGETQUERYBUFFEROBJECTIVPROC$FUNC, false
+        constants$302.PFNGLGETQUERYBUFFEROBJECTIVPROC$FUNC
     );
     static final FunctionDescriptor PFNGLGETQUERYBUFFEROBJECTUI64VPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_INT,
-        C_LONG
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT
     );
     static final MethodHandle PFNGLGETQUERYBUFFEROBJECTUI64VPROC$MH = RuntimeHelper.downcallHandle(
-        "(IIIJ)V",
-        constants$302.PFNGLGETQUERYBUFFEROBJECTUI64VPROC$FUNC, false
+        constants$302.PFNGLGETQUERYBUFFEROBJECTUI64VPROC$FUNC
     );
     static final FunctionDescriptor PFNGLGETQUERYBUFFEROBJECTUIVPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_INT,
-        C_LONG
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT
     );
     static final MethodHandle PFNGLGETQUERYBUFFEROBJECTUIVPROC$MH = RuntimeHelper.downcallHandle(
-        "(IIIJ)V",
-        constants$302.PFNGLGETQUERYBUFFEROBJECTUIVPROC$FUNC, false
+        constants$302.PFNGLGETQUERYBUFFEROBJECTUIVPROC$FUNC
     );
 }
 

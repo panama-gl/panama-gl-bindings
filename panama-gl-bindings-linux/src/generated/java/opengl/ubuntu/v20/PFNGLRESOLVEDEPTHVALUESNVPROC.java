@@ -2,22 +2,22 @@
 
 package opengl.ubuntu.v20;
 
-import jdk.incubator.foreign.Addressable;
-import jdk.incubator.foreign.MemoryAddress;
-import jdk.incubator.foreign.ResourceScope;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public interface PFNGLRESOLVEDEPTHVALUESNVPROC {
 
     void apply();
-    static MemoryAddress allocate(PFNGLRESOLVEDEPTHVALUESNVPROC fi) {
-        return RuntimeHelper.upcallStub(PFNGLRESOLVEDEPTHVALUESNVPROC.class, fi, constants$818.PFNGLRESOLVEDEPTHVALUESNVPROC$FUNC, "()V");
+    static MemorySegment allocate(PFNGLRESOLVEDEPTHVALUESNVPROC fi, MemorySession session) {
+        return RuntimeHelper.upcallStub(PFNGLRESOLVEDEPTHVALUESNVPROC.class, fi, constants$818.PFNGLRESOLVEDEPTHVALUESNVPROC$FUNC, session);
     }
-    static MemoryAddress allocate(PFNGLRESOLVEDEPTHVALUESNVPROC fi, ResourceScope scope) {
-        return RuntimeHelper.upcallStub(PFNGLRESOLVEDEPTHVALUESNVPROC.class, fi, constants$818.PFNGLRESOLVEDEPTHVALUESNVPROC$FUNC, "()V", scope);
-    }
-    static PFNGLRESOLVEDEPTHVALUESNVPROC ofAddress(MemoryAddress addr) {
+    static PFNGLRESOLVEDEPTHVALUESNVPROC ofAddress(MemoryAddress addr, MemorySession session) {
+        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return () -> {
             try {
-                constants$818.PFNGLRESOLVEDEPTHVALUESNVPROC$MH.invokeExact((Addressable)addr);
+                constants$818.PFNGLRESOLVEDEPTHVALUESNVPROC$MH.invokeExact((Addressable)symbol);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

@@ -2,43 +2,41 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_INT;
-import static jdk.incubator.foreign.CLinker.C_POINTER;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$624 {
 
     static final FunctionDescriptor PFNGLFOGCOORDDVEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_POINTER
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLFOGCOORDDVEXTPROC$MH = RuntimeHelper.downcallHandle(
-        "(Ljdk/incubator/foreign/MemoryAddress;)V",
-        constants$624.PFNGLFOGCOORDDVEXTPROC$FUNC, false
+        constants$624.PFNGLFOGCOORDDVEXTPROC$FUNC
     );
     static final FunctionDescriptor PFNGLFOGCOORDPOINTEREXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLFOGCOORDPOINTEREXTPROC$MH = RuntimeHelper.downcallHandle(
-        "(IILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$624.PFNGLFOGCOORDPOINTEREXTPROC$FUNC, false
+        constants$624.PFNGLFOGCOORDPOINTEREXTPROC$FUNC
     );
     static final FunctionDescriptor PFNGLBLITFRAMEBUFFEREXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLBLITFRAMEBUFFEREXTPROC$MH = RuntimeHelper.downcallHandle(
-        "(IIIIIIIIII)V",
-        constants$624.PFNGLBLITFRAMEBUFFEREXTPROC$FUNC, false
+        constants$624.PFNGLBLITFRAMEBUFFEREXTPROC$FUNC
     );
 }
 

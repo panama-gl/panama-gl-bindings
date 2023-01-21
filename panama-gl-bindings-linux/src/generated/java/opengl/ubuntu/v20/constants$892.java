@@ -2,31 +2,29 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_CHAR;
-import static jdk.incubator.foreign.CLinker.C_INT;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$892 {
 
     static final FunctionDescriptor PFNGLDELETEASYNCMARKERSSGIXPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLDELETEASYNCMARKERSSGIXPROC$MH = RuntimeHelper.downcallHandle(
-        "(II)V",
-        constants$892.PFNGLDELETEASYNCMARKERSSGIXPROC$FUNC, false
+        constants$892.PFNGLDELETEASYNCMARKERSSGIXPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLISASYNCMARKERSGIXPROC$FUNC = FunctionDescriptor.of(C_CHAR,
-        C_INT
+    static final FunctionDescriptor PFNGLISASYNCMARKERSGIXPROC$FUNC = FunctionDescriptor.of(Constants$root.C_CHAR$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLISASYNCMARKERSGIXPROC$MH = RuntimeHelper.downcallHandle(
-        "(I)B",
-        constants$892.PFNGLISASYNCMARKERSGIXPROC$FUNC, false
+        constants$892.PFNGLISASYNCMARKERSGIXPROC$FUNC
     );
     static final FunctionDescriptor PFNGLFLUSHRASTERSGIXPROC$FUNC = FunctionDescriptor.ofVoid();
     static final MethodHandle PFNGLFLUSHRASTERSGIXPROC$MH = RuntimeHelper.downcallHandle(
-        "()V",
-        constants$892.PFNGLFLUSHRASTERSGIXPROC$FUNC, false
+        constants$892.PFNGLFLUSHRASTERSGIXPROC$FUNC
     );
 }
 

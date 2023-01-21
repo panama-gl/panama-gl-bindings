@@ -2,35 +2,33 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_INT;
-import static jdk.incubator.foreign.CLinker.C_POINTER;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$929 {
 
     static final FunctionDescriptor PFNGLBLENDEQUATIONSEPARATEATIPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLBLENDEQUATIONSEPARATEATIPROC$MH = RuntimeHelper.downcallHandle(
-        "(II)V",
-        constants$929.PFNGLBLENDEQUATIONSEPARATEATIPROC$FUNC, false
+        constants$929.PFNGLBLENDEQUATIONSEPARATEATIPROC$FUNC
     );
     static final FunctionDescriptor PFNGLEGLIMAGETARGETTEXTURE2DOESPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLEGLIMAGETARGETTEXTURE2DOESPROC$MH = RuntimeHelper.downcallHandle(
-        "(ILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$929.PFNGLEGLIMAGETARGETTEXTURE2DOESPROC$FUNC, false
+        constants$929.PFNGLEGLIMAGETARGETTEXTURE2DOESPROC$FUNC
     );
     static final FunctionDescriptor PFNGLEGLIMAGETARGETRENDERBUFFERSTORAGEOESPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLEGLIMAGETARGETRENDERBUFFERSTORAGEOESPROC$MH = RuntimeHelper.downcallHandle(
-        "(ILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$929.PFNGLEGLIMAGETARGETRENDERBUFFERSTORAGEOESPROC$FUNC, false
+        constants$929.PFNGLEGLIMAGETARGETRENDERBUFFERSTORAGEOESPROC$FUNC
     );
     static final FunctionDescriptor _GLUfuncptr$FUNC = FunctionDescriptor.ofVoid();
 }

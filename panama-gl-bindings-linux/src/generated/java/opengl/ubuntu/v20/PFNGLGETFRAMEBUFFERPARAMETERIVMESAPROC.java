@@ -2,22 +2,22 @@
 
 package opengl.ubuntu.v20;
 
-import jdk.incubator.foreign.Addressable;
-import jdk.incubator.foreign.MemoryAddress;
-import jdk.incubator.foreign.ResourceScope;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public interface PFNGLGETFRAMEBUFFERPARAMETERIVMESAPROC {
 
-    void apply(int x0, int x1, jdk.incubator.foreign.MemoryAddress x2);
-    static MemoryAddress allocate(PFNGLGETFRAMEBUFFERPARAMETERIVMESAPROC fi) {
-        return RuntimeHelper.upcallStub(PFNGLGETFRAMEBUFFERPARAMETERIVMESAPROC.class, fi, constants$711.PFNGLGETFRAMEBUFFERPARAMETERIVMESAPROC$FUNC, "(IILjdk/incubator/foreign/MemoryAddress;)V");
+    void apply(int target, int pname, java.lang.foreign.MemoryAddress params);
+    static MemorySegment allocate(PFNGLGETFRAMEBUFFERPARAMETERIVMESAPROC fi, MemorySession session) {
+        return RuntimeHelper.upcallStub(PFNGLGETFRAMEBUFFERPARAMETERIVMESAPROC.class, fi, constants$711.PFNGLGETFRAMEBUFFERPARAMETERIVMESAPROC$FUNC, session);
     }
-    static MemoryAddress allocate(PFNGLGETFRAMEBUFFERPARAMETERIVMESAPROC fi, ResourceScope scope) {
-        return RuntimeHelper.upcallStub(PFNGLGETFRAMEBUFFERPARAMETERIVMESAPROC.class, fi, constants$711.PFNGLGETFRAMEBUFFERPARAMETERIVMESAPROC$FUNC, "(IILjdk/incubator/foreign/MemoryAddress;)V", scope);
-    }
-    static PFNGLGETFRAMEBUFFERPARAMETERIVMESAPROC ofAddress(MemoryAddress addr) {
-        return (int x0, int x1, jdk.incubator.foreign.MemoryAddress x2) -> {
+    static PFNGLGETFRAMEBUFFERPARAMETERIVMESAPROC ofAddress(MemoryAddress addr, MemorySession session) {
+        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
+        return (int _target, int _pname, java.lang.foreign.MemoryAddress _params) -> {
             try {
-                constants$711.PFNGLGETFRAMEBUFFERPARAMETERIVMESAPROC$MH.invokeExact((Addressable)addr, x0, x1, x2);
+                constants$711.PFNGLGETFRAMEBUFFERPARAMETERIVMESAPROC$MH.invokeExact((Addressable)symbol, _target, _pname, (java.lang.foreign.Addressable)_params);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

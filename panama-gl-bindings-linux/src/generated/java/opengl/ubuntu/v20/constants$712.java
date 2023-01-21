@@ -2,35 +2,32 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_DOUBLE;
-import static jdk.incubator.foreign.CLinker.C_FLOAT;
-import static jdk.incubator.foreign.CLinker.C_POINTER;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$712 {
 
     static final FunctionDescriptor PFNGLWINDOWPOS2DMESAPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_DOUBLE,
-        C_DOUBLE
+        Constants$root.C_DOUBLE$LAYOUT,
+        Constants$root.C_DOUBLE$LAYOUT
     );
     static final MethodHandle PFNGLWINDOWPOS2DMESAPROC$MH = RuntimeHelper.downcallHandle(
-        "(DD)V",
-        constants$712.PFNGLWINDOWPOS2DMESAPROC$FUNC, false
+        constants$712.PFNGLWINDOWPOS2DMESAPROC$FUNC
     );
     static final FunctionDescriptor PFNGLWINDOWPOS2DVMESAPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_POINTER
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLWINDOWPOS2DVMESAPROC$MH = RuntimeHelper.downcallHandle(
-        "(Ljdk/incubator/foreign/MemoryAddress;)V",
-        constants$712.PFNGLWINDOWPOS2DVMESAPROC$FUNC, false
+        constants$712.PFNGLWINDOWPOS2DVMESAPROC$FUNC
     );
     static final FunctionDescriptor PFNGLWINDOWPOS2FMESAPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_FLOAT,
-        C_FLOAT
+        Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT
     );
     static final MethodHandle PFNGLWINDOWPOS2FMESAPROC$MH = RuntimeHelper.downcallHandle(
-        "(FF)V",
-        constants$712.PFNGLWINDOWPOS2FMESAPROC$FUNC, false
+        constants$712.PFNGLWINDOWPOS2FMESAPROC$FUNC
     );
 }
 

@@ -2,42 +2,39 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_INT;
-import static jdk.incubator.foreign.CLinker.C_LONG;
-import static jdk.incubator.foreign.CLinker.C_POINTER;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$273 {
 
     static final FunctionDescriptor PFNGLNAMEDBUFFERSTORAGEPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_LONG,
-        C_POINTER,
-        C_INT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLNAMEDBUFFERSTORAGEPROC$MH = RuntimeHelper.downcallHandle(
-        "(IJLjdk/incubator/foreign/MemoryAddress;I)V",
-        constants$273.PFNGLNAMEDBUFFERSTORAGEPROC$FUNC, false
+        constants$273.PFNGLNAMEDBUFFERSTORAGEPROC$FUNC
     );
     static final FunctionDescriptor PFNGLNAMEDBUFFERDATAPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_LONG,
-        C_POINTER,
-        C_INT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLNAMEDBUFFERDATAPROC$MH = RuntimeHelper.downcallHandle(
-        "(IJLjdk/incubator/foreign/MemoryAddress;I)V",
-        constants$273.PFNGLNAMEDBUFFERDATAPROC$FUNC, false
+        constants$273.PFNGLNAMEDBUFFERDATAPROC$FUNC
     );
     static final FunctionDescriptor PFNGLNAMEDBUFFERSUBDATAPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_LONG,
-        C_LONG,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLNAMEDBUFFERSUBDATAPROC$MH = RuntimeHelper.downcallHandle(
-        "(IJJLjdk/incubator/foreign/MemoryAddress;)V",
-        constants$273.PFNGLNAMEDBUFFERSUBDATAPROC$FUNC, false
+        constants$273.PFNGLNAMEDBUFFERSUBDATAPROC$FUNC
     );
 }
 

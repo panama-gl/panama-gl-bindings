@@ -2,37 +2,34 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_DOUBLE;
-import static jdk.incubator.foreign.CLinker.C_INT;
-import static jdk.incubator.foreign.CLinker.C_POINTER;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$505 {
 
     static final FunctionDescriptor PFNGLVERTEXSTREAM2FVATIPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLVERTEXSTREAM2FVATIPROC$MH = RuntimeHelper.downcallHandle(
-        "(ILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$505.PFNGLVERTEXSTREAM2FVATIPROC$FUNC, false
+        constants$505.PFNGLVERTEXSTREAM2FVATIPROC$FUNC
     );
     static final FunctionDescriptor PFNGLVERTEXSTREAM2DATIPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_DOUBLE,
-        C_DOUBLE
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_DOUBLE$LAYOUT,
+        Constants$root.C_DOUBLE$LAYOUT
     );
     static final MethodHandle PFNGLVERTEXSTREAM2DATIPROC$MH = RuntimeHelper.downcallHandle(
-        "(IDD)V",
-        constants$505.PFNGLVERTEXSTREAM2DATIPROC$FUNC, false
+        constants$505.PFNGLVERTEXSTREAM2DATIPROC$FUNC
     );
     static final FunctionDescriptor PFNGLVERTEXSTREAM2DVATIPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLVERTEXSTREAM2DVATIPROC$MH = RuntimeHelper.downcallHandle(
-        "(ILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$505.PFNGLVERTEXSTREAM2DVATIPROC$FUNC, false
+        constants$505.PFNGLVERTEXSTREAM2DVATIPROC$FUNC
     );
 }
 

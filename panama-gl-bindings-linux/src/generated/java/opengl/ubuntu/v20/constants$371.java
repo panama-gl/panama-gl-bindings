@@ -2,38 +2,35 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_CHAR;
-import static jdk.incubator.foreign.CLinker.C_INT;
-import static jdk.incubator.foreign.CLinker.C_POINTER;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$371 {
 
     static final FunctionDescriptor PFNGLDELETENAMEDSTRINGARBPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLDELETENAMEDSTRINGARBPROC$MH = RuntimeHelper.downcallHandle(
-        "(ILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$371.PFNGLDELETENAMEDSTRINGARBPROC$FUNC, false
+        constants$371.PFNGLDELETENAMEDSTRINGARBPROC$FUNC
     );
     static final FunctionDescriptor PFNGLCOMPILESHADERINCLUDEARBPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_POINTER,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLCOMPILESHADERINCLUDEARBPROC$MH = RuntimeHelper.downcallHandle(
-        "(IILjdk/incubator/foreign/MemoryAddress;Ljdk/incubator/foreign/MemoryAddress;)V",
-        constants$371.PFNGLCOMPILESHADERINCLUDEARBPROC$FUNC, false
+        constants$371.PFNGLCOMPILESHADERINCLUDEARBPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLISNAMEDSTRINGARBPROC$FUNC = FunctionDescriptor.of(C_CHAR,
-        C_INT,
-        C_POINTER
+    static final FunctionDescriptor PFNGLISNAMEDSTRINGARBPROC$FUNC = FunctionDescriptor.of(Constants$root.C_CHAR$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLISNAMEDSTRINGARBPROC$MH = RuntimeHelper.downcallHandle(
-        "(ILjdk/incubator/foreign/MemoryAddress;)B",
-        constants$371.PFNGLISNAMEDSTRINGARBPROC$FUNC, false
+        constants$371.PFNGLISNAMEDSTRINGARBPROC$FUNC
     );
 }
 

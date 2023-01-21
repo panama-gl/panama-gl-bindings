@@ -2,22 +2,22 @@
 
 package opengl.ubuntu.v20;
 
-import jdk.incubator.foreign.Addressable;
-import jdk.incubator.foreign.MemoryAddress;
-import jdk.incubator.foreign.ResourceScope;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public interface PFNGLDELETEFRAMEBUFFERSPROC {
 
-    void apply(int x0, jdk.incubator.foreign.MemoryAddress x1);
-    static MemoryAddress allocate(PFNGLDELETEFRAMEBUFFERSPROC fi) {
-        return RuntimeHelper.upcallStub(PFNGLDELETEFRAMEBUFFERSPROC.class, fi, constants$168.PFNGLDELETEFRAMEBUFFERSPROC$FUNC, "(ILjdk/incubator/foreign/MemoryAddress;)V");
+    void apply(int n, java.lang.foreign.MemoryAddress framebuffers);
+    static MemorySegment allocate(PFNGLDELETEFRAMEBUFFERSPROC fi, MemorySession session) {
+        return RuntimeHelper.upcallStub(PFNGLDELETEFRAMEBUFFERSPROC.class, fi, constants$168.PFNGLDELETEFRAMEBUFFERSPROC$FUNC, session);
     }
-    static MemoryAddress allocate(PFNGLDELETEFRAMEBUFFERSPROC fi, ResourceScope scope) {
-        return RuntimeHelper.upcallStub(PFNGLDELETEFRAMEBUFFERSPROC.class, fi, constants$168.PFNGLDELETEFRAMEBUFFERSPROC$FUNC, "(ILjdk/incubator/foreign/MemoryAddress;)V", scope);
-    }
-    static PFNGLDELETEFRAMEBUFFERSPROC ofAddress(MemoryAddress addr) {
-        return (int x0, jdk.incubator.foreign.MemoryAddress x1) -> {
+    static PFNGLDELETEFRAMEBUFFERSPROC ofAddress(MemoryAddress addr, MemorySession session) {
+        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
+        return (int _n, java.lang.foreign.MemoryAddress _framebuffers) -> {
             try {
-                constants$168.PFNGLDELETEFRAMEBUFFERSPROC$MH.invokeExact((Addressable)addr, x0, x1);
+                constants$168.PFNGLDELETEFRAMEBUFFERSPROC$MH.invokeExact((Addressable)symbol, _n, (java.lang.foreign.Addressable)_framebuffers);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

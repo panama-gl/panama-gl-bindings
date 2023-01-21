@@ -2,33 +2,31 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_FLOAT;
-import static jdk.incubator.foreign.CLinker.C_INT;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$731 {
 
     static final FunctionDescriptor PFNGLBLENDPARAMETERINVPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLBLENDPARAMETERINVPROC$MH = RuntimeHelper.downcallHandle(
-        "(II)V",
-        constants$731.PFNGLBLENDPARAMETERINVPROC$FUNC, false
+        constants$731.PFNGLBLENDPARAMETERINVPROC$FUNC
     );
     static final FunctionDescriptor PFNGLBLENDBARRIERNVPROC$FUNC = FunctionDescriptor.ofVoid();
     static final MethodHandle PFNGLBLENDBARRIERNVPROC$MH = RuntimeHelper.downcallHandle(
-        "()V",
-        constants$731.PFNGLBLENDBARRIERNVPROC$FUNC, false
+        constants$731.PFNGLBLENDBARRIERNVPROC$FUNC
     );
     static final FunctionDescriptor PFNGLVIEWPORTPOSITIONWSCALENVPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_FLOAT,
-        C_FLOAT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT
     );
     static final MethodHandle PFNGLVIEWPORTPOSITIONWSCALENVPROC$MH = RuntimeHelper.downcallHandle(
-        "(IFF)V",
-        constants$731.PFNGLVIEWPORTPOSITIONWSCALENVPROC$FUNC, false
+        constants$731.PFNGLVIEWPORTPOSITIONWSCALENVPROC$FUNC
     );
 }
 

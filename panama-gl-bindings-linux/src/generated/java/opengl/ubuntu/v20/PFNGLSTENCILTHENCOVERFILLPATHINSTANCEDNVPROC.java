@@ -2,22 +2,22 @@
 
 package opengl.ubuntu.v20;
 
-import jdk.incubator.foreign.Addressable;
-import jdk.incubator.foreign.MemoryAddress;
-import jdk.incubator.foreign.ResourceScope;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public interface PFNGLSTENCILTHENCOVERFILLPATHINSTANCEDNVPROC {
 
-    void apply(int x0, int x1, jdk.incubator.foreign.MemoryAddress x2, int x3, int x4, int x5, int x6, int x7, jdk.incubator.foreign.MemoryAddress x8);
-    static MemoryAddress allocate(PFNGLSTENCILTHENCOVERFILLPATHINSTANCEDNVPROC fi) {
-        return RuntimeHelper.upcallStub(PFNGLSTENCILTHENCOVERFILLPATHINSTANCEDNVPROC.class, fi, constants$803.PFNGLSTENCILTHENCOVERFILLPATHINSTANCEDNVPROC$FUNC, "(IILjdk/incubator/foreign/MemoryAddress;IIIIILjdk/incubator/foreign/MemoryAddress;)V");
+    void apply(int numPaths, int pathNameType, java.lang.foreign.MemoryAddress paths, int pathBase, int fillMode, int mask, int coverMode, int transformType, java.lang.foreign.MemoryAddress transformValues);
+    static MemorySegment allocate(PFNGLSTENCILTHENCOVERFILLPATHINSTANCEDNVPROC fi, MemorySession session) {
+        return RuntimeHelper.upcallStub(PFNGLSTENCILTHENCOVERFILLPATHINSTANCEDNVPROC.class, fi, constants$803.PFNGLSTENCILTHENCOVERFILLPATHINSTANCEDNVPROC$FUNC, session);
     }
-    static MemoryAddress allocate(PFNGLSTENCILTHENCOVERFILLPATHINSTANCEDNVPROC fi, ResourceScope scope) {
-        return RuntimeHelper.upcallStub(PFNGLSTENCILTHENCOVERFILLPATHINSTANCEDNVPROC.class, fi, constants$803.PFNGLSTENCILTHENCOVERFILLPATHINSTANCEDNVPROC$FUNC, "(IILjdk/incubator/foreign/MemoryAddress;IIIIILjdk/incubator/foreign/MemoryAddress;)V", scope);
-    }
-    static PFNGLSTENCILTHENCOVERFILLPATHINSTANCEDNVPROC ofAddress(MemoryAddress addr) {
-        return (int x0, int x1, jdk.incubator.foreign.MemoryAddress x2, int x3, int x4, int x5, int x6, int x7, jdk.incubator.foreign.MemoryAddress x8) -> {
+    static PFNGLSTENCILTHENCOVERFILLPATHINSTANCEDNVPROC ofAddress(MemoryAddress addr, MemorySession session) {
+        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
+        return (int _numPaths, int _pathNameType, java.lang.foreign.MemoryAddress _paths, int _pathBase, int _fillMode, int _mask, int _coverMode, int _transformType, java.lang.foreign.MemoryAddress _transformValues) -> {
             try {
-                constants$803.PFNGLSTENCILTHENCOVERFILLPATHINSTANCEDNVPROC$MH.invokeExact((Addressable)addr, x0, x1, x2, x3, x4, x5, x6, x7, x8);
+                constants$803.PFNGLSTENCILTHENCOVERFILLPATHINSTANCEDNVPROC$MH.invokeExact((Addressable)symbol, _numPaths, _pathNameType, (java.lang.foreign.Addressable)_paths, _pathBase, _fillMode, _mask, _coverMode, _transformType, (java.lang.foreign.Addressable)_transformValues);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

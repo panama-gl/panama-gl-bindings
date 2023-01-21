@@ -2,35 +2,33 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_INT;
-import static jdk.incubator.foreign.CLinker.C_POINTER;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$797 {
 
     static final FunctionDescriptor PFNGLGETPATHCOMMANDSNVPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLGETPATHCOMMANDSNVPROC$MH = RuntimeHelper.downcallHandle(
-        "(ILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$797.PFNGLGETPATHCOMMANDSNVPROC$FUNC, false
+        constants$797.PFNGLGETPATHCOMMANDSNVPROC$FUNC
     );
     static final FunctionDescriptor PFNGLGETPATHCOORDSNVPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLGETPATHCOORDSNVPROC$MH = RuntimeHelper.downcallHandle(
-        "(ILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$797.PFNGLGETPATHCOORDSNVPROC$FUNC, false
+        constants$797.PFNGLGETPATHCOORDSNVPROC$FUNC
     );
     static final FunctionDescriptor PFNGLGETPATHDASHARRAYNVPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLGETPATHDASHARRAYNVPROC$MH = RuntimeHelper.downcallHandle(
-        "(ILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$797.PFNGLGETPATHDASHARRAYNVPROC$FUNC, false
+        constants$797.PFNGLGETPATHDASHARRAYNVPROC$FUNC
     );
 }
 

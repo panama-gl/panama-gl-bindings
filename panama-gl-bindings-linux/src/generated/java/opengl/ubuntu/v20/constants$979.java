@@ -2,50 +2,45 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_INT;
-import static jdk.incubator.foreign.CLinker.C_LONG;
-import static jdk.incubator.foreign.CLinker.C_POINTER;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$979 {
 
-    static final FunctionDescriptor posix_memalign$FUNC = FunctionDescriptor.of(C_INT,
-        C_POINTER,
-        C_LONG,
-        C_LONG
+    static final FunctionDescriptor posix_memalign$FUNC = FunctionDescriptor.of(Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT
     );
     static final MethodHandle posix_memalign$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "posix_memalign",
-        "(Ljdk/incubator/foreign/MemoryAddress;JJ)I",
-        constants$979.posix_memalign$FUNC, false
+        "posix_memalign",
+        constants$979.posix_memalign$FUNC
     );
-    static final FunctionDescriptor aligned_alloc$FUNC = FunctionDescriptor.of(C_POINTER,
-        C_LONG,
-        C_LONG
+    static final FunctionDescriptor aligned_alloc$FUNC = FunctionDescriptor.of(Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT
     );
     static final MethodHandle aligned_alloc$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "aligned_alloc",
-        "(JJ)Ljdk/incubator/foreign/MemoryAddress;",
-        constants$979.aligned_alloc$FUNC, false
+        "aligned_alloc",
+        constants$979.aligned_alloc$FUNC
     );
     static final FunctionDescriptor abort$FUNC = FunctionDescriptor.ofVoid();
     static final MethodHandle abort$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "abort",
-        "()V",
-        constants$979.abort$FUNC, false
+        "abort",
+        constants$979.abort$FUNC
     );
     static final FunctionDescriptor atexit$__func$FUNC = FunctionDescriptor.ofVoid();
     static final MethodHandle atexit$__func$MH = RuntimeHelper.downcallHandle(
-        "()V",
-        constants$979.atexit$__func$FUNC, false
+        constants$979.atexit$__func$FUNC
     );
-    static final FunctionDescriptor atexit$FUNC = FunctionDescriptor.of(C_INT,
-        C_POINTER
+    static final FunctionDescriptor atexit$FUNC = FunctionDescriptor.of(Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle atexit$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "atexit",
-        "(Ljdk/incubator/foreign/MemoryAddress;)I",
-        constants$979.atexit$FUNC, false
+        "atexit",
+        constants$979.atexit$FUNC
     );
 }
 

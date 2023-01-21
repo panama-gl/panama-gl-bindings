@@ -2,41 +2,39 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_INT;
-import static jdk.incubator.foreign.CLinker.C_POINTER;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$369 {
 
-    static final FunctionDescriptor PFNGLGETUNIFORMLOCATIONARBPROC$FUNC = FunctionDescriptor.of(C_INT,
-        C_INT,
-        C_POINTER
+    static final FunctionDescriptor PFNGLGETUNIFORMLOCATIONARBPROC$FUNC = FunctionDescriptor.of(Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLGETUNIFORMLOCATIONARBPROC$MH = RuntimeHelper.downcallHandle(
-        "(ILjdk/incubator/foreign/MemoryAddress;)I",
-        constants$369.PFNGLGETUNIFORMLOCATIONARBPROC$FUNC, false
+        constants$369.PFNGLGETUNIFORMLOCATIONARBPROC$FUNC
     );
     static final FunctionDescriptor PFNGLGETACTIVEUNIFORMARBPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_INT,
-        C_POINTER,
-        C_POINTER,
-        C_POINTER,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLGETACTIVEUNIFORMARBPROC$MH = RuntimeHelper.downcallHandle(
-        "(IIILjdk/incubator/foreign/MemoryAddress;Ljdk/incubator/foreign/MemoryAddress;Ljdk/incubator/foreign/MemoryAddress;Ljdk/incubator/foreign/MemoryAddress;)V",
-        constants$369.PFNGLGETACTIVEUNIFORMARBPROC$FUNC, false
+        constants$369.PFNGLGETACTIVEUNIFORMARBPROC$FUNC
     );
     static final FunctionDescriptor PFNGLGETUNIFORMFVARBPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLGETUNIFORMFVARBPROC$MH = RuntimeHelper.downcallHandle(
-        "(IILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$369.PFNGLGETUNIFORMFVARBPROC$FUNC, false
+        constants$369.PFNGLGETUNIFORMFVARBPROC$FUNC
     );
 }
 

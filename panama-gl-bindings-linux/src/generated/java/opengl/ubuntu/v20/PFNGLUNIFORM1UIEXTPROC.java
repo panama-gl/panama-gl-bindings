@@ -2,22 +2,22 @@
 
 package opengl.ubuntu.v20;
 
-import jdk.incubator.foreign.Addressable;
-import jdk.incubator.foreign.MemoryAddress;
-import jdk.incubator.foreign.ResourceScope;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public interface PFNGLUNIFORM1UIEXTPROC {
 
-    void apply(int x0, int x1);
-    static MemoryAddress allocate(PFNGLUNIFORM1UIEXTPROC fi) {
-        return RuntimeHelper.upcallStub(PFNGLUNIFORM1UIEXTPROC.class, fi, constants$633.PFNGLUNIFORM1UIEXTPROC$FUNC, "(II)V");
+    void apply(int location, int v0);
+    static MemorySegment allocate(PFNGLUNIFORM1UIEXTPROC fi, MemorySession session) {
+        return RuntimeHelper.upcallStub(PFNGLUNIFORM1UIEXTPROC.class, fi, constants$633.PFNGLUNIFORM1UIEXTPROC$FUNC, session);
     }
-    static MemoryAddress allocate(PFNGLUNIFORM1UIEXTPROC fi, ResourceScope scope) {
-        return RuntimeHelper.upcallStub(PFNGLUNIFORM1UIEXTPROC.class, fi, constants$633.PFNGLUNIFORM1UIEXTPROC$FUNC, "(II)V", scope);
-    }
-    static PFNGLUNIFORM1UIEXTPROC ofAddress(MemoryAddress addr) {
-        return (int x0, int x1) -> {
+    static PFNGLUNIFORM1UIEXTPROC ofAddress(MemoryAddress addr, MemorySession session) {
+        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
+        return (int _location, int _v0) -> {
             try {
-                constants$633.PFNGLUNIFORM1UIEXTPROC$MH.invokeExact((Addressable)addr, x0, x1);
+                constants$633.PFNGLUNIFORM1UIEXTPROC$MH.invokeExact((Addressable)symbol, _location, _v0);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

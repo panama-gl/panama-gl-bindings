@@ -2,73 +2,66 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_INT;
-import static jdk.incubator.foreign.CLinker.C_LONG;
-import static jdk.incubator.foreign.CLinker.C_LONG_LONG;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
-import jdk.incubator.foreign.MemoryLayout;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$984 {
 
-    static final FunctionDescriptor abs$FUNC = FunctionDescriptor.of(C_INT,
-        C_INT
+    static final FunctionDescriptor abs$FUNC = FunctionDescriptor.of(Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle abs$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "abs",
-        "(I)I",
-        constants$984.abs$FUNC, false
+        "abs",
+        constants$984.abs$FUNC
     );
-    static final FunctionDescriptor labs$FUNC = FunctionDescriptor.of(C_LONG,
-        C_LONG
+    static final FunctionDescriptor labs$FUNC = FunctionDescriptor.of(Constants$root.C_LONG_LONG$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT
     );
     static final MethodHandle labs$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "labs",
-        "(J)J",
-        constants$984.labs$FUNC, false
+        "labs",
+        constants$984.labs$FUNC
     );
-    static final FunctionDescriptor llabs$FUNC = FunctionDescriptor.of(C_LONG_LONG,
-        C_LONG_LONG
+    static final FunctionDescriptor llabs$FUNC = FunctionDescriptor.of(Constants$root.C_LONG_LONG$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT
     );
     static final MethodHandle llabs$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "llabs",
-        "(J)J",
-        constants$984.llabs$FUNC, false
+        "llabs",
+        constants$984.llabs$FUNC
     );
     static final FunctionDescriptor div$FUNC = FunctionDescriptor.of(MemoryLayout.structLayout(
-        C_INT.withName("quot"),
-        C_INT.withName("rem")
+        Constants$root.C_INT$LAYOUT.withName("quot"),
+        Constants$root.C_INT$LAYOUT.withName("rem")
     ),
-        C_INT,
-        C_INT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle div$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "div",
-        "(II)Ljdk/incubator/foreign/MemorySegment;",
-        constants$984.div$FUNC, false
+        "div",
+        constants$984.div$FUNC
     );
     static final FunctionDescriptor ldiv$FUNC = FunctionDescriptor.of(MemoryLayout.structLayout(
-        C_LONG.withName("quot"),
-        C_LONG.withName("rem")
+        Constants$root.C_LONG_LONG$LAYOUT.withName("quot"),
+        Constants$root.C_LONG_LONG$LAYOUT.withName("rem")
     ),
-        C_LONG,
-        C_LONG
+        Constants$root.C_LONG_LONG$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT
     );
     static final MethodHandle ldiv$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "ldiv",
-        "(JJ)Ljdk/incubator/foreign/MemorySegment;",
-        constants$984.ldiv$FUNC, false
+        "ldiv",
+        constants$984.ldiv$FUNC
     );
     static final FunctionDescriptor lldiv$FUNC = FunctionDescriptor.of(MemoryLayout.structLayout(
-        C_LONG_LONG.withName("quot"),
-        C_LONG_LONG.withName("rem")
+        Constants$root.C_LONG_LONG$LAYOUT.withName("quot"),
+        Constants$root.C_LONG_LONG$LAYOUT.withName("rem")
     ),
-        C_LONG_LONG,
-        C_LONG_LONG
+        Constants$root.C_LONG_LONG$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT
     );
     static final MethodHandle lldiv$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "lldiv",
-        "(JJ)Ljdk/incubator/foreign/MemorySegment;",
-        constants$984.lldiv$FUNC, false
+        "lldiv",
+        constants$984.lldiv$FUNC
     );
 }
 

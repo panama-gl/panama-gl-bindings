@@ -2,65 +2,60 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_INT;
-import static jdk.incubator.foreign.CLinker.C_POINTER;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$976 {
 
-    static final FunctionDescriptor seed48$FUNC = FunctionDescriptor.of(C_POINTER,
-        C_POINTER
+    static final FunctionDescriptor seed48$FUNC = FunctionDescriptor.of(Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle seed48$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "seed48",
-        "(Ljdk/incubator/foreign/MemoryAddress;)Ljdk/incubator/foreign/MemoryAddress;",
-        constants$976.seed48$FUNC, false
+        "seed48",
+        constants$976.seed48$FUNC
     );
     static final FunctionDescriptor lcong48$FUNC = FunctionDescriptor.ofVoid(
-        C_POINTER
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle lcong48$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "lcong48",
-        "(Ljdk/incubator/foreign/MemoryAddress;)V",
-        constants$976.lcong48$FUNC, false
+        "lcong48",
+        constants$976.lcong48$FUNC
     );
-    static final FunctionDescriptor drand48_r$FUNC = FunctionDescriptor.of(C_INT,
-        C_POINTER,
-        C_POINTER
+    static final FunctionDescriptor drand48_r$FUNC = FunctionDescriptor.of(Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle drand48_r$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "drand48_r",
-        "(Ljdk/incubator/foreign/MemoryAddress;Ljdk/incubator/foreign/MemoryAddress;)I",
-        constants$976.drand48_r$FUNC, false
+        "drand48_r",
+        constants$976.drand48_r$FUNC
     );
-    static final FunctionDescriptor erand48_r$FUNC = FunctionDescriptor.of(C_INT,
-        C_POINTER,
-        C_POINTER,
-        C_POINTER
+    static final FunctionDescriptor erand48_r$FUNC = FunctionDescriptor.of(Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle erand48_r$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "erand48_r",
-        "(Ljdk/incubator/foreign/MemoryAddress;Ljdk/incubator/foreign/MemoryAddress;Ljdk/incubator/foreign/MemoryAddress;)I",
-        constants$976.erand48_r$FUNC, false
+        "erand48_r",
+        constants$976.erand48_r$FUNC
     );
-    static final FunctionDescriptor lrand48_r$FUNC = FunctionDescriptor.of(C_INT,
-        C_POINTER,
-        C_POINTER
+    static final FunctionDescriptor lrand48_r$FUNC = FunctionDescriptor.of(Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle lrand48_r$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "lrand48_r",
-        "(Ljdk/incubator/foreign/MemoryAddress;Ljdk/incubator/foreign/MemoryAddress;)I",
-        constants$976.lrand48_r$FUNC, false
+        "lrand48_r",
+        constants$976.lrand48_r$FUNC
     );
-    static final FunctionDescriptor nrand48_r$FUNC = FunctionDescriptor.of(C_INT,
-        C_POINTER,
-        C_POINTER,
-        C_POINTER
+    static final FunctionDescriptor nrand48_r$FUNC = FunctionDescriptor.of(Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle nrand48_r$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "nrand48_r",
-        "(Ljdk/incubator/foreign/MemoryAddress;Ljdk/incubator/foreign/MemoryAddress;Ljdk/incubator/foreign/MemoryAddress;)I",
-        constants$976.nrand48_r$FUNC, false
+        "nrand48_r",
+        constants$976.nrand48_r$FUNC
     );
 }
 

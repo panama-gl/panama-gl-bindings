@@ -2,38 +2,36 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_INT;
-import static jdk.incubator.foreign.CLinker.C_POINTER;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$869 {
 
     static final FunctionDescriptor PFNGLVERTEXATTRIBS3FVNVPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLVERTEXATTRIBS3FVNVPROC$MH = RuntimeHelper.downcallHandle(
-        "(IILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$869.PFNGLVERTEXATTRIBS3FVNVPROC$FUNC, false
+        constants$869.PFNGLVERTEXATTRIBS3FVNVPROC$FUNC
     );
     static final FunctionDescriptor PFNGLVERTEXATTRIBS3SVNVPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLVERTEXATTRIBS3SVNVPROC$MH = RuntimeHelper.downcallHandle(
-        "(IILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$869.PFNGLVERTEXATTRIBS3SVNVPROC$FUNC, false
+        constants$869.PFNGLVERTEXATTRIBS3SVNVPROC$FUNC
     );
     static final FunctionDescriptor PFNGLVERTEXATTRIBS4DVNVPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLVERTEXATTRIBS4DVNVPROC$MH = RuntimeHelper.downcallHandle(
-        "(IILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$869.PFNGLVERTEXATTRIBS4DVNVPROC$FUNC, false
+        constants$869.PFNGLVERTEXATTRIBS4DVNVPROC$FUNC
     );
 }
 

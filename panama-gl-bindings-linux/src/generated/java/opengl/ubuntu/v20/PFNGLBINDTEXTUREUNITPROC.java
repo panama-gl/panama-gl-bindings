@@ -2,22 +2,22 @@
 
 package opengl.ubuntu.v20;
 
-import jdk.incubator.foreign.Addressable;
-import jdk.incubator.foreign.MemoryAddress;
-import jdk.incubator.foreign.ResourceScope;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public interface PFNGLBINDTEXTUREUNITPROC {
 
-    void apply(int x0, int x1);
-    static MemoryAddress allocate(PFNGLBINDTEXTUREUNITPROC fi) {
-        return RuntimeHelper.upcallStub(PFNGLBINDTEXTUREUNITPROC.class, fi, constants$293.PFNGLBINDTEXTUREUNITPROC$FUNC, "(II)V");
+    void apply(int unit, int texture);
+    static MemorySegment allocate(PFNGLBINDTEXTUREUNITPROC fi, MemorySession session) {
+        return RuntimeHelper.upcallStub(PFNGLBINDTEXTUREUNITPROC.class, fi, constants$293.PFNGLBINDTEXTUREUNITPROC$FUNC, session);
     }
-    static MemoryAddress allocate(PFNGLBINDTEXTUREUNITPROC fi, ResourceScope scope) {
-        return RuntimeHelper.upcallStub(PFNGLBINDTEXTUREUNITPROC.class, fi, constants$293.PFNGLBINDTEXTUREUNITPROC$FUNC, "(II)V", scope);
-    }
-    static PFNGLBINDTEXTUREUNITPROC ofAddress(MemoryAddress addr) {
-        return (int x0, int x1) -> {
+    static PFNGLBINDTEXTUREUNITPROC ofAddress(MemoryAddress addr, MemorySession session) {
+        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
+        return (int _unit, int _texture) -> {
             try {
-                constants$293.PFNGLBINDTEXTUREUNITPROC$MH.invokeExact((Addressable)addr, x0, x1);
+                constants$293.PFNGLBINDTEXTUREUNITPROC$MH.invokeExact((Addressable)symbol, _unit, _texture);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

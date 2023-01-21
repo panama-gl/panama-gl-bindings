@@ -2,22 +2,22 @@
 
 package opengl.ubuntu.v20;
 
-import jdk.incubator.foreign.Addressable;
-import jdk.incubator.foreign.MemoryAddress;
-import jdk.incubator.foreign.ResourceScope;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public interface PFNGLTEXIMAGE3DMULTISAMPLEPROC {
 
-    void apply(int x0, int x1, int x2, int x3, int x4, int x5, byte x6);
-    static MemoryAddress allocate(PFNGLTEXIMAGE3DMULTISAMPLEPROC fi) {
-        return RuntimeHelper.upcallStub(PFNGLTEXIMAGE3DMULTISAMPLEPROC.class, fi, constants$183.PFNGLTEXIMAGE3DMULTISAMPLEPROC$FUNC, "(IIIIIIB)V");
+    void apply(int target, int samples, int internalformat, int width, int height, int depth, byte fixedsamplelocations);
+    static MemorySegment allocate(PFNGLTEXIMAGE3DMULTISAMPLEPROC fi, MemorySession session) {
+        return RuntimeHelper.upcallStub(PFNGLTEXIMAGE3DMULTISAMPLEPROC.class, fi, constants$183.PFNGLTEXIMAGE3DMULTISAMPLEPROC$FUNC, session);
     }
-    static MemoryAddress allocate(PFNGLTEXIMAGE3DMULTISAMPLEPROC fi, ResourceScope scope) {
-        return RuntimeHelper.upcallStub(PFNGLTEXIMAGE3DMULTISAMPLEPROC.class, fi, constants$183.PFNGLTEXIMAGE3DMULTISAMPLEPROC$FUNC, "(IIIIIIB)V", scope);
-    }
-    static PFNGLTEXIMAGE3DMULTISAMPLEPROC ofAddress(MemoryAddress addr) {
-        return (int x0, int x1, int x2, int x3, int x4, int x5, byte x6) -> {
+    static PFNGLTEXIMAGE3DMULTISAMPLEPROC ofAddress(MemoryAddress addr, MemorySession session) {
+        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
+        return (int _target, int _samples, int _internalformat, int _width, int _height, int _depth, byte _fixedsamplelocations) -> {
             try {
-                constants$183.PFNGLTEXIMAGE3DMULTISAMPLEPROC$MH.invokeExact((Addressable)addr, x0, x1, x2, x3, x4, x5, x6);
+                constants$183.PFNGLTEXIMAGE3DMULTISAMPLEPROC$MH.invokeExact((Addressable)symbol, _target, _samples, _internalformat, _width, _height, _depth, _fixedsamplelocations);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

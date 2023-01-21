@@ -2,22 +2,22 @@
 
 package opengl.ubuntu.v20;
 
-import jdk.incubator.foreign.Addressable;
-import jdk.incubator.foreign.MemoryAddress;
-import jdk.incubator.foreign.ResourceScope;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public interface PFNGLGETCONVOLUTIONFILTEREXTPROC {
 
-    void apply(int x0, int x1, int x2, jdk.incubator.foreign.MemoryAddress x3);
-    static MemoryAddress allocate(PFNGLGETCONVOLUTIONFILTEREXTPROC fi) {
-        return RuntimeHelper.upcallStub(PFNGLGETCONVOLUTIONFILTEREXTPROC.class, fi, constants$522.PFNGLGETCONVOLUTIONFILTEREXTPROC$FUNC, "(IIILjdk/incubator/foreign/MemoryAddress;)V");
+    void apply(int target, int format, int type, java.lang.foreign.MemoryAddress image);
+    static MemorySegment allocate(PFNGLGETCONVOLUTIONFILTEREXTPROC fi, MemorySession session) {
+        return RuntimeHelper.upcallStub(PFNGLGETCONVOLUTIONFILTEREXTPROC.class, fi, constants$522.PFNGLGETCONVOLUTIONFILTEREXTPROC$FUNC, session);
     }
-    static MemoryAddress allocate(PFNGLGETCONVOLUTIONFILTEREXTPROC fi, ResourceScope scope) {
-        return RuntimeHelper.upcallStub(PFNGLGETCONVOLUTIONFILTEREXTPROC.class, fi, constants$522.PFNGLGETCONVOLUTIONFILTEREXTPROC$FUNC, "(IIILjdk/incubator/foreign/MemoryAddress;)V", scope);
-    }
-    static PFNGLGETCONVOLUTIONFILTEREXTPROC ofAddress(MemoryAddress addr) {
-        return (int x0, int x1, int x2, jdk.incubator.foreign.MemoryAddress x3) -> {
+    static PFNGLGETCONVOLUTIONFILTEREXTPROC ofAddress(MemoryAddress addr, MemorySession session) {
+        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
+        return (int _target, int _format, int _type, java.lang.foreign.MemoryAddress _image) -> {
             try {
-                constants$522.PFNGLGETCONVOLUTIONFILTEREXTPROC$MH.invokeExact((Addressable)addr, x0, x1, x2, x3);
+                constants$522.PFNGLGETCONVOLUTIONFILTEREXTPROC$MH.invokeExact((Addressable)symbol, _target, _format, _type, (java.lang.foreign.Addressable)_image);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

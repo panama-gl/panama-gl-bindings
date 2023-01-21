@@ -2,22 +2,22 @@
 
 package opengl.ubuntu.v20;
 
-import jdk.incubator.foreign.Addressable;
-import jdk.incubator.foreign.MemoryAddress;
-import jdk.incubator.foreign.ResourceScope;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public interface PFNGLNORMALSTREAM3FATIPROC {
 
-    void apply(int x0, float x1, float x2, float x3);
-    static MemoryAddress allocate(PFNGLNORMALSTREAM3FATIPROC fi) {
-        return RuntimeHelper.upcallStub(PFNGLNORMALSTREAM3FATIPROC.class, fi, constants$513.PFNGLNORMALSTREAM3FATIPROC$FUNC, "(IFFF)V");
+    void apply(int stream, float nx, float ny, float nz);
+    static MemorySegment allocate(PFNGLNORMALSTREAM3FATIPROC fi, MemorySession session) {
+        return RuntimeHelper.upcallStub(PFNGLNORMALSTREAM3FATIPROC.class, fi, constants$513.PFNGLNORMALSTREAM3FATIPROC$FUNC, session);
     }
-    static MemoryAddress allocate(PFNGLNORMALSTREAM3FATIPROC fi, ResourceScope scope) {
-        return RuntimeHelper.upcallStub(PFNGLNORMALSTREAM3FATIPROC.class, fi, constants$513.PFNGLNORMALSTREAM3FATIPROC$FUNC, "(IFFF)V", scope);
-    }
-    static PFNGLNORMALSTREAM3FATIPROC ofAddress(MemoryAddress addr) {
-        return (int x0, float x1, float x2, float x3) -> {
+    static PFNGLNORMALSTREAM3FATIPROC ofAddress(MemoryAddress addr, MemorySession session) {
+        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
+        return (int _stream, float _nx, float _ny, float _nz) -> {
             try {
-                constants$513.PFNGLNORMALSTREAM3FATIPROC$MH.invokeExact((Addressable)addr, x0, x1, x2, x3);
+                constants$513.PFNGLNORMALSTREAM3FATIPROC$MH.invokeExact((Addressable)symbol, _stream, _nx, _ny, _nz);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

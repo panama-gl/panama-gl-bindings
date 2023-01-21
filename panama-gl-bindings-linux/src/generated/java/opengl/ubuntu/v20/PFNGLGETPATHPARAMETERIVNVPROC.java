@@ -2,22 +2,22 @@
 
 package opengl.ubuntu.v20;
 
-import jdk.incubator.foreign.Addressable;
-import jdk.incubator.foreign.MemoryAddress;
-import jdk.incubator.foreign.ResourceScope;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public interface PFNGLGETPATHPARAMETERIVNVPROC {
 
-    void apply(int x0, int x1, jdk.incubator.foreign.MemoryAddress x2);
-    static MemoryAddress allocate(PFNGLGETPATHPARAMETERIVNVPROC fi) {
-        return RuntimeHelper.upcallStub(PFNGLGETPATHPARAMETERIVNVPROC.class, fi, constants$796.PFNGLGETPATHPARAMETERIVNVPROC$FUNC, "(IILjdk/incubator/foreign/MemoryAddress;)V");
+    void apply(int path, int pname, java.lang.foreign.MemoryAddress value);
+    static MemorySegment allocate(PFNGLGETPATHPARAMETERIVNVPROC fi, MemorySession session) {
+        return RuntimeHelper.upcallStub(PFNGLGETPATHPARAMETERIVNVPROC.class, fi, constants$796.PFNGLGETPATHPARAMETERIVNVPROC$FUNC, session);
     }
-    static MemoryAddress allocate(PFNGLGETPATHPARAMETERIVNVPROC fi, ResourceScope scope) {
-        return RuntimeHelper.upcallStub(PFNGLGETPATHPARAMETERIVNVPROC.class, fi, constants$796.PFNGLGETPATHPARAMETERIVNVPROC$FUNC, "(IILjdk/incubator/foreign/MemoryAddress;)V", scope);
-    }
-    static PFNGLGETPATHPARAMETERIVNVPROC ofAddress(MemoryAddress addr) {
-        return (int x0, int x1, jdk.incubator.foreign.MemoryAddress x2) -> {
+    static PFNGLGETPATHPARAMETERIVNVPROC ofAddress(MemoryAddress addr, MemorySession session) {
+        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
+        return (int _path, int _pname, java.lang.foreign.MemoryAddress _value) -> {
             try {
-                constants$796.PFNGLGETPATHPARAMETERIVNVPROC$MH.invokeExact((Addressable)addr, x0, x1, x2);
+                constants$796.PFNGLGETPATHPARAMETERIVNVPROC$MH.invokeExact((Addressable)symbol, _path, _pname, (java.lang.foreign.Addressable)_value);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

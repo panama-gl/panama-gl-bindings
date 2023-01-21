@@ -2,22 +2,22 @@
 
 package opengl.ubuntu.v20;
 
-import jdk.incubator.foreign.Addressable;
-import jdk.incubator.foreign.MemoryAddress;
-import jdk.incubator.foreign.ResourceScope;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public interface PFNGLISSAMPLERPROC {
 
-    byte apply(int x0);
-    static MemoryAddress allocate(PFNGLISSAMPLERPROC fi) {
-        return RuntimeHelper.upcallStub(PFNGLISSAMPLERPROC.class, fi, constants$186.PFNGLISSAMPLERPROC$FUNC, "(I)B");
+    byte apply(int sampler);
+    static MemorySegment allocate(PFNGLISSAMPLERPROC fi, MemorySession session) {
+        return RuntimeHelper.upcallStub(PFNGLISSAMPLERPROC.class, fi, constants$186.PFNGLISSAMPLERPROC$FUNC, session);
     }
-    static MemoryAddress allocate(PFNGLISSAMPLERPROC fi, ResourceScope scope) {
-        return RuntimeHelper.upcallStub(PFNGLISSAMPLERPROC.class, fi, constants$186.PFNGLISSAMPLERPROC$FUNC, "(I)B", scope);
-    }
-    static PFNGLISSAMPLERPROC ofAddress(MemoryAddress addr) {
-        return (int x0) -> {
+    static PFNGLISSAMPLERPROC ofAddress(MemoryAddress addr, MemorySession session) {
+        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
+        return (int _sampler) -> {
             try {
-                return (byte)constants$186.PFNGLISSAMPLERPROC$MH.invokeExact((Addressable)addr, x0);
+                return (byte)constants$186.PFNGLISSAMPLERPROC$MH.invokeExact((Addressable)symbol, _sampler);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

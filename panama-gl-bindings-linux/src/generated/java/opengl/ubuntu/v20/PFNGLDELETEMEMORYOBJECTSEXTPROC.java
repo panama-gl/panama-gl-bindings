@@ -2,22 +2,22 @@
 
 package opengl.ubuntu.v20;
 
-import jdk.incubator.foreign.Addressable;
-import jdk.incubator.foreign.MemoryAddress;
-import jdk.incubator.foreign.ResourceScope;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public interface PFNGLDELETEMEMORYOBJECTSEXTPROC {
 
-    void apply(int x0, jdk.incubator.foreign.MemoryAddress x1);
-    static MemoryAddress allocate(PFNGLDELETEMEMORYOBJECTSEXTPROC fi) {
-        return RuntimeHelper.upcallStub(PFNGLDELETEMEMORYOBJECTSEXTPROC.class, fi, constants$641.PFNGLDELETEMEMORYOBJECTSEXTPROC$FUNC, "(ILjdk/incubator/foreign/MemoryAddress;)V");
+    void apply(int n, java.lang.foreign.MemoryAddress memoryObjects);
+    static MemorySegment allocate(PFNGLDELETEMEMORYOBJECTSEXTPROC fi, MemorySession session) {
+        return RuntimeHelper.upcallStub(PFNGLDELETEMEMORYOBJECTSEXTPROC.class, fi, constants$641.PFNGLDELETEMEMORYOBJECTSEXTPROC$FUNC, session);
     }
-    static MemoryAddress allocate(PFNGLDELETEMEMORYOBJECTSEXTPROC fi, ResourceScope scope) {
-        return RuntimeHelper.upcallStub(PFNGLDELETEMEMORYOBJECTSEXTPROC.class, fi, constants$641.PFNGLDELETEMEMORYOBJECTSEXTPROC$FUNC, "(ILjdk/incubator/foreign/MemoryAddress;)V", scope);
-    }
-    static PFNGLDELETEMEMORYOBJECTSEXTPROC ofAddress(MemoryAddress addr) {
-        return (int x0, jdk.incubator.foreign.MemoryAddress x1) -> {
+    static PFNGLDELETEMEMORYOBJECTSEXTPROC ofAddress(MemoryAddress addr, MemorySession session) {
+        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
+        return (int _n, java.lang.foreign.MemoryAddress _memoryObjects) -> {
             try {
-                constants$641.PFNGLDELETEMEMORYOBJECTSEXTPROC$MH.invokeExact((Addressable)addr, x0, x1);
+                constants$641.PFNGLDELETEMEMORYOBJECTSEXTPROC$MH.invokeExact((Addressable)symbol, _n, (java.lang.foreign.Addressable)_memoryObjects);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

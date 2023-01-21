@@ -2,22 +2,22 @@
 
 package opengl.ubuntu.v20;
 
-import jdk.incubator.foreign.Addressable;
-import jdk.incubator.foreign.MemoryAddress;
-import jdk.incubator.foreign.ResourceScope;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public interface PFNGLMAPVERTEXATTRIB2FAPPLEPROC {
 
-    void apply(int x0, int x1, float x2, float x3, int x4, int x5, float x6, float x7, int x8, int x9, jdk.incubator.foreign.MemoryAddress x10);
-    static MemoryAddress allocate(PFNGLMAPVERTEXATTRIB2FAPPLEPROC fi) {
-        return RuntimeHelper.upcallStub(PFNGLMAPVERTEXATTRIB2FAPPLEPROC.class, fi, constants$486.PFNGLMAPVERTEXATTRIB2FAPPLEPROC$FUNC, "(IIFFIIFFIILjdk/incubator/foreign/MemoryAddress;)V");
+    void apply(int index, int size, float u1, float u2, int ustride, int uorder, float v1, float v2, int vstride, int vorder, java.lang.foreign.MemoryAddress points);
+    static MemorySegment allocate(PFNGLMAPVERTEXATTRIB2FAPPLEPROC fi, MemorySession session) {
+        return RuntimeHelper.upcallStub(PFNGLMAPVERTEXATTRIB2FAPPLEPROC.class, fi, constants$486.PFNGLMAPVERTEXATTRIB2FAPPLEPROC$FUNC, session);
     }
-    static MemoryAddress allocate(PFNGLMAPVERTEXATTRIB2FAPPLEPROC fi, ResourceScope scope) {
-        return RuntimeHelper.upcallStub(PFNGLMAPVERTEXATTRIB2FAPPLEPROC.class, fi, constants$486.PFNGLMAPVERTEXATTRIB2FAPPLEPROC$FUNC, "(IIFFIIFFIILjdk/incubator/foreign/MemoryAddress;)V", scope);
-    }
-    static PFNGLMAPVERTEXATTRIB2FAPPLEPROC ofAddress(MemoryAddress addr) {
-        return (int x0, int x1, float x2, float x3, int x4, int x5, float x6, float x7, int x8, int x9, jdk.incubator.foreign.MemoryAddress x10) -> {
+    static PFNGLMAPVERTEXATTRIB2FAPPLEPROC ofAddress(MemoryAddress addr, MemorySession session) {
+        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
+        return (int _index, int _size, float _u1, float _u2, int _ustride, int _uorder, float _v1, float _v2, int _vstride, int _vorder, java.lang.foreign.MemoryAddress _points) -> {
             try {
-                constants$486.PFNGLMAPVERTEXATTRIB2FAPPLEPROC$MH.invokeExact((Addressable)addr, x0, x1, x2, x3, x4, x5, x6, x7, x8, x9, x10);
+                constants$486.PFNGLMAPVERTEXATTRIB2FAPPLEPROC$MH.invokeExact((Addressable)symbol, _index, _size, _u1, _u2, _ustride, _uorder, _v1, _v2, _vstride, _vorder, (java.lang.foreign.Addressable)_points);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

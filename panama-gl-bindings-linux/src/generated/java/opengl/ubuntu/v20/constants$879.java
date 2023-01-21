@@ -2,39 +2,37 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_INT;
-import static jdk.incubator.foreign.CLinker.C_LONG;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$879 {
 
     static final FunctionDescriptor PFNGLBINDVIDEOCAPTURESTREAMBUFFERNVPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_INT,
-        C_LONG
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT
     );
     static final MethodHandle PFNGLBINDVIDEOCAPTURESTREAMBUFFERNVPROC$MH = RuntimeHelper.downcallHandle(
-        "(IIIJ)V",
-        constants$879.PFNGLBINDVIDEOCAPTURESTREAMBUFFERNVPROC$FUNC, false
+        constants$879.PFNGLBINDVIDEOCAPTURESTREAMBUFFERNVPROC$FUNC
     );
     static final FunctionDescriptor PFNGLBINDVIDEOCAPTURESTREAMTEXTURENVPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLBINDVIDEOCAPTURESTREAMTEXTURENVPROC$MH = RuntimeHelper.downcallHandle(
-        "(IIIII)V",
-        constants$879.PFNGLBINDVIDEOCAPTURESTREAMTEXTURENVPROC$FUNC, false
+        constants$879.PFNGLBINDVIDEOCAPTURESTREAMTEXTURENVPROC$FUNC
     );
     static final FunctionDescriptor PFNGLENDVIDEOCAPTURENVPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLENDVIDEOCAPTURENVPROC$MH = RuntimeHelper.downcallHandle(
-        "(I)V",
-        constants$879.PFNGLENDVIDEOCAPTURENVPROC$FUNC, false
+        constants$879.PFNGLENDVIDEOCAPTURENVPROC$FUNC
     );
 }
 

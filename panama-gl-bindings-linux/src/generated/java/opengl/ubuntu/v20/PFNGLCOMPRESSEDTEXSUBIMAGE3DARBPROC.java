@@ -2,22 +2,22 @@
 
 package opengl.ubuntu.v20;
 
-import jdk.incubator.foreign.Addressable;
-import jdk.incubator.foreign.MemoryAddress;
-import jdk.incubator.foreign.ResourceScope;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public interface PFNGLCOMPRESSEDTEXSUBIMAGE3DARBPROC {
 
-    void apply(int x0, int x1, int x2, int x3, int x4, int x5, int x6, int x7, int x8, int x9, jdk.incubator.foreign.MemoryAddress x10);
-    static MemoryAddress allocate(PFNGLCOMPRESSEDTEXSUBIMAGE3DARBPROC fi) {
-        return RuntimeHelper.upcallStub(PFNGLCOMPRESSEDTEXSUBIMAGE3DARBPROC.class, fi, constants$375.PFNGLCOMPRESSEDTEXSUBIMAGE3DARBPROC$FUNC, "(IIIIIIIIIILjdk/incubator/foreign/MemoryAddress;)V");
+    void apply(int target, int level, int xoffset, int yoffset, int zoffset, int width, int height, int depth, int format, int imageSize, java.lang.foreign.MemoryAddress data);
+    static MemorySegment allocate(PFNGLCOMPRESSEDTEXSUBIMAGE3DARBPROC fi, MemorySession session) {
+        return RuntimeHelper.upcallStub(PFNGLCOMPRESSEDTEXSUBIMAGE3DARBPROC.class, fi, constants$375.PFNGLCOMPRESSEDTEXSUBIMAGE3DARBPROC$FUNC, session);
     }
-    static MemoryAddress allocate(PFNGLCOMPRESSEDTEXSUBIMAGE3DARBPROC fi, ResourceScope scope) {
-        return RuntimeHelper.upcallStub(PFNGLCOMPRESSEDTEXSUBIMAGE3DARBPROC.class, fi, constants$375.PFNGLCOMPRESSEDTEXSUBIMAGE3DARBPROC$FUNC, "(IIIIIIIIIILjdk/incubator/foreign/MemoryAddress;)V", scope);
-    }
-    static PFNGLCOMPRESSEDTEXSUBIMAGE3DARBPROC ofAddress(MemoryAddress addr) {
-        return (int x0, int x1, int x2, int x3, int x4, int x5, int x6, int x7, int x8, int x9, jdk.incubator.foreign.MemoryAddress x10) -> {
+    static PFNGLCOMPRESSEDTEXSUBIMAGE3DARBPROC ofAddress(MemoryAddress addr, MemorySession session) {
+        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
+        return (int _target, int _level, int _xoffset, int _yoffset, int _zoffset, int _width, int _height, int _depth, int _format, int _imageSize, java.lang.foreign.MemoryAddress _data) -> {
             try {
-                constants$375.PFNGLCOMPRESSEDTEXSUBIMAGE3DARBPROC$MH.invokeExact((Addressable)addr, x0, x1, x2, x3, x4, x5, x6, x7, x8, x9, x10);
+                constants$375.PFNGLCOMPRESSEDTEXSUBIMAGE3DARBPROC$MH.invokeExact((Addressable)symbol, _target, _level, _xoffset, _yoffset, _zoffset, _width, _height, _depth, _format, _imageSize, (java.lang.foreign.Addressable)_data);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

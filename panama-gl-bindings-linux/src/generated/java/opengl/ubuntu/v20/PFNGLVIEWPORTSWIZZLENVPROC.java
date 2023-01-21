@@ -2,22 +2,22 @@
 
 package opengl.ubuntu.v20;
 
-import jdk.incubator.foreign.Addressable;
-import jdk.incubator.foreign.MemoryAddress;
-import jdk.incubator.foreign.ResourceScope;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public interface PFNGLVIEWPORTSWIZZLENVPROC {
 
-    void apply(int x0, int x1, int x2, int x3, int x4);
-    static MemoryAddress allocate(PFNGLVIEWPORTSWIZZLENVPROC fi) {
-        return RuntimeHelper.upcallStub(PFNGLVIEWPORTSWIZZLENVPROC.class, fi, constants$882.PFNGLVIEWPORTSWIZZLENVPROC$FUNC, "(IIIII)V");
+    void apply(int index, int swizzlex, int swizzley, int swizzlez, int swizzlew);
+    static MemorySegment allocate(PFNGLVIEWPORTSWIZZLENVPROC fi, MemorySession session) {
+        return RuntimeHelper.upcallStub(PFNGLVIEWPORTSWIZZLENVPROC.class, fi, constants$882.PFNGLVIEWPORTSWIZZLENVPROC$FUNC, session);
     }
-    static MemoryAddress allocate(PFNGLVIEWPORTSWIZZLENVPROC fi, ResourceScope scope) {
-        return RuntimeHelper.upcallStub(PFNGLVIEWPORTSWIZZLENVPROC.class, fi, constants$882.PFNGLVIEWPORTSWIZZLENVPROC$FUNC, "(IIIII)V", scope);
-    }
-    static PFNGLVIEWPORTSWIZZLENVPROC ofAddress(MemoryAddress addr) {
-        return (int x0, int x1, int x2, int x3, int x4) -> {
+    static PFNGLVIEWPORTSWIZZLENVPROC ofAddress(MemoryAddress addr, MemorySession session) {
+        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
+        return (int _index, int _swizzlex, int _swizzley, int _swizzlez, int _swizzlew) -> {
             try {
-                constants$882.PFNGLVIEWPORTSWIZZLENVPROC$MH.invokeExact((Addressable)addr, x0, x1, x2, x3, x4);
+                constants$882.PFNGLVIEWPORTSWIZZLENVPROC$MH.invokeExact((Addressable)symbol, _index, _swizzlex, _swizzley, _swizzlez, _swizzlew);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

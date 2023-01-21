@@ -2,74 +2,66 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_DOUBLE;
-import static jdk.incubator.foreign.CLinker.C_FLOAT;
-import static jdk.incubator.foreign.CLinker.C_INT;
-import static jdk.incubator.foreign.CLinker.C_POINTER;
-import static jdk.incubator.foreign.CLinker.C_SHORT;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$14 {
 
     static final FunctionDescriptor glVertex4d$FUNC = FunctionDescriptor.ofVoid(
-        C_DOUBLE,
-        C_DOUBLE,
-        C_DOUBLE,
-        C_DOUBLE
+        Constants$root.C_DOUBLE$LAYOUT,
+        Constants$root.C_DOUBLE$LAYOUT,
+        Constants$root.C_DOUBLE$LAYOUT,
+        Constants$root.C_DOUBLE$LAYOUT
     );
     static final MethodHandle glVertex4d$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "glVertex4d",
-        "(DDDD)V",
-        constants$14.glVertex4d$FUNC, false
+        "glVertex4d",
+        constants$14.glVertex4d$FUNC
     );
     static final FunctionDescriptor glVertex4f$FUNC = FunctionDescriptor.ofVoid(
-        C_FLOAT,
-        C_FLOAT,
-        C_FLOAT,
-        C_FLOAT
+        Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT
     );
     static final MethodHandle glVertex4f$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "glVertex4f",
-        "(FFFF)V",
-        constants$14.glVertex4f$FUNC, false
+        "glVertex4f",
+        constants$14.glVertex4f$FUNC
     );
     static final FunctionDescriptor glVertex4i$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle glVertex4i$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "glVertex4i",
-        "(IIII)V",
-        constants$14.glVertex4i$FUNC, false
+        "glVertex4i",
+        constants$14.glVertex4i$FUNC
     );
     static final FunctionDescriptor glVertex4s$FUNC = FunctionDescriptor.ofVoid(
-        C_SHORT,
-        C_SHORT,
-        C_SHORT,
-        C_SHORT
+        Constants$root.C_SHORT$LAYOUT,
+        Constants$root.C_SHORT$LAYOUT,
+        Constants$root.C_SHORT$LAYOUT,
+        Constants$root.C_SHORT$LAYOUT
     );
     static final MethodHandle glVertex4s$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "glVertex4s",
-        "(SSSS)V",
-        constants$14.glVertex4s$FUNC, false
+        "glVertex4s",
+        constants$14.glVertex4s$FUNC
     );
     static final FunctionDescriptor glVertex2dv$FUNC = FunctionDescriptor.ofVoid(
-        C_POINTER
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle glVertex2dv$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "glVertex2dv",
-        "(Ljdk/incubator/foreign/MemoryAddress;)V",
-        constants$14.glVertex2dv$FUNC, false
+        "glVertex2dv",
+        constants$14.glVertex2dv$FUNC
     );
     static final FunctionDescriptor glVertex2fv$FUNC = FunctionDescriptor.ofVoid(
-        C_POINTER
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle glVertex2fv$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "glVertex2fv",
-        "(Ljdk/incubator/foreign/MemoryAddress;)V",
-        constants$14.glVertex2fv$FUNC, false
+        "glVertex2fv",
+        constants$14.glVertex2fv$FUNC
     );
 }
 

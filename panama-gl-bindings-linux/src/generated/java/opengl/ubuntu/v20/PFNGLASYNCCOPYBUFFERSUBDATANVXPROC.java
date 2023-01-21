@@ -2,22 +2,22 @@
 
 package opengl.ubuntu.v20;
 
-import jdk.incubator.foreign.Addressable;
-import jdk.incubator.foreign.MemoryAddress;
-import jdk.incubator.foreign.ResourceScope;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public interface PFNGLASYNCCOPYBUFFERSUBDATANVXPROC {
 
-    int apply(int x0, jdk.incubator.foreign.MemoryAddress x1, jdk.incubator.foreign.MemoryAddress x2, int x3, int x4, int x5, int x6, long x7, long x8, long x9, int x10, jdk.incubator.foreign.MemoryAddress x11, jdk.incubator.foreign.MemoryAddress x12);
-    static MemoryAddress allocate(PFNGLASYNCCOPYBUFFERSUBDATANVXPROC fi) {
-        return RuntimeHelper.upcallStub(PFNGLASYNCCOPYBUFFERSUBDATANVXPROC.class, fi, constants$722.PFNGLASYNCCOPYBUFFERSUBDATANVXPROC$FUNC, "(ILjdk/incubator/foreign/MemoryAddress;Ljdk/incubator/foreign/MemoryAddress;IIIIJJJILjdk/incubator/foreign/MemoryAddress;Ljdk/incubator/foreign/MemoryAddress;)I");
+    int apply(int waitSemaphoreCount, java.lang.foreign.MemoryAddress waitSemaphoreArray, java.lang.foreign.MemoryAddress fenceValueArray, int readGpu, int writeGpuMask, int readBuffer, int writeBuffer, long readOffset, long writeOffset, long size, int signalSemaphoreCount, java.lang.foreign.MemoryAddress signalSemaphoreArray, java.lang.foreign.MemoryAddress signalValueArray);
+    static MemorySegment allocate(PFNGLASYNCCOPYBUFFERSUBDATANVXPROC fi, MemorySession session) {
+        return RuntimeHelper.upcallStub(PFNGLASYNCCOPYBUFFERSUBDATANVXPROC.class, fi, constants$722.PFNGLASYNCCOPYBUFFERSUBDATANVXPROC$FUNC, session);
     }
-    static MemoryAddress allocate(PFNGLASYNCCOPYBUFFERSUBDATANVXPROC fi, ResourceScope scope) {
-        return RuntimeHelper.upcallStub(PFNGLASYNCCOPYBUFFERSUBDATANVXPROC.class, fi, constants$722.PFNGLASYNCCOPYBUFFERSUBDATANVXPROC$FUNC, "(ILjdk/incubator/foreign/MemoryAddress;Ljdk/incubator/foreign/MemoryAddress;IIIIJJJILjdk/incubator/foreign/MemoryAddress;Ljdk/incubator/foreign/MemoryAddress;)I", scope);
-    }
-    static PFNGLASYNCCOPYBUFFERSUBDATANVXPROC ofAddress(MemoryAddress addr) {
-        return (int x0, jdk.incubator.foreign.MemoryAddress x1, jdk.incubator.foreign.MemoryAddress x2, int x3, int x4, int x5, int x6, long x7, long x8, long x9, int x10, jdk.incubator.foreign.MemoryAddress x11, jdk.incubator.foreign.MemoryAddress x12) -> {
+    static PFNGLASYNCCOPYBUFFERSUBDATANVXPROC ofAddress(MemoryAddress addr, MemorySession session) {
+        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
+        return (int _waitSemaphoreCount, java.lang.foreign.MemoryAddress _waitSemaphoreArray, java.lang.foreign.MemoryAddress _fenceValueArray, int _readGpu, int _writeGpuMask, int _readBuffer, int _writeBuffer, long _readOffset, long _writeOffset, long _size, int _signalSemaphoreCount, java.lang.foreign.MemoryAddress _signalSemaphoreArray, java.lang.foreign.MemoryAddress _signalValueArray) -> {
             try {
-                return (int)constants$722.PFNGLASYNCCOPYBUFFERSUBDATANVXPROC$MH.invokeExact((Addressable)addr, x0, x1, x2, x3, x4, x5, x6, x7, x8, x9, x10, x11, x12);
+                return (int)constants$722.PFNGLASYNCCOPYBUFFERSUBDATANVXPROC$MH.invokeExact((Addressable)symbol, _waitSemaphoreCount, (java.lang.foreign.Addressable)_waitSemaphoreArray, (java.lang.foreign.Addressable)_fenceValueArray, _readGpu, _writeGpuMask, _readBuffer, _writeBuffer, _readOffset, _writeOffset, _size, _signalSemaphoreCount, (java.lang.foreign.Addressable)_signalSemaphoreArray, (java.lang.foreign.Addressable)_signalValueArray);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

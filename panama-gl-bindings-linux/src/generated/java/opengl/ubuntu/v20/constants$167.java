@@ -2,38 +2,35 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_CHAR;
-import static jdk.incubator.foreign.CLinker.C_INT;
-import static jdk.incubator.foreign.CLinker.C_POINTER;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$167 {
 
     static final FunctionDescriptor PFNGLRENDERBUFFERSTORAGEPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLRENDERBUFFERSTORAGEPROC$MH = RuntimeHelper.downcallHandle(
-        "(IIII)V",
-        constants$167.PFNGLRENDERBUFFERSTORAGEPROC$FUNC, false
+        constants$167.PFNGLRENDERBUFFERSTORAGEPROC$FUNC
     );
     static final FunctionDescriptor PFNGLGETRENDERBUFFERPARAMETERIVPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLGETRENDERBUFFERPARAMETERIVPROC$MH = RuntimeHelper.downcallHandle(
-        "(IILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$167.PFNGLGETRENDERBUFFERPARAMETERIVPROC$FUNC, false
+        constants$167.PFNGLGETRENDERBUFFERPARAMETERIVPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLISFRAMEBUFFERPROC$FUNC = FunctionDescriptor.of(C_CHAR,
-        C_INT
+    static final FunctionDescriptor PFNGLISFRAMEBUFFERPROC$FUNC = FunctionDescriptor.of(Constants$root.C_CHAR$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLISFRAMEBUFFERPROC$MH = RuntimeHelper.downcallHandle(
-        "(I)B",
-        constants$167.PFNGLISFRAMEBUFFERPROC$FUNC, false
+        constants$167.PFNGLISFRAMEBUFFERPROC$FUNC
     );
 }
 

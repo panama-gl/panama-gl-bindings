@@ -2,40 +2,38 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_INT;
-import static jdk.incubator.foreign.CLinker.C_POINTER;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$495 {
 
     static final FunctionDescriptor PFNGLSTENCILOPSEPARATEATIPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLSTENCILOPSEPARATEATIPROC$MH = RuntimeHelper.downcallHandle(
-        "(IIII)V",
-        constants$495.PFNGLSTENCILOPSEPARATEATIPROC$FUNC, false
+        constants$495.PFNGLSTENCILOPSEPARATEATIPROC$FUNC
     );
     static final FunctionDescriptor PFNGLSTENCILFUNCSEPARATEATIPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLSTENCILFUNCSEPARATEATIPROC$MH = RuntimeHelper.downcallHandle(
-        "(IIII)V",
-        constants$495.PFNGLSTENCILFUNCSEPARATEATIPROC$FUNC, false
+        constants$495.PFNGLSTENCILFUNCSEPARATEATIPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLNEWOBJECTBUFFERATIPROC$FUNC = FunctionDescriptor.of(C_INT,
-        C_INT,
-        C_POINTER,
-        C_INT
+    static final FunctionDescriptor PFNGLNEWOBJECTBUFFERATIPROC$FUNC = FunctionDescriptor.of(Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLNEWOBJECTBUFFERATIPROC$MH = RuntimeHelper.downcallHandle(
-        "(ILjdk/incubator/foreign/MemoryAddress;I)I",
-        constants$495.PFNGLNEWOBJECTBUFFERATIPROC$FUNC, false
+        constants$495.PFNGLNEWOBJECTBUFFERATIPROC$FUNC
     );
 }
 

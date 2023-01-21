@@ -2,22 +2,22 @@
 
 package opengl.ubuntu.v20;
 
-import jdk.incubator.foreign.Addressable;
-import jdk.incubator.foreign.MemoryAddress;
-import jdk.incubator.foreign.ResourceScope;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public interface PFNGLBINDLIGHTPARAMETEREXTPROC {
 
-    int apply(int x0, int x1);
-    static MemoryAddress allocate(PFNGLBINDLIGHTPARAMETEREXTPROC fi) {
-        return RuntimeHelper.upcallStub(PFNGLBINDLIGHTPARAMETEREXTPROC.class, fi, constants$690.PFNGLBINDLIGHTPARAMETEREXTPROC$FUNC, "(II)I");
+    int apply(int light, int value);
+    static MemorySegment allocate(PFNGLBINDLIGHTPARAMETEREXTPROC fi, MemorySession session) {
+        return RuntimeHelper.upcallStub(PFNGLBINDLIGHTPARAMETEREXTPROC.class, fi, constants$690.PFNGLBINDLIGHTPARAMETEREXTPROC$FUNC, session);
     }
-    static MemoryAddress allocate(PFNGLBINDLIGHTPARAMETEREXTPROC fi, ResourceScope scope) {
-        return RuntimeHelper.upcallStub(PFNGLBINDLIGHTPARAMETEREXTPROC.class, fi, constants$690.PFNGLBINDLIGHTPARAMETEREXTPROC$FUNC, "(II)I", scope);
-    }
-    static PFNGLBINDLIGHTPARAMETEREXTPROC ofAddress(MemoryAddress addr) {
-        return (int x0, int x1) -> {
+    static PFNGLBINDLIGHTPARAMETEREXTPROC ofAddress(MemoryAddress addr, MemorySession session) {
+        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
+        return (int _light, int _value) -> {
             try {
-                return (int)constants$690.PFNGLBINDLIGHTPARAMETEREXTPROC$MH.invokeExact((Addressable)addr, x0, x1);
+                return (int)constants$690.PFNGLBINDLIGHTPARAMETEREXTPROC$MH.invokeExact((Addressable)symbol, _light, _value);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

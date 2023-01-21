@@ -2,40 +2,37 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_INT;
-import static jdk.incubator.foreign.CLinker.C_LONG;
-import static jdk.incubator.foreign.CLinker.C_POINTER;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$823 {
 
     static final FunctionDescriptor PFNGLUNIFORMUI64VNVPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLUNIFORMUI64VNVPROC$MH = RuntimeHelper.downcallHandle(
-        "(IILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$823.PFNGLUNIFORMUI64VNVPROC$FUNC, false
+        constants$823.PFNGLUNIFORMUI64VNVPROC$FUNC
     );
     static final FunctionDescriptor PFNGLPROGRAMUNIFORMUI64NVPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_LONG
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT
     );
     static final MethodHandle PFNGLPROGRAMUNIFORMUI64NVPROC$MH = RuntimeHelper.downcallHandle(
-        "(IIJ)V",
-        constants$823.PFNGLPROGRAMUNIFORMUI64NVPROC$FUNC, false
+        constants$823.PFNGLPROGRAMUNIFORMUI64NVPROC$FUNC
     );
     static final FunctionDescriptor PFNGLPROGRAMUNIFORMUI64VNVPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLPROGRAMUNIFORMUI64VNVPROC$MH = RuntimeHelper.downcallHandle(
-        "(IIILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$823.PFNGLPROGRAMUNIFORMUI64VNVPROC$FUNC, false
+        constants$823.PFNGLPROGRAMUNIFORMUI64VNVPROC$FUNC
     );
 }
 

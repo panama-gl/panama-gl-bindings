@@ -2,22 +2,22 @@
 
 package opengl.ubuntu.v20;
 
-import jdk.incubator.foreign.Addressable;
-import jdk.incubator.foreign.MemoryAddress;
-import jdk.incubator.foreign.ResourceScope;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public interface PFNGLCREATETRANSFORMFEEDBACKSPROC {
 
-    void apply(int x0, jdk.incubator.foreign.MemoryAddress x1);
-    static MemoryAddress allocate(PFNGLCREATETRANSFORMFEEDBACKSPROC fi) {
-        return RuntimeHelper.upcallStub(PFNGLCREATETRANSFORMFEEDBACKSPROC.class, fi, constants$270.PFNGLCREATETRANSFORMFEEDBACKSPROC$FUNC, "(ILjdk/incubator/foreign/MemoryAddress;)V");
+    void apply(int n, java.lang.foreign.MemoryAddress ids);
+    static MemorySegment allocate(PFNGLCREATETRANSFORMFEEDBACKSPROC fi, MemorySession session) {
+        return RuntimeHelper.upcallStub(PFNGLCREATETRANSFORMFEEDBACKSPROC.class, fi, constants$270.PFNGLCREATETRANSFORMFEEDBACKSPROC$FUNC, session);
     }
-    static MemoryAddress allocate(PFNGLCREATETRANSFORMFEEDBACKSPROC fi, ResourceScope scope) {
-        return RuntimeHelper.upcallStub(PFNGLCREATETRANSFORMFEEDBACKSPROC.class, fi, constants$270.PFNGLCREATETRANSFORMFEEDBACKSPROC$FUNC, "(ILjdk/incubator/foreign/MemoryAddress;)V", scope);
-    }
-    static PFNGLCREATETRANSFORMFEEDBACKSPROC ofAddress(MemoryAddress addr) {
-        return (int x0, jdk.incubator.foreign.MemoryAddress x1) -> {
+    static PFNGLCREATETRANSFORMFEEDBACKSPROC ofAddress(MemoryAddress addr, MemorySession session) {
+        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
+        return (int _n, java.lang.foreign.MemoryAddress _ids) -> {
             try {
-                constants$270.PFNGLCREATETRANSFORMFEEDBACKSPROC$MH.invokeExact((Addressable)addr, x0, x1);
+                constants$270.PFNGLCREATETRANSFORMFEEDBACKSPROC$MH.invokeExact((Addressable)symbol, _n, (java.lang.foreign.Addressable)_ids);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

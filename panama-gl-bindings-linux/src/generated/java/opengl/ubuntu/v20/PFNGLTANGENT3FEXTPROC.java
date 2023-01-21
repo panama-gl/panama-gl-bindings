@@ -2,22 +2,22 @@
 
 package opengl.ubuntu.v20;
 
-import jdk.incubator.foreign.Addressable;
-import jdk.incubator.foreign.MemoryAddress;
-import jdk.incubator.foreign.ResourceScope;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public interface PFNGLTANGENT3FEXTPROC {
 
-    void apply(float x0, float x1, float x2);
-    static MemoryAddress allocate(PFNGLTANGENT3FEXTPROC fi) {
-        return RuntimeHelper.upcallStub(PFNGLTANGENT3FEXTPROC.class, fi, constants$525.PFNGLTANGENT3FEXTPROC$FUNC, "(FFF)V");
+    void apply(float tx, float ty, float tz);
+    static MemorySegment allocate(PFNGLTANGENT3FEXTPROC fi, MemorySession session) {
+        return RuntimeHelper.upcallStub(PFNGLTANGENT3FEXTPROC.class, fi, constants$525.PFNGLTANGENT3FEXTPROC$FUNC, session);
     }
-    static MemoryAddress allocate(PFNGLTANGENT3FEXTPROC fi, ResourceScope scope) {
-        return RuntimeHelper.upcallStub(PFNGLTANGENT3FEXTPROC.class, fi, constants$525.PFNGLTANGENT3FEXTPROC$FUNC, "(FFF)V", scope);
-    }
-    static PFNGLTANGENT3FEXTPROC ofAddress(MemoryAddress addr) {
-        return (float x0, float x1, float x2) -> {
+    static PFNGLTANGENT3FEXTPROC ofAddress(MemoryAddress addr, MemorySession session) {
+        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
+        return (float _tx, float _ty, float _tz) -> {
             try {
-                constants$525.PFNGLTANGENT3FEXTPROC$MH.invokeExact((Addressable)addr, x0, x1, x2);
+                constants$525.PFNGLTANGENT3FEXTPROC$MH.invokeExact((Addressable)symbol, _tx, _ty, _tz);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

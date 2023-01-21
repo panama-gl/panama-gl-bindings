@@ -2,22 +2,22 @@
 
 package opengl.ubuntu.v20;
 
-import jdk.incubator.foreign.Addressable;
-import jdk.incubator.foreign.MemoryAddress;
-import jdk.incubator.foreign.ResourceScope;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public interface PFNGLNAMEDFRAMEBUFFERSAMPLEPOSITIONSFVAMDPROC {
 
-    void apply(int x0, int x1, int x2, jdk.incubator.foreign.MemoryAddress x3);
-    static MemoryAddress allocate(PFNGLNAMEDFRAMEBUFFERSAMPLEPOSITIONSFVAMDPROC fi) {
-        return RuntimeHelper.upcallStub(PFNGLNAMEDFRAMEBUFFERSAMPLEPOSITIONSFVAMDPROC.class, fi, constants$454.PFNGLNAMEDFRAMEBUFFERSAMPLEPOSITIONSFVAMDPROC$FUNC, "(IIILjdk/incubator/foreign/MemoryAddress;)V");
+    void apply(int framebuffer, int numsamples, int pixelindex, java.lang.foreign.MemoryAddress values);
+    static MemorySegment allocate(PFNGLNAMEDFRAMEBUFFERSAMPLEPOSITIONSFVAMDPROC fi, MemorySession session) {
+        return RuntimeHelper.upcallStub(PFNGLNAMEDFRAMEBUFFERSAMPLEPOSITIONSFVAMDPROC.class, fi, constants$454.PFNGLNAMEDFRAMEBUFFERSAMPLEPOSITIONSFVAMDPROC$FUNC, session);
     }
-    static MemoryAddress allocate(PFNGLNAMEDFRAMEBUFFERSAMPLEPOSITIONSFVAMDPROC fi, ResourceScope scope) {
-        return RuntimeHelper.upcallStub(PFNGLNAMEDFRAMEBUFFERSAMPLEPOSITIONSFVAMDPROC.class, fi, constants$454.PFNGLNAMEDFRAMEBUFFERSAMPLEPOSITIONSFVAMDPROC$FUNC, "(IIILjdk/incubator/foreign/MemoryAddress;)V", scope);
-    }
-    static PFNGLNAMEDFRAMEBUFFERSAMPLEPOSITIONSFVAMDPROC ofAddress(MemoryAddress addr) {
-        return (int x0, int x1, int x2, jdk.incubator.foreign.MemoryAddress x3) -> {
+    static PFNGLNAMEDFRAMEBUFFERSAMPLEPOSITIONSFVAMDPROC ofAddress(MemoryAddress addr, MemorySession session) {
+        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
+        return (int _framebuffer, int _numsamples, int _pixelindex, java.lang.foreign.MemoryAddress _values) -> {
             try {
-                constants$454.PFNGLNAMEDFRAMEBUFFERSAMPLEPOSITIONSFVAMDPROC$MH.invokeExact((Addressable)addr, x0, x1, x2, x3);
+                constants$454.PFNGLNAMEDFRAMEBUFFERSAMPLEPOSITIONSFVAMDPROC$MH.invokeExact((Addressable)symbol, _framebuffer, _numsamples, _pixelindex, (java.lang.foreign.Addressable)_values);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

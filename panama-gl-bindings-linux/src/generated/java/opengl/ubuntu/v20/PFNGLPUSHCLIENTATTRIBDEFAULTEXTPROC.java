@@ -2,22 +2,22 @@
 
 package opengl.ubuntu.v20;
 
-import jdk.incubator.foreign.Addressable;
-import jdk.incubator.foreign.MemoryAddress;
-import jdk.incubator.foreign.ResourceScope;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public interface PFNGLPUSHCLIENTATTRIBDEFAULTEXTPROC {
 
-    void apply(int x0);
-    static MemoryAddress allocate(PFNGLPUSHCLIENTATTRIBDEFAULTEXTPROC fi) {
-        return RuntimeHelper.upcallStub(PFNGLPUSHCLIENTATTRIBDEFAULTEXTPROC.class, fi, constants$541.PFNGLPUSHCLIENTATTRIBDEFAULTEXTPROC$FUNC, "(I)V");
+    void apply(int mask);
+    static MemorySegment allocate(PFNGLPUSHCLIENTATTRIBDEFAULTEXTPROC fi, MemorySession session) {
+        return RuntimeHelper.upcallStub(PFNGLPUSHCLIENTATTRIBDEFAULTEXTPROC.class, fi, constants$541.PFNGLPUSHCLIENTATTRIBDEFAULTEXTPROC$FUNC, session);
     }
-    static MemoryAddress allocate(PFNGLPUSHCLIENTATTRIBDEFAULTEXTPROC fi, ResourceScope scope) {
-        return RuntimeHelper.upcallStub(PFNGLPUSHCLIENTATTRIBDEFAULTEXTPROC.class, fi, constants$541.PFNGLPUSHCLIENTATTRIBDEFAULTEXTPROC$FUNC, "(I)V", scope);
-    }
-    static PFNGLPUSHCLIENTATTRIBDEFAULTEXTPROC ofAddress(MemoryAddress addr) {
-        return (int x0) -> {
+    static PFNGLPUSHCLIENTATTRIBDEFAULTEXTPROC ofAddress(MemoryAddress addr, MemorySession session) {
+        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
+        return (int _mask) -> {
             try {
-                constants$541.PFNGLPUSHCLIENTATTRIBDEFAULTEXTPROC$MH.invokeExact((Addressable)addr, x0);
+                constants$541.PFNGLPUSHCLIENTATTRIBDEFAULTEXTPROC$MH.invokeExact((Addressable)symbol, _mask);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

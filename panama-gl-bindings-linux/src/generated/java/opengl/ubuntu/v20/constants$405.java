@@ -2,32 +2,30 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_POINTER;
-import static jdk.incubator.foreign.CLinker.C_SHORT;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$405 {
 
     static final FunctionDescriptor PFNGLWINDOWPOS3SARBPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_SHORT,
-        C_SHORT,
-        C_SHORT
+        Constants$root.C_SHORT$LAYOUT,
+        Constants$root.C_SHORT$LAYOUT,
+        Constants$root.C_SHORT$LAYOUT
     );
     static final MethodHandle PFNGLWINDOWPOS3SARBPROC$MH = RuntimeHelper.downcallHandle(
-        "(SSS)V",
-        constants$405.PFNGLWINDOWPOS3SARBPROC$FUNC, false
+        constants$405.PFNGLWINDOWPOS3SARBPROC$FUNC
     );
     static final FunctionDescriptor PFNGLWINDOWPOS3SVARBPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_POINTER
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLWINDOWPOS3SVARBPROC$MH = RuntimeHelper.downcallHandle(
-        "(Ljdk/incubator/foreign/MemoryAddress;)V",
-        constants$405.PFNGLWINDOWPOS3SVARBPROC$FUNC, false
+        constants$405.PFNGLWINDOWPOS3SVARBPROC$FUNC
     );
     static final FunctionDescriptor PFNGLBLENDBARRIERKHRPROC$FUNC = FunctionDescriptor.ofVoid();
     static final MethodHandle PFNGLBLENDBARRIERKHRPROC$MH = RuntimeHelper.downcallHandle(
-        "()V",
-        constants$405.PFNGLBLENDBARRIERKHRPROC$FUNC, false
+        constants$405.PFNGLBLENDBARRIERKHRPROC$FUNC
     );
 }
 

@@ -2,44 +2,41 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_FLOAT;
-import static jdk.incubator.foreign.CLinker.C_INT;
-import static jdk.incubator.foreign.CLinker.C_POINTER;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$233 {
 
     static final FunctionDescriptor PFNGLPROGRAMUNIFORM4IVPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLPROGRAMUNIFORM4IVPROC$MH = RuntimeHelper.downcallHandle(
-        "(IIILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$233.PFNGLPROGRAMUNIFORM4IVPROC$FUNC, false
+        constants$233.PFNGLPROGRAMUNIFORM4IVPROC$FUNC
     );
     static final FunctionDescriptor PFNGLPROGRAMUNIFORM4FPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_FLOAT,
-        C_FLOAT,
-        C_FLOAT,
-        C_FLOAT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT
     );
     static final MethodHandle PFNGLPROGRAMUNIFORM4FPROC$MH = RuntimeHelper.downcallHandle(
-        "(IIFFFF)V",
-        constants$233.PFNGLPROGRAMUNIFORM4FPROC$FUNC, false
+        constants$233.PFNGLPROGRAMUNIFORM4FPROC$FUNC
     );
     static final FunctionDescriptor PFNGLPROGRAMUNIFORM4FVPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLPROGRAMUNIFORM4FVPROC$MH = RuntimeHelper.downcallHandle(
-        "(IIILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$233.PFNGLPROGRAMUNIFORM4FVPROC$FUNC, false
+        constants$233.PFNGLPROGRAMUNIFORM4FVPROC$FUNC
     );
 }
 

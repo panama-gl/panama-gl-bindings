@@ -2,40 +2,37 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_CHAR;
-import static jdk.incubator.foreign.CLinker.C_INT;
-import static jdk.incubator.foreign.CLinker.C_POINTER;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$637 {
 
     static final FunctionDescriptor PFNGLGETMINMAXPARAMETERFVEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLGETMINMAXPARAMETERFVEXTPROC$MH = RuntimeHelper.downcallHandle(
-        "(IILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$637.PFNGLGETMINMAXPARAMETERFVEXTPROC$FUNC, false
+        constants$637.PFNGLGETMINMAXPARAMETERFVEXTPROC$FUNC
     );
     static final FunctionDescriptor PFNGLGETMINMAXPARAMETERIVEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLGETMINMAXPARAMETERIVEXTPROC$MH = RuntimeHelper.downcallHandle(
-        "(IILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$637.PFNGLGETMINMAXPARAMETERIVEXTPROC$FUNC, false
+        constants$637.PFNGLGETMINMAXPARAMETERIVEXTPROC$FUNC
     );
     static final FunctionDescriptor PFNGLHISTOGRAMEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_INT,
-        C_CHAR
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_CHAR$LAYOUT
     );
     static final MethodHandle PFNGLHISTOGRAMEXTPROC$MH = RuntimeHelper.downcallHandle(
-        "(IIIB)V",
-        constants$637.PFNGLHISTOGRAMEXTPROC$FUNC, false
+        constants$637.PFNGLHISTOGRAMEXTPROC$FUNC
     );
 }
 

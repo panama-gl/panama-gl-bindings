@@ -2,22 +2,22 @@
 
 package opengl.ubuntu.v20;
 
-import jdk.incubator.foreign.Addressable;
-import jdk.incubator.foreign.MemoryAddress;
-import jdk.incubator.foreign.ResourceScope;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public interface PFNGLMULTITEXPARAMETERIEXTPROC {
 
-    void apply(int x0, int x1, int x2, int x3);
-    static MemoryAddress allocate(PFNGLMULTITEXPARAMETERIEXTPROC fi) {
-        return RuntimeHelper.upcallStub(PFNGLMULTITEXPARAMETERIEXTPROC.class, fi, constants$554.PFNGLMULTITEXPARAMETERIEXTPROC$FUNC, "(IIII)V");
+    void apply(int texunit, int target, int pname, int param);
+    static MemorySegment allocate(PFNGLMULTITEXPARAMETERIEXTPROC fi, MemorySession session) {
+        return RuntimeHelper.upcallStub(PFNGLMULTITEXPARAMETERIEXTPROC.class, fi, constants$554.PFNGLMULTITEXPARAMETERIEXTPROC$FUNC, session);
     }
-    static MemoryAddress allocate(PFNGLMULTITEXPARAMETERIEXTPROC fi, ResourceScope scope) {
-        return RuntimeHelper.upcallStub(PFNGLMULTITEXPARAMETERIEXTPROC.class, fi, constants$554.PFNGLMULTITEXPARAMETERIEXTPROC$FUNC, "(IIII)V", scope);
-    }
-    static PFNGLMULTITEXPARAMETERIEXTPROC ofAddress(MemoryAddress addr) {
-        return (int x0, int x1, int x2, int x3) -> {
+    static PFNGLMULTITEXPARAMETERIEXTPROC ofAddress(MemoryAddress addr, MemorySession session) {
+        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
+        return (int _texunit, int _target, int _pname, int _param) -> {
             try {
-                constants$554.PFNGLMULTITEXPARAMETERIEXTPROC$MH.invokeExact((Addressable)addr, x0, x1, x2, x3);
+                constants$554.PFNGLMULTITEXPARAMETERIEXTPROC$MH.invokeExact((Addressable)symbol, _texunit, _target, _pname, _param);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

@@ -2,22 +2,22 @@
 
 package opengl.ubuntu.v20;
 
-import jdk.incubator.foreign.Addressable;
-import jdk.incubator.foreign.MemoryAddress;
-import jdk.incubator.foreign.ResourceScope;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public interface PFNGLBINDTEXTUREUNITPARAMETEREXTPROC {
 
-    int apply(int x0, int x1);
-    static MemoryAddress allocate(PFNGLBINDTEXTUREUNITPARAMETEREXTPROC fi) {
-        return RuntimeHelper.upcallStub(PFNGLBINDTEXTUREUNITPARAMETEREXTPROC.class, fi, constants$691.PFNGLBINDTEXTUREUNITPARAMETEREXTPROC$FUNC, "(II)I");
+    int apply(int unit, int value);
+    static MemorySegment allocate(PFNGLBINDTEXTUREUNITPARAMETEREXTPROC fi, MemorySession session) {
+        return RuntimeHelper.upcallStub(PFNGLBINDTEXTUREUNITPARAMETEREXTPROC.class, fi, constants$691.PFNGLBINDTEXTUREUNITPARAMETEREXTPROC$FUNC, session);
     }
-    static MemoryAddress allocate(PFNGLBINDTEXTUREUNITPARAMETEREXTPROC fi, ResourceScope scope) {
-        return RuntimeHelper.upcallStub(PFNGLBINDTEXTUREUNITPARAMETEREXTPROC.class, fi, constants$691.PFNGLBINDTEXTUREUNITPARAMETEREXTPROC$FUNC, "(II)I", scope);
-    }
-    static PFNGLBINDTEXTUREUNITPARAMETEREXTPROC ofAddress(MemoryAddress addr) {
-        return (int x0, int x1) -> {
+    static PFNGLBINDTEXTUREUNITPARAMETEREXTPROC ofAddress(MemoryAddress addr, MemorySession session) {
+        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
+        return (int _unit, int _value) -> {
             try {
-                return (int)constants$691.PFNGLBINDTEXTUREUNITPARAMETEREXTPROC$MH.invokeExact((Addressable)addr, x0, x1);
+                return (int)constants$691.PFNGLBINDTEXTUREUNITPARAMETEREXTPROC$MH.invokeExact((Addressable)symbol, _unit, _value);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

@@ -2,45 +2,42 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_INT;
-import static jdk.incubator.foreign.CLinker.C_POINTER;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$958 {
 
     static final FunctionDescriptor glutWindowStatusFunc$FUNC = FunctionDescriptor.ofVoid(
-        C_POINTER
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle glutWindowStatusFunc$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "glutWindowStatusFunc",
-        "(Ljdk/incubator/foreign/MemoryAddress;)V",
-        constants$958.glutWindowStatusFunc$FUNC, false
+        "glutWindowStatusFunc",
+        constants$958.glutWindowStatusFunc$FUNC
     );
     static final FunctionDescriptor glutSpaceballMotionFunc$callback$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_INT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle glutSpaceballMotionFunc$callback$MH = RuntimeHelper.downcallHandle(
-        "(III)V",
-        constants$958.glutSpaceballMotionFunc$callback$FUNC, false
+        constants$958.glutSpaceballMotionFunc$callback$FUNC
     );
     static final FunctionDescriptor glutSpaceballMotionFunc$FUNC = FunctionDescriptor.ofVoid(
-        C_POINTER
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle glutSpaceballMotionFunc$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "glutSpaceballMotionFunc",
-        "(Ljdk/incubator/foreign/MemoryAddress;)V",
-        constants$958.glutSpaceballMotionFunc$FUNC, false
+        "glutSpaceballMotionFunc",
+        constants$958.glutSpaceballMotionFunc$FUNC
     );
     static final FunctionDescriptor glutSpaceballRotateFunc$callback$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_INT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle glutSpaceballRotateFunc$callback$MH = RuntimeHelper.downcallHandle(
-        "(III)V",
-        constants$958.glutSpaceballRotateFunc$callback$FUNC, false
+        constants$958.glutSpaceballRotateFunc$callback$FUNC
     );
 }
 

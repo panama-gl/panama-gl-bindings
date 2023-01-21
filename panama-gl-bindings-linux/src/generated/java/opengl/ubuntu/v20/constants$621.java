@@ -2,44 +2,41 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_CHAR;
-import static jdk.incubator.foreign.CLinker.C_INT;
-import static jdk.incubator.foreign.CLinker.C_POINTER;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$621 {
 
     static final FunctionDescriptor PFNGLCOLORMASKINDEXEDEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_CHAR,
-        C_CHAR,
-        C_CHAR,
-        C_CHAR
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_CHAR$LAYOUT,
+        Constants$root.C_CHAR$LAYOUT,
+        Constants$root.C_CHAR$LAYOUT,
+        Constants$root.C_CHAR$LAYOUT
     );
     static final MethodHandle PFNGLCOLORMASKINDEXEDEXTPROC$MH = RuntimeHelper.downcallHandle(
-        "(IBBBB)V",
-        constants$621.PFNGLCOLORMASKINDEXEDEXTPROC$FUNC, false
+        constants$621.PFNGLCOLORMASKINDEXEDEXTPROC$FUNC
     );
     static final FunctionDescriptor PFNGLDRAWARRAYSINSTANCEDEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLDRAWARRAYSINSTANCEDEXTPROC$MH = RuntimeHelper.downcallHandle(
-        "(IIII)V",
-        constants$621.PFNGLDRAWARRAYSINSTANCEDEXTPROC$FUNC, false
+        constants$621.PFNGLDRAWARRAYSINSTANCEDEXTPROC$FUNC
     );
     static final FunctionDescriptor PFNGLDRAWELEMENTSINSTANCEDEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_INT,
-        C_POINTER,
-        C_INT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLDRAWELEMENTSINSTANCEDEXTPROC$MH = RuntimeHelper.downcallHandle(
-        "(IIILjdk/incubator/foreign/MemoryAddress;I)V",
-        constants$621.PFNGLDRAWELEMENTSINSTANCEDEXTPROC$FUNC, false
+        constants$621.PFNGLDRAWELEMENTSINSTANCEDEXTPROC$FUNC
     );
 }
 

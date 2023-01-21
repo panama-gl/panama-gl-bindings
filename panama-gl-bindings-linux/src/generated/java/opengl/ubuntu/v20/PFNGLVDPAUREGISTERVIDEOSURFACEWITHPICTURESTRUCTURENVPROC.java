@@ -2,22 +2,22 @@
 
 package opengl.ubuntu.v20;
 
-import jdk.incubator.foreign.Addressable;
-import jdk.incubator.foreign.MemoryAddress;
-import jdk.incubator.foreign.ResourceScope;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public interface PFNGLVDPAUREGISTERVIDEOSURFACEWITHPICTURESTRUCTURENVPROC {
 
-    long apply(jdk.incubator.foreign.MemoryAddress x0, int x1, int x2, jdk.incubator.foreign.MemoryAddress x3, byte x4);
-    static MemoryAddress allocate(PFNGLVDPAUREGISTERVIDEOSURFACEWITHPICTURESTRUCTURENVPROC fi) {
-        return RuntimeHelper.upcallStub(PFNGLVDPAUREGISTERVIDEOSURFACEWITHPICTURESTRUCTURENVPROC.class, fi, constants$838.PFNGLVDPAUREGISTERVIDEOSURFACEWITHPICTURESTRUCTURENVPROC$FUNC, "(Ljdk/incubator/foreign/MemoryAddress;IILjdk/incubator/foreign/MemoryAddress;B)J");
+    long apply(java.lang.foreign.MemoryAddress vdpSurface, int target, int numTextureNames, java.lang.foreign.MemoryAddress textureNames, byte isFrameStructure);
+    static MemorySegment allocate(PFNGLVDPAUREGISTERVIDEOSURFACEWITHPICTURESTRUCTURENVPROC fi, MemorySession session) {
+        return RuntimeHelper.upcallStub(PFNGLVDPAUREGISTERVIDEOSURFACEWITHPICTURESTRUCTURENVPROC.class, fi, constants$838.PFNGLVDPAUREGISTERVIDEOSURFACEWITHPICTURESTRUCTURENVPROC$FUNC, session);
     }
-    static MemoryAddress allocate(PFNGLVDPAUREGISTERVIDEOSURFACEWITHPICTURESTRUCTURENVPROC fi, ResourceScope scope) {
-        return RuntimeHelper.upcallStub(PFNGLVDPAUREGISTERVIDEOSURFACEWITHPICTURESTRUCTURENVPROC.class, fi, constants$838.PFNGLVDPAUREGISTERVIDEOSURFACEWITHPICTURESTRUCTURENVPROC$FUNC, "(Ljdk/incubator/foreign/MemoryAddress;IILjdk/incubator/foreign/MemoryAddress;B)J", scope);
-    }
-    static PFNGLVDPAUREGISTERVIDEOSURFACEWITHPICTURESTRUCTURENVPROC ofAddress(MemoryAddress addr) {
-        return (jdk.incubator.foreign.MemoryAddress x0, int x1, int x2, jdk.incubator.foreign.MemoryAddress x3, byte x4) -> {
+    static PFNGLVDPAUREGISTERVIDEOSURFACEWITHPICTURESTRUCTURENVPROC ofAddress(MemoryAddress addr, MemorySession session) {
+        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
+        return (java.lang.foreign.MemoryAddress _vdpSurface, int _target, int _numTextureNames, java.lang.foreign.MemoryAddress _textureNames, byte _isFrameStructure) -> {
             try {
-                return (long)constants$838.PFNGLVDPAUREGISTERVIDEOSURFACEWITHPICTURESTRUCTURENVPROC$MH.invokeExact((Addressable)addr, x0, x1, x2, x3, x4);
+                return (long)constants$838.PFNGLVDPAUREGISTERVIDEOSURFACEWITHPICTURESTRUCTURENVPROC$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)_vdpSurface, _target, _numTextureNames, (java.lang.foreign.Addressable)_textureNames, _isFrameStructure);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

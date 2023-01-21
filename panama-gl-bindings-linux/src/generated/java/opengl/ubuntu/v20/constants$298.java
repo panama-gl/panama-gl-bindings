@@ -2,43 +2,41 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_CHAR;
-import static jdk.incubator.foreign.CLinker.C_INT;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$298 {
 
     static final FunctionDescriptor PFNGLVERTEXARRAYATTRIBBINDINGPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_INT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLVERTEXARRAYATTRIBBINDINGPROC$MH = RuntimeHelper.downcallHandle(
-        "(III)V",
-        constants$298.PFNGLVERTEXARRAYATTRIBBINDINGPROC$FUNC, false
+        constants$298.PFNGLVERTEXARRAYATTRIBBINDINGPROC$FUNC
     );
     static final FunctionDescriptor PFNGLVERTEXARRAYATTRIBFORMATPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_CHAR,
-        C_INT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_CHAR$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLVERTEXARRAYATTRIBFORMATPROC$MH = RuntimeHelper.downcallHandle(
-        "(IIIIBI)V",
-        constants$298.PFNGLVERTEXARRAYATTRIBFORMATPROC$FUNC, false
+        constants$298.PFNGLVERTEXARRAYATTRIBFORMATPROC$FUNC
     );
     static final FunctionDescriptor PFNGLVERTEXARRAYATTRIBIFORMATPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLVERTEXARRAYATTRIBIFORMATPROC$MH = RuntimeHelper.downcallHandle(
-        "(IIIII)V",
-        constants$298.PFNGLVERTEXARRAYATTRIBIFORMATPROC$FUNC, false
+        constants$298.PFNGLVERTEXARRAYATTRIBIFORMATPROC$FUNC
     );
 }
 

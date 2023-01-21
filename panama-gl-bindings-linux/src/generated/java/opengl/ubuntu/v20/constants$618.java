@@ -2,46 +2,43 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_CHAR;
-import static jdk.incubator.foreign.CLinker.C_INT;
-import static jdk.incubator.foreign.CLinker.C_LONG;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$618 {
 
     static final FunctionDescriptor PFNGLVERTEXARRAYBINDVERTEXBUFFEREXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_INT,
-        C_LONG,
-        C_INT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLVERTEXARRAYBINDVERTEXBUFFEREXTPROC$MH = RuntimeHelper.downcallHandle(
-        "(IIIJI)V",
-        constants$618.PFNGLVERTEXARRAYBINDVERTEXBUFFEREXTPROC$FUNC, false
+        constants$618.PFNGLVERTEXARRAYBINDVERTEXBUFFEREXTPROC$FUNC
     );
     static final FunctionDescriptor PFNGLVERTEXARRAYVERTEXATTRIBFORMATEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_CHAR,
-        C_INT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_CHAR$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLVERTEXARRAYVERTEXATTRIBFORMATEXTPROC$MH = RuntimeHelper.downcallHandle(
-        "(IIIIBI)V",
-        constants$618.PFNGLVERTEXARRAYVERTEXATTRIBFORMATEXTPROC$FUNC, false
+        constants$618.PFNGLVERTEXARRAYVERTEXATTRIBFORMATEXTPROC$FUNC
     );
     static final FunctionDescriptor PFNGLVERTEXARRAYVERTEXATTRIBIFORMATEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLVERTEXARRAYVERTEXATTRIBIFORMATEXTPROC$MH = RuntimeHelper.downcallHandle(
-        "(IIIII)V",
-        constants$618.PFNGLVERTEXARRAYVERTEXATTRIBIFORMATEXTPROC$FUNC, false
+        constants$618.PFNGLVERTEXARRAYVERTEXATTRIBIFORMATEXTPROC$FUNC
     );
 }
 

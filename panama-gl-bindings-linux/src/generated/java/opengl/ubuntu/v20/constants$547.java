@@ -2,57 +2,55 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_INT;
-import static jdk.incubator.foreign.CLinker.C_POINTER;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$547 {
 
     static final FunctionDescriptor PFNGLGETTEXTURELEVELPARAMETERIVEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLGETTEXTURELEVELPARAMETERIVEXTPROC$MH = RuntimeHelper.downcallHandle(
-        "(IIIILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$547.PFNGLGETTEXTURELEVELPARAMETERIVEXTPROC$FUNC, false
+        constants$547.PFNGLGETTEXTURELEVELPARAMETERIVEXTPROC$FUNC
     );
     static final FunctionDescriptor PFNGLTEXTUREIMAGE3DEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLTEXTUREIMAGE3DEXTPROC$MH = RuntimeHelper.downcallHandle(
-        "(IIIIIIIIIILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$547.PFNGLTEXTUREIMAGE3DEXTPROC$FUNC, false
+        constants$547.PFNGLTEXTUREIMAGE3DEXTPROC$FUNC
     );
     static final FunctionDescriptor PFNGLTEXTURESUBIMAGE3DEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLTEXTURESUBIMAGE3DEXTPROC$MH = RuntimeHelper.downcallHandle(
-        "(IIIIIIIIIIILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$547.PFNGLTEXTURESUBIMAGE3DEXTPROC$FUNC, false
+        constants$547.PFNGLTEXTURESUBIMAGE3DEXTPROC$FUNC
     );
 }
 

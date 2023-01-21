@@ -2,77 +2,72 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_INT;
-import static jdk.incubator.foreign.CLinker.C_POINTER;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$62 {
 
     static final FunctionDescriptor glConvolutionParameterfv$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle glConvolutionParameterfv$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "glConvolutionParameterfv",
-        "(IILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$62.glConvolutionParameterfv$FUNC, false
+        "glConvolutionParameterfv",
+        constants$62.glConvolutionParameterfv$FUNC
     );
     static final FunctionDescriptor glConvolutionParameteri$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_INT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle glConvolutionParameteri$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "glConvolutionParameteri",
-        "(III)V",
-        constants$62.glConvolutionParameteri$FUNC, false
+        "glConvolutionParameteri",
+        constants$62.glConvolutionParameteri$FUNC
     );
     static final FunctionDescriptor glConvolutionParameteriv$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle glConvolutionParameteriv$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "glConvolutionParameteriv",
-        "(IILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$62.glConvolutionParameteriv$FUNC, false
+        "glConvolutionParameteriv",
+        constants$62.glConvolutionParameteriv$FUNC
     );
     static final FunctionDescriptor glCopyConvolutionFilter1D$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle glCopyConvolutionFilter1D$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "glCopyConvolutionFilter1D",
-        "(IIIII)V",
-        constants$62.glCopyConvolutionFilter1D$FUNC, false
+        "glCopyConvolutionFilter1D",
+        constants$62.glCopyConvolutionFilter1D$FUNC
     );
     static final FunctionDescriptor glCopyConvolutionFilter2D$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle glCopyConvolutionFilter2D$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "glCopyConvolutionFilter2D",
-        "(IIIIII)V",
-        constants$62.glCopyConvolutionFilter2D$FUNC, false
+        "glCopyConvolutionFilter2D",
+        constants$62.glCopyConvolutionFilter2D$FUNC
     );
     static final FunctionDescriptor glGetConvolutionFilter$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle glGetConvolutionFilter$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "glGetConvolutionFilter",
-        "(IIILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$62.glGetConvolutionFilter$FUNC, false
+        "glGetConvolutionFilter",
+        constants$62.glGetConvolutionFilter$FUNC
     );
 }
 

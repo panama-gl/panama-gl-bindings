@@ -2,22 +2,22 @@
 
 package opengl.ubuntu.v20;
 
-import jdk.incubator.foreign.Addressable;
-import jdk.incubator.foreign.MemoryAddress;
-import jdk.incubator.foreign.ResourceScope;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public interface PFNGLGETSHADERPRECISIONFORMATPROC {
 
-    void apply(int x0, int x1, jdk.incubator.foreign.MemoryAddress x2, jdk.incubator.foreign.MemoryAddress x3);
-    static MemoryAddress allocate(PFNGLGETSHADERPRECISIONFORMATPROC fi) {
-        return RuntimeHelper.upcallStub(PFNGLGETSHADERPRECISIONFORMATPROC.class, fi, constants$220.PFNGLGETSHADERPRECISIONFORMATPROC$FUNC, "(IILjdk/incubator/foreign/MemoryAddress;Ljdk/incubator/foreign/MemoryAddress;)V");
+    void apply(int shadertype, int precisiontype, java.lang.foreign.MemoryAddress range, java.lang.foreign.MemoryAddress precision);
+    static MemorySegment allocate(PFNGLGETSHADERPRECISIONFORMATPROC fi, MemorySession session) {
+        return RuntimeHelper.upcallStub(PFNGLGETSHADERPRECISIONFORMATPROC.class, fi, constants$220.PFNGLGETSHADERPRECISIONFORMATPROC$FUNC, session);
     }
-    static MemoryAddress allocate(PFNGLGETSHADERPRECISIONFORMATPROC fi, ResourceScope scope) {
-        return RuntimeHelper.upcallStub(PFNGLGETSHADERPRECISIONFORMATPROC.class, fi, constants$220.PFNGLGETSHADERPRECISIONFORMATPROC$FUNC, "(IILjdk/incubator/foreign/MemoryAddress;Ljdk/incubator/foreign/MemoryAddress;)V", scope);
-    }
-    static PFNGLGETSHADERPRECISIONFORMATPROC ofAddress(MemoryAddress addr) {
-        return (int x0, int x1, jdk.incubator.foreign.MemoryAddress x2, jdk.incubator.foreign.MemoryAddress x3) -> {
+    static PFNGLGETSHADERPRECISIONFORMATPROC ofAddress(MemoryAddress addr, MemorySession session) {
+        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
+        return (int _shadertype, int _precisiontype, java.lang.foreign.MemoryAddress _range, java.lang.foreign.MemoryAddress _precision) -> {
             try {
-                constants$220.PFNGLGETSHADERPRECISIONFORMATPROC$MH.invokeExact((Addressable)addr, x0, x1, x2, x3);
+                constants$220.PFNGLGETSHADERPRECISIONFORMATPROC$MH.invokeExact((Addressable)symbol, _shadertype, _precisiontype, (java.lang.foreign.Addressable)_range, (java.lang.foreign.Addressable)_precision);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

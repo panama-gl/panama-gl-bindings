@@ -2,22 +2,22 @@
 
 package opengl.ubuntu.v20;
 
-import jdk.incubator.foreign.Addressable;
-import jdk.incubator.foreign.MemoryAddress;
-import jdk.incubator.foreign.ResourceScope;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public interface PFNGLVERTEXSTREAM2DATIPROC {
 
-    void apply(int x0, double x1, double x2);
-    static MemoryAddress allocate(PFNGLVERTEXSTREAM2DATIPROC fi) {
-        return RuntimeHelper.upcallStub(PFNGLVERTEXSTREAM2DATIPROC.class, fi, constants$505.PFNGLVERTEXSTREAM2DATIPROC$FUNC, "(IDD)V");
+    void apply(int stream, double x, double y);
+    static MemorySegment allocate(PFNGLVERTEXSTREAM2DATIPROC fi, MemorySession session) {
+        return RuntimeHelper.upcallStub(PFNGLVERTEXSTREAM2DATIPROC.class, fi, constants$505.PFNGLVERTEXSTREAM2DATIPROC$FUNC, session);
     }
-    static MemoryAddress allocate(PFNGLVERTEXSTREAM2DATIPROC fi, ResourceScope scope) {
-        return RuntimeHelper.upcallStub(PFNGLVERTEXSTREAM2DATIPROC.class, fi, constants$505.PFNGLVERTEXSTREAM2DATIPROC$FUNC, "(IDD)V", scope);
-    }
-    static PFNGLVERTEXSTREAM2DATIPROC ofAddress(MemoryAddress addr) {
-        return (int x0, double x1, double x2) -> {
+    static PFNGLVERTEXSTREAM2DATIPROC ofAddress(MemoryAddress addr, MemorySession session) {
+        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
+        return (int _stream, double _x, double _y) -> {
             try {
-                constants$505.PFNGLVERTEXSTREAM2DATIPROC$MH.invokeExact((Addressable)addr, x0, x1, x2);
+                constants$505.PFNGLVERTEXSTREAM2DATIPROC$MH.invokeExact((Addressable)symbol, _stream, _x, _y);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

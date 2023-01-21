@@ -2,70 +2,63 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_INT;
-import static jdk.incubator.foreign.CLinker.C_LONG;
-import static jdk.incubator.foreign.CLinker.C_POINTER;
-import static jdk.incubator.foreign.CLinker.C_SHORT;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$972 {
 
-    static final FunctionDescriptor __bswap_64$FUNC = FunctionDescriptor.of(C_LONG,
-        C_LONG
+    static final FunctionDescriptor __bswap_64$FUNC = FunctionDescriptor.of(Constants$root.C_LONG_LONG$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT
     );
     static final MethodHandle __bswap_64$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "__bswap_64",
-        "(J)J",
-        constants$972.__bswap_64$FUNC, false
+        "__bswap_64",
+        constants$972.__bswap_64$FUNC
     );
-    static final FunctionDescriptor __uint16_identity$FUNC = FunctionDescriptor.of(C_SHORT,
-        C_SHORT
+    static final FunctionDescriptor __uint16_identity$FUNC = FunctionDescriptor.of(Constants$root.C_SHORT$LAYOUT,
+        Constants$root.C_SHORT$LAYOUT
     );
     static final MethodHandle __uint16_identity$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "__uint16_identity",
-        "(S)S",
-        constants$972.__uint16_identity$FUNC, false
+        "__uint16_identity",
+        constants$972.__uint16_identity$FUNC
     );
-    static final FunctionDescriptor __uint32_identity$FUNC = FunctionDescriptor.of(C_INT,
-        C_INT
+    static final FunctionDescriptor __uint32_identity$FUNC = FunctionDescriptor.of(Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle __uint32_identity$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "__uint32_identity",
-        "(I)I",
-        constants$972.__uint32_identity$FUNC, false
+        "__uint32_identity",
+        constants$972.__uint32_identity$FUNC
     );
-    static final FunctionDescriptor __uint64_identity$FUNC = FunctionDescriptor.of(C_LONG,
-        C_LONG
+    static final FunctionDescriptor __uint64_identity$FUNC = FunctionDescriptor.of(Constants$root.C_LONG_LONG$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT
     );
     static final MethodHandle __uint64_identity$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "__uint64_identity",
-        "(J)J",
-        constants$972.__uint64_identity$FUNC, false
+        "__uint64_identity",
+        constants$972.__uint64_identity$FUNC
     );
-    static final FunctionDescriptor select$FUNC = FunctionDescriptor.of(C_INT,
-        C_INT,
-        C_POINTER,
-        C_POINTER,
-        C_POINTER,
-        C_POINTER
+    static final FunctionDescriptor select$FUNC = FunctionDescriptor.of(Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle select$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "select",
-        "(ILjdk/incubator/foreign/MemoryAddress;Ljdk/incubator/foreign/MemoryAddress;Ljdk/incubator/foreign/MemoryAddress;Ljdk/incubator/foreign/MemoryAddress;)I",
-        constants$972.select$FUNC, false
+        "select",
+        constants$972.select$FUNC
     );
-    static final FunctionDescriptor pselect$FUNC = FunctionDescriptor.of(C_INT,
-        C_INT,
-        C_POINTER,
-        C_POINTER,
-        C_POINTER,
-        C_POINTER,
-        C_POINTER
+    static final FunctionDescriptor pselect$FUNC = FunctionDescriptor.of(Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle pselect$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "pselect",
-        "(ILjdk/incubator/foreign/MemoryAddress;Ljdk/incubator/foreign/MemoryAddress;Ljdk/incubator/foreign/MemoryAddress;Ljdk/incubator/foreign/MemoryAddress;Ljdk/incubator/foreign/MemoryAddress;)I",
-        constants$972.pselect$FUNC, false
+        "pselect",
+        constants$972.pselect$FUNC
     );
 }
 

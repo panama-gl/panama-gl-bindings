@@ -2,41 +2,39 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_INT;
-import static jdk.incubator.foreign.CLinker.C_POINTER;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$675 {
 
     static final FunctionDescriptor PFNGLTRANSFORMFEEDBACKVARYINGSEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_POINTER,
-        C_INT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLTRANSFORMFEEDBACKVARYINGSEXTPROC$MH = RuntimeHelper.downcallHandle(
-        "(IILjdk/incubator/foreign/MemoryAddress;I)V",
-        constants$675.PFNGLTRANSFORMFEEDBACKVARYINGSEXTPROC$FUNC, false
+        constants$675.PFNGLTRANSFORMFEEDBACKVARYINGSEXTPROC$FUNC
     );
     static final FunctionDescriptor PFNGLGETTRANSFORMFEEDBACKVARYINGEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_INT,
-        C_POINTER,
-        C_POINTER,
-        C_POINTER,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLGETTRANSFORMFEEDBACKVARYINGEXTPROC$MH = RuntimeHelper.downcallHandle(
-        "(IIILjdk/incubator/foreign/MemoryAddress;Ljdk/incubator/foreign/MemoryAddress;Ljdk/incubator/foreign/MemoryAddress;Ljdk/incubator/foreign/MemoryAddress;)V",
-        constants$675.PFNGLGETTRANSFORMFEEDBACKVARYINGEXTPROC$FUNC, false
+        constants$675.PFNGLGETTRANSFORMFEEDBACKVARYINGEXTPROC$FUNC
     );
     static final FunctionDescriptor PFNGLARRAYELEMENTEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLARRAYELEMENTEXTPROC$MH = RuntimeHelper.downcallHandle(
-        "(I)V",
-        constants$675.PFNGLARRAYELEMENTEXTPROC$FUNC, false
+        constants$675.PFNGLARRAYELEMENTEXTPROC$FUNC
     );
 }
 

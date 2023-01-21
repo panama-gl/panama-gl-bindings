@@ -2,77 +2,71 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_FLOAT;
-import static jdk.incubator.foreign.CLinker.C_INT;
-import static jdk.incubator.foreign.CLinker.C_POINTER;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$42 {
 
     static final FunctionDescriptor glPixelMapusv$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle glPixelMapusv$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "glPixelMapusv",
-        "(IILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$42.glPixelMapusv$FUNC, false
+        "glPixelMapusv",
+        constants$42.glPixelMapusv$FUNC
     );
     static final FunctionDescriptor glGetPixelMapfv$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle glGetPixelMapfv$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "glGetPixelMapfv",
-        "(ILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$42.glGetPixelMapfv$FUNC, false
+        "glGetPixelMapfv",
+        constants$42.glGetPixelMapfv$FUNC
     );
     static final FunctionDescriptor glGetPixelMapuiv$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle glGetPixelMapuiv$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "glGetPixelMapuiv",
-        "(ILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$42.glGetPixelMapuiv$FUNC, false
+        "glGetPixelMapuiv",
+        constants$42.glGetPixelMapuiv$FUNC
     );
     static final FunctionDescriptor glGetPixelMapusv$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle glGetPixelMapusv$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "glGetPixelMapusv",
-        "(ILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$42.glGetPixelMapusv$FUNC, false
+        "glGetPixelMapusv",
+        constants$42.glGetPixelMapusv$FUNC
     );
     static final FunctionDescriptor glBitmap$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_FLOAT,
-        C_FLOAT,
-        C_FLOAT,
-        C_FLOAT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle glBitmap$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "glBitmap",
-        "(IIFFFFLjdk/incubator/foreign/MemoryAddress;)V",
-        constants$42.glBitmap$FUNC, false
+        "glBitmap",
+        constants$42.glBitmap$FUNC
     );
     static final FunctionDescriptor glReadPixels$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle glReadPixels$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "glReadPixels",
-        "(IIIIIILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$42.glReadPixels$FUNC, false
+        "glReadPixels",
+        constants$42.glReadPixels$FUNC
     );
 }
 

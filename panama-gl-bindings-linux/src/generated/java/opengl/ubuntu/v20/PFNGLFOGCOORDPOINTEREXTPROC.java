@@ -2,22 +2,22 @@
 
 package opengl.ubuntu.v20;
 
-import jdk.incubator.foreign.Addressable;
-import jdk.incubator.foreign.MemoryAddress;
-import jdk.incubator.foreign.ResourceScope;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public interface PFNGLFOGCOORDPOINTEREXTPROC {
 
-    void apply(int x0, int x1, jdk.incubator.foreign.MemoryAddress x2);
-    static MemoryAddress allocate(PFNGLFOGCOORDPOINTEREXTPROC fi) {
-        return RuntimeHelper.upcallStub(PFNGLFOGCOORDPOINTEREXTPROC.class, fi, constants$624.PFNGLFOGCOORDPOINTEREXTPROC$FUNC, "(IILjdk/incubator/foreign/MemoryAddress;)V");
+    void apply(int type, int stride, java.lang.foreign.MemoryAddress pointer);
+    static MemorySegment allocate(PFNGLFOGCOORDPOINTEREXTPROC fi, MemorySession session) {
+        return RuntimeHelper.upcallStub(PFNGLFOGCOORDPOINTEREXTPROC.class, fi, constants$624.PFNGLFOGCOORDPOINTEREXTPROC$FUNC, session);
     }
-    static MemoryAddress allocate(PFNGLFOGCOORDPOINTEREXTPROC fi, ResourceScope scope) {
-        return RuntimeHelper.upcallStub(PFNGLFOGCOORDPOINTEREXTPROC.class, fi, constants$624.PFNGLFOGCOORDPOINTEREXTPROC$FUNC, "(IILjdk/incubator/foreign/MemoryAddress;)V", scope);
-    }
-    static PFNGLFOGCOORDPOINTEREXTPROC ofAddress(MemoryAddress addr) {
-        return (int x0, int x1, jdk.incubator.foreign.MemoryAddress x2) -> {
+    static PFNGLFOGCOORDPOINTEREXTPROC ofAddress(MemoryAddress addr, MemorySession session) {
+        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
+        return (int _type, int _stride, java.lang.foreign.MemoryAddress _pointer) -> {
             try {
-                constants$624.PFNGLFOGCOORDPOINTEREXTPROC$MH.invokeExact((Addressable)addr, x0, x1, x2);
+                constants$624.PFNGLFOGCOORDPOINTEREXTPROC$MH.invokeExact((Addressable)symbol, _type, _stride, (java.lang.foreign.Addressable)_pointer);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

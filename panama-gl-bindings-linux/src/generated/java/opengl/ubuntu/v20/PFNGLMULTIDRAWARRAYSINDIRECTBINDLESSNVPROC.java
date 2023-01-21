@@ -2,22 +2,22 @@
 
 package opengl.ubuntu.v20;
 
-import jdk.incubator.foreign.Addressable;
-import jdk.incubator.foreign.MemoryAddress;
-import jdk.incubator.foreign.ResourceScope;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public interface PFNGLMULTIDRAWARRAYSINDIRECTBINDLESSNVPROC {
 
-    void apply(int x0, jdk.incubator.foreign.MemoryAddress x1, int x2, int x3, int x4);
-    static MemoryAddress allocate(PFNGLMULTIDRAWARRAYSINDIRECTBINDLESSNVPROC fi) {
-        return RuntimeHelper.upcallStub(PFNGLMULTIDRAWARRAYSINDIRECTBINDLESSNVPROC.class, fi, constants$725.PFNGLMULTIDRAWARRAYSINDIRECTBINDLESSNVPROC$FUNC, "(ILjdk/incubator/foreign/MemoryAddress;III)V");
+    void apply(int mode, java.lang.foreign.MemoryAddress indirect, int drawCount, int stride, int vertexBufferCount);
+    static MemorySegment allocate(PFNGLMULTIDRAWARRAYSINDIRECTBINDLESSNVPROC fi, MemorySession session) {
+        return RuntimeHelper.upcallStub(PFNGLMULTIDRAWARRAYSINDIRECTBINDLESSNVPROC.class, fi, constants$725.PFNGLMULTIDRAWARRAYSINDIRECTBINDLESSNVPROC$FUNC, session);
     }
-    static MemoryAddress allocate(PFNGLMULTIDRAWARRAYSINDIRECTBINDLESSNVPROC fi, ResourceScope scope) {
-        return RuntimeHelper.upcallStub(PFNGLMULTIDRAWARRAYSINDIRECTBINDLESSNVPROC.class, fi, constants$725.PFNGLMULTIDRAWARRAYSINDIRECTBINDLESSNVPROC$FUNC, "(ILjdk/incubator/foreign/MemoryAddress;III)V", scope);
-    }
-    static PFNGLMULTIDRAWARRAYSINDIRECTBINDLESSNVPROC ofAddress(MemoryAddress addr) {
-        return (int x0, jdk.incubator.foreign.MemoryAddress x1, int x2, int x3, int x4) -> {
+    static PFNGLMULTIDRAWARRAYSINDIRECTBINDLESSNVPROC ofAddress(MemoryAddress addr, MemorySession session) {
+        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
+        return (int _mode, java.lang.foreign.MemoryAddress _indirect, int _drawCount, int _stride, int _vertexBufferCount) -> {
             try {
-                constants$725.PFNGLMULTIDRAWARRAYSINDIRECTBINDLESSNVPROC$MH.invokeExact((Addressable)addr, x0, x1, x2, x3, x4);
+                constants$725.PFNGLMULTIDRAWARRAYSINDIRECTBINDLESSNVPROC$MH.invokeExact((Addressable)symbol, _mode, (java.lang.foreign.Addressable)_indirect, _drawCount, _stride, _vertexBufferCount);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

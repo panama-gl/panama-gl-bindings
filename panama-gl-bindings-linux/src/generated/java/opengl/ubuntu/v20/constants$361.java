@@ -2,35 +2,33 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_FLOAT;
-import static jdk.incubator.foreign.CLinker.C_INT;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$361 {
 
     static final FunctionDescriptor PFNGLVALIDATEPROGRAMARBPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLVALIDATEPROGRAMARBPROC$MH = RuntimeHelper.downcallHandle(
-        "(I)V",
-        constants$361.PFNGLVALIDATEPROGRAMARBPROC$FUNC, false
+        constants$361.PFNGLVALIDATEPROGRAMARBPROC$FUNC
     );
     static final FunctionDescriptor PFNGLUNIFORM1FARBPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_FLOAT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT
     );
     static final MethodHandle PFNGLUNIFORM1FARBPROC$MH = RuntimeHelper.downcallHandle(
-        "(IF)V",
-        constants$361.PFNGLUNIFORM1FARBPROC$FUNC, false
+        constants$361.PFNGLUNIFORM1FARBPROC$FUNC
     );
     static final FunctionDescriptor PFNGLUNIFORM2FARBPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_FLOAT,
-        C_FLOAT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT
     );
     static final MethodHandle PFNGLUNIFORM2FARBPROC$MH = RuntimeHelper.downcallHandle(
-        "(IFF)V",
-        constants$361.PFNGLUNIFORM2FARBPROC$FUNC, false
+        constants$361.PFNGLUNIFORM2FARBPROC$FUNC
     );
 }
 

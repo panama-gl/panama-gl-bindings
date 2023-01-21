@@ -2,22 +2,22 @@
 
 package opengl.ubuntu.v20;
 
-import jdk.incubator.foreign.Addressable;
-import jdk.incubator.foreign.MemoryAddress;
-import jdk.incubator.foreign.ResourceScope;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public interface PFNGLCREATESYNCFROMCLEVENTARBPROC {
 
-    jdk.incubator.foreign.MemoryAddress apply(jdk.incubator.foreign.MemoryAddress x0, jdk.incubator.foreign.MemoryAddress x1, int x2);
-    static MemoryAddress allocate(PFNGLCREATESYNCFROMCLEVENTARBPROC fi) {
-        return RuntimeHelper.upcallStub(PFNGLCREATESYNCFROMCLEVENTARBPROC.class, fi, constants$318.PFNGLCREATESYNCFROMCLEVENTARBPROC$FUNC, "(Ljdk/incubator/foreign/MemoryAddress;Ljdk/incubator/foreign/MemoryAddress;I)Ljdk/incubator/foreign/MemoryAddress;");
+    java.lang.foreign.Addressable apply(java.lang.foreign.MemoryAddress context, java.lang.foreign.MemoryAddress event, int flags);
+    static MemorySegment allocate(PFNGLCREATESYNCFROMCLEVENTARBPROC fi, MemorySession session) {
+        return RuntimeHelper.upcallStub(PFNGLCREATESYNCFROMCLEVENTARBPROC.class, fi, constants$318.PFNGLCREATESYNCFROMCLEVENTARBPROC$FUNC, session);
     }
-    static MemoryAddress allocate(PFNGLCREATESYNCFROMCLEVENTARBPROC fi, ResourceScope scope) {
-        return RuntimeHelper.upcallStub(PFNGLCREATESYNCFROMCLEVENTARBPROC.class, fi, constants$318.PFNGLCREATESYNCFROMCLEVENTARBPROC$FUNC, "(Ljdk/incubator/foreign/MemoryAddress;Ljdk/incubator/foreign/MemoryAddress;I)Ljdk/incubator/foreign/MemoryAddress;", scope);
-    }
-    static PFNGLCREATESYNCFROMCLEVENTARBPROC ofAddress(MemoryAddress addr) {
-        return (jdk.incubator.foreign.MemoryAddress x0, jdk.incubator.foreign.MemoryAddress x1, int x2) -> {
+    static PFNGLCREATESYNCFROMCLEVENTARBPROC ofAddress(MemoryAddress addr, MemorySession session) {
+        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
+        return (java.lang.foreign.MemoryAddress _context, java.lang.foreign.MemoryAddress _event, int _flags) -> {
             try {
-                return (jdk.incubator.foreign.MemoryAddress)constants$318.PFNGLCREATESYNCFROMCLEVENTARBPROC$MH.invokeExact((Addressable)addr, x0, x1, x2);
+                return (java.lang.foreign.Addressable)(java.lang.foreign.MemoryAddress)constants$318.PFNGLCREATESYNCFROMCLEVENTARBPROC$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)_context, (java.lang.foreign.Addressable)_event, _flags);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

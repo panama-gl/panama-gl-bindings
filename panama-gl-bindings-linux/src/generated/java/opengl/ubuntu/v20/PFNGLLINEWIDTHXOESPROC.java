@@ -2,22 +2,22 @@
 
 package opengl.ubuntu.v20;
 
-import jdk.incubator.foreign.Addressable;
-import jdk.incubator.foreign.MemoryAddress;
-import jdk.incubator.foreign.ResourceScope;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public interface PFNGLLINEWIDTHXOESPROC {
 
-    void apply(int x0);
-    static MemoryAddress allocate(PFNGLLINEWIDTHXOESPROC fi) {
-        return RuntimeHelper.upcallStub(PFNGLLINEWIDTHXOESPROC.class, fi, constants$419.PFNGLLINEWIDTHXOESPROC$FUNC, "(I)V");
+    void apply(int width);
+    static MemorySegment allocate(PFNGLLINEWIDTHXOESPROC fi, MemorySession session) {
+        return RuntimeHelper.upcallStub(PFNGLLINEWIDTHXOESPROC.class, fi, constants$419.PFNGLLINEWIDTHXOESPROC$FUNC, session);
     }
-    static MemoryAddress allocate(PFNGLLINEWIDTHXOESPROC fi, ResourceScope scope) {
-        return RuntimeHelper.upcallStub(PFNGLLINEWIDTHXOESPROC.class, fi, constants$419.PFNGLLINEWIDTHXOESPROC$FUNC, "(I)V", scope);
-    }
-    static PFNGLLINEWIDTHXOESPROC ofAddress(MemoryAddress addr) {
-        return (int x0) -> {
+    static PFNGLLINEWIDTHXOESPROC ofAddress(MemoryAddress addr, MemorySession session) {
+        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
+        return (int _width) -> {
             try {
-                constants$419.PFNGLLINEWIDTHXOESPROC$MH.invokeExact((Addressable)addr, x0);
+                constants$419.PFNGLLINEWIDTHXOESPROC$MH.invokeExact((Addressable)symbol, _width);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

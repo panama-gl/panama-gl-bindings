@@ -2,22 +2,22 @@
 
 package opengl.ubuntu.v20;
 
-import jdk.incubator.foreign.Addressable;
-import jdk.incubator.foreign.MemoryAddress;
-import jdk.incubator.foreign.ResourceScope;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public interface PFNGLVALIDATEPROGRAMARBPROC {
 
-    void apply(int x0);
-    static MemoryAddress allocate(PFNGLVALIDATEPROGRAMARBPROC fi) {
-        return RuntimeHelper.upcallStub(PFNGLVALIDATEPROGRAMARBPROC.class, fi, constants$361.PFNGLVALIDATEPROGRAMARBPROC$FUNC, "(I)V");
+    void apply(int programObj);
+    static MemorySegment allocate(PFNGLVALIDATEPROGRAMARBPROC fi, MemorySession session) {
+        return RuntimeHelper.upcallStub(PFNGLVALIDATEPROGRAMARBPROC.class, fi, constants$361.PFNGLVALIDATEPROGRAMARBPROC$FUNC, session);
     }
-    static MemoryAddress allocate(PFNGLVALIDATEPROGRAMARBPROC fi, ResourceScope scope) {
-        return RuntimeHelper.upcallStub(PFNGLVALIDATEPROGRAMARBPROC.class, fi, constants$361.PFNGLVALIDATEPROGRAMARBPROC$FUNC, "(I)V", scope);
-    }
-    static PFNGLVALIDATEPROGRAMARBPROC ofAddress(MemoryAddress addr) {
-        return (int x0) -> {
+    static PFNGLVALIDATEPROGRAMARBPROC ofAddress(MemoryAddress addr, MemorySession session) {
+        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
+        return (int _programObj) -> {
             try {
-                constants$361.PFNGLVALIDATEPROGRAMARBPROC$MH.invokeExact((Addressable)addr, x0);
+                constants$361.PFNGLVALIDATEPROGRAMARBPROC$MH.invokeExact((Addressable)symbol, _programObj);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

@@ -2,59 +2,53 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_FLOAT;
-import static jdk.incubator.foreign.CLinker.C_INT;
-import static jdk.incubator.foreign.CLinker.C_POINTER;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$968 {
 
-    static final FunctionDescriptor glutGetColor$FUNC = FunctionDescriptor.of(C_FLOAT,
-        C_INT,
-        C_INT
+    static final FunctionDescriptor glutGetColor$FUNC = FunctionDescriptor.of(Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle glutGetColor$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "glutGetColor",
-        "(II)F",
-        constants$968.glutGetColor$FUNC, false
+        "glutGetColor",
+        constants$968.glutGetColor$FUNC
     );
     static final FunctionDescriptor glutCopyColormap$FUNC = FunctionDescriptor.ofVoid(
-        C_INT
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle glutCopyColormap$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "glutCopyColormap",
-        "(I)V",
-        constants$968.glutCopyColormap$FUNC, false
+        "glutCopyColormap",
+        constants$968.glutCopyColormap$FUNC
     );
     static final FunctionDescriptor glutIgnoreKeyRepeat$FUNC = FunctionDescriptor.ofVoid(
-        C_INT
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle glutIgnoreKeyRepeat$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "glutIgnoreKeyRepeat",
-        "(I)V",
-        constants$968.glutIgnoreKeyRepeat$FUNC, false
+        "glutIgnoreKeyRepeat",
+        constants$968.glutIgnoreKeyRepeat$FUNC
     );
     static final FunctionDescriptor glutSetKeyRepeat$FUNC = FunctionDescriptor.ofVoid(
-        C_INT
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle glutSetKeyRepeat$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "glutSetKeyRepeat",
-        "(I)V",
-        constants$968.glutSetKeyRepeat$FUNC, false
+        "glutSetKeyRepeat",
+        constants$968.glutSetKeyRepeat$FUNC
     );
     static final FunctionDescriptor glutForceJoystickFunc$FUNC = FunctionDescriptor.ofVoid();
     static final MethodHandle glutForceJoystickFunc$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "glutForceJoystickFunc",
-        "()V",
-        constants$968.glutForceJoystickFunc$FUNC, false
+        "glutForceJoystickFunc",
+        constants$968.glutForceJoystickFunc$FUNC
     );
-    static final FunctionDescriptor glutExtensionSupported$FUNC = FunctionDescriptor.of(C_INT,
-        C_POINTER
+    static final FunctionDescriptor glutExtensionSupported$FUNC = FunctionDescriptor.of(Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle glutExtensionSupported$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "glutExtensionSupported",
-        "(Ljdk/incubator/foreign/MemoryAddress;)I",
-        constants$968.glutExtensionSupported$FUNC, false
+        "glutExtensionSupported",
+        constants$968.glutExtensionSupported$FUNC
     );
 }
 

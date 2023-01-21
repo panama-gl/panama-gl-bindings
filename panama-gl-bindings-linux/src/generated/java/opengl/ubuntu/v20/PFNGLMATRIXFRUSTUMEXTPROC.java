@@ -2,22 +2,22 @@
 
 package opengl.ubuntu.v20;
 
-import jdk.incubator.foreign.Addressable;
-import jdk.incubator.foreign.MemoryAddress;
-import jdk.incubator.foreign.ResourceScope;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public interface PFNGLMATRIXFRUSTUMEXTPROC {
 
-    void apply(int x0, double x1, double x2, double x3, double x4, double x5, double x6);
-    static MemoryAddress allocate(PFNGLMATRIXFRUSTUMEXTPROC fi) {
-        return RuntimeHelper.upcallStub(PFNGLMATRIXFRUSTUMEXTPROC.class, fi, constants$539.PFNGLMATRIXFRUSTUMEXTPROC$FUNC, "(IDDDDDD)V");
+    void apply(int mode, double left, double right, double bottom, double top, double zNear, double zFar);
+    static MemorySegment allocate(PFNGLMATRIXFRUSTUMEXTPROC fi, MemorySession session) {
+        return RuntimeHelper.upcallStub(PFNGLMATRIXFRUSTUMEXTPROC.class, fi, constants$539.PFNGLMATRIXFRUSTUMEXTPROC$FUNC, session);
     }
-    static MemoryAddress allocate(PFNGLMATRIXFRUSTUMEXTPROC fi, ResourceScope scope) {
-        return RuntimeHelper.upcallStub(PFNGLMATRIXFRUSTUMEXTPROC.class, fi, constants$539.PFNGLMATRIXFRUSTUMEXTPROC$FUNC, "(IDDDDDD)V", scope);
-    }
-    static PFNGLMATRIXFRUSTUMEXTPROC ofAddress(MemoryAddress addr) {
-        return (int x0, double x1, double x2, double x3, double x4, double x5, double x6) -> {
+    static PFNGLMATRIXFRUSTUMEXTPROC ofAddress(MemoryAddress addr, MemorySession session) {
+        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
+        return (int _mode, double _left, double _right, double _bottom, double _top, double _zNear, double _zFar) -> {
             try {
-                constants$539.PFNGLMATRIXFRUSTUMEXTPROC$MH.invokeExact((Addressable)addr, x0, x1, x2, x3, x4, x5, x6);
+                constants$539.PFNGLMATRIXFRUSTUMEXTPROC$MH.invokeExact((Addressable)symbol, _mode, _left, _right, _bottom, _top, _zNear, _zFar);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

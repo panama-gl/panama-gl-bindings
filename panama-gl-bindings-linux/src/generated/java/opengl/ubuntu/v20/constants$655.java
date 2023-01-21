@@ -2,34 +2,32 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_DOUBLE;
-import static jdk.incubator.foreign.CLinker.C_POINTER;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$655 {
 
     static final FunctionDescriptor PFNGLSECONDARYCOLOR3BVEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_POINTER
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLSECONDARYCOLOR3BVEXTPROC$MH = RuntimeHelper.downcallHandle(
-        "(Ljdk/incubator/foreign/MemoryAddress;)V",
-        constants$655.PFNGLSECONDARYCOLOR3BVEXTPROC$FUNC, false
+        constants$655.PFNGLSECONDARYCOLOR3BVEXTPROC$FUNC
     );
     static final FunctionDescriptor PFNGLSECONDARYCOLOR3DEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_DOUBLE,
-        C_DOUBLE,
-        C_DOUBLE
+        Constants$root.C_DOUBLE$LAYOUT,
+        Constants$root.C_DOUBLE$LAYOUT,
+        Constants$root.C_DOUBLE$LAYOUT
     );
     static final MethodHandle PFNGLSECONDARYCOLOR3DEXTPROC$MH = RuntimeHelper.downcallHandle(
-        "(DDD)V",
-        constants$655.PFNGLSECONDARYCOLOR3DEXTPROC$FUNC, false
+        constants$655.PFNGLSECONDARYCOLOR3DEXTPROC$FUNC
     );
     static final FunctionDescriptor PFNGLSECONDARYCOLOR3DVEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_POINTER
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLSECONDARYCOLOR3DVEXTPROC$MH = RuntimeHelper.downcallHandle(
-        "(Ljdk/incubator/foreign/MemoryAddress;)V",
-        constants$655.PFNGLSECONDARYCOLOR3DVEXTPROC$FUNC, false
+        constants$655.PFNGLSECONDARYCOLOR3DVEXTPROC$FUNC
     );
 }
 

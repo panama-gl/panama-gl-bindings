@@ -2,7 +2,12 @@
 
 package opengl.ubuntu.v20;
 
-class glut_h_4 extends glut_h_3 {
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
+ class glut_h_4 extends glut_h_3 {
 
     public static int GL_OUTPUT_VERTEX_EXT() {
         return (int)34714L;

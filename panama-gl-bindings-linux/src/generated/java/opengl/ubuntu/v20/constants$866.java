@@ -2,40 +2,37 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_CHAR;
-import static jdk.incubator.foreign.CLinker.C_INT;
-import static jdk.incubator.foreign.CLinker.C_POINTER;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$866 {
 
     static final FunctionDescriptor PFNGLVERTEXATTRIB4UBNVPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_CHAR,
-        C_CHAR,
-        C_CHAR,
-        C_CHAR
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_CHAR$LAYOUT,
+        Constants$root.C_CHAR$LAYOUT,
+        Constants$root.C_CHAR$LAYOUT,
+        Constants$root.C_CHAR$LAYOUT
     );
     static final MethodHandle PFNGLVERTEXATTRIB4UBNVPROC$MH = RuntimeHelper.downcallHandle(
-        "(IBBBB)V",
-        constants$866.PFNGLVERTEXATTRIB4UBNVPROC$FUNC, false
+        constants$866.PFNGLVERTEXATTRIB4UBNVPROC$FUNC
     );
     static final FunctionDescriptor PFNGLVERTEXATTRIB4UBVNVPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLVERTEXATTRIB4UBVNVPROC$MH = RuntimeHelper.downcallHandle(
-        "(ILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$866.PFNGLVERTEXATTRIB4UBVNVPROC$FUNC, false
+        constants$866.PFNGLVERTEXATTRIB4UBVNVPROC$FUNC
     );
     static final FunctionDescriptor PFNGLVERTEXATTRIBS1DVNVPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLVERTEXATTRIBS1DVNVPROC$MH = RuntimeHelper.downcallHandle(
-        "(IILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$866.PFNGLVERTEXATTRIBS1DVNVPROC$FUNC, false
+        constants$866.PFNGLVERTEXATTRIBS1DVNVPROC$FUNC
     );
 }
 

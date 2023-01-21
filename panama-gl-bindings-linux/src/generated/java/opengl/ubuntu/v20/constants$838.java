@@ -2,37 +2,33 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_CHAR;
-import static jdk.incubator.foreign.CLinker.C_INT;
-import static jdk.incubator.foreign.CLinker.C_LONG;
-import static jdk.incubator.foreign.CLinker.C_POINTER;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$838 {
 
     static final FunctionDescriptor PFNGLVDPAUUNMAPSURFACESNVPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLVDPAUUNMAPSURFACESNVPROC$MH = RuntimeHelper.downcallHandle(
-        "(ILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$838.PFNGLVDPAUUNMAPSURFACESNVPROC$FUNC, false
+        constants$838.PFNGLVDPAUUNMAPSURFACESNVPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLVDPAUREGISTERVIDEOSURFACEWITHPICTURESTRUCTURENVPROC$FUNC = FunctionDescriptor.of(C_LONG,
-        C_POINTER,
-        C_INT,
-        C_INT,
-        C_POINTER,
-        C_CHAR
+    static final FunctionDescriptor PFNGLVDPAUREGISTERVIDEOSURFACEWITHPICTURESTRUCTURENVPROC$FUNC = FunctionDescriptor.of(Constants$root.C_LONG_LONG$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_CHAR$LAYOUT
     );
     static final MethodHandle PFNGLVDPAUREGISTERVIDEOSURFACEWITHPICTURESTRUCTURENVPROC$MH = RuntimeHelper.downcallHandle(
-        "(Ljdk/incubator/foreign/MemoryAddress;IILjdk/incubator/foreign/MemoryAddress;B)J",
-        constants$838.PFNGLVDPAUREGISTERVIDEOSURFACEWITHPICTURESTRUCTURENVPROC$FUNC, false
+        constants$838.PFNGLVDPAUREGISTERVIDEOSURFACEWITHPICTURESTRUCTURENVPROC$FUNC
     );
     static final FunctionDescriptor PFNGLFLUSHVERTEXARRAYRANGENVPROC$FUNC = FunctionDescriptor.ofVoid();
     static final MethodHandle PFNGLFLUSHVERTEXARRAYRANGENVPROC$MH = RuntimeHelper.downcallHandle(
-        "()V",
-        constants$838.PFNGLFLUSHVERTEXARRAYRANGENVPROC$FUNC, false
+        constants$838.PFNGLFLUSHVERTEXARRAYRANGENVPROC$FUNC
     );
 }
 

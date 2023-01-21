@@ -2,22 +2,22 @@
 
 package opengl.ubuntu.v20;
 
-import jdk.incubator.foreign.Addressable;
-import jdk.incubator.foreign.MemoryAddress;
-import jdk.incubator.foreign.ResourceScope;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public interface PFNGLISVERTEXARRAYPROC {
 
-    byte apply(int x0);
-    static MemoryAddress allocate(PFNGLISVERTEXARRAYPROC fi) {
-        return RuntimeHelper.upcallStub(PFNGLISVERTEXARRAYPROC.class, fi, constants$174.PFNGLISVERTEXARRAYPROC$FUNC, "(I)B");
+    byte apply(int array);
+    static MemorySegment allocate(PFNGLISVERTEXARRAYPROC fi, MemorySession session) {
+        return RuntimeHelper.upcallStub(PFNGLISVERTEXARRAYPROC.class, fi, constants$174.PFNGLISVERTEXARRAYPROC$FUNC, session);
     }
-    static MemoryAddress allocate(PFNGLISVERTEXARRAYPROC fi, ResourceScope scope) {
-        return RuntimeHelper.upcallStub(PFNGLISVERTEXARRAYPROC.class, fi, constants$174.PFNGLISVERTEXARRAYPROC$FUNC, "(I)B", scope);
-    }
-    static PFNGLISVERTEXARRAYPROC ofAddress(MemoryAddress addr) {
-        return (int x0) -> {
+    static PFNGLISVERTEXARRAYPROC ofAddress(MemoryAddress addr, MemorySession session) {
+        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
+        return (int _array) -> {
             try {
-                return (byte)constants$174.PFNGLISVERTEXARRAYPROC$MH.invokeExact((Addressable)addr, x0);
+                return (byte)constants$174.PFNGLISVERTEXARRAYPROC$MH.invokeExact((Addressable)symbol, _array);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

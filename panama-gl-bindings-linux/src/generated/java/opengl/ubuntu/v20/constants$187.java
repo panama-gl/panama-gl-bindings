@@ -2,39 +2,36 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_FLOAT;
-import static jdk.incubator.foreign.CLinker.C_INT;
-import static jdk.incubator.foreign.CLinker.C_POINTER;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$187 {
 
     static final FunctionDescriptor PFNGLSAMPLERPARAMETERIVPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLSAMPLERPARAMETERIVPROC$MH = RuntimeHelper.downcallHandle(
-        "(IILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$187.PFNGLSAMPLERPARAMETERIVPROC$FUNC, false
+        constants$187.PFNGLSAMPLERPARAMETERIVPROC$FUNC
     );
     static final FunctionDescriptor PFNGLSAMPLERPARAMETERFPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_FLOAT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT
     );
     static final MethodHandle PFNGLSAMPLERPARAMETERFPROC$MH = RuntimeHelper.downcallHandle(
-        "(IIF)V",
-        constants$187.PFNGLSAMPLERPARAMETERFPROC$FUNC, false
+        constants$187.PFNGLSAMPLERPARAMETERFPROC$FUNC
     );
     static final FunctionDescriptor PFNGLSAMPLERPARAMETERFVPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLSAMPLERPARAMETERFVPROC$MH = RuntimeHelper.downcallHandle(
-        "(IILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$187.PFNGLSAMPLERPARAMETERFVPROC$FUNC, false
+        constants$187.PFNGLSAMPLERPARAMETERFVPROC$FUNC
     );
 }
 

@@ -2,22 +2,22 @@
 
 package opengl.ubuntu.v20;
 
-import jdk.incubator.foreign.Addressable;
-import jdk.incubator.foreign.MemoryAddress;
-import jdk.incubator.foreign.ResourceScope;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public interface PFNGLBINDBUFFERRANGEPROC {
 
-    void apply(int x0, int x1, int x2, long x3, long x4);
-    static MemoryAddress allocate(PFNGLBINDBUFFERRANGEPROC fi) {
-        return RuntimeHelper.upcallStub(PFNGLBINDBUFFERRANGEPROC.class, fi, constants$149.PFNGLBINDBUFFERRANGEPROC$FUNC, "(IIIJJ)V");
+    void apply(int target, int index, int buffer, long offset, long size);
+    static MemorySegment allocate(PFNGLBINDBUFFERRANGEPROC fi, MemorySession session) {
+        return RuntimeHelper.upcallStub(PFNGLBINDBUFFERRANGEPROC.class, fi, constants$149.PFNGLBINDBUFFERRANGEPROC$FUNC, session);
     }
-    static MemoryAddress allocate(PFNGLBINDBUFFERRANGEPROC fi, ResourceScope scope) {
-        return RuntimeHelper.upcallStub(PFNGLBINDBUFFERRANGEPROC.class, fi, constants$149.PFNGLBINDBUFFERRANGEPROC$FUNC, "(IIIJJ)V", scope);
-    }
-    static PFNGLBINDBUFFERRANGEPROC ofAddress(MemoryAddress addr) {
-        return (int x0, int x1, int x2, long x3, long x4) -> {
+    static PFNGLBINDBUFFERRANGEPROC ofAddress(MemoryAddress addr, MemorySession session) {
+        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
+        return (int _target, int _index, int _buffer, long _offset, long _size) -> {
             try {
-                constants$149.PFNGLBINDBUFFERRANGEPROC$MH.invokeExact((Addressable)addr, x0, x1, x2, x3, x4);
+                constants$149.PFNGLBINDBUFFERRANGEPROC$MH.invokeExact((Addressable)symbol, _target, _index, _buffer, _offset, _size);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

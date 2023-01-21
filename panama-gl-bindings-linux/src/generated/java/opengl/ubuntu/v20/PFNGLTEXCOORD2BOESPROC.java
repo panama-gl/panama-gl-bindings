@@ -2,22 +2,22 @@
 
 package opengl.ubuntu.v20;
 
-import jdk.incubator.foreign.Addressable;
-import jdk.incubator.foreign.MemoryAddress;
-import jdk.incubator.foreign.ResourceScope;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public interface PFNGLTEXCOORD2BOESPROC {
 
-    void apply(byte x0, byte x1);
-    static MemoryAddress allocate(PFNGLTEXCOORD2BOESPROC fi) {
-        return RuntimeHelper.upcallStub(PFNGLTEXCOORD2BOESPROC.class, fi, constants$409.PFNGLTEXCOORD2BOESPROC$FUNC, "(BB)V");
+    void apply(byte s, byte t);
+    static MemorySegment allocate(PFNGLTEXCOORD2BOESPROC fi, MemorySession session) {
+        return RuntimeHelper.upcallStub(PFNGLTEXCOORD2BOESPROC.class, fi, constants$409.PFNGLTEXCOORD2BOESPROC$FUNC, session);
     }
-    static MemoryAddress allocate(PFNGLTEXCOORD2BOESPROC fi, ResourceScope scope) {
-        return RuntimeHelper.upcallStub(PFNGLTEXCOORD2BOESPROC.class, fi, constants$409.PFNGLTEXCOORD2BOESPROC$FUNC, "(BB)V", scope);
-    }
-    static PFNGLTEXCOORD2BOESPROC ofAddress(MemoryAddress addr) {
-        return (byte x0, byte x1) -> {
+    static PFNGLTEXCOORD2BOESPROC ofAddress(MemoryAddress addr, MemorySession session) {
+        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
+        return (byte _s, byte _t) -> {
             try {
-                constants$409.PFNGLTEXCOORD2BOESPROC$MH.invokeExact((Addressable)addr, x0, x1);
+                constants$409.PFNGLTEXCOORD2BOESPROC$MH.invokeExact((Addressable)symbol, _s, _t);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

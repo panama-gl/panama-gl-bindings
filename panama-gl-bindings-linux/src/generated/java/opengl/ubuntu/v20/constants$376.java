@@ -2,40 +2,38 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_INT;
-import static jdk.incubator.foreign.CLinker.C_POINTER;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$376 {
 
     static final FunctionDescriptor PFNGLCOMPRESSEDTEXSUBIMAGE1DARBPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLCOMPRESSEDTEXSUBIMAGE1DARBPROC$MH = RuntimeHelper.downcallHandle(
-        "(IIIIIILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$376.PFNGLCOMPRESSEDTEXSUBIMAGE1DARBPROC$FUNC, false
+        constants$376.PFNGLCOMPRESSEDTEXSUBIMAGE1DARBPROC$FUNC
     );
     static final FunctionDescriptor PFNGLGETCOMPRESSEDTEXIMAGEARBPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLGETCOMPRESSEDTEXIMAGEARBPROC$MH = RuntimeHelper.downcallHandle(
-        "(IILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$376.PFNGLGETCOMPRESSEDTEXIMAGEARBPROC$FUNC, false
+        constants$376.PFNGLGETCOMPRESSEDTEXIMAGEARBPROC$FUNC
     );
     static final FunctionDescriptor PFNGLLOADTRANSPOSEMATRIXFARBPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_POINTER
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLLOADTRANSPOSEMATRIXFARBPROC$MH = RuntimeHelper.downcallHandle(
-        "(Ljdk/incubator/foreign/MemoryAddress;)V",
-        constants$376.PFNGLLOADTRANSPOSEMATRIXFARBPROC$FUNC, false
+        constants$376.PFNGLLOADTRANSPOSEMATRIXFARBPROC$FUNC
     );
 }
 

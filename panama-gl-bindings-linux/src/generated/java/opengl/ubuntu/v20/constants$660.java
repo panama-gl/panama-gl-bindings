@@ -2,37 +2,35 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_INT;
-import static jdk.incubator.foreign.CLinker.C_POINTER;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$660 {
 
     static final FunctionDescriptor PFNGLSECONDARYCOLORPOINTEREXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLSECONDARYCOLORPOINTEREXTPROC$MH = RuntimeHelper.downcallHandle(
-        "(IIILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$660.PFNGLSECONDARYCOLORPOINTEREXTPROC$FUNC, false
+        constants$660.PFNGLSECONDARYCOLORPOINTEREXTPROC$FUNC
     );
     static final FunctionDescriptor PFNGLGENSEMAPHORESEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLGENSEMAPHORESEXTPROC$MH = RuntimeHelper.downcallHandle(
-        "(ILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$660.PFNGLGENSEMAPHORESEXTPROC$FUNC, false
+        constants$660.PFNGLGENSEMAPHORESEXTPROC$FUNC
     );
     static final FunctionDescriptor PFNGLDELETESEMAPHORESEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLDELETESEMAPHORESEXTPROC$MH = RuntimeHelper.downcallHandle(
-        "(ILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$660.PFNGLDELETESEMAPHORESEXTPROC$FUNC, false
+        constants$660.PFNGLDELETESEMAPHORESEXTPROC$FUNC
     );
 }
 

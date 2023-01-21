@@ -2,29 +2,28 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_INT;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$116 {
 
-    static final FunctionDescriptor PFNGLCREATEPROGRAMPROC$FUNC = FunctionDescriptor.of(C_INT);
+    static final FunctionDescriptor PFNGLCREATEPROGRAMPROC$FUNC = FunctionDescriptor.of(Constants$root.C_INT$LAYOUT);
     static final MethodHandle PFNGLCREATEPROGRAMPROC$MH = RuntimeHelper.downcallHandle(
-        "()I",
-        constants$116.PFNGLCREATEPROGRAMPROC$FUNC, false
+        constants$116.PFNGLCREATEPROGRAMPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLCREATESHADERPROC$FUNC = FunctionDescriptor.of(C_INT,
-        C_INT
+    static final FunctionDescriptor PFNGLCREATESHADERPROC$FUNC = FunctionDescriptor.of(Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLCREATESHADERPROC$MH = RuntimeHelper.downcallHandle(
-        "(I)I",
-        constants$116.PFNGLCREATESHADERPROC$FUNC, false
+        constants$116.PFNGLCREATESHADERPROC$FUNC
     );
     static final FunctionDescriptor PFNGLDELETEPROGRAMPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLDELETEPROGRAMPROC$MH = RuntimeHelper.downcallHandle(
-        "(I)V",
-        constants$116.PFNGLDELETEPROGRAMPROC$FUNC, false
+        constants$116.PFNGLDELETEPROGRAMPROC$FUNC
     );
 }
 

@@ -2,55 +2,53 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_INT;
-import static jdk.incubator.foreign.CLinker.C_POINTER;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$556 {
 
     static final FunctionDescriptor PFNGLMULTITEXSUBIMAGE1DEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLMULTITEXSUBIMAGE1DEXTPROC$MH = RuntimeHelper.downcallHandle(
-        "(IIIIIIILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$556.PFNGLMULTITEXSUBIMAGE1DEXTPROC$FUNC, false
+        constants$556.PFNGLMULTITEXSUBIMAGE1DEXTPROC$FUNC
     );
     static final FunctionDescriptor PFNGLMULTITEXSUBIMAGE2DEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLMULTITEXSUBIMAGE2DEXTPROC$MH = RuntimeHelper.downcallHandle(
-        "(IIIIIIIIILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$556.PFNGLMULTITEXSUBIMAGE2DEXTPROC$FUNC, false
+        constants$556.PFNGLMULTITEXSUBIMAGE2DEXTPROC$FUNC
     );
     static final FunctionDescriptor PFNGLCOPYMULTITEXIMAGE1DEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLCOPYMULTITEXIMAGE1DEXTPROC$MH = RuntimeHelper.downcallHandle(
-        "(IIIIIIII)V",
-        constants$556.PFNGLCOPYMULTITEXIMAGE1DEXTPROC$FUNC, false
+        constants$556.PFNGLCOPYMULTITEXIMAGE1DEXTPROC$FUNC
     );
 }
 

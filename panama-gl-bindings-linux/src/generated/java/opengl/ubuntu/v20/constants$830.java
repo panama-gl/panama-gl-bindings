@@ -2,41 +2,38 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_INT;
-import static jdk.incubator.foreign.CLinker.C_LONG;
-import static jdk.incubator.foreign.CLinker.C_POINTER;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$830 {
 
     static final FunctionDescriptor PFNGLBINDBUFFEROFFSETNVPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_INT,
-        C_LONG
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT
     );
     static final MethodHandle PFNGLBINDBUFFEROFFSETNVPROC$MH = RuntimeHelper.downcallHandle(
-        "(IIIJ)V",
-        constants$830.PFNGLBINDBUFFEROFFSETNVPROC$FUNC, false
+        constants$830.PFNGLBINDBUFFEROFFSETNVPROC$FUNC
     );
     static final FunctionDescriptor PFNGLBINDBUFFERBASENVPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_INT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLBINDBUFFERBASENVPROC$MH = RuntimeHelper.downcallHandle(
-        "(III)V",
-        constants$830.PFNGLBINDBUFFERBASENVPROC$FUNC, false
+        constants$830.PFNGLBINDBUFFERBASENVPROC$FUNC
     );
     static final FunctionDescriptor PFNGLTRANSFORMFEEDBACKVARYINGSNVPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_POINTER,
-        C_INT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLTRANSFORMFEEDBACKVARYINGSNVPROC$MH = RuntimeHelper.downcallHandle(
-        "(IILjdk/incubator/foreign/MemoryAddress;I)V",
-        constants$830.PFNGLTRANSFORMFEEDBACKVARYINGSNVPROC$FUNC, false
+        constants$830.PFNGLTRANSFORMFEEDBACKVARYINGSNVPROC$FUNC
     );
 }
 

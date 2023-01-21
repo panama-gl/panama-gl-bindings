@@ -2,41 +2,38 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_CHAR;
-import static jdk.incubator.foreign.CLinker.C_INT;
-import static jdk.incubator.foreign.CLinker.C_POINTER;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$635 {
 
     static final FunctionDescriptor PFNGLUNIFORM3UIVEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLUNIFORM3UIVEXTPROC$MH = RuntimeHelper.downcallHandle(
-        "(IILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$635.PFNGLUNIFORM3UIVEXTPROC$FUNC, false
+        constants$635.PFNGLUNIFORM3UIVEXTPROC$FUNC
     );
     static final FunctionDescriptor PFNGLUNIFORM4UIVEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLUNIFORM4UIVEXTPROC$MH = RuntimeHelper.downcallHandle(
-        "(IILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$635.PFNGLUNIFORM4UIVEXTPROC$FUNC, false
+        constants$635.PFNGLUNIFORM4UIVEXTPROC$FUNC
     );
     static final FunctionDescriptor PFNGLGETHISTOGRAMEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_CHAR,
-        C_INT,
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_CHAR$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLGETHISTOGRAMEXTPROC$MH = RuntimeHelper.downcallHandle(
-        "(IBIILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$635.PFNGLGETHISTOGRAMEXTPROC$FUNC, false
+        constants$635.PFNGLGETHISTOGRAMEXTPROC$FUNC
     );
 }
 

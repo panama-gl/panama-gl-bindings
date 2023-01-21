@@ -2,31 +2,30 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_POINTER;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$377 {
 
     static final FunctionDescriptor PFNGLLOADTRANSPOSEMATRIXDARBPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_POINTER
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLLOADTRANSPOSEMATRIXDARBPROC$MH = RuntimeHelper.downcallHandle(
-        "(Ljdk/incubator/foreign/MemoryAddress;)V",
-        constants$377.PFNGLLOADTRANSPOSEMATRIXDARBPROC$FUNC, false
+        constants$377.PFNGLLOADTRANSPOSEMATRIXDARBPROC$FUNC
     );
     static final FunctionDescriptor PFNGLMULTTRANSPOSEMATRIXFARBPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_POINTER
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLMULTTRANSPOSEMATRIXFARBPROC$MH = RuntimeHelper.downcallHandle(
-        "(Ljdk/incubator/foreign/MemoryAddress;)V",
-        constants$377.PFNGLMULTTRANSPOSEMATRIXFARBPROC$FUNC, false
+        constants$377.PFNGLMULTTRANSPOSEMATRIXFARBPROC$FUNC
     );
     static final FunctionDescriptor PFNGLMULTTRANSPOSEMATRIXDARBPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_POINTER
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLMULTTRANSPOSEMATRIXDARBPROC$MH = RuntimeHelper.downcallHandle(
-        "(Ljdk/incubator/foreign/MemoryAddress;)V",
-        constants$377.PFNGLMULTTRANSPOSEMATRIXDARBPROC$FUNC, false
+        constants$377.PFNGLMULTTRANSPOSEMATRIXDARBPROC$FUNC
     );
 }
 

@@ -2,38 +2,36 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_INT;
-import static jdk.incubator.foreign.CLinker.C_POINTER;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$853 {
 
     static final FunctionDescriptor PFNGLGETVERTEXATTRIBDVNVPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLGETVERTEXATTRIBDVNVPROC$MH = RuntimeHelper.downcallHandle(
-        "(IILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$853.PFNGLGETVERTEXATTRIBDVNVPROC$FUNC, false
+        constants$853.PFNGLGETVERTEXATTRIBDVNVPROC$FUNC
     );
     static final FunctionDescriptor PFNGLGETVERTEXATTRIBFVNVPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLGETVERTEXATTRIBFVNVPROC$MH = RuntimeHelper.downcallHandle(
-        "(IILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$853.PFNGLGETVERTEXATTRIBFVNVPROC$FUNC, false
+        constants$853.PFNGLGETVERTEXATTRIBFVNVPROC$FUNC
     );
     static final FunctionDescriptor PFNGLGETVERTEXATTRIBIVNVPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLGETVERTEXATTRIBIVNVPROC$MH = RuntimeHelper.downcallHandle(
-        "(IILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$853.PFNGLGETVERTEXATTRIBIVNVPROC$FUNC, false
+        constants$853.PFNGLGETVERTEXATTRIBIVNVPROC$FUNC
     );
 }
 

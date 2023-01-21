@@ -2,47 +2,45 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_CHAR;
-import static jdk.incubator.foreign.CLinker.C_INT;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$814 {
 
     static final FunctionDescriptor PFNGLCOMBINERPARAMETERINVPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLCOMBINERPARAMETERINVPROC$MH = RuntimeHelper.downcallHandle(
-        "(II)V",
-        constants$814.PFNGLCOMBINERPARAMETERINVPROC$FUNC, false
+        constants$814.PFNGLCOMBINERPARAMETERINVPROC$FUNC
     );
     static final FunctionDescriptor PFNGLCOMBINERINPUTNVPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLCOMBINERINPUTNVPROC$MH = RuntimeHelper.downcallHandle(
-        "(IIIIII)V",
-        constants$814.PFNGLCOMBINERINPUTNVPROC$FUNC, false
+        constants$814.PFNGLCOMBINERINPUTNVPROC$FUNC
     );
     static final FunctionDescriptor PFNGLCOMBINEROUTPUTNVPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_CHAR,
-        C_CHAR,
-        C_CHAR
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_CHAR$LAYOUT,
+        Constants$root.C_CHAR$LAYOUT,
+        Constants$root.C_CHAR$LAYOUT
     );
     static final MethodHandle PFNGLCOMBINEROUTPUTNVPROC$MH = RuntimeHelper.downcallHandle(
-        "(IIIIIIIBBB)V",
-        constants$814.PFNGLCOMBINEROUTPUTNVPROC$FUNC, false
+        constants$814.PFNGLCOMBINEROUTPUTNVPROC$FUNC
     );
 }
 

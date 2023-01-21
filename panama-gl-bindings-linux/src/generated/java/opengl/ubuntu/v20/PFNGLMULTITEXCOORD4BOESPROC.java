@@ -2,22 +2,22 @@
 
 package opengl.ubuntu.v20;
 
-import jdk.incubator.foreign.Addressable;
-import jdk.incubator.foreign.MemoryAddress;
-import jdk.incubator.foreign.ResourceScope;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public interface PFNGLMULTITEXCOORD4BOESPROC {
 
-    void apply(int x0, byte x1, byte x2, byte x3, byte x4);
-    static MemoryAddress allocate(PFNGLMULTITEXCOORD4BOESPROC fi) {
-        return RuntimeHelper.upcallStub(PFNGLMULTITEXCOORD4BOESPROC.class, fi, constants$408.PFNGLMULTITEXCOORD4BOESPROC$FUNC, "(IBBBB)V");
+    void apply(int texture, byte s, byte t, byte r, byte q);
+    static MemorySegment allocate(PFNGLMULTITEXCOORD4BOESPROC fi, MemorySession session) {
+        return RuntimeHelper.upcallStub(PFNGLMULTITEXCOORD4BOESPROC.class, fi, constants$408.PFNGLMULTITEXCOORD4BOESPROC$FUNC, session);
     }
-    static MemoryAddress allocate(PFNGLMULTITEXCOORD4BOESPROC fi, ResourceScope scope) {
-        return RuntimeHelper.upcallStub(PFNGLMULTITEXCOORD4BOESPROC.class, fi, constants$408.PFNGLMULTITEXCOORD4BOESPROC$FUNC, "(IBBBB)V", scope);
-    }
-    static PFNGLMULTITEXCOORD4BOESPROC ofAddress(MemoryAddress addr) {
-        return (int x0, byte x1, byte x2, byte x3, byte x4) -> {
+    static PFNGLMULTITEXCOORD4BOESPROC ofAddress(MemoryAddress addr, MemorySession session) {
+        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
+        return (int _texture, byte _s, byte _t, byte _r, byte _q) -> {
             try {
-                constants$408.PFNGLMULTITEXCOORD4BOESPROC$MH.invokeExact((Addressable)addr, x0, x1, x2, x3, x4);
+                constants$408.PFNGLMULTITEXCOORD4BOESPROC$MH.invokeExact((Addressable)symbol, _texture, _s, _t, _r, _q);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

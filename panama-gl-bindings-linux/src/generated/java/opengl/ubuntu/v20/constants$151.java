@@ -2,36 +2,34 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_INT;
-import static jdk.incubator.foreign.CLinker.C_POINTER;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$151 {
 
     static final FunctionDescriptor PFNGLENDCONDITIONALRENDERPROC$FUNC = FunctionDescriptor.ofVoid();
     static final MethodHandle PFNGLENDCONDITIONALRENDERPROC$MH = RuntimeHelper.downcallHandle(
-        "()V",
-        constants$151.PFNGLENDCONDITIONALRENDERPROC$FUNC, false
+        constants$151.PFNGLENDCONDITIONALRENDERPROC$FUNC
     );
     static final FunctionDescriptor PFNGLVERTEXATTRIBIPOINTERPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLVERTEXATTRIBIPOINTERPROC$MH = RuntimeHelper.downcallHandle(
-        "(IIIILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$151.PFNGLVERTEXATTRIBIPOINTERPROC$FUNC, false
+        constants$151.PFNGLVERTEXATTRIBIPOINTERPROC$FUNC
     );
     static final FunctionDescriptor PFNGLGETVERTEXATTRIBIIVPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLGETVERTEXATTRIBIIVPROC$MH = RuntimeHelper.downcallHandle(
-        "(IILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$151.PFNGLGETVERTEXATTRIBIIVPROC$FUNC, false
+        constants$151.PFNGLGETVERTEXATTRIBIIVPROC$FUNC
     );
 }
 

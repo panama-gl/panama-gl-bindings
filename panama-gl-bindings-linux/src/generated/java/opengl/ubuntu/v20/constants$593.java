@@ -2,41 +2,39 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_INT;
-import static jdk.incubator.foreign.CLinker.C_POINTER;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$593 {
 
     static final FunctionDescriptor PFNGLGETNAMEDPROGRAMLOCALPARAMETERDVEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLGETNAMEDPROGRAMLOCALPARAMETERDVEXTPROC$MH = RuntimeHelper.downcallHandle(
-        "(IIILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$593.PFNGLGETNAMEDPROGRAMLOCALPARAMETERDVEXTPROC$FUNC, false
+        constants$593.PFNGLGETNAMEDPROGRAMLOCALPARAMETERDVEXTPROC$FUNC
     );
     static final FunctionDescriptor PFNGLGETNAMEDPROGRAMLOCALPARAMETERFVEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLGETNAMEDPROGRAMLOCALPARAMETERFVEXTPROC$MH = RuntimeHelper.downcallHandle(
-        "(IIILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$593.PFNGLGETNAMEDPROGRAMLOCALPARAMETERFVEXTPROC$FUNC, false
+        constants$593.PFNGLGETNAMEDPROGRAMLOCALPARAMETERFVEXTPROC$FUNC
     );
     static final FunctionDescriptor PFNGLGETNAMEDPROGRAMIVEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLGETNAMEDPROGRAMIVEXTPROC$MH = RuntimeHelper.downcallHandle(
-        "(IIILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$593.PFNGLGETNAMEDPROGRAMIVEXTPROC$FUNC, false
+        constants$593.PFNGLGETNAMEDPROGRAMIVEXTPROC$FUNC
     );
 }
 

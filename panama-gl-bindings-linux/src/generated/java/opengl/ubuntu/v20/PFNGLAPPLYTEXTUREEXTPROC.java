@@ -2,22 +2,22 @@
 
 package opengl.ubuntu.v20;
 
-import jdk.incubator.foreign.Addressable;
-import jdk.incubator.foreign.MemoryAddress;
-import jdk.incubator.foreign.ResourceScope;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public interface PFNGLAPPLYTEXTUREEXTPROC {
 
-    void apply(int x0);
-    static MemoryAddress allocate(PFNGLAPPLYTEXTUREEXTPROC fi) {
-        return RuntimeHelper.upcallStub(PFNGLAPPLYTEXTUREEXTPROC.class, fi, constants$639.PFNGLAPPLYTEXTUREEXTPROC$FUNC, "(I)V");
+    void apply(int mode);
+    static MemorySegment allocate(PFNGLAPPLYTEXTUREEXTPROC fi, MemorySession session) {
+        return RuntimeHelper.upcallStub(PFNGLAPPLYTEXTUREEXTPROC.class, fi, constants$639.PFNGLAPPLYTEXTUREEXTPROC$FUNC, session);
     }
-    static MemoryAddress allocate(PFNGLAPPLYTEXTUREEXTPROC fi, ResourceScope scope) {
-        return RuntimeHelper.upcallStub(PFNGLAPPLYTEXTUREEXTPROC.class, fi, constants$639.PFNGLAPPLYTEXTUREEXTPROC$FUNC, "(I)V", scope);
-    }
-    static PFNGLAPPLYTEXTUREEXTPROC ofAddress(MemoryAddress addr) {
-        return (int x0) -> {
+    static PFNGLAPPLYTEXTUREEXTPROC ofAddress(MemoryAddress addr, MemorySession session) {
+        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
+        return (int _mode) -> {
             try {
-                constants$639.PFNGLAPPLYTEXTUREEXTPROC$MH.invokeExact((Addressable)addr, x0);
+                constants$639.PFNGLAPPLYTEXTUREEXTPROC$MH.invokeExact((Addressable)symbol, _mode);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

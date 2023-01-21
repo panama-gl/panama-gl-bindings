@@ -2,42 +2,39 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_INT;
-import static jdk.incubator.foreign.CLinker.C_LONG;
-import static jdk.incubator.foreign.CLinker.C_POINTER;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$647 {
 
     static final FunctionDescriptor PFNGLIMPORTMEMORYFDEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_LONG,
-        C_INT,
-        C_INT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLIMPORTMEMORYFDEXTPROC$MH = RuntimeHelper.downcallHandle(
-        "(IJII)V",
-        constants$647.PFNGLIMPORTMEMORYFDEXTPROC$FUNC, false
+        constants$647.PFNGLIMPORTMEMORYFDEXTPROC$FUNC
     );
     static final FunctionDescriptor PFNGLIMPORTMEMORYWIN32HANDLEEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_LONG,
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLIMPORTMEMORYWIN32HANDLEEXTPROC$MH = RuntimeHelper.downcallHandle(
-        "(IJILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$647.PFNGLIMPORTMEMORYWIN32HANDLEEXTPROC$FUNC, false
+        constants$647.PFNGLIMPORTMEMORYWIN32HANDLEEXTPROC$FUNC
     );
     static final FunctionDescriptor PFNGLIMPORTMEMORYWIN32NAMEEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_LONG,
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLIMPORTMEMORYWIN32NAMEEXTPROC$MH = RuntimeHelper.downcallHandle(
-        "(IJILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$647.PFNGLIMPORTMEMORYWIN32NAMEEXTPROC$FUNC, false
+        constants$647.PFNGLIMPORTMEMORYWIN32NAMEEXTPROC$FUNC
     );
 }
 

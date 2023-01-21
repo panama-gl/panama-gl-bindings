@@ -2,22 +2,22 @@
 
 package opengl.ubuntu.v20;
 
-import jdk.incubator.foreign.Addressable;
-import jdk.incubator.foreign.MemoryAddress;
-import jdk.incubator.foreign.ResourceScope;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public interface PFNGLDELETEVERTEXARRAYSAPPLEPROC {
 
-    void apply(int x0, jdk.incubator.foreign.MemoryAddress x1);
-    static MemoryAddress allocate(PFNGLDELETEVERTEXARRAYSAPPLEPROC fi) {
-        return RuntimeHelper.upcallStub(PFNGLDELETEVERTEXARRAYSAPPLEPROC.class, fi, constants$482.PFNGLDELETEVERTEXARRAYSAPPLEPROC$FUNC, "(ILjdk/incubator/foreign/MemoryAddress;)V");
+    void apply(int n, java.lang.foreign.MemoryAddress arrays);
+    static MemorySegment allocate(PFNGLDELETEVERTEXARRAYSAPPLEPROC fi, MemorySession session) {
+        return RuntimeHelper.upcallStub(PFNGLDELETEVERTEXARRAYSAPPLEPROC.class, fi, constants$482.PFNGLDELETEVERTEXARRAYSAPPLEPROC$FUNC, session);
     }
-    static MemoryAddress allocate(PFNGLDELETEVERTEXARRAYSAPPLEPROC fi, ResourceScope scope) {
-        return RuntimeHelper.upcallStub(PFNGLDELETEVERTEXARRAYSAPPLEPROC.class, fi, constants$482.PFNGLDELETEVERTEXARRAYSAPPLEPROC$FUNC, "(ILjdk/incubator/foreign/MemoryAddress;)V", scope);
-    }
-    static PFNGLDELETEVERTEXARRAYSAPPLEPROC ofAddress(MemoryAddress addr) {
-        return (int x0, jdk.incubator.foreign.MemoryAddress x1) -> {
+    static PFNGLDELETEVERTEXARRAYSAPPLEPROC ofAddress(MemoryAddress addr, MemorySession session) {
+        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
+        return (int _n, java.lang.foreign.MemoryAddress _arrays) -> {
             try {
-                constants$482.PFNGLDELETEVERTEXARRAYSAPPLEPROC$MH.invokeExact((Addressable)addr, x0, x1);
+                constants$482.PFNGLDELETEVERTEXARRAYSAPPLEPROC$MH.invokeExact((Addressable)symbol, _n, (java.lang.foreign.Addressable)_arrays);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

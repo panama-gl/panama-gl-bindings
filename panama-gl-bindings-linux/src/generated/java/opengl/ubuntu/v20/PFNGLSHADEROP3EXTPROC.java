@@ -2,22 +2,22 @@
 
 package opengl.ubuntu.v20;
 
-import jdk.incubator.foreign.Addressable;
-import jdk.incubator.foreign.MemoryAddress;
-import jdk.incubator.foreign.ResourceScope;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public interface PFNGLSHADEROP3EXTPROC {
 
-    void apply(int x0, int x1, int x2, int x3, int x4);
-    static MemoryAddress allocate(PFNGLSHADEROP3EXTPROC fi) {
-        return RuntimeHelper.upcallStub(PFNGLSHADEROP3EXTPROC.class, fi, constants$684.PFNGLSHADEROP3EXTPROC$FUNC, "(IIIII)V");
+    void apply(int op, int res, int arg1, int arg2, int arg3);
+    static MemorySegment allocate(PFNGLSHADEROP3EXTPROC fi, MemorySession session) {
+        return RuntimeHelper.upcallStub(PFNGLSHADEROP3EXTPROC.class, fi, constants$684.PFNGLSHADEROP3EXTPROC$FUNC, session);
     }
-    static MemoryAddress allocate(PFNGLSHADEROP3EXTPROC fi, ResourceScope scope) {
-        return RuntimeHelper.upcallStub(PFNGLSHADEROP3EXTPROC.class, fi, constants$684.PFNGLSHADEROP3EXTPROC$FUNC, "(IIIII)V", scope);
-    }
-    static PFNGLSHADEROP3EXTPROC ofAddress(MemoryAddress addr) {
-        return (int x0, int x1, int x2, int x3, int x4) -> {
+    static PFNGLSHADEROP3EXTPROC ofAddress(MemoryAddress addr, MemorySession session) {
+        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
+        return (int _op, int _res, int _arg1, int _arg2, int _arg3) -> {
             try {
-                constants$684.PFNGLSHADEROP3EXTPROC$MH.invokeExact((Addressable)addr, x0, x1, x2, x3, x4);
+                constants$684.PFNGLSHADEROP3EXTPROC$MH.invokeExact((Addressable)symbol, _op, _res, _arg1, _arg2, _arg3);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

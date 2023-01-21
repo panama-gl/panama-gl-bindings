@@ -2,39 +2,37 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_CHAR;
-import static jdk.incubator.foreign.CLinker.C_INT;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$848 {
 
     static final FunctionDescriptor PFNGLSECONDARYCOLORFORMATNVPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_INT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLSECONDARYCOLORFORMATNVPROC$MH = RuntimeHelper.downcallHandle(
-        "(III)V",
-        constants$848.PFNGLSECONDARYCOLORFORMATNVPROC$FUNC, false
+        constants$848.PFNGLSECONDARYCOLORFORMATNVPROC$FUNC
     );
     static final FunctionDescriptor PFNGLFOGCOORDFORMATNVPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLFOGCOORDFORMATNVPROC$MH = RuntimeHelper.downcallHandle(
-        "(II)V",
-        constants$848.PFNGLFOGCOORDFORMATNVPROC$FUNC, false
+        constants$848.PFNGLFOGCOORDFORMATNVPROC$FUNC
     );
     static final FunctionDescriptor PFNGLVERTEXATTRIBFORMATNVPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_INT,
-        C_CHAR,
-        C_INT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_CHAR$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLVERTEXATTRIBFORMATNVPROC$MH = RuntimeHelper.downcallHandle(
-        "(IIIBI)V",
-        constants$848.PFNGLVERTEXATTRIBFORMATNVPROC$FUNC, false
+        constants$848.PFNGLVERTEXATTRIBFORMATNVPROC$FUNC
     );
 }
 

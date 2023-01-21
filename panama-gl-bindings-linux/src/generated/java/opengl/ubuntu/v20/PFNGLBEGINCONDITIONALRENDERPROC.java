@@ -2,22 +2,22 @@
 
 package opengl.ubuntu.v20;
 
-import jdk.incubator.foreign.Addressable;
-import jdk.incubator.foreign.MemoryAddress;
-import jdk.incubator.foreign.ResourceScope;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public interface PFNGLBEGINCONDITIONALRENDERPROC {
 
-    void apply(int x0, int x1);
-    static MemoryAddress allocate(PFNGLBEGINCONDITIONALRENDERPROC fi) {
-        return RuntimeHelper.upcallStub(PFNGLBEGINCONDITIONALRENDERPROC.class, fi, constants$150.PFNGLBEGINCONDITIONALRENDERPROC$FUNC, "(II)V");
+    void apply(int id, int mode);
+    static MemorySegment allocate(PFNGLBEGINCONDITIONALRENDERPROC fi, MemorySession session) {
+        return RuntimeHelper.upcallStub(PFNGLBEGINCONDITIONALRENDERPROC.class, fi, constants$150.PFNGLBEGINCONDITIONALRENDERPROC$FUNC, session);
     }
-    static MemoryAddress allocate(PFNGLBEGINCONDITIONALRENDERPROC fi, ResourceScope scope) {
-        return RuntimeHelper.upcallStub(PFNGLBEGINCONDITIONALRENDERPROC.class, fi, constants$150.PFNGLBEGINCONDITIONALRENDERPROC$FUNC, "(II)V", scope);
-    }
-    static PFNGLBEGINCONDITIONALRENDERPROC ofAddress(MemoryAddress addr) {
-        return (int x0, int x1) -> {
+    static PFNGLBEGINCONDITIONALRENDERPROC ofAddress(MemoryAddress addr, MemorySession session) {
+        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
+        return (int _id, int _mode) -> {
             try {
-                constants$150.PFNGLBEGINCONDITIONALRENDERPROC$MH.invokeExact((Addressable)addr, x0, x1);
+                constants$150.PFNGLBEGINCONDITIONALRENDERPROC$MH.invokeExact((Addressable)symbol, _id, _mode);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

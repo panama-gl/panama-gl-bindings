@@ -2,22 +2,22 @@
 
 package opengl.ubuntu.v20;
 
-import jdk.incubator.foreign.Addressable;
-import jdk.incubator.foreign.MemoryAddress;
-import jdk.incubator.foreign.ResourceScope;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public interface PFNGLENDCONDITIONALRENDERNVXPROC {
 
     void apply();
-    static MemoryAddress allocate(PFNGLENDCONDITIONALRENDERNVXPROC fi) {
-        return RuntimeHelper.upcallStub(PFNGLENDCONDITIONALRENDERNVXPROC.class, fi, constants$720.PFNGLENDCONDITIONALRENDERNVXPROC$FUNC, "()V");
+    static MemorySegment allocate(PFNGLENDCONDITIONALRENDERNVXPROC fi, MemorySession session) {
+        return RuntimeHelper.upcallStub(PFNGLENDCONDITIONALRENDERNVXPROC.class, fi, constants$720.PFNGLENDCONDITIONALRENDERNVXPROC$FUNC, session);
     }
-    static MemoryAddress allocate(PFNGLENDCONDITIONALRENDERNVXPROC fi, ResourceScope scope) {
-        return RuntimeHelper.upcallStub(PFNGLENDCONDITIONALRENDERNVXPROC.class, fi, constants$720.PFNGLENDCONDITIONALRENDERNVXPROC$FUNC, "()V", scope);
-    }
-    static PFNGLENDCONDITIONALRENDERNVXPROC ofAddress(MemoryAddress addr) {
+    static PFNGLENDCONDITIONALRENDERNVXPROC ofAddress(MemoryAddress addr, MemorySession session) {
+        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return () -> {
             try {
-                constants$720.PFNGLENDCONDITIONALRENDERNVXPROC$MH.invokeExact((Addressable)addr);
+                constants$720.PFNGLENDCONDITIONALRENDERNVXPROC$MH.invokeExact((Addressable)symbol);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

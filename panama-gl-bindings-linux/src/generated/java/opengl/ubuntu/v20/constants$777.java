@@ -2,39 +2,36 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_INT;
-import static jdk.incubator.foreign.CLinker.C_POINTER;
-import static jdk.incubator.foreign.CLinker.C_SHORT;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$777 {
 
     static final FunctionDescriptor PFNGLVERTEXATTRIB3HVNVPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLVERTEXATTRIB3HVNVPROC$MH = RuntimeHelper.downcallHandle(
-        "(ILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$777.PFNGLVERTEXATTRIB3HVNVPROC$FUNC, false
+        constants$777.PFNGLVERTEXATTRIB3HVNVPROC$FUNC
     );
     static final FunctionDescriptor PFNGLVERTEXATTRIB4HNVPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_SHORT,
-        C_SHORT,
-        C_SHORT,
-        C_SHORT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_SHORT$LAYOUT,
+        Constants$root.C_SHORT$LAYOUT,
+        Constants$root.C_SHORT$LAYOUT,
+        Constants$root.C_SHORT$LAYOUT
     );
     static final MethodHandle PFNGLVERTEXATTRIB4HNVPROC$MH = RuntimeHelper.downcallHandle(
-        "(ISSSS)V",
-        constants$777.PFNGLVERTEXATTRIB4HNVPROC$FUNC, false
+        constants$777.PFNGLVERTEXATTRIB4HNVPROC$FUNC
     );
     static final FunctionDescriptor PFNGLVERTEXATTRIB4HVNVPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLVERTEXATTRIB4HVNVPROC$MH = RuntimeHelper.downcallHandle(
-        "(ILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$777.PFNGLVERTEXATTRIB4HVNVPROC$FUNC, false
+        constants$777.PFNGLVERTEXATTRIB4HVNVPROC$FUNC
     );
 }
 

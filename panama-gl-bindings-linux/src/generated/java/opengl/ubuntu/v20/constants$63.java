@@ -2,75 +2,70 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_INT;
-import static jdk.incubator.foreign.CLinker.C_POINTER;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$63 {
 
     static final FunctionDescriptor glGetConvolutionParameterfv$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle glGetConvolutionParameterfv$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "glGetConvolutionParameterfv",
-        "(IILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$63.glGetConvolutionParameterfv$FUNC, false
+        "glGetConvolutionParameterfv",
+        constants$63.glGetConvolutionParameterfv$FUNC
     );
     static final FunctionDescriptor glGetConvolutionParameteriv$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle glGetConvolutionParameteriv$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "glGetConvolutionParameteriv",
-        "(IILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$63.glGetConvolutionParameteriv$FUNC, false
+        "glGetConvolutionParameteriv",
+        constants$63.glGetConvolutionParameteriv$FUNC
     );
     static final FunctionDescriptor glSeparableFilter2D$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_POINTER,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle glSeparableFilter2D$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "glSeparableFilter2D",
-        "(IIIIIILjdk/incubator/foreign/MemoryAddress;Ljdk/incubator/foreign/MemoryAddress;)V",
-        constants$63.glSeparableFilter2D$FUNC, false
+        "glSeparableFilter2D",
+        constants$63.glSeparableFilter2D$FUNC
     );
     static final FunctionDescriptor glGetSeparableFilter$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_INT,
-        C_POINTER,
-        C_POINTER,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle glGetSeparableFilter$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "glGetSeparableFilter",
-        "(IIILjdk/incubator/foreign/MemoryAddress;Ljdk/incubator/foreign/MemoryAddress;Ljdk/incubator/foreign/MemoryAddress;)V",
-        constants$63.glGetSeparableFilter$FUNC, false
+        "glGetSeparableFilter",
+        constants$63.glGetSeparableFilter$FUNC
     );
     static final FunctionDescriptor glActiveTexture$FUNC = FunctionDescriptor.ofVoid(
-        C_INT
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle glActiveTexture$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "glActiveTexture",
-        "(I)V",
-        constants$63.glActiveTexture$FUNC, false
+        "glActiveTexture",
+        constants$63.glActiveTexture$FUNC
     );
     static final FunctionDescriptor glClientActiveTexture$FUNC = FunctionDescriptor.ofVoid(
-        C_INT
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle glClientActiveTexture$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "glClientActiveTexture",
-        "(I)V",
-        constants$63.glClientActiveTexture$FUNC, false
+        "glClientActiveTexture",
+        constants$63.glClientActiveTexture$FUNC
     );
 }
 

@@ -2,39 +2,36 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_INT;
-import static jdk.incubator.foreign.CLinker.C_LONG;
-import static jdk.incubator.foreign.CLinker.C_POINTER;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$837 {
 
     static final FunctionDescriptor PFNGLVDPAUGETSURFACEIVNVPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_LONG,
-        C_INT,
-        C_INT,
-        C_POINTER,
-        C_POINTER
+        Constants$root.C_LONG_LONG$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLVDPAUGETSURFACEIVNVPROC$MH = RuntimeHelper.downcallHandle(
-        "(JIILjdk/incubator/foreign/MemoryAddress;Ljdk/incubator/foreign/MemoryAddress;)V",
-        constants$837.PFNGLVDPAUGETSURFACEIVNVPROC$FUNC, false
+        constants$837.PFNGLVDPAUGETSURFACEIVNVPROC$FUNC
     );
     static final FunctionDescriptor PFNGLVDPAUSURFACEACCESSNVPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_LONG,
-        C_INT
+        Constants$root.C_LONG_LONG$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLVDPAUSURFACEACCESSNVPROC$MH = RuntimeHelper.downcallHandle(
-        "(JI)V",
-        constants$837.PFNGLVDPAUSURFACEACCESSNVPROC$FUNC, false
+        constants$837.PFNGLVDPAUSURFACEACCESSNVPROC$FUNC
     );
     static final FunctionDescriptor PFNGLVDPAUMAPSURFACESNVPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLVDPAUMAPSURFACESNVPROC$MH = RuntimeHelper.downcallHandle(
-        "(ILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$837.PFNGLVDPAUMAPSURFACESNVPROC$FUNC, false
+        constants$837.PFNGLVDPAUMAPSURFACESNVPROC$FUNC
     );
 }
 

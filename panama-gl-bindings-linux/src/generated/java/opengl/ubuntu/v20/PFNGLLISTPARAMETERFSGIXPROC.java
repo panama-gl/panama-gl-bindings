@@ -2,22 +2,22 @@
 
 package opengl.ubuntu.v20;
 
-import jdk.incubator.foreign.Addressable;
-import jdk.incubator.foreign.MemoryAddress;
-import jdk.incubator.foreign.ResourceScope;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public interface PFNGLLISTPARAMETERFSGIXPROC {
 
-    void apply(int x0, int x1, float x2);
-    static MemoryAddress allocate(PFNGLLISTPARAMETERFSGIXPROC fi) {
-        return RuntimeHelper.upcallStub(PFNGLLISTPARAMETERFSGIXPROC.class, fi, constants$902.PFNGLLISTPARAMETERFSGIXPROC$FUNC, "(IIF)V");
+    void apply(int list, int pname, float param);
+    static MemorySegment allocate(PFNGLLISTPARAMETERFSGIXPROC fi, MemorySession session) {
+        return RuntimeHelper.upcallStub(PFNGLLISTPARAMETERFSGIXPROC.class, fi, constants$902.PFNGLLISTPARAMETERFSGIXPROC$FUNC, session);
     }
-    static MemoryAddress allocate(PFNGLLISTPARAMETERFSGIXPROC fi, ResourceScope scope) {
-        return RuntimeHelper.upcallStub(PFNGLLISTPARAMETERFSGIXPROC.class, fi, constants$902.PFNGLLISTPARAMETERFSGIXPROC$FUNC, "(IIF)V", scope);
-    }
-    static PFNGLLISTPARAMETERFSGIXPROC ofAddress(MemoryAddress addr) {
-        return (int x0, int x1, float x2) -> {
+    static PFNGLLISTPARAMETERFSGIXPROC ofAddress(MemoryAddress addr, MemorySession session) {
+        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
+        return (int _list, int _pname, float _param) -> {
             try {
-                constants$902.PFNGLLISTPARAMETERFSGIXPROC$MH.invokeExact((Addressable)addr, x0, x1, x2);
+                constants$902.PFNGLLISTPARAMETERFSGIXPROC$MH.invokeExact((Addressable)symbol, _list, _pname, _param);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

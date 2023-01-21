@@ -2,22 +2,22 @@
 
 package opengl.ubuntu.v20;
 
-import jdk.incubator.foreign.Addressable;
-import jdk.incubator.foreign.MemoryAddress;
-import jdk.incubator.foreign.ResourceScope;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public interface PFNGLMULTTRANSPOSEMATRIXDARBPROC {
 
-    void apply(jdk.incubator.foreign.MemoryAddress x0);
-    static MemoryAddress allocate(PFNGLMULTTRANSPOSEMATRIXDARBPROC fi) {
-        return RuntimeHelper.upcallStub(PFNGLMULTTRANSPOSEMATRIXDARBPROC.class, fi, constants$377.PFNGLMULTTRANSPOSEMATRIXDARBPROC$FUNC, "(Ljdk/incubator/foreign/MemoryAddress;)V");
+    void apply(java.lang.foreign.MemoryAddress m);
+    static MemorySegment allocate(PFNGLMULTTRANSPOSEMATRIXDARBPROC fi, MemorySession session) {
+        return RuntimeHelper.upcallStub(PFNGLMULTTRANSPOSEMATRIXDARBPROC.class, fi, constants$377.PFNGLMULTTRANSPOSEMATRIXDARBPROC$FUNC, session);
     }
-    static MemoryAddress allocate(PFNGLMULTTRANSPOSEMATRIXDARBPROC fi, ResourceScope scope) {
-        return RuntimeHelper.upcallStub(PFNGLMULTTRANSPOSEMATRIXDARBPROC.class, fi, constants$377.PFNGLMULTTRANSPOSEMATRIXDARBPROC$FUNC, "(Ljdk/incubator/foreign/MemoryAddress;)V", scope);
-    }
-    static PFNGLMULTTRANSPOSEMATRIXDARBPROC ofAddress(MemoryAddress addr) {
-        return (jdk.incubator.foreign.MemoryAddress x0) -> {
+    static PFNGLMULTTRANSPOSEMATRIXDARBPROC ofAddress(MemoryAddress addr, MemorySession session) {
+        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
+        return (java.lang.foreign.MemoryAddress _m) -> {
             try {
-                constants$377.PFNGLMULTTRANSPOSEMATRIXDARBPROC$MH.invokeExact((Addressable)addr, x0);
+                constants$377.PFNGLMULTTRANSPOSEMATRIXDARBPROC$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)_m);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

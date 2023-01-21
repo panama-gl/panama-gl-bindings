@@ -2,22 +2,22 @@
 
 package opengl.ubuntu.v20;
 
-import jdk.incubator.foreign.Addressable;
-import jdk.incubator.foreign.MemoryAddress;
-import jdk.incubator.foreign.ResourceScope;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public interface GLDEBUGPROC {
 
-    void apply(int x0, int x1, int x2, int x3, int x4, jdk.incubator.foreign.MemoryAddress x5, jdk.incubator.foreign.MemoryAddress x6);
-    static MemoryAddress allocate(GLDEBUGPROC fi) {
-        return RuntimeHelper.upcallStub(GLDEBUGPROC.class, fi, constants$252.GLDEBUGPROC$FUNC, "(IIIIILjdk/incubator/foreign/MemoryAddress;Ljdk/incubator/foreign/MemoryAddress;)V");
+    void apply(int source, int type, int id, int severity, int length, java.lang.foreign.MemoryAddress message, java.lang.foreign.MemoryAddress userParam);
+    static MemorySegment allocate(GLDEBUGPROC fi, MemorySession session) {
+        return RuntimeHelper.upcallStub(GLDEBUGPROC.class, fi, constants$252.GLDEBUGPROC$FUNC, session);
     }
-    static MemoryAddress allocate(GLDEBUGPROC fi, ResourceScope scope) {
-        return RuntimeHelper.upcallStub(GLDEBUGPROC.class, fi, constants$252.GLDEBUGPROC$FUNC, "(IIIIILjdk/incubator/foreign/MemoryAddress;Ljdk/incubator/foreign/MemoryAddress;)V", scope);
-    }
-    static GLDEBUGPROC ofAddress(MemoryAddress addr) {
-        return (int x0, int x1, int x2, int x3, int x4, jdk.incubator.foreign.MemoryAddress x5, jdk.incubator.foreign.MemoryAddress x6) -> {
+    static GLDEBUGPROC ofAddress(MemoryAddress addr, MemorySession session) {
+        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
+        return (int _source, int _type, int _id, int _severity, int _length, java.lang.foreign.MemoryAddress _message, java.lang.foreign.MemoryAddress _userParam) -> {
             try {
-                constants$252.GLDEBUGPROC$MH.invokeExact((Addressable)addr, x0, x1, x2, x3, x4, x5, x6);
+                constants$252.GLDEBUGPROC$MH.invokeExact((Addressable)symbol, _source, _type, _id, _severity, _length, (java.lang.foreign.Addressable)_message, (java.lang.foreign.Addressable)_userParam);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

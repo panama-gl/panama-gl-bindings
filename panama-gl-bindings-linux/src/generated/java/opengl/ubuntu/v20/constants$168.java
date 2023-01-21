@@ -2,35 +2,33 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_INT;
-import static jdk.incubator.foreign.CLinker.C_POINTER;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$168 {
 
     static final FunctionDescriptor PFNGLBINDFRAMEBUFFERPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLBINDFRAMEBUFFERPROC$MH = RuntimeHelper.downcallHandle(
-        "(II)V",
-        constants$168.PFNGLBINDFRAMEBUFFERPROC$FUNC, false
+        constants$168.PFNGLBINDFRAMEBUFFERPROC$FUNC
     );
     static final FunctionDescriptor PFNGLDELETEFRAMEBUFFERSPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLDELETEFRAMEBUFFERSPROC$MH = RuntimeHelper.downcallHandle(
-        "(ILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$168.PFNGLDELETEFRAMEBUFFERSPROC$FUNC, false
+        constants$168.PFNGLDELETEFRAMEBUFFERSPROC$FUNC
     );
     static final FunctionDescriptor PFNGLGENFRAMEBUFFERSPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLGENFRAMEBUFFERSPROC$MH = RuntimeHelper.downcallHandle(
-        "(ILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$168.PFNGLGENFRAMEBUFFERSPROC$FUNC, false
+        constants$168.PFNGLGENFRAMEBUFFERSPROC$FUNC
     );
 }
 

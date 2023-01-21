@@ -2,22 +2,22 @@
 
 package opengl.ubuntu.v20;
 
-import jdk.incubator.foreign.Addressable;
-import jdk.incubator.foreign.MemoryAddress;
-import jdk.incubator.foreign.ResourceScope;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public interface PFNGLVERTEX3BOESPROC {
 
-    void apply(byte x0, byte x1, byte x2);
-    static MemoryAddress allocate(PFNGLVERTEX3BOESPROC fi) {
-        return RuntimeHelper.upcallStub(PFNGLVERTEX3BOESPROC.class, fi, constants$412.PFNGLVERTEX3BOESPROC$FUNC, "(BBB)V");
+    void apply(byte x, byte y, byte z);
+    static MemorySegment allocate(PFNGLVERTEX3BOESPROC fi, MemorySession session) {
+        return RuntimeHelper.upcallStub(PFNGLVERTEX3BOESPROC.class, fi, constants$412.PFNGLVERTEX3BOESPROC$FUNC, session);
     }
-    static MemoryAddress allocate(PFNGLVERTEX3BOESPROC fi, ResourceScope scope) {
-        return RuntimeHelper.upcallStub(PFNGLVERTEX3BOESPROC.class, fi, constants$412.PFNGLVERTEX3BOESPROC$FUNC, "(BBB)V", scope);
-    }
-    static PFNGLVERTEX3BOESPROC ofAddress(MemoryAddress addr) {
-        return (byte x0, byte x1, byte x2) -> {
+    static PFNGLVERTEX3BOESPROC ofAddress(MemoryAddress addr, MemorySession session) {
+        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
+        return (byte _x, byte _y, byte _z) -> {
             try {
-                constants$412.PFNGLVERTEX3BOESPROC$MH.invokeExact((Addressable)addr, x0, x1, x2);
+                constants$412.PFNGLVERTEX3BOESPROC$MH.invokeExact((Addressable)symbol, _x, _y, _z);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

@@ -2,22 +2,22 @@
 
 package opengl.ubuntu.v20;
 
-import jdk.incubator.foreign.Addressable;
-import jdk.incubator.foreign.MemoryAddress;
-import jdk.incubator.foreign.ResourceScope;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public interface PFNGLGETUNIFORMINDICESPROC {
 
-    void apply(int x0, int x1, jdk.incubator.foreign.MemoryAddress x2, jdk.incubator.foreign.MemoryAddress x3);
-    static MemoryAddress allocate(PFNGLGETUNIFORMINDICESPROC fi) {
-        return RuntimeHelper.upcallStub(PFNGLGETUNIFORMINDICESPROC.class, fi, constants$176.PFNGLGETUNIFORMINDICESPROC$FUNC, "(IILjdk/incubator/foreign/MemoryAddress;Ljdk/incubator/foreign/MemoryAddress;)V");
+    void apply(int program, int uniformCount, java.lang.foreign.MemoryAddress uniformNames, java.lang.foreign.MemoryAddress uniformIndices);
+    static MemorySegment allocate(PFNGLGETUNIFORMINDICESPROC fi, MemorySession session) {
+        return RuntimeHelper.upcallStub(PFNGLGETUNIFORMINDICESPROC.class, fi, constants$176.PFNGLGETUNIFORMINDICESPROC$FUNC, session);
     }
-    static MemoryAddress allocate(PFNGLGETUNIFORMINDICESPROC fi, ResourceScope scope) {
-        return RuntimeHelper.upcallStub(PFNGLGETUNIFORMINDICESPROC.class, fi, constants$176.PFNGLGETUNIFORMINDICESPROC$FUNC, "(IILjdk/incubator/foreign/MemoryAddress;Ljdk/incubator/foreign/MemoryAddress;)V", scope);
-    }
-    static PFNGLGETUNIFORMINDICESPROC ofAddress(MemoryAddress addr) {
-        return (int x0, int x1, jdk.incubator.foreign.MemoryAddress x2, jdk.incubator.foreign.MemoryAddress x3) -> {
+    static PFNGLGETUNIFORMINDICESPROC ofAddress(MemoryAddress addr, MemorySession session) {
+        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
+        return (int _program, int _uniformCount, java.lang.foreign.MemoryAddress _uniformNames, java.lang.foreign.MemoryAddress _uniformIndices) -> {
             try {
-                constants$176.PFNGLGETUNIFORMINDICESPROC$MH.invokeExact((Addressable)addr, x0, x1, x2, x3);
+                constants$176.PFNGLGETUNIFORMINDICESPROC$MH.invokeExact((Addressable)symbol, _program, _uniformCount, (java.lang.foreign.Addressable)_uniformNames, (java.lang.foreign.Addressable)_uniformIndices);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

@@ -2,22 +2,22 @@
 
 package opengl.ubuntu.v20;
 
-import jdk.incubator.foreign.Addressable;
-import jdk.incubator.foreign.MemoryAddress;
-import jdk.incubator.foreign.ResourceScope;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public interface PFNGLTBUFFERMASK3DFXPROC {
 
-    void apply(int x0);
-    static MemoryAddress allocate(PFNGLTBUFFERMASK3DFXPROC fi) {
-        return RuntimeHelper.upcallStub(PFNGLTBUFFERMASK3DFXPROC.class, fi, constants$450.PFNGLTBUFFERMASK3DFXPROC$FUNC, "(I)V");
+    void apply(int mask);
+    static MemorySegment allocate(PFNGLTBUFFERMASK3DFXPROC fi, MemorySession session) {
+        return RuntimeHelper.upcallStub(PFNGLTBUFFERMASK3DFXPROC.class, fi, constants$450.PFNGLTBUFFERMASK3DFXPROC$FUNC, session);
     }
-    static MemoryAddress allocate(PFNGLTBUFFERMASK3DFXPROC fi, ResourceScope scope) {
-        return RuntimeHelper.upcallStub(PFNGLTBUFFERMASK3DFXPROC.class, fi, constants$450.PFNGLTBUFFERMASK3DFXPROC$FUNC, "(I)V", scope);
-    }
-    static PFNGLTBUFFERMASK3DFXPROC ofAddress(MemoryAddress addr) {
-        return (int x0) -> {
+    static PFNGLTBUFFERMASK3DFXPROC ofAddress(MemoryAddress addr, MemorySession session) {
+        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
+        return (int _mask) -> {
             try {
-                constants$450.PFNGLTBUFFERMASK3DFXPROC$MH.invokeExact((Addressable)addr, x0);
+                constants$450.PFNGLTBUFFERMASK3DFXPROC$MH.invokeExact((Addressable)symbol, _mask);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

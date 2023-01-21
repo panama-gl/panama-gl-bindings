@@ -2,36 +2,34 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_INT;
-import static jdk.incubator.foreign.CLinker.C_POINTER;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$562 {
 
     static final FunctionDescriptor PFNGLGETPOINTERINDEXEDVEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLGETPOINTERINDEXEDVEXTPROC$MH = RuntimeHelper.downcallHandle(
-        "(IILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$562.PFNGLGETPOINTERINDEXEDVEXTPROC$FUNC, false
+        constants$562.PFNGLGETPOINTERINDEXEDVEXTPROC$FUNC
     );
     static final FunctionDescriptor PFNGLENABLEINDEXEDEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLENABLEINDEXEDEXTPROC$MH = RuntimeHelper.downcallHandle(
-        "(II)V",
-        constants$562.PFNGLENABLEINDEXEDEXTPROC$FUNC, false
+        constants$562.PFNGLENABLEINDEXEDEXTPROC$FUNC
     );
     static final FunctionDescriptor PFNGLDISABLEINDEXEDEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLDISABLEINDEXEDEXTPROC$MH = RuntimeHelper.downcallHandle(
-        "(II)V",
-        constants$562.PFNGLDISABLEINDEXEDEXTPROC$FUNC, false
+        constants$562.PFNGLDISABLEINDEXEDEXTPROC$FUNC
     );
 }
 

@@ -2,34 +2,31 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_FLOAT;
-import static jdk.incubator.foreign.CLinker.C_INT;
-import static jdk.incubator.foreign.CLinker.C_POINTER;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$905 {
 
     static final FunctionDescriptor PFNGLLOADIDENTITYDEFORMATIONMAPSGIXPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLLOADIDENTITYDEFORMATIONMAPSGIXPROC$MH = RuntimeHelper.downcallHandle(
-        "(I)V",
-        constants$905.PFNGLLOADIDENTITYDEFORMATIONMAPSGIXPROC$FUNC, false
+        constants$905.PFNGLLOADIDENTITYDEFORMATIONMAPSGIXPROC$FUNC
     );
     static final FunctionDescriptor PFNGLREFERENCEPLANESGIXPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_POINTER
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLREFERENCEPLANESGIXPROC$MH = RuntimeHelper.downcallHandle(
-        "(Ljdk/incubator/foreign/MemoryAddress;)V",
-        constants$905.PFNGLREFERENCEPLANESGIXPROC$FUNC, false
+        constants$905.PFNGLREFERENCEPLANESGIXPROC$FUNC
     );
     static final FunctionDescriptor PFNGLSPRITEPARAMETERFSGIXPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_FLOAT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT
     );
     static final MethodHandle PFNGLSPRITEPARAMETERFSGIXPROC$MH = RuntimeHelper.downcallHandle(
-        "(IF)V",
-        constants$905.PFNGLSPRITEPARAMETERFSGIXPROC$FUNC, false
+        constants$905.PFNGLSPRITEPARAMETERFSGIXPROC$FUNC
     );
 }
 

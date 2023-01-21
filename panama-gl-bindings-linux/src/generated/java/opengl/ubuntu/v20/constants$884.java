@@ -2,34 +2,32 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_INT;
-import static jdk.incubator.foreign.CLinker.C_POINTER;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$884 {
 
     static final FunctionDescriptor PFNGLGETDETAILTEXFUNCSGISPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLGETDETAILTEXFUNCSGISPROC$MH = RuntimeHelper.downcallHandle(
-        "(ILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$884.PFNGLGETDETAILTEXFUNCSGISPROC$FUNC, false
+        constants$884.PFNGLGETDETAILTEXFUNCSGISPROC$FUNC
     );
     static final FunctionDescriptor PFNGLFOGFUNCSGISPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLFOGFUNCSGISPROC$MH = RuntimeHelper.downcallHandle(
-        "(ILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$884.PFNGLFOGFUNCSGISPROC$FUNC, false
+        constants$884.PFNGLFOGFUNCSGISPROC$FUNC
     );
     static final FunctionDescriptor PFNGLGETFOGFUNCSGISPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_POINTER
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLGETFOGFUNCSGISPROC$MH = RuntimeHelper.downcallHandle(
-        "(Ljdk/incubator/foreign/MemoryAddress;)V",
-        constants$884.PFNGLGETFOGFUNCSGISPROC$FUNC, false
+        constants$884.PFNGLGETFOGFUNCSGISPROC$FUNC
     );
 }
 

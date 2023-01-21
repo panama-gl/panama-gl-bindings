@@ -2,22 +2,22 @@
 
 package opengl.ubuntu.v20;
 
-import jdk.incubator.foreign.Addressable;
-import jdk.incubator.foreign.MemoryAddress;
-import jdk.incubator.foreign.ResourceScope;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public interface PFNGLMULTICASTVIEWPORTPOSITIONWSCALENVXPROC {
 
-    void apply(int x0, int x1, float x2, float x3);
-    static MemoryAddress allocate(PFNGLMULTICASTVIEWPORTPOSITIONWSCALENVXPROC fi) {
-        return RuntimeHelper.upcallStub(PFNGLMULTICASTVIEWPORTPOSITIONWSCALENVXPROC.class, fi, constants$721.PFNGLMULTICASTVIEWPORTPOSITIONWSCALENVXPROC$FUNC, "(IIFF)V");
+    void apply(int gpu, int index, float xcoeff, float ycoeff);
+    static MemorySegment allocate(PFNGLMULTICASTVIEWPORTPOSITIONWSCALENVXPROC fi, MemorySession session) {
+        return RuntimeHelper.upcallStub(PFNGLMULTICASTVIEWPORTPOSITIONWSCALENVXPROC.class, fi, constants$721.PFNGLMULTICASTVIEWPORTPOSITIONWSCALENVXPROC$FUNC, session);
     }
-    static MemoryAddress allocate(PFNGLMULTICASTVIEWPORTPOSITIONWSCALENVXPROC fi, ResourceScope scope) {
-        return RuntimeHelper.upcallStub(PFNGLMULTICASTVIEWPORTPOSITIONWSCALENVXPROC.class, fi, constants$721.PFNGLMULTICASTVIEWPORTPOSITIONWSCALENVXPROC$FUNC, "(IIFF)V", scope);
-    }
-    static PFNGLMULTICASTVIEWPORTPOSITIONWSCALENVXPROC ofAddress(MemoryAddress addr) {
-        return (int x0, int x1, float x2, float x3) -> {
+    static PFNGLMULTICASTVIEWPORTPOSITIONWSCALENVXPROC ofAddress(MemoryAddress addr, MemorySession session) {
+        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
+        return (int _gpu, int _index, float _xcoeff, float _ycoeff) -> {
             try {
-                constants$721.PFNGLMULTICASTVIEWPORTPOSITIONWSCALENVXPROC$MH.invokeExact((Addressable)addr, x0, x1, x2, x3);
+                constants$721.PFNGLMULTICASTVIEWPORTPOSITIONWSCALENVXPROC$MH.invokeExact((Addressable)symbol, _gpu, _index, _xcoeff, _ycoeff);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

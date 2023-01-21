@@ -2,37 +2,36 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_INT;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$871 {
 
     static final FunctionDescriptor PFNGLVERTEXATTRIBI1IEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLVERTEXATTRIBI1IEXTPROC$MH = RuntimeHelper.downcallHandle(
-        "(II)V",
-        constants$871.PFNGLVERTEXATTRIBI1IEXTPROC$FUNC, false
+        constants$871.PFNGLVERTEXATTRIBI1IEXTPROC$FUNC
     );
     static final FunctionDescriptor PFNGLVERTEXATTRIBI2IEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_INT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLVERTEXATTRIBI2IEXTPROC$MH = RuntimeHelper.downcallHandle(
-        "(III)V",
-        constants$871.PFNGLVERTEXATTRIBI2IEXTPROC$FUNC, false
+        constants$871.PFNGLVERTEXATTRIBI2IEXTPROC$FUNC
     );
     static final FunctionDescriptor PFNGLVERTEXATTRIBI3IEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLVERTEXATTRIBI3IEXTPROC$MH = RuntimeHelper.downcallHandle(
-        "(IIII)V",
-        constants$871.PFNGLVERTEXATTRIBI3IEXTPROC$FUNC, false
+        constants$871.PFNGLVERTEXATTRIBI3IEXTPROC$FUNC
     );
 }
 

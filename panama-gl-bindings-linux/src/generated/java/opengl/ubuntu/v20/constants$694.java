@@ -2,38 +2,36 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_INT;
-import static jdk.incubator.foreign.CLinker.C_POINTER;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$694 {
 
     static final FunctionDescriptor PFNGLGETINVARIANTBOOLEANVEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLGETINVARIANTBOOLEANVEXTPROC$MH = RuntimeHelper.downcallHandle(
-        "(IILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$694.PFNGLGETINVARIANTBOOLEANVEXTPROC$FUNC, false
+        constants$694.PFNGLGETINVARIANTBOOLEANVEXTPROC$FUNC
     );
     static final FunctionDescriptor PFNGLGETINVARIANTINTEGERVEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLGETINVARIANTINTEGERVEXTPROC$MH = RuntimeHelper.downcallHandle(
-        "(IILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$694.PFNGLGETINVARIANTINTEGERVEXTPROC$FUNC, false
+        constants$694.PFNGLGETINVARIANTINTEGERVEXTPROC$FUNC
     );
     static final FunctionDescriptor PFNGLGETINVARIANTFLOATVEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLGETINVARIANTFLOATVEXTPROC$MH = RuntimeHelper.downcallHandle(
-        "(IILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$694.PFNGLGETINVARIANTFLOATVEXTPROC$FUNC, false
+        constants$694.PFNGLGETINVARIANTFLOATVEXTPROC$FUNC
     );
 }
 

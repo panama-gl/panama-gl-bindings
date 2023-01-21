@@ -2,22 +2,22 @@
 
 package opengl.ubuntu.v20;
 
-import jdk.incubator.foreign.Addressable;
-import jdk.incubator.foreign.MemoryAddress;
-import jdk.incubator.foreign.ResourceScope;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public interface PFNGLDEFORMSGIXPROC {
 
-    void apply(int x0);
-    static MemoryAddress allocate(PFNGLDEFORMSGIXPROC fi) {
-        return RuntimeHelper.upcallStub(PFNGLDEFORMSGIXPROC.class, fi, constants$904.PFNGLDEFORMSGIXPROC$FUNC, "(I)V");
+    void apply(int mask);
+    static MemorySegment allocate(PFNGLDEFORMSGIXPROC fi, MemorySession session) {
+        return RuntimeHelper.upcallStub(PFNGLDEFORMSGIXPROC.class, fi, constants$904.PFNGLDEFORMSGIXPROC$FUNC, session);
     }
-    static MemoryAddress allocate(PFNGLDEFORMSGIXPROC fi, ResourceScope scope) {
-        return RuntimeHelper.upcallStub(PFNGLDEFORMSGIXPROC.class, fi, constants$904.PFNGLDEFORMSGIXPROC$FUNC, "(I)V", scope);
-    }
-    static PFNGLDEFORMSGIXPROC ofAddress(MemoryAddress addr) {
-        return (int x0) -> {
+    static PFNGLDEFORMSGIXPROC ofAddress(MemoryAddress addr, MemorySession session) {
+        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
+        return (int _mask) -> {
             try {
-                constants$904.PFNGLDEFORMSGIXPROC$MH.invokeExact((Addressable)addr, x0);
+                constants$904.PFNGLDEFORMSGIXPROC$MH.invokeExact((Addressable)symbol, _mask);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

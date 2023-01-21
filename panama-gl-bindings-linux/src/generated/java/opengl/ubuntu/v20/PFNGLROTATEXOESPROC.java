@@ -2,22 +2,22 @@
 
 package opengl.ubuntu.v20;
 
-import jdk.incubator.foreign.Addressable;
-import jdk.incubator.foreign.MemoryAddress;
-import jdk.incubator.foreign.ResourceScope;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public interface PFNGLROTATEXOESPROC {
 
-    void apply(int x0, int x1, int x2, int x3);
-    static MemoryAddress allocate(PFNGLROTATEXOESPROC fi) {
-        return RuntimeHelper.upcallStub(PFNGLROTATEXOESPROC.class, fi, constants$423.PFNGLROTATEXOESPROC$FUNC, "(IIII)V");
+    void apply(int angle, int x, int y, int z);
+    static MemorySegment allocate(PFNGLROTATEXOESPROC fi, MemorySession session) {
+        return RuntimeHelper.upcallStub(PFNGLROTATEXOESPROC.class, fi, constants$423.PFNGLROTATEXOESPROC$FUNC, session);
     }
-    static MemoryAddress allocate(PFNGLROTATEXOESPROC fi, ResourceScope scope) {
-        return RuntimeHelper.upcallStub(PFNGLROTATEXOESPROC.class, fi, constants$423.PFNGLROTATEXOESPROC$FUNC, "(IIII)V", scope);
-    }
-    static PFNGLROTATEXOESPROC ofAddress(MemoryAddress addr) {
-        return (int x0, int x1, int x2, int x3) -> {
+    static PFNGLROTATEXOESPROC ofAddress(MemoryAddress addr, MemorySession session) {
+        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
+        return (int _angle, int _x, int _y, int _z) -> {
             try {
-                constants$423.PFNGLROTATEXOESPROC$MH.invokeExact((Addressable)addr, x0, x1, x2, x3);
+                constants$423.PFNGLROTATEXOESPROC$MH.invokeExact((Addressable)symbol, _angle, _x, _y, _z);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

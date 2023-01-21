@@ -2,45 +2,42 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_FLOAT;
-import static jdk.incubator.foreign.CLinker.C_INT;
-import static jdk.incubator.foreign.CLinker.C_POINTER;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$486 {
 
     static final FunctionDescriptor PFNGLMAPVERTEXATTRIB2FAPPLEPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_FLOAT,
-        C_FLOAT,
-        C_INT,
-        C_INT,
-        C_FLOAT,
-        C_FLOAT,
-        C_INT,
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLMAPVERTEXATTRIB2FAPPLEPROC$MH = RuntimeHelper.downcallHandle(
-        "(IIFFIIFFIILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$486.PFNGLMAPVERTEXATTRIB2FAPPLEPROC$FUNC, false
+        constants$486.PFNGLMAPVERTEXATTRIB2FAPPLEPROC$FUNC
     );
     static final FunctionDescriptor PFNGLDRAWBUFFERSATIPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLDRAWBUFFERSATIPROC$MH = RuntimeHelper.downcallHandle(
-        "(ILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$486.PFNGLDRAWBUFFERSATIPROC$FUNC, false
+        constants$486.PFNGLDRAWBUFFERSATIPROC$FUNC
     );
     static final FunctionDescriptor PFNGLELEMENTPOINTERATIPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLELEMENTPOINTERATIPROC$MH = RuntimeHelper.downcallHandle(
-        "(ILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$486.PFNGLELEMENTPOINTERATIPROC$FUNC, false
+        constants$486.PFNGLELEMENTPOINTERATIPROC$FUNC
     );
 }
 

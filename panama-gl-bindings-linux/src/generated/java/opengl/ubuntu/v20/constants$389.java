@@ -2,41 +2,37 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_DOUBLE;
-import static jdk.incubator.foreign.CLinker.C_FLOAT;
-import static jdk.incubator.foreign.CLinker.C_INT;
-import static jdk.incubator.foreign.CLinker.C_POINTER;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$389 {
 
     static final FunctionDescriptor PFNGLVERTEXATTRIB3DARBPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_DOUBLE,
-        C_DOUBLE,
-        C_DOUBLE
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_DOUBLE$LAYOUT,
+        Constants$root.C_DOUBLE$LAYOUT,
+        Constants$root.C_DOUBLE$LAYOUT
     );
     static final MethodHandle PFNGLVERTEXATTRIB3DARBPROC$MH = RuntimeHelper.downcallHandle(
-        "(IDDD)V",
-        constants$389.PFNGLVERTEXATTRIB3DARBPROC$FUNC, false
+        constants$389.PFNGLVERTEXATTRIB3DARBPROC$FUNC
     );
     static final FunctionDescriptor PFNGLVERTEXATTRIB3DVARBPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLVERTEXATTRIB3DVARBPROC$MH = RuntimeHelper.downcallHandle(
-        "(ILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$389.PFNGLVERTEXATTRIB3DVARBPROC$FUNC, false
+        constants$389.PFNGLVERTEXATTRIB3DVARBPROC$FUNC
     );
     static final FunctionDescriptor PFNGLVERTEXATTRIB3FARBPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_FLOAT,
-        C_FLOAT,
-        C_FLOAT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT
     );
     static final MethodHandle PFNGLVERTEXATTRIB3FARBPROC$MH = RuntimeHelper.downcallHandle(
-        "(IFFF)V",
-        constants$389.PFNGLVERTEXATTRIB3FARBPROC$FUNC, false
+        constants$389.PFNGLVERTEXATTRIB3FARBPROC$FUNC
     );
 }
 

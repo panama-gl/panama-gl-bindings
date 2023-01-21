@@ -2,42 +2,39 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_CHAR;
-import static jdk.incubator.foreign.CLinker.C_INT;
-import static jdk.incubator.foreign.CLinker.C_POINTER;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$146 {
 
     static final FunctionDescriptor PFNGLUNIFORMMATRIX4X3FVPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_CHAR,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_CHAR$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLUNIFORMMATRIX4X3FVPROC$MH = RuntimeHelper.downcallHandle(
-        "(IIBLjdk/incubator/foreign/MemoryAddress;)V",
-        constants$146.PFNGLUNIFORMMATRIX4X3FVPROC$FUNC, false
+        constants$146.PFNGLUNIFORMMATRIX4X3FVPROC$FUNC
     );
     static final FunctionDescriptor PFNGLCOLORMASKIPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_CHAR,
-        C_CHAR,
-        C_CHAR,
-        C_CHAR
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_CHAR$LAYOUT,
+        Constants$root.C_CHAR$LAYOUT,
+        Constants$root.C_CHAR$LAYOUT,
+        Constants$root.C_CHAR$LAYOUT
     );
     static final MethodHandle PFNGLCOLORMASKIPROC$MH = RuntimeHelper.downcallHandle(
-        "(IBBBB)V",
-        constants$146.PFNGLCOLORMASKIPROC$FUNC, false
+        constants$146.PFNGLCOLORMASKIPROC$FUNC
     );
     static final FunctionDescriptor PFNGLGETBOOLEANI_VPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLGETBOOLEANI_VPROC$MH = RuntimeHelper.downcallHandle(
-        "(IILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$146.PFNGLGETBOOLEANI_VPROC$FUNC, false
+        constants$146.PFNGLGETBOOLEANI_VPROC$FUNC
     );
 }
 

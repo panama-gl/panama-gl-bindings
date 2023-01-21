@@ -2,22 +2,22 @@
 
 package opengl.ubuntu.v20;
 
-import jdk.incubator.foreign.Addressable;
-import jdk.incubator.foreign.MemoryAddress;
-import jdk.incubator.foreign.ResourceScope;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public interface PFNGLVERTEXATTRIBLFORMATPROC {
 
-    void apply(int x0, int x1, int x2, int x3);
-    static MemoryAddress allocate(PFNGLVERTEXATTRIBLFORMATPROC fi) {
-        return RuntimeHelper.upcallStub(PFNGLVERTEXATTRIBLFORMATPROC.class, fi, constants$263.PFNGLVERTEXATTRIBLFORMATPROC$FUNC, "(IIII)V");
+    void apply(int attribindex, int size, int type, int relativeoffset);
+    static MemorySegment allocate(PFNGLVERTEXATTRIBLFORMATPROC fi, MemorySession session) {
+        return RuntimeHelper.upcallStub(PFNGLVERTEXATTRIBLFORMATPROC.class, fi, constants$263.PFNGLVERTEXATTRIBLFORMATPROC$FUNC, session);
     }
-    static MemoryAddress allocate(PFNGLVERTEXATTRIBLFORMATPROC fi, ResourceScope scope) {
-        return RuntimeHelper.upcallStub(PFNGLVERTEXATTRIBLFORMATPROC.class, fi, constants$263.PFNGLVERTEXATTRIBLFORMATPROC$FUNC, "(IIII)V", scope);
-    }
-    static PFNGLVERTEXATTRIBLFORMATPROC ofAddress(MemoryAddress addr) {
-        return (int x0, int x1, int x2, int x3) -> {
+    static PFNGLVERTEXATTRIBLFORMATPROC ofAddress(MemoryAddress addr, MemorySession session) {
+        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
+        return (int _attribindex, int _size, int _type, int _relativeoffset) -> {
             try {
-                constants$263.PFNGLVERTEXATTRIBLFORMATPROC$MH.invokeExact((Addressable)addr, x0, x1, x2, x3);
+                constants$263.PFNGLVERTEXATTRIBLFORMATPROC$MH.invokeExact((Addressable)symbol, _attribindex, _size, _type, _relativeoffset);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

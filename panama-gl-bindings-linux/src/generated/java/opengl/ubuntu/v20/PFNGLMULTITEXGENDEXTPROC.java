@@ -2,22 +2,22 @@
 
 package opengl.ubuntu.v20;
 
-import jdk.incubator.foreign.Addressable;
-import jdk.incubator.foreign.MemoryAddress;
-import jdk.incubator.foreign.ResourceScope;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public interface PFNGLMULTITEXGENDEXTPROC {
 
-    void apply(int x0, int x1, int x2, double x3);
-    static MemoryAddress allocate(PFNGLMULTITEXGENDEXTPROC fi) {
-        return RuntimeHelper.upcallStub(PFNGLMULTITEXGENDEXTPROC.class, fi, constants$550.PFNGLMULTITEXGENDEXTPROC$FUNC, "(IIID)V");
+    void apply(int texunit, int coord, int pname, double param);
+    static MemorySegment allocate(PFNGLMULTITEXGENDEXTPROC fi, MemorySession session) {
+        return RuntimeHelper.upcallStub(PFNGLMULTITEXGENDEXTPROC.class, fi, constants$550.PFNGLMULTITEXGENDEXTPROC$FUNC, session);
     }
-    static MemoryAddress allocate(PFNGLMULTITEXGENDEXTPROC fi, ResourceScope scope) {
-        return RuntimeHelper.upcallStub(PFNGLMULTITEXGENDEXTPROC.class, fi, constants$550.PFNGLMULTITEXGENDEXTPROC$FUNC, "(IIID)V", scope);
-    }
-    static PFNGLMULTITEXGENDEXTPROC ofAddress(MemoryAddress addr) {
-        return (int x0, int x1, int x2, double x3) -> {
+    static PFNGLMULTITEXGENDEXTPROC ofAddress(MemoryAddress addr, MemorySession session) {
+        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
+        return (int _texunit, int _coord, int _pname, double _param) -> {
             try {
-                constants$550.PFNGLMULTITEXGENDEXTPROC$MH.invokeExact((Addressable)addr, x0, x1, x2, x3);
+                constants$550.PFNGLMULTITEXGENDEXTPROC$MH.invokeExact((Addressable)symbol, _texunit, _coord, _pname, _param);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

@@ -2,22 +2,22 @@
 
 package opengl.ubuntu.v20;
 
-import jdk.incubator.foreign.Addressable;
-import jdk.incubator.foreign.MemoryAddress;
-import jdk.incubator.foreign.ResourceScope;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public interface PFNGLFINALCOMBINERINPUTNVPROC {
 
-    void apply(int x0, int x1, int x2, int x3);
-    static MemoryAddress allocate(PFNGLFINALCOMBINERINPUTNVPROC fi) {
-        return RuntimeHelper.upcallStub(PFNGLFINALCOMBINERINPUTNVPROC.class, fi, constants$815.PFNGLFINALCOMBINERINPUTNVPROC$FUNC, "(IIII)V");
+    void apply(int variable, int input, int mapping, int componentUsage);
+    static MemorySegment allocate(PFNGLFINALCOMBINERINPUTNVPROC fi, MemorySession session) {
+        return RuntimeHelper.upcallStub(PFNGLFINALCOMBINERINPUTNVPROC.class, fi, constants$815.PFNGLFINALCOMBINERINPUTNVPROC$FUNC, session);
     }
-    static MemoryAddress allocate(PFNGLFINALCOMBINERINPUTNVPROC fi, ResourceScope scope) {
-        return RuntimeHelper.upcallStub(PFNGLFINALCOMBINERINPUTNVPROC.class, fi, constants$815.PFNGLFINALCOMBINERINPUTNVPROC$FUNC, "(IIII)V", scope);
-    }
-    static PFNGLFINALCOMBINERINPUTNVPROC ofAddress(MemoryAddress addr) {
-        return (int x0, int x1, int x2, int x3) -> {
+    static PFNGLFINALCOMBINERINPUTNVPROC ofAddress(MemoryAddress addr, MemorySession session) {
+        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
+        return (int _variable, int _input, int _mapping, int _componentUsage) -> {
             try {
-                constants$815.PFNGLFINALCOMBINERINPUTNVPROC$MH.invokeExact((Addressable)addr, x0, x1, x2, x3);
+                constants$815.PFNGLFINALCOMBINERINPUTNVPROC$MH.invokeExact((Addressable)symbol, _variable, _input, _mapping, _componentUsage);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

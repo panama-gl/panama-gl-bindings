@@ -2,22 +2,22 @@
 
 package opengl.ubuntu.v20;
 
-import jdk.incubator.foreign.Addressable;
-import jdk.incubator.foreign.MemoryAddress;
-import jdk.incubator.foreign.ResourceScope;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public interface PFNGLCOPYMULTITEXIMAGE2DEXTPROC {
 
-    void apply(int x0, int x1, int x2, int x3, int x4, int x5, int x6, int x7, int x8);
-    static MemoryAddress allocate(PFNGLCOPYMULTITEXIMAGE2DEXTPROC fi) {
-        return RuntimeHelper.upcallStub(PFNGLCOPYMULTITEXIMAGE2DEXTPROC.class, fi, constants$557.PFNGLCOPYMULTITEXIMAGE2DEXTPROC$FUNC, "(IIIIIIIII)V");
+    void apply(int texunit, int target, int level, int internalformat, int x, int y, int width, int height, int border);
+    static MemorySegment allocate(PFNGLCOPYMULTITEXIMAGE2DEXTPROC fi, MemorySession session) {
+        return RuntimeHelper.upcallStub(PFNGLCOPYMULTITEXIMAGE2DEXTPROC.class, fi, constants$557.PFNGLCOPYMULTITEXIMAGE2DEXTPROC$FUNC, session);
     }
-    static MemoryAddress allocate(PFNGLCOPYMULTITEXIMAGE2DEXTPROC fi, ResourceScope scope) {
-        return RuntimeHelper.upcallStub(PFNGLCOPYMULTITEXIMAGE2DEXTPROC.class, fi, constants$557.PFNGLCOPYMULTITEXIMAGE2DEXTPROC$FUNC, "(IIIIIIIII)V", scope);
-    }
-    static PFNGLCOPYMULTITEXIMAGE2DEXTPROC ofAddress(MemoryAddress addr) {
-        return (int x0, int x1, int x2, int x3, int x4, int x5, int x6, int x7, int x8) -> {
+    static PFNGLCOPYMULTITEXIMAGE2DEXTPROC ofAddress(MemoryAddress addr, MemorySession session) {
+        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
+        return (int _texunit, int _target, int _level, int _internalformat, int _x, int _y, int _width, int _height, int _border) -> {
             try {
-                constants$557.PFNGLCOPYMULTITEXIMAGE2DEXTPROC$MH.invokeExact((Addressable)addr, x0, x1, x2, x3, x4, x5, x6, x7, x8);
+                constants$557.PFNGLCOPYMULTITEXIMAGE2DEXTPROC$MH.invokeExact((Addressable)symbol, _texunit, _target, _level, _internalformat, _x, _y, _width, _height, _border);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

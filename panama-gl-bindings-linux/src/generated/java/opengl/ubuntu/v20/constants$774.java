@@ -2,34 +2,32 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_POINTER;
-import static jdk.incubator.foreign.CLinker.C_SHORT;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$774 {
 
     static final FunctionDescriptor PFNGLSECONDARYCOLOR3HNVPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_SHORT,
-        C_SHORT,
-        C_SHORT
+        Constants$root.C_SHORT$LAYOUT,
+        Constants$root.C_SHORT$LAYOUT,
+        Constants$root.C_SHORT$LAYOUT
     );
     static final MethodHandle PFNGLSECONDARYCOLOR3HNVPROC$MH = RuntimeHelper.downcallHandle(
-        "(SSS)V",
-        constants$774.PFNGLSECONDARYCOLOR3HNVPROC$FUNC, false
+        constants$774.PFNGLSECONDARYCOLOR3HNVPROC$FUNC
     );
     static final FunctionDescriptor PFNGLSECONDARYCOLOR3HVNVPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_POINTER
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLSECONDARYCOLOR3HVNVPROC$MH = RuntimeHelper.downcallHandle(
-        "(Ljdk/incubator/foreign/MemoryAddress;)V",
-        constants$774.PFNGLSECONDARYCOLOR3HVNVPROC$FUNC, false
+        constants$774.PFNGLSECONDARYCOLOR3HVNVPROC$FUNC
     );
     static final FunctionDescriptor PFNGLVERTEXWEIGHTHNVPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_SHORT
+        Constants$root.C_SHORT$LAYOUT
     );
     static final MethodHandle PFNGLVERTEXWEIGHTHNVPROC$MH = RuntimeHelper.downcallHandle(
-        "(S)V",
-        constants$774.PFNGLVERTEXWEIGHTHNVPROC$FUNC, false
+        constants$774.PFNGLVERTEXWEIGHTHNVPROC$FUNC
     );
 }
 

@@ -2,41 +2,40 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_INT;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$595 {
 
     static final FunctionDescriptor PFNGLNAMEDRENDERBUFFERSTORAGEMULTISAMPLEEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLNAMEDRENDERBUFFERSTORAGEMULTISAMPLEEXTPROC$MH = RuntimeHelper.downcallHandle(
-        "(IIIII)V",
-        constants$595.PFNGLNAMEDRENDERBUFFERSTORAGEMULTISAMPLEEXTPROC$FUNC, false
+        constants$595.PFNGLNAMEDRENDERBUFFERSTORAGEMULTISAMPLEEXTPROC$FUNC
     );
     static final FunctionDescriptor PFNGLNAMEDRENDERBUFFERSTORAGEMULTISAMPLECOVERAGEEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLNAMEDRENDERBUFFERSTORAGEMULTISAMPLECOVERAGEEXTPROC$MH = RuntimeHelper.downcallHandle(
-        "(IIIIII)V",
-        constants$595.PFNGLNAMEDRENDERBUFFERSTORAGEMULTISAMPLECOVERAGEEXTPROC$FUNC, false
+        constants$595.PFNGLNAMEDRENDERBUFFERSTORAGEMULTISAMPLECOVERAGEEXTPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLCHECKNAMEDFRAMEBUFFERSTATUSEXTPROC$FUNC = FunctionDescriptor.of(C_INT,
-        C_INT,
-        C_INT
+    static final FunctionDescriptor PFNGLCHECKNAMEDFRAMEBUFFERSTATUSEXTPROC$FUNC = FunctionDescriptor.of(Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLCHECKNAMEDFRAMEBUFFERSTATUSEXTPROC$MH = RuntimeHelper.downcallHandle(
-        "(II)I",
-        constants$595.PFNGLCHECKNAMEDFRAMEBUFFERSTATUSEXTPROC$FUNC, false
+        constants$595.PFNGLCHECKNAMEDFRAMEBUFFERSTATUSEXTPROC$FUNC
     );
 }
 

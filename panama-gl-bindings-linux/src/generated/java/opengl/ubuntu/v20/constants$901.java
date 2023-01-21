@@ -2,32 +2,30 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_INT;
-import static jdk.incubator.foreign.CLinker.C_POINTER;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$901 {
 
     static final FunctionDescriptor PFNGLSTARTINSTRUMENTSSGIXPROC$FUNC = FunctionDescriptor.ofVoid();
     static final MethodHandle PFNGLSTARTINSTRUMENTSSGIXPROC$MH = RuntimeHelper.downcallHandle(
-        "()V",
-        constants$901.PFNGLSTARTINSTRUMENTSSGIXPROC$FUNC, false
+        constants$901.PFNGLSTARTINSTRUMENTSSGIXPROC$FUNC
     );
     static final FunctionDescriptor PFNGLSTOPINSTRUMENTSSGIXPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLSTOPINSTRUMENTSSGIXPROC$MH = RuntimeHelper.downcallHandle(
-        "(I)V",
-        constants$901.PFNGLSTOPINSTRUMENTSSGIXPROC$FUNC, false
+        constants$901.PFNGLSTOPINSTRUMENTSSGIXPROC$FUNC
     );
     static final FunctionDescriptor PFNGLGETLISTPARAMETERFVSGIXPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLGETLISTPARAMETERFVSGIXPROC$MH = RuntimeHelper.downcallHandle(
-        "(IILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$901.PFNGLGETLISTPARAMETERFVSGIXPROC$FUNC, false
+        constants$901.PFNGLGETLISTPARAMETERFVSGIXPROC$FUNC
     );
 }
 

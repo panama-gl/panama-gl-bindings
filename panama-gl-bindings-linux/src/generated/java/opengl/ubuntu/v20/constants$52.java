@@ -2,65 +2,58 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_DOUBLE;
-import static jdk.incubator.foreign.CLinker.C_FLOAT;
-import static jdk.incubator.foreign.CLinker.C_INT;
-import static jdk.incubator.foreign.CLinker.C_POINTER;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$52 {
 
     static final FunctionDescriptor glEvalCoord1fv$FUNC = FunctionDescriptor.ofVoid(
-        C_POINTER
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle glEvalCoord1fv$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "glEvalCoord1fv",
-        "(Ljdk/incubator/foreign/MemoryAddress;)V",
-        constants$52.glEvalCoord1fv$FUNC, false
+        "glEvalCoord1fv",
+        constants$52.glEvalCoord1fv$FUNC
     );
     static final FunctionDescriptor glEvalCoord2d$FUNC = FunctionDescriptor.ofVoid(
-        C_DOUBLE,
-        C_DOUBLE
+        Constants$root.C_DOUBLE$LAYOUT,
+        Constants$root.C_DOUBLE$LAYOUT
     );
     static final MethodHandle glEvalCoord2d$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "glEvalCoord2d",
-        "(DD)V",
-        constants$52.glEvalCoord2d$FUNC, false
+        "glEvalCoord2d",
+        constants$52.glEvalCoord2d$FUNC
     );
     static final FunctionDescriptor glEvalCoord2f$FUNC = FunctionDescriptor.ofVoid(
-        C_FLOAT,
-        C_FLOAT
+        Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT
     );
     static final MethodHandle glEvalCoord2f$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "glEvalCoord2f",
-        "(FF)V",
-        constants$52.glEvalCoord2f$FUNC, false
+        "glEvalCoord2f",
+        constants$52.glEvalCoord2f$FUNC
     );
     static final FunctionDescriptor glEvalCoord2dv$FUNC = FunctionDescriptor.ofVoid(
-        C_POINTER
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle glEvalCoord2dv$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "glEvalCoord2dv",
-        "(Ljdk/incubator/foreign/MemoryAddress;)V",
-        constants$52.glEvalCoord2dv$FUNC, false
+        "glEvalCoord2dv",
+        constants$52.glEvalCoord2dv$FUNC
     );
     static final FunctionDescriptor glEvalCoord2fv$FUNC = FunctionDescriptor.ofVoid(
-        C_POINTER
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle glEvalCoord2fv$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "glEvalCoord2fv",
-        "(Ljdk/incubator/foreign/MemoryAddress;)V",
-        constants$52.glEvalCoord2fv$FUNC, false
+        "glEvalCoord2fv",
+        constants$52.glEvalCoord2fv$FUNC
     );
     static final FunctionDescriptor glMapGrid1d$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_DOUBLE,
-        C_DOUBLE
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_DOUBLE$LAYOUT,
+        Constants$root.C_DOUBLE$LAYOUT
     );
     static final MethodHandle glMapGrid1d$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "glMapGrid1d",
-        "(IDD)V",
-        constants$52.glMapGrid1d$FUNC, false
+        "glMapGrid1d",
+        constants$52.glMapGrid1d$FUNC
     );
 }
 

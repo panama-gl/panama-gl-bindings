@@ -2,22 +2,22 @@
 
 package opengl.ubuntu.v20;
 
-import jdk.incubator.foreign.Addressable;
-import jdk.incubator.foreign.MemoryAddress;
-import jdk.incubator.foreign.ResourceScope;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public interface PFNGLVALIDATEPROGRAMPIPELINEPROC {
 
-    void apply(int x0);
-    static MemoryAddress allocate(PFNGLVALIDATEPROGRAMPIPELINEPROC fi) {
-        return RuntimeHelper.upcallStub(PFNGLVALIDATEPROGRAMPIPELINEPROC.class, fi, constants$241.PFNGLVALIDATEPROGRAMPIPELINEPROC$FUNC, "(I)V");
+    void apply(int pipeline);
+    static MemorySegment allocate(PFNGLVALIDATEPROGRAMPIPELINEPROC fi, MemorySession session) {
+        return RuntimeHelper.upcallStub(PFNGLVALIDATEPROGRAMPIPELINEPROC.class, fi, constants$241.PFNGLVALIDATEPROGRAMPIPELINEPROC$FUNC, session);
     }
-    static MemoryAddress allocate(PFNGLVALIDATEPROGRAMPIPELINEPROC fi, ResourceScope scope) {
-        return RuntimeHelper.upcallStub(PFNGLVALIDATEPROGRAMPIPELINEPROC.class, fi, constants$241.PFNGLVALIDATEPROGRAMPIPELINEPROC$FUNC, "(I)V", scope);
-    }
-    static PFNGLVALIDATEPROGRAMPIPELINEPROC ofAddress(MemoryAddress addr) {
-        return (int x0) -> {
+    static PFNGLVALIDATEPROGRAMPIPELINEPROC ofAddress(MemoryAddress addr, MemorySession session) {
+        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
+        return (int _pipeline) -> {
             try {
-                constants$241.PFNGLVALIDATEPROGRAMPIPELINEPROC$MH.invokeExact((Addressable)addr, x0);
+                constants$241.PFNGLVALIDATEPROGRAMPIPELINEPROC$MH.invokeExact((Addressable)symbol, _pipeline);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

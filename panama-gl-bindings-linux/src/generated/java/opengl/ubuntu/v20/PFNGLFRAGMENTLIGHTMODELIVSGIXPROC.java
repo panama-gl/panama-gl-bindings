@@ -2,22 +2,22 @@
 
 package opengl.ubuntu.v20;
 
-import jdk.incubator.foreign.Addressable;
-import jdk.incubator.foreign.MemoryAddress;
-import jdk.incubator.foreign.ResourceScope;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public interface PFNGLFRAGMENTLIGHTMODELIVSGIXPROC {
 
-    void apply(int x0, jdk.incubator.foreign.MemoryAddress x1);
-    static MemoryAddress allocate(PFNGLFRAGMENTLIGHTMODELIVSGIXPROC fi) {
-        return RuntimeHelper.upcallStub(PFNGLFRAGMENTLIGHTMODELIVSGIXPROC.class, fi, constants$895.PFNGLFRAGMENTLIGHTMODELIVSGIXPROC$FUNC, "(ILjdk/incubator/foreign/MemoryAddress;)V");
+    void apply(int pname, java.lang.foreign.MemoryAddress params);
+    static MemorySegment allocate(PFNGLFRAGMENTLIGHTMODELIVSGIXPROC fi, MemorySession session) {
+        return RuntimeHelper.upcallStub(PFNGLFRAGMENTLIGHTMODELIVSGIXPROC.class, fi, constants$895.PFNGLFRAGMENTLIGHTMODELIVSGIXPROC$FUNC, session);
     }
-    static MemoryAddress allocate(PFNGLFRAGMENTLIGHTMODELIVSGIXPROC fi, ResourceScope scope) {
-        return RuntimeHelper.upcallStub(PFNGLFRAGMENTLIGHTMODELIVSGIXPROC.class, fi, constants$895.PFNGLFRAGMENTLIGHTMODELIVSGIXPROC$FUNC, "(ILjdk/incubator/foreign/MemoryAddress;)V", scope);
-    }
-    static PFNGLFRAGMENTLIGHTMODELIVSGIXPROC ofAddress(MemoryAddress addr) {
-        return (int x0, jdk.incubator.foreign.MemoryAddress x1) -> {
+    static PFNGLFRAGMENTLIGHTMODELIVSGIXPROC ofAddress(MemoryAddress addr, MemorySession session) {
+        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
+        return (int _pname, java.lang.foreign.MemoryAddress _params) -> {
             try {
-                constants$895.PFNGLFRAGMENTLIGHTMODELIVSGIXPROC$MH.invokeExact((Addressable)addr, x0, x1);
+                constants$895.PFNGLFRAGMENTLIGHTMODELIVSGIXPROC$MH.invokeExact((Addressable)symbol, _pname, (java.lang.foreign.Addressable)_params);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

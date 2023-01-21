@@ -2,43 +2,41 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_INT;
-import static jdk.incubator.foreign.CLinker.C_POINTER;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$704 {
 
     static final FunctionDescriptor PFNGLTEXCOORDPOINTERLISTIBMPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_INT,
-        C_POINTER,
-        C_INT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLTEXCOORDPOINTERLISTIBMPROC$MH = RuntimeHelper.downcallHandle(
-        "(IIILjdk/incubator/foreign/MemoryAddress;I)V",
-        constants$704.PFNGLTEXCOORDPOINTERLISTIBMPROC$FUNC, false
+        constants$704.PFNGLTEXCOORDPOINTERLISTIBMPROC$FUNC
     );
     static final FunctionDescriptor PFNGLVERTEXPOINTERLISTIBMPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_INT,
-        C_POINTER,
-        C_INT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLVERTEXPOINTERLISTIBMPROC$MH = RuntimeHelper.downcallHandle(
-        "(IIILjdk/incubator/foreign/MemoryAddress;I)V",
-        constants$704.PFNGLVERTEXPOINTERLISTIBMPROC$FUNC, false
+        constants$704.PFNGLVERTEXPOINTERLISTIBMPROC$FUNC
     );
     static final FunctionDescriptor PFNGLBLENDFUNCSEPARATEINGRPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLBLENDFUNCSEPARATEINGRPROC$MH = RuntimeHelper.downcallHandle(
-        "(IIII)V",
-        constants$704.PFNGLBLENDFUNCSEPARATEINGRPROC$FUNC, false
+        constants$704.PFNGLBLENDFUNCSEPARATEINGRPROC$FUNC
     );
 }
 

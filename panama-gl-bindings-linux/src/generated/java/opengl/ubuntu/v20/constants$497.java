@@ -2,39 +2,37 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_INT;
-import static jdk.incubator.foreign.CLinker.C_POINTER;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$497 {
 
     static final FunctionDescriptor PFNGLGETOBJECTBUFFERIVATIPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLGETOBJECTBUFFERIVATIPROC$MH = RuntimeHelper.downcallHandle(
-        "(IILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$497.PFNGLGETOBJECTBUFFERIVATIPROC$FUNC, false
+        constants$497.PFNGLGETOBJECTBUFFERIVATIPROC$FUNC
     );
     static final FunctionDescriptor PFNGLFREEOBJECTBUFFERATIPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLFREEOBJECTBUFFERATIPROC$MH = RuntimeHelper.downcallHandle(
-        "(I)V",
-        constants$497.PFNGLFREEOBJECTBUFFERATIPROC$FUNC, false
+        constants$497.PFNGLFREEOBJECTBUFFERATIPROC$FUNC
     );
     static final FunctionDescriptor PFNGLARRAYOBJECTATIPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLARRAYOBJECTATIPROC$MH = RuntimeHelper.downcallHandle(
-        "(IIIIII)V",
-        constants$497.PFNGLARRAYOBJECTATIPROC$FUNC, false
+        constants$497.PFNGLARRAYOBJECTATIPROC$FUNC
     );
 }
 

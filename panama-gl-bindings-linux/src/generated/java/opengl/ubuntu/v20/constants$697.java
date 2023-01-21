@@ -2,39 +2,35 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_CHAR;
-import static jdk.incubator.foreign.CLinker.C_INT;
-import static jdk.incubator.foreign.CLinker.C_LONG;
-import static jdk.incubator.foreign.CLinker.C_POINTER;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$697 {
 
-    static final FunctionDescriptor PFNGLACQUIREKEYEDMUTEXWIN32EXTPROC$FUNC = FunctionDescriptor.of(C_CHAR,
-        C_INT,
-        C_LONG,
-        C_INT
+    static final FunctionDescriptor PFNGLACQUIREKEYEDMUTEXWIN32EXTPROC$FUNC = FunctionDescriptor.of(Constants$root.C_CHAR$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLACQUIREKEYEDMUTEXWIN32EXTPROC$MH = RuntimeHelper.downcallHandle(
-        "(IJI)B",
-        constants$697.PFNGLACQUIREKEYEDMUTEXWIN32EXTPROC$FUNC, false
+        constants$697.PFNGLACQUIREKEYEDMUTEXWIN32EXTPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLRELEASEKEYEDMUTEXWIN32EXTPROC$FUNC = FunctionDescriptor.of(C_CHAR,
-        C_INT,
-        C_LONG
+    static final FunctionDescriptor PFNGLRELEASEKEYEDMUTEXWIN32EXTPROC$FUNC = FunctionDescriptor.of(Constants$root.C_CHAR$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT
     );
     static final MethodHandle PFNGLRELEASEKEYEDMUTEXWIN32EXTPROC$MH = RuntimeHelper.downcallHandle(
-        "(IJ)B",
-        constants$697.PFNGLRELEASEKEYEDMUTEXWIN32EXTPROC$FUNC, false
+        constants$697.PFNGLRELEASEKEYEDMUTEXWIN32EXTPROC$FUNC
     );
     static final FunctionDescriptor PFNGLWINDOWRECTANGLESEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLWINDOWRECTANGLESEXTPROC$MH = RuntimeHelper.downcallHandle(
-        "(IILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$697.PFNGLWINDOWRECTANGLESEXTPROC$FUNC, false
+        constants$697.PFNGLWINDOWRECTANGLESEXTPROC$FUNC
     );
 }
 

@@ -2,36 +2,34 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_INT;
-import static jdk.incubator.foreign.CLinker.C_POINTER;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$844 {
 
     static final FunctionDescriptor PFNGLVERTEXATTRIBL3UI64VNVPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLVERTEXATTRIBL3UI64VNVPROC$MH = RuntimeHelper.downcallHandle(
-        "(ILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$844.PFNGLVERTEXATTRIBL3UI64VNVPROC$FUNC, false
+        constants$844.PFNGLVERTEXATTRIBL3UI64VNVPROC$FUNC
     );
     static final FunctionDescriptor PFNGLVERTEXATTRIBL4UI64VNVPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLVERTEXATTRIBL4UI64VNVPROC$MH = RuntimeHelper.downcallHandle(
-        "(ILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$844.PFNGLVERTEXATTRIBL4UI64VNVPROC$FUNC, false
+        constants$844.PFNGLVERTEXATTRIBL4UI64VNVPROC$FUNC
     );
     static final FunctionDescriptor PFNGLGETVERTEXATTRIBLI64VNVPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLGETVERTEXATTRIBLI64VNVPROC$MH = RuntimeHelper.downcallHandle(
-        "(IILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$844.PFNGLGETVERTEXATTRIBLI64VNVPROC$FUNC, false
+        constants$844.PFNGLGETVERTEXATTRIBLI64VNVPROC$FUNC
     );
 }
 

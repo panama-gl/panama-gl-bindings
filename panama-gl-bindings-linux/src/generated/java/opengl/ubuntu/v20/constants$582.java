@@ -2,41 +2,39 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_INT;
-import static jdk.incubator.foreign.CLinker.C_POINTER;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$582 {
 
     static final FunctionDescriptor PFNGLGETTEXTUREPARAMETERIIVEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLGETTEXTUREPARAMETERIIVEXTPROC$MH = RuntimeHelper.downcallHandle(
-        "(IIILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$582.PFNGLGETTEXTUREPARAMETERIIVEXTPROC$FUNC, false
+        constants$582.PFNGLGETTEXTUREPARAMETERIIVEXTPROC$FUNC
     );
     static final FunctionDescriptor PFNGLGETTEXTUREPARAMETERIUIVEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLGETTEXTUREPARAMETERIUIVEXTPROC$MH = RuntimeHelper.downcallHandle(
-        "(IIILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$582.PFNGLGETTEXTUREPARAMETERIUIVEXTPROC$FUNC, false
+        constants$582.PFNGLGETTEXTUREPARAMETERIUIVEXTPROC$FUNC
     );
     static final FunctionDescriptor PFNGLMULTITEXPARAMETERIIVEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLMULTITEXPARAMETERIIVEXTPROC$MH = RuntimeHelper.downcallHandle(
-        "(IIILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$582.PFNGLMULTITEXPARAMETERIIVEXTPROC$FUNC, false
+        constants$582.PFNGLMULTITEXPARAMETERIIVEXTPROC$FUNC
     );
 }
 

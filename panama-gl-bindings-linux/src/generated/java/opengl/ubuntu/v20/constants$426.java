@@ -2,39 +2,38 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_INT;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$426 {
 
     static final FunctionDescriptor PFNGLBLENDCOLORXOESPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLBLENDCOLORXOESPROC$MH = RuntimeHelper.downcallHandle(
-        "(IIII)V",
-        constants$426.PFNGLBLENDCOLORXOESPROC$FUNC, false
+        constants$426.PFNGLBLENDCOLORXOESPROC$FUNC
     );
     static final FunctionDescriptor PFNGLCLEARACCUMXOESPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLCLEARACCUMXOESPROC$MH = RuntimeHelper.downcallHandle(
-        "(IIII)V",
-        constants$426.PFNGLCLEARACCUMXOESPROC$FUNC, false
+        constants$426.PFNGLCLEARACCUMXOESPROC$FUNC
     );
     static final FunctionDescriptor PFNGLCOLOR3XOESPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_INT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLCOLOR3XOESPROC$MH = RuntimeHelper.downcallHandle(
-        "(III)V",
-        constants$426.PFNGLCOLOR3XOESPROC$FUNC, false
+        constants$426.PFNGLCOLOR3XOESPROC$FUNC
     );
 }
 

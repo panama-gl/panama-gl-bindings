@@ -2,22 +2,22 @@
 
 package opengl.ubuntu.v20;
 
-import jdk.incubator.foreign.Addressable;
-import jdk.incubator.foreign.MemoryAddress;
-import jdk.incubator.foreign.ResourceScope;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public interface PFNGLGETPERFMONITORGROUPSTRINGAMDPROC {
 
-    void apply(int x0, int x1, jdk.incubator.foreign.MemoryAddress x2, jdk.incubator.foreign.MemoryAddress x3);
-    static MemoryAddress allocate(PFNGLGETPERFMONITORGROUPSTRINGAMDPROC fi) {
-        return RuntimeHelper.upcallStub(PFNGLGETPERFMONITORGROUPSTRINGAMDPROC.class, fi, constants$470.PFNGLGETPERFMONITORGROUPSTRINGAMDPROC$FUNC, "(IILjdk/incubator/foreign/MemoryAddress;Ljdk/incubator/foreign/MemoryAddress;)V");
+    void apply(int group, int bufSize, java.lang.foreign.MemoryAddress length, java.lang.foreign.MemoryAddress groupString);
+    static MemorySegment allocate(PFNGLGETPERFMONITORGROUPSTRINGAMDPROC fi, MemorySession session) {
+        return RuntimeHelper.upcallStub(PFNGLGETPERFMONITORGROUPSTRINGAMDPROC.class, fi, constants$470.PFNGLGETPERFMONITORGROUPSTRINGAMDPROC$FUNC, session);
     }
-    static MemoryAddress allocate(PFNGLGETPERFMONITORGROUPSTRINGAMDPROC fi, ResourceScope scope) {
-        return RuntimeHelper.upcallStub(PFNGLGETPERFMONITORGROUPSTRINGAMDPROC.class, fi, constants$470.PFNGLGETPERFMONITORGROUPSTRINGAMDPROC$FUNC, "(IILjdk/incubator/foreign/MemoryAddress;Ljdk/incubator/foreign/MemoryAddress;)V", scope);
-    }
-    static PFNGLGETPERFMONITORGROUPSTRINGAMDPROC ofAddress(MemoryAddress addr) {
-        return (int x0, int x1, jdk.incubator.foreign.MemoryAddress x2, jdk.incubator.foreign.MemoryAddress x3) -> {
+    static PFNGLGETPERFMONITORGROUPSTRINGAMDPROC ofAddress(MemoryAddress addr, MemorySession session) {
+        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
+        return (int _group, int _bufSize, java.lang.foreign.MemoryAddress _length, java.lang.foreign.MemoryAddress _groupString) -> {
             try {
-                constants$470.PFNGLGETPERFMONITORGROUPSTRINGAMDPROC$MH.invokeExact((Addressable)addr, x0, x1, x2, x3);
+                constants$470.PFNGLGETPERFMONITORGROUPSTRINGAMDPROC$MH.invokeExact((Addressable)symbol, _group, _bufSize, (java.lang.foreign.Addressable)_length, (java.lang.foreign.Addressable)_groupString);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

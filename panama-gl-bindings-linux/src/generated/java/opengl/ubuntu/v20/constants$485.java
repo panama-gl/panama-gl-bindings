@@ -2,56 +2,52 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_DOUBLE;
-import static jdk.incubator.foreign.CLinker.C_FLOAT;
-import static jdk.incubator.foreign.CLinker.C_INT;
-import static jdk.incubator.foreign.CLinker.C_POINTER;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$485 {
 
     static final FunctionDescriptor PFNGLMAPVERTEXATTRIB1DAPPLEPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_DOUBLE,
-        C_DOUBLE,
-        C_INT,
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_DOUBLE$LAYOUT,
+        Constants$root.C_DOUBLE$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLMAPVERTEXATTRIB1DAPPLEPROC$MH = RuntimeHelper.downcallHandle(
-        "(IIDDIILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$485.PFNGLMAPVERTEXATTRIB1DAPPLEPROC$FUNC, false
+        constants$485.PFNGLMAPVERTEXATTRIB1DAPPLEPROC$FUNC
     );
     static final FunctionDescriptor PFNGLMAPVERTEXATTRIB1FAPPLEPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_FLOAT,
-        C_FLOAT,
-        C_INT,
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLMAPVERTEXATTRIB1FAPPLEPROC$MH = RuntimeHelper.downcallHandle(
-        "(IIFFIILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$485.PFNGLMAPVERTEXATTRIB1FAPPLEPROC$FUNC, false
+        constants$485.PFNGLMAPVERTEXATTRIB1FAPPLEPROC$FUNC
     );
     static final FunctionDescriptor PFNGLMAPVERTEXATTRIB2DAPPLEPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_DOUBLE,
-        C_DOUBLE,
-        C_INT,
-        C_INT,
-        C_DOUBLE,
-        C_DOUBLE,
-        C_INT,
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_DOUBLE$LAYOUT,
+        Constants$root.C_DOUBLE$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_DOUBLE$LAYOUT,
+        Constants$root.C_DOUBLE$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLMAPVERTEXATTRIB2DAPPLEPROC$MH = RuntimeHelper.downcallHandle(
-        "(IIDDIIDDIILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$485.PFNGLMAPVERTEXATTRIB2DAPPLEPROC$FUNC, false
+        constants$485.PFNGLMAPVERTEXATTRIB2DAPPLEPROC$FUNC
     );
 }
 

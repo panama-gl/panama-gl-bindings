@@ -2,22 +2,22 @@
 
 package opengl.ubuntu.v20;
 
-import jdk.incubator.foreign.Addressable;
-import jdk.incubator.foreign.MemoryAddress;
-import jdk.incubator.foreign.ResourceScope;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public interface PFNGLDISABLEVERTEXARRAYATTRIBEXTPROC {
 
-    void apply(int x0, int x1);
-    static MemoryAddress allocate(PFNGLDISABLEVERTEXARRAYATTRIBEXTPROC fi) {
-        return RuntimeHelper.upcallStub(PFNGLDISABLEVERTEXARRAYATTRIBEXTPROC.class, fi, constants$606.PFNGLDISABLEVERTEXARRAYATTRIBEXTPROC$FUNC, "(II)V");
+    void apply(int vaobj, int index);
+    static MemorySegment allocate(PFNGLDISABLEVERTEXARRAYATTRIBEXTPROC fi, MemorySession session) {
+        return RuntimeHelper.upcallStub(PFNGLDISABLEVERTEXARRAYATTRIBEXTPROC.class, fi, constants$606.PFNGLDISABLEVERTEXARRAYATTRIBEXTPROC$FUNC, session);
     }
-    static MemoryAddress allocate(PFNGLDISABLEVERTEXARRAYATTRIBEXTPROC fi, ResourceScope scope) {
-        return RuntimeHelper.upcallStub(PFNGLDISABLEVERTEXARRAYATTRIBEXTPROC.class, fi, constants$606.PFNGLDISABLEVERTEXARRAYATTRIBEXTPROC$FUNC, "(II)V", scope);
-    }
-    static PFNGLDISABLEVERTEXARRAYATTRIBEXTPROC ofAddress(MemoryAddress addr) {
-        return (int x0, int x1) -> {
+    static PFNGLDISABLEVERTEXARRAYATTRIBEXTPROC ofAddress(MemoryAddress addr, MemorySession session) {
+        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
+        return (int _vaobj, int _index) -> {
             try {
-                constants$606.PFNGLDISABLEVERTEXARRAYATTRIBEXTPROC$MH.invokeExact((Addressable)addr, x0, x1);
+                constants$606.PFNGLDISABLEVERTEXARRAYATTRIBEXTPROC$MH.invokeExact((Addressable)symbol, _vaobj, _index);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

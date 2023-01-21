@@ -2,22 +2,22 @@
 
 package opengl.ubuntu.v20;
 
-import jdk.incubator.foreign.Addressable;
-import jdk.incubator.foreign.MemoryAddress;
-import jdk.incubator.foreign.ResourceScope;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public interface PFNGLPOLYGONOFFSETCLAMPPROC {
 
-    void apply(float x0, float x1, float x2);
-    static MemoryAddress allocate(PFNGLPOLYGONOFFSETCLAMPPROC fi) {
-        return RuntimeHelper.upcallStub(PFNGLPOLYGONOFFSETCLAMPPROC.class, fi, constants$312.PFNGLPOLYGONOFFSETCLAMPPROC$FUNC, "(FFF)V");
+    void apply(float factor, float units, float clamp);
+    static MemorySegment allocate(PFNGLPOLYGONOFFSETCLAMPPROC fi, MemorySession session) {
+        return RuntimeHelper.upcallStub(PFNGLPOLYGONOFFSETCLAMPPROC.class, fi, constants$312.PFNGLPOLYGONOFFSETCLAMPPROC$FUNC, session);
     }
-    static MemoryAddress allocate(PFNGLPOLYGONOFFSETCLAMPPROC fi, ResourceScope scope) {
-        return RuntimeHelper.upcallStub(PFNGLPOLYGONOFFSETCLAMPPROC.class, fi, constants$312.PFNGLPOLYGONOFFSETCLAMPPROC$FUNC, "(FFF)V", scope);
-    }
-    static PFNGLPOLYGONOFFSETCLAMPPROC ofAddress(MemoryAddress addr) {
-        return (float x0, float x1, float x2) -> {
+    static PFNGLPOLYGONOFFSETCLAMPPROC ofAddress(MemoryAddress addr, MemorySession session) {
+        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
+        return (float _factor, float _units, float _clamp) -> {
             try {
-                constants$312.PFNGLPOLYGONOFFSETCLAMPPROC$MH.invokeExact((Addressable)addr, x0, x1, x2);
+                constants$312.PFNGLPOLYGONOFFSETCLAMPPROC$MH.invokeExact((Addressable)symbol, _factor, _units, _clamp);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

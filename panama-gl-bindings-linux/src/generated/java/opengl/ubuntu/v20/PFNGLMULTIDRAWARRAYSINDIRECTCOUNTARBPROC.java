@@ -2,22 +2,22 @@
 
 package opengl.ubuntu.v20;
 
-import jdk.incubator.foreign.Addressable;
-import jdk.incubator.foreign.MemoryAddress;
-import jdk.incubator.foreign.ResourceScope;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public interface PFNGLMULTIDRAWARRAYSINDIRECTCOUNTARBPROC {
 
-    void apply(int x0, jdk.incubator.foreign.MemoryAddress x1, long x2, int x3, int x4);
-    static MemoryAddress allocate(PFNGLMULTIDRAWARRAYSINDIRECTCOUNTARBPROC fi) {
-        return RuntimeHelper.upcallStub(PFNGLMULTIDRAWARRAYSINDIRECTCOUNTARBPROC.class, fi, constants$343.PFNGLMULTIDRAWARRAYSINDIRECTCOUNTARBPROC$FUNC, "(ILjdk/incubator/foreign/MemoryAddress;JII)V");
+    void apply(int mode, java.lang.foreign.MemoryAddress indirect, long drawcount, int maxdrawcount, int stride);
+    static MemorySegment allocate(PFNGLMULTIDRAWARRAYSINDIRECTCOUNTARBPROC fi, MemorySession session) {
+        return RuntimeHelper.upcallStub(PFNGLMULTIDRAWARRAYSINDIRECTCOUNTARBPROC.class, fi, constants$343.PFNGLMULTIDRAWARRAYSINDIRECTCOUNTARBPROC$FUNC, session);
     }
-    static MemoryAddress allocate(PFNGLMULTIDRAWARRAYSINDIRECTCOUNTARBPROC fi, ResourceScope scope) {
-        return RuntimeHelper.upcallStub(PFNGLMULTIDRAWARRAYSINDIRECTCOUNTARBPROC.class, fi, constants$343.PFNGLMULTIDRAWARRAYSINDIRECTCOUNTARBPROC$FUNC, "(ILjdk/incubator/foreign/MemoryAddress;JII)V", scope);
-    }
-    static PFNGLMULTIDRAWARRAYSINDIRECTCOUNTARBPROC ofAddress(MemoryAddress addr) {
-        return (int x0, jdk.incubator.foreign.MemoryAddress x1, long x2, int x3, int x4) -> {
+    static PFNGLMULTIDRAWARRAYSINDIRECTCOUNTARBPROC ofAddress(MemoryAddress addr, MemorySession session) {
+        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
+        return (int _mode, java.lang.foreign.MemoryAddress _indirect, long _drawcount, int _maxdrawcount, int _stride) -> {
             try {
-                constants$343.PFNGLMULTIDRAWARRAYSINDIRECTCOUNTARBPROC$MH.invokeExact((Addressable)addr, x0, x1, x2, x3, x4);
+                constants$343.PFNGLMULTIDRAWARRAYSINDIRECTCOUNTARBPROC$MH.invokeExact((Addressable)symbol, _mode, (java.lang.foreign.Addressable)_indirect, _drawcount, _maxdrawcount, _stride);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

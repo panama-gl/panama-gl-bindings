@@ -2,46 +2,43 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_INT;
-import static jdk.incubator.foreign.CLinker.C_LONG;
-import static jdk.incubator.foreign.CLinker.C_POINTER;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$622 {
 
     static final FunctionDescriptor PFNGLDRAWRANGEELEMENTSEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLDRAWRANGEELEMENTSEXTPROC$MH = RuntimeHelper.downcallHandle(
-        "(IIIIILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$622.PFNGLDRAWRANGEELEMENTSEXTPROC$FUNC, false
+        constants$622.PFNGLDRAWRANGEELEMENTSEXTPROC$FUNC
     );
     static final FunctionDescriptor PFNGLBUFFERSTORAGEEXTERNALEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_LONG,
-        C_LONG,
-        C_POINTER,
-        C_INT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLBUFFERSTORAGEEXTERNALEXTPROC$MH = RuntimeHelper.downcallHandle(
-        "(IJJLjdk/incubator/foreign/MemoryAddress;I)V",
-        constants$622.PFNGLBUFFERSTORAGEEXTERNALEXTPROC$FUNC, false
+        constants$622.PFNGLBUFFERSTORAGEEXTERNALEXTPROC$FUNC
     );
     static final FunctionDescriptor PFNGLNAMEDBUFFERSTORAGEEXTERNALEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_LONG,
-        C_LONG,
-        C_POINTER,
-        C_INT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLNAMEDBUFFERSTORAGEEXTERNALEXTPROC$MH = RuntimeHelper.downcallHandle(
-        "(IJJLjdk/incubator/foreign/MemoryAddress;I)V",
-        constants$622.PFNGLNAMEDBUFFERSTORAGEEXTERNALEXTPROC$FUNC, false
+        constants$622.PFNGLNAMEDBUFFERSTORAGEEXTERNALEXTPROC$FUNC
     );
 }
 

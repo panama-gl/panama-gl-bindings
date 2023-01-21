@@ -2,71 +2,68 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_INT;
-import static jdk.incubator.foreign.CLinker.C_LONG;
-import static jdk.incubator.foreign.CLinker.C_POINTER;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$722 {
 
-    static final FunctionDescriptor PFNGLASYNCCOPYBUFFERSUBDATANVXPROC$FUNC = FunctionDescriptor.of(C_INT,
-        C_INT,
-        C_POINTER,
-        C_POINTER,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_LONG,
-        C_LONG,
-        C_LONG,
-        C_INT,
-        C_POINTER,
-        C_POINTER
+    static final FunctionDescriptor PFNGLASYNCCOPYBUFFERSUBDATANVXPROC$FUNC = FunctionDescriptor.of(Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLASYNCCOPYBUFFERSUBDATANVXPROC$MH = RuntimeHelper.downcallHandle(
-        "(ILjdk/incubator/foreign/MemoryAddress;Ljdk/incubator/foreign/MemoryAddress;IIIIJJJILjdk/incubator/foreign/MemoryAddress;Ljdk/incubator/foreign/MemoryAddress;)I",
-        constants$722.PFNGLASYNCCOPYBUFFERSUBDATANVXPROC$FUNC, false
+        constants$722.PFNGLASYNCCOPYBUFFERSUBDATANVXPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLASYNCCOPYIMAGESUBDATANVXPROC$FUNC = FunctionDescriptor.of(C_INT,
-        C_INT,
-        C_POINTER,
-        C_POINTER,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_POINTER,
-        C_POINTER
+    static final FunctionDescriptor PFNGLASYNCCOPYIMAGESUBDATANVXPROC$FUNC = FunctionDescriptor.of(Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLASYNCCOPYIMAGESUBDATANVXPROC$MH = RuntimeHelper.downcallHandle(
-        "(ILjdk/incubator/foreign/MemoryAddress;Ljdk/incubator/foreign/MemoryAddress;IIIIIIIIIIIIIIIIIILjdk/incubator/foreign/MemoryAddress;Ljdk/incubator/foreign/MemoryAddress;)I",
-        constants$722.PFNGLASYNCCOPYIMAGESUBDATANVXPROC$FUNC, false
+        constants$722.PFNGLASYNCCOPYIMAGESUBDATANVXPROC$FUNC
     );
     static final FunctionDescriptor PFNGLLGPUNAMEDBUFFERSUBDATANVXPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_LONG,
-        C_LONG,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLLGPUNAMEDBUFFERSUBDATANVXPROC$MH = RuntimeHelper.downcallHandle(
-        "(IIJJLjdk/incubator/foreign/MemoryAddress;)V",
-        constants$722.PFNGLLGPUNAMEDBUFFERSUBDATANVXPROC$FUNC, false
+        constants$722.PFNGLLGPUNAMEDBUFFERSUBDATANVXPROC$FUNC
     );
 }
 

@@ -2,67 +2,60 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_DOUBLE;
-import static jdk.incubator.foreign.CLinker.C_FLOAT;
-import static jdk.incubator.foreign.CLinker.C_INT;
-import static jdk.incubator.foreign.CLinker.C_POINTER;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$51 {
 
     static final FunctionDescriptor glGetMapdv$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle glGetMapdv$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "glGetMapdv",
-        "(IILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$51.glGetMapdv$FUNC, false
+        "glGetMapdv",
+        constants$51.glGetMapdv$FUNC
     );
     static final FunctionDescriptor glGetMapfv$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle glGetMapfv$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "glGetMapfv",
-        "(IILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$51.glGetMapfv$FUNC, false
+        "glGetMapfv",
+        constants$51.glGetMapfv$FUNC
     );
     static final FunctionDescriptor glGetMapiv$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle glGetMapiv$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "glGetMapiv",
-        "(IILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$51.glGetMapiv$FUNC, false
+        "glGetMapiv",
+        constants$51.glGetMapiv$FUNC
     );
     static final FunctionDescriptor glEvalCoord1d$FUNC = FunctionDescriptor.ofVoid(
-        C_DOUBLE
+        Constants$root.C_DOUBLE$LAYOUT
     );
     static final MethodHandle glEvalCoord1d$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "glEvalCoord1d",
-        "(D)V",
-        constants$51.glEvalCoord1d$FUNC, false
+        "glEvalCoord1d",
+        constants$51.glEvalCoord1d$FUNC
     );
     static final FunctionDescriptor glEvalCoord1f$FUNC = FunctionDescriptor.ofVoid(
-        C_FLOAT
+        Constants$root.C_FLOAT$LAYOUT
     );
     static final MethodHandle glEvalCoord1f$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "glEvalCoord1f",
-        "(F)V",
-        constants$51.glEvalCoord1f$FUNC, false
+        "glEvalCoord1f",
+        constants$51.glEvalCoord1f$FUNC
     );
     static final FunctionDescriptor glEvalCoord1dv$FUNC = FunctionDescriptor.ofVoid(
-        C_POINTER
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle glEvalCoord1dv$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "glEvalCoord1dv",
-        "(Ljdk/incubator/foreign/MemoryAddress;)V",
-        constants$51.glEvalCoord1dv$FUNC, false
+        "glEvalCoord1dv",
+        constants$51.glEvalCoord1dv$FUNC
     );
 }
 

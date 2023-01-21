@@ -2,49 +2,47 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_FLOAT;
-import static jdk.incubator.foreign.CLinker.C_INT;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$290 {
 
     static final FunctionDescriptor PFNGLCOPYTEXTURESUBIMAGE2DPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLCOPYTEXTURESUBIMAGE2DPROC$MH = RuntimeHelper.downcallHandle(
-        "(IIIIIIII)V",
-        constants$290.PFNGLCOPYTEXTURESUBIMAGE2DPROC$FUNC, false
+        constants$290.PFNGLCOPYTEXTURESUBIMAGE2DPROC$FUNC
     );
     static final FunctionDescriptor PFNGLCOPYTEXTURESUBIMAGE3DPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLCOPYTEXTURESUBIMAGE3DPROC$MH = RuntimeHelper.downcallHandle(
-        "(IIIIIIIII)V",
-        constants$290.PFNGLCOPYTEXTURESUBIMAGE3DPROC$FUNC, false
+        constants$290.PFNGLCOPYTEXTURESUBIMAGE3DPROC$FUNC
     );
     static final FunctionDescriptor PFNGLTEXTUREPARAMETERFPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_FLOAT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT
     );
     static final MethodHandle PFNGLTEXTUREPARAMETERFPROC$MH = RuntimeHelper.downcallHandle(
-        "(IIF)V",
-        constants$290.PFNGLTEXTUREPARAMETERFPROC$FUNC, false
+        constants$290.PFNGLTEXTUREPARAMETERFPROC$FUNC
     );
 }
 

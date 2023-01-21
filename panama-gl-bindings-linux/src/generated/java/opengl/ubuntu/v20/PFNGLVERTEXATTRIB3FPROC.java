@@ -2,22 +2,22 @@
 
 package opengl.ubuntu.v20;
 
-import jdk.incubator.foreign.Addressable;
-import jdk.incubator.foreign.MemoryAddress;
-import jdk.incubator.foreign.ResourceScope;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public interface PFNGLVERTEXATTRIB3FPROC {
 
-    void apply(int x0, float x1, float x2, float x3);
-    static MemoryAddress allocate(PFNGLVERTEXATTRIB3FPROC fi) {
-        return RuntimeHelper.upcallStub(PFNGLVERTEXATTRIB3FPROC.class, fi, constants$136.PFNGLVERTEXATTRIB3FPROC$FUNC, "(IFFF)V");
+    void apply(int index, float x, float y, float z);
+    static MemorySegment allocate(PFNGLVERTEXATTRIB3FPROC fi, MemorySession session) {
+        return RuntimeHelper.upcallStub(PFNGLVERTEXATTRIB3FPROC.class, fi, constants$136.PFNGLVERTEXATTRIB3FPROC$FUNC, session);
     }
-    static MemoryAddress allocate(PFNGLVERTEXATTRIB3FPROC fi, ResourceScope scope) {
-        return RuntimeHelper.upcallStub(PFNGLVERTEXATTRIB3FPROC.class, fi, constants$136.PFNGLVERTEXATTRIB3FPROC$FUNC, "(IFFF)V", scope);
-    }
-    static PFNGLVERTEXATTRIB3FPROC ofAddress(MemoryAddress addr) {
-        return (int x0, float x1, float x2, float x3) -> {
+    static PFNGLVERTEXATTRIB3FPROC ofAddress(MemoryAddress addr, MemorySession session) {
+        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
+        return (int _index, float _x, float _y, float _z) -> {
             try {
-                constants$136.PFNGLVERTEXATTRIB3FPROC$MH.invokeExact((Addressable)addr, x0, x1, x2, x3);
+                constants$136.PFNGLVERTEXATTRIB3FPROC$MH.invokeExact((Addressable)symbol, _index, _x, _y, _z);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

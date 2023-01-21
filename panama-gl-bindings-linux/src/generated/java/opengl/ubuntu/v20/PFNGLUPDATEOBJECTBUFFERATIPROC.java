@@ -2,22 +2,22 @@
 
 package opengl.ubuntu.v20;
 
-import jdk.incubator.foreign.Addressable;
-import jdk.incubator.foreign.MemoryAddress;
-import jdk.incubator.foreign.ResourceScope;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public interface PFNGLUPDATEOBJECTBUFFERATIPROC {
 
-    void apply(int x0, int x1, int x2, jdk.incubator.foreign.MemoryAddress x3, int x4);
-    static MemoryAddress allocate(PFNGLUPDATEOBJECTBUFFERATIPROC fi) {
-        return RuntimeHelper.upcallStub(PFNGLUPDATEOBJECTBUFFERATIPROC.class, fi, constants$496.PFNGLUPDATEOBJECTBUFFERATIPROC$FUNC, "(IIILjdk/incubator/foreign/MemoryAddress;I)V");
+    void apply(int buffer, int offset, int size, java.lang.foreign.MemoryAddress pointer, int preserve);
+    static MemorySegment allocate(PFNGLUPDATEOBJECTBUFFERATIPROC fi, MemorySession session) {
+        return RuntimeHelper.upcallStub(PFNGLUPDATEOBJECTBUFFERATIPROC.class, fi, constants$496.PFNGLUPDATEOBJECTBUFFERATIPROC$FUNC, session);
     }
-    static MemoryAddress allocate(PFNGLUPDATEOBJECTBUFFERATIPROC fi, ResourceScope scope) {
-        return RuntimeHelper.upcallStub(PFNGLUPDATEOBJECTBUFFERATIPROC.class, fi, constants$496.PFNGLUPDATEOBJECTBUFFERATIPROC$FUNC, "(IIILjdk/incubator/foreign/MemoryAddress;I)V", scope);
-    }
-    static PFNGLUPDATEOBJECTBUFFERATIPROC ofAddress(MemoryAddress addr) {
-        return (int x0, int x1, int x2, jdk.incubator.foreign.MemoryAddress x3, int x4) -> {
+    static PFNGLUPDATEOBJECTBUFFERATIPROC ofAddress(MemoryAddress addr, MemorySession session) {
+        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
+        return (int _buffer, int _offset, int _size, java.lang.foreign.MemoryAddress _pointer, int _preserve) -> {
             try {
-                constants$496.PFNGLUPDATEOBJECTBUFFERATIPROC$MH.invokeExact((Addressable)addr, x0, x1, x2, x3, x4);
+                constants$496.PFNGLUPDATEOBJECTBUFFERATIPROC$MH.invokeExact((Addressable)symbol, _buffer, _offset, _size, (java.lang.foreign.Addressable)_pointer, _preserve);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

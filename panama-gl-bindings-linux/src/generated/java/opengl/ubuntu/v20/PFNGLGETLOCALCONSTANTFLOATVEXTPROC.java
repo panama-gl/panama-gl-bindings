@@ -2,22 +2,22 @@
 
 package opengl.ubuntu.v20;
 
-import jdk.incubator.foreign.Addressable;
-import jdk.incubator.foreign.MemoryAddress;
-import jdk.incubator.foreign.ResourceScope;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public interface PFNGLGETLOCALCONSTANTFLOATVEXTPROC {
 
-    void apply(int x0, int x1, jdk.incubator.foreign.MemoryAddress x2);
-    static MemoryAddress allocate(PFNGLGETLOCALCONSTANTFLOATVEXTPROC fi) {
-        return RuntimeHelper.upcallStub(PFNGLGETLOCALCONSTANTFLOATVEXTPROC.class, fi, constants$695.PFNGLGETLOCALCONSTANTFLOATVEXTPROC$FUNC, "(IILjdk/incubator/foreign/MemoryAddress;)V");
+    void apply(int id, int value, java.lang.foreign.MemoryAddress data);
+    static MemorySegment allocate(PFNGLGETLOCALCONSTANTFLOATVEXTPROC fi, MemorySession session) {
+        return RuntimeHelper.upcallStub(PFNGLGETLOCALCONSTANTFLOATVEXTPROC.class, fi, constants$695.PFNGLGETLOCALCONSTANTFLOATVEXTPROC$FUNC, session);
     }
-    static MemoryAddress allocate(PFNGLGETLOCALCONSTANTFLOATVEXTPROC fi, ResourceScope scope) {
-        return RuntimeHelper.upcallStub(PFNGLGETLOCALCONSTANTFLOATVEXTPROC.class, fi, constants$695.PFNGLGETLOCALCONSTANTFLOATVEXTPROC$FUNC, "(IILjdk/incubator/foreign/MemoryAddress;)V", scope);
-    }
-    static PFNGLGETLOCALCONSTANTFLOATVEXTPROC ofAddress(MemoryAddress addr) {
-        return (int x0, int x1, jdk.incubator.foreign.MemoryAddress x2) -> {
+    static PFNGLGETLOCALCONSTANTFLOATVEXTPROC ofAddress(MemoryAddress addr, MemorySession session) {
+        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
+        return (int _id, int _value, java.lang.foreign.MemoryAddress _data) -> {
             try {
-                constants$695.PFNGLGETLOCALCONSTANTFLOATVEXTPROC$MH.invokeExact((Addressable)addr, x0, x1, x2);
+                constants$695.PFNGLGETLOCALCONSTANTFLOATVEXTPROC$MH.invokeExact((Addressable)symbol, _id, _value, (java.lang.foreign.Addressable)_data);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

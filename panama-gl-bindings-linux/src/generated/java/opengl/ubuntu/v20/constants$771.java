@@ -2,37 +2,34 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_INT;
-import static jdk.incubator.foreign.CLinker.C_POINTER;
-import static jdk.incubator.foreign.CLinker.C_SHORT;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$771 {
 
     static final FunctionDescriptor PFNGLMULTITEXCOORD1HVNVPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLMULTITEXCOORD1HVNVPROC$MH = RuntimeHelper.downcallHandle(
-        "(ILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$771.PFNGLMULTITEXCOORD1HVNVPROC$FUNC, false
+        constants$771.PFNGLMULTITEXCOORD1HVNVPROC$FUNC
     );
     static final FunctionDescriptor PFNGLMULTITEXCOORD2HNVPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_SHORT,
-        C_SHORT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_SHORT$LAYOUT,
+        Constants$root.C_SHORT$LAYOUT
     );
     static final MethodHandle PFNGLMULTITEXCOORD2HNVPROC$MH = RuntimeHelper.downcallHandle(
-        "(ISS)V",
-        constants$771.PFNGLMULTITEXCOORD2HNVPROC$FUNC, false
+        constants$771.PFNGLMULTITEXCOORD2HNVPROC$FUNC
     );
     static final FunctionDescriptor PFNGLMULTITEXCOORD2HVNVPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLMULTITEXCOORD2HVNVPROC$MH = RuntimeHelper.downcallHandle(
-        "(ILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$771.PFNGLMULTITEXCOORD2HVNVPROC$FUNC, false
+        constants$771.PFNGLMULTITEXCOORD2HVNVPROC$FUNC
     );
 }
 

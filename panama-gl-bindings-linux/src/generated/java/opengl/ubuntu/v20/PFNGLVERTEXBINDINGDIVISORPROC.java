@@ -2,22 +2,22 @@
 
 package opengl.ubuntu.v20;
 
-import jdk.incubator.foreign.Addressable;
-import jdk.incubator.foreign.MemoryAddress;
-import jdk.incubator.foreign.ResourceScope;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public interface PFNGLVERTEXBINDINGDIVISORPROC {
 
-    void apply(int x0, int x1);
-    static MemoryAddress allocate(PFNGLVERTEXBINDINGDIVISORPROC fi) {
-        return RuntimeHelper.upcallStub(PFNGLVERTEXBINDINGDIVISORPROC.class, fi, constants$263.PFNGLVERTEXBINDINGDIVISORPROC$FUNC, "(II)V");
+    void apply(int bindingindex, int divisor);
+    static MemorySegment allocate(PFNGLVERTEXBINDINGDIVISORPROC fi, MemorySession session) {
+        return RuntimeHelper.upcallStub(PFNGLVERTEXBINDINGDIVISORPROC.class, fi, constants$263.PFNGLVERTEXBINDINGDIVISORPROC$FUNC, session);
     }
-    static MemoryAddress allocate(PFNGLVERTEXBINDINGDIVISORPROC fi, ResourceScope scope) {
-        return RuntimeHelper.upcallStub(PFNGLVERTEXBINDINGDIVISORPROC.class, fi, constants$263.PFNGLVERTEXBINDINGDIVISORPROC$FUNC, "(II)V", scope);
-    }
-    static PFNGLVERTEXBINDINGDIVISORPROC ofAddress(MemoryAddress addr) {
-        return (int x0, int x1) -> {
+    static PFNGLVERTEXBINDINGDIVISORPROC ofAddress(MemoryAddress addr, MemorySession session) {
+        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
+        return (int _bindingindex, int _divisor) -> {
             try {
-                constants$263.PFNGLVERTEXBINDINGDIVISORPROC$MH.invokeExact((Addressable)addr, x0, x1);
+                constants$263.PFNGLVERTEXBINDINGDIVISORPROC$MH.invokeExact((Addressable)symbol, _bindingindex, _divisor);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

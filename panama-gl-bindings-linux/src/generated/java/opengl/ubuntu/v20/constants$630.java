@@ -2,38 +2,36 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_INT;
-import static jdk.incubator.foreign.CLinker.C_POINTER;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$630 {
 
     static final FunctionDescriptor PFNGLFRAMEBUFFERRENDERBUFFEREXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLFRAMEBUFFERRENDERBUFFEREXTPROC$MH = RuntimeHelper.downcallHandle(
-        "(IIII)V",
-        constants$630.PFNGLFRAMEBUFFERRENDERBUFFEREXTPROC$FUNC, false
+        constants$630.PFNGLFRAMEBUFFERRENDERBUFFEREXTPROC$FUNC
     );
     static final FunctionDescriptor PFNGLGETFRAMEBUFFERATTACHMENTPARAMETERIVEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLGETFRAMEBUFFERATTACHMENTPARAMETERIVEXTPROC$MH = RuntimeHelper.downcallHandle(
-        "(IIILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$630.PFNGLGETFRAMEBUFFERATTACHMENTPARAMETERIVEXTPROC$FUNC, false
+        constants$630.PFNGLGETFRAMEBUFFERATTACHMENTPARAMETERIVEXTPROC$FUNC
     );
     static final FunctionDescriptor PFNGLGENERATEMIPMAPEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLGENERATEMIPMAPEXTPROC$MH = RuntimeHelper.downcallHandle(
-        "(I)V",
-        constants$630.PFNGLGENERATEMIPMAPEXTPROC$FUNC, false
+        constants$630.PFNGLGENERATEMIPMAPEXTPROC$FUNC
     );
 }
 

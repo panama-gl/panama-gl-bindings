@@ -2,22 +2,22 @@
 
 package opengl.ubuntu.v20;
 
-import jdk.incubator.foreign.Addressable;
-import jdk.incubator.foreign.MemoryAddress;
-import jdk.incubator.foreign.ResourceScope;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public interface PFNGLGENFENCESAPPLEPROC {
 
-    void apply(int x0, jdk.incubator.foreign.MemoryAddress x1);
-    static MemoryAddress allocate(PFNGLGENFENCESAPPLEPROC fi) {
-        return RuntimeHelper.upcallStub(PFNGLGENFENCESAPPLEPROC.class, fi, constants$476.PFNGLGENFENCESAPPLEPROC$FUNC, "(ILjdk/incubator/foreign/MemoryAddress;)V");
+    void apply(int n, java.lang.foreign.MemoryAddress fences);
+    static MemorySegment allocate(PFNGLGENFENCESAPPLEPROC fi, MemorySession session) {
+        return RuntimeHelper.upcallStub(PFNGLGENFENCESAPPLEPROC.class, fi, constants$476.PFNGLGENFENCESAPPLEPROC$FUNC, session);
     }
-    static MemoryAddress allocate(PFNGLGENFENCESAPPLEPROC fi, ResourceScope scope) {
-        return RuntimeHelper.upcallStub(PFNGLGENFENCESAPPLEPROC.class, fi, constants$476.PFNGLGENFENCESAPPLEPROC$FUNC, "(ILjdk/incubator/foreign/MemoryAddress;)V", scope);
-    }
-    static PFNGLGENFENCESAPPLEPROC ofAddress(MemoryAddress addr) {
-        return (int x0, jdk.incubator.foreign.MemoryAddress x1) -> {
+    static PFNGLGENFENCESAPPLEPROC ofAddress(MemoryAddress addr, MemorySession session) {
+        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
+        return (int _n, java.lang.foreign.MemoryAddress _fences) -> {
             try {
-                constants$476.PFNGLGENFENCESAPPLEPROC$MH.invokeExact((Addressable)addr, x0, x1);
+                constants$476.PFNGLGENFENCESAPPLEPROC$MH.invokeExact((Addressable)symbol, _n, (java.lang.foreign.Addressable)_fences);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

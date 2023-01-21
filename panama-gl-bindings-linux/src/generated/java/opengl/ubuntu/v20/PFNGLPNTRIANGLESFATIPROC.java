@@ -2,22 +2,22 @@
 
 package opengl.ubuntu.v20;
 
-import jdk.incubator.foreign.Addressable;
-import jdk.incubator.foreign.MemoryAddress;
-import jdk.incubator.foreign.ResourceScope;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public interface PFNGLPNTRIANGLESFATIPROC {
 
-    void apply(int x0, float x1);
-    static MemoryAddress allocate(PFNGLPNTRIANGLESFATIPROC fi) {
-        return RuntimeHelper.upcallStub(PFNGLPNTRIANGLESFATIPROC.class, fi, constants$494.PFNGLPNTRIANGLESFATIPROC$FUNC, "(IF)V");
+    void apply(int pname, float param);
+    static MemorySegment allocate(PFNGLPNTRIANGLESFATIPROC fi, MemorySession session) {
+        return RuntimeHelper.upcallStub(PFNGLPNTRIANGLESFATIPROC.class, fi, constants$494.PFNGLPNTRIANGLESFATIPROC$FUNC, session);
     }
-    static MemoryAddress allocate(PFNGLPNTRIANGLESFATIPROC fi, ResourceScope scope) {
-        return RuntimeHelper.upcallStub(PFNGLPNTRIANGLESFATIPROC.class, fi, constants$494.PFNGLPNTRIANGLESFATIPROC$FUNC, "(IF)V", scope);
-    }
-    static PFNGLPNTRIANGLESFATIPROC ofAddress(MemoryAddress addr) {
-        return (int x0, float x1) -> {
+    static PFNGLPNTRIANGLESFATIPROC ofAddress(MemoryAddress addr, MemorySession session) {
+        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
+        return (int _pname, float _param) -> {
             try {
-                constants$494.PFNGLPNTRIANGLESFATIPROC$MH.invokeExact((Addressable)addr, x0, x1);
+                constants$494.PFNGLPNTRIANGLESFATIPROC$MH.invokeExact((Addressable)symbol, _pname, _param);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

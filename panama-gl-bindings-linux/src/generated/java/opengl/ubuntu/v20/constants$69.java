@@ -2,76 +2,69 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_DOUBLE;
-import static jdk.incubator.foreign.CLinker.C_FLOAT;
-import static jdk.incubator.foreign.CLinker.C_INT;
-import static jdk.incubator.foreign.CLinker.C_POINTER;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$69 {
 
     static final FunctionDescriptor glMultiTexCoord3sv$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle glMultiTexCoord3sv$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "glMultiTexCoord3sv",
-        "(ILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$69.glMultiTexCoord3sv$FUNC, false
+        "glMultiTexCoord3sv",
+        constants$69.glMultiTexCoord3sv$FUNC
     );
     static final FunctionDescriptor glMultiTexCoord4d$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_DOUBLE,
-        C_DOUBLE,
-        C_DOUBLE,
-        C_DOUBLE
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_DOUBLE$LAYOUT,
+        Constants$root.C_DOUBLE$LAYOUT,
+        Constants$root.C_DOUBLE$LAYOUT,
+        Constants$root.C_DOUBLE$LAYOUT
     );
     static final MethodHandle glMultiTexCoord4d$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "glMultiTexCoord4d",
-        "(IDDDD)V",
-        constants$69.glMultiTexCoord4d$FUNC, false
+        "glMultiTexCoord4d",
+        constants$69.glMultiTexCoord4d$FUNC
     );
     static final FunctionDescriptor glMultiTexCoord4dv$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle glMultiTexCoord4dv$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "glMultiTexCoord4dv",
-        "(ILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$69.glMultiTexCoord4dv$FUNC, false
+        "glMultiTexCoord4dv",
+        constants$69.glMultiTexCoord4dv$FUNC
     );
     static final FunctionDescriptor glMultiTexCoord4f$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_FLOAT,
-        C_FLOAT,
-        C_FLOAT,
-        C_FLOAT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT
     );
     static final MethodHandle glMultiTexCoord4f$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "glMultiTexCoord4f",
-        "(IFFFF)V",
-        constants$69.glMultiTexCoord4f$FUNC, false
+        "glMultiTexCoord4f",
+        constants$69.glMultiTexCoord4f$FUNC
     );
     static final FunctionDescriptor glMultiTexCoord4fv$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle glMultiTexCoord4fv$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "glMultiTexCoord4fv",
-        "(ILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$69.glMultiTexCoord4fv$FUNC, false
+        "glMultiTexCoord4fv",
+        constants$69.glMultiTexCoord4fv$FUNC
     );
     static final FunctionDescriptor glMultiTexCoord4i$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle glMultiTexCoord4i$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "glMultiTexCoord4i",
-        "(IIIII)V",
-        constants$69.glMultiTexCoord4i$FUNC, false
+        "glMultiTexCoord4i",
+        constants$69.glMultiTexCoord4i$FUNC
     );
 }
 

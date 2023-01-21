@@ -2,38 +2,37 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_INT;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$872 {
 
     static final FunctionDescriptor PFNGLVERTEXATTRIBI4IEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLVERTEXATTRIBI4IEXTPROC$MH = RuntimeHelper.downcallHandle(
-        "(IIIII)V",
-        constants$872.PFNGLVERTEXATTRIBI4IEXTPROC$FUNC, false
+        constants$872.PFNGLVERTEXATTRIBI4IEXTPROC$FUNC
     );
     static final FunctionDescriptor PFNGLVERTEXATTRIBI1UIEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLVERTEXATTRIBI1UIEXTPROC$MH = RuntimeHelper.downcallHandle(
-        "(II)V",
-        constants$872.PFNGLVERTEXATTRIBI1UIEXTPROC$FUNC, false
+        constants$872.PFNGLVERTEXATTRIBI1UIEXTPROC$FUNC
     );
     static final FunctionDescriptor PFNGLVERTEXATTRIBI2UIEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_INT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLVERTEXATTRIBI2UIEXTPROC$MH = RuntimeHelper.downcallHandle(
-        "(III)V",
-        constants$872.PFNGLVERTEXATTRIBI2UIEXTPROC$FUNC, false
+        constants$872.PFNGLVERTEXATTRIBI2UIEXTPROC$FUNC
     );
 }
 

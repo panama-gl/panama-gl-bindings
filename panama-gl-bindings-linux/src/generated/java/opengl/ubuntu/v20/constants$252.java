@@ -2,43 +2,41 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_INT;
-import static jdk.incubator.foreign.CLinker.C_POINTER;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$252 {
 
     static final FunctionDescriptor PFNGLDRAWTRANSFORMFEEDBACKINSTANCEDPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_INT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLDRAWTRANSFORMFEEDBACKINSTANCEDPROC$MH = RuntimeHelper.downcallHandle(
-        "(III)V",
-        constants$252.PFNGLDRAWTRANSFORMFEEDBACKINSTANCEDPROC$FUNC, false
+        constants$252.PFNGLDRAWTRANSFORMFEEDBACKINSTANCEDPROC$FUNC
     );
     static final FunctionDescriptor PFNGLDRAWTRANSFORMFEEDBACKSTREAMINSTANCEDPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLDRAWTRANSFORMFEEDBACKSTREAMINSTANCEDPROC$MH = RuntimeHelper.downcallHandle(
-        "(IIII)V",
-        constants$252.PFNGLDRAWTRANSFORMFEEDBACKSTREAMINSTANCEDPROC$FUNC, false
+        constants$252.PFNGLDRAWTRANSFORMFEEDBACKSTREAMINSTANCEDPROC$FUNC
     );
     static final FunctionDescriptor GLDEBUGPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_POINTER,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle GLDEBUGPROC$MH = RuntimeHelper.downcallHandle(
-        "(IIIIILjdk/incubator/foreign/MemoryAddress;Ljdk/incubator/foreign/MemoryAddress;)V",
-        constants$252.GLDEBUGPROC$FUNC, false
+        constants$252.GLDEBUGPROC$FUNC
     );
 }
 

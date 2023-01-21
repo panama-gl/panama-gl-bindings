@@ -2,22 +2,22 @@
 
 package opengl.ubuntu.v20;
 
-import jdk.incubator.foreign.Addressable;
-import jdk.incubator.foreign.MemoryAddress;
-import jdk.incubator.foreign.ResourceScope;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public interface PFNGLPROGRAMPARAMETER4DNVPROC {
 
-    void apply(int x0, int x1, double x2, double x3, double x4, double x5);
-    static MemoryAddress allocate(PFNGLPROGRAMPARAMETER4DNVPROC fi) {
-        return RuntimeHelper.upcallStub(PFNGLPROGRAMPARAMETER4DNVPROC.class, fi, constants$855.PFNGLPROGRAMPARAMETER4DNVPROC$FUNC, "(IIDDDD)V");
+    void apply(int target, int index, double x, double y, double z, double w);
+    static MemorySegment allocate(PFNGLPROGRAMPARAMETER4DNVPROC fi, MemorySession session) {
+        return RuntimeHelper.upcallStub(PFNGLPROGRAMPARAMETER4DNVPROC.class, fi, constants$855.PFNGLPROGRAMPARAMETER4DNVPROC$FUNC, session);
     }
-    static MemoryAddress allocate(PFNGLPROGRAMPARAMETER4DNVPROC fi, ResourceScope scope) {
-        return RuntimeHelper.upcallStub(PFNGLPROGRAMPARAMETER4DNVPROC.class, fi, constants$855.PFNGLPROGRAMPARAMETER4DNVPROC$FUNC, "(IIDDDD)V", scope);
-    }
-    static PFNGLPROGRAMPARAMETER4DNVPROC ofAddress(MemoryAddress addr) {
-        return (int x0, int x1, double x2, double x3, double x4, double x5) -> {
+    static PFNGLPROGRAMPARAMETER4DNVPROC ofAddress(MemoryAddress addr, MemorySession session) {
+        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
+        return (int _target, int _index, double _x, double _y, double _z, double _w) -> {
             try {
-                constants$855.PFNGLPROGRAMPARAMETER4DNVPROC$MH.invokeExact((Addressable)addr, x0, x1, x2, x3, x4, x5);
+                constants$855.PFNGLPROGRAMPARAMETER4DNVPROC$MH.invokeExact((Addressable)symbol, _target, _index, _x, _y, _z, _w);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

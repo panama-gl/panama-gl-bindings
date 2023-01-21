@@ -2,58 +2,50 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_DOUBLE;
-import static jdk.incubator.foreign.CLinker.C_INT;
-import static jdk.incubator.foreign.CLinker.C_LONG;
-import static jdk.incubator.foreign.CLinker.C_LONG_LONG;
-import static jdk.incubator.foreign.CLinker.C_POINTER;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$969 {
 
     static final FunctionDescriptor glutReportErrors$FUNC = FunctionDescriptor.ofVoid();
     static final MethodHandle glutReportErrors$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "glutReportErrors",
-        "()V",
-        constants$969.glutReportErrors$FUNC, false
+        "glutReportErrors",
+        constants$969.glutReportErrors$FUNC
     );
-    static final FunctionDescriptor __ctype_get_mb_cur_max$FUNC = FunctionDescriptor.of(C_LONG);
+    static final FunctionDescriptor __ctype_get_mb_cur_max$FUNC = FunctionDescriptor.of(Constants$root.C_LONG_LONG$LAYOUT);
     static final MethodHandle __ctype_get_mb_cur_max$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "__ctype_get_mb_cur_max",
-        "()J",
-        constants$969.__ctype_get_mb_cur_max$FUNC, false
+        "__ctype_get_mb_cur_max",
+        constants$969.__ctype_get_mb_cur_max$FUNC
     );
-    static final FunctionDescriptor atof$FUNC = FunctionDescriptor.of(C_DOUBLE,
-        C_POINTER
+    static final FunctionDescriptor atof$FUNC = FunctionDescriptor.of(Constants$root.C_DOUBLE$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle atof$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "atof",
-        "(Ljdk/incubator/foreign/MemoryAddress;)D",
-        constants$969.atof$FUNC, false
+        "atof",
+        constants$969.atof$FUNC
     );
-    static final FunctionDescriptor atoi$FUNC = FunctionDescriptor.of(C_INT,
-        C_POINTER
+    static final FunctionDescriptor atoi$FUNC = FunctionDescriptor.of(Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle atoi$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "atoi",
-        "(Ljdk/incubator/foreign/MemoryAddress;)I",
-        constants$969.atoi$FUNC, false
+        "atoi",
+        constants$969.atoi$FUNC
     );
-    static final FunctionDescriptor atol$FUNC = FunctionDescriptor.of(C_LONG,
-        C_POINTER
+    static final FunctionDescriptor atol$FUNC = FunctionDescriptor.of(Constants$root.C_LONG_LONG$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle atol$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "atol",
-        "(Ljdk/incubator/foreign/MemoryAddress;)J",
-        constants$969.atol$FUNC, false
+        "atol",
+        constants$969.atol$FUNC
     );
-    static final FunctionDescriptor atoll$FUNC = FunctionDescriptor.of(C_LONG_LONG,
-        C_POINTER
+    static final FunctionDescriptor atoll$FUNC = FunctionDescriptor.of(Constants$root.C_LONG_LONG$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle atoll$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "atoll",
-        "(Ljdk/incubator/foreign/MemoryAddress;)J",
-        constants$969.atoll$FUNC, false
+        "atoll",
+        constants$969.atoll$FUNC
     );
 }
 

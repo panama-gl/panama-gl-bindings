@@ -2,42 +2,40 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_INT;
-import static jdk.incubator.foreign.CLinker.C_POINTER;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$785 {
 
     static final FunctionDescriptor PFNGLGETOCCLUSIONQUERYUIVNVPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLGETOCCLUSIONQUERYUIVNVPROC$MH = RuntimeHelper.downcallHandle(
-        "(IILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$785.PFNGLGETOCCLUSIONQUERYUIVNVPROC$FUNC, false
+        constants$785.PFNGLGETOCCLUSIONQUERYUIVNVPROC$FUNC
     );
     static final FunctionDescriptor PFNGLPROGRAMBUFFERPARAMETERSFVNVPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLPROGRAMBUFFERPARAMETERSFVNVPROC$MH = RuntimeHelper.downcallHandle(
-        "(IIIILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$785.PFNGLPROGRAMBUFFERPARAMETERSFVNVPROC$FUNC, false
+        constants$785.PFNGLPROGRAMBUFFERPARAMETERSFVNVPROC$FUNC
     );
     static final FunctionDescriptor PFNGLPROGRAMBUFFERPARAMETERSIIVNVPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLPROGRAMBUFFERPARAMETERSIIVNVPROC$MH = RuntimeHelper.downcallHandle(
-        "(IIIILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$785.PFNGLPROGRAMBUFFERPARAMETERSIIVNVPROC$FUNC, false
+        constants$785.PFNGLPROGRAMBUFFERPARAMETERSIIVNVPROC$FUNC
     );
 }
 

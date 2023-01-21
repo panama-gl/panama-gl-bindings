@@ -2,34 +2,32 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_INT;
-import static jdk.incubator.foreign.CLinker.C_POINTER;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$756 {
 
     static final FunctionDescriptor PFNGLMULTICASTBARRIERNVPROC$FUNC = FunctionDescriptor.ofVoid();
     static final MethodHandle PFNGLMULTICASTBARRIERNVPROC$MH = RuntimeHelper.downcallHandle(
-        "()V",
-        constants$756.PFNGLMULTICASTBARRIERNVPROC$FUNC, false
+        constants$756.PFNGLMULTICASTBARRIERNVPROC$FUNC
     );
     static final FunctionDescriptor PFNGLMULTICASTWAITSYNCNVPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLMULTICASTWAITSYNCNVPROC$MH = RuntimeHelper.downcallHandle(
-        "(II)V",
-        constants$756.PFNGLMULTICASTWAITSYNCNVPROC$FUNC, false
+        constants$756.PFNGLMULTICASTWAITSYNCNVPROC$FUNC
     );
     static final FunctionDescriptor PFNGLMULTICASTGETQUERYOBJECTIVNVPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLMULTICASTGETQUERYOBJECTIVNVPROC$MH = RuntimeHelper.downcallHandle(
-        "(IIILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$756.PFNGLMULTICASTGETQUERYOBJECTIVNVPROC$FUNC, false
+        constants$756.PFNGLMULTICASTGETQUERYOBJECTIVNVPROC$FUNC
     );
 }
 

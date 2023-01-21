@@ -2,22 +2,22 @@
 
 package opengl.ubuntu.v20;
 
-import jdk.incubator.foreign.Addressable;
-import jdk.incubator.foreign.MemoryAddress;
-import jdk.incubator.foreign.ResourceScope;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public interface PFNGLISMEMORYOBJECTEXTPROC {
 
-    byte apply(int x0);
-    static MemoryAddress allocate(PFNGLISMEMORYOBJECTEXTPROC fi) {
-        return RuntimeHelper.upcallStub(PFNGLISMEMORYOBJECTEXTPROC.class, fi, constants$641.PFNGLISMEMORYOBJECTEXTPROC$FUNC, "(I)B");
+    byte apply(int memoryObject);
+    static MemorySegment allocate(PFNGLISMEMORYOBJECTEXTPROC fi, MemorySession session) {
+        return RuntimeHelper.upcallStub(PFNGLISMEMORYOBJECTEXTPROC.class, fi, constants$641.PFNGLISMEMORYOBJECTEXTPROC$FUNC, session);
     }
-    static MemoryAddress allocate(PFNGLISMEMORYOBJECTEXTPROC fi, ResourceScope scope) {
-        return RuntimeHelper.upcallStub(PFNGLISMEMORYOBJECTEXTPROC.class, fi, constants$641.PFNGLISMEMORYOBJECTEXTPROC$FUNC, "(I)B", scope);
-    }
-    static PFNGLISMEMORYOBJECTEXTPROC ofAddress(MemoryAddress addr) {
-        return (int x0) -> {
+    static PFNGLISMEMORYOBJECTEXTPROC ofAddress(MemoryAddress addr, MemorySession session) {
+        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
+        return (int _memoryObject) -> {
             try {
-                return (byte)constants$641.PFNGLISMEMORYOBJECTEXTPROC$MH.invokeExact((Addressable)addr, x0);
+                return (byte)constants$641.PFNGLISMEMORYOBJECTEXTPROC$MH.invokeExact((Addressable)symbol, _memoryObject);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

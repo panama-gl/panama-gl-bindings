@@ -2,22 +2,22 @@
 
 package opengl.ubuntu.v20;
 
-import jdk.incubator.foreign.Addressable;
-import jdk.incubator.foreign.MemoryAddress;
-import jdk.incubator.foreign.ResourceScope;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public interface PFNGLDRAWTRANSFORMFEEDBACKSTREAMPROC {
 
-    void apply(int x0, int x1, int x2);
-    static MemoryAddress allocate(PFNGLDRAWTRANSFORMFEEDBACKSTREAMPROC fi) {
-        return RuntimeHelper.upcallStub(PFNGLDRAWTRANSFORMFEEDBACKSTREAMPROC.class, fi, constants$218.PFNGLDRAWTRANSFORMFEEDBACKSTREAMPROC$FUNC, "(III)V");
+    void apply(int mode, int id, int stream);
+    static MemorySegment allocate(PFNGLDRAWTRANSFORMFEEDBACKSTREAMPROC fi, MemorySession session) {
+        return RuntimeHelper.upcallStub(PFNGLDRAWTRANSFORMFEEDBACKSTREAMPROC.class, fi, constants$218.PFNGLDRAWTRANSFORMFEEDBACKSTREAMPROC$FUNC, session);
     }
-    static MemoryAddress allocate(PFNGLDRAWTRANSFORMFEEDBACKSTREAMPROC fi, ResourceScope scope) {
-        return RuntimeHelper.upcallStub(PFNGLDRAWTRANSFORMFEEDBACKSTREAMPROC.class, fi, constants$218.PFNGLDRAWTRANSFORMFEEDBACKSTREAMPROC$FUNC, "(III)V", scope);
-    }
-    static PFNGLDRAWTRANSFORMFEEDBACKSTREAMPROC ofAddress(MemoryAddress addr) {
-        return (int x0, int x1, int x2) -> {
+    static PFNGLDRAWTRANSFORMFEEDBACKSTREAMPROC ofAddress(MemoryAddress addr, MemorySession session) {
+        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
+        return (int _mode, int _id, int _stream) -> {
             try {
-                constants$218.PFNGLDRAWTRANSFORMFEEDBACKSTREAMPROC$MH.invokeExact((Addressable)addr, x0, x1, x2);
+                constants$218.PFNGLDRAWTRANSFORMFEEDBACKSTREAMPROC$MH.invokeExact((Addressable)symbol, _mode, _id, _stream);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

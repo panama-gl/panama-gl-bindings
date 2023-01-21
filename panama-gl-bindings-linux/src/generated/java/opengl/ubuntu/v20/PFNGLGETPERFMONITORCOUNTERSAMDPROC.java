@@ -2,22 +2,22 @@
 
 package opengl.ubuntu.v20;
 
-import jdk.incubator.foreign.Addressable;
-import jdk.incubator.foreign.MemoryAddress;
-import jdk.incubator.foreign.ResourceScope;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public interface PFNGLGETPERFMONITORCOUNTERSAMDPROC {
 
-    void apply(int x0, jdk.incubator.foreign.MemoryAddress x1, jdk.incubator.foreign.MemoryAddress x2, int x3, jdk.incubator.foreign.MemoryAddress x4);
-    static MemoryAddress allocate(PFNGLGETPERFMONITORCOUNTERSAMDPROC fi) {
-        return RuntimeHelper.upcallStub(PFNGLGETPERFMONITORCOUNTERSAMDPROC.class, fi, constants$469.PFNGLGETPERFMONITORCOUNTERSAMDPROC$FUNC, "(ILjdk/incubator/foreign/MemoryAddress;Ljdk/incubator/foreign/MemoryAddress;ILjdk/incubator/foreign/MemoryAddress;)V");
+    void apply(int group, java.lang.foreign.MemoryAddress numCounters, java.lang.foreign.MemoryAddress maxActiveCounters, int counterSize, java.lang.foreign.MemoryAddress counters);
+    static MemorySegment allocate(PFNGLGETPERFMONITORCOUNTERSAMDPROC fi, MemorySession session) {
+        return RuntimeHelper.upcallStub(PFNGLGETPERFMONITORCOUNTERSAMDPROC.class, fi, constants$469.PFNGLGETPERFMONITORCOUNTERSAMDPROC$FUNC, session);
     }
-    static MemoryAddress allocate(PFNGLGETPERFMONITORCOUNTERSAMDPROC fi, ResourceScope scope) {
-        return RuntimeHelper.upcallStub(PFNGLGETPERFMONITORCOUNTERSAMDPROC.class, fi, constants$469.PFNGLGETPERFMONITORCOUNTERSAMDPROC$FUNC, "(ILjdk/incubator/foreign/MemoryAddress;Ljdk/incubator/foreign/MemoryAddress;ILjdk/incubator/foreign/MemoryAddress;)V", scope);
-    }
-    static PFNGLGETPERFMONITORCOUNTERSAMDPROC ofAddress(MemoryAddress addr) {
-        return (int x0, jdk.incubator.foreign.MemoryAddress x1, jdk.incubator.foreign.MemoryAddress x2, int x3, jdk.incubator.foreign.MemoryAddress x4) -> {
+    static PFNGLGETPERFMONITORCOUNTERSAMDPROC ofAddress(MemoryAddress addr, MemorySession session) {
+        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
+        return (int _group, java.lang.foreign.MemoryAddress _numCounters, java.lang.foreign.MemoryAddress _maxActiveCounters, int _counterSize, java.lang.foreign.MemoryAddress _counters) -> {
             try {
-                constants$469.PFNGLGETPERFMONITORCOUNTERSAMDPROC$MH.invokeExact((Addressable)addr, x0, x1, x2, x3, x4);
+                constants$469.PFNGLGETPERFMONITORCOUNTERSAMDPROC$MH.invokeExact((Addressable)symbol, _group, (java.lang.foreign.Addressable)_numCounters, (java.lang.foreign.Addressable)_maxActiveCounters, _counterSize, (java.lang.foreign.Addressable)_counters);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

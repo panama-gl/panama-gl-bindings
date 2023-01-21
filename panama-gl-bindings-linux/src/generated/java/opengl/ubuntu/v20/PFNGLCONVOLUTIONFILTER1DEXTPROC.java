@@ -2,22 +2,22 @@
 
 package opengl.ubuntu.v20;
 
-import jdk.incubator.foreign.Addressable;
-import jdk.incubator.foreign.MemoryAddress;
-import jdk.incubator.foreign.ResourceScope;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public interface PFNGLCONVOLUTIONFILTER1DEXTPROC {
 
-    void apply(int x0, int x1, int x2, int x3, int x4, jdk.incubator.foreign.MemoryAddress x5);
-    static MemoryAddress allocate(PFNGLCONVOLUTIONFILTER1DEXTPROC fi) {
-        return RuntimeHelper.upcallStub(PFNGLCONVOLUTIONFILTER1DEXTPROC.class, fi, constants$520.PFNGLCONVOLUTIONFILTER1DEXTPROC$FUNC, "(IIIIILjdk/incubator/foreign/MemoryAddress;)V");
+    void apply(int target, int internalformat, int width, int format, int type, java.lang.foreign.MemoryAddress image);
+    static MemorySegment allocate(PFNGLCONVOLUTIONFILTER1DEXTPROC fi, MemorySession session) {
+        return RuntimeHelper.upcallStub(PFNGLCONVOLUTIONFILTER1DEXTPROC.class, fi, constants$520.PFNGLCONVOLUTIONFILTER1DEXTPROC$FUNC, session);
     }
-    static MemoryAddress allocate(PFNGLCONVOLUTIONFILTER1DEXTPROC fi, ResourceScope scope) {
-        return RuntimeHelper.upcallStub(PFNGLCONVOLUTIONFILTER1DEXTPROC.class, fi, constants$520.PFNGLCONVOLUTIONFILTER1DEXTPROC$FUNC, "(IIIIILjdk/incubator/foreign/MemoryAddress;)V", scope);
-    }
-    static PFNGLCONVOLUTIONFILTER1DEXTPROC ofAddress(MemoryAddress addr) {
-        return (int x0, int x1, int x2, int x3, int x4, jdk.incubator.foreign.MemoryAddress x5) -> {
+    static PFNGLCONVOLUTIONFILTER1DEXTPROC ofAddress(MemoryAddress addr, MemorySession session) {
+        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
+        return (int _target, int _internalformat, int _width, int _format, int _type, java.lang.foreign.MemoryAddress _image) -> {
             try {
-                constants$520.PFNGLCONVOLUTIONFILTER1DEXTPROC$MH.invokeExact((Addressable)addr, x0, x1, x2, x3, x4, x5);
+                constants$520.PFNGLCONVOLUTIONFILTER1DEXTPROC$MH.invokeExact((Addressable)symbol, _target, _internalformat, _width, _format, _type, (java.lang.foreign.Addressable)_image);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

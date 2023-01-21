@@ -2,48 +2,46 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_DOUBLE;
-import static jdk.incubator.foreign.CLinker.C_INT;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$739 {
 
     static final FunctionDescriptor PFNGLCONSERVATIVERASTERPARAMETERINVPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLCONSERVATIVERASTERPARAMETERINVPROC$MH = RuntimeHelper.downcallHandle(
-        "(II)V",
-        constants$739.PFNGLCONSERVATIVERASTERPARAMETERINVPROC$FUNC, false
+        constants$739.PFNGLCONSERVATIVERASTERPARAMETERINVPROC$FUNC
     );
     static final FunctionDescriptor PFNGLCOPYIMAGESUBDATANVPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLCOPYIMAGESUBDATANVPROC$MH = RuntimeHelper.downcallHandle(
-        "(IIIIIIIIIIIIIII)V",
-        constants$739.PFNGLCOPYIMAGESUBDATANVPROC$FUNC, false
+        constants$739.PFNGLCOPYIMAGESUBDATANVPROC$FUNC
     );
     static final FunctionDescriptor PFNGLDEPTHRANGEDNVPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_DOUBLE,
-        C_DOUBLE
+        Constants$root.C_DOUBLE$LAYOUT,
+        Constants$root.C_DOUBLE$LAYOUT
     );
     static final MethodHandle PFNGLDEPTHRANGEDNVPROC$MH = RuntimeHelper.downcallHandle(
-        "(DD)V",
-        constants$739.PFNGLDEPTHRANGEDNVPROC$FUNC, false
+        constants$739.PFNGLDEPTHRANGEDNVPROC$FUNC
     );
 }
 

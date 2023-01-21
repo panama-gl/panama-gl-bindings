@@ -2,37 +2,35 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_INT;
-import static jdk.incubator.foreign.CLinker.C_POINTER;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$824 {
 
     static final FunctionDescriptor PFNGLBINDSHADINGRATEIMAGENVPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLBINDSHADINGRATEIMAGENVPROC$MH = RuntimeHelper.downcallHandle(
-        "(I)V",
-        constants$824.PFNGLBINDSHADINGRATEIMAGENVPROC$FUNC, false
+        constants$824.PFNGLBINDSHADINGRATEIMAGENVPROC$FUNC
     );
     static final FunctionDescriptor PFNGLGETSHADINGRATEIMAGEPALETTENVPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLGETSHADINGRATEIMAGEPALETTENVPROC$MH = RuntimeHelper.downcallHandle(
-        "(IILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$824.PFNGLGETSHADINGRATEIMAGEPALETTENVPROC$FUNC, false
+        constants$824.PFNGLGETSHADINGRATEIMAGEPALETTENVPROC$FUNC
     );
     static final FunctionDescriptor PFNGLGETSHADINGRATESAMPLELOCATIONIVNVPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLGETSHADINGRATESAMPLELOCATIONIVNVPROC$MH = RuntimeHelper.downcallHandle(
-        "(IIILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$824.PFNGLGETSHADINGRATESAMPLELOCATIONIVNVPROC$FUNC, false
+        constants$824.PFNGLGETSHADINGRATESAMPLELOCATIONIVNVPROC$FUNC
     );
 }
 

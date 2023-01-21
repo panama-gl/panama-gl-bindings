@@ -2,22 +2,22 @@
 
 package opengl.ubuntu.v20;
 
-import jdk.incubator.foreign.Addressable;
-import jdk.incubator.foreign.MemoryAddress;
-import jdk.incubator.foreign.ResourceScope;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public interface PFNGLCLAMPCOLORPROC {
 
-    void apply(int x0, int x1);
-    static MemoryAddress allocate(PFNGLCLAMPCOLORPROC fi) {
-        return RuntimeHelper.upcallStub(PFNGLCLAMPCOLORPROC.class, fi, constants$150.PFNGLCLAMPCOLORPROC$FUNC, "(II)V");
+    void apply(int target, int clamp);
+    static MemorySegment allocate(PFNGLCLAMPCOLORPROC fi, MemorySession session) {
+        return RuntimeHelper.upcallStub(PFNGLCLAMPCOLORPROC.class, fi, constants$150.PFNGLCLAMPCOLORPROC$FUNC, session);
     }
-    static MemoryAddress allocate(PFNGLCLAMPCOLORPROC fi, ResourceScope scope) {
-        return RuntimeHelper.upcallStub(PFNGLCLAMPCOLORPROC.class, fi, constants$150.PFNGLCLAMPCOLORPROC$FUNC, "(II)V", scope);
-    }
-    static PFNGLCLAMPCOLORPROC ofAddress(MemoryAddress addr) {
-        return (int x0, int x1) -> {
+    static PFNGLCLAMPCOLORPROC ofAddress(MemoryAddress addr, MemorySession session) {
+        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
+        return (int _target, int _clamp) -> {
             try {
-                constants$150.PFNGLCLAMPCOLORPROC$MH.invokeExact((Addressable)addr, x0, x1);
+                constants$150.PFNGLCLAMPCOLORPROC$MH.invokeExact((Addressable)symbol, _target, _clamp);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

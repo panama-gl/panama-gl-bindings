@@ -2,22 +2,22 @@
 
 package opengl.ubuntu.v20;
 
-import jdk.incubator.foreign.Addressable;
-import jdk.incubator.foreign.MemoryAddress;
-import jdk.incubator.foreign.ResourceScope;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public interface PFNGLDISPATCHCOMPUTEGROUPSIZEARBPROC {
 
-    void apply(int x0, int x1, int x2, int x3, int x4, int x5);
-    static MemoryAddress allocate(PFNGLDISPATCHCOMPUTEGROUPSIZEARBPROC fi) {
-        return RuntimeHelper.upcallStub(PFNGLDISPATCHCOMPUTEGROUPSIZEARBPROC.class, fi, constants$318.PFNGLDISPATCHCOMPUTEGROUPSIZEARBPROC$FUNC, "(IIIIII)V");
+    void apply(int num_groups_x, int num_groups_y, int num_groups_z, int group_size_x, int group_size_y, int group_size_z);
+    static MemorySegment allocate(PFNGLDISPATCHCOMPUTEGROUPSIZEARBPROC fi, MemorySession session) {
+        return RuntimeHelper.upcallStub(PFNGLDISPATCHCOMPUTEGROUPSIZEARBPROC.class, fi, constants$318.PFNGLDISPATCHCOMPUTEGROUPSIZEARBPROC$FUNC, session);
     }
-    static MemoryAddress allocate(PFNGLDISPATCHCOMPUTEGROUPSIZEARBPROC fi, ResourceScope scope) {
-        return RuntimeHelper.upcallStub(PFNGLDISPATCHCOMPUTEGROUPSIZEARBPROC.class, fi, constants$318.PFNGLDISPATCHCOMPUTEGROUPSIZEARBPROC$FUNC, "(IIIIII)V", scope);
-    }
-    static PFNGLDISPATCHCOMPUTEGROUPSIZEARBPROC ofAddress(MemoryAddress addr) {
-        return (int x0, int x1, int x2, int x3, int x4, int x5) -> {
+    static PFNGLDISPATCHCOMPUTEGROUPSIZEARBPROC ofAddress(MemoryAddress addr, MemorySession session) {
+        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
+        return (int _num_groups_x, int _num_groups_y, int _num_groups_z, int _group_size_x, int _group_size_y, int _group_size_z) -> {
             try {
-                constants$318.PFNGLDISPATCHCOMPUTEGROUPSIZEARBPROC$MH.invokeExact((Addressable)addr, x0, x1, x2, x3, x4, x5);
+                constants$318.PFNGLDISPATCHCOMPUTEGROUPSIZEARBPROC$MH.invokeExact((Addressable)symbol, _num_groups_x, _num_groups_y, _num_groups_z, _group_size_x, _group_size_y, _group_size_z);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

@@ -2,38 +2,36 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_DOUBLE;
-import static jdk.incubator.foreign.CLinker.C_INT;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$540 {
 
     static final FunctionDescriptor PFNGLMATRIXORTHOEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_DOUBLE,
-        C_DOUBLE,
-        C_DOUBLE,
-        C_DOUBLE,
-        C_DOUBLE,
-        C_DOUBLE
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_DOUBLE$LAYOUT,
+        Constants$root.C_DOUBLE$LAYOUT,
+        Constants$root.C_DOUBLE$LAYOUT,
+        Constants$root.C_DOUBLE$LAYOUT,
+        Constants$root.C_DOUBLE$LAYOUT,
+        Constants$root.C_DOUBLE$LAYOUT
     );
     static final MethodHandle PFNGLMATRIXORTHOEXTPROC$MH = RuntimeHelper.downcallHandle(
-        "(IDDDDDD)V",
-        constants$540.PFNGLMATRIXORTHOEXTPROC$FUNC, false
+        constants$540.PFNGLMATRIXORTHOEXTPROC$FUNC
     );
     static final FunctionDescriptor PFNGLMATRIXPOPEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLMATRIXPOPEXTPROC$MH = RuntimeHelper.downcallHandle(
-        "(I)V",
-        constants$540.PFNGLMATRIXPOPEXTPROC$FUNC, false
+        constants$540.PFNGLMATRIXPOPEXTPROC$FUNC
     );
     static final FunctionDescriptor PFNGLMATRIXPUSHEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLMATRIXPUSHEXTPROC$MH = RuntimeHelper.downcallHandle(
-        "(I)V",
-        constants$540.PFNGLMATRIXPUSHEXTPROC$FUNC, false
+        constants$540.PFNGLMATRIXPUSHEXTPROC$FUNC
     );
 }
 

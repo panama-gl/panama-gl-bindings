@@ -2,38 +2,35 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_FLOAT;
-import static jdk.incubator.foreign.CLinker.C_INT;
-import static jdk.incubator.foreign.CLinker.C_POINTER;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$513 {
 
     static final FunctionDescriptor PFNGLNORMALSTREAM3IVATIPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLNORMALSTREAM3IVATIPROC$MH = RuntimeHelper.downcallHandle(
-        "(ILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$513.PFNGLNORMALSTREAM3IVATIPROC$FUNC, false
+        constants$513.PFNGLNORMALSTREAM3IVATIPROC$FUNC
     );
     static final FunctionDescriptor PFNGLNORMALSTREAM3FATIPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_FLOAT,
-        C_FLOAT,
-        C_FLOAT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT
     );
     static final MethodHandle PFNGLNORMALSTREAM3FATIPROC$MH = RuntimeHelper.downcallHandle(
-        "(IFFF)V",
-        constants$513.PFNGLNORMALSTREAM3FATIPROC$FUNC, false
+        constants$513.PFNGLNORMALSTREAM3FATIPROC$FUNC
     );
     static final FunctionDescriptor PFNGLNORMALSTREAM3FVATIPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLNORMALSTREAM3FVATIPROC$MH = RuntimeHelper.downcallHandle(
-        "(ILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$513.PFNGLNORMALSTREAM3FVATIPROC$FUNC, false
+        constants$513.PFNGLNORMALSTREAM3FVATIPROC$FUNC
     );
 }
 

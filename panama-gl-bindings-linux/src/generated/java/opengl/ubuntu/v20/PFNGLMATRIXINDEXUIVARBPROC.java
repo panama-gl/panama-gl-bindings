@@ -2,22 +2,22 @@
 
 package opengl.ubuntu.v20;
 
-import jdk.incubator.foreign.Addressable;
-import jdk.incubator.foreign.MemoryAddress;
-import jdk.incubator.foreign.ResourceScope;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public interface PFNGLMATRIXINDEXUIVARBPROC {
 
-    void apply(int x0, jdk.incubator.foreign.MemoryAddress x1);
-    static MemoryAddress allocate(PFNGLMATRIXINDEXUIVARBPROC fi) {
-        return RuntimeHelper.upcallStub(PFNGLMATRIXINDEXUIVARBPROC.class, fi, constants$345.PFNGLMATRIXINDEXUIVARBPROC$FUNC, "(ILjdk/incubator/foreign/MemoryAddress;)V");
+    void apply(int size, java.lang.foreign.MemoryAddress indices);
+    static MemorySegment allocate(PFNGLMATRIXINDEXUIVARBPROC fi, MemorySession session) {
+        return RuntimeHelper.upcallStub(PFNGLMATRIXINDEXUIVARBPROC.class, fi, constants$345.PFNGLMATRIXINDEXUIVARBPROC$FUNC, session);
     }
-    static MemoryAddress allocate(PFNGLMATRIXINDEXUIVARBPROC fi, ResourceScope scope) {
-        return RuntimeHelper.upcallStub(PFNGLMATRIXINDEXUIVARBPROC.class, fi, constants$345.PFNGLMATRIXINDEXUIVARBPROC$FUNC, "(ILjdk/incubator/foreign/MemoryAddress;)V", scope);
-    }
-    static PFNGLMATRIXINDEXUIVARBPROC ofAddress(MemoryAddress addr) {
-        return (int x0, jdk.incubator.foreign.MemoryAddress x1) -> {
+    static PFNGLMATRIXINDEXUIVARBPROC ofAddress(MemoryAddress addr, MemorySession session) {
+        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
+        return (int _size, java.lang.foreign.MemoryAddress _indices) -> {
             try {
-                constants$345.PFNGLMATRIXINDEXUIVARBPROC$MH.invokeExact((Addressable)addr, x0, x1);
+                constants$345.PFNGLMATRIXINDEXUIVARBPROC$MH.invokeExact((Addressable)symbol, _size, (java.lang.foreign.Addressable)_indices);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

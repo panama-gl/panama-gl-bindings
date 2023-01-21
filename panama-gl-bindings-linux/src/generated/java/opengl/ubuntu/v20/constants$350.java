@@ -2,47 +2,45 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_INT;
-import static jdk.incubator.foreign.CLinker.C_POINTER;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$350 {
 
     static final FunctionDescriptor PFNGLGETNTEXIMAGEARBPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLGETNTEXIMAGEARBPROC$MH = RuntimeHelper.downcallHandle(
-        "(IIIIILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$350.PFNGLGETNTEXIMAGEARBPROC$FUNC, false
+        constants$350.PFNGLGETNTEXIMAGEARBPROC$FUNC
     );
     static final FunctionDescriptor PFNGLREADNPIXELSARBPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLREADNPIXELSARBPROC$MH = RuntimeHelper.downcallHandle(
-        "(IIIIIIILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$350.PFNGLREADNPIXELSARBPROC$FUNC, false
+        constants$350.PFNGLREADNPIXELSARBPROC$FUNC
     );
     static final FunctionDescriptor PFNGLGETNCOMPRESSEDTEXIMAGEARBPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLGETNCOMPRESSEDTEXIMAGEARBPROC$MH = RuntimeHelper.downcallHandle(
-        "(IIILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$350.PFNGLGETNCOMPRESSEDTEXIMAGEARBPROC$FUNC, false
+        constants$350.PFNGLGETNCOMPRESSEDTEXIMAGEARBPROC$FUNC
     );
 }
 

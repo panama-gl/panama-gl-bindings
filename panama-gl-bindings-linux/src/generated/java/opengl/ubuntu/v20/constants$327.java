@@ -2,38 +2,36 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_INT;
-import static jdk.incubator.foreign.CLinker.C_POINTER;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$327 {
 
     static final FunctionDescriptor PFNGLGETPROGRAMENVPARAMETERDVARBPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLGETPROGRAMENVPARAMETERDVARBPROC$MH = RuntimeHelper.downcallHandle(
-        "(IILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$327.PFNGLGETPROGRAMENVPARAMETERDVARBPROC$FUNC, false
+        constants$327.PFNGLGETPROGRAMENVPARAMETERDVARBPROC$FUNC
     );
     static final FunctionDescriptor PFNGLGETPROGRAMENVPARAMETERFVARBPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLGETPROGRAMENVPARAMETERFVARBPROC$MH = RuntimeHelper.downcallHandle(
-        "(IILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$327.PFNGLGETPROGRAMENVPARAMETERFVARBPROC$FUNC, false
+        constants$327.PFNGLGETPROGRAMENVPARAMETERFVARBPROC$FUNC
     );
     static final FunctionDescriptor PFNGLGETPROGRAMLOCALPARAMETERDVARBPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLGETPROGRAMLOCALPARAMETERDVARBPROC$MH = RuntimeHelper.downcallHandle(
-        "(IILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$327.PFNGLGETPROGRAMLOCALPARAMETERDVARBPROC$FUNC, false
+        constants$327.PFNGLGETPROGRAMLOCALPARAMETERDVARBPROC$FUNC
     );
 }
 

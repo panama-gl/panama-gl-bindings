@@ -2,42 +2,39 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_INT;
-import static jdk.incubator.foreign.CLinker.C_LONG;
-import static jdk.incubator.foreign.CLinker.C_POINTER;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$459 {
 
     static final FunctionDescriptor PFNGLUNIFORM3UI64NVPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_LONG,
-        C_LONG,
-        C_LONG
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT
     );
     static final MethodHandle PFNGLUNIFORM3UI64NVPROC$MH = RuntimeHelper.downcallHandle(
-        "(IJJJ)V",
-        constants$459.PFNGLUNIFORM3UI64NVPROC$FUNC, false
+        constants$459.PFNGLUNIFORM3UI64NVPROC$FUNC
     );
     static final FunctionDescriptor PFNGLUNIFORM4UI64NVPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_LONG,
-        C_LONG,
-        C_LONG,
-        C_LONG
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT
     );
     static final MethodHandle PFNGLUNIFORM4UI64NVPROC$MH = RuntimeHelper.downcallHandle(
-        "(IJJJJ)V",
-        constants$459.PFNGLUNIFORM4UI64NVPROC$FUNC, false
+        constants$459.PFNGLUNIFORM4UI64NVPROC$FUNC
     );
     static final FunctionDescriptor PFNGLUNIFORM1UI64VNVPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLUNIFORM1UI64VNVPROC$MH = RuntimeHelper.downcallHandle(
-        "(IILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$459.PFNGLUNIFORM1UI64VNVPROC$FUNC, false
+        constants$459.PFNGLUNIFORM1UI64VNVPROC$FUNC
     );
 }
 

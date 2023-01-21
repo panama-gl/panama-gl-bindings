@@ -2,43 +2,42 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_INT;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$286 {
 
     static final FunctionDescriptor PFNGLTEXTURESTORAGE1DPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLTEXTURESTORAGE1DPROC$MH = RuntimeHelper.downcallHandle(
-        "(IIII)V",
-        constants$286.PFNGLTEXTURESTORAGE1DPROC$FUNC, false
+        constants$286.PFNGLTEXTURESTORAGE1DPROC$FUNC
     );
     static final FunctionDescriptor PFNGLTEXTURESTORAGE2DPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLTEXTURESTORAGE2DPROC$MH = RuntimeHelper.downcallHandle(
-        "(IIIII)V",
-        constants$286.PFNGLTEXTURESTORAGE2DPROC$FUNC, false
+        constants$286.PFNGLTEXTURESTORAGE2DPROC$FUNC
     );
     static final FunctionDescriptor PFNGLTEXTURESTORAGE3DPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLTEXTURESTORAGE3DPROC$MH = RuntimeHelper.downcallHandle(
-        "(IIIIII)V",
-        constants$286.PFNGLTEXTURESTORAGE3DPROC$FUNC, false
+        constants$286.PFNGLTEXTURESTORAGE3DPROC$FUNC
     );
 }
 

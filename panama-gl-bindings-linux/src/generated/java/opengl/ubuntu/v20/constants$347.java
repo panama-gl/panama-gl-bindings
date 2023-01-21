@@ -2,35 +2,33 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_INT;
-import static jdk.incubator.foreign.CLinker.C_POINTER;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$347 {
 
     static final FunctionDescriptor PFNGLBEGINQUERYARBPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLBEGINQUERYARBPROC$MH = RuntimeHelper.downcallHandle(
-        "(II)V",
-        constants$347.PFNGLBEGINQUERYARBPROC$FUNC, false
+        constants$347.PFNGLBEGINQUERYARBPROC$FUNC
     );
     static final FunctionDescriptor PFNGLENDQUERYARBPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLENDQUERYARBPROC$MH = RuntimeHelper.downcallHandle(
-        "(I)V",
-        constants$347.PFNGLENDQUERYARBPROC$FUNC, false
+        constants$347.PFNGLENDQUERYARBPROC$FUNC
     );
     static final FunctionDescriptor PFNGLGETQUERYIVARBPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLGETQUERYIVARBPROC$MH = RuntimeHelper.downcallHandle(
-        "(IILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$347.PFNGLGETQUERYIVARBPROC$FUNC, false
+        constants$347.PFNGLGETQUERYIVARBPROC$FUNC
     );
 }
 

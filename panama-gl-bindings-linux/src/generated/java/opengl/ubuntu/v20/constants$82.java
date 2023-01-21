@@ -2,36 +2,33 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_INT;
-import static jdk.incubator.foreign.CLinker.C_POINTER;
-import static jdk.incubator.foreign.CLinker.C_SHORT;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$82 {
 
     static final FunctionDescriptor PFNGLMULTITEXCOORD1IARBPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLMULTITEXCOORD1IARBPROC$MH = RuntimeHelper.downcallHandle(
-        "(II)V",
-        constants$82.PFNGLMULTITEXCOORD1IARBPROC$FUNC, false
+        constants$82.PFNGLMULTITEXCOORD1IARBPROC$FUNC
     );
     static final FunctionDescriptor PFNGLMULTITEXCOORD1IVARBPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLMULTITEXCOORD1IVARBPROC$MH = RuntimeHelper.downcallHandle(
-        "(ILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$82.PFNGLMULTITEXCOORD1IVARBPROC$FUNC, false
+        constants$82.PFNGLMULTITEXCOORD1IVARBPROC$FUNC
     );
     static final FunctionDescriptor PFNGLMULTITEXCOORD1SARBPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_SHORT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_SHORT$LAYOUT
     );
     static final MethodHandle PFNGLMULTITEXCOORD1SARBPROC$MH = RuntimeHelper.downcallHandle(
-        "(IS)V",
-        constants$82.PFNGLMULTITEXCOORD1SARBPROC$FUNC, false
+        constants$82.PFNGLMULTITEXCOORD1SARBPROC$FUNC
     );
 }
 

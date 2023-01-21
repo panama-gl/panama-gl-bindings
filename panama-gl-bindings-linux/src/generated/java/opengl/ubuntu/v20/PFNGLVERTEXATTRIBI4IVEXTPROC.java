@@ -2,22 +2,22 @@
 
 package opengl.ubuntu.v20;
 
-import jdk.incubator.foreign.Addressable;
-import jdk.incubator.foreign.MemoryAddress;
-import jdk.incubator.foreign.ResourceScope;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public interface PFNGLVERTEXATTRIBI4IVEXTPROC {
 
-    void apply(int x0, jdk.incubator.foreign.MemoryAddress x1);
-    static MemoryAddress allocate(PFNGLVERTEXATTRIBI4IVEXTPROC fi) {
-        return RuntimeHelper.upcallStub(PFNGLVERTEXATTRIBI4IVEXTPROC.class, fi, constants$874.PFNGLVERTEXATTRIBI4IVEXTPROC$FUNC, "(ILjdk/incubator/foreign/MemoryAddress;)V");
+    void apply(int index, java.lang.foreign.MemoryAddress v);
+    static MemorySegment allocate(PFNGLVERTEXATTRIBI4IVEXTPROC fi, MemorySession session) {
+        return RuntimeHelper.upcallStub(PFNGLVERTEXATTRIBI4IVEXTPROC.class, fi, constants$874.PFNGLVERTEXATTRIBI4IVEXTPROC$FUNC, session);
     }
-    static MemoryAddress allocate(PFNGLVERTEXATTRIBI4IVEXTPROC fi, ResourceScope scope) {
-        return RuntimeHelper.upcallStub(PFNGLVERTEXATTRIBI4IVEXTPROC.class, fi, constants$874.PFNGLVERTEXATTRIBI4IVEXTPROC$FUNC, "(ILjdk/incubator/foreign/MemoryAddress;)V", scope);
-    }
-    static PFNGLVERTEXATTRIBI4IVEXTPROC ofAddress(MemoryAddress addr) {
-        return (int x0, jdk.incubator.foreign.MemoryAddress x1) -> {
+    static PFNGLVERTEXATTRIBI4IVEXTPROC ofAddress(MemoryAddress addr, MemorySession session) {
+        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
+        return (int _index, java.lang.foreign.MemoryAddress _v) -> {
             try {
-                constants$874.PFNGLVERTEXATTRIBI4IVEXTPROC$MH.invokeExact((Addressable)addr, x0, x1);
+                constants$874.PFNGLVERTEXATTRIBI4IVEXTPROC$MH.invokeExact((Addressable)symbol, _index, (java.lang.foreign.Addressable)_v);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

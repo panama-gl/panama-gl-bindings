@@ -2,22 +2,22 @@
 
 package opengl.ubuntu.v20;
 
-import jdk.incubator.foreign.Addressable;
-import jdk.incubator.foreign.MemoryAddress;
-import jdk.incubator.foreign.ResourceScope;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public interface glutWindowStatusFunc$callback {
 
-    void apply(int x0);
-    static MemoryAddress allocate(glutWindowStatusFunc$callback fi) {
-        return RuntimeHelper.upcallStub(glutWindowStatusFunc$callback.class, fi, constants$957.glutWindowStatusFunc$callback$FUNC, "(I)V");
+    void apply(int _x0);
+    static MemorySegment allocate(glutWindowStatusFunc$callback fi, MemorySession session) {
+        return RuntimeHelper.upcallStub(glutWindowStatusFunc$callback.class, fi, constants$957.glutWindowStatusFunc$callback$FUNC, session);
     }
-    static MemoryAddress allocate(glutWindowStatusFunc$callback fi, ResourceScope scope) {
-        return RuntimeHelper.upcallStub(glutWindowStatusFunc$callback.class, fi, constants$957.glutWindowStatusFunc$callback$FUNC, "(I)V", scope);
-    }
-    static glutWindowStatusFunc$callback ofAddress(MemoryAddress addr) {
-        return (int x0) -> {
+    static glutWindowStatusFunc$callback ofAddress(MemoryAddress addr, MemorySession session) {
+        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
+        return (int __x0) -> {
             try {
-                constants$957.glutWindowStatusFunc$callback$MH.invokeExact((Addressable)addr, x0);
+                constants$957.glutWindowStatusFunc$callback$MH.invokeExact((Addressable)symbol, __x0);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

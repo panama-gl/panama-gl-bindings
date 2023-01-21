@@ -2,46 +2,45 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_INT;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$434 {
 
     static final FunctionDescriptor PFNGLMAP2XOESPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLMAP2XOESPROC$MH = RuntimeHelper.downcallHandle(
-        "(IIIIIIIIII)V",
-        constants$434.PFNGLMAP2XOESPROC$FUNC, false
+        constants$434.PFNGLMAP2XOESPROC$FUNC
     );
     static final FunctionDescriptor PFNGLMAPGRID1XOESPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_INT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLMAPGRID1XOESPROC$MH = RuntimeHelper.downcallHandle(
-        "(III)V",
-        constants$434.PFNGLMAPGRID1XOESPROC$FUNC, false
+        constants$434.PFNGLMAPGRID1XOESPROC$FUNC
     );
     static final FunctionDescriptor PFNGLMAPGRID2XOESPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLMAPGRID2XOESPROC$MH = RuntimeHelper.downcallHandle(
-        "(IIIII)V",
-        constants$434.PFNGLMAPGRID2XOESPROC$FUNC, false
+        constants$434.PFNGLMAPGRID2XOESPROC$FUNC
     );
 }
 

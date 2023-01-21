@@ -2,22 +2,22 @@
 
 package opengl.ubuntu.v20;
 
-import jdk.incubator.foreign.Addressable;
-import jdk.incubator.foreign.MemoryAddress;
-import jdk.incubator.foreign.ResourceScope;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public interface PFNGLMULTICASTVIEWPORTARRAYVNVXPROC {
 
-    void apply(int x0, int x1, int x2, jdk.incubator.foreign.MemoryAddress x3);
-    static MemoryAddress allocate(PFNGLMULTICASTVIEWPORTARRAYVNVXPROC fi) {
-        return RuntimeHelper.upcallStub(PFNGLMULTICASTVIEWPORTARRAYVNVXPROC.class, fi, constants$721.PFNGLMULTICASTVIEWPORTARRAYVNVXPROC$FUNC, "(IIILjdk/incubator/foreign/MemoryAddress;)V");
+    void apply(int gpu, int first, int count, java.lang.foreign.MemoryAddress v);
+    static MemorySegment allocate(PFNGLMULTICASTVIEWPORTARRAYVNVXPROC fi, MemorySession session) {
+        return RuntimeHelper.upcallStub(PFNGLMULTICASTVIEWPORTARRAYVNVXPROC.class, fi, constants$721.PFNGLMULTICASTVIEWPORTARRAYVNVXPROC$FUNC, session);
     }
-    static MemoryAddress allocate(PFNGLMULTICASTVIEWPORTARRAYVNVXPROC fi, ResourceScope scope) {
-        return RuntimeHelper.upcallStub(PFNGLMULTICASTVIEWPORTARRAYVNVXPROC.class, fi, constants$721.PFNGLMULTICASTVIEWPORTARRAYVNVXPROC$FUNC, "(IIILjdk/incubator/foreign/MemoryAddress;)V", scope);
-    }
-    static PFNGLMULTICASTVIEWPORTARRAYVNVXPROC ofAddress(MemoryAddress addr) {
-        return (int x0, int x1, int x2, jdk.incubator.foreign.MemoryAddress x3) -> {
+    static PFNGLMULTICASTVIEWPORTARRAYVNVXPROC ofAddress(MemoryAddress addr, MemorySession session) {
+        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
+        return (int _gpu, int _first, int _count, java.lang.foreign.MemoryAddress _v) -> {
             try {
-                constants$721.PFNGLMULTICASTVIEWPORTARRAYVNVXPROC$MH.invokeExact((Addressable)addr, x0, x1, x2, x3);
+                constants$721.PFNGLMULTICASTVIEWPORTARRAYVNVXPROC$MH.invokeExact((Addressable)symbol, _gpu, _first, _count, (java.lang.foreign.Addressable)_v);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

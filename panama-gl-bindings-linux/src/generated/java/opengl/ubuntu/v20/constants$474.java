@@ -2,33 +2,31 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_FLOAT;
-import static jdk.incubator.foreign.CLinker.C_INT;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$474 {
 
     static final FunctionDescriptor PFNGLSTENCILOPVALUEAMDPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLSTENCILOPVALUEAMDPROC$MH = RuntimeHelper.downcallHandle(
-        "(II)V",
-        constants$474.PFNGLSTENCILOPVALUEAMDPROC$FUNC, false
+        constants$474.PFNGLSTENCILOPVALUEAMDPROC$FUNC
     );
     static final FunctionDescriptor PFNGLTESSELLATIONFACTORAMDPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_FLOAT
+        Constants$root.C_FLOAT$LAYOUT
     );
     static final MethodHandle PFNGLTESSELLATIONFACTORAMDPROC$MH = RuntimeHelper.downcallHandle(
-        "(F)V",
-        constants$474.PFNGLTESSELLATIONFACTORAMDPROC$FUNC, false
+        constants$474.PFNGLTESSELLATIONFACTORAMDPROC$FUNC
     );
     static final FunctionDescriptor PFNGLTESSELLATIONMODEAMDPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLTESSELLATIONMODEAMDPROC$MH = RuntimeHelper.downcallHandle(
-        "(I)V",
-        constants$474.PFNGLTESSELLATIONMODEAMDPROC$FUNC, false
+        constants$474.PFNGLTESSELLATIONMODEAMDPROC$FUNC
     );
 }
 

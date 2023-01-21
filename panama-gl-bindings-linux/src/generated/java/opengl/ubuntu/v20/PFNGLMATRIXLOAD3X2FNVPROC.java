@@ -2,22 +2,22 @@
 
 package opengl.ubuntu.v20;
 
-import jdk.incubator.foreign.Addressable;
-import jdk.incubator.foreign.MemoryAddress;
-import jdk.incubator.foreign.ResourceScope;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public interface PFNGLMATRIXLOAD3X2FNVPROC {
 
-    void apply(int x0, jdk.incubator.foreign.MemoryAddress x1);
-    static MemoryAddress allocate(PFNGLMATRIXLOAD3X2FNVPROC fi) {
-        return RuntimeHelper.upcallStub(PFNGLMATRIXLOAD3X2FNVPROC.class, fi, constants$800.PFNGLMATRIXLOAD3X2FNVPROC$FUNC, "(ILjdk/incubator/foreign/MemoryAddress;)V");
+    void apply(int matrixMode, java.lang.foreign.MemoryAddress m);
+    static MemorySegment allocate(PFNGLMATRIXLOAD3X2FNVPROC fi, MemorySession session) {
+        return RuntimeHelper.upcallStub(PFNGLMATRIXLOAD3X2FNVPROC.class, fi, constants$800.PFNGLMATRIXLOAD3X2FNVPROC$FUNC, session);
     }
-    static MemoryAddress allocate(PFNGLMATRIXLOAD3X2FNVPROC fi, ResourceScope scope) {
-        return RuntimeHelper.upcallStub(PFNGLMATRIXLOAD3X2FNVPROC.class, fi, constants$800.PFNGLMATRIXLOAD3X2FNVPROC$FUNC, "(ILjdk/incubator/foreign/MemoryAddress;)V", scope);
-    }
-    static PFNGLMATRIXLOAD3X2FNVPROC ofAddress(MemoryAddress addr) {
-        return (int x0, jdk.incubator.foreign.MemoryAddress x1) -> {
+    static PFNGLMATRIXLOAD3X2FNVPROC ofAddress(MemoryAddress addr, MemorySession session) {
+        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
+        return (int _matrixMode, java.lang.foreign.MemoryAddress _m) -> {
             try {
-                constants$800.PFNGLMATRIXLOAD3X2FNVPROC$MH.invokeExact((Addressable)addr, x0, x1);
+                constants$800.PFNGLMATRIXLOAD3X2FNVPROC$MH.invokeExact((Addressable)symbol, _matrixMode, (java.lang.foreign.Addressable)_m);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

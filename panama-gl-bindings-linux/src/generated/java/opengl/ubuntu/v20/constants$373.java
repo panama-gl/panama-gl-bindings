@@ -2,47 +2,44 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_CHAR;
-import static jdk.incubator.foreign.CLinker.C_INT;
-import static jdk.incubator.foreign.CLinker.C_LONG;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$373 {
 
     static final FunctionDescriptor PFNGLNAMEDBUFFERPAGECOMMITMENTEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_LONG,
-        C_LONG,
-        C_CHAR
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT,
+        Constants$root.C_CHAR$LAYOUT
     );
     static final MethodHandle PFNGLNAMEDBUFFERPAGECOMMITMENTEXTPROC$MH = RuntimeHelper.downcallHandle(
-        "(IJJB)V",
-        constants$373.PFNGLNAMEDBUFFERPAGECOMMITMENTEXTPROC$FUNC, false
+        constants$373.PFNGLNAMEDBUFFERPAGECOMMITMENTEXTPROC$FUNC
     );
     static final FunctionDescriptor PFNGLNAMEDBUFFERPAGECOMMITMENTARBPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_LONG,
-        C_LONG,
-        C_CHAR
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT,
+        Constants$root.C_CHAR$LAYOUT
     );
     static final MethodHandle PFNGLNAMEDBUFFERPAGECOMMITMENTARBPROC$MH = RuntimeHelper.downcallHandle(
-        "(IJJB)V",
-        constants$373.PFNGLNAMEDBUFFERPAGECOMMITMENTARBPROC$FUNC, false
+        constants$373.PFNGLNAMEDBUFFERPAGECOMMITMENTARBPROC$FUNC
     );
     static final FunctionDescriptor PFNGLTEXPAGECOMMITMENTARBPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_CHAR
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_CHAR$LAYOUT
     );
     static final MethodHandle PFNGLTEXPAGECOMMITMENTARBPROC$MH = RuntimeHelper.downcallHandle(
-        "(IIIIIIIIB)V",
-        constants$373.PFNGLTEXPAGECOMMITMENTARBPROC$FUNC, false
+        constants$373.PFNGLTEXPAGECOMMITMENTARBPROC$FUNC
     );
 }
 

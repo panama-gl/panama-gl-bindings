@@ -2,61 +2,56 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_INT;
-import static jdk.incubator.foreign.CLinker.C_POINTER;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$962 {
 
-    static final FunctionDescriptor glutGetModifiers$FUNC = FunctionDescriptor.of(C_INT);
+    static final FunctionDescriptor glutGetModifiers$FUNC = FunctionDescriptor.of(Constants$root.C_INT$LAYOUT);
     static final MethodHandle glutGetModifiers$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "glutGetModifiers",
-        "()I",
-        constants$962.glutGetModifiers$FUNC, false
+        "glutGetModifiers",
+        constants$962.glutGetModifiers$FUNC
     );
-    static final FunctionDescriptor glutLayerGet$FUNC = FunctionDescriptor.of(C_INT,
-        C_INT
+    static final FunctionDescriptor glutLayerGet$FUNC = FunctionDescriptor.of(Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle glutLayerGet$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "glutLayerGet",
-        "(I)I",
-        constants$962.glutLayerGet$FUNC, false
+        "glutLayerGet",
+        constants$962.glutLayerGet$FUNC
     );
     static final FunctionDescriptor glutBitmapCharacter$FUNC = FunctionDescriptor.ofVoid(
-        C_POINTER,
-        C_INT
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle glutBitmapCharacter$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "glutBitmapCharacter",
-        "(Ljdk/incubator/foreign/MemoryAddress;I)V",
-        constants$962.glutBitmapCharacter$FUNC, false
+        "glutBitmapCharacter",
+        constants$962.glutBitmapCharacter$FUNC
     );
-    static final FunctionDescriptor glutBitmapWidth$FUNC = FunctionDescriptor.of(C_INT,
-        C_POINTER,
-        C_INT
+    static final FunctionDescriptor glutBitmapWidth$FUNC = FunctionDescriptor.of(Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle glutBitmapWidth$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "glutBitmapWidth",
-        "(Ljdk/incubator/foreign/MemoryAddress;I)I",
-        constants$962.glutBitmapWidth$FUNC, false
+        "glutBitmapWidth",
+        constants$962.glutBitmapWidth$FUNC
     );
     static final FunctionDescriptor glutStrokeCharacter$FUNC = FunctionDescriptor.ofVoid(
-        C_POINTER,
-        C_INT
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle glutStrokeCharacter$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "glutStrokeCharacter",
-        "(Ljdk/incubator/foreign/MemoryAddress;I)V",
-        constants$962.glutStrokeCharacter$FUNC, false
+        "glutStrokeCharacter",
+        constants$962.glutStrokeCharacter$FUNC
     );
-    static final FunctionDescriptor glutStrokeWidth$FUNC = FunctionDescriptor.of(C_INT,
-        C_POINTER,
-        C_INT
+    static final FunctionDescriptor glutStrokeWidth$FUNC = FunctionDescriptor.of(Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle glutStrokeWidth$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "glutStrokeWidth",
-        "(Ljdk/incubator/foreign/MemoryAddress;I)I",
-        constants$962.glutStrokeWidth$FUNC, false
+        "glutStrokeWidth",
+        constants$962.glutStrokeWidth$FUNC
     );
 }
 

@@ -2,38 +2,36 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_INT;
-import static jdk.incubator.foreign.CLinker.C_POINTER;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$700 {
 
     static final FunctionDescriptor PFNGLIMAGETRANSFORMPARAMETERFVHPPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLIMAGETRANSFORMPARAMETERFVHPPROC$MH = RuntimeHelper.downcallHandle(
-        "(IILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$700.PFNGLIMAGETRANSFORMPARAMETERFVHPPROC$FUNC, false
+        constants$700.PFNGLIMAGETRANSFORMPARAMETERFVHPPROC$FUNC
     );
     static final FunctionDescriptor PFNGLGETIMAGETRANSFORMPARAMETERIVHPPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLGETIMAGETRANSFORMPARAMETERIVHPPROC$MH = RuntimeHelper.downcallHandle(
-        "(IILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$700.PFNGLGETIMAGETRANSFORMPARAMETERIVHPPROC$FUNC, false
+        constants$700.PFNGLGETIMAGETRANSFORMPARAMETERIVHPPROC$FUNC
     );
     static final FunctionDescriptor PFNGLGETIMAGETRANSFORMPARAMETERFVHPPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLGETIMAGETRANSFORMPARAMETERFVHPPROC$MH = RuntimeHelper.downcallHandle(
-        "(IILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$700.PFNGLGETIMAGETRANSFORMPARAMETERFVHPPROC$FUNC, false
+        constants$700.PFNGLGETIMAGETRANSFORMPARAMETERFVHPPROC$FUNC
     );
 }
 

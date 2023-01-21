@@ -2,40 +2,37 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_INT;
-import static jdk.incubator.foreign.CLinker.C_POINTER;
-import static jdk.incubator.foreign.CLinker.C_SHORT;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$512 {
 
     static final FunctionDescriptor PFNGLNORMALSTREAM3SATIPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_SHORT,
-        C_SHORT,
-        C_SHORT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_SHORT$LAYOUT,
+        Constants$root.C_SHORT$LAYOUT,
+        Constants$root.C_SHORT$LAYOUT
     );
     static final MethodHandle PFNGLNORMALSTREAM3SATIPROC$MH = RuntimeHelper.downcallHandle(
-        "(ISSS)V",
-        constants$512.PFNGLNORMALSTREAM3SATIPROC$FUNC, false
+        constants$512.PFNGLNORMALSTREAM3SATIPROC$FUNC
     );
     static final FunctionDescriptor PFNGLNORMALSTREAM3SVATIPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLNORMALSTREAM3SVATIPROC$MH = RuntimeHelper.downcallHandle(
-        "(ILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$512.PFNGLNORMALSTREAM3SVATIPROC$FUNC, false
+        constants$512.PFNGLNORMALSTREAM3SVATIPROC$FUNC
     );
     static final FunctionDescriptor PFNGLNORMALSTREAM3IATIPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLNORMALSTREAM3IATIPROC$MH = RuntimeHelper.downcallHandle(
-        "(IIII)V",
-        constants$512.PFNGLNORMALSTREAM3IATIPROC$FUNC, false
+        constants$512.PFNGLNORMALSTREAM3IATIPROC$FUNC
     );
 }
 

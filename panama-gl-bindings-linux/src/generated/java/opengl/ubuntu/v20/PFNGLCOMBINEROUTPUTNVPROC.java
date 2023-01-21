@@ -2,22 +2,22 @@
 
 package opengl.ubuntu.v20;
 
-import jdk.incubator.foreign.Addressable;
-import jdk.incubator.foreign.MemoryAddress;
-import jdk.incubator.foreign.ResourceScope;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public interface PFNGLCOMBINEROUTPUTNVPROC {
 
-    void apply(int x0, int x1, int x2, int x3, int x4, int x5, int x6, byte x7, byte x8, byte x9);
-    static MemoryAddress allocate(PFNGLCOMBINEROUTPUTNVPROC fi) {
-        return RuntimeHelper.upcallStub(PFNGLCOMBINEROUTPUTNVPROC.class, fi, constants$814.PFNGLCOMBINEROUTPUTNVPROC$FUNC, "(IIIIIIIBBB)V");
+    void apply(int stage, int portion, int abOutput, int cdOutput, int sumOutput, int scale, int bias, byte abDotProduct, byte cdDotProduct, byte muxSum);
+    static MemorySegment allocate(PFNGLCOMBINEROUTPUTNVPROC fi, MemorySession session) {
+        return RuntimeHelper.upcallStub(PFNGLCOMBINEROUTPUTNVPROC.class, fi, constants$814.PFNGLCOMBINEROUTPUTNVPROC$FUNC, session);
     }
-    static MemoryAddress allocate(PFNGLCOMBINEROUTPUTNVPROC fi, ResourceScope scope) {
-        return RuntimeHelper.upcallStub(PFNGLCOMBINEROUTPUTNVPROC.class, fi, constants$814.PFNGLCOMBINEROUTPUTNVPROC$FUNC, "(IIIIIIIBBB)V", scope);
-    }
-    static PFNGLCOMBINEROUTPUTNVPROC ofAddress(MemoryAddress addr) {
-        return (int x0, int x1, int x2, int x3, int x4, int x5, int x6, byte x7, byte x8, byte x9) -> {
+    static PFNGLCOMBINEROUTPUTNVPROC ofAddress(MemoryAddress addr, MemorySession session) {
+        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
+        return (int _stage, int _portion, int _abOutput, int _cdOutput, int _sumOutput, int _scale, int _bias, byte _abDotProduct, byte _cdDotProduct, byte _muxSum) -> {
             try {
-                constants$814.PFNGLCOMBINEROUTPUTNVPROC$MH.invokeExact((Addressable)addr, x0, x1, x2, x3, x4, x5, x6, x7, x8, x9);
+                constants$814.PFNGLCOMBINEROUTPUTNVPROC$MH.invokeExact((Addressable)symbol, _stage, _portion, _abOutput, _cdOutput, _sumOutput, _scale, _bias, _abDotProduct, _cdDotProduct, _muxSum);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

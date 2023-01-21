@@ -2,22 +2,22 @@
 
 package opengl.ubuntu.v20;
 
-import jdk.incubator.foreign.Addressable;
-import jdk.incubator.foreign.MemoryAddress;
-import jdk.incubator.foreign.ResourceScope;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public interface PFNGLGETVERTEXATTRIBPOINTERVPROC {
 
-    void apply(int x0, int x1, jdk.incubator.foreign.MemoryAddress x2);
-    static MemoryAddress allocate(PFNGLGETVERTEXATTRIBPOINTERVPROC fi) {
-        return RuntimeHelper.upcallStub(PFNGLGETVERTEXATTRIBPOINTERVPROC.class, fi, constants$123.PFNGLGETVERTEXATTRIBPOINTERVPROC$FUNC, "(IILjdk/incubator/foreign/MemoryAddress;)V");
+    void apply(int index, int pname, java.lang.foreign.MemoryAddress pointer);
+    static MemorySegment allocate(PFNGLGETVERTEXATTRIBPOINTERVPROC fi, MemorySession session) {
+        return RuntimeHelper.upcallStub(PFNGLGETVERTEXATTRIBPOINTERVPROC.class, fi, constants$123.PFNGLGETVERTEXATTRIBPOINTERVPROC$FUNC, session);
     }
-    static MemoryAddress allocate(PFNGLGETVERTEXATTRIBPOINTERVPROC fi, ResourceScope scope) {
-        return RuntimeHelper.upcallStub(PFNGLGETVERTEXATTRIBPOINTERVPROC.class, fi, constants$123.PFNGLGETVERTEXATTRIBPOINTERVPROC$FUNC, "(IILjdk/incubator/foreign/MemoryAddress;)V", scope);
-    }
-    static PFNGLGETVERTEXATTRIBPOINTERVPROC ofAddress(MemoryAddress addr) {
-        return (int x0, int x1, jdk.incubator.foreign.MemoryAddress x2) -> {
+    static PFNGLGETVERTEXATTRIBPOINTERVPROC ofAddress(MemoryAddress addr, MemorySession session) {
+        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
+        return (int _index, int _pname, java.lang.foreign.MemoryAddress _pointer) -> {
             try {
-                constants$123.PFNGLGETVERTEXATTRIBPOINTERVPROC$MH.invokeExact((Addressable)addr, x0, x1, x2);
+                constants$123.PFNGLGETVERTEXATTRIBPOINTERVPROC$MH.invokeExact((Addressable)symbol, _index, _pname, (java.lang.foreign.Addressable)_pointer);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

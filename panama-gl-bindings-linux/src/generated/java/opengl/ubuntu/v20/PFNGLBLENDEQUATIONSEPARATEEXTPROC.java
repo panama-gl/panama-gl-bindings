@@ -2,22 +2,22 @@
 
 package opengl.ubuntu.v20;
 
-import jdk.incubator.foreign.Addressable;
-import jdk.incubator.foreign.MemoryAddress;
-import jdk.incubator.foreign.ResourceScope;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public interface PFNGLBLENDEQUATIONSEPARATEEXTPROC {
 
-    void apply(int x0, int x1);
-    static MemoryAddress allocate(PFNGLBLENDEQUATIONSEPARATEEXTPROC fi) {
-        return RuntimeHelper.upcallStub(PFNGLBLENDEQUATIONSEPARATEEXTPROC.class, fi, constants$517.PFNGLBLENDEQUATIONSEPARATEEXTPROC$FUNC, "(II)V");
+    void apply(int modeRGB, int modeAlpha);
+    static MemorySegment allocate(PFNGLBLENDEQUATIONSEPARATEEXTPROC fi, MemorySession session) {
+        return RuntimeHelper.upcallStub(PFNGLBLENDEQUATIONSEPARATEEXTPROC.class, fi, constants$517.PFNGLBLENDEQUATIONSEPARATEEXTPROC$FUNC, session);
     }
-    static MemoryAddress allocate(PFNGLBLENDEQUATIONSEPARATEEXTPROC fi, ResourceScope scope) {
-        return RuntimeHelper.upcallStub(PFNGLBLENDEQUATIONSEPARATEEXTPROC.class, fi, constants$517.PFNGLBLENDEQUATIONSEPARATEEXTPROC$FUNC, "(II)V", scope);
-    }
-    static PFNGLBLENDEQUATIONSEPARATEEXTPROC ofAddress(MemoryAddress addr) {
-        return (int x0, int x1) -> {
+    static PFNGLBLENDEQUATIONSEPARATEEXTPROC ofAddress(MemoryAddress addr, MemorySession session) {
+        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
+        return (int _modeRGB, int _modeAlpha) -> {
             try {
-                constants$517.PFNGLBLENDEQUATIONSEPARATEEXTPROC$MH.invokeExact((Addressable)addr, x0, x1);
+                constants$517.PFNGLBLENDEQUATIONSEPARATEEXTPROC$MH.invokeExact((Addressable)symbol, _modeRGB, _modeAlpha);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

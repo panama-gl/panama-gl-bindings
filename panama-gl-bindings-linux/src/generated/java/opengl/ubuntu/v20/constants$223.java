@@ -2,34 +2,32 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_INT;
-import static jdk.incubator.foreign.CLinker.C_POINTER;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$223 {
 
     static final FunctionDescriptor PFNGLBINDPROGRAMPIPELINEPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLBINDPROGRAMPIPELINEPROC$MH = RuntimeHelper.downcallHandle(
-        "(I)V",
-        constants$223.PFNGLBINDPROGRAMPIPELINEPROC$FUNC, false
+        constants$223.PFNGLBINDPROGRAMPIPELINEPROC$FUNC
     );
     static final FunctionDescriptor PFNGLDELETEPROGRAMPIPELINESPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLDELETEPROGRAMPIPELINESPROC$MH = RuntimeHelper.downcallHandle(
-        "(ILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$223.PFNGLDELETEPROGRAMPIPELINESPROC$FUNC, false
+        constants$223.PFNGLDELETEPROGRAMPIPELINESPROC$FUNC
     );
     static final FunctionDescriptor PFNGLGENPROGRAMPIPELINESPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLGENPROGRAMPIPELINESPROC$MH = RuntimeHelper.downcallHandle(
-        "(ILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$223.PFNGLGENPROGRAMPIPELINESPROC$FUNC, false
+        constants$223.PFNGLGENPROGRAMPIPELINESPROC$FUNC
     );
 }
 

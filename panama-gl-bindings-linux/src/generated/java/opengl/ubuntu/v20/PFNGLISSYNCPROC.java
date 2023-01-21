@@ -2,22 +2,22 @@
 
 package opengl.ubuntu.v20;
 
-import jdk.incubator.foreign.Addressable;
-import jdk.incubator.foreign.MemoryAddress;
-import jdk.incubator.foreign.ResourceScope;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public interface PFNGLISSYNCPROC {
 
-    byte apply(jdk.incubator.foreign.MemoryAddress x0);
-    static MemoryAddress allocate(PFNGLISSYNCPROC fi) {
-        return RuntimeHelper.upcallStub(PFNGLISSYNCPROC.class, fi, constants$180.PFNGLISSYNCPROC$FUNC, "(Ljdk/incubator/foreign/MemoryAddress;)B");
+    byte apply(java.lang.foreign.MemoryAddress sync);
+    static MemorySegment allocate(PFNGLISSYNCPROC fi, MemorySession session) {
+        return RuntimeHelper.upcallStub(PFNGLISSYNCPROC.class, fi, constants$180.PFNGLISSYNCPROC$FUNC, session);
     }
-    static MemoryAddress allocate(PFNGLISSYNCPROC fi, ResourceScope scope) {
-        return RuntimeHelper.upcallStub(PFNGLISSYNCPROC.class, fi, constants$180.PFNGLISSYNCPROC$FUNC, "(Ljdk/incubator/foreign/MemoryAddress;)B", scope);
-    }
-    static PFNGLISSYNCPROC ofAddress(MemoryAddress addr) {
-        return (jdk.incubator.foreign.MemoryAddress x0) -> {
+    static PFNGLISSYNCPROC ofAddress(MemoryAddress addr, MemorySession session) {
+        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
+        return (java.lang.foreign.MemoryAddress _sync) -> {
             try {
-                return (byte)constants$180.PFNGLISSYNCPROC$MH.invokeExact((Addressable)addr, x0);
+                return (byte)constants$180.PFNGLISSYNCPROC$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)_sync);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

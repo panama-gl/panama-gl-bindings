@@ -2,40 +2,37 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_CHAR;
-import static jdk.incubator.foreign.CLinker.C_INT;
-import static jdk.incubator.foreign.CLinker.C_POINTER;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$849 {
 
     static final FunctionDescriptor PFNGLVERTEXATTRIBIFORMATNVPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLVERTEXATTRIBIFORMATNVPROC$MH = RuntimeHelper.downcallHandle(
-        "(IIII)V",
-        constants$849.PFNGLVERTEXATTRIBIFORMATNVPROC$FUNC, false
+        constants$849.PFNGLVERTEXATTRIBIFORMATNVPROC$FUNC
     );
     static final FunctionDescriptor PFNGLGETINTEGERUI64I_VNVPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLGETINTEGERUI64I_VNVPROC$MH = RuntimeHelper.downcallHandle(
-        "(IILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$849.PFNGLGETINTEGERUI64I_VNVPROC$FUNC, false
+        constants$849.PFNGLGETINTEGERUI64I_VNVPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLAREPROGRAMSRESIDENTNVPROC$FUNC = FunctionDescriptor.of(C_CHAR,
-        C_INT,
-        C_POINTER,
-        C_POINTER
+    static final FunctionDescriptor PFNGLAREPROGRAMSRESIDENTNVPROC$FUNC = FunctionDescriptor.of(Constants$root.C_CHAR$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLAREPROGRAMSRESIDENTNVPROC$MH = RuntimeHelper.downcallHandle(
-        "(ILjdk/incubator/foreign/MemoryAddress;Ljdk/incubator/foreign/MemoryAddress;)B",
-        constants$849.PFNGLAREPROGRAMSRESIDENTNVPROC$FUNC, false
+        constants$849.PFNGLAREPROGRAMSRESIDENTNVPROC$FUNC
     );
 }
 

@@ -2,22 +2,22 @@
 
 package opengl.ubuntu.v20;
 
-import jdk.incubator.foreign.Addressable;
-import jdk.incubator.foreign.MemoryAddress;
-import jdk.incubator.foreign.ResourceScope;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public interface PFNGLARRAYELEMENTEXTPROC {
 
-    void apply(int x0);
-    static MemoryAddress allocate(PFNGLARRAYELEMENTEXTPROC fi) {
-        return RuntimeHelper.upcallStub(PFNGLARRAYELEMENTEXTPROC.class, fi, constants$675.PFNGLARRAYELEMENTEXTPROC$FUNC, "(I)V");
+    void apply(int i);
+    static MemorySegment allocate(PFNGLARRAYELEMENTEXTPROC fi, MemorySession session) {
+        return RuntimeHelper.upcallStub(PFNGLARRAYELEMENTEXTPROC.class, fi, constants$675.PFNGLARRAYELEMENTEXTPROC$FUNC, session);
     }
-    static MemoryAddress allocate(PFNGLARRAYELEMENTEXTPROC fi, ResourceScope scope) {
-        return RuntimeHelper.upcallStub(PFNGLARRAYELEMENTEXTPROC.class, fi, constants$675.PFNGLARRAYELEMENTEXTPROC$FUNC, "(I)V", scope);
-    }
-    static PFNGLARRAYELEMENTEXTPROC ofAddress(MemoryAddress addr) {
-        return (int x0) -> {
+    static PFNGLARRAYELEMENTEXTPROC ofAddress(MemoryAddress addr, MemorySession session) {
+        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
+        return (int _i) -> {
             try {
-                constants$675.PFNGLARRAYELEMENTEXTPROC$MH.invokeExact((Addressable)addr, x0);
+                constants$675.PFNGLARRAYELEMENTEXTPROC$MH.invokeExact((Addressable)symbol, _i);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

@@ -2,35 +2,33 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_FLOAT;
-import static jdk.incubator.foreign.CLinker.C_INT;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$125 {
 
     static final FunctionDescriptor PFNGLUSEPROGRAMPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLUSEPROGRAMPROC$MH = RuntimeHelper.downcallHandle(
-        "(I)V",
-        constants$125.PFNGLUSEPROGRAMPROC$FUNC, false
+        constants$125.PFNGLUSEPROGRAMPROC$FUNC
     );
     static final FunctionDescriptor PFNGLUNIFORM1FPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_FLOAT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT
     );
     static final MethodHandle PFNGLUNIFORM1FPROC$MH = RuntimeHelper.downcallHandle(
-        "(IF)V",
-        constants$125.PFNGLUNIFORM1FPROC$FUNC, false
+        constants$125.PFNGLUNIFORM1FPROC$FUNC
     );
     static final FunctionDescriptor PFNGLUNIFORM2FPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_FLOAT,
-        C_FLOAT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT
     );
     static final MethodHandle PFNGLUNIFORM2FPROC$MH = RuntimeHelper.downcallHandle(
-        "(IFF)V",
-        constants$125.PFNGLUNIFORM2FPROC$FUNC, false
+        constants$125.PFNGLUNIFORM2FPROC$FUNC
     );
 }
 

@@ -2,22 +2,22 @@
 
 package opengl.ubuntu.v20;
 
-import jdk.incubator.foreign.Addressable;
-import jdk.incubator.foreign.MemoryAddress;
-import jdk.incubator.foreign.ResourceScope;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public interface PFNGLTESTOBJECTAPPLEPROC {
 
-    byte apply(int x0, int x1);
-    static MemoryAddress allocate(PFNGLTESTOBJECTAPPLEPROC fi) {
-        return RuntimeHelper.upcallStub(PFNGLTESTOBJECTAPPLEPROC.class, fi, constants$478.PFNGLTESTOBJECTAPPLEPROC$FUNC, "(II)B");
+    byte apply(int object, int name);
+    static MemorySegment allocate(PFNGLTESTOBJECTAPPLEPROC fi, MemorySession session) {
+        return RuntimeHelper.upcallStub(PFNGLTESTOBJECTAPPLEPROC.class, fi, constants$478.PFNGLTESTOBJECTAPPLEPROC$FUNC, session);
     }
-    static MemoryAddress allocate(PFNGLTESTOBJECTAPPLEPROC fi, ResourceScope scope) {
-        return RuntimeHelper.upcallStub(PFNGLTESTOBJECTAPPLEPROC.class, fi, constants$478.PFNGLTESTOBJECTAPPLEPROC$FUNC, "(II)B", scope);
-    }
-    static PFNGLTESTOBJECTAPPLEPROC ofAddress(MemoryAddress addr) {
-        return (int x0, int x1) -> {
+    static PFNGLTESTOBJECTAPPLEPROC ofAddress(MemoryAddress addr, MemorySession session) {
+        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
+        return (int _object, int _name) -> {
             try {
-                return (byte)constants$478.PFNGLTESTOBJECTAPPLEPROC$MH.invokeExact((Addressable)addr, x0, x1);
+                return (byte)constants$478.PFNGLTESTOBJECTAPPLEPROC$MH.invokeExact((Addressable)symbol, _object, _name);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

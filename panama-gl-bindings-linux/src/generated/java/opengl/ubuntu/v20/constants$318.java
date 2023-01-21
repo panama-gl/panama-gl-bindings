@@ -2,40 +2,38 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_INT;
-import static jdk.incubator.foreign.CLinker.C_POINTER;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$318 {
 
-    static final FunctionDescriptor PFNGLCREATESYNCFROMCLEVENTARBPROC$FUNC = FunctionDescriptor.of(C_POINTER,
-        C_POINTER,
-        C_POINTER,
-        C_INT
+    static final FunctionDescriptor PFNGLCREATESYNCFROMCLEVENTARBPROC$FUNC = FunctionDescriptor.of(Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLCREATESYNCFROMCLEVENTARBPROC$MH = RuntimeHelper.downcallHandle(
-        "(Ljdk/incubator/foreign/MemoryAddress;Ljdk/incubator/foreign/MemoryAddress;I)Ljdk/incubator/foreign/MemoryAddress;",
-        constants$318.PFNGLCREATESYNCFROMCLEVENTARBPROC$FUNC, false
+        constants$318.PFNGLCREATESYNCFROMCLEVENTARBPROC$FUNC
     );
     static final FunctionDescriptor PFNGLCLAMPCOLORARBPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLCLAMPCOLORARBPROC$MH = RuntimeHelper.downcallHandle(
-        "(II)V",
-        constants$318.PFNGLCLAMPCOLORARBPROC$FUNC, false
+        constants$318.PFNGLCLAMPCOLORARBPROC$FUNC
     );
     static final FunctionDescriptor PFNGLDISPATCHCOMPUTEGROUPSIZEARBPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLDISPATCHCOMPUTEGROUPSIZEARBPROC$MH = RuntimeHelper.downcallHandle(
-        "(IIIIII)V",
-        constants$318.PFNGLDISPATCHCOMPUTEGROUPSIZEARBPROC$FUNC, false
+        constants$318.PFNGLDISPATCHCOMPUTEGROUPSIZEARBPROC$FUNC
     );
 }
 

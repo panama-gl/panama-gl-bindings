@@ -2,43 +2,40 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_INT;
-import static jdk.incubator.foreign.CLinker.C_POINTER;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$959 {
 
     static final FunctionDescriptor glutSpaceballRotateFunc$FUNC = FunctionDescriptor.ofVoid(
-        C_POINTER
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle glutSpaceballRotateFunc$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "glutSpaceballRotateFunc",
-        "(Ljdk/incubator/foreign/MemoryAddress;)V",
-        constants$959.glutSpaceballRotateFunc$FUNC, false
+        "glutSpaceballRotateFunc",
+        constants$959.glutSpaceballRotateFunc$FUNC
     );
     static final FunctionDescriptor glutSpaceballButtonFunc$callback$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle glutSpaceballButtonFunc$callback$MH = RuntimeHelper.downcallHandle(
-        "(II)V",
-        constants$959.glutSpaceballButtonFunc$callback$FUNC, false
+        constants$959.glutSpaceballButtonFunc$callback$FUNC
     );
     static final FunctionDescriptor glutSpaceballButtonFunc$FUNC = FunctionDescriptor.ofVoid(
-        C_POINTER
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle glutSpaceballButtonFunc$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "glutSpaceballButtonFunc",
-        "(Ljdk/incubator/foreign/MemoryAddress;)V",
-        constants$959.glutSpaceballButtonFunc$FUNC, false
+        "glutSpaceballButtonFunc",
+        constants$959.glutSpaceballButtonFunc$FUNC
     );
     static final FunctionDescriptor glutButtonBoxFunc$callback$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle glutButtonBoxFunc$callback$MH = RuntimeHelper.downcallHandle(
-        "(II)V",
-        constants$959.glutButtonBoxFunc$callback$FUNC, false
+        constants$959.glutButtonBoxFunc$callback$FUNC
     );
 }
 

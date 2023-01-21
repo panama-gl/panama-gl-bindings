@@ -2,31 +2,30 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_LONG;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$742 {
 
     static final FunctionDescriptor PFNGLWAITVKSEMAPHORENVPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_LONG
+        Constants$root.C_LONG_LONG$LAYOUT
     );
     static final MethodHandle PFNGLWAITVKSEMAPHORENVPROC$MH = RuntimeHelper.downcallHandle(
-        "(J)V",
-        constants$742.PFNGLWAITVKSEMAPHORENVPROC$FUNC, false
+        constants$742.PFNGLWAITVKSEMAPHORENVPROC$FUNC
     );
     static final FunctionDescriptor PFNGLSIGNALVKSEMAPHORENVPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_LONG
+        Constants$root.C_LONG_LONG$LAYOUT
     );
     static final MethodHandle PFNGLSIGNALVKSEMAPHORENVPROC$MH = RuntimeHelper.downcallHandle(
-        "(J)V",
-        constants$742.PFNGLSIGNALVKSEMAPHORENVPROC$FUNC, false
+        constants$742.PFNGLSIGNALVKSEMAPHORENVPROC$FUNC
     );
     static final FunctionDescriptor PFNGLSIGNALVKFENCENVPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_LONG
+        Constants$root.C_LONG_LONG$LAYOUT
     );
     static final MethodHandle PFNGLSIGNALVKFENCENVPROC$MH = RuntimeHelper.downcallHandle(
-        "(J)V",
-        constants$742.PFNGLSIGNALVKFENCENVPROC$FUNC, false
+        constants$742.PFNGLSIGNALVKFENCENVPROC$FUNC
     );
 }
 

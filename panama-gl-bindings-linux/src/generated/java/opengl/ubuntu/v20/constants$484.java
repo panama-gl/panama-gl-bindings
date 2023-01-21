@@ -2,35 +2,33 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_CHAR;
-import static jdk.incubator.foreign.CLinker.C_INT;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$484 {
 
     static final FunctionDescriptor PFNGLENABLEVERTEXATTRIBAPPLEPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLENABLEVERTEXATTRIBAPPLEPROC$MH = RuntimeHelper.downcallHandle(
-        "(II)V",
-        constants$484.PFNGLENABLEVERTEXATTRIBAPPLEPROC$FUNC, false
+        constants$484.PFNGLENABLEVERTEXATTRIBAPPLEPROC$FUNC
     );
     static final FunctionDescriptor PFNGLDISABLEVERTEXATTRIBAPPLEPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLDISABLEVERTEXATTRIBAPPLEPROC$MH = RuntimeHelper.downcallHandle(
-        "(II)V",
-        constants$484.PFNGLDISABLEVERTEXATTRIBAPPLEPROC$FUNC, false
+        constants$484.PFNGLDISABLEVERTEXATTRIBAPPLEPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLISVERTEXATTRIBENABLEDAPPLEPROC$FUNC = FunctionDescriptor.of(C_CHAR,
-        C_INT,
-        C_INT
+    static final FunctionDescriptor PFNGLISVERTEXATTRIBENABLEDAPPLEPROC$FUNC = FunctionDescriptor.of(Constants$root.C_CHAR$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLISVERTEXATTRIBENABLEDAPPLEPROC$MH = RuntimeHelper.downcallHandle(
-        "(II)B",
-        constants$484.PFNGLISVERTEXATTRIBENABLEDAPPLEPROC$FUNC, false
+        constants$484.PFNGLISVERTEXATTRIBENABLEDAPPLEPROC$FUNC
     );
 }
 

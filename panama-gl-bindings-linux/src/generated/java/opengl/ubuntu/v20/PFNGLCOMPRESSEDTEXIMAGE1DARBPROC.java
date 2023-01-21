@@ -2,22 +2,22 @@
 
 package opengl.ubuntu.v20;
 
-import jdk.incubator.foreign.Addressable;
-import jdk.incubator.foreign.MemoryAddress;
-import jdk.incubator.foreign.ResourceScope;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public interface PFNGLCOMPRESSEDTEXIMAGE1DARBPROC {
 
-    void apply(int x0, int x1, int x2, int x3, int x4, int x5, jdk.incubator.foreign.MemoryAddress x6);
-    static MemoryAddress allocate(PFNGLCOMPRESSEDTEXIMAGE1DARBPROC fi) {
-        return RuntimeHelper.upcallStub(PFNGLCOMPRESSEDTEXIMAGE1DARBPROC.class, fi, constants$375.PFNGLCOMPRESSEDTEXIMAGE1DARBPROC$FUNC, "(IIIIIILjdk/incubator/foreign/MemoryAddress;)V");
+    void apply(int target, int level, int internalformat, int width, int border, int imageSize, java.lang.foreign.MemoryAddress data);
+    static MemorySegment allocate(PFNGLCOMPRESSEDTEXIMAGE1DARBPROC fi, MemorySession session) {
+        return RuntimeHelper.upcallStub(PFNGLCOMPRESSEDTEXIMAGE1DARBPROC.class, fi, constants$375.PFNGLCOMPRESSEDTEXIMAGE1DARBPROC$FUNC, session);
     }
-    static MemoryAddress allocate(PFNGLCOMPRESSEDTEXIMAGE1DARBPROC fi, ResourceScope scope) {
-        return RuntimeHelper.upcallStub(PFNGLCOMPRESSEDTEXIMAGE1DARBPROC.class, fi, constants$375.PFNGLCOMPRESSEDTEXIMAGE1DARBPROC$FUNC, "(IIIIIILjdk/incubator/foreign/MemoryAddress;)V", scope);
-    }
-    static PFNGLCOMPRESSEDTEXIMAGE1DARBPROC ofAddress(MemoryAddress addr) {
-        return (int x0, int x1, int x2, int x3, int x4, int x5, jdk.incubator.foreign.MemoryAddress x6) -> {
+    static PFNGLCOMPRESSEDTEXIMAGE1DARBPROC ofAddress(MemoryAddress addr, MemorySession session) {
+        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
+        return (int _target, int _level, int _internalformat, int _width, int _border, int _imageSize, java.lang.foreign.MemoryAddress _data) -> {
             try {
-                constants$375.PFNGLCOMPRESSEDTEXIMAGE1DARBPROC$MH.invokeExact((Addressable)addr, x0, x1, x2, x3, x4, x5, x6);
+                constants$375.PFNGLCOMPRESSEDTEXIMAGE1DARBPROC$MH.invokeExact((Addressable)symbol, _target, _level, _internalformat, _width, _border, _imageSize, (java.lang.foreign.Addressable)_data);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

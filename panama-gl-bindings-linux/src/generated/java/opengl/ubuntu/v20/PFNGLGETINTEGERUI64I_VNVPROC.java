@@ -2,22 +2,22 @@
 
 package opengl.ubuntu.v20;
 
-import jdk.incubator.foreign.Addressable;
-import jdk.incubator.foreign.MemoryAddress;
-import jdk.incubator.foreign.ResourceScope;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public interface PFNGLGETINTEGERUI64I_VNVPROC {
 
-    void apply(int x0, int x1, jdk.incubator.foreign.MemoryAddress x2);
-    static MemoryAddress allocate(PFNGLGETINTEGERUI64I_VNVPROC fi) {
-        return RuntimeHelper.upcallStub(PFNGLGETINTEGERUI64I_VNVPROC.class, fi, constants$849.PFNGLGETINTEGERUI64I_VNVPROC$FUNC, "(IILjdk/incubator/foreign/MemoryAddress;)V");
+    void apply(int value, int index, java.lang.foreign.MemoryAddress result);
+    static MemorySegment allocate(PFNGLGETINTEGERUI64I_VNVPROC fi, MemorySession session) {
+        return RuntimeHelper.upcallStub(PFNGLGETINTEGERUI64I_VNVPROC.class, fi, constants$849.PFNGLGETINTEGERUI64I_VNVPROC$FUNC, session);
     }
-    static MemoryAddress allocate(PFNGLGETINTEGERUI64I_VNVPROC fi, ResourceScope scope) {
-        return RuntimeHelper.upcallStub(PFNGLGETINTEGERUI64I_VNVPROC.class, fi, constants$849.PFNGLGETINTEGERUI64I_VNVPROC$FUNC, "(IILjdk/incubator/foreign/MemoryAddress;)V", scope);
-    }
-    static PFNGLGETINTEGERUI64I_VNVPROC ofAddress(MemoryAddress addr) {
-        return (int x0, int x1, jdk.incubator.foreign.MemoryAddress x2) -> {
+    static PFNGLGETINTEGERUI64I_VNVPROC ofAddress(MemoryAddress addr, MemorySession session) {
+        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
+        return (int _value, int _index, java.lang.foreign.MemoryAddress _result) -> {
             try {
-                constants$849.PFNGLGETINTEGERUI64I_VNVPROC$MH.invokeExact((Addressable)addr, x0, x1, x2);
+                constants$849.PFNGLGETINTEGERUI64I_VNVPROC$MH.invokeExact((Addressable)symbol, _value, _index, (java.lang.foreign.Addressable)_result);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

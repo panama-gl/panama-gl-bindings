@@ -2,34 +2,32 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_INT;
-import static jdk.incubator.foreign.CLinker.C_POINTER;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$640 {
 
     static final FunctionDescriptor PFNGLTEXTURELIGHTEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLTEXTURELIGHTEXTPROC$MH = RuntimeHelper.downcallHandle(
-        "(I)V",
-        constants$640.PFNGLTEXTURELIGHTEXTPROC$FUNC, false
+        constants$640.PFNGLTEXTURELIGHTEXTPROC$FUNC
     );
     static final FunctionDescriptor PFNGLTEXTUREMATERIALEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLTEXTUREMATERIALEXTPROC$MH = RuntimeHelper.downcallHandle(
-        "(II)V",
-        constants$640.PFNGLTEXTUREMATERIALEXTPROC$FUNC, false
+        constants$640.PFNGLTEXTUREMATERIALEXTPROC$FUNC
     );
     static final FunctionDescriptor PFNGLGETUNSIGNEDBYTEVEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLGETUNSIGNEDBYTEVEXTPROC$MH = RuntimeHelper.downcallHandle(
-        "(ILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$640.PFNGLGETUNSIGNEDBYTEVEXTPROC$FUNC, false
+        constants$640.PFNGLGETUNSIGNEDBYTEVEXTPROC$FUNC
     );
 }
 

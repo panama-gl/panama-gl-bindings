@@ -2,42 +2,40 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_INT;
-import static jdk.incubator.foreign.CLinker.C_POINTER;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$533 {
 
     static final FunctionDescriptor PFNGLCOPYTEXSUBIMAGE3DEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLCOPYTEXSUBIMAGE3DEXTPROC$MH = RuntimeHelper.downcallHandle(
-        "(IIIIIIIII)V",
-        constants$533.PFNGLCOPYTEXSUBIMAGE3DEXTPROC$FUNC, false
+        constants$533.PFNGLCOPYTEXSUBIMAGE3DEXTPROC$FUNC
     );
     static final FunctionDescriptor PFNGLCULLPARAMETERDVEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLCULLPARAMETERDVEXTPROC$MH = RuntimeHelper.downcallHandle(
-        "(ILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$533.PFNGLCULLPARAMETERDVEXTPROC$FUNC, false
+        constants$533.PFNGLCULLPARAMETERDVEXTPROC$FUNC
     );
     static final FunctionDescriptor PFNGLCULLPARAMETERFVEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLCULLPARAMETERFVEXTPROC$MH = RuntimeHelper.downcallHandle(
-        "(ILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$533.PFNGLCULLPARAMETERFVEXTPROC$FUNC, false
+        constants$533.PFNGLCULLPARAMETERFVEXTPROC$FUNC
     );
 }
 

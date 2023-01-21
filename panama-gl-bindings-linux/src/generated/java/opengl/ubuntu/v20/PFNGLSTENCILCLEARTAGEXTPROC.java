@@ -2,22 +2,22 @@
 
 package opengl.ubuntu.v20;
 
-import jdk.incubator.foreign.Addressable;
-import jdk.incubator.foreign.MemoryAddress;
-import jdk.incubator.foreign.ResourceScope;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public interface PFNGLSTENCILCLEARTAGEXTPROC {
 
-    void apply(int x0, int x1);
-    static MemoryAddress allocate(PFNGLSTENCILCLEARTAGEXTPROC fi) {
-        return RuntimeHelper.upcallStub(PFNGLSTENCILCLEARTAGEXTPROC.class, fi, constants$665.PFNGLSTENCILCLEARTAGEXTPROC$FUNC, "(II)V");
+    void apply(int stencilTagBits, int stencilClearTag);
+    static MemorySegment allocate(PFNGLSTENCILCLEARTAGEXTPROC fi, MemorySession session) {
+        return RuntimeHelper.upcallStub(PFNGLSTENCILCLEARTAGEXTPROC.class, fi, constants$665.PFNGLSTENCILCLEARTAGEXTPROC$FUNC, session);
     }
-    static MemoryAddress allocate(PFNGLSTENCILCLEARTAGEXTPROC fi, ResourceScope scope) {
-        return RuntimeHelper.upcallStub(PFNGLSTENCILCLEARTAGEXTPROC.class, fi, constants$665.PFNGLSTENCILCLEARTAGEXTPROC$FUNC, "(II)V", scope);
-    }
-    static PFNGLSTENCILCLEARTAGEXTPROC ofAddress(MemoryAddress addr) {
-        return (int x0, int x1) -> {
+    static PFNGLSTENCILCLEARTAGEXTPROC ofAddress(MemoryAddress addr, MemorySession session) {
+        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
+        return (int _stencilTagBits, int _stencilClearTag) -> {
             try {
-                constants$665.PFNGLSTENCILCLEARTAGEXTPROC$MH.invokeExact((Addressable)addr, x0, x1);
+                constants$665.PFNGLSTENCILCLEARTAGEXTPROC$MH.invokeExact((Addressable)symbol, _stencilTagBits, _stencilClearTag);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

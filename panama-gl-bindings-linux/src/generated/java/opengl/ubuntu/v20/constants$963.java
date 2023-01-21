@@ -2,66 +2,60 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_DOUBLE;
-import static jdk.incubator.foreign.CLinker.C_INT;
-import static jdk.incubator.foreign.CLinker.C_POINTER;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$963 {
 
-    static final FunctionDescriptor glutBitmapLength$FUNC = FunctionDescriptor.of(C_INT,
-        C_POINTER,
-        C_POINTER
+    static final FunctionDescriptor glutBitmapLength$FUNC = FunctionDescriptor.of(Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle glutBitmapLength$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "glutBitmapLength",
-        "(Ljdk/incubator/foreign/MemoryAddress;Ljdk/incubator/foreign/MemoryAddress;)I",
-        constants$963.glutBitmapLength$FUNC, false
+        "glutBitmapLength",
+        constants$963.glutBitmapLength$FUNC
     );
-    static final FunctionDescriptor glutStrokeLength$FUNC = FunctionDescriptor.of(C_INT,
-        C_POINTER,
-        C_POINTER
+    static final FunctionDescriptor glutStrokeLength$FUNC = FunctionDescriptor.of(Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle glutStrokeLength$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "glutStrokeLength",
-        "(Ljdk/incubator/foreign/MemoryAddress;Ljdk/incubator/foreign/MemoryAddress;)I",
-        constants$963.glutStrokeLength$FUNC, false
+        "glutStrokeLength",
+        constants$963.glutStrokeLength$FUNC
     );
     static final FunctionDescriptor glutWireCube$FUNC = FunctionDescriptor.ofVoid(
-        C_DOUBLE
+        Constants$root.C_DOUBLE$LAYOUT
     );
     static final MethodHandle glutWireCube$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "glutWireCube",
-        "(D)V",
-        constants$963.glutWireCube$FUNC, false
+        "glutWireCube",
+        constants$963.glutWireCube$FUNC
     );
     static final FunctionDescriptor glutSolidCube$FUNC = FunctionDescriptor.ofVoid(
-        C_DOUBLE
+        Constants$root.C_DOUBLE$LAYOUT
     );
     static final MethodHandle glutSolidCube$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "glutSolidCube",
-        "(D)V",
-        constants$963.glutSolidCube$FUNC, false
+        "glutSolidCube",
+        constants$963.glutSolidCube$FUNC
     );
     static final FunctionDescriptor glutWireSphere$FUNC = FunctionDescriptor.ofVoid(
-        C_DOUBLE,
-        C_INT,
-        C_INT
+        Constants$root.C_DOUBLE$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle glutWireSphere$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "glutWireSphere",
-        "(DII)V",
-        constants$963.glutWireSphere$FUNC, false
+        "glutWireSphere",
+        constants$963.glutWireSphere$FUNC
     );
     static final FunctionDescriptor glutSolidSphere$FUNC = FunctionDescriptor.ofVoid(
-        C_DOUBLE,
-        C_INT,
-        C_INT
+        Constants$root.C_DOUBLE$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle glutSolidSphere$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "glutSolidSphere",
-        "(DII)V",
-        constants$963.glutSolidSphere$FUNC, false
+        "glutSolidSphere",
+        constants$963.glutSolidSphere$FUNC
     );
 }
 

@@ -2,33 +2,31 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_INT;
-import static jdk.incubator.foreign.CLinker.C_LONG;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$727 {
 
-    static final FunctionDescriptor PFNGLGETTEXTURESAMPLERHANDLENVPROC$FUNC = FunctionDescriptor.of(C_LONG,
-        C_INT,
-        C_INT
+    static final FunctionDescriptor PFNGLGETTEXTURESAMPLERHANDLENVPROC$FUNC = FunctionDescriptor.of(Constants$root.C_LONG_LONG$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLGETTEXTURESAMPLERHANDLENVPROC$MH = RuntimeHelper.downcallHandle(
-        "(II)J",
-        constants$727.PFNGLGETTEXTURESAMPLERHANDLENVPROC$FUNC, false
+        constants$727.PFNGLGETTEXTURESAMPLERHANDLENVPROC$FUNC
     );
     static final FunctionDescriptor PFNGLMAKETEXTUREHANDLERESIDENTNVPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_LONG
+        Constants$root.C_LONG_LONG$LAYOUT
     );
     static final MethodHandle PFNGLMAKETEXTUREHANDLERESIDENTNVPROC$MH = RuntimeHelper.downcallHandle(
-        "(J)V",
-        constants$727.PFNGLMAKETEXTUREHANDLERESIDENTNVPROC$FUNC, false
+        constants$727.PFNGLMAKETEXTUREHANDLERESIDENTNVPROC$FUNC
     );
     static final FunctionDescriptor PFNGLMAKETEXTUREHANDLENONRESIDENTNVPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_LONG
+        Constants$root.C_LONG_LONG$LAYOUT
     );
     static final MethodHandle PFNGLMAKETEXTUREHANDLENONRESIDENTNVPROC$MH = RuntimeHelper.downcallHandle(
-        "(J)V",
-        constants$727.PFNGLMAKETEXTUREHANDLENONRESIDENTNVPROC$FUNC, false
+        constants$727.PFNGLMAKETEXTUREHANDLENONRESIDENTNVPROC$FUNC
     );
 }
 

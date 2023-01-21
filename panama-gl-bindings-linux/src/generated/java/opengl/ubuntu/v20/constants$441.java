@@ -2,35 +2,33 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_INT;
-import static jdk.incubator.foreign.CLinker.C_POINTER;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$441 {
 
     static final FunctionDescriptor PFNGLRASTERPOS3XVOESPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_POINTER
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLRASTERPOS3XVOESPROC$MH = RuntimeHelper.downcallHandle(
-        "(Ljdk/incubator/foreign/MemoryAddress;)V",
-        constants$441.PFNGLRASTERPOS3XVOESPROC$FUNC, false
+        constants$441.PFNGLRASTERPOS3XVOESPROC$FUNC
     );
     static final FunctionDescriptor PFNGLRASTERPOS4XOESPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLRASTERPOS4XOESPROC$MH = RuntimeHelper.downcallHandle(
-        "(IIII)V",
-        constants$441.PFNGLRASTERPOS4XOESPROC$FUNC, false
+        constants$441.PFNGLRASTERPOS4XOESPROC$FUNC
     );
     static final FunctionDescriptor PFNGLRASTERPOS4XVOESPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_POINTER
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLRASTERPOS4XVOESPROC$MH = RuntimeHelper.downcallHandle(
-        "(Ljdk/incubator/foreign/MemoryAddress;)V",
-        constants$441.PFNGLRASTERPOS4XVOESPROC$FUNC, false
+        constants$441.PFNGLRASTERPOS4XVOESPROC$FUNC
     );
 }
 

@@ -2,40 +2,38 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_INT;
-import static jdk.incubator.foreign.CLinker.C_POINTER;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$831 {
 
     static final FunctionDescriptor PFNGLACTIVEVARYINGNVPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLACTIVEVARYINGNVPROC$MH = RuntimeHelper.downcallHandle(
-        "(ILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$831.PFNGLACTIVEVARYINGNVPROC$FUNC, false
+        constants$831.PFNGLACTIVEVARYINGNVPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLGETVARYINGLOCATIONNVPROC$FUNC = FunctionDescriptor.of(C_INT,
-        C_INT,
-        C_POINTER
+    static final FunctionDescriptor PFNGLGETVARYINGLOCATIONNVPROC$FUNC = FunctionDescriptor.of(Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLGETVARYINGLOCATIONNVPROC$MH = RuntimeHelper.downcallHandle(
-        "(ILjdk/incubator/foreign/MemoryAddress;)I",
-        constants$831.PFNGLGETVARYINGLOCATIONNVPROC$FUNC, false
+        constants$831.PFNGLGETVARYINGLOCATIONNVPROC$FUNC
     );
     static final FunctionDescriptor PFNGLGETACTIVEVARYINGNVPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_INT,
-        C_POINTER,
-        C_POINTER,
-        C_POINTER,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLGETACTIVEVARYINGNVPROC$MH = RuntimeHelper.downcallHandle(
-        "(IIILjdk/incubator/foreign/MemoryAddress;Ljdk/incubator/foreign/MemoryAddress;Ljdk/incubator/foreign/MemoryAddress;Ljdk/incubator/foreign/MemoryAddress;)V",
-        constants$831.PFNGLGETACTIVEVARYINGNVPROC$FUNC, false
+        constants$831.PFNGLGETACTIVEVARYINGNVPROC$FUNC
     );
 }
 

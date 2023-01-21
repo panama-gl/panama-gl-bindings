@@ -2,74 +2,68 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_DOUBLE;
-import static jdk.incubator.foreign.CLinker.C_INT;
-import static jdk.incubator.foreign.CLinker.C_POINTER;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$938 {
 
-    static final FunctionDescriptor gluScaleImage$FUNC = FunctionDescriptor.of(C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_POINTER,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_POINTER
+    static final FunctionDescriptor gluScaleImage$FUNC = FunctionDescriptor.of(Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle gluScaleImage$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "gluScaleImage",
-        "(IIIILjdk/incubator/foreign/MemoryAddress;IIILjdk/incubator/foreign/MemoryAddress;)I",
-        constants$938.gluScaleImage$FUNC, false
+        "gluScaleImage",
+        constants$938.gluScaleImage$FUNC
     );
     static final FunctionDescriptor gluSphere$FUNC = FunctionDescriptor.ofVoid(
-        C_POINTER,
-        C_DOUBLE,
-        C_INT,
-        C_INT
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_DOUBLE$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle gluSphere$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "gluSphere",
-        "(Ljdk/incubator/foreign/MemoryAddress;DII)V",
-        constants$938.gluSphere$FUNC, false
+        "gluSphere",
+        constants$938.gluSphere$FUNC
     );
     static final FunctionDescriptor gluTessBeginContour$FUNC = FunctionDescriptor.ofVoid(
-        C_POINTER
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle gluTessBeginContour$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "gluTessBeginContour",
-        "(Ljdk/incubator/foreign/MemoryAddress;)V",
-        constants$938.gluTessBeginContour$FUNC, false
+        "gluTessBeginContour",
+        constants$938.gluTessBeginContour$FUNC
     );
     static final FunctionDescriptor gluTessBeginPolygon$FUNC = FunctionDescriptor.ofVoid(
-        C_POINTER,
-        C_POINTER
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle gluTessBeginPolygon$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "gluTessBeginPolygon",
-        "(Ljdk/incubator/foreign/MemoryAddress;Ljdk/incubator/foreign/MemoryAddress;)V",
-        constants$938.gluTessBeginPolygon$FUNC, false
+        "gluTessBeginPolygon",
+        constants$938.gluTessBeginPolygon$FUNC
     );
     static final FunctionDescriptor gluTessCallback$FUNC = FunctionDescriptor.ofVoid(
-        C_POINTER,
-        C_INT,
-        C_POINTER
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle gluTessCallback$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "gluTessCallback",
-        "(Ljdk/incubator/foreign/MemoryAddress;ILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$938.gluTessCallback$FUNC, false
+        "gluTessCallback",
+        constants$938.gluTessCallback$FUNC
     );
     static final FunctionDescriptor gluTessEndContour$FUNC = FunctionDescriptor.ofVoid(
-        C_POINTER
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle gluTessEndContour$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "gluTessEndContour",
-        "(Ljdk/incubator/foreign/MemoryAddress;)V",
-        constants$938.gluTessEndContour$FUNC, false
+        "gluTessEndContour",
+        constants$938.gluTessEndContour$FUNC
     );
 }
 

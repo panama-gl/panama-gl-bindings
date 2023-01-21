@@ -2,42 +2,39 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_FLOAT;
-import static jdk.incubator.foreign.CLinker.C_INT;
-import static jdk.incubator.foreign.CLinker.C_LONG;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$312 {
 
     static final FunctionDescriptor PFNGLPOLYGONOFFSETCLAMPPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_FLOAT,
-        C_FLOAT,
-        C_FLOAT
+        Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT
     );
     static final MethodHandle PFNGLPOLYGONOFFSETCLAMPPROC$MH = RuntimeHelper.downcallHandle(
-        "(FFF)V",
-        constants$312.PFNGLPOLYGONOFFSETCLAMPPROC$FUNC, false
+        constants$312.PFNGLPOLYGONOFFSETCLAMPPROC$FUNC
     );
     static final FunctionDescriptor PFNGLPRIMITIVEBOUNDINGBOXARBPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_FLOAT,
-        C_FLOAT,
-        C_FLOAT,
-        C_FLOAT,
-        C_FLOAT,
-        C_FLOAT,
-        C_FLOAT,
-        C_FLOAT
+        Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT
     );
     static final MethodHandle PFNGLPRIMITIVEBOUNDINGBOXARBPROC$MH = RuntimeHelper.downcallHandle(
-        "(FFFFFFFF)V",
-        constants$312.PFNGLPRIMITIVEBOUNDINGBOXARBPROC$FUNC, false
+        constants$312.PFNGLPRIMITIVEBOUNDINGBOXARBPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLGETTEXTUREHANDLEARBPROC$FUNC = FunctionDescriptor.of(C_LONG,
-        C_INT
+    static final FunctionDescriptor PFNGLGETTEXTUREHANDLEARBPROC$FUNC = FunctionDescriptor.of(Constants$root.C_LONG_LONG$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLGETTEXTUREHANDLEARBPROC$MH = RuntimeHelper.downcallHandle(
-        "(I)J",
-        constants$312.PFNGLGETTEXTUREHANDLEARBPROC$FUNC, false
+        constants$312.PFNGLGETTEXTUREHANDLEARBPROC$FUNC
     );
 }
 

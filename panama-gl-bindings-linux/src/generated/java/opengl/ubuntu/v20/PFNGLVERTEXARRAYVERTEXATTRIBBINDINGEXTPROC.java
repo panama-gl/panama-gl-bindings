@@ -2,22 +2,22 @@
 
 package opengl.ubuntu.v20;
 
-import jdk.incubator.foreign.Addressable;
-import jdk.incubator.foreign.MemoryAddress;
-import jdk.incubator.foreign.ResourceScope;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public interface PFNGLVERTEXARRAYVERTEXATTRIBBINDINGEXTPROC {
 
-    void apply(int x0, int x1, int x2);
-    static MemoryAddress allocate(PFNGLVERTEXARRAYVERTEXATTRIBBINDINGEXTPROC fi) {
-        return RuntimeHelper.upcallStub(PFNGLVERTEXARRAYVERTEXATTRIBBINDINGEXTPROC.class, fi, constants$619.PFNGLVERTEXARRAYVERTEXATTRIBBINDINGEXTPROC$FUNC, "(III)V");
+    void apply(int vaobj, int attribindex, int bindingindex);
+    static MemorySegment allocate(PFNGLVERTEXARRAYVERTEXATTRIBBINDINGEXTPROC fi, MemorySession session) {
+        return RuntimeHelper.upcallStub(PFNGLVERTEXARRAYVERTEXATTRIBBINDINGEXTPROC.class, fi, constants$619.PFNGLVERTEXARRAYVERTEXATTRIBBINDINGEXTPROC$FUNC, session);
     }
-    static MemoryAddress allocate(PFNGLVERTEXARRAYVERTEXATTRIBBINDINGEXTPROC fi, ResourceScope scope) {
-        return RuntimeHelper.upcallStub(PFNGLVERTEXARRAYVERTEXATTRIBBINDINGEXTPROC.class, fi, constants$619.PFNGLVERTEXARRAYVERTEXATTRIBBINDINGEXTPROC$FUNC, "(III)V", scope);
-    }
-    static PFNGLVERTEXARRAYVERTEXATTRIBBINDINGEXTPROC ofAddress(MemoryAddress addr) {
-        return (int x0, int x1, int x2) -> {
+    static PFNGLVERTEXARRAYVERTEXATTRIBBINDINGEXTPROC ofAddress(MemoryAddress addr, MemorySession session) {
+        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
+        return (int _vaobj, int _attribindex, int _bindingindex) -> {
             try {
-                constants$619.PFNGLVERTEXARRAYVERTEXATTRIBBINDINGEXTPROC$MH.invokeExact((Addressable)addr, x0, x1, x2);
+                constants$619.PFNGLVERTEXARRAYVERTEXATTRIBBINDINGEXTPROC$MH.invokeExact((Addressable)symbol, _vaobj, _attribindex, _bindingindex);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

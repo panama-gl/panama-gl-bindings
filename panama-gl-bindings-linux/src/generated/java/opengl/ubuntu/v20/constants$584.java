@@ -2,40 +2,39 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_INT;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$584 {
 
     static final FunctionDescriptor PFNGLPROGRAMUNIFORM1UIEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_INT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLPROGRAMUNIFORM1UIEXTPROC$MH = RuntimeHelper.downcallHandle(
-        "(III)V",
-        constants$584.PFNGLPROGRAMUNIFORM1UIEXTPROC$FUNC, false
+        constants$584.PFNGLPROGRAMUNIFORM1UIEXTPROC$FUNC
     );
     static final FunctionDescriptor PFNGLPROGRAMUNIFORM2UIEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLPROGRAMUNIFORM2UIEXTPROC$MH = RuntimeHelper.downcallHandle(
-        "(IIII)V",
-        constants$584.PFNGLPROGRAMUNIFORM2UIEXTPROC$FUNC, false
+        constants$584.PFNGLPROGRAMUNIFORM2UIEXTPROC$FUNC
     );
     static final FunctionDescriptor PFNGLPROGRAMUNIFORM3UIEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLPROGRAMUNIFORM3UIEXTPROC$MH = RuntimeHelper.downcallHandle(
-        "(IIIII)V",
-        constants$584.PFNGLPROGRAMUNIFORM3UIEXTPROC$FUNC, false
+        constants$584.PFNGLPROGRAMUNIFORM3UIEXTPROC$FUNC
     );
 }
 

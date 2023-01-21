@@ -2,60 +2,55 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_INT;
-import static jdk.incubator.foreign.CLinker.C_LONG;
-import static jdk.incubator.foreign.CLinker.C_POINTER;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$983 {
 
-    static final FunctionDescriptor system$FUNC = FunctionDescriptor.of(C_INT,
-        C_POINTER
+    static final FunctionDescriptor system$FUNC = FunctionDescriptor.of(Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle system$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "system",
-        "(Ljdk/incubator/foreign/MemoryAddress;)I",
-        constants$983.system$FUNC, false
+        "system",
+        constants$983.system$FUNC
     );
-    static final FunctionDescriptor realpath$FUNC = FunctionDescriptor.of(C_POINTER,
-        C_POINTER,
-        C_POINTER
+    static final FunctionDescriptor realpath$FUNC = FunctionDescriptor.of(Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle realpath$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "realpath",
-        "(Ljdk/incubator/foreign/MemoryAddress;Ljdk/incubator/foreign/MemoryAddress;)Ljdk/incubator/foreign/MemoryAddress;",
-        constants$983.realpath$FUNC, false
+        "realpath",
+        constants$983.realpath$FUNC
     );
-    static final FunctionDescriptor __compar_fn_t$FUNC = FunctionDescriptor.of(C_INT,
-        C_POINTER,
-        C_POINTER
+    static final FunctionDescriptor __compar_fn_t$FUNC = FunctionDescriptor.of(Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle __compar_fn_t$MH = RuntimeHelper.downcallHandle(
-        "(Ljdk/incubator/foreign/MemoryAddress;Ljdk/incubator/foreign/MemoryAddress;)I",
-        constants$983.__compar_fn_t$FUNC, false
+        constants$983.__compar_fn_t$FUNC
     );
-    static final FunctionDescriptor bsearch$FUNC = FunctionDescriptor.of(C_POINTER,
-        C_POINTER,
-        C_POINTER,
-        C_LONG,
-        C_LONG,
-        C_POINTER
+    static final FunctionDescriptor bsearch$FUNC = FunctionDescriptor.of(Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle bsearch$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "bsearch",
-        "(Ljdk/incubator/foreign/MemoryAddress;Ljdk/incubator/foreign/MemoryAddress;JJLjdk/incubator/foreign/MemoryAddress;)Ljdk/incubator/foreign/MemoryAddress;",
-        constants$983.bsearch$FUNC, false
+        "bsearch",
+        constants$983.bsearch$FUNC
     );
     static final FunctionDescriptor qsort$FUNC = FunctionDescriptor.ofVoid(
-        C_POINTER,
-        C_LONG,
-        C_LONG,
-        C_POINTER
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle qsort$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "qsort",
-        "(Ljdk/incubator/foreign/MemoryAddress;JJLjdk/incubator/foreign/MemoryAddress;)V",
-        constants$983.qsort$FUNC, false
+        "qsort",
+        constants$983.qsort$FUNC
     );
 }
 

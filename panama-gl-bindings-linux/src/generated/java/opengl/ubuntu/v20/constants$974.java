@@ -2,61 +2,54 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_DOUBLE;
-import static jdk.incubator.foreign.CLinker.C_INT;
-import static jdk.incubator.foreign.CLinker.C_LONG;
-import static jdk.incubator.foreign.CLinker.C_POINTER;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$974 {
 
-    static final FunctionDescriptor initstate_r$FUNC = FunctionDescriptor.of(C_INT,
-        C_INT,
-        C_POINTER,
-        C_LONG,
-        C_POINTER
+    static final FunctionDescriptor initstate_r$FUNC = FunctionDescriptor.of(Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle initstate_r$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "initstate_r",
-        "(ILjdk/incubator/foreign/MemoryAddress;JLjdk/incubator/foreign/MemoryAddress;)I",
-        constants$974.initstate_r$FUNC, false
+        "initstate_r",
+        constants$974.initstate_r$FUNC
     );
-    static final FunctionDescriptor setstate_r$FUNC = FunctionDescriptor.of(C_INT,
-        C_POINTER,
-        C_POINTER
+    static final FunctionDescriptor setstate_r$FUNC = FunctionDescriptor.of(Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle setstate_r$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "setstate_r",
-        "(Ljdk/incubator/foreign/MemoryAddress;Ljdk/incubator/foreign/MemoryAddress;)I",
-        constants$974.setstate_r$FUNC, false
+        "setstate_r",
+        constants$974.setstate_r$FUNC
     );
-    static final FunctionDescriptor rand$FUNC = FunctionDescriptor.of(C_INT);
+    static final FunctionDescriptor rand$FUNC = FunctionDescriptor.of(Constants$root.C_INT$LAYOUT);
     static final MethodHandle rand$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "rand",
-        "()I",
-        constants$974.rand$FUNC, false
+        "rand",
+        constants$974.rand$FUNC
     );
     static final FunctionDescriptor srand$FUNC = FunctionDescriptor.ofVoid(
-        C_INT
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle srand$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "srand",
-        "(I)V",
-        constants$974.srand$FUNC, false
+        "srand",
+        constants$974.srand$FUNC
     );
-    static final FunctionDescriptor rand_r$FUNC = FunctionDescriptor.of(C_INT,
-        C_POINTER
+    static final FunctionDescriptor rand_r$FUNC = FunctionDescriptor.of(Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle rand_r$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "rand_r",
-        "(Ljdk/incubator/foreign/MemoryAddress;)I",
-        constants$974.rand_r$FUNC, false
+        "rand_r",
+        constants$974.rand_r$FUNC
     );
-    static final FunctionDescriptor drand48$FUNC = FunctionDescriptor.of(C_DOUBLE);
+    static final FunctionDescriptor drand48$FUNC = FunctionDescriptor.of(Constants$root.C_DOUBLE$LAYOUT);
     static final MethodHandle drand48$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "drand48",
-        "()D",
-        constants$974.drand48$FUNC, false
+        "drand48",
+        constants$974.drand48$FUNC
     );
 }
 

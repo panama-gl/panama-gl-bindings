@@ -2,39 +2,38 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_INT;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$169 {
 
-    static final FunctionDescriptor PFNGLCHECKFRAMEBUFFERSTATUSPROC$FUNC = FunctionDescriptor.of(C_INT,
-        C_INT
+    static final FunctionDescriptor PFNGLCHECKFRAMEBUFFERSTATUSPROC$FUNC = FunctionDescriptor.of(Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLCHECKFRAMEBUFFERSTATUSPROC$MH = RuntimeHelper.downcallHandle(
-        "(I)I",
-        constants$169.PFNGLCHECKFRAMEBUFFERSTATUSPROC$FUNC, false
+        constants$169.PFNGLCHECKFRAMEBUFFERSTATUSPROC$FUNC
     );
     static final FunctionDescriptor PFNGLFRAMEBUFFERTEXTURE1DPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLFRAMEBUFFERTEXTURE1DPROC$MH = RuntimeHelper.downcallHandle(
-        "(IIIII)V",
-        constants$169.PFNGLFRAMEBUFFERTEXTURE1DPROC$FUNC, false
+        constants$169.PFNGLFRAMEBUFFERTEXTURE1DPROC$FUNC
     );
     static final FunctionDescriptor PFNGLFRAMEBUFFERTEXTURE2DPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLFRAMEBUFFERTEXTURE2DPROC$MH = RuntimeHelper.downcallHandle(
-        "(IIIII)V",
-        constants$169.PFNGLFRAMEBUFFERTEXTURE2DPROC$FUNC, false
+        constants$169.PFNGLFRAMEBUFFERTEXTURE2DPROC$FUNC
     );
 }
 

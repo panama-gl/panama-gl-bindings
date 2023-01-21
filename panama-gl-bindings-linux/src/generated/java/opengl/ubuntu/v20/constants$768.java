@@ -2,33 +2,31 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_POINTER;
-import static jdk.incubator.foreign.CLinker.C_SHORT;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$768 {
 
     static final FunctionDescriptor PFNGLTEXCOORD1HNVPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_SHORT
+        Constants$root.C_SHORT$LAYOUT
     );
     static final MethodHandle PFNGLTEXCOORD1HNVPROC$MH = RuntimeHelper.downcallHandle(
-        "(S)V",
-        constants$768.PFNGLTEXCOORD1HNVPROC$FUNC, false
+        constants$768.PFNGLTEXCOORD1HNVPROC$FUNC
     );
     static final FunctionDescriptor PFNGLTEXCOORD1HVNVPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_POINTER
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLTEXCOORD1HVNVPROC$MH = RuntimeHelper.downcallHandle(
-        "(Ljdk/incubator/foreign/MemoryAddress;)V",
-        constants$768.PFNGLTEXCOORD1HVNVPROC$FUNC, false
+        constants$768.PFNGLTEXCOORD1HVNVPROC$FUNC
     );
     static final FunctionDescriptor PFNGLTEXCOORD2HNVPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_SHORT,
-        C_SHORT
+        Constants$root.C_SHORT$LAYOUT,
+        Constants$root.C_SHORT$LAYOUT
     );
     static final MethodHandle PFNGLTEXCOORD2HNVPROC$MH = RuntimeHelper.downcallHandle(
-        "(SS)V",
-        constants$768.PFNGLTEXCOORD2HNVPROC$FUNC, false
+        constants$768.PFNGLTEXCOORD2HNVPROC$FUNC
     );
 }
 

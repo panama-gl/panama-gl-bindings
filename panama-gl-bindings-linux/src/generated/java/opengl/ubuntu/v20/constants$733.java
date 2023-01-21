@@ -2,34 +2,32 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_INT;
-import static jdk.incubator.foreign.CLinker.C_SHORT;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$733 {
 
     static final FunctionDescriptor PFNGLSTATECAPTURENVPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLSTATECAPTURENVPROC$MH = RuntimeHelper.downcallHandle(
-        "(II)V",
-        constants$733.PFNGLSTATECAPTURENVPROC$FUNC, false
+        constants$733.PFNGLSTATECAPTURENVPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLGETCOMMANDHEADERNVPROC$FUNC = FunctionDescriptor.of(C_INT,
-        C_INT,
-        C_INT
+    static final FunctionDescriptor PFNGLGETCOMMANDHEADERNVPROC$FUNC = FunctionDescriptor.of(Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLGETCOMMANDHEADERNVPROC$MH = RuntimeHelper.downcallHandle(
-        "(II)I",
-        constants$733.PFNGLGETCOMMANDHEADERNVPROC$FUNC, false
+        constants$733.PFNGLGETCOMMANDHEADERNVPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLGETSTAGEINDEXNVPROC$FUNC = FunctionDescriptor.of(C_SHORT,
-        C_INT
+    static final FunctionDescriptor PFNGLGETSTAGEINDEXNVPROC$FUNC = FunctionDescriptor.of(Constants$root.C_SHORT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLGETSTAGEINDEXNVPROC$MH = RuntimeHelper.downcallHandle(
-        "(I)S",
-        constants$733.PFNGLGETSTAGEINDEXNVPROC$FUNC, false
+        constants$733.PFNGLGETSTAGEINDEXNVPROC$FUNC
     );
 }
 

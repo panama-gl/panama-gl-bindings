@@ -2,22 +2,22 @@
 
 package opengl.ubuntu.v20;
 
-import jdk.incubator.foreign.Addressable;
-import jdk.incubator.foreign.MemoryAddress;
-import jdk.incubator.foreign.ResourceScope;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public interface PFNGLWINDOWPOS2FPROC {
 
-    void apply(float x0, float x1);
-    static MemoryAddress allocate(PFNGLWINDOWPOS2FPROC fi) {
-        return RuntimeHelper.upcallStub(PFNGLWINDOWPOS2FPROC.class, fi, constants$101.PFNGLWINDOWPOS2FPROC$FUNC, "(FF)V");
+    void apply(float x, float y);
+    static MemorySegment allocate(PFNGLWINDOWPOS2FPROC fi, MemorySession session) {
+        return RuntimeHelper.upcallStub(PFNGLWINDOWPOS2FPROC.class, fi, constants$101.PFNGLWINDOWPOS2FPROC$FUNC, session);
     }
-    static MemoryAddress allocate(PFNGLWINDOWPOS2FPROC fi, ResourceScope scope) {
-        return RuntimeHelper.upcallStub(PFNGLWINDOWPOS2FPROC.class, fi, constants$101.PFNGLWINDOWPOS2FPROC$FUNC, "(FF)V", scope);
-    }
-    static PFNGLWINDOWPOS2FPROC ofAddress(MemoryAddress addr) {
-        return (float x0, float x1) -> {
+    static PFNGLWINDOWPOS2FPROC ofAddress(MemoryAddress addr, MemorySession session) {
+        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
+        return (float _x, float _y) -> {
             try {
-                constants$101.PFNGLWINDOWPOS2FPROC$MH.invokeExact((Addressable)addr, x0, x1);
+                constants$101.PFNGLWINDOWPOS2FPROC$MH.invokeExact((Addressable)symbol, _x, _y);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

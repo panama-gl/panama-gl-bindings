@@ -2,22 +2,22 @@
 
 package opengl.ubuntu.v20;
 
-import jdk.incubator.foreign.Addressable;
-import jdk.incubator.foreign.MemoryAddress;
-import jdk.incubator.foreign.ResourceScope;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public interface PFNGLMULTICASTWAITSYNCNVPROC {
 
-    void apply(int x0, int x1);
-    static MemoryAddress allocate(PFNGLMULTICASTWAITSYNCNVPROC fi) {
-        return RuntimeHelper.upcallStub(PFNGLMULTICASTWAITSYNCNVPROC.class, fi, constants$756.PFNGLMULTICASTWAITSYNCNVPROC$FUNC, "(II)V");
+    void apply(int signalGpu, int waitGpuMask);
+    static MemorySegment allocate(PFNGLMULTICASTWAITSYNCNVPROC fi, MemorySession session) {
+        return RuntimeHelper.upcallStub(PFNGLMULTICASTWAITSYNCNVPROC.class, fi, constants$756.PFNGLMULTICASTWAITSYNCNVPROC$FUNC, session);
     }
-    static MemoryAddress allocate(PFNGLMULTICASTWAITSYNCNVPROC fi, ResourceScope scope) {
-        return RuntimeHelper.upcallStub(PFNGLMULTICASTWAITSYNCNVPROC.class, fi, constants$756.PFNGLMULTICASTWAITSYNCNVPROC$FUNC, "(II)V", scope);
-    }
-    static PFNGLMULTICASTWAITSYNCNVPROC ofAddress(MemoryAddress addr) {
-        return (int x0, int x1) -> {
+    static PFNGLMULTICASTWAITSYNCNVPROC ofAddress(MemoryAddress addr, MemorySession session) {
+        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
+        return (int _signalGpu, int _waitGpuMask) -> {
             try {
-                constants$756.PFNGLMULTICASTWAITSYNCNVPROC$MH.invokeExact((Addressable)addr, x0, x1);
+                constants$756.PFNGLMULTICASTWAITSYNCNVPROC$MH.invokeExact((Addressable)symbol, _signalGpu, _waitGpuMask);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

@@ -2,22 +2,22 @@
 
 package opengl.ubuntu.v20;
 
-import jdk.incubator.foreign.Addressable;
-import jdk.incubator.foreign.MemoryAddress;
-import jdk.incubator.foreign.ResourceScope;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public interface PFNGLTEXTURECOLORMASKSGISPROC {
 
-    void apply(byte x0, byte x1, byte x2, byte x3);
-    static MemoryAddress allocate(PFNGLTEXTURECOLORMASKSGISPROC fi) {
-        return RuntimeHelper.upcallStub(PFNGLTEXTURECOLORMASKSGISPROC.class, fi, constants$889.PFNGLTEXTURECOLORMASKSGISPROC$FUNC, "(BBBB)V");
+    void apply(byte red, byte green, byte blue, byte alpha);
+    static MemorySegment allocate(PFNGLTEXTURECOLORMASKSGISPROC fi, MemorySession session) {
+        return RuntimeHelper.upcallStub(PFNGLTEXTURECOLORMASKSGISPROC.class, fi, constants$889.PFNGLTEXTURECOLORMASKSGISPROC$FUNC, session);
     }
-    static MemoryAddress allocate(PFNGLTEXTURECOLORMASKSGISPROC fi, ResourceScope scope) {
-        return RuntimeHelper.upcallStub(PFNGLTEXTURECOLORMASKSGISPROC.class, fi, constants$889.PFNGLTEXTURECOLORMASKSGISPROC$FUNC, "(BBBB)V", scope);
-    }
-    static PFNGLTEXTURECOLORMASKSGISPROC ofAddress(MemoryAddress addr) {
-        return (byte x0, byte x1, byte x2, byte x3) -> {
+    static PFNGLTEXTURECOLORMASKSGISPROC ofAddress(MemoryAddress addr, MemorySession session) {
+        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
+        return (byte _red, byte _green, byte _blue, byte _alpha) -> {
             try {
-                constants$889.PFNGLTEXTURECOLORMASKSGISPROC$MH.invokeExact((Addressable)addr, x0, x1, x2, x3);
+                constants$889.PFNGLTEXTURECOLORMASKSGISPROC$MH.invokeExact((Addressable)symbol, _red, _green, _blue, _alpha);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

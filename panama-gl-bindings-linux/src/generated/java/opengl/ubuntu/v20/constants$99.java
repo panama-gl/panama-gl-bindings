@@ -2,34 +2,32 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_INT;
-import static jdk.incubator.foreign.CLinker.C_POINTER;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$99 {
 
     static final FunctionDescriptor PFNGLSECONDARYCOLOR3UBVPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_POINTER
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLSECONDARYCOLOR3UBVPROC$MH = RuntimeHelper.downcallHandle(
-        "(Ljdk/incubator/foreign/MemoryAddress;)V",
-        constants$99.PFNGLSECONDARYCOLOR3UBVPROC$FUNC, false
+        constants$99.PFNGLSECONDARYCOLOR3UBVPROC$FUNC
     );
     static final FunctionDescriptor PFNGLSECONDARYCOLOR3UIPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_INT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLSECONDARYCOLOR3UIPROC$MH = RuntimeHelper.downcallHandle(
-        "(III)V",
-        constants$99.PFNGLSECONDARYCOLOR3UIPROC$FUNC, false
+        constants$99.PFNGLSECONDARYCOLOR3UIPROC$FUNC
     );
     static final FunctionDescriptor PFNGLSECONDARYCOLOR3UIVPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_POINTER
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLSECONDARYCOLOR3UIVPROC$MH = RuntimeHelper.downcallHandle(
-        "(Ljdk/incubator/foreign/MemoryAddress;)V",
-        constants$99.PFNGLSECONDARYCOLOR3UIVPROC$FUNC, false
+        constants$99.PFNGLSECONDARYCOLOR3UIVPROC$FUNC
     );
 }
 

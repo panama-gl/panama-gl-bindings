@@ -2,22 +2,22 @@
 
 package opengl.ubuntu.v20;
 
-import jdk.incubator.foreign.Addressable;
-import jdk.incubator.foreign.MemoryAddress;
-import jdk.incubator.foreign.ResourceScope;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public interface PFNGLVERTEXARRAYMULTITEXCOORDOFFSETEXTPROC {
 
-    void apply(int x0, int x1, int x2, int x3, int x4, int x5, long x6);
-    static MemoryAddress allocate(PFNGLVERTEXARRAYMULTITEXCOORDOFFSETEXTPROC fi) {
-        return RuntimeHelper.upcallStub(PFNGLVERTEXARRAYMULTITEXCOORDOFFSETEXTPROC.class, fi, constants$603.PFNGLVERTEXARRAYMULTITEXCOORDOFFSETEXTPROC$FUNC, "(IIIIIIJ)V");
+    void apply(int vaobj, int buffer, int texunit, int size, int type, int stride, long offset);
+    static MemorySegment allocate(PFNGLVERTEXARRAYMULTITEXCOORDOFFSETEXTPROC fi, MemorySession session) {
+        return RuntimeHelper.upcallStub(PFNGLVERTEXARRAYMULTITEXCOORDOFFSETEXTPROC.class, fi, constants$603.PFNGLVERTEXARRAYMULTITEXCOORDOFFSETEXTPROC$FUNC, session);
     }
-    static MemoryAddress allocate(PFNGLVERTEXARRAYMULTITEXCOORDOFFSETEXTPROC fi, ResourceScope scope) {
-        return RuntimeHelper.upcallStub(PFNGLVERTEXARRAYMULTITEXCOORDOFFSETEXTPROC.class, fi, constants$603.PFNGLVERTEXARRAYMULTITEXCOORDOFFSETEXTPROC$FUNC, "(IIIIIIJ)V", scope);
-    }
-    static PFNGLVERTEXARRAYMULTITEXCOORDOFFSETEXTPROC ofAddress(MemoryAddress addr) {
-        return (int x0, int x1, int x2, int x3, int x4, int x5, long x6) -> {
+    static PFNGLVERTEXARRAYMULTITEXCOORDOFFSETEXTPROC ofAddress(MemoryAddress addr, MemorySession session) {
+        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
+        return (int _vaobj, int _buffer, int _texunit, int _size, int _type, int _stride, long _offset) -> {
             try {
-                constants$603.PFNGLVERTEXARRAYMULTITEXCOORDOFFSETEXTPROC$MH.invokeExact((Addressable)addr, x0, x1, x2, x3, x4, x5, x6);
+                constants$603.PFNGLVERTEXARRAYMULTITEXCOORDOFFSETEXTPROC$MH.invokeExact((Addressable)symbol, _vaobj, _buffer, _texunit, _size, _type, _stride, _offset);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

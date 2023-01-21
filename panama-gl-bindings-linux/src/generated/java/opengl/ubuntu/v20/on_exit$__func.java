@@ -2,22 +2,22 @@
 
 package opengl.ubuntu.v20;
 
-import jdk.incubator.foreign.Addressable;
-import jdk.incubator.foreign.MemoryAddress;
-import jdk.incubator.foreign.ResourceScope;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public interface on_exit$__func {
 
-    void apply(int x0, jdk.incubator.foreign.MemoryAddress x1);
-    static MemoryAddress allocate(on_exit$__func fi) {
-        return RuntimeHelper.upcallStub(on_exit$__func.class, fi, constants$980.on_exit$__func$FUNC, "(ILjdk/incubator/foreign/MemoryAddress;)V");
+    void apply(int _x0, java.lang.foreign.MemoryAddress _x1);
+    static MemorySegment allocate(on_exit$__func fi, MemorySession session) {
+        return RuntimeHelper.upcallStub(on_exit$__func.class, fi, constants$980.on_exit$__func$FUNC, session);
     }
-    static MemoryAddress allocate(on_exit$__func fi, ResourceScope scope) {
-        return RuntimeHelper.upcallStub(on_exit$__func.class, fi, constants$980.on_exit$__func$FUNC, "(ILjdk/incubator/foreign/MemoryAddress;)V", scope);
-    }
-    static on_exit$__func ofAddress(MemoryAddress addr) {
-        return (int x0, jdk.incubator.foreign.MemoryAddress x1) -> {
+    static on_exit$__func ofAddress(MemoryAddress addr, MemorySession session) {
+        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
+        return (int __x0, java.lang.foreign.MemoryAddress __x1) -> {
             try {
-                constants$980.on_exit$__func$MH.invokeExact((Addressable)addr, x0, x1);
+                constants$980.on_exit$__func$MH.invokeExact((Addressable)symbol, __x0, (java.lang.foreign.Addressable)__x1);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

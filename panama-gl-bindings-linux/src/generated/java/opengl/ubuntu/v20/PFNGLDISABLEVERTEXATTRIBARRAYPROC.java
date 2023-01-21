@@ -2,22 +2,22 @@
 
 package opengl.ubuntu.v20;
 
-import jdk.incubator.foreign.Addressable;
-import jdk.incubator.foreign.MemoryAddress;
-import jdk.incubator.foreign.ResourceScope;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public interface PFNGLDISABLEVERTEXATTRIBARRAYPROC {
 
-    void apply(int x0);
-    static MemoryAddress allocate(PFNGLDISABLEVERTEXATTRIBARRAYPROC fi) {
-        return RuntimeHelper.upcallStub(PFNGLDISABLEVERTEXATTRIBARRAYPROC.class, fi, constants$117.PFNGLDISABLEVERTEXATTRIBARRAYPROC$FUNC, "(I)V");
+    void apply(int index);
+    static MemorySegment allocate(PFNGLDISABLEVERTEXATTRIBARRAYPROC fi, MemorySession session) {
+        return RuntimeHelper.upcallStub(PFNGLDISABLEVERTEXATTRIBARRAYPROC.class, fi, constants$117.PFNGLDISABLEVERTEXATTRIBARRAYPROC$FUNC, session);
     }
-    static MemoryAddress allocate(PFNGLDISABLEVERTEXATTRIBARRAYPROC fi, ResourceScope scope) {
-        return RuntimeHelper.upcallStub(PFNGLDISABLEVERTEXATTRIBARRAYPROC.class, fi, constants$117.PFNGLDISABLEVERTEXATTRIBARRAYPROC$FUNC, "(I)V", scope);
-    }
-    static PFNGLDISABLEVERTEXATTRIBARRAYPROC ofAddress(MemoryAddress addr) {
-        return (int x0) -> {
+    static PFNGLDISABLEVERTEXATTRIBARRAYPROC ofAddress(MemoryAddress addr, MemorySession session) {
+        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
+        return (int _index) -> {
             try {
-                constants$117.PFNGLDISABLEVERTEXATTRIBARRAYPROC$MH.invokeExact((Addressable)addr, x0);
+                constants$117.PFNGLDISABLEVERTEXATTRIBARRAYPROC$MH.invokeExact((Addressable)symbol, _index);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

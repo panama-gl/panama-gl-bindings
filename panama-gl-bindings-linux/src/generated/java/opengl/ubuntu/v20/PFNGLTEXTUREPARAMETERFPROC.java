@@ -2,22 +2,22 @@
 
 package opengl.ubuntu.v20;
 
-import jdk.incubator.foreign.Addressable;
-import jdk.incubator.foreign.MemoryAddress;
-import jdk.incubator.foreign.ResourceScope;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public interface PFNGLTEXTUREPARAMETERFPROC {
 
-    void apply(int x0, int x1, float x2);
-    static MemoryAddress allocate(PFNGLTEXTUREPARAMETERFPROC fi) {
-        return RuntimeHelper.upcallStub(PFNGLTEXTUREPARAMETERFPROC.class, fi, constants$290.PFNGLTEXTUREPARAMETERFPROC$FUNC, "(IIF)V");
+    void apply(int texture, int pname, float param);
+    static MemorySegment allocate(PFNGLTEXTUREPARAMETERFPROC fi, MemorySession session) {
+        return RuntimeHelper.upcallStub(PFNGLTEXTUREPARAMETERFPROC.class, fi, constants$290.PFNGLTEXTUREPARAMETERFPROC$FUNC, session);
     }
-    static MemoryAddress allocate(PFNGLTEXTUREPARAMETERFPROC fi, ResourceScope scope) {
-        return RuntimeHelper.upcallStub(PFNGLTEXTUREPARAMETERFPROC.class, fi, constants$290.PFNGLTEXTUREPARAMETERFPROC$FUNC, "(IIF)V", scope);
-    }
-    static PFNGLTEXTUREPARAMETERFPROC ofAddress(MemoryAddress addr) {
-        return (int x0, int x1, float x2) -> {
+    static PFNGLTEXTUREPARAMETERFPROC ofAddress(MemoryAddress addr, MemorySession session) {
+        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
+        return (int _texture, int _pname, float _param) -> {
             try {
-                constants$290.PFNGLTEXTUREPARAMETERFPROC$MH.invokeExact((Addressable)addr, x0, x1, x2);
+                constants$290.PFNGLTEXTUREPARAMETERFPROC$MH.invokeExact((Addressable)symbol, _texture, _pname, _param);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

@@ -2,22 +2,22 @@
 
 package opengl.ubuntu.v20;
 
-import jdk.incubator.foreign.Addressable;
-import jdk.incubator.foreign.MemoryAddress;
-import jdk.incubator.foreign.ResourceScope;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public interface PFNGLCOLORMASKINDEXEDEXTPROC {
 
-    void apply(int x0, byte x1, byte x2, byte x3, byte x4);
-    static MemoryAddress allocate(PFNGLCOLORMASKINDEXEDEXTPROC fi) {
-        return RuntimeHelper.upcallStub(PFNGLCOLORMASKINDEXEDEXTPROC.class, fi, constants$621.PFNGLCOLORMASKINDEXEDEXTPROC$FUNC, "(IBBBB)V");
+    void apply(int index, byte r, byte g, byte b, byte a);
+    static MemorySegment allocate(PFNGLCOLORMASKINDEXEDEXTPROC fi, MemorySession session) {
+        return RuntimeHelper.upcallStub(PFNGLCOLORMASKINDEXEDEXTPROC.class, fi, constants$621.PFNGLCOLORMASKINDEXEDEXTPROC$FUNC, session);
     }
-    static MemoryAddress allocate(PFNGLCOLORMASKINDEXEDEXTPROC fi, ResourceScope scope) {
-        return RuntimeHelper.upcallStub(PFNGLCOLORMASKINDEXEDEXTPROC.class, fi, constants$621.PFNGLCOLORMASKINDEXEDEXTPROC$FUNC, "(IBBBB)V", scope);
-    }
-    static PFNGLCOLORMASKINDEXEDEXTPROC ofAddress(MemoryAddress addr) {
-        return (int x0, byte x1, byte x2, byte x3, byte x4) -> {
+    static PFNGLCOLORMASKINDEXEDEXTPROC ofAddress(MemoryAddress addr, MemorySession session) {
+        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
+        return (int _index, byte _r, byte _g, byte _b, byte _a) -> {
             try {
-                constants$621.PFNGLCOLORMASKINDEXEDEXTPROC$MH.invokeExact((Addressable)addr, x0, x1, x2, x3, x4);
+                constants$621.PFNGLCOLORMASKINDEXEDEXTPROC$MH.invokeExact((Addressable)symbol, _index, _r, _g, _b, _a);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

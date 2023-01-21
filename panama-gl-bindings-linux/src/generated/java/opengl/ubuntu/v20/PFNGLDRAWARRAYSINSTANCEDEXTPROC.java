@@ -2,22 +2,22 @@
 
 package opengl.ubuntu.v20;
 
-import jdk.incubator.foreign.Addressable;
-import jdk.incubator.foreign.MemoryAddress;
-import jdk.incubator.foreign.ResourceScope;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public interface PFNGLDRAWARRAYSINSTANCEDEXTPROC {
 
-    void apply(int x0, int x1, int x2, int x3);
-    static MemoryAddress allocate(PFNGLDRAWARRAYSINSTANCEDEXTPROC fi) {
-        return RuntimeHelper.upcallStub(PFNGLDRAWARRAYSINSTANCEDEXTPROC.class, fi, constants$621.PFNGLDRAWARRAYSINSTANCEDEXTPROC$FUNC, "(IIII)V");
+    void apply(int mode, int start, int count, int primcount);
+    static MemorySegment allocate(PFNGLDRAWARRAYSINSTANCEDEXTPROC fi, MemorySession session) {
+        return RuntimeHelper.upcallStub(PFNGLDRAWARRAYSINSTANCEDEXTPROC.class, fi, constants$621.PFNGLDRAWARRAYSINSTANCEDEXTPROC$FUNC, session);
     }
-    static MemoryAddress allocate(PFNGLDRAWARRAYSINSTANCEDEXTPROC fi, ResourceScope scope) {
-        return RuntimeHelper.upcallStub(PFNGLDRAWARRAYSINSTANCEDEXTPROC.class, fi, constants$621.PFNGLDRAWARRAYSINSTANCEDEXTPROC$FUNC, "(IIII)V", scope);
-    }
-    static PFNGLDRAWARRAYSINSTANCEDEXTPROC ofAddress(MemoryAddress addr) {
-        return (int x0, int x1, int x2, int x3) -> {
+    static PFNGLDRAWARRAYSINSTANCEDEXTPROC ofAddress(MemoryAddress addr, MemorySession session) {
+        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
+        return (int _mode, int _start, int _count, int _primcount) -> {
             try {
-                constants$621.PFNGLDRAWARRAYSINSTANCEDEXTPROC$MH.invokeExact((Addressable)addr, x0, x1, x2, x3);
+                constants$621.PFNGLDRAWARRAYSINSTANCEDEXTPROC$MH.invokeExact((Addressable)symbol, _mode, _start, _count, _primcount);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

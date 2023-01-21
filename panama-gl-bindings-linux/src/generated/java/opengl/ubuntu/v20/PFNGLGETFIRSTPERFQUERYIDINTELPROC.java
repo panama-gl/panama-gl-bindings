@@ -2,22 +2,22 @@
 
 package opengl.ubuntu.v20;
 
-import jdk.incubator.foreign.Addressable;
-import jdk.incubator.foreign.MemoryAddress;
-import jdk.incubator.foreign.ResourceScope;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public interface PFNGLGETFIRSTPERFQUERYIDINTELPROC {
 
-    void apply(jdk.incubator.foreign.MemoryAddress x0);
-    static MemoryAddress allocate(PFNGLGETFIRSTPERFQUERYIDINTELPROC fi) {
-        return RuntimeHelper.upcallStub(PFNGLGETFIRSTPERFQUERYIDINTELPROC.class, fi, constants$709.PFNGLGETFIRSTPERFQUERYIDINTELPROC$FUNC, "(Ljdk/incubator/foreign/MemoryAddress;)V");
+    void apply(java.lang.foreign.MemoryAddress queryId);
+    static MemorySegment allocate(PFNGLGETFIRSTPERFQUERYIDINTELPROC fi, MemorySession session) {
+        return RuntimeHelper.upcallStub(PFNGLGETFIRSTPERFQUERYIDINTELPROC.class, fi, constants$709.PFNGLGETFIRSTPERFQUERYIDINTELPROC$FUNC, session);
     }
-    static MemoryAddress allocate(PFNGLGETFIRSTPERFQUERYIDINTELPROC fi, ResourceScope scope) {
-        return RuntimeHelper.upcallStub(PFNGLGETFIRSTPERFQUERYIDINTELPROC.class, fi, constants$709.PFNGLGETFIRSTPERFQUERYIDINTELPROC$FUNC, "(Ljdk/incubator/foreign/MemoryAddress;)V", scope);
-    }
-    static PFNGLGETFIRSTPERFQUERYIDINTELPROC ofAddress(MemoryAddress addr) {
-        return (jdk.incubator.foreign.MemoryAddress x0) -> {
+    static PFNGLGETFIRSTPERFQUERYIDINTELPROC ofAddress(MemoryAddress addr, MemorySession session) {
+        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
+        return (java.lang.foreign.MemoryAddress _queryId) -> {
             try {
-                constants$709.PFNGLGETFIRSTPERFQUERYIDINTELPROC$MH.invokeExact((Addressable)addr, x0);
+                constants$709.PFNGLGETFIRSTPERFQUERYIDINTELPROC$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)_queryId);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

@@ -2,22 +2,22 @@
 
 package opengl.ubuntu.v20;
 
-import jdk.incubator.foreign.Addressable;
-import jdk.incubator.foreign.MemoryAddress;
-import jdk.incubator.foreign.ResourceScope;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public interface PFNGLISFENCEAPPLEPROC {
 
-    byte apply(int x0);
-    static MemoryAddress allocate(PFNGLISFENCEAPPLEPROC fi) {
-        return RuntimeHelper.upcallStub(PFNGLISFENCEAPPLEPROC.class, fi, constants$477.PFNGLISFENCEAPPLEPROC$FUNC, "(I)B");
+    byte apply(int fence);
+    static MemorySegment allocate(PFNGLISFENCEAPPLEPROC fi, MemorySession session) {
+        return RuntimeHelper.upcallStub(PFNGLISFENCEAPPLEPROC.class, fi, constants$477.PFNGLISFENCEAPPLEPROC$FUNC, session);
     }
-    static MemoryAddress allocate(PFNGLISFENCEAPPLEPROC fi, ResourceScope scope) {
-        return RuntimeHelper.upcallStub(PFNGLISFENCEAPPLEPROC.class, fi, constants$477.PFNGLISFENCEAPPLEPROC$FUNC, "(I)B", scope);
-    }
-    static PFNGLISFENCEAPPLEPROC ofAddress(MemoryAddress addr) {
-        return (int x0) -> {
+    static PFNGLISFENCEAPPLEPROC ofAddress(MemoryAddress addr, MemorySession session) {
+        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
+        return (int _fence) -> {
             try {
-                return (byte)constants$477.PFNGLISFENCEAPPLEPROC$MH.invokeExact((Addressable)addr, x0);
+                return (byte)constants$477.PFNGLISFENCEAPPLEPROC$MH.invokeExact((Addressable)symbol, _fence);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

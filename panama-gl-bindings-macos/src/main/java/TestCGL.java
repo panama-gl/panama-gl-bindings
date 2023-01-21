@@ -1,10 +1,8 @@
-import static jdk.incubator.foreign.CLinker.C_INT;
 import java.util.Arrays;
-import jdk.incubator.foreign.CLinker;
-import jdk.incubator.foreign.MemorySegment;
-import jdk.incubator.foreign.ResourceScope;
-import jdk.incubator.foreign.SegmentAllocator;
-import opengl.cgl.macos.v10_15_7.OpenGL_h;
+import cgl.macos.v10_15_7.cgl_h;
+import java.lang.foreign.MemorySession;
+import java.lang.foreign.MemorySegment;
+import java.lang.foreign.SegmentAllocator;
 
 // https://stackoverflow.com/questions/11383510/setting-up-an-opengl-context-with-cgl-on-mac-os-x
 // https://developer.apple.com/library/archive/documentation/GraphicsImaging/Conceptual/OpenGL-MacProgGuide/opengl_offscreen/opengl_offscreen.html
@@ -37,8 +35,8 @@ public class TestCGL {
     //System.load("/System/Library/Frameworks/GLUT.framework/Versions/Current/GLUT");
     System.load("/System/Library/Frameworks/GLUT.framework/Versions/Current/GLUT");
     
-    ResourceScope scope = ResourceScope.newConfinedScope();
-    SegmentAllocator allocator = SegmentAllocator.ofScope(scope);
+    MemorySession scope = MemorySession.openConfined();
+    SegmentAllocator allocator = SegmentAllocator.newNativeArena(scope);
     
     /* 
      CGLPixelFormatAttribute attributes[4] = {
@@ -55,33 +53,33 @@ public class TestCGL {
     
 
     int[] at = new int[4];
-    at[0] = OpenGL_h.kCGLPFAAccelerated();
-    at[1] = OpenGL_h.kCGLPFAOpenGLProfile();
-    at[2] = OpenGL_h.kCGLOGLPVersion_3_2_Core();
+    at[0] = cgl_h.kCGLPFAAccelerated();
+    at[1] = cgl_h.kCGLPFAOpenGLProfile();
+    at[2] = cgl_h.kCGLOGLPVersion_3_2_Core();
     at[3] = 0;
     
-    MemorySegment attribs = allocator.allocateArray(C_INT, at);
-    MemorySegment pix = allocator.allocateArray(C_INT, new int[1]);
+    MemorySegment attribs = allocator.allocateArray(cgl_h.C_INT, at);
+    MemorySegment pix = allocator.allocateArray(cgl_h.C_INT, new int[1]);
     
     //int[] pixFormats = new int[1];
-    MemorySegment npix = allocator.allocateArray(C_INT, new int[1]);
+    MemorySegment npix = allocator.allocateArray(cgl_h.C_INT, new int[1]);
     
-    OpenGL_h.CGLChoosePixelFormat(attribs, pix, npix);
+    cgl_h.CGLChoosePixelFormat(attribs, pix, npix);
 
-    System.out.println(Arrays.toString(attribs.toIntArray()));
-    System.out.println(Arrays.toString(pix.toIntArray()));
-    System.out.println(Arrays.toString(npix.toIntArray()));
+    //System.out.println(Arrays.toString(attribs.toArray()));
+    //System.out.println(Arrays.toString(pix.toIntArray()));
+    //System.out.println(Arrays.toString(npix.toIntArray()));
 
     
     /**
      * CGLContextObj context;
      */
-    MemorySegment c_share = CLinker.toCString("", scope);
-    MemorySegment c_ctx = CLinker.toCString("", scope);
-    OpenGL_h.CGLCreateContext(pix, c_share, c_ctx) ;
+    MemorySegment c_share = allocator.allocateUtf8String("");
+    MemorySegment c_ctx = allocator.allocateUtf8String("");
+    cgl_h.CGLCreateContext(pix, c_share, c_ctx) ;
     
-    System.out.println(Arrays.toString(pix.toIntArray()));
-    System.out.println(Arrays.toString(npix.toIntArray()));
+    //System.out.println(Arrays.toString(pix.toIntArray()));
+    //System.out.println(Arrays.toString(npix.toIntArray()));
 
     //c_ctx.
     

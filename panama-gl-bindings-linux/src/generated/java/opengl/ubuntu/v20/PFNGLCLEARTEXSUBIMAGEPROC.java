@@ -2,22 +2,22 @@
 
 package opengl.ubuntu.v20;
 
-import jdk.incubator.foreign.Addressable;
-import jdk.incubator.foreign.MemoryAddress;
-import jdk.incubator.foreign.ResourceScope;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public interface PFNGLCLEARTEXSUBIMAGEPROC {
 
-    void apply(int x0, int x1, int x2, int x3, int x4, int x5, int x6, int x7, int x8, int x9, jdk.incubator.foreign.MemoryAddress x10);
-    static MemoryAddress allocate(PFNGLCLEARTEXSUBIMAGEPROC fi) {
-        return RuntimeHelper.upcallStub(PFNGLCLEARTEXSUBIMAGEPROC.class, fi, constants$268.PFNGLCLEARTEXSUBIMAGEPROC$FUNC, "(IIIIIIIIIILjdk/incubator/foreign/MemoryAddress;)V");
+    void apply(int texture, int level, int xoffset, int yoffset, int zoffset, int width, int height, int depth, int format, int type, java.lang.foreign.MemoryAddress data);
+    static MemorySegment allocate(PFNGLCLEARTEXSUBIMAGEPROC fi, MemorySession session) {
+        return RuntimeHelper.upcallStub(PFNGLCLEARTEXSUBIMAGEPROC.class, fi, constants$268.PFNGLCLEARTEXSUBIMAGEPROC$FUNC, session);
     }
-    static MemoryAddress allocate(PFNGLCLEARTEXSUBIMAGEPROC fi, ResourceScope scope) {
-        return RuntimeHelper.upcallStub(PFNGLCLEARTEXSUBIMAGEPROC.class, fi, constants$268.PFNGLCLEARTEXSUBIMAGEPROC$FUNC, "(IIIIIIIIIILjdk/incubator/foreign/MemoryAddress;)V", scope);
-    }
-    static PFNGLCLEARTEXSUBIMAGEPROC ofAddress(MemoryAddress addr) {
-        return (int x0, int x1, int x2, int x3, int x4, int x5, int x6, int x7, int x8, int x9, jdk.incubator.foreign.MemoryAddress x10) -> {
+    static PFNGLCLEARTEXSUBIMAGEPROC ofAddress(MemoryAddress addr, MemorySession session) {
+        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
+        return (int _texture, int _level, int _xoffset, int _yoffset, int _zoffset, int _width, int _height, int _depth, int _format, int _type, java.lang.foreign.MemoryAddress _data) -> {
             try {
-                constants$268.PFNGLCLEARTEXSUBIMAGEPROC$MH.invokeExact((Addressable)addr, x0, x1, x2, x3, x4, x5, x6, x7, x8, x9, x10);
+                constants$268.PFNGLCLEARTEXSUBIMAGEPROC$MH.invokeExact((Addressable)symbol, _texture, _level, _xoffset, _yoffset, _zoffset, _width, _height, _depth, _format, _type, (java.lang.foreign.Addressable)_data);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

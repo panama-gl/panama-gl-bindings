@@ -2,22 +2,22 @@
 
 package opengl.ubuntu.v20;
 
-import jdk.incubator.foreign.Addressable;
-import jdk.incubator.foreign.MemoryAddress;
-import jdk.incubator.foreign.ResourceScope;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public interface PFNGLCLIENTACTIVEVERTEXSTREAMATIPROC {
 
-    void apply(int x0);
-    static MemoryAddress allocate(PFNGLCLIENTACTIVEVERTEXSTREAMATIPROC fi) {
-        return RuntimeHelper.upcallStub(PFNGLCLIENTACTIVEVERTEXSTREAMATIPROC.class, fi, constants$514.PFNGLCLIENTACTIVEVERTEXSTREAMATIPROC$FUNC, "(I)V");
+    void apply(int stream);
+    static MemorySegment allocate(PFNGLCLIENTACTIVEVERTEXSTREAMATIPROC fi, MemorySession session) {
+        return RuntimeHelper.upcallStub(PFNGLCLIENTACTIVEVERTEXSTREAMATIPROC.class, fi, constants$514.PFNGLCLIENTACTIVEVERTEXSTREAMATIPROC$FUNC, session);
     }
-    static MemoryAddress allocate(PFNGLCLIENTACTIVEVERTEXSTREAMATIPROC fi, ResourceScope scope) {
-        return RuntimeHelper.upcallStub(PFNGLCLIENTACTIVEVERTEXSTREAMATIPROC.class, fi, constants$514.PFNGLCLIENTACTIVEVERTEXSTREAMATIPROC$FUNC, "(I)V", scope);
-    }
-    static PFNGLCLIENTACTIVEVERTEXSTREAMATIPROC ofAddress(MemoryAddress addr) {
-        return (int x0) -> {
+    static PFNGLCLIENTACTIVEVERTEXSTREAMATIPROC ofAddress(MemoryAddress addr, MemorySession session) {
+        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
+        return (int _stream) -> {
             try {
-                constants$514.PFNGLCLIENTACTIVEVERTEXSTREAMATIPROC$MH.invokeExact((Addressable)addr, x0);
+                constants$514.PFNGLCLIENTACTIVEVERTEXSTREAMATIPROC$MH.invokeExact((Addressable)symbol, _stream);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

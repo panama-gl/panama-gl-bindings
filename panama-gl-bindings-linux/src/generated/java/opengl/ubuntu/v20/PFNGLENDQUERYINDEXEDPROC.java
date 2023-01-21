@@ -2,22 +2,22 @@
 
 package opengl.ubuntu.v20;
 
-import jdk.incubator.foreign.Addressable;
-import jdk.incubator.foreign.MemoryAddress;
-import jdk.incubator.foreign.ResourceScope;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public interface PFNGLENDQUERYINDEXEDPROC {
 
-    void apply(int x0, int x1);
-    static MemoryAddress allocate(PFNGLENDQUERYINDEXEDPROC fi) {
-        return RuntimeHelper.upcallStub(PFNGLENDQUERYINDEXEDPROC.class, fi, constants$218.PFNGLENDQUERYINDEXEDPROC$FUNC, "(II)V");
+    void apply(int target, int index);
+    static MemorySegment allocate(PFNGLENDQUERYINDEXEDPROC fi, MemorySession session) {
+        return RuntimeHelper.upcallStub(PFNGLENDQUERYINDEXEDPROC.class, fi, constants$218.PFNGLENDQUERYINDEXEDPROC$FUNC, session);
     }
-    static MemoryAddress allocate(PFNGLENDQUERYINDEXEDPROC fi, ResourceScope scope) {
-        return RuntimeHelper.upcallStub(PFNGLENDQUERYINDEXEDPROC.class, fi, constants$218.PFNGLENDQUERYINDEXEDPROC$FUNC, "(II)V", scope);
-    }
-    static PFNGLENDQUERYINDEXEDPROC ofAddress(MemoryAddress addr) {
-        return (int x0, int x1) -> {
+    static PFNGLENDQUERYINDEXEDPROC ofAddress(MemoryAddress addr, MemorySession session) {
+        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
+        return (int _target, int _index) -> {
             try {
-                constants$218.PFNGLENDQUERYINDEXEDPROC$MH.invokeExact((Addressable)addr, x0, x1);
+                constants$218.PFNGLENDQUERYINDEXEDPROC$MH.invokeExact((Addressable)symbol, _target, _index);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

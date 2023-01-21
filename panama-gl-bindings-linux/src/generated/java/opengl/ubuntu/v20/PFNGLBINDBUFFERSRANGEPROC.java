@@ -2,22 +2,22 @@
 
 package opengl.ubuntu.v20;
 
-import jdk.incubator.foreign.Addressable;
-import jdk.incubator.foreign.MemoryAddress;
-import jdk.incubator.foreign.ResourceScope;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public interface PFNGLBINDBUFFERSRANGEPROC {
 
-    void apply(int x0, int x1, int x2, jdk.incubator.foreign.MemoryAddress x3, jdk.incubator.foreign.MemoryAddress x4, jdk.incubator.foreign.MemoryAddress x5);
-    static MemoryAddress allocate(PFNGLBINDBUFFERSRANGEPROC fi) {
-        return RuntimeHelper.upcallStub(PFNGLBINDBUFFERSRANGEPROC.class, fi, constants$268.PFNGLBINDBUFFERSRANGEPROC$FUNC, "(IIILjdk/incubator/foreign/MemoryAddress;Ljdk/incubator/foreign/MemoryAddress;Ljdk/incubator/foreign/MemoryAddress;)V");
+    void apply(int target, int first, int count, java.lang.foreign.MemoryAddress buffers, java.lang.foreign.MemoryAddress offsets, java.lang.foreign.MemoryAddress sizes);
+    static MemorySegment allocate(PFNGLBINDBUFFERSRANGEPROC fi, MemorySession session) {
+        return RuntimeHelper.upcallStub(PFNGLBINDBUFFERSRANGEPROC.class, fi, constants$268.PFNGLBINDBUFFERSRANGEPROC$FUNC, session);
     }
-    static MemoryAddress allocate(PFNGLBINDBUFFERSRANGEPROC fi, ResourceScope scope) {
-        return RuntimeHelper.upcallStub(PFNGLBINDBUFFERSRANGEPROC.class, fi, constants$268.PFNGLBINDBUFFERSRANGEPROC$FUNC, "(IIILjdk/incubator/foreign/MemoryAddress;Ljdk/incubator/foreign/MemoryAddress;Ljdk/incubator/foreign/MemoryAddress;)V", scope);
-    }
-    static PFNGLBINDBUFFERSRANGEPROC ofAddress(MemoryAddress addr) {
-        return (int x0, int x1, int x2, jdk.incubator.foreign.MemoryAddress x3, jdk.incubator.foreign.MemoryAddress x4, jdk.incubator.foreign.MemoryAddress x5) -> {
+    static PFNGLBINDBUFFERSRANGEPROC ofAddress(MemoryAddress addr, MemorySession session) {
+        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
+        return (int _target, int _first, int _count, java.lang.foreign.MemoryAddress _buffers, java.lang.foreign.MemoryAddress _offsets, java.lang.foreign.MemoryAddress _sizes) -> {
             try {
-                constants$268.PFNGLBINDBUFFERSRANGEPROC$MH.invokeExact((Addressable)addr, x0, x1, x2, x3, x4, x5);
+                constants$268.PFNGLBINDBUFFERSRANGEPROC$MH.invokeExact((Addressable)symbol, _target, _first, _count, (java.lang.foreign.Addressable)_buffers, (java.lang.foreign.Addressable)_offsets, (java.lang.foreign.Addressable)_sizes);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

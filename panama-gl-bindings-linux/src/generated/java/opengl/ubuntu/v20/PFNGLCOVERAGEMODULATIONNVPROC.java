@@ -2,22 +2,22 @@
 
 package opengl.ubuntu.v20;
 
-import jdk.incubator.foreign.Addressable;
-import jdk.incubator.foreign.MemoryAddress;
-import jdk.incubator.foreign.ResourceScope;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public interface PFNGLCOVERAGEMODULATIONNVPROC {
 
-    void apply(int x0);
-    static MemoryAddress allocate(PFNGLCOVERAGEMODULATIONNVPROC fi) {
-        return RuntimeHelper.upcallStub(PFNGLCOVERAGEMODULATIONNVPROC.class, fi, constants$752.PFNGLCOVERAGEMODULATIONNVPROC$FUNC, "(I)V");
+    void apply(int components);
+    static MemorySegment allocate(PFNGLCOVERAGEMODULATIONNVPROC fi, MemorySession session) {
+        return RuntimeHelper.upcallStub(PFNGLCOVERAGEMODULATIONNVPROC.class, fi, constants$752.PFNGLCOVERAGEMODULATIONNVPROC$FUNC, session);
     }
-    static MemoryAddress allocate(PFNGLCOVERAGEMODULATIONNVPROC fi, ResourceScope scope) {
-        return RuntimeHelper.upcallStub(PFNGLCOVERAGEMODULATIONNVPROC.class, fi, constants$752.PFNGLCOVERAGEMODULATIONNVPROC$FUNC, "(I)V", scope);
-    }
-    static PFNGLCOVERAGEMODULATIONNVPROC ofAddress(MemoryAddress addr) {
-        return (int x0) -> {
+    static PFNGLCOVERAGEMODULATIONNVPROC ofAddress(MemoryAddress addr, MemorySession session) {
+        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
+        return (int _components) -> {
             try {
-                constants$752.PFNGLCOVERAGEMODULATIONNVPROC$MH.invokeExact((Addressable)addr, x0);
+                constants$752.PFNGLCOVERAGEMODULATIONNVPROC$MH.invokeExact((Addressable)symbol, _components);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

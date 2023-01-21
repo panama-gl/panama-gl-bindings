@@ -2,22 +2,22 @@
 
 package opengl.ubuntu.v20;
 
-import jdk.incubator.foreign.Addressable;
-import jdk.incubator.foreign.MemoryAddress;
-import jdk.incubator.foreign.ResourceScope;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public interface PFNGLMULTICASTBLITFRAMEBUFFERNVPROC {
 
-    void apply(int x0, int x1, int x2, int x3, int x4, int x5, int x6, int x7, int x8, int x9, int x10, int x11);
-    static MemoryAddress allocate(PFNGLMULTICASTBLITFRAMEBUFFERNVPROC fi) {
-        return RuntimeHelper.upcallStub(PFNGLMULTICASTBLITFRAMEBUFFERNVPROC.class, fi, constants$755.PFNGLMULTICASTBLITFRAMEBUFFERNVPROC$FUNC, "(IIIIIIIIIIII)V");
+    void apply(int srcGpu, int dstGpu, int srcX0, int srcY0, int srcX1, int srcY1, int dstX0, int dstY0, int dstX1, int dstY1, int mask, int filter);
+    static MemorySegment allocate(PFNGLMULTICASTBLITFRAMEBUFFERNVPROC fi, MemorySession session) {
+        return RuntimeHelper.upcallStub(PFNGLMULTICASTBLITFRAMEBUFFERNVPROC.class, fi, constants$755.PFNGLMULTICASTBLITFRAMEBUFFERNVPROC$FUNC, session);
     }
-    static MemoryAddress allocate(PFNGLMULTICASTBLITFRAMEBUFFERNVPROC fi, ResourceScope scope) {
-        return RuntimeHelper.upcallStub(PFNGLMULTICASTBLITFRAMEBUFFERNVPROC.class, fi, constants$755.PFNGLMULTICASTBLITFRAMEBUFFERNVPROC$FUNC, "(IIIIIIIIIIII)V", scope);
-    }
-    static PFNGLMULTICASTBLITFRAMEBUFFERNVPROC ofAddress(MemoryAddress addr) {
-        return (int x0, int x1, int x2, int x3, int x4, int x5, int x6, int x7, int x8, int x9, int x10, int x11) -> {
+    static PFNGLMULTICASTBLITFRAMEBUFFERNVPROC ofAddress(MemoryAddress addr, MemorySession session) {
+        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
+        return (int _srcGpu, int _dstGpu, int _srcX0, int _srcY0, int _srcX1, int _srcY1, int _dstX0, int _dstY0, int _dstX1, int _dstY1, int _mask, int _filter) -> {
             try {
-                constants$755.PFNGLMULTICASTBLITFRAMEBUFFERNVPROC$MH.invokeExact((Addressable)addr, x0, x1, x2, x3, x4, x5, x6, x7, x8, x9, x10, x11);
+                constants$755.PFNGLMULTICASTBLITFRAMEBUFFERNVPROC$MH.invokeExact((Addressable)symbol, _srcGpu, _dstGpu, _srcX0, _srcY0, _srcX1, _srcY1, _dstX0, _dstY0, _dstX1, _dstY1, _mask, _filter);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

@@ -2,35 +2,33 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_FLOAT;
-import static jdk.incubator.foreign.CLinker.C_INT;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$541 {
 
     static final FunctionDescriptor PFNGLCLIENTATTRIBDEFAULTEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLCLIENTATTRIBDEFAULTEXTPROC$MH = RuntimeHelper.downcallHandle(
-        "(I)V",
-        constants$541.PFNGLCLIENTATTRIBDEFAULTEXTPROC$FUNC, false
+        constants$541.PFNGLCLIENTATTRIBDEFAULTEXTPROC$FUNC
     );
     static final FunctionDescriptor PFNGLPUSHCLIENTATTRIBDEFAULTEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLPUSHCLIENTATTRIBDEFAULTEXTPROC$MH = RuntimeHelper.downcallHandle(
-        "(I)V",
-        constants$541.PFNGLPUSHCLIENTATTRIBDEFAULTEXTPROC$FUNC, false
+        constants$541.PFNGLPUSHCLIENTATTRIBDEFAULTEXTPROC$FUNC
     );
     static final FunctionDescriptor PFNGLTEXTUREPARAMETERFEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_INT,
-        C_FLOAT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT
     );
     static final MethodHandle PFNGLTEXTUREPARAMETERFEXTPROC$MH = RuntimeHelper.downcallHandle(
-        "(IIIF)V",
-        constants$541.PFNGLTEXTUREPARAMETERFEXTPROC$FUNC, false
+        constants$541.PFNGLTEXTUREPARAMETERFEXTPROC$FUNC
     );
 }
 

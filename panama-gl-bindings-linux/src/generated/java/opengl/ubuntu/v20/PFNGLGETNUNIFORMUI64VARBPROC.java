@@ -2,22 +2,22 @@
 
 package opengl.ubuntu.v20;
 
-import jdk.incubator.foreign.Addressable;
-import jdk.incubator.foreign.MemoryAddress;
-import jdk.incubator.foreign.ResourceScope;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public interface PFNGLGETNUNIFORMUI64VARBPROC {
 
-    void apply(int x0, int x1, int x2, jdk.incubator.foreign.MemoryAddress x3);
-    static MemoryAddress allocate(PFNGLGETNUNIFORMUI64VARBPROC fi) {
-        return RuntimeHelper.upcallStub(PFNGLGETNUNIFORMUI64VARBPROC.class, fi, constants$337.PFNGLGETNUNIFORMUI64VARBPROC$FUNC, "(IIILjdk/incubator/foreign/MemoryAddress;)V");
+    void apply(int program, int location, int bufSize, java.lang.foreign.MemoryAddress params);
+    static MemorySegment allocate(PFNGLGETNUNIFORMUI64VARBPROC fi, MemorySession session) {
+        return RuntimeHelper.upcallStub(PFNGLGETNUNIFORMUI64VARBPROC.class, fi, constants$337.PFNGLGETNUNIFORMUI64VARBPROC$FUNC, session);
     }
-    static MemoryAddress allocate(PFNGLGETNUNIFORMUI64VARBPROC fi, ResourceScope scope) {
-        return RuntimeHelper.upcallStub(PFNGLGETNUNIFORMUI64VARBPROC.class, fi, constants$337.PFNGLGETNUNIFORMUI64VARBPROC$FUNC, "(IIILjdk/incubator/foreign/MemoryAddress;)V", scope);
-    }
-    static PFNGLGETNUNIFORMUI64VARBPROC ofAddress(MemoryAddress addr) {
-        return (int x0, int x1, int x2, jdk.incubator.foreign.MemoryAddress x3) -> {
+    static PFNGLGETNUNIFORMUI64VARBPROC ofAddress(MemoryAddress addr, MemorySession session) {
+        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
+        return (int _program, int _location, int _bufSize, java.lang.foreign.MemoryAddress _params) -> {
             try {
-                constants$337.PFNGLGETNUNIFORMUI64VARBPROC$MH.invokeExact((Addressable)addr, x0, x1, x2, x3);
+                constants$337.PFNGLGETNUNIFORMUI64VARBPROC$MH.invokeExact((Addressable)symbol, _program, _location, _bufSize, (java.lang.foreign.Addressable)_params);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

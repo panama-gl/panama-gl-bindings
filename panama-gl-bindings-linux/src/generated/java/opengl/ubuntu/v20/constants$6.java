@@ -2,51 +2,46 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_INT;
-import static jdk.incubator.foreign.CLinker.C_POINTER;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$6 {
 
     static final FunctionDescriptor glPopClientAttrib$FUNC = FunctionDescriptor.ofVoid();
     static final MethodHandle glPopClientAttrib$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "glPopClientAttrib",
-        "()V",
-        constants$6.glPopClientAttrib$FUNC, false
+        "glPopClientAttrib",
+        constants$6.glPopClientAttrib$FUNC
     );
-    static final FunctionDescriptor glRenderMode$FUNC = FunctionDescriptor.of(C_INT,
-        C_INT
+    static final FunctionDescriptor glRenderMode$FUNC = FunctionDescriptor.of(Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle glRenderMode$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "glRenderMode",
-        "(I)I",
-        constants$6.glRenderMode$FUNC, false
+        "glRenderMode",
+        constants$6.glRenderMode$FUNC
     );
-    static final FunctionDescriptor glGetError$FUNC = FunctionDescriptor.of(C_INT);
+    static final FunctionDescriptor glGetError$FUNC = FunctionDescriptor.of(Constants$root.C_INT$LAYOUT);
     static final MethodHandle glGetError$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "glGetError",
-        "()I",
-        constants$6.glGetError$FUNC, false
+        "glGetError",
+        constants$6.glGetError$FUNC
     );
-    static final FunctionDescriptor glGetString$FUNC = FunctionDescriptor.of(C_POINTER,
-        C_INT
+    static final FunctionDescriptor glGetString$FUNC = FunctionDescriptor.of(Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle glGetString$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "glGetString",
-        "(I)Ljdk/incubator/foreign/MemoryAddress;",
-        constants$6.glGetString$FUNC, false
+        "glGetString",
+        constants$6.glGetString$FUNC
     );
     static final FunctionDescriptor glFinish$FUNC = FunctionDescriptor.ofVoid();
     static final MethodHandle glFinish$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "glFinish",
-        "()V",
-        constants$6.glFinish$FUNC, false
+        "glFinish",
+        constants$6.glFinish$FUNC
     );
     static final FunctionDescriptor glFlush$FUNC = FunctionDescriptor.ofVoid();
     static final MethodHandle glFlush$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "glFlush",
-        "()V",
-        constants$6.glFlush$FUNC, false
+        "glFlush",
+        constants$6.glFlush$FUNC
     );
 }
 

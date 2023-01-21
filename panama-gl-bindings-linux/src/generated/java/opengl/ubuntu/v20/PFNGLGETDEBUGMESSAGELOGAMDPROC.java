@@ -2,22 +2,22 @@
 
 package opengl.ubuntu.v20;
 
-import jdk.incubator.foreign.Addressable;
-import jdk.incubator.foreign.MemoryAddress;
-import jdk.incubator.foreign.ResourceScope;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public interface PFNGLGETDEBUGMESSAGELOGAMDPROC {
 
-    int apply(int x0, int x1, jdk.incubator.foreign.MemoryAddress x2, jdk.incubator.foreign.MemoryAddress x3, jdk.incubator.foreign.MemoryAddress x4, jdk.incubator.foreign.MemoryAddress x5, jdk.incubator.foreign.MemoryAddress x6);
-    static MemoryAddress allocate(PFNGLGETDEBUGMESSAGELOGAMDPROC fi) {
-        return RuntimeHelper.upcallStub(PFNGLGETDEBUGMESSAGELOGAMDPROC.class, fi, constants$452.PFNGLGETDEBUGMESSAGELOGAMDPROC$FUNC, "(IILjdk/incubator/foreign/MemoryAddress;Ljdk/incubator/foreign/MemoryAddress;Ljdk/incubator/foreign/MemoryAddress;Ljdk/incubator/foreign/MemoryAddress;Ljdk/incubator/foreign/MemoryAddress;)I");
+    int apply(int count, int bufsize, java.lang.foreign.MemoryAddress categories, java.lang.foreign.MemoryAddress severities, java.lang.foreign.MemoryAddress ids, java.lang.foreign.MemoryAddress lengths, java.lang.foreign.MemoryAddress message);
+    static MemorySegment allocate(PFNGLGETDEBUGMESSAGELOGAMDPROC fi, MemorySession session) {
+        return RuntimeHelper.upcallStub(PFNGLGETDEBUGMESSAGELOGAMDPROC.class, fi, constants$452.PFNGLGETDEBUGMESSAGELOGAMDPROC$FUNC, session);
     }
-    static MemoryAddress allocate(PFNGLGETDEBUGMESSAGELOGAMDPROC fi, ResourceScope scope) {
-        return RuntimeHelper.upcallStub(PFNGLGETDEBUGMESSAGELOGAMDPROC.class, fi, constants$452.PFNGLGETDEBUGMESSAGELOGAMDPROC$FUNC, "(IILjdk/incubator/foreign/MemoryAddress;Ljdk/incubator/foreign/MemoryAddress;Ljdk/incubator/foreign/MemoryAddress;Ljdk/incubator/foreign/MemoryAddress;Ljdk/incubator/foreign/MemoryAddress;)I", scope);
-    }
-    static PFNGLGETDEBUGMESSAGELOGAMDPROC ofAddress(MemoryAddress addr) {
-        return (int x0, int x1, jdk.incubator.foreign.MemoryAddress x2, jdk.incubator.foreign.MemoryAddress x3, jdk.incubator.foreign.MemoryAddress x4, jdk.incubator.foreign.MemoryAddress x5, jdk.incubator.foreign.MemoryAddress x6) -> {
+    static PFNGLGETDEBUGMESSAGELOGAMDPROC ofAddress(MemoryAddress addr, MemorySession session) {
+        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
+        return (int _count, int _bufsize, java.lang.foreign.MemoryAddress _categories, java.lang.foreign.MemoryAddress _severities, java.lang.foreign.MemoryAddress _ids, java.lang.foreign.MemoryAddress _lengths, java.lang.foreign.MemoryAddress _message) -> {
             try {
-                return (int)constants$452.PFNGLGETDEBUGMESSAGELOGAMDPROC$MH.invokeExact((Addressable)addr, x0, x1, x2, x3, x4, x5, x6);
+                return (int)constants$452.PFNGLGETDEBUGMESSAGELOGAMDPROC$MH.invokeExact((Addressable)symbol, _count, _bufsize, (java.lang.foreign.Addressable)_categories, (java.lang.foreign.Addressable)_severities, (java.lang.foreign.Addressable)_ids, (java.lang.foreign.Addressable)_lengths, (java.lang.foreign.Addressable)_message);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

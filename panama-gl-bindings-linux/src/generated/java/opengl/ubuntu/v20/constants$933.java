@@ -2,61 +2,56 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_INT;
-import static jdk.incubator.foreign.CLinker.C_POINTER;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$933 {
 
     static final FunctionDescriptor gluEndPolygon$FUNC = FunctionDescriptor.ofVoid(
-        C_POINTER
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle gluEndPolygon$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "gluEndPolygon",
-        "(Ljdk/incubator/foreign/MemoryAddress;)V",
-        constants$933.gluEndPolygon$FUNC, false
+        "gluEndPolygon",
+        constants$933.gluEndPolygon$FUNC
     );
     static final FunctionDescriptor gluEndSurface$FUNC = FunctionDescriptor.ofVoid(
-        C_POINTER
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle gluEndSurface$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "gluEndSurface",
-        "(Ljdk/incubator/foreign/MemoryAddress;)V",
-        constants$933.gluEndSurface$FUNC, false
+        "gluEndSurface",
+        constants$933.gluEndSurface$FUNC
     );
     static final FunctionDescriptor gluEndTrim$FUNC = FunctionDescriptor.ofVoid(
-        C_POINTER
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle gluEndTrim$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "gluEndTrim",
-        "(Ljdk/incubator/foreign/MemoryAddress;)V",
-        constants$933.gluEndTrim$FUNC, false
+        "gluEndTrim",
+        constants$933.gluEndTrim$FUNC
     );
-    static final FunctionDescriptor gluErrorString$FUNC = FunctionDescriptor.of(C_POINTER,
-        C_INT
+    static final FunctionDescriptor gluErrorString$FUNC = FunctionDescriptor.of(Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle gluErrorString$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "gluErrorString",
-        "(I)Ljdk/incubator/foreign/MemoryAddress;",
-        constants$933.gluErrorString$FUNC, false
+        "gluErrorString",
+        constants$933.gluErrorString$FUNC
     );
     static final FunctionDescriptor gluGetNurbsProperty$FUNC = FunctionDescriptor.ofVoid(
-        C_POINTER,
-        C_INT,
-        C_POINTER
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle gluGetNurbsProperty$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "gluGetNurbsProperty",
-        "(Ljdk/incubator/foreign/MemoryAddress;ILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$933.gluGetNurbsProperty$FUNC, false
+        "gluGetNurbsProperty",
+        constants$933.gluGetNurbsProperty$FUNC
     );
-    static final FunctionDescriptor gluGetString$FUNC = FunctionDescriptor.of(C_POINTER,
-        C_INT
+    static final FunctionDescriptor gluGetString$FUNC = FunctionDescriptor.of(Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle gluGetString$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "gluGetString",
-        "(I)Ljdk/incubator/foreign/MemoryAddress;",
-        constants$933.gluGetString$FUNC, false
+        "gluGetString",
+        constants$933.gluGetString$FUNC
     );
 }
 

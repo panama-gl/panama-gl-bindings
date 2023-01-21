@@ -2,69 +2,63 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_DOUBLE;
-import static jdk.incubator.foreign.CLinker.C_INT;
-import static jdk.incubator.foreign.CLinker.C_POINTER;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$932 {
 
     static final FunctionDescriptor gluCylinder$FUNC = FunctionDescriptor.ofVoid(
-        C_POINTER,
-        C_DOUBLE,
-        C_DOUBLE,
-        C_DOUBLE,
-        C_INT,
-        C_INT
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_DOUBLE$LAYOUT,
+        Constants$root.C_DOUBLE$LAYOUT,
+        Constants$root.C_DOUBLE$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle gluCylinder$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "gluCylinder",
-        "(Ljdk/incubator/foreign/MemoryAddress;DDDII)V",
-        constants$932.gluCylinder$FUNC, false
+        "gluCylinder",
+        constants$932.gluCylinder$FUNC
     );
     static final FunctionDescriptor gluDeleteNurbsRenderer$FUNC = FunctionDescriptor.ofVoid(
-        C_POINTER
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle gluDeleteNurbsRenderer$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "gluDeleteNurbsRenderer",
-        "(Ljdk/incubator/foreign/MemoryAddress;)V",
-        constants$932.gluDeleteNurbsRenderer$FUNC, false
+        "gluDeleteNurbsRenderer",
+        constants$932.gluDeleteNurbsRenderer$FUNC
     );
     static final FunctionDescriptor gluDeleteQuadric$FUNC = FunctionDescriptor.ofVoid(
-        C_POINTER
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle gluDeleteQuadric$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "gluDeleteQuadric",
-        "(Ljdk/incubator/foreign/MemoryAddress;)V",
-        constants$932.gluDeleteQuadric$FUNC, false
+        "gluDeleteQuadric",
+        constants$932.gluDeleteQuadric$FUNC
     );
     static final FunctionDescriptor gluDeleteTess$FUNC = FunctionDescriptor.ofVoid(
-        C_POINTER
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle gluDeleteTess$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "gluDeleteTess",
-        "(Ljdk/incubator/foreign/MemoryAddress;)V",
-        constants$932.gluDeleteTess$FUNC, false
+        "gluDeleteTess",
+        constants$932.gluDeleteTess$FUNC
     );
     static final FunctionDescriptor gluDisk$FUNC = FunctionDescriptor.ofVoid(
-        C_POINTER,
-        C_DOUBLE,
-        C_DOUBLE,
-        C_INT,
-        C_INT
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_DOUBLE$LAYOUT,
+        Constants$root.C_DOUBLE$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle gluDisk$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "gluDisk",
-        "(Ljdk/incubator/foreign/MemoryAddress;DDII)V",
-        constants$932.gluDisk$FUNC, false
+        "gluDisk",
+        constants$932.gluDisk$FUNC
     );
     static final FunctionDescriptor gluEndCurve$FUNC = FunctionDescriptor.ofVoid(
-        C_POINTER
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle gluEndCurve$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "gluEndCurve",
-        "(Ljdk/incubator/foreign/MemoryAddress;)V",
-        constants$932.gluEndCurve$FUNC, false
+        "gluEndCurve",
+        constants$932.gluEndCurve$FUNC
     );
 }
 

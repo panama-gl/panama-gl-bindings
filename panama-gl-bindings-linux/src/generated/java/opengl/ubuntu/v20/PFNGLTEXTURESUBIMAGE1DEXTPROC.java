@@ -2,22 +2,22 @@
 
 package opengl.ubuntu.v20;
 
-import jdk.incubator.foreign.Addressable;
-import jdk.incubator.foreign.MemoryAddress;
-import jdk.incubator.foreign.ResourceScope;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public interface PFNGLTEXTURESUBIMAGE1DEXTPROC {
 
-    void apply(int x0, int x1, int x2, int x3, int x4, int x5, int x6, jdk.incubator.foreign.MemoryAddress x7);
-    static MemoryAddress allocate(PFNGLTEXTURESUBIMAGE1DEXTPROC fi) {
-        return RuntimeHelper.upcallStub(PFNGLTEXTURESUBIMAGE1DEXTPROC.class, fi, constants$543.PFNGLTEXTURESUBIMAGE1DEXTPROC$FUNC, "(IIIIIIILjdk/incubator/foreign/MemoryAddress;)V");
+    void apply(int texture, int target, int level, int xoffset, int width, int format, int type, java.lang.foreign.MemoryAddress pixels);
+    static MemorySegment allocate(PFNGLTEXTURESUBIMAGE1DEXTPROC fi, MemorySession session) {
+        return RuntimeHelper.upcallStub(PFNGLTEXTURESUBIMAGE1DEXTPROC.class, fi, constants$543.PFNGLTEXTURESUBIMAGE1DEXTPROC$FUNC, session);
     }
-    static MemoryAddress allocate(PFNGLTEXTURESUBIMAGE1DEXTPROC fi, ResourceScope scope) {
-        return RuntimeHelper.upcallStub(PFNGLTEXTURESUBIMAGE1DEXTPROC.class, fi, constants$543.PFNGLTEXTURESUBIMAGE1DEXTPROC$FUNC, "(IIIIIIILjdk/incubator/foreign/MemoryAddress;)V", scope);
-    }
-    static PFNGLTEXTURESUBIMAGE1DEXTPROC ofAddress(MemoryAddress addr) {
-        return (int x0, int x1, int x2, int x3, int x4, int x5, int x6, jdk.incubator.foreign.MemoryAddress x7) -> {
+    static PFNGLTEXTURESUBIMAGE1DEXTPROC ofAddress(MemoryAddress addr, MemorySession session) {
+        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
+        return (int _texture, int _target, int _level, int _xoffset, int _width, int _format, int _type, java.lang.foreign.MemoryAddress _pixels) -> {
             try {
-                constants$543.PFNGLTEXTURESUBIMAGE1DEXTPROC$MH.invokeExact((Addressable)addr, x0, x1, x2, x3, x4, x5, x6, x7);
+                constants$543.PFNGLTEXTURESUBIMAGE1DEXTPROC$MH.invokeExact((Addressable)symbol, _texture, _target, _level, _xoffset, _width, _format, _type, (java.lang.foreign.Addressable)_pixels);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

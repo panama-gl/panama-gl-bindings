@@ -2,34 +2,32 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_CHAR;
-import static jdk.incubator.foreign.CLinker.C_INT;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$638 {
 
     static final FunctionDescriptor PFNGLMINMAXEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_CHAR
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_CHAR$LAYOUT
     );
     static final MethodHandle PFNGLMINMAXEXTPROC$MH = RuntimeHelper.downcallHandle(
-        "(IIB)V",
-        constants$638.PFNGLMINMAXEXTPROC$FUNC, false
+        constants$638.PFNGLMINMAXEXTPROC$FUNC
     );
     static final FunctionDescriptor PFNGLRESETHISTOGRAMEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLRESETHISTOGRAMEXTPROC$MH = RuntimeHelper.downcallHandle(
-        "(I)V",
-        constants$638.PFNGLRESETHISTOGRAMEXTPROC$FUNC, false
+        constants$638.PFNGLRESETHISTOGRAMEXTPROC$FUNC
     );
     static final FunctionDescriptor PFNGLRESETMINMAXEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLRESETMINMAXEXTPROC$MH = RuntimeHelper.downcallHandle(
-        "(I)V",
-        constants$638.PFNGLRESETMINMAXEXTPROC$FUNC, false
+        constants$638.PFNGLRESETMINMAXEXTPROC$FUNC
     );
 }
 

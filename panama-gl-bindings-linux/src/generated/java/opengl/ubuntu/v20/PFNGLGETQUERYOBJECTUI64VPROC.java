@@ -2,22 +2,22 @@
 
 package opengl.ubuntu.v20;
 
-import jdk.incubator.foreign.Addressable;
-import jdk.incubator.foreign.MemoryAddress;
-import jdk.incubator.foreign.ResourceScope;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public interface PFNGLGETQUERYOBJECTUI64VPROC {
 
-    void apply(int x0, int x1, jdk.incubator.foreign.MemoryAddress x2);
-    static MemoryAddress allocate(PFNGLGETQUERYOBJECTUI64VPROC fi) {
-        return RuntimeHelper.upcallStub(PFNGLGETQUERYOBJECTUI64VPROC.class, fi, constants$190.PFNGLGETQUERYOBJECTUI64VPROC$FUNC, "(IILjdk/incubator/foreign/MemoryAddress;)V");
+    void apply(int id, int pname, java.lang.foreign.MemoryAddress params);
+    static MemorySegment allocate(PFNGLGETQUERYOBJECTUI64VPROC fi, MemorySession session) {
+        return RuntimeHelper.upcallStub(PFNGLGETQUERYOBJECTUI64VPROC.class, fi, constants$190.PFNGLGETQUERYOBJECTUI64VPROC$FUNC, session);
     }
-    static MemoryAddress allocate(PFNGLGETQUERYOBJECTUI64VPROC fi, ResourceScope scope) {
-        return RuntimeHelper.upcallStub(PFNGLGETQUERYOBJECTUI64VPROC.class, fi, constants$190.PFNGLGETQUERYOBJECTUI64VPROC$FUNC, "(IILjdk/incubator/foreign/MemoryAddress;)V", scope);
-    }
-    static PFNGLGETQUERYOBJECTUI64VPROC ofAddress(MemoryAddress addr) {
-        return (int x0, int x1, jdk.incubator.foreign.MemoryAddress x2) -> {
+    static PFNGLGETQUERYOBJECTUI64VPROC ofAddress(MemoryAddress addr, MemorySession session) {
+        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
+        return (int _id, int _pname, java.lang.foreign.MemoryAddress _params) -> {
             try {
-                constants$190.PFNGLGETQUERYOBJECTUI64VPROC$MH.invokeExact((Addressable)addr, x0, x1, x2);
+                constants$190.PFNGLGETQUERYOBJECTUI64VPROC$MH.invokeExact((Addressable)symbol, _id, _pname, (java.lang.foreign.Addressable)_params);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

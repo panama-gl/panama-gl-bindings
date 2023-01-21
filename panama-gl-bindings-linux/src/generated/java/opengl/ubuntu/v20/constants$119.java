@@ -2,38 +2,36 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_INT;
-import static jdk.incubator.foreign.CLinker.C_POINTER;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$119 {
 
     static final FunctionDescriptor PFNGLGETATTACHEDSHADERSPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_POINTER,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLGETATTACHEDSHADERSPROC$MH = RuntimeHelper.downcallHandle(
-        "(IILjdk/incubator/foreign/MemoryAddress;Ljdk/incubator/foreign/MemoryAddress;)V",
-        constants$119.PFNGLGETATTACHEDSHADERSPROC$FUNC, false
+        constants$119.PFNGLGETATTACHEDSHADERSPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLGETATTRIBLOCATIONPROC$FUNC = FunctionDescriptor.of(C_INT,
-        C_INT,
-        C_POINTER
+    static final FunctionDescriptor PFNGLGETATTRIBLOCATIONPROC$FUNC = FunctionDescriptor.of(Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLGETATTRIBLOCATIONPROC$MH = RuntimeHelper.downcallHandle(
-        "(ILjdk/incubator/foreign/MemoryAddress;)I",
-        constants$119.PFNGLGETATTRIBLOCATIONPROC$FUNC, false
+        constants$119.PFNGLGETATTRIBLOCATIONPROC$FUNC
     );
     static final FunctionDescriptor PFNGLGETPROGRAMIVPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLGETPROGRAMIVPROC$MH = RuntimeHelper.downcallHandle(
-        "(IILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$119.PFNGLGETPROGRAMIVPROC$FUNC, false
+        constants$119.PFNGLGETPROGRAMIVPROC$FUNC
     );
 }
 

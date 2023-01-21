@@ -2,59 +2,57 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_INT;
-import static jdk.incubator.foreign.CLinker.C_POINTER;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$567 {
 
     static final FunctionDescriptor PFNGLCOMPRESSEDMULTITEXIMAGE1DEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLCOMPRESSEDMULTITEXIMAGE1DEXTPROC$MH = RuntimeHelper.downcallHandle(
-        "(IIIIIIILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$567.PFNGLCOMPRESSEDMULTITEXIMAGE1DEXTPROC$FUNC, false
+        constants$567.PFNGLCOMPRESSEDMULTITEXIMAGE1DEXTPROC$FUNC
     );
     static final FunctionDescriptor PFNGLCOMPRESSEDMULTITEXSUBIMAGE3DEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLCOMPRESSEDMULTITEXSUBIMAGE3DEXTPROC$MH = RuntimeHelper.downcallHandle(
-        "(IIIIIIIIIIILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$567.PFNGLCOMPRESSEDMULTITEXSUBIMAGE3DEXTPROC$FUNC, false
+        constants$567.PFNGLCOMPRESSEDMULTITEXSUBIMAGE3DEXTPROC$FUNC
     );
     static final FunctionDescriptor PFNGLCOMPRESSEDMULTITEXSUBIMAGE2DEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLCOMPRESSEDMULTITEXSUBIMAGE2DEXTPROC$MH = RuntimeHelper.downcallHandle(
-        "(IIIIIIIIILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$567.PFNGLCOMPRESSEDMULTITEXSUBIMAGE2DEXTPROC$FUNC, false
+        constants$567.PFNGLCOMPRESSEDMULTITEXSUBIMAGE2DEXTPROC$FUNC
     );
 }
 

@@ -2,22 +2,22 @@
 
 package opengl.ubuntu.v20;
 
-import jdk.incubator.foreign.Addressable;
-import jdk.incubator.foreign.MemoryAddress;
-import jdk.incubator.foreign.ResourceScope;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public interface PFNGLEVALUATEDEPTHVALUESARBPROC {
 
     void apply();
-    static MemoryAddress allocate(PFNGLEVALUATEDEPTHVALUESARBPROC fi) {
-        return RuntimeHelper.upcallStub(PFNGLEVALUATEDEPTHVALUESARBPROC.class, fi, constants$357.PFNGLEVALUATEDEPTHVALUESARBPROC$FUNC, "()V");
+    static MemorySegment allocate(PFNGLEVALUATEDEPTHVALUESARBPROC fi, MemorySession session) {
+        return RuntimeHelper.upcallStub(PFNGLEVALUATEDEPTHVALUESARBPROC.class, fi, constants$357.PFNGLEVALUATEDEPTHVALUESARBPROC$FUNC, session);
     }
-    static MemoryAddress allocate(PFNGLEVALUATEDEPTHVALUESARBPROC fi, ResourceScope scope) {
-        return RuntimeHelper.upcallStub(PFNGLEVALUATEDEPTHVALUESARBPROC.class, fi, constants$357.PFNGLEVALUATEDEPTHVALUESARBPROC$FUNC, "()V", scope);
-    }
-    static PFNGLEVALUATEDEPTHVALUESARBPROC ofAddress(MemoryAddress addr) {
+    static PFNGLEVALUATEDEPTHVALUESARBPROC ofAddress(MemoryAddress addr, MemorySession session) {
+        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return () -> {
             try {
-                constants$357.PFNGLEVALUATEDEPTHVALUESARBPROC$MH.invokeExact((Addressable)addr);
+                constants$357.PFNGLEVALUATEDEPTHVALUESARBPROC$MH.invokeExact((Addressable)symbol);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

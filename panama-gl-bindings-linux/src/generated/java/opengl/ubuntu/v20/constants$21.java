@@ -2,78 +2,70 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_CHAR;
-import static jdk.incubator.foreign.CLinker.C_DOUBLE;
-import static jdk.incubator.foreign.CLinker.C_FLOAT;
-import static jdk.incubator.foreign.CLinker.C_INT;
-import static jdk.incubator.foreign.CLinker.C_SHORT;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$21 {
 
     static final FunctionDescriptor glColor3ui$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_INT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle glColor3ui$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "glColor3ui",
-        "(III)V",
-        constants$21.glColor3ui$FUNC, false
+        "glColor3ui",
+        constants$21.glColor3ui$FUNC
     );
     static final FunctionDescriptor glColor3us$FUNC = FunctionDescriptor.ofVoid(
-        C_SHORT,
-        C_SHORT,
-        C_SHORT
+        Constants$root.C_SHORT$LAYOUT,
+        Constants$root.C_SHORT$LAYOUT,
+        Constants$root.C_SHORT$LAYOUT
     );
     static final MethodHandle glColor3us$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "glColor3us",
-        "(SSS)V",
-        constants$21.glColor3us$FUNC, false
+        "glColor3us",
+        constants$21.glColor3us$FUNC
     );
     static final FunctionDescriptor glColor4b$FUNC = FunctionDescriptor.ofVoid(
-        C_CHAR,
-        C_CHAR,
-        C_CHAR,
-        C_CHAR
+        Constants$root.C_CHAR$LAYOUT,
+        Constants$root.C_CHAR$LAYOUT,
+        Constants$root.C_CHAR$LAYOUT,
+        Constants$root.C_CHAR$LAYOUT
     );
     static final MethodHandle glColor4b$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "glColor4b",
-        "(BBBB)V",
-        constants$21.glColor4b$FUNC, false
+        "glColor4b",
+        constants$21.glColor4b$FUNC
     );
     static final FunctionDescriptor glColor4d$FUNC = FunctionDescriptor.ofVoid(
-        C_DOUBLE,
-        C_DOUBLE,
-        C_DOUBLE,
-        C_DOUBLE
+        Constants$root.C_DOUBLE$LAYOUT,
+        Constants$root.C_DOUBLE$LAYOUT,
+        Constants$root.C_DOUBLE$LAYOUT,
+        Constants$root.C_DOUBLE$LAYOUT
     );
     static final MethodHandle glColor4d$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "glColor4d",
-        "(DDDD)V",
-        constants$21.glColor4d$FUNC, false
+        "glColor4d",
+        constants$21.glColor4d$FUNC
     );
     static final FunctionDescriptor glColor4f$FUNC = FunctionDescriptor.ofVoid(
-        C_FLOAT,
-        C_FLOAT,
-        C_FLOAT,
-        C_FLOAT
+        Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT
     );
     static final MethodHandle glColor4f$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "glColor4f",
-        "(FFFF)V",
-        constants$21.glColor4f$FUNC, false
+        "glColor4f",
+        constants$21.glColor4f$FUNC
     );
     static final FunctionDescriptor glColor4i$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle glColor4i$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "glColor4i",
-        "(IIII)V",
-        constants$21.glColor4i$FUNC, false
+        "glColor4i",
+        constants$21.glColor4i$FUNC
     );
 }
 

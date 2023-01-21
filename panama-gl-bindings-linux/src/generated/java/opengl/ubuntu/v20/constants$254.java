@@ -2,48 +2,46 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_INT;
-import static jdk.incubator.foreign.CLinker.C_LONG;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$254 {
 
     static final FunctionDescriptor PFNGLDISPATCHCOMPUTEINDIRECTPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_LONG
+        Constants$root.C_LONG_LONG$LAYOUT
     );
     static final MethodHandle PFNGLDISPATCHCOMPUTEINDIRECTPROC$MH = RuntimeHelper.downcallHandle(
-        "(J)V",
-        constants$254.PFNGLDISPATCHCOMPUTEINDIRECTPROC$FUNC, false
+        constants$254.PFNGLDISPATCHCOMPUTEINDIRECTPROC$FUNC
     );
     static final FunctionDescriptor PFNGLCOPYIMAGESUBDATAPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLCOPYIMAGESUBDATAPROC$MH = RuntimeHelper.downcallHandle(
-        "(IIIIIIIIIIIIIII)V",
-        constants$254.PFNGLCOPYIMAGESUBDATAPROC$FUNC, false
+        constants$254.PFNGLCOPYIMAGESUBDATAPROC$FUNC
     );
     static final FunctionDescriptor PFNGLFRAMEBUFFERPARAMETERIPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_INT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLFRAMEBUFFERPARAMETERIPROC$MH = RuntimeHelper.downcallHandle(
-        "(III)V",
-        constants$254.PFNGLFRAMEBUFFERPARAMETERIPROC$FUNC, false
+        constants$254.PFNGLFRAMEBUFFERPARAMETERIPROC$FUNC
     );
 }
 

@@ -2,36 +2,34 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_INT;
-import static jdk.incubator.foreign.CLinker.C_POINTER;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$888 {
 
     static final FunctionDescriptor PFNGLPOINTPARAMETERFVSGISPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLPOINTPARAMETERFVSGISPROC$MH = RuntimeHelper.downcallHandle(
-        "(ILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$888.PFNGLPOINTPARAMETERFVSGISPROC$FUNC, false
+        constants$888.PFNGLPOINTPARAMETERFVSGISPROC$FUNC
     );
     static final FunctionDescriptor PFNGLSHARPENTEXFUNCSGISPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLSHARPENTEXFUNCSGISPROC$MH = RuntimeHelper.downcallHandle(
-        "(IILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$888.PFNGLSHARPENTEXFUNCSGISPROC$FUNC, false
+        constants$888.PFNGLSHARPENTEXFUNCSGISPROC$FUNC
     );
     static final FunctionDescriptor PFNGLGETSHARPENTEXFUNCSGISPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLGETSHARPENTEXFUNCSGISPROC$MH = RuntimeHelper.downcallHandle(
-        "(ILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$888.PFNGLGETSHARPENTEXFUNCSGISPROC$FUNC, false
+        constants$888.PFNGLGETSHARPENTEXFUNCSGISPROC$FUNC
     );
 }
 

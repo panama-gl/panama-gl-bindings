@@ -2,22 +2,22 @@
 
 package opengl.ubuntu.v20;
 
-import jdk.incubator.foreign.Addressable;
-import jdk.incubator.foreign.MemoryAddress;
-import jdk.incubator.foreign.ResourceScope;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public interface PFNGLVERTEX4BVOESPROC {
 
-    void apply(jdk.incubator.foreign.MemoryAddress x0);
-    static MemoryAddress allocate(PFNGLVERTEX4BVOESPROC fi) {
-        return RuntimeHelper.upcallStub(PFNGLVERTEX4BVOESPROC.class, fi, constants$413.PFNGLVERTEX4BVOESPROC$FUNC, "(Ljdk/incubator/foreign/MemoryAddress;)V");
+    void apply(java.lang.foreign.MemoryAddress coords);
+    static MemorySegment allocate(PFNGLVERTEX4BVOESPROC fi, MemorySession session) {
+        return RuntimeHelper.upcallStub(PFNGLVERTEX4BVOESPROC.class, fi, constants$413.PFNGLVERTEX4BVOESPROC$FUNC, session);
     }
-    static MemoryAddress allocate(PFNGLVERTEX4BVOESPROC fi, ResourceScope scope) {
-        return RuntimeHelper.upcallStub(PFNGLVERTEX4BVOESPROC.class, fi, constants$413.PFNGLVERTEX4BVOESPROC$FUNC, "(Ljdk/incubator/foreign/MemoryAddress;)V", scope);
-    }
-    static PFNGLVERTEX4BVOESPROC ofAddress(MemoryAddress addr) {
-        return (jdk.incubator.foreign.MemoryAddress x0) -> {
+    static PFNGLVERTEX4BVOESPROC ofAddress(MemoryAddress addr, MemorySession session) {
+        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
+        return (java.lang.foreign.MemoryAddress _coords) -> {
             try {
-                constants$413.PFNGLVERTEX4BVOESPROC$MH.invokeExact((Addressable)addr, x0);
+                constants$413.PFNGLVERTEX4BVOESPROC$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)_coords);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

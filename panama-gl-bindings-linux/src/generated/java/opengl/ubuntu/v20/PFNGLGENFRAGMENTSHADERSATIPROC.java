@@ -2,22 +2,22 @@
 
 package opengl.ubuntu.v20;
 
-import jdk.incubator.foreign.Addressable;
-import jdk.incubator.foreign.MemoryAddress;
-import jdk.incubator.foreign.ResourceScope;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public interface PFNGLGENFRAGMENTSHADERSATIPROC {
 
-    int apply(int x0);
-    static MemoryAddress allocate(PFNGLGENFRAGMENTSHADERSATIPROC fi) {
-        return RuntimeHelper.upcallStub(PFNGLGENFRAGMENTSHADERSATIPROC.class, fi, constants$489.PFNGLGENFRAGMENTSHADERSATIPROC$FUNC, "(I)I");
+    int apply(int range);
+    static MemorySegment allocate(PFNGLGENFRAGMENTSHADERSATIPROC fi, MemorySession session) {
+        return RuntimeHelper.upcallStub(PFNGLGENFRAGMENTSHADERSATIPROC.class, fi, constants$489.PFNGLGENFRAGMENTSHADERSATIPROC$FUNC, session);
     }
-    static MemoryAddress allocate(PFNGLGENFRAGMENTSHADERSATIPROC fi, ResourceScope scope) {
-        return RuntimeHelper.upcallStub(PFNGLGENFRAGMENTSHADERSATIPROC.class, fi, constants$489.PFNGLGENFRAGMENTSHADERSATIPROC$FUNC, "(I)I", scope);
-    }
-    static PFNGLGENFRAGMENTSHADERSATIPROC ofAddress(MemoryAddress addr) {
-        return (int x0) -> {
+    static PFNGLGENFRAGMENTSHADERSATIPROC ofAddress(MemoryAddress addr, MemorySession session) {
+        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
+        return (int _range) -> {
             try {
-                return (int)constants$489.PFNGLGENFRAGMENTSHADERSATIPROC$MH.invokeExact((Addressable)addr, x0);
+                return (int)constants$489.PFNGLGENFRAGMENTSHADERSATIPROC$MH.invokeExact((Addressable)symbol, _range);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

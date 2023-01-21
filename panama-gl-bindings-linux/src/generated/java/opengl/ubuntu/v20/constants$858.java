@@ -2,37 +2,33 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_DOUBLE;
-import static jdk.incubator.foreign.CLinker.C_FLOAT;
-import static jdk.incubator.foreign.CLinker.C_INT;
-import static jdk.incubator.foreign.CLinker.C_POINTER;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$858 {
 
     static final FunctionDescriptor PFNGLVERTEXATTRIB1DNVPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_DOUBLE
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_DOUBLE$LAYOUT
     );
     static final MethodHandle PFNGLVERTEXATTRIB1DNVPROC$MH = RuntimeHelper.downcallHandle(
-        "(ID)V",
-        constants$858.PFNGLVERTEXATTRIB1DNVPROC$FUNC, false
+        constants$858.PFNGLVERTEXATTRIB1DNVPROC$FUNC
     );
     static final FunctionDescriptor PFNGLVERTEXATTRIB1DVNVPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLVERTEXATTRIB1DVNVPROC$MH = RuntimeHelper.downcallHandle(
-        "(ILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$858.PFNGLVERTEXATTRIB1DVNVPROC$FUNC, false
+        constants$858.PFNGLVERTEXATTRIB1DVNVPROC$FUNC
     );
     static final FunctionDescriptor PFNGLVERTEXATTRIB1FNVPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_FLOAT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT
     );
     static final MethodHandle PFNGLVERTEXATTRIB1FNVPROC$MH = RuntimeHelper.downcallHandle(
-        "(IF)V",
-        constants$858.PFNGLVERTEXATTRIB1FNVPROC$FUNC, false
+        constants$858.PFNGLVERTEXATTRIB1FNVPROC$FUNC
     );
 }
 

@@ -2,54 +2,50 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_POINTER;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$9 {
 
     static final FunctionDescriptor glPopMatrix$FUNC = FunctionDescriptor.ofVoid();
     static final MethodHandle glPopMatrix$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "glPopMatrix",
-        "()V",
-        constants$9.glPopMatrix$FUNC, false
+        "glPopMatrix",
+        constants$9.glPopMatrix$FUNC
     );
     static final FunctionDescriptor glLoadIdentity$FUNC = FunctionDescriptor.ofVoid();
     static final MethodHandle glLoadIdentity$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "glLoadIdentity",
-        "()V",
-        constants$9.glLoadIdentity$FUNC, false
+        "glLoadIdentity",
+        constants$9.glLoadIdentity$FUNC
     );
     static final FunctionDescriptor glLoadMatrixd$FUNC = FunctionDescriptor.ofVoid(
-        C_POINTER
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle glLoadMatrixd$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "glLoadMatrixd",
-        "(Ljdk/incubator/foreign/MemoryAddress;)V",
-        constants$9.glLoadMatrixd$FUNC, false
+        "glLoadMatrixd",
+        constants$9.glLoadMatrixd$FUNC
     );
     static final FunctionDescriptor glLoadMatrixf$FUNC = FunctionDescriptor.ofVoid(
-        C_POINTER
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle glLoadMatrixf$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "glLoadMatrixf",
-        "(Ljdk/incubator/foreign/MemoryAddress;)V",
-        constants$9.glLoadMatrixf$FUNC, false
+        "glLoadMatrixf",
+        constants$9.glLoadMatrixf$FUNC
     );
     static final FunctionDescriptor glMultMatrixd$FUNC = FunctionDescriptor.ofVoid(
-        C_POINTER
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle glMultMatrixd$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "glMultMatrixd",
-        "(Ljdk/incubator/foreign/MemoryAddress;)V",
-        constants$9.glMultMatrixd$FUNC, false
+        "glMultMatrixd",
+        constants$9.glMultMatrixd$FUNC
     );
     static final FunctionDescriptor glMultMatrixf$FUNC = FunctionDescriptor.ofVoid(
-        C_POINTER
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle glMultMatrixf$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "glMultMatrixf",
-        "(Ljdk/incubator/foreign/MemoryAddress;)V",
-        constants$9.glMultMatrixf$FUNC, false
+        "glMultMatrixf",
+        constants$9.glMultMatrixf$FUNC
     );
 }
 

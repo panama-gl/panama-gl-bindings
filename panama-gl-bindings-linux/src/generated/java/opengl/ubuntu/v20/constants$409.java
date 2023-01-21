@@ -2,33 +2,31 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_CHAR;
-import static jdk.incubator.foreign.CLinker.C_POINTER;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$409 {
 
     static final FunctionDescriptor PFNGLTEXCOORD1BOESPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_CHAR
+        Constants$root.C_CHAR$LAYOUT
     );
     static final MethodHandle PFNGLTEXCOORD1BOESPROC$MH = RuntimeHelper.downcallHandle(
-        "(B)V",
-        constants$409.PFNGLTEXCOORD1BOESPROC$FUNC, false
+        constants$409.PFNGLTEXCOORD1BOESPROC$FUNC
     );
     static final FunctionDescriptor PFNGLTEXCOORD1BVOESPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_POINTER
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLTEXCOORD1BVOESPROC$MH = RuntimeHelper.downcallHandle(
-        "(Ljdk/incubator/foreign/MemoryAddress;)V",
-        constants$409.PFNGLTEXCOORD1BVOESPROC$FUNC, false
+        constants$409.PFNGLTEXCOORD1BVOESPROC$FUNC
     );
     static final FunctionDescriptor PFNGLTEXCOORD2BOESPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_CHAR,
-        C_CHAR
+        Constants$root.C_CHAR$LAYOUT,
+        Constants$root.C_CHAR$LAYOUT
     );
     static final MethodHandle PFNGLTEXCOORD2BOESPROC$MH = RuntimeHelper.downcallHandle(
-        "(BB)V",
-        constants$409.PFNGLTEXCOORD2BOESPROC$FUNC, false
+        constants$409.PFNGLTEXCOORD2BOESPROC$FUNC
     );
 }
 

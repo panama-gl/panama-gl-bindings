@@ -2,29 +2,28 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_INT;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$720 {
 
     static final FunctionDescriptor PFNGLBEGINCONDITIONALRENDERNVXPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLBEGINCONDITIONALRENDERNVXPROC$MH = RuntimeHelper.downcallHandle(
-        "(I)V",
-        constants$720.PFNGLBEGINCONDITIONALRENDERNVXPROC$FUNC, false
+        constants$720.PFNGLBEGINCONDITIONALRENDERNVXPROC$FUNC
     );
     static final FunctionDescriptor PFNGLENDCONDITIONALRENDERNVXPROC$FUNC = FunctionDescriptor.ofVoid();
     static final MethodHandle PFNGLENDCONDITIONALRENDERNVXPROC$MH = RuntimeHelper.downcallHandle(
-        "()V",
-        constants$720.PFNGLENDCONDITIONALRENDERNVXPROC$FUNC, false
+        constants$720.PFNGLENDCONDITIONALRENDERNVXPROC$FUNC
     );
     static final FunctionDescriptor PFNGLUPLOADGPUMASKNVXPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLUPLOADGPUMASKNVXPROC$MH = RuntimeHelper.downcallHandle(
-        "(I)V",
-        constants$720.PFNGLUPLOADGPUMASKNVXPROC$FUNC, false
+        constants$720.PFNGLUPLOADGPUMASKNVXPROC$FUNC
     );
 }
 

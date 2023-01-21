@@ -2,56 +2,55 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_INT;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$492 {
 
     static final FunctionDescriptor PFNGLCOLORFRAGMENTOP3ATIPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLCOLORFRAGMENTOP3ATIPROC$MH = RuntimeHelper.downcallHandle(
-        "(IIIIIIIIIIIII)V",
-        constants$492.PFNGLCOLORFRAGMENTOP3ATIPROC$FUNC, false
+        constants$492.PFNGLCOLORFRAGMENTOP3ATIPROC$FUNC
     );
     static final FunctionDescriptor PFNGLALPHAFRAGMENTOP1ATIPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLALPHAFRAGMENTOP1ATIPROC$MH = RuntimeHelper.downcallHandle(
-        "(IIIIII)V",
-        constants$492.PFNGLALPHAFRAGMENTOP1ATIPROC$FUNC, false
+        constants$492.PFNGLALPHAFRAGMENTOP1ATIPROC$FUNC
     );
     static final FunctionDescriptor PFNGLALPHAFRAGMENTOP2ATIPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLALPHAFRAGMENTOP2ATIPROC$MH = RuntimeHelper.downcallHandle(
-        "(IIIIIIIII)V",
-        constants$492.PFNGLALPHAFRAGMENTOP2ATIPROC$FUNC, false
+        constants$492.PFNGLALPHAFRAGMENTOP2ATIPROC$FUNC
     );
 }
 

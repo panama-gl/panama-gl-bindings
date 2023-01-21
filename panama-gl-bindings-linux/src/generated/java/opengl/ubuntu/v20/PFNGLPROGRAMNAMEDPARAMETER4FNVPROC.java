@@ -2,22 +2,22 @@
 
 package opengl.ubuntu.v20;
 
-import jdk.incubator.foreign.Addressable;
-import jdk.incubator.foreign.MemoryAddress;
-import jdk.incubator.foreign.ResourceScope;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public interface PFNGLPROGRAMNAMEDPARAMETER4FNVPROC {
 
-    void apply(int x0, int x1, jdk.incubator.foreign.MemoryAddress x2, float x3, float x4, float x5, float x6);
-    static MemoryAddress allocate(PFNGLPROGRAMNAMEDPARAMETER4FNVPROC fi) {
-        return RuntimeHelper.upcallStub(PFNGLPROGRAMNAMEDPARAMETER4FNVPROC.class, fi, constants$749.PFNGLPROGRAMNAMEDPARAMETER4FNVPROC$FUNC, "(IILjdk/incubator/foreign/MemoryAddress;FFFF)V");
+    void apply(int id, int len, java.lang.foreign.MemoryAddress name, float x, float y, float z, float w);
+    static MemorySegment allocate(PFNGLPROGRAMNAMEDPARAMETER4FNVPROC fi, MemorySession session) {
+        return RuntimeHelper.upcallStub(PFNGLPROGRAMNAMEDPARAMETER4FNVPROC.class, fi, constants$749.PFNGLPROGRAMNAMEDPARAMETER4FNVPROC$FUNC, session);
     }
-    static MemoryAddress allocate(PFNGLPROGRAMNAMEDPARAMETER4FNVPROC fi, ResourceScope scope) {
-        return RuntimeHelper.upcallStub(PFNGLPROGRAMNAMEDPARAMETER4FNVPROC.class, fi, constants$749.PFNGLPROGRAMNAMEDPARAMETER4FNVPROC$FUNC, "(IILjdk/incubator/foreign/MemoryAddress;FFFF)V", scope);
-    }
-    static PFNGLPROGRAMNAMEDPARAMETER4FNVPROC ofAddress(MemoryAddress addr) {
-        return (int x0, int x1, jdk.incubator.foreign.MemoryAddress x2, float x3, float x4, float x5, float x6) -> {
+    static PFNGLPROGRAMNAMEDPARAMETER4FNVPROC ofAddress(MemoryAddress addr, MemorySession session) {
+        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
+        return (int _id, int _len, java.lang.foreign.MemoryAddress _name, float _x, float _y, float _z, float _w) -> {
             try {
-                constants$749.PFNGLPROGRAMNAMEDPARAMETER4FNVPROC$MH.invokeExact((Addressable)addr, x0, x1, x2, x3, x4, x5, x6);
+                constants$749.PFNGLPROGRAMNAMEDPARAMETER4FNVPROC$MH.invokeExact((Addressable)symbol, _id, _len, (java.lang.foreign.Addressable)_name, _x, _y, _z, _w);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

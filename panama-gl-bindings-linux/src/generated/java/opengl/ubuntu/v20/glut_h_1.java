@@ -2,7 +2,12 @@
 
 package opengl.ubuntu.v20;
 
-class glut_h_1 {
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
+ class glut_h_1 {
 
     public static int GL_ACTIVE_ATTRIBUTE_MAX_LENGTH() {
         return (int)35722L;

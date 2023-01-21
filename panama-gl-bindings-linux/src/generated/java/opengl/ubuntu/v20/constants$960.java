@@ -2,43 +2,40 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_INT;
-import static jdk.incubator.foreign.CLinker.C_POINTER;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$960 {
 
     static final FunctionDescriptor glutButtonBoxFunc$FUNC = FunctionDescriptor.ofVoid(
-        C_POINTER
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle glutButtonBoxFunc$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "glutButtonBoxFunc",
-        "(Ljdk/incubator/foreign/MemoryAddress;)V",
-        constants$960.glutButtonBoxFunc$FUNC, false
+        "glutButtonBoxFunc",
+        constants$960.glutButtonBoxFunc$FUNC
     );
     static final FunctionDescriptor glutDialsFunc$callback$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle glutDialsFunc$callback$MH = RuntimeHelper.downcallHandle(
-        "(II)V",
-        constants$960.glutDialsFunc$callback$FUNC, false
+        constants$960.glutDialsFunc$callback$FUNC
     );
     static final FunctionDescriptor glutDialsFunc$FUNC = FunctionDescriptor.ofVoid(
-        C_POINTER
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle glutDialsFunc$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "glutDialsFunc",
-        "(Ljdk/incubator/foreign/MemoryAddress;)V",
-        constants$960.glutDialsFunc$FUNC, false
+        "glutDialsFunc",
+        constants$960.glutDialsFunc$FUNC
     );
     static final FunctionDescriptor glutTabletMotionFunc$callback$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle glutTabletMotionFunc$callback$MH = RuntimeHelper.downcallHandle(
-        "(II)V",
-        constants$960.glutTabletMotionFunc$callback$FUNC, false
+        constants$960.glutTabletMotionFunc$callback$FUNC
     );
 }
 

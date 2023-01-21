@@ -2,36 +2,33 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_CHAR;
-import static jdk.incubator.foreign.CLinker.C_INT;
-import static jdk.incubator.foreign.CLinker.C_POINTER;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$825 {
 
     static final FunctionDescriptor PFNGLSHADINGRATEIMAGEBARRIERNVPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_CHAR
+        Constants$root.C_CHAR$LAYOUT
     );
     static final MethodHandle PFNGLSHADINGRATEIMAGEBARRIERNVPROC$MH = RuntimeHelper.downcallHandle(
-        "(B)V",
-        constants$825.PFNGLSHADINGRATEIMAGEBARRIERNVPROC$FUNC, false
+        constants$825.PFNGLSHADINGRATEIMAGEBARRIERNVPROC$FUNC
     );
     static final FunctionDescriptor PFNGLSHADINGRATEIMAGEPALETTENVPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLSHADINGRATEIMAGEPALETTENVPROC$MH = RuntimeHelper.downcallHandle(
-        "(IIILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$825.PFNGLSHADINGRATEIMAGEPALETTENVPROC$FUNC, false
+        constants$825.PFNGLSHADINGRATEIMAGEPALETTENVPROC$FUNC
     );
     static final FunctionDescriptor PFNGLSHADINGRATESAMPLEORDERNVPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLSHADINGRATESAMPLEORDERNVPROC$MH = RuntimeHelper.downcallHandle(
-        "(I)V",
-        constants$825.PFNGLSHADINGRATESAMPLEORDERNVPROC$FUNC, false
+        constants$825.PFNGLSHADINGRATESAMPLEORDERNVPROC$FUNC
     );
 }
 

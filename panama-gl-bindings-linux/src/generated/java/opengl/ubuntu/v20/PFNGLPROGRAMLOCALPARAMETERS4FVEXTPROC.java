@@ -2,22 +2,22 @@
 
 package opengl.ubuntu.v20;
 
-import jdk.incubator.foreign.Addressable;
-import jdk.incubator.foreign.MemoryAddress;
-import jdk.incubator.foreign.ResourceScope;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public interface PFNGLPROGRAMLOCALPARAMETERS4FVEXTPROC {
 
-    void apply(int x0, int x1, int x2, jdk.incubator.foreign.MemoryAddress x3);
-    static MemoryAddress allocate(PFNGLPROGRAMLOCALPARAMETERS4FVEXTPROC fi) {
-        return RuntimeHelper.upcallStub(PFNGLPROGRAMLOCALPARAMETERS4FVEXTPROC.class, fi, constants$631.PFNGLPROGRAMLOCALPARAMETERS4FVEXTPROC$FUNC, "(IIILjdk/incubator/foreign/MemoryAddress;)V");
+    void apply(int target, int index, int count, java.lang.foreign.MemoryAddress params);
+    static MemorySegment allocate(PFNGLPROGRAMLOCALPARAMETERS4FVEXTPROC fi, MemorySession session) {
+        return RuntimeHelper.upcallStub(PFNGLPROGRAMLOCALPARAMETERS4FVEXTPROC.class, fi, constants$631.PFNGLPROGRAMLOCALPARAMETERS4FVEXTPROC$FUNC, session);
     }
-    static MemoryAddress allocate(PFNGLPROGRAMLOCALPARAMETERS4FVEXTPROC fi, ResourceScope scope) {
-        return RuntimeHelper.upcallStub(PFNGLPROGRAMLOCALPARAMETERS4FVEXTPROC.class, fi, constants$631.PFNGLPROGRAMLOCALPARAMETERS4FVEXTPROC$FUNC, "(IIILjdk/incubator/foreign/MemoryAddress;)V", scope);
-    }
-    static PFNGLPROGRAMLOCALPARAMETERS4FVEXTPROC ofAddress(MemoryAddress addr) {
-        return (int x0, int x1, int x2, jdk.incubator.foreign.MemoryAddress x3) -> {
+    static PFNGLPROGRAMLOCALPARAMETERS4FVEXTPROC ofAddress(MemoryAddress addr, MemorySession session) {
+        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
+        return (int _target, int _index, int _count, java.lang.foreign.MemoryAddress _params) -> {
             try {
-                constants$631.PFNGLPROGRAMLOCALPARAMETERS4FVEXTPROC$MH.invokeExact((Addressable)addr, x0, x1, x2, x3);
+                constants$631.PFNGLPROGRAMLOCALPARAMETERS4FVEXTPROC$MH.invokeExact((Addressable)symbol, _target, _index, _count, (java.lang.foreign.Addressable)_params);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

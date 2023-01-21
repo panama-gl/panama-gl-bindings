@@ -2,39 +2,36 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_DOUBLE;
-import static jdk.incubator.foreign.CLinker.C_INT;
-import static jdk.incubator.foreign.CLinker.C_POINTER;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$393 {
 
     static final FunctionDescriptor PFNGLVERTEXATTRIB4NUSVARBPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLVERTEXATTRIB4NUSVARBPROC$MH = RuntimeHelper.downcallHandle(
-        "(ILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$393.PFNGLVERTEXATTRIB4NUSVARBPROC$FUNC, false
+        constants$393.PFNGLVERTEXATTRIB4NUSVARBPROC$FUNC
     );
     static final FunctionDescriptor PFNGLVERTEXATTRIB4BVARBPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLVERTEXATTRIB4BVARBPROC$MH = RuntimeHelper.downcallHandle(
-        "(ILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$393.PFNGLVERTEXATTRIB4BVARBPROC$FUNC, false
+        constants$393.PFNGLVERTEXATTRIB4BVARBPROC$FUNC
     );
     static final FunctionDescriptor PFNGLVERTEXATTRIB4DARBPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_DOUBLE,
-        C_DOUBLE,
-        C_DOUBLE,
-        C_DOUBLE
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_DOUBLE$LAYOUT,
+        Constants$root.C_DOUBLE$LAYOUT,
+        Constants$root.C_DOUBLE$LAYOUT,
+        Constants$root.C_DOUBLE$LAYOUT
     );
     static final MethodHandle PFNGLVERTEXATTRIB4DARBPROC$MH = RuntimeHelper.downcallHandle(
-        "(IDDDD)V",
-        constants$393.PFNGLVERTEXATTRIB4DARBPROC$FUNC, false
+        constants$393.PFNGLVERTEXATTRIB4DARBPROC$FUNC
     );
 }
 

@@ -2,22 +2,22 @@
 
 package opengl.ubuntu.v20;
 
-import jdk.incubator.foreign.Addressable;
-import jdk.incubator.foreign.MemoryAddress;
-import jdk.incubator.foreign.ResourceScope;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public interface PFNGLPROGRAMPATHFRAGMENTINPUTGENNVPROC {
 
-    void apply(int x0, int x1, int x2, int x3, jdk.incubator.foreign.MemoryAddress x4);
-    static MemoryAddress allocate(PFNGLPROGRAMPATHFRAGMENTINPUTGENNVPROC fi) {
-        return RuntimeHelper.upcallStub(PFNGLPROGRAMPATHFRAGMENTINPUTGENNVPROC.class, fi, constants$804.PFNGLPROGRAMPATHFRAGMENTINPUTGENNVPROC$FUNC, "(IIIILjdk/incubator/foreign/MemoryAddress;)V");
+    void apply(int program, int location, int genMode, int components, java.lang.foreign.MemoryAddress coeffs);
+    static MemorySegment allocate(PFNGLPROGRAMPATHFRAGMENTINPUTGENNVPROC fi, MemorySession session) {
+        return RuntimeHelper.upcallStub(PFNGLPROGRAMPATHFRAGMENTINPUTGENNVPROC.class, fi, constants$804.PFNGLPROGRAMPATHFRAGMENTINPUTGENNVPROC$FUNC, session);
     }
-    static MemoryAddress allocate(PFNGLPROGRAMPATHFRAGMENTINPUTGENNVPROC fi, ResourceScope scope) {
-        return RuntimeHelper.upcallStub(PFNGLPROGRAMPATHFRAGMENTINPUTGENNVPROC.class, fi, constants$804.PFNGLPROGRAMPATHFRAGMENTINPUTGENNVPROC$FUNC, "(IIIILjdk/incubator/foreign/MemoryAddress;)V", scope);
-    }
-    static PFNGLPROGRAMPATHFRAGMENTINPUTGENNVPROC ofAddress(MemoryAddress addr) {
-        return (int x0, int x1, int x2, int x3, jdk.incubator.foreign.MemoryAddress x4) -> {
+    static PFNGLPROGRAMPATHFRAGMENTINPUTGENNVPROC ofAddress(MemoryAddress addr, MemorySession session) {
+        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
+        return (int _program, int _location, int _genMode, int _components, java.lang.foreign.MemoryAddress _coeffs) -> {
             try {
-                constants$804.PFNGLPROGRAMPATHFRAGMENTINPUTGENNVPROC$MH.invokeExact((Addressable)addr, x0, x1, x2, x3, x4);
+                constants$804.PFNGLPROGRAMPATHFRAGMENTINPUTGENNVPROC$MH.invokeExact((Addressable)symbol, _program, _location, _genMode, _components, (java.lang.foreign.Addressable)_coeffs);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

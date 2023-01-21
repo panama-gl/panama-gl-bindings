@@ -2,22 +2,22 @@
 
 package opengl.ubuntu.v20;
 
-import jdk.incubator.foreign.Addressable;
-import jdk.incubator.foreign.MemoryAddress;
-import jdk.incubator.foreign.ResourceScope;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public interface PFNGLRELEASEKEYEDMUTEXWIN32EXTPROC {
 
-    byte apply(int x0, long x1);
-    static MemoryAddress allocate(PFNGLRELEASEKEYEDMUTEXWIN32EXTPROC fi) {
-        return RuntimeHelper.upcallStub(PFNGLRELEASEKEYEDMUTEXWIN32EXTPROC.class, fi, constants$697.PFNGLRELEASEKEYEDMUTEXWIN32EXTPROC$FUNC, "(IJ)B");
+    byte apply(int memory, long key);
+    static MemorySegment allocate(PFNGLRELEASEKEYEDMUTEXWIN32EXTPROC fi, MemorySession session) {
+        return RuntimeHelper.upcallStub(PFNGLRELEASEKEYEDMUTEXWIN32EXTPROC.class, fi, constants$697.PFNGLRELEASEKEYEDMUTEXWIN32EXTPROC$FUNC, session);
     }
-    static MemoryAddress allocate(PFNGLRELEASEKEYEDMUTEXWIN32EXTPROC fi, ResourceScope scope) {
-        return RuntimeHelper.upcallStub(PFNGLRELEASEKEYEDMUTEXWIN32EXTPROC.class, fi, constants$697.PFNGLRELEASEKEYEDMUTEXWIN32EXTPROC$FUNC, "(IJ)B", scope);
-    }
-    static PFNGLRELEASEKEYEDMUTEXWIN32EXTPROC ofAddress(MemoryAddress addr) {
-        return (int x0, long x1) -> {
+    static PFNGLRELEASEKEYEDMUTEXWIN32EXTPROC ofAddress(MemoryAddress addr, MemorySession session) {
+        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
+        return (int _memory, long _key) -> {
             try {
-                return (byte)constants$697.PFNGLRELEASEKEYEDMUTEXWIN32EXTPROC$MH.invokeExact((Addressable)addr, x0, x1);
+                return (byte)constants$697.PFNGLRELEASEKEYEDMUTEXWIN32EXTPROC$MH.invokeExact((Addressable)symbol, _memory, _key);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

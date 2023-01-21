@@ -2,34 +2,31 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_CHAR;
-import static jdk.incubator.foreign.CLinker.C_INT;
-import static jdk.incubator.foreign.CLinker.C_POINTER;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$180 {
 
-    static final FunctionDescriptor PFNGLFENCESYNCPROC$FUNC = FunctionDescriptor.of(C_POINTER,
-        C_INT,
-        C_INT
+    static final FunctionDescriptor PFNGLFENCESYNCPROC$FUNC = FunctionDescriptor.of(Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLFENCESYNCPROC$MH = RuntimeHelper.downcallHandle(
-        "(II)Ljdk/incubator/foreign/MemoryAddress;",
-        constants$180.PFNGLFENCESYNCPROC$FUNC, false
+        constants$180.PFNGLFENCESYNCPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLISSYNCPROC$FUNC = FunctionDescriptor.of(C_CHAR,
-        C_POINTER
+    static final FunctionDescriptor PFNGLISSYNCPROC$FUNC = FunctionDescriptor.of(Constants$root.C_CHAR$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLISSYNCPROC$MH = RuntimeHelper.downcallHandle(
-        "(Ljdk/incubator/foreign/MemoryAddress;)B",
-        constants$180.PFNGLISSYNCPROC$FUNC, false
+        constants$180.PFNGLISSYNCPROC$FUNC
     );
     static final FunctionDescriptor PFNGLDELETESYNCPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_POINTER
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLDELETESYNCPROC$MH = RuntimeHelper.downcallHandle(
-        "(Ljdk/incubator/foreign/MemoryAddress;)V",
-        constants$180.PFNGLDELETESYNCPROC$FUNC, false
+        constants$180.PFNGLDELETESYNCPROC$FUNC
     );
 }
 

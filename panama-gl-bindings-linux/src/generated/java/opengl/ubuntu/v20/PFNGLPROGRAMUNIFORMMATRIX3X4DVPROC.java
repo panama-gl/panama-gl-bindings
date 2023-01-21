@@ -2,22 +2,22 @@
 
 package opengl.ubuntu.v20;
 
-import jdk.incubator.foreign.Addressable;
-import jdk.incubator.foreign.MemoryAddress;
-import jdk.incubator.foreign.ResourceScope;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public interface PFNGLPROGRAMUNIFORMMATRIX3X4DVPROC {
 
-    void apply(int x0, int x1, int x2, byte x3, jdk.incubator.foreign.MemoryAddress x4);
-    static MemoryAddress allocate(PFNGLPROGRAMUNIFORMMATRIX3X4DVPROC fi) {
-        return RuntimeHelper.upcallStub(PFNGLPROGRAMUNIFORMMATRIX3X4DVPROC.class, fi, constants$240.PFNGLPROGRAMUNIFORMMATRIX3X4DVPROC$FUNC, "(IIIBLjdk/incubator/foreign/MemoryAddress;)V");
+    void apply(int program, int location, int count, byte transpose, java.lang.foreign.MemoryAddress value);
+    static MemorySegment allocate(PFNGLPROGRAMUNIFORMMATRIX3X4DVPROC fi, MemorySession session) {
+        return RuntimeHelper.upcallStub(PFNGLPROGRAMUNIFORMMATRIX3X4DVPROC.class, fi, constants$240.PFNGLPROGRAMUNIFORMMATRIX3X4DVPROC$FUNC, session);
     }
-    static MemoryAddress allocate(PFNGLPROGRAMUNIFORMMATRIX3X4DVPROC fi, ResourceScope scope) {
-        return RuntimeHelper.upcallStub(PFNGLPROGRAMUNIFORMMATRIX3X4DVPROC.class, fi, constants$240.PFNGLPROGRAMUNIFORMMATRIX3X4DVPROC$FUNC, "(IIIBLjdk/incubator/foreign/MemoryAddress;)V", scope);
-    }
-    static PFNGLPROGRAMUNIFORMMATRIX3X4DVPROC ofAddress(MemoryAddress addr) {
-        return (int x0, int x1, int x2, byte x3, jdk.incubator.foreign.MemoryAddress x4) -> {
+    static PFNGLPROGRAMUNIFORMMATRIX3X4DVPROC ofAddress(MemoryAddress addr, MemorySession session) {
+        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
+        return (int _program, int _location, int _count, byte _transpose, java.lang.foreign.MemoryAddress _value) -> {
             try {
-                constants$240.PFNGLPROGRAMUNIFORMMATRIX3X4DVPROC$MH.invokeExact((Addressable)addr, x0, x1, x2, x3, x4);
+                constants$240.PFNGLPROGRAMUNIFORMMATRIX3X4DVPROC$MH.invokeExact((Addressable)symbol, _program, _location, _count, _transpose, (java.lang.foreign.Addressable)_value);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

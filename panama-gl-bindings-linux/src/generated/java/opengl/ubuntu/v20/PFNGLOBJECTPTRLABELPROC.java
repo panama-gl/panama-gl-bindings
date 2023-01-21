@@ -2,22 +2,22 @@
 
 package opengl.ubuntu.v20;
 
-import jdk.incubator.foreign.Addressable;
-import jdk.incubator.foreign.MemoryAddress;
-import jdk.incubator.foreign.ResourceScope;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public interface PFNGLOBJECTPTRLABELPROC {
 
-    void apply(jdk.incubator.foreign.MemoryAddress x0, int x1, jdk.incubator.foreign.MemoryAddress x2);
-    static MemoryAddress allocate(PFNGLOBJECTPTRLABELPROC fi) {
-        return RuntimeHelper.upcallStub(PFNGLOBJECTPTRLABELPROC.class, fi, constants$266.PFNGLOBJECTPTRLABELPROC$FUNC, "(Ljdk/incubator/foreign/MemoryAddress;ILjdk/incubator/foreign/MemoryAddress;)V");
+    void apply(java.lang.foreign.MemoryAddress ptr, int length, java.lang.foreign.MemoryAddress label);
+    static MemorySegment allocate(PFNGLOBJECTPTRLABELPROC fi, MemorySession session) {
+        return RuntimeHelper.upcallStub(PFNGLOBJECTPTRLABELPROC.class, fi, constants$266.PFNGLOBJECTPTRLABELPROC$FUNC, session);
     }
-    static MemoryAddress allocate(PFNGLOBJECTPTRLABELPROC fi, ResourceScope scope) {
-        return RuntimeHelper.upcallStub(PFNGLOBJECTPTRLABELPROC.class, fi, constants$266.PFNGLOBJECTPTRLABELPROC$FUNC, "(Ljdk/incubator/foreign/MemoryAddress;ILjdk/incubator/foreign/MemoryAddress;)V", scope);
-    }
-    static PFNGLOBJECTPTRLABELPROC ofAddress(MemoryAddress addr) {
-        return (jdk.incubator.foreign.MemoryAddress x0, int x1, jdk.incubator.foreign.MemoryAddress x2) -> {
+    static PFNGLOBJECTPTRLABELPROC ofAddress(MemoryAddress addr, MemorySession session) {
+        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
+        return (java.lang.foreign.MemoryAddress _ptr, int _length, java.lang.foreign.MemoryAddress _label) -> {
             try {
-                constants$266.PFNGLOBJECTPTRLABELPROC$MH.invokeExact((Addressable)addr, x0, x1, x2);
+                constants$266.PFNGLOBJECTPTRLABELPROC$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)_ptr, _length, (java.lang.foreign.Addressable)_label);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

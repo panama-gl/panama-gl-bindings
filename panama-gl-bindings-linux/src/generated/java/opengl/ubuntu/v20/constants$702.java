@@ -2,42 +2,40 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_INT;
-import static jdk.incubator.foreign.CLinker.C_POINTER;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$702 {
 
     static final FunctionDescriptor PFNGLCOLORPOINTERLISTIBMPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_INT,
-        C_POINTER,
-        C_INT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLCOLORPOINTERLISTIBMPROC$MH = RuntimeHelper.downcallHandle(
-        "(IIILjdk/incubator/foreign/MemoryAddress;I)V",
-        constants$702.PFNGLCOLORPOINTERLISTIBMPROC$FUNC, false
+        constants$702.PFNGLCOLORPOINTERLISTIBMPROC$FUNC
     );
     static final FunctionDescriptor PFNGLSECONDARYCOLORPOINTERLISTIBMPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_INT,
-        C_POINTER,
-        C_INT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLSECONDARYCOLORPOINTERLISTIBMPROC$MH = RuntimeHelper.downcallHandle(
-        "(IIILjdk/incubator/foreign/MemoryAddress;I)V",
-        constants$702.PFNGLSECONDARYCOLORPOINTERLISTIBMPROC$FUNC, false
+        constants$702.PFNGLSECONDARYCOLORPOINTERLISTIBMPROC$FUNC
     );
     static final FunctionDescriptor PFNGLEDGEFLAGPOINTERLISTIBMPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_POINTER,
-        C_INT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLEDGEFLAGPOINTERLISTIBMPROC$MH = RuntimeHelper.downcallHandle(
-        "(ILjdk/incubator/foreign/MemoryAddress;I)V",
-        constants$702.PFNGLEDGEFLAGPOINTERLISTIBMPROC$FUNC, false
+        constants$702.PFNGLEDGEFLAGPOINTERLISTIBMPROC$FUNC
     );
 }
 

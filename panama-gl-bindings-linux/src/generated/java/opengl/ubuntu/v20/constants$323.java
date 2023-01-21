@@ -2,37 +2,35 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_INT;
-import static jdk.incubator.foreign.CLinker.C_POINTER;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$323 {
 
     static final FunctionDescriptor PFNGLPROGRAMSTRINGARBPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLPROGRAMSTRINGARBPROC$MH = RuntimeHelper.downcallHandle(
-        "(IIILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$323.PFNGLPROGRAMSTRINGARBPROC$FUNC, false
+        constants$323.PFNGLPROGRAMSTRINGARBPROC$FUNC
     );
     static final FunctionDescriptor PFNGLBINDPROGRAMARBPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLBINDPROGRAMARBPROC$MH = RuntimeHelper.downcallHandle(
-        "(II)V",
-        constants$323.PFNGLBINDPROGRAMARBPROC$FUNC, false
+        constants$323.PFNGLBINDPROGRAMARBPROC$FUNC
     );
     static final FunctionDescriptor PFNGLDELETEPROGRAMSARBPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLDELETEPROGRAMSARBPROC$MH = RuntimeHelper.downcallHandle(
-        "(ILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$323.PFNGLDELETEPROGRAMSARBPROC$FUNC, false
+        constants$323.PFNGLDELETEPROGRAMSARBPROC$FUNC
     );
 }
 

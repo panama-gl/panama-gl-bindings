@@ -2,22 +2,22 @@
 
 package opengl.ubuntu.v20;
 
-import jdk.incubator.foreign.Addressable;
-import jdk.incubator.foreign.MemoryAddress;
-import jdk.incubator.foreign.ResourceScope;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public interface PFNGLSHADERSOURCEPROC {
 
-    void apply(int x0, int x1, jdk.incubator.foreign.MemoryAddress x2, jdk.incubator.foreign.MemoryAddress x3);
-    static MemoryAddress allocate(PFNGLSHADERSOURCEPROC fi) {
-        return RuntimeHelper.upcallStub(PFNGLSHADERSOURCEPROC.class, fi, constants$124.PFNGLSHADERSOURCEPROC$FUNC, "(IILjdk/incubator/foreign/MemoryAddress;Ljdk/incubator/foreign/MemoryAddress;)V");
+    void apply(int shader, int count, java.lang.foreign.MemoryAddress string, java.lang.foreign.MemoryAddress length);
+    static MemorySegment allocate(PFNGLSHADERSOURCEPROC fi, MemorySession session) {
+        return RuntimeHelper.upcallStub(PFNGLSHADERSOURCEPROC.class, fi, constants$124.PFNGLSHADERSOURCEPROC$FUNC, session);
     }
-    static MemoryAddress allocate(PFNGLSHADERSOURCEPROC fi, ResourceScope scope) {
-        return RuntimeHelper.upcallStub(PFNGLSHADERSOURCEPROC.class, fi, constants$124.PFNGLSHADERSOURCEPROC$FUNC, "(IILjdk/incubator/foreign/MemoryAddress;Ljdk/incubator/foreign/MemoryAddress;)V", scope);
-    }
-    static PFNGLSHADERSOURCEPROC ofAddress(MemoryAddress addr) {
-        return (int x0, int x1, jdk.incubator.foreign.MemoryAddress x2, jdk.incubator.foreign.MemoryAddress x3) -> {
+    static PFNGLSHADERSOURCEPROC ofAddress(MemoryAddress addr, MemorySession session) {
+        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
+        return (int _shader, int _count, java.lang.foreign.MemoryAddress _string, java.lang.foreign.MemoryAddress _length) -> {
             try {
-                constants$124.PFNGLSHADERSOURCEPROC$MH.invokeExact((Addressable)addr, x0, x1, x2, x3);
+                constants$124.PFNGLSHADERSOURCEPROC$MH.invokeExact((Addressable)symbol, _shader, _count, (java.lang.foreign.Addressable)_string, (java.lang.foreign.Addressable)_length);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

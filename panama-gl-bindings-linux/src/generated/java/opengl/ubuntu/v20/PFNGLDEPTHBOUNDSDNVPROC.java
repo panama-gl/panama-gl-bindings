@@ -2,22 +2,22 @@
 
 package opengl.ubuntu.v20;
 
-import jdk.incubator.foreign.Addressable;
-import jdk.incubator.foreign.MemoryAddress;
-import jdk.incubator.foreign.ResourceScope;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public interface PFNGLDEPTHBOUNDSDNVPROC {
 
-    void apply(double x0, double x1);
-    static MemoryAddress allocate(PFNGLDEPTHBOUNDSDNVPROC fi) {
-        return RuntimeHelper.upcallStub(PFNGLDEPTHBOUNDSDNVPROC.class, fi, constants$740.PFNGLDEPTHBOUNDSDNVPROC$FUNC, "(DD)V");
+    void apply(double zmin, double zmax);
+    static MemorySegment allocate(PFNGLDEPTHBOUNDSDNVPROC fi, MemorySession session) {
+        return RuntimeHelper.upcallStub(PFNGLDEPTHBOUNDSDNVPROC.class, fi, constants$740.PFNGLDEPTHBOUNDSDNVPROC$FUNC, session);
     }
-    static MemoryAddress allocate(PFNGLDEPTHBOUNDSDNVPROC fi, ResourceScope scope) {
-        return RuntimeHelper.upcallStub(PFNGLDEPTHBOUNDSDNVPROC.class, fi, constants$740.PFNGLDEPTHBOUNDSDNVPROC$FUNC, "(DD)V", scope);
-    }
-    static PFNGLDEPTHBOUNDSDNVPROC ofAddress(MemoryAddress addr) {
-        return (double x0, double x1) -> {
+    static PFNGLDEPTHBOUNDSDNVPROC ofAddress(MemoryAddress addr, MemorySession session) {
+        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
+        return (double _zmin, double _zmax) -> {
             try {
-                constants$740.PFNGLDEPTHBOUNDSDNVPROC$MH.invokeExact((Addressable)addr, x0, x1);
+                constants$740.PFNGLDEPTHBOUNDSDNVPROC$MH.invokeExact((Addressable)symbol, _zmin, _zmax);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

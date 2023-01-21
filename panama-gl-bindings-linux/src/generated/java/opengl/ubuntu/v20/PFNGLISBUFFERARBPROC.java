@@ -2,22 +2,22 @@
 
 package opengl.ubuntu.v20;
 
-import jdk.incubator.foreign.Addressable;
-import jdk.incubator.foreign.MemoryAddress;
-import jdk.incubator.foreign.ResourceScope;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public interface PFNGLISBUFFERARBPROC {
 
-    byte apply(int x0);
-    static MemoryAddress allocate(PFNGLISBUFFERARBPROC fi) {
-        return RuntimeHelper.upcallStub(PFNGLISBUFFERARBPROC.class, fi, constants$382.PFNGLISBUFFERARBPROC$FUNC, "(I)B");
+    byte apply(int buffer);
+    static MemorySegment allocate(PFNGLISBUFFERARBPROC fi, MemorySession session) {
+        return RuntimeHelper.upcallStub(PFNGLISBUFFERARBPROC.class, fi, constants$382.PFNGLISBUFFERARBPROC$FUNC, session);
     }
-    static MemoryAddress allocate(PFNGLISBUFFERARBPROC fi, ResourceScope scope) {
-        return RuntimeHelper.upcallStub(PFNGLISBUFFERARBPROC.class, fi, constants$382.PFNGLISBUFFERARBPROC$FUNC, "(I)B", scope);
-    }
-    static PFNGLISBUFFERARBPROC ofAddress(MemoryAddress addr) {
-        return (int x0) -> {
+    static PFNGLISBUFFERARBPROC ofAddress(MemoryAddress addr, MemorySession session) {
+        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
+        return (int _buffer) -> {
             try {
-                return (byte)constants$382.PFNGLISBUFFERARBPROC$MH.invokeExact((Addressable)addr, x0);
+                return (byte)constants$382.PFNGLISBUFFERARBPROC$MH.invokeExact((Addressable)symbol, _buffer);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

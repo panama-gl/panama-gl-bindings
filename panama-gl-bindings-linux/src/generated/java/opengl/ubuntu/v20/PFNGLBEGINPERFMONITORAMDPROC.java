@@ -2,22 +2,22 @@
 
 package opengl.ubuntu.v20;
 
-import jdk.incubator.foreign.Addressable;
-import jdk.incubator.foreign.MemoryAddress;
-import jdk.incubator.foreign.ResourceScope;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public interface PFNGLBEGINPERFMONITORAMDPROC {
 
-    void apply(int x0);
-    static MemoryAddress allocate(PFNGLBEGINPERFMONITORAMDPROC fi) {
-        return RuntimeHelper.upcallStub(PFNGLBEGINPERFMONITORAMDPROC.class, fi, constants$472.PFNGLBEGINPERFMONITORAMDPROC$FUNC, "(I)V");
+    void apply(int monitor);
+    static MemorySegment allocate(PFNGLBEGINPERFMONITORAMDPROC fi, MemorySession session) {
+        return RuntimeHelper.upcallStub(PFNGLBEGINPERFMONITORAMDPROC.class, fi, constants$472.PFNGLBEGINPERFMONITORAMDPROC$FUNC, session);
     }
-    static MemoryAddress allocate(PFNGLBEGINPERFMONITORAMDPROC fi, ResourceScope scope) {
-        return RuntimeHelper.upcallStub(PFNGLBEGINPERFMONITORAMDPROC.class, fi, constants$472.PFNGLBEGINPERFMONITORAMDPROC$FUNC, "(I)V", scope);
-    }
-    static PFNGLBEGINPERFMONITORAMDPROC ofAddress(MemoryAddress addr) {
-        return (int x0) -> {
+    static PFNGLBEGINPERFMONITORAMDPROC ofAddress(MemoryAddress addr, MemorySession session) {
+        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
+        return (int _monitor) -> {
             try {
-                constants$472.PFNGLBEGINPERFMONITORAMDPROC$MH.invokeExact((Addressable)addr, x0);
+                constants$472.PFNGLBEGINPERFMONITORAMDPROC$MH.invokeExact((Addressable)symbol, _monitor);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

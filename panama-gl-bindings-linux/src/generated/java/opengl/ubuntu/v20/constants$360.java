@@ -2,32 +2,31 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_INT;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$360 {
 
     static final FunctionDescriptor PFNGLATTACHOBJECTARBPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLATTACHOBJECTARBPROC$MH = RuntimeHelper.downcallHandle(
-        "(II)V",
-        constants$360.PFNGLATTACHOBJECTARBPROC$FUNC, false
+        constants$360.PFNGLATTACHOBJECTARBPROC$FUNC
     );
     static final FunctionDescriptor PFNGLLINKPROGRAMARBPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLLINKPROGRAMARBPROC$MH = RuntimeHelper.downcallHandle(
-        "(I)V",
-        constants$360.PFNGLLINKPROGRAMARBPROC$FUNC, false
+        constants$360.PFNGLLINKPROGRAMARBPROC$FUNC
     );
     static final FunctionDescriptor PFNGLUSEPROGRAMOBJECTARBPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLUSEPROGRAMOBJECTARBPROC$MH = RuntimeHelper.downcallHandle(
-        "(I)V",
-        constants$360.PFNGLUSEPROGRAMOBJECTARBPROC$FUNC, false
+        constants$360.PFNGLUSEPROGRAMOBJECTARBPROC$FUNC
     );
 }
 

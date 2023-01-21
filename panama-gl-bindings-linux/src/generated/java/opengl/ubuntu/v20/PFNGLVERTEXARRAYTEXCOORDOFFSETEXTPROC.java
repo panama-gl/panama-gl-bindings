@@ -2,22 +2,22 @@
 
 package opengl.ubuntu.v20;
 
-import jdk.incubator.foreign.Addressable;
-import jdk.incubator.foreign.MemoryAddress;
-import jdk.incubator.foreign.ResourceScope;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public interface PFNGLVERTEXARRAYTEXCOORDOFFSETEXTPROC {
 
-    void apply(int x0, int x1, int x2, int x3, int x4, long x5);
-    static MemoryAddress allocate(PFNGLVERTEXARRAYTEXCOORDOFFSETEXTPROC fi) {
-        return RuntimeHelper.upcallStub(PFNGLVERTEXARRAYTEXCOORDOFFSETEXTPROC.class, fi, constants$603.PFNGLVERTEXARRAYTEXCOORDOFFSETEXTPROC$FUNC, "(IIIIIJ)V");
+    void apply(int vaobj, int buffer, int size, int type, int stride, long offset);
+    static MemorySegment allocate(PFNGLVERTEXARRAYTEXCOORDOFFSETEXTPROC fi, MemorySession session) {
+        return RuntimeHelper.upcallStub(PFNGLVERTEXARRAYTEXCOORDOFFSETEXTPROC.class, fi, constants$603.PFNGLVERTEXARRAYTEXCOORDOFFSETEXTPROC$FUNC, session);
     }
-    static MemoryAddress allocate(PFNGLVERTEXARRAYTEXCOORDOFFSETEXTPROC fi, ResourceScope scope) {
-        return RuntimeHelper.upcallStub(PFNGLVERTEXARRAYTEXCOORDOFFSETEXTPROC.class, fi, constants$603.PFNGLVERTEXARRAYTEXCOORDOFFSETEXTPROC$FUNC, "(IIIIIJ)V", scope);
-    }
-    static PFNGLVERTEXARRAYTEXCOORDOFFSETEXTPROC ofAddress(MemoryAddress addr) {
-        return (int x0, int x1, int x2, int x3, int x4, long x5) -> {
+    static PFNGLVERTEXARRAYTEXCOORDOFFSETEXTPROC ofAddress(MemoryAddress addr, MemorySession session) {
+        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
+        return (int _vaobj, int _buffer, int _size, int _type, int _stride, long _offset) -> {
             try {
-                constants$603.PFNGLVERTEXARRAYTEXCOORDOFFSETEXTPROC$MH.invokeExact((Addressable)addr, x0, x1, x2, x3, x4, x5);
+                constants$603.PFNGLVERTEXARRAYTEXCOORDOFFSETEXTPROC$MH.invokeExact((Addressable)symbol, _vaobj, _buffer, _size, _type, _stride, _offset);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

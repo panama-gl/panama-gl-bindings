@@ -2,22 +2,22 @@
 
 package opengl.ubuntu.v20;
 
-import jdk.incubator.foreign.Addressable;
-import jdk.incubator.foreign.MemoryAddress;
-import jdk.incubator.foreign.ResourceScope;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public interface PFNGLGETVIDEOIVNVPROC {
 
-    void apply(int x0, int x1, jdk.incubator.foreign.MemoryAddress x2);
-    static MemoryAddress allocate(PFNGLGETVIDEOIVNVPROC fi) {
-        return RuntimeHelper.upcallStub(PFNGLGETVIDEOIVNVPROC.class, fi, constants$809.PFNGLGETVIDEOIVNVPROC$FUNC, "(IILjdk/incubator/foreign/MemoryAddress;)V");
+    void apply(int video_slot, int pname, java.lang.foreign.MemoryAddress params);
+    static MemorySegment allocate(PFNGLGETVIDEOIVNVPROC fi, MemorySession session) {
+        return RuntimeHelper.upcallStub(PFNGLGETVIDEOIVNVPROC.class, fi, constants$809.PFNGLGETVIDEOIVNVPROC$FUNC, session);
     }
-    static MemoryAddress allocate(PFNGLGETVIDEOIVNVPROC fi, ResourceScope scope) {
-        return RuntimeHelper.upcallStub(PFNGLGETVIDEOIVNVPROC.class, fi, constants$809.PFNGLGETVIDEOIVNVPROC$FUNC, "(IILjdk/incubator/foreign/MemoryAddress;)V", scope);
-    }
-    static PFNGLGETVIDEOIVNVPROC ofAddress(MemoryAddress addr) {
-        return (int x0, int x1, jdk.incubator.foreign.MemoryAddress x2) -> {
+    static PFNGLGETVIDEOIVNVPROC ofAddress(MemoryAddress addr, MemorySession session) {
+        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
+        return (int _video_slot, int _pname, java.lang.foreign.MemoryAddress _params) -> {
             try {
-                constants$809.PFNGLGETVIDEOIVNVPROC$MH.invokeExact((Addressable)addr, x0, x1, x2);
+                constants$809.PFNGLGETVIDEOIVNVPROC$MH.invokeExact((Addressable)symbol, _video_slot, _pname, (java.lang.foreign.Addressable)_params);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

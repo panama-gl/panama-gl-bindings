@@ -2,41 +2,39 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_INT;
-import static jdk.incubator.foreign.CLinker.C_LONG;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$674 {
 
     static final FunctionDescriptor PFNGLBINDBUFFERRANGEEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_INT,
-        C_LONG,
-        C_LONG
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT
     );
     static final MethodHandle PFNGLBINDBUFFERRANGEEXTPROC$MH = RuntimeHelper.downcallHandle(
-        "(IIIJJ)V",
-        constants$674.PFNGLBINDBUFFERRANGEEXTPROC$FUNC, false
+        constants$674.PFNGLBINDBUFFERRANGEEXTPROC$FUNC
     );
     static final FunctionDescriptor PFNGLBINDBUFFEROFFSETEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_INT,
-        C_LONG
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT
     );
     static final MethodHandle PFNGLBINDBUFFEROFFSETEXTPROC$MH = RuntimeHelper.downcallHandle(
-        "(IIIJ)V",
-        constants$674.PFNGLBINDBUFFEROFFSETEXTPROC$FUNC, false
+        constants$674.PFNGLBINDBUFFEROFFSETEXTPROC$FUNC
     );
     static final FunctionDescriptor PFNGLBINDBUFFERBASEEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_INT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLBINDBUFFERBASEEXTPROC$MH = RuntimeHelper.downcallHandle(
-        "(III)V",
-        constants$674.PFNGLBINDBUFFERBASEEXTPROC$FUNC, false
+        constants$674.PFNGLBINDBUFFERBASEEXTPROC$FUNC
     );
 }
 

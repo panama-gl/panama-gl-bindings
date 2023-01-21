@@ -2,41 +2,38 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_FLOAT;
-import static jdk.incubator.foreign.CLinker.C_INT;
-import static jdk.incubator.foreign.CLinker.C_POINTER;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$225 {
 
     static final FunctionDescriptor PFNGLPROGRAMUNIFORM1IVPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLPROGRAMUNIFORM1IVPROC$MH = RuntimeHelper.downcallHandle(
-        "(IIILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$225.PFNGLPROGRAMUNIFORM1IVPROC$FUNC, false
+        constants$225.PFNGLPROGRAMUNIFORM1IVPROC$FUNC
     );
     static final FunctionDescriptor PFNGLPROGRAMUNIFORM1FPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_FLOAT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT
     );
     static final MethodHandle PFNGLPROGRAMUNIFORM1FPROC$MH = RuntimeHelper.downcallHandle(
-        "(IIF)V",
-        constants$225.PFNGLPROGRAMUNIFORM1FPROC$FUNC, false
+        constants$225.PFNGLPROGRAMUNIFORM1FPROC$FUNC
     );
     static final FunctionDescriptor PFNGLPROGRAMUNIFORM1FVPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLPROGRAMUNIFORM1FVPROC$MH = RuntimeHelper.downcallHandle(
-        "(IIILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$225.PFNGLPROGRAMUNIFORM1FVPROC$FUNC, false
+        constants$225.PFNGLPROGRAMUNIFORM1FVPROC$FUNC
     );
 }
 

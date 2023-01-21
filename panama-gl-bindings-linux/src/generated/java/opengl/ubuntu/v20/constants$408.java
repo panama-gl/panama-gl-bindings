@@ -2,39 +2,36 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_CHAR;
-import static jdk.incubator.foreign.CLinker.C_INT;
-import static jdk.incubator.foreign.CLinker.C_POINTER;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$408 {
 
     static final FunctionDescriptor PFNGLMULTITEXCOORD3BVOESPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLMULTITEXCOORD3BVOESPROC$MH = RuntimeHelper.downcallHandle(
-        "(ILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$408.PFNGLMULTITEXCOORD3BVOESPROC$FUNC, false
+        constants$408.PFNGLMULTITEXCOORD3BVOESPROC$FUNC
     );
     static final FunctionDescriptor PFNGLMULTITEXCOORD4BOESPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_CHAR,
-        C_CHAR,
-        C_CHAR,
-        C_CHAR
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_CHAR$LAYOUT,
+        Constants$root.C_CHAR$LAYOUT,
+        Constants$root.C_CHAR$LAYOUT,
+        Constants$root.C_CHAR$LAYOUT
     );
     static final MethodHandle PFNGLMULTITEXCOORD4BOESPROC$MH = RuntimeHelper.downcallHandle(
-        "(IBBBB)V",
-        constants$408.PFNGLMULTITEXCOORD4BOESPROC$FUNC, false
+        constants$408.PFNGLMULTITEXCOORD4BOESPROC$FUNC
     );
     static final FunctionDescriptor PFNGLMULTITEXCOORD4BVOESPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLMULTITEXCOORD4BVOESPROC$MH = RuntimeHelper.downcallHandle(
-        "(ILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$408.PFNGLMULTITEXCOORD4BVOESPROC$FUNC, false
+        constants$408.PFNGLMULTITEXCOORD4BVOESPROC$FUNC
     );
 }
 

@@ -2,36 +2,34 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_INT;
-import static jdk.incubator.foreign.CLinker.C_POINTER;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$292 {
 
     static final FunctionDescriptor PFNGLTEXTUREPARAMETERIUIVPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLTEXTUREPARAMETERIUIVPROC$MH = RuntimeHelper.downcallHandle(
-        "(IILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$292.PFNGLTEXTUREPARAMETERIUIVPROC$FUNC, false
+        constants$292.PFNGLTEXTUREPARAMETERIUIVPROC$FUNC
     );
     static final FunctionDescriptor PFNGLTEXTUREPARAMETERIVPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLTEXTUREPARAMETERIVPROC$MH = RuntimeHelper.downcallHandle(
-        "(IILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$292.PFNGLTEXTUREPARAMETERIVPROC$FUNC, false
+        constants$292.PFNGLTEXTUREPARAMETERIVPROC$FUNC
     );
     static final FunctionDescriptor PFNGLGENERATETEXTUREMIPMAPPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLGENERATETEXTUREMIPMAPPROC$MH = RuntimeHelper.downcallHandle(
-        "(I)V",
-        constants$292.PFNGLGENERATETEXTUREMIPMAPPROC$FUNC, false
+        constants$292.PFNGLGENERATETEXTUREMIPMAPPROC$FUNC
     );
 }
 

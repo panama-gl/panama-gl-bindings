@@ -2,39 +2,36 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_INT;
-import static jdk.incubator.foreign.CLinker.C_LONG;
-import static jdk.incubator.foreign.CLinker.C_POINTER;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$301 {
 
     static final FunctionDescriptor PFNGLCREATEPROGRAMPIPELINESPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLCREATEPROGRAMPIPELINESPROC$MH = RuntimeHelper.downcallHandle(
-        "(ILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$301.PFNGLCREATEPROGRAMPIPELINESPROC$FUNC, false
+        constants$301.PFNGLCREATEPROGRAMPIPELINESPROC$FUNC
     );
     static final FunctionDescriptor PFNGLCREATEQUERIESPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLCREATEQUERIESPROC$MH = RuntimeHelper.downcallHandle(
-        "(IILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$301.PFNGLCREATEQUERIESPROC$FUNC, false
+        constants$301.PFNGLCREATEQUERIESPROC$FUNC
     );
     static final FunctionDescriptor PFNGLGETQUERYBUFFEROBJECTI64VPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_INT,
-        C_LONG
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT
     );
     static final MethodHandle PFNGLGETQUERYBUFFEROBJECTI64VPROC$MH = RuntimeHelper.downcallHandle(
-        "(IIIJ)V",
-        constants$301.PFNGLGETQUERYBUFFEROBJECTI64VPROC$FUNC, false
+        constants$301.PFNGLGETQUERYBUFFEROBJECTI64VPROC$FUNC
     );
 }
 

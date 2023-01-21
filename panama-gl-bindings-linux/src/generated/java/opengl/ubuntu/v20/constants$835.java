@@ -2,35 +2,32 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_INT;
-import static jdk.incubator.foreign.CLinker.C_LONG;
-import static jdk.incubator.foreign.CLinker.C_POINTER;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$835 {
 
     static final FunctionDescriptor PFNGLVDPAUINITNVPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_POINTER,
-        C_POINTER
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLVDPAUINITNVPROC$MH = RuntimeHelper.downcallHandle(
-        "(Ljdk/incubator/foreign/MemoryAddress;Ljdk/incubator/foreign/MemoryAddress;)V",
-        constants$835.PFNGLVDPAUINITNVPROC$FUNC, false
+        constants$835.PFNGLVDPAUINITNVPROC$FUNC
     );
     static final FunctionDescriptor PFNGLVDPAUFININVPROC$FUNC = FunctionDescriptor.ofVoid();
     static final MethodHandle PFNGLVDPAUFININVPROC$MH = RuntimeHelper.downcallHandle(
-        "()V",
-        constants$835.PFNGLVDPAUFININVPROC$FUNC, false
+        constants$835.PFNGLVDPAUFININVPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLVDPAUREGISTERVIDEOSURFACENVPROC$FUNC = FunctionDescriptor.of(C_LONG,
-        C_POINTER,
-        C_INT,
-        C_INT,
-        C_POINTER
+    static final FunctionDescriptor PFNGLVDPAUREGISTERVIDEOSURFACENVPROC$FUNC = FunctionDescriptor.of(Constants$root.C_LONG_LONG$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLVDPAUREGISTERVIDEOSURFACENVPROC$MH = RuntimeHelper.downcallHandle(
-        "(Ljdk/incubator/foreign/MemoryAddress;IILjdk/incubator/foreign/MemoryAddress;)J",
-        constants$835.PFNGLVDPAUREGISTERVIDEOSURFACENVPROC$FUNC, false
+        constants$835.PFNGLVDPAUREGISTERVIDEOSURFACENVPROC$FUNC
     );
 }
 

@@ -2,34 +2,32 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_INT;
-import static jdk.incubator.foreign.CLinker.C_POINTER;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$344 {
 
     static final FunctionDescriptor PFNGLCURRENTPALETTEMATRIXARBPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLCURRENTPALETTEMATRIXARBPROC$MH = RuntimeHelper.downcallHandle(
-        "(I)V",
-        constants$344.PFNGLCURRENTPALETTEMATRIXARBPROC$FUNC, false
+        constants$344.PFNGLCURRENTPALETTEMATRIXARBPROC$FUNC
     );
     static final FunctionDescriptor PFNGLMATRIXINDEXUBVARBPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLMATRIXINDEXUBVARBPROC$MH = RuntimeHelper.downcallHandle(
-        "(ILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$344.PFNGLMATRIXINDEXUBVARBPROC$FUNC, false
+        constants$344.PFNGLMATRIXINDEXUBVARBPROC$FUNC
     );
     static final FunctionDescriptor PFNGLMATRIXINDEXUSVARBPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLMATRIXINDEXUSVARBPROC$MH = RuntimeHelper.downcallHandle(
-        "(ILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$344.PFNGLMATRIXINDEXUSVARBPROC$FUNC, false
+        constants$344.PFNGLMATRIXINDEXUSVARBPROC$FUNC
     );
 }
 

@@ -2,72 +2,66 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_FLOAT;
-import static jdk.incubator.foreign.CLinker.C_INT;
-import static jdk.incubator.foreign.CLinker.C_POINTER;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$38 {
 
     static final FunctionDescriptor glLightf$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_FLOAT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT
     );
     static final MethodHandle glLightf$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "glLightf",
-        "(IIF)V",
-        constants$38.glLightf$FUNC, false
+        "glLightf",
+        constants$38.glLightf$FUNC
     );
     static final FunctionDescriptor glLighti$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_INT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle glLighti$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "glLighti",
-        "(III)V",
-        constants$38.glLighti$FUNC, false
+        "glLighti",
+        constants$38.glLighti$FUNC
     );
     static final FunctionDescriptor glLightfv$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle glLightfv$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "glLightfv",
-        "(IILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$38.glLightfv$FUNC, false
+        "glLightfv",
+        constants$38.glLightfv$FUNC
     );
     static final FunctionDescriptor glLightiv$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle glLightiv$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "glLightiv",
-        "(IILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$38.glLightiv$FUNC, false
+        "glLightiv",
+        constants$38.glLightiv$FUNC
     );
     static final FunctionDescriptor glGetLightfv$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle glGetLightfv$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "glGetLightfv",
-        "(IILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$38.glGetLightfv$FUNC, false
+        "glGetLightfv",
+        constants$38.glGetLightfv$FUNC
     );
     static final FunctionDescriptor glGetLightiv$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle glGetLightiv$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "glGetLightiv",
-        "(IILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$38.glGetLightiv$FUNC, false
+        "glGetLightiv",
+        constants$38.glGetLightiv$FUNC
     );
 }
 

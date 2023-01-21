@@ -2,22 +2,22 @@
 
 package opengl.ubuntu.v20;
 
-import jdk.incubator.foreign.Addressable;
-import jdk.incubator.foreign.MemoryAddress;
-import jdk.incubator.foreign.ResourceScope;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public interface PFNGLPIXELMAPXPROC {
 
-    void apply(int x0, int x1, jdk.incubator.foreign.MemoryAddress x2);
-    static MemoryAddress allocate(PFNGLPIXELMAPXPROC fi) {
-        return RuntimeHelper.upcallStub(PFNGLPIXELMAPXPROC.class, fi, constants$438.PFNGLPIXELMAPXPROC$FUNC, "(IILjdk/incubator/foreign/MemoryAddress;)V");
+    void apply(int map, int size, java.lang.foreign.MemoryAddress values);
+    static MemorySegment allocate(PFNGLPIXELMAPXPROC fi, MemorySession session) {
+        return RuntimeHelper.upcallStub(PFNGLPIXELMAPXPROC.class, fi, constants$438.PFNGLPIXELMAPXPROC$FUNC, session);
     }
-    static MemoryAddress allocate(PFNGLPIXELMAPXPROC fi, ResourceScope scope) {
-        return RuntimeHelper.upcallStub(PFNGLPIXELMAPXPROC.class, fi, constants$438.PFNGLPIXELMAPXPROC$FUNC, "(IILjdk/incubator/foreign/MemoryAddress;)V", scope);
-    }
-    static PFNGLPIXELMAPXPROC ofAddress(MemoryAddress addr) {
-        return (int x0, int x1, jdk.incubator.foreign.MemoryAddress x2) -> {
+    static PFNGLPIXELMAPXPROC ofAddress(MemoryAddress addr, MemorySession session) {
+        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
+        return (int _map, int _size, java.lang.foreign.MemoryAddress _values) -> {
             try {
-                constants$438.PFNGLPIXELMAPXPROC$MH.invokeExact((Addressable)addr, x0, x1, x2);
+                constants$438.PFNGLPIXELMAPXPROC$MH.invokeExact((Addressable)symbol, _map, _size, (java.lang.foreign.Addressable)_values);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

@@ -2,22 +2,22 @@
 
 package opengl.ubuntu.v20;
 
-import jdk.incubator.foreign.Addressable;
-import jdk.incubator.foreign.MemoryAddress;
-import jdk.incubator.foreign.ResourceScope;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public interface PFNGLFLUSHPIXELDATARANGENVPROC {
 
-    void apply(int x0);
-    static MemoryAddress allocate(PFNGLFLUSHPIXELDATARANGENVPROC fi) {
-        return RuntimeHelper.upcallStub(PFNGLFLUSHPIXELDATARANGENVPROC.class, fi, constants$808.PFNGLFLUSHPIXELDATARANGENVPROC$FUNC, "(I)V");
+    void apply(int target);
+    static MemorySegment allocate(PFNGLFLUSHPIXELDATARANGENVPROC fi, MemorySession session) {
+        return RuntimeHelper.upcallStub(PFNGLFLUSHPIXELDATARANGENVPROC.class, fi, constants$808.PFNGLFLUSHPIXELDATARANGENVPROC$FUNC, session);
     }
-    static MemoryAddress allocate(PFNGLFLUSHPIXELDATARANGENVPROC fi, ResourceScope scope) {
-        return RuntimeHelper.upcallStub(PFNGLFLUSHPIXELDATARANGENVPROC.class, fi, constants$808.PFNGLFLUSHPIXELDATARANGENVPROC$FUNC, "(I)V", scope);
-    }
-    static PFNGLFLUSHPIXELDATARANGENVPROC ofAddress(MemoryAddress addr) {
-        return (int x0) -> {
+    static PFNGLFLUSHPIXELDATARANGENVPROC ofAddress(MemoryAddress addr, MemorySession session) {
+        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
+        return (int _target) -> {
             try {
-                constants$808.PFNGLFLUSHPIXELDATARANGENVPROC$MH.invokeExact((Addressable)addr, x0);
+                constants$808.PFNGLFLUSHPIXELDATARANGENVPROC$MH.invokeExact((Addressable)symbol, _target);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

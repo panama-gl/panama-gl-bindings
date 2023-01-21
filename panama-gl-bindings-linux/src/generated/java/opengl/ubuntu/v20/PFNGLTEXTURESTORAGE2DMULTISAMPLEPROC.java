@@ -2,22 +2,22 @@
 
 package opengl.ubuntu.v20;
 
-import jdk.incubator.foreign.Addressable;
-import jdk.incubator.foreign.MemoryAddress;
-import jdk.incubator.foreign.ResourceScope;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public interface PFNGLTEXTURESTORAGE2DMULTISAMPLEPROC {
 
-    void apply(int x0, int x1, int x2, int x3, int x4, byte x5);
-    static MemoryAddress allocate(PFNGLTEXTURESTORAGE2DMULTISAMPLEPROC fi) {
-        return RuntimeHelper.upcallStub(PFNGLTEXTURESTORAGE2DMULTISAMPLEPROC.class, fi, constants$287.PFNGLTEXTURESTORAGE2DMULTISAMPLEPROC$FUNC, "(IIIIIB)V");
+    void apply(int texture, int samples, int internalformat, int width, int height, byte fixedsamplelocations);
+    static MemorySegment allocate(PFNGLTEXTURESTORAGE2DMULTISAMPLEPROC fi, MemorySession session) {
+        return RuntimeHelper.upcallStub(PFNGLTEXTURESTORAGE2DMULTISAMPLEPROC.class, fi, constants$287.PFNGLTEXTURESTORAGE2DMULTISAMPLEPROC$FUNC, session);
     }
-    static MemoryAddress allocate(PFNGLTEXTURESTORAGE2DMULTISAMPLEPROC fi, ResourceScope scope) {
-        return RuntimeHelper.upcallStub(PFNGLTEXTURESTORAGE2DMULTISAMPLEPROC.class, fi, constants$287.PFNGLTEXTURESTORAGE2DMULTISAMPLEPROC$FUNC, "(IIIIIB)V", scope);
-    }
-    static PFNGLTEXTURESTORAGE2DMULTISAMPLEPROC ofAddress(MemoryAddress addr) {
-        return (int x0, int x1, int x2, int x3, int x4, byte x5) -> {
+    static PFNGLTEXTURESTORAGE2DMULTISAMPLEPROC ofAddress(MemoryAddress addr, MemorySession session) {
+        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
+        return (int _texture, int _samples, int _internalformat, int _width, int _height, byte _fixedsamplelocations) -> {
             try {
-                constants$287.PFNGLTEXTURESTORAGE2DMULTISAMPLEPROC$MH.invokeExact((Addressable)addr, x0, x1, x2, x3, x4, x5);
+                constants$287.PFNGLTEXTURESTORAGE2DMULTISAMPLEPROC$MH.invokeExact((Addressable)symbol, _texture, _samples, _internalformat, _width, _height, _fixedsamplelocations);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

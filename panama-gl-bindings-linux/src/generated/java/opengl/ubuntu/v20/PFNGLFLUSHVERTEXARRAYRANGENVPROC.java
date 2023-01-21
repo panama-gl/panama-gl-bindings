@@ -2,22 +2,22 @@
 
 package opengl.ubuntu.v20;
 
-import jdk.incubator.foreign.Addressable;
-import jdk.incubator.foreign.MemoryAddress;
-import jdk.incubator.foreign.ResourceScope;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public interface PFNGLFLUSHVERTEXARRAYRANGENVPROC {
 
     void apply();
-    static MemoryAddress allocate(PFNGLFLUSHVERTEXARRAYRANGENVPROC fi) {
-        return RuntimeHelper.upcallStub(PFNGLFLUSHVERTEXARRAYRANGENVPROC.class, fi, constants$838.PFNGLFLUSHVERTEXARRAYRANGENVPROC$FUNC, "()V");
+    static MemorySegment allocate(PFNGLFLUSHVERTEXARRAYRANGENVPROC fi, MemorySession session) {
+        return RuntimeHelper.upcallStub(PFNGLFLUSHVERTEXARRAYRANGENVPROC.class, fi, constants$838.PFNGLFLUSHVERTEXARRAYRANGENVPROC$FUNC, session);
     }
-    static MemoryAddress allocate(PFNGLFLUSHVERTEXARRAYRANGENVPROC fi, ResourceScope scope) {
-        return RuntimeHelper.upcallStub(PFNGLFLUSHVERTEXARRAYRANGENVPROC.class, fi, constants$838.PFNGLFLUSHVERTEXARRAYRANGENVPROC$FUNC, "()V", scope);
-    }
-    static PFNGLFLUSHVERTEXARRAYRANGENVPROC ofAddress(MemoryAddress addr) {
+    static PFNGLFLUSHVERTEXARRAYRANGENVPROC ofAddress(MemoryAddress addr, MemorySession session) {
+        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return () -> {
             try {
-                constants$838.PFNGLFLUSHVERTEXARRAYRANGENVPROC$MH.invokeExact((Addressable)addr);
+                constants$838.PFNGLFLUSHVERTEXARRAYRANGENVPROC$MH.invokeExact((Addressable)symbol);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

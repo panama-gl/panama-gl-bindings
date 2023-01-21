@@ -2,44 +2,43 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_INT;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$171 {
 
     static final FunctionDescriptor PFNGLGENERATEMIPMAPPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLGENERATEMIPMAPPROC$MH = RuntimeHelper.downcallHandle(
-        "(I)V",
-        constants$171.PFNGLGENERATEMIPMAPPROC$FUNC, false
+        constants$171.PFNGLGENERATEMIPMAPPROC$FUNC
     );
     static final FunctionDescriptor PFNGLBLITFRAMEBUFFERPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLBLITFRAMEBUFFERPROC$MH = RuntimeHelper.downcallHandle(
-        "(IIIIIIIIII)V",
-        constants$171.PFNGLBLITFRAMEBUFFERPROC$FUNC, false
+        constants$171.PFNGLBLITFRAMEBUFFERPROC$FUNC
     );
     static final FunctionDescriptor PFNGLRENDERBUFFERSTORAGEMULTISAMPLEPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLRENDERBUFFERSTORAGEMULTISAMPLEPROC$MH = RuntimeHelper.downcallHandle(
-        "(IIIII)V",
-        constants$171.PFNGLRENDERBUFFERSTORAGEMULTISAMPLEPROC$FUNC, false
+        constants$171.PFNGLRENDERBUFFERSTORAGEMULTISAMPLEPROC$FUNC
     );
 }
 

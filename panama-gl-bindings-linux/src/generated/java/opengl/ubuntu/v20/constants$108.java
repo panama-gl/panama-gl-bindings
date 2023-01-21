@@ -2,35 +2,33 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_INT;
-import static jdk.incubator.foreign.CLinker.C_POINTER;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$108 {
 
     static final FunctionDescriptor PFNGLBEGINQUERYPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLBEGINQUERYPROC$MH = RuntimeHelper.downcallHandle(
-        "(II)V",
-        constants$108.PFNGLBEGINQUERYPROC$FUNC, false
+        constants$108.PFNGLBEGINQUERYPROC$FUNC
     );
     static final FunctionDescriptor PFNGLENDQUERYPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLENDQUERYPROC$MH = RuntimeHelper.downcallHandle(
-        "(I)V",
-        constants$108.PFNGLENDQUERYPROC$FUNC, false
+        constants$108.PFNGLENDQUERYPROC$FUNC
     );
     static final FunctionDescriptor PFNGLGETQUERYIVPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLGETQUERYIVPROC$MH = RuntimeHelper.downcallHandle(
-        "(IILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$108.PFNGLGETQUERYIVPROC$FUNC, false
+        constants$108.PFNGLGETQUERYIVPROC$FUNC
     );
 }
 

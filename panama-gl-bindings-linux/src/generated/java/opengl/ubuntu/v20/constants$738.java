@@ -2,32 +2,30 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_FLOAT;
-import static jdk.incubator.foreign.CLinker.C_INT;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$738 {
 
     static final FunctionDescriptor PFNGLENDCONDITIONALRENDERNVPROC$FUNC = FunctionDescriptor.ofVoid();
     static final MethodHandle PFNGLENDCONDITIONALRENDERNVPROC$MH = RuntimeHelper.downcallHandle(
-        "()V",
-        constants$738.PFNGLENDCONDITIONALRENDERNVPROC$FUNC, false
+        constants$738.PFNGLENDCONDITIONALRENDERNVPROC$FUNC
     );
     static final FunctionDescriptor PFNGLSUBPIXELPRECISIONBIASNVPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLSUBPIXELPRECISIONBIASNVPROC$MH = RuntimeHelper.downcallHandle(
-        "(II)V",
-        constants$738.PFNGLSUBPIXELPRECISIONBIASNVPROC$FUNC, false
+        constants$738.PFNGLSUBPIXELPRECISIONBIASNVPROC$FUNC
     );
     static final FunctionDescriptor PFNGLCONSERVATIVERASTERPARAMETERFNVPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_FLOAT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT
     );
     static final MethodHandle PFNGLCONSERVATIVERASTERPARAMETERFNVPROC$MH = RuntimeHelper.downcallHandle(
-        "(IF)V",
-        constants$738.PFNGLCONSERVATIVERASTERPARAMETERFNVPROC$FUNC, false
+        constants$738.PFNGLCONSERVATIVERASTERPARAMETERFNVPROC$FUNC
     );
 }
 

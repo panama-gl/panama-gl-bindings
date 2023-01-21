@@ -2,39 +2,36 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_FLOAT;
-import static jdk.incubator.foreign.CLinker.C_INT;
-import static jdk.incubator.foreign.CLinker.C_POINTER;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$699 {
 
     static final FunctionDescriptor PFNGLIMAGETRANSFORMPARAMETERIHPPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_INT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLIMAGETRANSFORMPARAMETERIHPPROC$MH = RuntimeHelper.downcallHandle(
-        "(III)V",
-        constants$699.PFNGLIMAGETRANSFORMPARAMETERIHPPROC$FUNC, false
+        constants$699.PFNGLIMAGETRANSFORMPARAMETERIHPPROC$FUNC
     );
     static final FunctionDescriptor PFNGLIMAGETRANSFORMPARAMETERFHPPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_FLOAT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT
     );
     static final MethodHandle PFNGLIMAGETRANSFORMPARAMETERFHPPROC$MH = RuntimeHelper.downcallHandle(
-        "(IIF)V",
-        constants$699.PFNGLIMAGETRANSFORMPARAMETERFHPPROC$FUNC, false
+        constants$699.PFNGLIMAGETRANSFORMPARAMETERFHPPROC$FUNC
     );
     static final FunctionDescriptor PFNGLIMAGETRANSFORMPARAMETERIVHPPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLIMAGETRANSFORMPARAMETERIVHPPROC$MH = RuntimeHelper.downcallHandle(
-        "(IILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$699.PFNGLIMAGETRANSFORMPARAMETERIVHPPROC$FUNC, false
+        constants$699.PFNGLIMAGETRANSFORMPARAMETERIVHPPROC$FUNC
     );
 }
 

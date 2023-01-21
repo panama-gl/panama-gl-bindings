@@ -2,22 +2,22 @@
 
 package opengl.ubuntu.v20;
 
-import jdk.incubator.foreign.Addressable;
-import jdk.incubator.foreign.MemoryAddress;
-import jdk.incubator.foreign.ResourceScope;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public interface PFNGLBLENDEQUATIONEXTPROC {
 
-    void apply(int x0);
-    static MemoryAddress allocate(PFNGLBLENDEQUATIONEXTPROC fi) {
-        return RuntimeHelper.upcallStub(PFNGLBLENDEQUATIONEXTPROC.class, fi, constants$518.PFNGLBLENDEQUATIONEXTPROC$FUNC, "(I)V");
+    void apply(int mode);
+    static MemorySegment allocate(PFNGLBLENDEQUATIONEXTPROC fi, MemorySession session) {
+        return RuntimeHelper.upcallStub(PFNGLBLENDEQUATIONEXTPROC.class, fi, constants$518.PFNGLBLENDEQUATIONEXTPROC$FUNC, session);
     }
-    static MemoryAddress allocate(PFNGLBLENDEQUATIONEXTPROC fi, ResourceScope scope) {
-        return RuntimeHelper.upcallStub(PFNGLBLENDEQUATIONEXTPROC.class, fi, constants$518.PFNGLBLENDEQUATIONEXTPROC$FUNC, "(I)V", scope);
-    }
-    static PFNGLBLENDEQUATIONEXTPROC ofAddress(MemoryAddress addr) {
-        return (int x0) -> {
+    static PFNGLBLENDEQUATIONEXTPROC ofAddress(MemoryAddress addr, MemorySession session) {
+        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
+        return (int _mode) -> {
             try {
-                constants$518.PFNGLBLENDEQUATIONEXTPROC$MH.invokeExact((Addressable)addr, x0);
+                constants$518.PFNGLBLENDEQUATIONEXTPROC$MH.invokeExact((Addressable)symbol, _mode);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

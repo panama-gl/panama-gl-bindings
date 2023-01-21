@@ -2,22 +2,22 @@
 
 package opengl.ubuntu.v20;
 
-import jdk.incubator.foreign.Addressable;
-import jdk.incubator.foreign.MemoryAddress;
-import jdk.incubator.foreign.ResourceScope;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public interface PFNGLTEXTURESTORAGE3DPROC {
 
-    void apply(int x0, int x1, int x2, int x3, int x4, int x5);
-    static MemoryAddress allocate(PFNGLTEXTURESTORAGE3DPROC fi) {
-        return RuntimeHelper.upcallStub(PFNGLTEXTURESTORAGE3DPROC.class, fi, constants$286.PFNGLTEXTURESTORAGE3DPROC$FUNC, "(IIIIII)V");
+    void apply(int texture, int levels, int internalformat, int width, int height, int depth);
+    static MemorySegment allocate(PFNGLTEXTURESTORAGE3DPROC fi, MemorySession session) {
+        return RuntimeHelper.upcallStub(PFNGLTEXTURESTORAGE3DPROC.class, fi, constants$286.PFNGLTEXTURESTORAGE3DPROC$FUNC, session);
     }
-    static MemoryAddress allocate(PFNGLTEXTURESTORAGE3DPROC fi, ResourceScope scope) {
-        return RuntimeHelper.upcallStub(PFNGLTEXTURESTORAGE3DPROC.class, fi, constants$286.PFNGLTEXTURESTORAGE3DPROC$FUNC, "(IIIIII)V", scope);
-    }
-    static PFNGLTEXTURESTORAGE3DPROC ofAddress(MemoryAddress addr) {
-        return (int x0, int x1, int x2, int x3, int x4, int x5) -> {
+    static PFNGLTEXTURESTORAGE3DPROC ofAddress(MemoryAddress addr, MemorySession session) {
+        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
+        return (int _texture, int _levels, int _internalformat, int _width, int _height, int _depth) -> {
             try {
-                constants$286.PFNGLTEXTURESTORAGE3DPROC$MH.invokeExact((Addressable)addr, x0, x1, x2, x3, x4, x5);
+                constants$286.PFNGLTEXTURESTORAGE3DPROC$MH.invokeExact((Addressable)symbol, _texture, _levels, _internalformat, _width, _height, _depth);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

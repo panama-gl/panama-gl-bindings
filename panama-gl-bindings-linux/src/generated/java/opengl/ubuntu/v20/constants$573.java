@@ -2,43 +2,41 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_FLOAT;
-import static jdk.incubator.foreign.CLinker.C_INT;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$573 {
 
     static final FunctionDescriptor PFNGLPROGRAMUNIFORM3FEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_FLOAT,
-        C_FLOAT,
-        C_FLOAT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT
     );
     static final MethodHandle PFNGLPROGRAMUNIFORM3FEXTPROC$MH = RuntimeHelper.downcallHandle(
-        "(IIFFF)V",
-        constants$573.PFNGLPROGRAMUNIFORM3FEXTPROC$FUNC, false
+        constants$573.PFNGLPROGRAMUNIFORM3FEXTPROC$FUNC
     );
     static final FunctionDescriptor PFNGLPROGRAMUNIFORM4FEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_FLOAT,
-        C_FLOAT,
-        C_FLOAT,
-        C_FLOAT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT
     );
     static final MethodHandle PFNGLPROGRAMUNIFORM4FEXTPROC$MH = RuntimeHelper.downcallHandle(
-        "(IIFFFF)V",
-        constants$573.PFNGLPROGRAMUNIFORM4FEXTPROC$FUNC, false
+        constants$573.PFNGLPROGRAMUNIFORM4FEXTPROC$FUNC
     );
     static final FunctionDescriptor PFNGLPROGRAMUNIFORM1IEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_INT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLPROGRAMUNIFORM1IEXTPROC$MH = RuntimeHelper.downcallHandle(
-        "(III)V",
-        constants$573.PFNGLPROGRAMUNIFORM1IEXTPROC$FUNC, false
+        constants$573.PFNGLPROGRAMUNIFORM1IEXTPROC$FUNC
     );
 }
 

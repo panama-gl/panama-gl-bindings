@@ -2,37 +2,35 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_INT;
-import static jdk.incubator.foreign.CLinker.C_POINTER;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$516 {
 
     static final FunctionDescriptor PFNGLEGLIMAGETARGETTEXTURESTORAGEEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_POINTER,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLEGLIMAGETARGETTEXTURESTORAGEEXTPROC$MH = RuntimeHelper.downcallHandle(
-        "(ILjdk/incubator/foreign/MemoryAddress;Ljdk/incubator/foreign/MemoryAddress;)V",
-        constants$516.PFNGLEGLIMAGETARGETTEXTURESTORAGEEXTPROC$FUNC, false
+        constants$516.PFNGLEGLIMAGETARGETTEXTURESTORAGEEXTPROC$FUNC
     );
     static final FunctionDescriptor PFNGLUNIFORMBUFFEREXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_INT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLUNIFORMBUFFEREXTPROC$MH = RuntimeHelper.downcallHandle(
-        "(III)V",
-        constants$516.PFNGLUNIFORMBUFFEREXTPROC$FUNC, false
+        constants$516.PFNGLUNIFORMBUFFEREXTPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLGETUNIFORMBUFFERSIZEEXTPROC$FUNC = FunctionDescriptor.of(C_INT,
-        C_INT,
-        C_INT
+    static final FunctionDescriptor PFNGLGETUNIFORMBUFFERSIZEEXTPROC$FUNC = FunctionDescriptor.of(Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLGETUNIFORMBUFFERSIZEEXTPROC$MH = RuntimeHelper.downcallHandle(
-        "(II)I",
-        constants$516.PFNGLGETUNIFORMBUFFERSIZEEXTPROC$FUNC, false
+        constants$516.PFNGLGETUNIFORMBUFFERSIZEEXTPROC$FUNC
     );
 }
 

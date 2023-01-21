@@ -2,22 +2,22 @@
 
 package opengl.ubuntu.v20;
 
-import jdk.incubator.foreign.Addressable;
-import jdk.incubator.foreign.MemoryAddress;
-import jdk.incubator.foreign.ResourceScope;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public interface PFNGLHINTPGIPROC {
 
-    void apply(int x0, int x1);
-    static MemoryAddress allocate(PFNGLHINTPGIPROC fi) {
-        return RuntimeHelper.upcallStub(PFNGLHINTPGIPROC.class, fi, constants$883.PFNGLHINTPGIPROC$FUNC, "(II)V");
+    void apply(int target, int mode);
+    static MemorySegment allocate(PFNGLHINTPGIPROC fi, MemorySession session) {
+        return RuntimeHelper.upcallStub(PFNGLHINTPGIPROC.class, fi, constants$883.PFNGLHINTPGIPROC$FUNC, session);
     }
-    static MemoryAddress allocate(PFNGLHINTPGIPROC fi, ResourceScope scope) {
-        return RuntimeHelper.upcallStub(PFNGLHINTPGIPROC.class, fi, constants$883.PFNGLHINTPGIPROC$FUNC, "(II)V", scope);
-    }
-    static PFNGLHINTPGIPROC ofAddress(MemoryAddress addr) {
-        return (int x0, int x1) -> {
+    static PFNGLHINTPGIPROC ofAddress(MemoryAddress addr, MemorySession session) {
+        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
+        return (int _target, int _mode) -> {
             try {
-                constants$883.PFNGLHINTPGIPROC$MH.invokeExact((Addressable)addr, x0, x1);
+                constants$883.PFNGLHINTPGIPROC$MH.invokeExact((Addressable)symbol, _target, _mode);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

@@ -2,22 +2,22 @@
 
 package opengl.ubuntu.v20;
 
-import jdk.incubator.foreign.Addressable;
-import jdk.incubator.foreign.MemoryAddress;
-import jdk.incubator.foreign.ResourceScope;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public interface PFNGLPASSTHROUGHXOESPROC {
 
-    void apply(int x0);
-    static MemoryAddress allocate(PFNGLPASSTHROUGHXOESPROC fi) {
-        return RuntimeHelper.upcallStub(PFNGLPASSTHROUGHXOESPROC.class, fi, constants$438.PFNGLPASSTHROUGHXOESPROC$FUNC, "(I)V");
+    void apply(int token);
+    static MemorySegment allocate(PFNGLPASSTHROUGHXOESPROC fi, MemorySession session) {
+        return RuntimeHelper.upcallStub(PFNGLPASSTHROUGHXOESPROC.class, fi, constants$438.PFNGLPASSTHROUGHXOESPROC$FUNC, session);
     }
-    static MemoryAddress allocate(PFNGLPASSTHROUGHXOESPROC fi, ResourceScope scope) {
-        return RuntimeHelper.upcallStub(PFNGLPASSTHROUGHXOESPROC.class, fi, constants$438.PFNGLPASSTHROUGHXOESPROC$FUNC, "(I)V", scope);
-    }
-    static PFNGLPASSTHROUGHXOESPROC ofAddress(MemoryAddress addr) {
-        return (int x0) -> {
+    static PFNGLPASSTHROUGHXOESPROC ofAddress(MemoryAddress addr, MemorySession session) {
+        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
+        return (int _token) -> {
             try {
-                constants$438.PFNGLPASSTHROUGHXOESPROC$MH.invokeExact((Addressable)addr, x0);
+                constants$438.PFNGLPASSTHROUGHXOESPROC$MH.invokeExact((Addressable)symbol, _token);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

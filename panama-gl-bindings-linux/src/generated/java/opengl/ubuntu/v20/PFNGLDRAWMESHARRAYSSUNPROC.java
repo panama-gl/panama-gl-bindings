@@ -2,22 +2,22 @@
 
 package opengl.ubuntu.v20;
 
-import jdk.incubator.foreign.Addressable;
-import jdk.incubator.foreign.MemoryAddress;
-import jdk.incubator.foreign.ResourceScope;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public interface PFNGLDRAWMESHARRAYSSUNPROC {
 
-    void apply(int x0, int x1, int x2, int x3);
-    static MemoryAddress allocate(PFNGLDRAWMESHARRAYSSUNPROC fi) {
-        return RuntimeHelper.upcallStub(PFNGLDRAWMESHARRAYSSUNPROC.class, fi, constants$912.PFNGLDRAWMESHARRAYSSUNPROC$FUNC, "(IIII)V");
+    void apply(int mode, int first, int count, int width);
+    static MemorySegment allocate(PFNGLDRAWMESHARRAYSSUNPROC fi, MemorySession session) {
+        return RuntimeHelper.upcallStub(PFNGLDRAWMESHARRAYSSUNPROC.class, fi, constants$912.PFNGLDRAWMESHARRAYSSUNPROC$FUNC, session);
     }
-    static MemoryAddress allocate(PFNGLDRAWMESHARRAYSSUNPROC fi, ResourceScope scope) {
-        return RuntimeHelper.upcallStub(PFNGLDRAWMESHARRAYSSUNPROC.class, fi, constants$912.PFNGLDRAWMESHARRAYSSUNPROC$FUNC, "(IIII)V", scope);
-    }
-    static PFNGLDRAWMESHARRAYSSUNPROC ofAddress(MemoryAddress addr) {
-        return (int x0, int x1, int x2, int x3) -> {
+    static PFNGLDRAWMESHARRAYSSUNPROC ofAddress(MemoryAddress addr, MemorySession session) {
+        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
+        return (int _mode, int _first, int _count, int _width) -> {
             try {
-                constants$912.PFNGLDRAWMESHARRAYSSUNPROC$MH.invokeExact((Addressable)addr, x0, x1, x2, x3);
+                constants$912.PFNGLDRAWMESHARRAYSSUNPROC$MH.invokeExact((Addressable)symbol, _mode, _first, _count, _width);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

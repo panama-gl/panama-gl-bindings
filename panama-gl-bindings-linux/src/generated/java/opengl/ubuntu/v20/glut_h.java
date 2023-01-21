@@ -2,17 +2,22 @@
 
 package opengl.ubuntu.v20;
 
-import jdk.incubator.foreign.SymbolLookup;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public class glut_h extends glut_h_6 {
 
-    static {
-        System.loadLibrary("GL");
-        System.load("/usr/lib/x86_64-linux-gnu/libglut.so.3.9.0");
-        System.load("/usr/lib/x86_64-linux-gnu/libGLU.so.1.3.1");
-        System.load("/usr/lib/x86_64-linux-gnu/libGLEW.so");
-    }
-
-    static final SymbolLookup LIBRARIES = RuntimeHelper.lookup();    /* package-private */ glut_h() {}
+    /* package-private */ glut_h() {}
+    public static OfByte C_CHAR = Constants$root.C_CHAR$LAYOUT;
+    public static OfShort C_SHORT = Constants$root.C_SHORT$LAYOUT;
+    public static OfInt C_INT = Constants$root.C_INT$LAYOUT;
+    public static OfLong C_LONG = Constants$root.C_LONG_LONG$LAYOUT;
+    public static OfLong C_LONG_LONG = Constants$root.C_LONG_LONG$LAYOUT;
+    public static OfFloat C_FLOAT = Constants$root.C_FLOAT$LAYOUT;
+    public static OfDouble C_DOUBLE = Constants$root.C_DOUBLE$LAYOUT;
+    public static OfAddress C_POINTER = Constants$root.C_POINTER$LAYOUT;
     public static int FREEGLUT() {
         return (int)1L;
     }

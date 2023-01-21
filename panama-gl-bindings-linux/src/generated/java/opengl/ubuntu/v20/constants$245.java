@@ -2,41 +2,38 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_FLOAT;
-import static jdk.incubator.foreign.CLinker.C_INT;
-import static jdk.incubator.foreign.CLinker.C_POINTER;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$245 {
 
     static final FunctionDescriptor PFNGLGETVERTEXATTRIBLDVPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLGETVERTEXATTRIBLDVPROC$MH = RuntimeHelper.downcallHandle(
-        "(IILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$245.PFNGLGETVERTEXATTRIBLDVPROC$FUNC, false
+        constants$245.PFNGLGETVERTEXATTRIBLDVPROC$FUNC
     );
     static final FunctionDescriptor PFNGLVIEWPORTARRAYVPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLVIEWPORTARRAYVPROC$MH = RuntimeHelper.downcallHandle(
-        "(IILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$245.PFNGLVIEWPORTARRAYVPROC$FUNC, false
+        constants$245.PFNGLVIEWPORTARRAYVPROC$FUNC
     );
     static final FunctionDescriptor PFNGLVIEWPORTINDEXEDFPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_FLOAT,
-        C_FLOAT,
-        C_FLOAT,
-        C_FLOAT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT
     );
     static final MethodHandle PFNGLVIEWPORTINDEXEDFPROC$MH = RuntimeHelper.downcallHandle(
-        "(IFFFF)V",
-        constants$245.PFNGLVIEWPORTINDEXEDFPROC$FUNC, false
+        constants$245.PFNGLVIEWPORTINDEXEDFPROC$FUNC
     );
 }
 

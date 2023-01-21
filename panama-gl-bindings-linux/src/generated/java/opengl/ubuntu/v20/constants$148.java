@@ -2,31 +2,29 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_CHAR;
-import static jdk.incubator.foreign.CLinker.C_INT;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$148 {
 
-    static final FunctionDescriptor PFNGLISENABLEDIPROC$FUNC = FunctionDescriptor.of(C_CHAR,
-        C_INT,
-        C_INT
+    static final FunctionDescriptor PFNGLISENABLEDIPROC$FUNC = FunctionDescriptor.of(Constants$root.C_CHAR$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLISENABLEDIPROC$MH = RuntimeHelper.downcallHandle(
-        "(II)B",
-        constants$148.PFNGLISENABLEDIPROC$FUNC, false
+        constants$148.PFNGLISENABLEDIPROC$FUNC
     );
     static final FunctionDescriptor PFNGLBEGINTRANSFORMFEEDBACKPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLBEGINTRANSFORMFEEDBACKPROC$MH = RuntimeHelper.downcallHandle(
-        "(I)V",
-        constants$148.PFNGLBEGINTRANSFORMFEEDBACKPROC$FUNC, false
+        constants$148.PFNGLBEGINTRANSFORMFEEDBACKPROC$FUNC
     );
     static final FunctionDescriptor PFNGLENDTRANSFORMFEEDBACKPROC$FUNC = FunctionDescriptor.ofVoid();
     static final MethodHandle PFNGLENDTRANSFORMFEEDBACKPROC$MH = RuntimeHelper.downcallHandle(
-        "()V",
-        constants$148.PFNGLENDTRANSFORMFEEDBACKPROC$FUNC, false
+        constants$148.PFNGLENDTRANSFORMFEEDBACKPROC$FUNC
     );
 }
 

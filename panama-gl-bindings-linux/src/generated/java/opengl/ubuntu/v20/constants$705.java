@@ -2,30 +2,29 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_INT;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$705 {
 
     static final FunctionDescriptor PFNGLAPPLYFRAMEBUFFERATTACHMENTCMAAINTELPROC$FUNC = FunctionDescriptor.ofVoid();
     static final MethodHandle PFNGLAPPLYFRAMEBUFFERATTACHMENTCMAAINTELPROC$MH = RuntimeHelper.downcallHandle(
-        "()V",
-        constants$705.PFNGLAPPLYFRAMEBUFFERATTACHMENTCMAAINTELPROC$FUNC, false
+        constants$705.PFNGLAPPLYFRAMEBUFFERATTACHMENTCMAAINTELPROC$FUNC
     );
     static final FunctionDescriptor PFNGLSYNCTEXTUREINTELPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLSYNCTEXTUREINTELPROC$MH = RuntimeHelper.downcallHandle(
-        "(I)V",
-        constants$705.PFNGLSYNCTEXTUREINTELPROC$FUNC, false
+        constants$705.PFNGLSYNCTEXTUREINTELPROC$FUNC
     );
     static final FunctionDescriptor PFNGLUNMAPTEXTURE2DINTELPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLUNMAPTEXTURE2DINTELPROC$MH = RuntimeHelper.downcallHandle(
-        "(II)V",
-        constants$705.PFNGLUNMAPTEXTURE2DINTELPROC$FUNC, false
+        constants$705.PFNGLUNMAPTEXTURE2DINTELPROC$FUNC
     );
 }
 

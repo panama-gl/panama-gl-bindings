@@ -2,22 +2,22 @@
 
 package opengl.ubuntu.v20;
 
-import jdk.incubator.foreign.Addressable;
-import jdk.incubator.foreign.MemoryAddress;
-import jdk.incubator.foreign.ResourceScope;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public interface PFNGLGETCOMPRESSEDMULTITEXIMAGEEXTPROC {
 
-    void apply(int x0, int x1, int x2, jdk.incubator.foreign.MemoryAddress x3);
-    static MemoryAddress allocate(PFNGLGETCOMPRESSEDMULTITEXIMAGEEXTPROC fi) {
-        return RuntimeHelper.upcallStub(PFNGLGETCOMPRESSEDMULTITEXIMAGEEXTPROC.class, fi, constants$568.PFNGLGETCOMPRESSEDMULTITEXIMAGEEXTPROC$FUNC, "(IIILjdk/incubator/foreign/MemoryAddress;)V");
+    void apply(int texunit, int target, int lod, java.lang.foreign.MemoryAddress img);
+    static MemorySegment allocate(PFNGLGETCOMPRESSEDMULTITEXIMAGEEXTPROC fi, MemorySession session) {
+        return RuntimeHelper.upcallStub(PFNGLGETCOMPRESSEDMULTITEXIMAGEEXTPROC.class, fi, constants$568.PFNGLGETCOMPRESSEDMULTITEXIMAGEEXTPROC$FUNC, session);
     }
-    static MemoryAddress allocate(PFNGLGETCOMPRESSEDMULTITEXIMAGEEXTPROC fi, ResourceScope scope) {
-        return RuntimeHelper.upcallStub(PFNGLGETCOMPRESSEDMULTITEXIMAGEEXTPROC.class, fi, constants$568.PFNGLGETCOMPRESSEDMULTITEXIMAGEEXTPROC$FUNC, "(IIILjdk/incubator/foreign/MemoryAddress;)V", scope);
-    }
-    static PFNGLGETCOMPRESSEDMULTITEXIMAGEEXTPROC ofAddress(MemoryAddress addr) {
-        return (int x0, int x1, int x2, jdk.incubator.foreign.MemoryAddress x3) -> {
+    static PFNGLGETCOMPRESSEDMULTITEXIMAGEEXTPROC ofAddress(MemoryAddress addr, MemorySession session) {
+        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
+        return (int _texunit, int _target, int _lod, java.lang.foreign.MemoryAddress _img) -> {
             try {
-                constants$568.PFNGLGETCOMPRESSEDMULTITEXIMAGEEXTPROC$MH.invokeExact((Addressable)addr, x0, x1, x2, x3);
+                constants$568.PFNGLGETCOMPRESSEDMULTITEXIMAGEEXTPROC$MH.invokeExact((Addressable)symbol, _texunit, _target, _lod, (java.lang.foreign.Addressable)_img);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

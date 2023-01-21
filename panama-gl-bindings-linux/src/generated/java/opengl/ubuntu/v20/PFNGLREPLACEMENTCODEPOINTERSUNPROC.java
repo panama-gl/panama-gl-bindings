@@ -2,22 +2,22 @@
 
 package opengl.ubuntu.v20;
 
-import jdk.incubator.foreign.Addressable;
-import jdk.incubator.foreign.MemoryAddress;
-import jdk.incubator.foreign.ResourceScope;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public interface PFNGLREPLACEMENTCODEPOINTERSUNPROC {
 
-    void apply(int x0, int x1, jdk.incubator.foreign.MemoryAddress x2);
-    static MemoryAddress allocate(PFNGLREPLACEMENTCODEPOINTERSUNPROC fi) {
-        return RuntimeHelper.upcallStub(PFNGLREPLACEMENTCODEPOINTERSUNPROC.class, fi, constants$915.PFNGLREPLACEMENTCODEPOINTERSUNPROC$FUNC, "(IILjdk/incubator/foreign/MemoryAddress;)V");
+    void apply(int type, int stride, java.lang.foreign.MemoryAddress pointer);
+    static MemorySegment allocate(PFNGLREPLACEMENTCODEPOINTERSUNPROC fi, MemorySession session) {
+        return RuntimeHelper.upcallStub(PFNGLREPLACEMENTCODEPOINTERSUNPROC.class, fi, constants$915.PFNGLREPLACEMENTCODEPOINTERSUNPROC$FUNC, session);
     }
-    static MemoryAddress allocate(PFNGLREPLACEMENTCODEPOINTERSUNPROC fi, ResourceScope scope) {
-        return RuntimeHelper.upcallStub(PFNGLREPLACEMENTCODEPOINTERSUNPROC.class, fi, constants$915.PFNGLREPLACEMENTCODEPOINTERSUNPROC$FUNC, "(IILjdk/incubator/foreign/MemoryAddress;)V", scope);
-    }
-    static PFNGLREPLACEMENTCODEPOINTERSUNPROC ofAddress(MemoryAddress addr) {
-        return (int x0, int x1, jdk.incubator.foreign.MemoryAddress x2) -> {
+    static PFNGLREPLACEMENTCODEPOINTERSUNPROC ofAddress(MemoryAddress addr, MemorySession session) {
+        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
+        return (int _type, int _stride, java.lang.foreign.MemoryAddress _pointer) -> {
             try {
-                constants$915.PFNGLREPLACEMENTCODEPOINTERSUNPROC$MH.invokeExact((Addressable)addr, x0, x1, x2);
+                constants$915.PFNGLREPLACEMENTCODEPOINTERSUNPROC$MH.invokeExact((Addressable)symbol, _type, _stride, (java.lang.foreign.Addressable)_pointer);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

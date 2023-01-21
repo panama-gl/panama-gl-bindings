@@ -2,43 +2,41 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_INT;
-import static jdk.incubator.foreign.CLinker.C_POINTER;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$257 {
 
     static final FunctionDescriptor PFNGLINVALIDATEFRAMEBUFFERPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLINVALIDATEFRAMEBUFFERPROC$MH = RuntimeHelper.downcallHandle(
-        "(IILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$257.PFNGLINVALIDATEFRAMEBUFFERPROC$FUNC, false
+        constants$257.PFNGLINVALIDATEFRAMEBUFFERPROC$FUNC
     );
     static final FunctionDescriptor PFNGLINVALIDATESUBFRAMEBUFFERPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_POINTER,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLINVALIDATESUBFRAMEBUFFERPROC$MH = RuntimeHelper.downcallHandle(
-        "(IILjdk/incubator/foreign/MemoryAddress;IIII)V",
-        constants$257.PFNGLINVALIDATESUBFRAMEBUFFERPROC$FUNC, false
+        constants$257.PFNGLINVALIDATESUBFRAMEBUFFERPROC$FUNC
     );
     static final FunctionDescriptor PFNGLMULTIDRAWARRAYSINDIRECTPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_POINTER,
-        C_INT,
-        C_INT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLMULTIDRAWARRAYSINDIRECTPROC$MH = RuntimeHelper.downcallHandle(
-        "(ILjdk/incubator/foreign/MemoryAddress;II)V",
-        constants$257.PFNGLMULTIDRAWARRAYSINDIRECTPROC$FUNC, false
+        constants$257.PFNGLMULTIDRAWARRAYSINDIRECTPROC$FUNC
     );
 }
 

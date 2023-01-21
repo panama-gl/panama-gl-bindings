@@ -2,53 +2,50 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_CHAR;
-import static jdk.incubator.foreign.CLinker.C_INT;
-import static jdk.incubator.foreign.CLinker.C_LONG;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$643 {
 
     static final FunctionDescriptor PFNGLTEXSTORAGEMEM2DEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_LONG
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT
     );
     static final MethodHandle PFNGLTEXSTORAGEMEM2DEXTPROC$MH = RuntimeHelper.downcallHandle(
-        "(IIIIIIJ)V",
-        constants$643.PFNGLTEXSTORAGEMEM2DEXTPROC$FUNC, false
+        constants$643.PFNGLTEXSTORAGEMEM2DEXTPROC$FUNC
     );
     static final FunctionDescriptor PFNGLTEXSTORAGEMEM2DMULTISAMPLEEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_CHAR,
-        C_INT,
-        C_LONG
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_CHAR$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT
     );
     static final MethodHandle PFNGLTEXSTORAGEMEM2DMULTISAMPLEEXTPROC$MH = RuntimeHelper.downcallHandle(
-        "(IIIIIBIJ)V",
-        constants$643.PFNGLTEXSTORAGEMEM2DMULTISAMPLEEXTPROC$FUNC, false
+        constants$643.PFNGLTEXSTORAGEMEM2DMULTISAMPLEEXTPROC$FUNC
     );
     static final FunctionDescriptor PFNGLTEXSTORAGEMEM3DEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_LONG
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT
     );
     static final MethodHandle PFNGLTEXSTORAGEMEM3DEXTPROC$MH = RuntimeHelper.downcallHandle(
-        "(IIIIIIIJ)V",
-        constants$643.PFNGLTEXSTORAGEMEM3DEXTPROC$FUNC, false
+        constants$643.PFNGLTEXSTORAGEMEM3DEXTPROC$FUNC
     );
 }
 

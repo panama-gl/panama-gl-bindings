@@ -2,30 +2,28 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_FLOAT;
-import static jdk.incubator.foreign.CLinker.C_INT;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$357 {
 
     static final FunctionDescriptor PFNGLEVALUATEDEPTHVALUESARBPROC$FUNC = FunctionDescriptor.ofVoid();
     static final MethodHandle PFNGLEVALUATEDEPTHVALUESARBPROC$MH = RuntimeHelper.downcallHandle(
-        "()V",
-        constants$357.PFNGLEVALUATEDEPTHVALUESARBPROC$FUNC, false
+        constants$357.PFNGLEVALUATEDEPTHVALUESARBPROC$FUNC
     );
     static final FunctionDescriptor PFNGLMINSAMPLESHADINGARBPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_FLOAT
+        Constants$root.C_FLOAT$LAYOUT
     );
     static final MethodHandle PFNGLMINSAMPLESHADINGARBPROC$MH = RuntimeHelper.downcallHandle(
-        "(F)V",
-        constants$357.PFNGLMINSAMPLESHADINGARBPROC$FUNC, false
+        constants$357.PFNGLMINSAMPLESHADINGARBPROC$FUNC
     );
     static final FunctionDescriptor PFNGLDELETEOBJECTARBPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLDELETEOBJECTARBPROC$MH = RuntimeHelper.downcallHandle(
-        "(I)V",
-        constants$357.PFNGLDELETEOBJECTARBPROC$FUNC, false
+        constants$357.PFNGLDELETEOBJECTARBPROC$FUNC
     );
 }
 

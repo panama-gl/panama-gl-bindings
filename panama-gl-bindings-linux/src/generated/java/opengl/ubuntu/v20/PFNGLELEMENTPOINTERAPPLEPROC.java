@@ -2,22 +2,22 @@
 
 package opengl.ubuntu.v20;
 
-import jdk.incubator.foreign.Addressable;
-import jdk.incubator.foreign.MemoryAddress;
-import jdk.incubator.foreign.ResourceScope;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public interface PFNGLELEMENTPOINTERAPPLEPROC {
 
-    void apply(int x0, jdk.incubator.foreign.MemoryAddress x1);
-    static MemoryAddress allocate(PFNGLELEMENTPOINTERAPPLEPROC fi) {
-        return RuntimeHelper.upcallStub(PFNGLELEMENTPOINTERAPPLEPROC.class, fi, constants$475.PFNGLELEMENTPOINTERAPPLEPROC$FUNC, "(ILjdk/incubator/foreign/MemoryAddress;)V");
+    void apply(int type, java.lang.foreign.MemoryAddress pointer);
+    static MemorySegment allocate(PFNGLELEMENTPOINTERAPPLEPROC fi, MemorySession session) {
+        return RuntimeHelper.upcallStub(PFNGLELEMENTPOINTERAPPLEPROC.class, fi, constants$475.PFNGLELEMENTPOINTERAPPLEPROC$FUNC, session);
     }
-    static MemoryAddress allocate(PFNGLELEMENTPOINTERAPPLEPROC fi, ResourceScope scope) {
-        return RuntimeHelper.upcallStub(PFNGLELEMENTPOINTERAPPLEPROC.class, fi, constants$475.PFNGLELEMENTPOINTERAPPLEPROC$FUNC, "(ILjdk/incubator/foreign/MemoryAddress;)V", scope);
-    }
-    static PFNGLELEMENTPOINTERAPPLEPROC ofAddress(MemoryAddress addr) {
-        return (int x0, jdk.incubator.foreign.MemoryAddress x1) -> {
+    static PFNGLELEMENTPOINTERAPPLEPROC ofAddress(MemoryAddress addr, MemorySession session) {
+        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
+        return (int _type, java.lang.foreign.MemoryAddress _pointer) -> {
             try {
-                constants$475.PFNGLELEMENTPOINTERAPPLEPROC$MH.invokeExact((Addressable)addr, x0, x1);
+                constants$475.PFNGLELEMENTPOINTERAPPLEPROC$MH.invokeExact((Addressable)symbol, _type, (java.lang.foreign.Addressable)_pointer);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

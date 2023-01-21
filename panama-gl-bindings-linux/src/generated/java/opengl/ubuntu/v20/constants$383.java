@@ -2,40 +2,37 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_INT;
-import static jdk.incubator.foreign.CLinker.C_LONG;
-import static jdk.incubator.foreign.CLinker.C_POINTER;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$383 {
 
     static final FunctionDescriptor PFNGLBUFFERSUBDATAARBPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_LONG,
-        C_LONG,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLBUFFERSUBDATAARBPROC$MH = RuntimeHelper.downcallHandle(
-        "(IJJLjdk/incubator/foreign/MemoryAddress;)V",
-        constants$383.PFNGLBUFFERSUBDATAARBPROC$FUNC, false
+        constants$383.PFNGLBUFFERSUBDATAARBPROC$FUNC
     );
     static final FunctionDescriptor PFNGLGETBUFFERSUBDATAARBPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_LONG,
-        C_LONG,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLGETBUFFERSUBDATAARBPROC$MH = RuntimeHelper.downcallHandle(
-        "(IJJLjdk/incubator/foreign/MemoryAddress;)V",
-        constants$383.PFNGLGETBUFFERSUBDATAARBPROC$FUNC, false
+        constants$383.PFNGLGETBUFFERSUBDATAARBPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLMAPBUFFERARBPROC$FUNC = FunctionDescriptor.of(C_POINTER,
-        C_INT,
-        C_INT
+    static final FunctionDescriptor PFNGLMAPBUFFERARBPROC$FUNC = FunctionDescriptor.of(Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLMAPBUFFERARBPROC$MH = RuntimeHelper.downcallHandle(
-        "(II)Ljdk/incubator/foreign/MemoryAddress;",
-        constants$383.PFNGLMAPBUFFERARBPROC$FUNC, false
+        constants$383.PFNGLMAPBUFFERARBPROC$FUNC
     );
 }
 

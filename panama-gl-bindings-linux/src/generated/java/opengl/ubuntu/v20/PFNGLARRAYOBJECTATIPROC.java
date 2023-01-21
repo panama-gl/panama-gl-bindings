@@ -2,22 +2,22 @@
 
 package opengl.ubuntu.v20;
 
-import jdk.incubator.foreign.Addressable;
-import jdk.incubator.foreign.MemoryAddress;
-import jdk.incubator.foreign.ResourceScope;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public interface PFNGLARRAYOBJECTATIPROC {
 
-    void apply(int x0, int x1, int x2, int x3, int x4, int x5);
-    static MemoryAddress allocate(PFNGLARRAYOBJECTATIPROC fi) {
-        return RuntimeHelper.upcallStub(PFNGLARRAYOBJECTATIPROC.class, fi, constants$497.PFNGLARRAYOBJECTATIPROC$FUNC, "(IIIIII)V");
+    void apply(int array, int size, int type, int stride, int buffer, int offset);
+    static MemorySegment allocate(PFNGLARRAYOBJECTATIPROC fi, MemorySession session) {
+        return RuntimeHelper.upcallStub(PFNGLARRAYOBJECTATIPROC.class, fi, constants$497.PFNGLARRAYOBJECTATIPROC$FUNC, session);
     }
-    static MemoryAddress allocate(PFNGLARRAYOBJECTATIPROC fi, ResourceScope scope) {
-        return RuntimeHelper.upcallStub(PFNGLARRAYOBJECTATIPROC.class, fi, constants$497.PFNGLARRAYOBJECTATIPROC$FUNC, "(IIIIII)V", scope);
-    }
-    static PFNGLARRAYOBJECTATIPROC ofAddress(MemoryAddress addr) {
-        return (int x0, int x1, int x2, int x3, int x4, int x5) -> {
+    static PFNGLARRAYOBJECTATIPROC ofAddress(MemoryAddress addr, MemorySession session) {
+        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
+        return (int _array, int _size, int _type, int _stride, int _buffer, int _offset) -> {
             try {
-                constants$497.PFNGLARRAYOBJECTATIPROC$MH.invokeExact((Addressable)addr, x0, x1, x2, x3, x4, x5);
+                constants$497.PFNGLARRAYOBJECTATIPROC$MH.invokeExact((Addressable)symbol, _array, _size, _type, _stride, _buffer, _offset);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

@@ -2,22 +2,22 @@
 
 package opengl.ubuntu.v20;
 
-import jdk.incubator.foreign.Addressable;
-import jdk.incubator.foreign.MemoryAddress;
-import jdk.incubator.foreign.ResourceScope;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public interface PFNGLCLEARNAMEDBUFFERSUBDATAEXTPROC {
 
-    void apply(int x0, int x1, long x2, long x3, int x4, int x5, jdk.incubator.foreign.MemoryAddress x6);
-    static MemoryAddress allocate(PFNGLCLEARNAMEDBUFFERSUBDATAEXTPROC fi) {
-        return RuntimeHelper.upcallStub(PFNGLCLEARNAMEDBUFFERSUBDATAEXTPROC.class, fi, constants$609.PFNGLCLEARNAMEDBUFFERSUBDATAEXTPROC$FUNC, "(IIJJIILjdk/incubator/foreign/MemoryAddress;)V");
+    void apply(int buffer, int internalformat, long offset, long size, int format, int type, java.lang.foreign.MemoryAddress data);
+    static MemorySegment allocate(PFNGLCLEARNAMEDBUFFERSUBDATAEXTPROC fi, MemorySession session) {
+        return RuntimeHelper.upcallStub(PFNGLCLEARNAMEDBUFFERSUBDATAEXTPROC.class, fi, constants$609.PFNGLCLEARNAMEDBUFFERSUBDATAEXTPROC$FUNC, session);
     }
-    static MemoryAddress allocate(PFNGLCLEARNAMEDBUFFERSUBDATAEXTPROC fi, ResourceScope scope) {
-        return RuntimeHelper.upcallStub(PFNGLCLEARNAMEDBUFFERSUBDATAEXTPROC.class, fi, constants$609.PFNGLCLEARNAMEDBUFFERSUBDATAEXTPROC$FUNC, "(IIJJIILjdk/incubator/foreign/MemoryAddress;)V", scope);
-    }
-    static PFNGLCLEARNAMEDBUFFERSUBDATAEXTPROC ofAddress(MemoryAddress addr) {
-        return (int x0, int x1, long x2, long x3, int x4, int x5, jdk.incubator.foreign.MemoryAddress x6) -> {
+    static PFNGLCLEARNAMEDBUFFERSUBDATAEXTPROC ofAddress(MemoryAddress addr, MemorySession session) {
+        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
+        return (int _buffer, int _internalformat, long _offset, long _size, int _format, int _type, java.lang.foreign.MemoryAddress _data) -> {
             try {
-                constants$609.PFNGLCLEARNAMEDBUFFERSUBDATAEXTPROC$MH.invokeExact((Addressable)addr, x0, x1, x2, x3, x4, x5, x6);
+                constants$609.PFNGLCLEARNAMEDBUFFERSUBDATAEXTPROC$MH.invokeExact((Addressable)symbol, _buffer, _internalformat, _offset, _size, _format, _type, (java.lang.foreign.Addressable)_data);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

@@ -2,38 +2,36 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_INT;
-import static jdk.incubator.foreign.CLinker.C_POINTER;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$819 {
 
     static final FunctionDescriptor PFNGLSCISSOREXCLUSIVENVPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLSCISSOREXCLUSIVENVPROC$MH = RuntimeHelper.downcallHandle(
-        "(IIII)V",
-        constants$819.PFNGLSCISSOREXCLUSIVENVPROC$FUNC, false
+        constants$819.PFNGLSCISSOREXCLUSIVENVPROC$FUNC
     );
     static final FunctionDescriptor PFNGLSCISSOREXCLUSIVEARRAYVNVPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLSCISSOREXCLUSIVEARRAYVNVPROC$MH = RuntimeHelper.downcallHandle(
-        "(IILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$819.PFNGLSCISSOREXCLUSIVEARRAYVNVPROC$FUNC, false
+        constants$819.PFNGLSCISSOREXCLUSIVEARRAYVNVPROC$FUNC
     );
     static final FunctionDescriptor PFNGLMAKEBUFFERRESIDENTNVPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLMAKEBUFFERRESIDENTNVPROC$MH = RuntimeHelper.downcallHandle(
-        "(II)V",
-        constants$819.PFNGLMAKEBUFFERRESIDENTNVPROC$FUNC, false
+        constants$819.PFNGLMAKEBUFFERRESIDENTNVPROC$FUNC
     );
 }
 

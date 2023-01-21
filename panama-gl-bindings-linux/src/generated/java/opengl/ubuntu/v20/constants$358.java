@@ -2,32 +2,31 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_INT;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$358 {
 
-    static final FunctionDescriptor PFNGLGETHANDLEARBPROC$FUNC = FunctionDescriptor.of(C_INT,
-        C_INT
+    static final FunctionDescriptor PFNGLGETHANDLEARBPROC$FUNC = FunctionDescriptor.of(Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLGETHANDLEARBPROC$MH = RuntimeHelper.downcallHandle(
-        "(I)I",
-        constants$358.PFNGLGETHANDLEARBPROC$FUNC, false
+        constants$358.PFNGLGETHANDLEARBPROC$FUNC
     );
     static final FunctionDescriptor PFNGLDETACHOBJECTARBPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLDETACHOBJECTARBPROC$MH = RuntimeHelper.downcallHandle(
-        "(II)V",
-        constants$358.PFNGLDETACHOBJECTARBPROC$FUNC, false
+        constants$358.PFNGLDETACHOBJECTARBPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLCREATESHADEROBJECTARBPROC$FUNC = FunctionDescriptor.of(C_INT,
-        C_INT
+    static final FunctionDescriptor PFNGLCREATESHADEROBJECTARBPROC$FUNC = FunctionDescriptor.of(Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLCREATESHADEROBJECTARBPROC$MH = RuntimeHelper.downcallHandle(
-        "(I)I",
-        constants$358.PFNGLCREATESHADEROBJECTARBPROC$FUNC, false
+        constants$358.PFNGLCREATESHADEROBJECTARBPROC$FUNC
     );
 }
 

@@ -2,43 +2,41 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_INT;
-import static jdk.incubator.foreign.CLinker.C_POINTER;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$170 {
 
     static final FunctionDescriptor PFNGLFRAMEBUFFERTEXTURE3DPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLFRAMEBUFFERTEXTURE3DPROC$MH = RuntimeHelper.downcallHandle(
-        "(IIIIII)V",
-        constants$170.PFNGLFRAMEBUFFERTEXTURE3DPROC$FUNC, false
+        constants$170.PFNGLFRAMEBUFFERTEXTURE3DPROC$FUNC
     );
     static final FunctionDescriptor PFNGLFRAMEBUFFERRENDERBUFFERPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLFRAMEBUFFERRENDERBUFFERPROC$MH = RuntimeHelper.downcallHandle(
-        "(IIII)V",
-        constants$170.PFNGLFRAMEBUFFERRENDERBUFFERPROC$FUNC, false
+        constants$170.PFNGLFRAMEBUFFERRENDERBUFFERPROC$FUNC
     );
     static final FunctionDescriptor PFNGLGETFRAMEBUFFERATTACHMENTPARAMETERIVPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLGETFRAMEBUFFERATTACHMENTPARAMETERIVPROC$MH = RuntimeHelper.downcallHandle(
-        "(IIILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$170.PFNGLGETFRAMEBUFFERATTACHMENTPARAMETERIVPROC$FUNC, false
+        constants$170.PFNGLGETFRAMEBUFFERATTACHMENTPARAMETERIVPROC$FUNC
     );
 }
 

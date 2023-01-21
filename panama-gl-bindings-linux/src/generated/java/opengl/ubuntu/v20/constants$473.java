@@ -2,47 +2,45 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_INT;
-import static jdk.incubator.foreign.CLinker.C_POINTER;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$473 {
 
     static final FunctionDescriptor PFNGLSETMULTISAMPLEFVAMDPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLSETMULTISAMPLEFVAMDPROC$MH = RuntimeHelper.downcallHandle(
-        "(IILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$473.PFNGLSETMULTISAMPLEFVAMDPROC$FUNC, false
+        constants$473.PFNGLSETMULTISAMPLEFVAMDPROC$FUNC
     );
     static final FunctionDescriptor PFNGLTEXSTORAGESPARSEAMDPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLTEXSTORAGESPARSEAMDPROC$MH = RuntimeHelper.downcallHandle(
-        "(IIIIIII)V",
-        constants$473.PFNGLTEXSTORAGESPARSEAMDPROC$FUNC, false
+        constants$473.PFNGLTEXSTORAGESPARSEAMDPROC$FUNC
     );
     static final FunctionDescriptor PFNGLTEXTURESTORAGESPARSEAMDPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLTEXTURESTORAGESPARSEAMDPROC$MH = RuntimeHelper.downcallHandle(
-        "(IIIIIIII)V",
-        constants$473.PFNGLTEXTURESTORAGESPARSEAMDPROC$FUNC, false
+        constants$473.PFNGLTEXTURESTORAGESPARSEAMDPROC$FUNC
     );
 }
 

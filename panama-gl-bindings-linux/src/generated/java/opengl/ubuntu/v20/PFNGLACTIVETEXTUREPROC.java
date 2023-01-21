@@ -2,22 +2,22 @@
 
 package opengl.ubuntu.v20;
 
-import jdk.incubator.foreign.Addressable;
-import jdk.incubator.foreign.MemoryAddress;
-import jdk.incubator.foreign.ResourceScope;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public interface PFNGLACTIVETEXTUREPROC {
 
-    void apply(int x0);
-    static MemoryAddress allocate(PFNGLACTIVETEXTUREPROC fi) {
-        return RuntimeHelper.upcallStub(PFNGLACTIVETEXTUREPROC.class, fi, constants$71.PFNGLACTIVETEXTUREPROC$FUNC, "(I)V");
+    void apply(int texture);
+    static MemorySegment allocate(PFNGLACTIVETEXTUREPROC fi, MemorySession session) {
+        return RuntimeHelper.upcallStub(PFNGLACTIVETEXTUREPROC.class, fi, constants$71.PFNGLACTIVETEXTUREPROC$FUNC, session);
     }
-    static MemoryAddress allocate(PFNGLACTIVETEXTUREPROC fi, ResourceScope scope) {
-        return RuntimeHelper.upcallStub(PFNGLACTIVETEXTUREPROC.class, fi, constants$71.PFNGLACTIVETEXTUREPROC$FUNC, "(I)V", scope);
-    }
-    static PFNGLACTIVETEXTUREPROC ofAddress(MemoryAddress addr) {
-        return (int x0) -> {
+    static PFNGLACTIVETEXTUREPROC ofAddress(MemoryAddress addr, MemorySession session) {
+        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
+        return (int _texture) -> {
             try {
-                constants$71.PFNGLACTIVETEXTUREPROC$MH.invokeExact((Addressable)addr, x0);
+                constants$71.PFNGLACTIVETEXTUREPROC$MH.invokeExact((Addressable)symbol, _texture);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

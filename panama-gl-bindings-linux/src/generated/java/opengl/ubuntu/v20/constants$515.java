@@ -2,37 +2,34 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_FLOAT;
-import static jdk.incubator.foreign.CLinker.C_INT;
-import static jdk.incubator.foreign.CLinker.C_POINTER;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$515 {
 
     static final FunctionDescriptor PFNGLVERTEXBLENDENVIATIPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLVERTEXBLENDENVIATIPROC$MH = RuntimeHelper.downcallHandle(
-        "(II)V",
-        constants$515.PFNGLVERTEXBLENDENVIATIPROC$FUNC, false
+        constants$515.PFNGLVERTEXBLENDENVIATIPROC$FUNC
     );
     static final FunctionDescriptor PFNGLVERTEXBLENDENVFATIPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_FLOAT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT
     );
     static final MethodHandle PFNGLVERTEXBLENDENVFATIPROC$MH = RuntimeHelper.downcallHandle(
-        "(IF)V",
-        constants$515.PFNGLVERTEXBLENDENVFATIPROC$FUNC, false
+        constants$515.PFNGLVERTEXBLENDENVFATIPROC$FUNC
     );
     static final FunctionDescriptor PFNGLEGLIMAGETARGETTEXSTORAGEEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_POINTER,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLEGLIMAGETARGETTEXSTORAGEEXTPROC$MH = RuntimeHelper.downcallHandle(
-        "(ILjdk/incubator/foreign/MemoryAddress;Ljdk/incubator/foreign/MemoryAddress;)V",
-        constants$515.PFNGLEGLIMAGETARGETTEXSTORAGEEXTPROC$FUNC, false
+        constants$515.PFNGLEGLIMAGETARGETTEXSTORAGEEXTPROC$FUNC
     );
 }
 

@@ -2,22 +2,22 @@
 
 package opengl.ubuntu.v20;
 
-import jdk.incubator.foreign.Addressable;
-import jdk.incubator.foreign.MemoryAddress;
-import jdk.incubator.foreign.ResourceScope;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public interface PFNGLGETTEXTURESAMPLERHANDLEARBPROC {
 
-    long apply(int x0, int x1);
-    static MemoryAddress allocate(PFNGLGETTEXTURESAMPLERHANDLEARBPROC fi) {
-        return RuntimeHelper.upcallStub(PFNGLGETTEXTURESAMPLERHANDLEARBPROC.class, fi, constants$313.PFNGLGETTEXTURESAMPLERHANDLEARBPROC$FUNC, "(II)J");
+    long apply(int texture, int sampler);
+    static MemorySegment allocate(PFNGLGETTEXTURESAMPLERHANDLEARBPROC fi, MemorySession session) {
+        return RuntimeHelper.upcallStub(PFNGLGETTEXTURESAMPLERHANDLEARBPROC.class, fi, constants$313.PFNGLGETTEXTURESAMPLERHANDLEARBPROC$FUNC, session);
     }
-    static MemoryAddress allocate(PFNGLGETTEXTURESAMPLERHANDLEARBPROC fi, ResourceScope scope) {
-        return RuntimeHelper.upcallStub(PFNGLGETTEXTURESAMPLERHANDLEARBPROC.class, fi, constants$313.PFNGLGETTEXTURESAMPLERHANDLEARBPROC$FUNC, "(II)J", scope);
-    }
-    static PFNGLGETTEXTURESAMPLERHANDLEARBPROC ofAddress(MemoryAddress addr) {
-        return (int x0, int x1) -> {
+    static PFNGLGETTEXTURESAMPLERHANDLEARBPROC ofAddress(MemoryAddress addr, MemorySession session) {
+        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
+        return (int _texture, int _sampler) -> {
             try {
-                return (long)constants$313.PFNGLGETTEXTURESAMPLERHANDLEARBPROC$MH.invokeExact((Addressable)addr, x0, x1);
+                return (long)constants$313.PFNGLGETTEXTURESAMPLERHANDLEARBPROC$MH.invokeExact((Addressable)symbol, _texture, _sampler);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

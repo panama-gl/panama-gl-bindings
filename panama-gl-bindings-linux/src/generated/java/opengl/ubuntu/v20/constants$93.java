@@ -2,35 +2,32 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_FLOAT;
-import static jdk.incubator.foreign.CLinker.C_INT;
-import static jdk.incubator.foreign.CLinker.C_POINTER;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$93 {
 
     static final FunctionDescriptor PFNGLPOINTPARAMETERIPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLPOINTPARAMETERIPROC$MH = RuntimeHelper.downcallHandle(
-        "(II)V",
-        constants$93.PFNGLPOINTPARAMETERIPROC$FUNC, false
+        constants$93.PFNGLPOINTPARAMETERIPROC$FUNC
     );
     static final FunctionDescriptor PFNGLPOINTPARAMETERIVPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLPOINTPARAMETERIVPROC$MH = RuntimeHelper.downcallHandle(
-        "(ILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$93.PFNGLPOINTPARAMETERIVPROC$FUNC, false
+        constants$93.PFNGLPOINTPARAMETERIVPROC$FUNC
     );
     static final FunctionDescriptor PFNGLFOGCOORDFPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_FLOAT
+        Constants$root.C_FLOAT$LAYOUT
     );
     static final MethodHandle PFNGLFOGCOORDFPROC$MH = RuntimeHelper.downcallHandle(
-        "(F)V",
-        constants$93.PFNGLFOGCOORDFPROC$FUNC, false
+        constants$93.PFNGLFOGCOORDFPROC$FUNC
     );
 }
 

@@ -2,40 +2,39 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_INT;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$363 {
 
     static final FunctionDescriptor PFNGLUNIFORM2IARBPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_INT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLUNIFORM2IARBPROC$MH = RuntimeHelper.downcallHandle(
-        "(III)V",
-        constants$363.PFNGLUNIFORM2IARBPROC$FUNC, false
+        constants$363.PFNGLUNIFORM2IARBPROC$FUNC
     );
     static final FunctionDescriptor PFNGLUNIFORM3IARBPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLUNIFORM3IARBPROC$MH = RuntimeHelper.downcallHandle(
-        "(IIII)V",
-        constants$363.PFNGLUNIFORM3IARBPROC$FUNC, false
+        constants$363.PFNGLUNIFORM3IARBPROC$FUNC
     );
     static final FunctionDescriptor PFNGLUNIFORM4IARBPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLUNIFORM4IARBPROC$MH = RuntimeHelper.downcallHandle(
-        "(IIIII)V",
-        constants$363.PFNGLUNIFORM4IARBPROC$FUNC, false
+        constants$363.PFNGLUNIFORM4IARBPROC$FUNC
     );
 }
 

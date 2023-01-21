@@ -2,38 +2,35 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_FLOAT;
-import static jdk.incubator.foreign.CLinker.C_INT;
-import static jdk.incubator.foreign.CLinker.C_POINTER;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$507 {
 
     static final FunctionDescriptor PFNGLVERTEXSTREAM3IVATIPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLVERTEXSTREAM3IVATIPROC$MH = RuntimeHelper.downcallHandle(
-        "(ILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$507.PFNGLVERTEXSTREAM3IVATIPROC$FUNC, false
+        constants$507.PFNGLVERTEXSTREAM3IVATIPROC$FUNC
     );
     static final FunctionDescriptor PFNGLVERTEXSTREAM3FATIPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_FLOAT,
-        C_FLOAT,
-        C_FLOAT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT
     );
     static final MethodHandle PFNGLVERTEXSTREAM3FATIPROC$MH = RuntimeHelper.downcallHandle(
-        "(IFFF)V",
-        constants$507.PFNGLVERTEXSTREAM3FATIPROC$FUNC, false
+        constants$507.PFNGLVERTEXSTREAM3FATIPROC$FUNC
     );
     static final FunctionDescriptor PFNGLVERTEXSTREAM3FVATIPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLVERTEXSTREAM3FVATIPROC$MH = RuntimeHelper.downcallHandle(
-        "(ILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$507.PFNGLVERTEXSTREAM3FVATIPROC$FUNC, false
+        constants$507.PFNGLVERTEXSTREAM3FVATIPROC$FUNC
     );
 }
 

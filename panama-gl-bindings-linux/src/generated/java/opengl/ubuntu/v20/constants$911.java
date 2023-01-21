@@ -2,33 +2,30 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_CHAR;
-import static jdk.incubator.foreign.CLinker.C_DOUBLE;
-import static jdk.incubator.foreign.CLinker.C_FLOAT;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$911 {
 
     static final FunctionDescriptor PFNGLGLOBALALPHAFACTORFSUNPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_FLOAT
+        Constants$root.C_FLOAT$LAYOUT
     );
     static final MethodHandle PFNGLGLOBALALPHAFACTORFSUNPROC$MH = RuntimeHelper.downcallHandle(
-        "(F)V",
-        constants$911.PFNGLGLOBALALPHAFACTORFSUNPROC$FUNC, false
+        constants$911.PFNGLGLOBALALPHAFACTORFSUNPROC$FUNC
     );
     static final FunctionDescriptor PFNGLGLOBALALPHAFACTORDSUNPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_DOUBLE
+        Constants$root.C_DOUBLE$LAYOUT
     );
     static final MethodHandle PFNGLGLOBALALPHAFACTORDSUNPROC$MH = RuntimeHelper.downcallHandle(
-        "(D)V",
-        constants$911.PFNGLGLOBALALPHAFACTORDSUNPROC$FUNC, false
+        constants$911.PFNGLGLOBALALPHAFACTORDSUNPROC$FUNC
     );
     static final FunctionDescriptor PFNGLGLOBALALPHAFACTORUBSUNPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_CHAR
+        Constants$root.C_CHAR$LAYOUT
     );
     static final MethodHandle PFNGLGLOBALALPHAFACTORUBSUNPROC$MH = RuntimeHelper.downcallHandle(
-        "(B)V",
-        constants$911.PFNGLGLOBALALPHAFACTORUBSUNPROC$FUNC, false
+        constants$911.PFNGLGLOBALALPHAFACTORUBSUNPROC$FUNC
     );
 }
 

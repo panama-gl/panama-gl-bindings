@@ -2,22 +2,22 @@
 
 package opengl.ubuntu.v20;
 
-import jdk.incubator.foreign.Addressable;
-import jdk.incubator.foreign.MemoryAddress;
-import jdk.incubator.foreign.ResourceScope;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public interface PFNGLCOMBINERINPUTNVPROC {
 
-    void apply(int x0, int x1, int x2, int x3, int x4, int x5);
-    static MemoryAddress allocate(PFNGLCOMBINERINPUTNVPROC fi) {
-        return RuntimeHelper.upcallStub(PFNGLCOMBINERINPUTNVPROC.class, fi, constants$814.PFNGLCOMBINERINPUTNVPROC$FUNC, "(IIIIII)V");
+    void apply(int stage, int portion, int variable, int input, int mapping, int componentUsage);
+    static MemorySegment allocate(PFNGLCOMBINERINPUTNVPROC fi, MemorySession session) {
+        return RuntimeHelper.upcallStub(PFNGLCOMBINERINPUTNVPROC.class, fi, constants$814.PFNGLCOMBINERINPUTNVPROC$FUNC, session);
     }
-    static MemoryAddress allocate(PFNGLCOMBINERINPUTNVPROC fi, ResourceScope scope) {
-        return RuntimeHelper.upcallStub(PFNGLCOMBINERINPUTNVPROC.class, fi, constants$814.PFNGLCOMBINERINPUTNVPROC$FUNC, "(IIIIII)V", scope);
-    }
-    static PFNGLCOMBINERINPUTNVPROC ofAddress(MemoryAddress addr) {
-        return (int x0, int x1, int x2, int x3, int x4, int x5) -> {
+    static PFNGLCOMBINERINPUTNVPROC ofAddress(MemoryAddress addr, MemorySession session) {
+        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
+        return (int _stage, int _portion, int _variable, int _input, int _mapping, int _componentUsage) -> {
             try {
-                constants$814.PFNGLCOMBINERINPUTNVPROC$MH.invokeExact((Addressable)addr, x0, x1, x2, x3, x4, x5);
+                constants$814.PFNGLCOMBINERINPUTNVPROC$MH.invokeExact((Addressable)symbol, _stage, _portion, _variable, _input, _mapping, _componentUsage);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

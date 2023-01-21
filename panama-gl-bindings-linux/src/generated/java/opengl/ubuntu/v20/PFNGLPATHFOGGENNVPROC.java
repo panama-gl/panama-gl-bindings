@@ -2,22 +2,22 @@
 
 package opengl.ubuntu.v20;
 
-import jdk.incubator.foreign.Addressable;
-import jdk.incubator.foreign.MemoryAddress;
-import jdk.incubator.foreign.ResourceScope;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public interface PFNGLPATHFOGGENNVPROC {
 
-    void apply(int x0);
-    static MemoryAddress allocate(PFNGLPATHFOGGENNVPROC fi) {
-        return RuntimeHelper.upcallStub(PFNGLPATHFOGGENNVPROC.class, fi, constants$806.PFNGLPATHFOGGENNVPROC$FUNC, "(I)V");
+    void apply(int genMode);
+    static MemorySegment allocate(PFNGLPATHFOGGENNVPROC fi, MemorySession session) {
+        return RuntimeHelper.upcallStub(PFNGLPATHFOGGENNVPROC.class, fi, constants$806.PFNGLPATHFOGGENNVPROC$FUNC, session);
     }
-    static MemoryAddress allocate(PFNGLPATHFOGGENNVPROC fi, ResourceScope scope) {
-        return RuntimeHelper.upcallStub(PFNGLPATHFOGGENNVPROC.class, fi, constants$806.PFNGLPATHFOGGENNVPROC$FUNC, "(I)V", scope);
-    }
-    static PFNGLPATHFOGGENNVPROC ofAddress(MemoryAddress addr) {
-        return (int x0) -> {
+    static PFNGLPATHFOGGENNVPROC ofAddress(MemoryAddress addr, MemorySession session) {
+        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
+        return (int _genMode) -> {
             try {
-                constants$806.PFNGLPATHFOGGENNVPROC$MH.invokeExact((Addressable)addr, x0);
+                constants$806.PFNGLPATHFOGGENNVPROC$MH.invokeExact((Addressable)symbol, _genMode);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

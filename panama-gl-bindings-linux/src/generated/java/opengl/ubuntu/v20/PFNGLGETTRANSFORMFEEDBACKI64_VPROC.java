@@ -2,22 +2,22 @@
 
 package opengl.ubuntu.v20;
 
-import jdk.incubator.foreign.Addressable;
-import jdk.incubator.foreign.MemoryAddress;
-import jdk.incubator.foreign.ResourceScope;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public interface PFNGLGETTRANSFORMFEEDBACKI64_VPROC {
 
-    void apply(int x0, int x1, int x2, jdk.incubator.foreign.MemoryAddress x3);
-    static MemoryAddress allocate(PFNGLGETTRANSFORMFEEDBACKI64_VPROC fi) {
-        return RuntimeHelper.upcallStub(PFNGLGETTRANSFORMFEEDBACKI64_VPROC.class, fi, constants$272.PFNGLGETTRANSFORMFEEDBACKI64_VPROC$FUNC, "(IIILjdk/incubator/foreign/MemoryAddress;)V");
+    void apply(int xfb, int pname, int index, java.lang.foreign.MemoryAddress param);
+    static MemorySegment allocate(PFNGLGETTRANSFORMFEEDBACKI64_VPROC fi, MemorySession session) {
+        return RuntimeHelper.upcallStub(PFNGLGETTRANSFORMFEEDBACKI64_VPROC.class, fi, constants$272.PFNGLGETTRANSFORMFEEDBACKI64_VPROC$FUNC, session);
     }
-    static MemoryAddress allocate(PFNGLGETTRANSFORMFEEDBACKI64_VPROC fi, ResourceScope scope) {
-        return RuntimeHelper.upcallStub(PFNGLGETTRANSFORMFEEDBACKI64_VPROC.class, fi, constants$272.PFNGLGETTRANSFORMFEEDBACKI64_VPROC$FUNC, "(IIILjdk/incubator/foreign/MemoryAddress;)V", scope);
-    }
-    static PFNGLGETTRANSFORMFEEDBACKI64_VPROC ofAddress(MemoryAddress addr) {
-        return (int x0, int x1, int x2, jdk.incubator.foreign.MemoryAddress x3) -> {
+    static PFNGLGETTRANSFORMFEEDBACKI64_VPROC ofAddress(MemoryAddress addr, MemorySession session) {
+        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
+        return (int _xfb, int _pname, int _index, java.lang.foreign.MemoryAddress _param) -> {
             try {
-                constants$272.PFNGLGETTRANSFORMFEEDBACKI64_VPROC$MH.invokeExact((Addressable)addr, x0, x1, x2, x3);
+                constants$272.PFNGLGETTRANSFORMFEEDBACKI64_VPROC$MH.invokeExact((Addressable)symbol, _xfb, _pname, _index, (java.lang.foreign.Addressable)_param);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

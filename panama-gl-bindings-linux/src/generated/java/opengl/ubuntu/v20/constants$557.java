@@ -2,53 +2,52 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_INT;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$557 {
 
     static final FunctionDescriptor PFNGLCOPYMULTITEXIMAGE2DEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLCOPYMULTITEXIMAGE2DEXTPROC$MH = RuntimeHelper.downcallHandle(
-        "(IIIIIIIII)V",
-        constants$557.PFNGLCOPYMULTITEXIMAGE2DEXTPROC$FUNC, false
+        constants$557.PFNGLCOPYMULTITEXIMAGE2DEXTPROC$FUNC
     );
     static final FunctionDescriptor PFNGLCOPYMULTITEXSUBIMAGE1DEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLCOPYMULTITEXSUBIMAGE1DEXTPROC$MH = RuntimeHelper.downcallHandle(
-        "(IIIIIII)V",
-        constants$557.PFNGLCOPYMULTITEXSUBIMAGE1DEXTPROC$FUNC, false
+        constants$557.PFNGLCOPYMULTITEXSUBIMAGE1DEXTPROC$FUNC
     );
     static final FunctionDescriptor PFNGLCOPYMULTITEXSUBIMAGE2DEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLCOPYMULTITEXSUBIMAGE2DEXTPROC$MH = RuntimeHelper.downcallHandle(
-        "(IIIIIIIII)V",
-        constants$557.PFNGLCOPYMULTITEXSUBIMAGE2DEXTPROC$FUNC, false
+        constants$557.PFNGLCOPYMULTITEXSUBIMAGE2DEXTPROC$FUNC
     );
 }
 

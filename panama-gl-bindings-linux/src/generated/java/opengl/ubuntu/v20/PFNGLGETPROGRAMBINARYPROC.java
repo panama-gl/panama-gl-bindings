@@ -2,22 +2,22 @@
 
 package opengl.ubuntu.v20;
 
-import jdk.incubator.foreign.Addressable;
-import jdk.incubator.foreign.MemoryAddress;
-import jdk.incubator.foreign.ResourceScope;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public interface PFNGLGETPROGRAMBINARYPROC {
 
-    void apply(int x0, int x1, jdk.incubator.foreign.MemoryAddress x2, jdk.incubator.foreign.MemoryAddress x3, jdk.incubator.foreign.MemoryAddress x4);
-    static MemoryAddress allocate(PFNGLGETPROGRAMBINARYPROC fi) {
-        return RuntimeHelper.upcallStub(PFNGLGETPROGRAMBINARYPROC.class, fi, constants$221.PFNGLGETPROGRAMBINARYPROC$FUNC, "(IILjdk/incubator/foreign/MemoryAddress;Ljdk/incubator/foreign/MemoryAddress;Ljdk/incubator/foreign/MemoryAddress;)V");
+    void apply(int program, int bufSize, java.lang.foreign.MemoryAddress length, java.lang.foreign.MemoryAddress binaryFormat, java.lang.foreign.MemoryAddress binary);
+    static MemorySegment allocate(PFNGLGETPROGRAMBINARYPROC fi, MemorySession session) {
+        return RuntimeHelper.upcallStub(PFNGLGETPROGRAMBINARYPROC.class, fi, constants$221.PFNGLGETPROGRAMBINARYPROC$FUNC, session);
     }
-    static MemoryAddress allocate(PFNGLGETPROGRAMBINARYPROC fi, ResourceScope scope) {
-        return RuntimeHelper.upcallStub(PFNGLGETPROGRAMBINARYPROC.class, fi, constants$221.PFNGLGETPROGRAMBINARYPROC$FUNC, "(IILjdk/incubator/foreign/MemoryAddress;Ljdk/incubator/foreign/MemoryAddress;Ljdk/incubator/foreign/MemoryAddress;)V", scope);
-    }
-    static PFNGLGETPROGRAMBINARYPROC ofAddress(MemoryAddress addr) {
-        return (int x0, int x1, jdk.incubator.foreign.MemoryAddress x2, jdk.incubator.foreign.MemoryAddress x3, jdk.incubator.foreign.MemoryAddress x4) -> {
+    static PFNGLGETPROGRAMBINARYPROC ofAddress(MemoryAddress addr, MemorySession session) {
+        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
+        return (int _program, int _bufSize, java.lang.foreign.MemoryAddress _length, java.lang.foreign.MemoryAddress _binaryFormat, java.lang.foreign.MemoryAddress _binary) -> {
             try {
-                constants$221.PFNGLGETPROGRAMBINARYPROC$MH.invokeExact((Addressable)addr, x0, x1, x2, x3, x4);
+                constants$221.PFNGLGETPROGRAMBINARYPROC$MH.invokeExact((Addressable)symbol, _program, _bufSize, (java.lang.foreign.Addressable)_length, (java.lang.foreign.Addressable)_binaryFormat, (java.lang.foreign.Addressable)_binary);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

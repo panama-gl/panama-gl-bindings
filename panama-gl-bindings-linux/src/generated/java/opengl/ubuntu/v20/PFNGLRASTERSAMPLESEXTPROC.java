@@ -2,22 +2,22 @@
 
 package opengl.ubuntu.v20;
 
-import jdk.incubator.foreign.Addressable;
-import jdk.incubator.foreign.MemoryAddress;
-import jdk.incubator.foreign.ResourceScope;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public interface PFNGLRASTERSAMPLESEXTPROC {
 
-    void apply(int x0, byte x1);
-    static MemoryAddress allocate(PFNGLRASTERSAMPLESEXTPROC fi) {
-        return RuntimeHelper.upcallStub(PFNGLRASTERSAMPLESEXTPROC.class, fi, constants$654.PFNGLRASTERSAMPLESEXTPROC$FUNC, "(IB)V");
+    void apply(int samples, byte fixedsamplelocations);
+    static MemorySegment allocate(PFNGLRASTERSAMPLESEXTPROC fi, MemorySession session) {
+        return RuntimeHelper.upcallStub(PFNGLRASTERSAMPLESEXTPROC.class, fi, constants$654.PFNGLRASTERSAMPLESEXTPROC$FUNC, session);
     }
-    static MemoryAddress allocate(PFNGLRASTERSAMPLESEXTPROC fi, ResourceScope scope) {
-        return RuntimeHelper.upcallStub(PFNGLRASTERSAMPLESEXTPROC.class, fi, constants$654.PFNGLRASTERSAMPLESEXTPROC$FUNC, "(IB)V", scope);
-    }
-    static PFNGLRASTERSAMPLESEXTPROC ofAddress(MemoryAddress addr) {
-        return (int x0, byte x1) -> {
+    static PFNGLRASTERSAMPLESEXTPROC ofAddress(MemoryAddress addr, MemorySession session) {
+        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
+        return (int _samples, byte _fixedsamplelocations) -> {
             try {
-                constants$654.PFNGLRASTERSAMPLESEXTPROC$MH.invokeExact((Addressable)addr, x0, x1);
+                constants$654.PFNGLRASTERSAMPLESEXTPROC$MH.invokeExact((Addressable)symbol, _samples, _fixedsamplelocations);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

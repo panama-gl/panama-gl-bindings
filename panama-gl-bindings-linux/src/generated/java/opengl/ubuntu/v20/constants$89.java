@@ -2,39 +2,36 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_FLOAT;
-import static jdk.incubator.foreign.CLinker.C_INT;
-import static jdk.incubator.foreign.CLinker.C_POINTER;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$89 {
 
     static final FunctionDescriptor PFNGLMULTITEXCOORD4DVARBPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLMULTITEXCOORD4DVARBPROC$MH = RuntimeHelper.downcallHandle(
-        "(ILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$89.PFNGLMULTITEXCOORD4DVARBPROC$FUNC, false
+        constants$89.PFNGLMULTITEXCOORD4DVARBPROC$FUNC
     );
     static final FunctionDescriptor PFNGLMULTITEXCOORD4FARBPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_FLOAT,
-        C_FLOAT,
-        C_FLOAT,
-        C_FLOAT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT
     );
     static final MethodHandle PFNGLMULTITEXCOORD4FARBPROC$MH = RuntimeHelper.downcallHandle(
-        "(IFFFF)V",
-        constants$89.PFNGLMULTITEXCOORD4FARBPROC$FUNC, false
+        constants$89.PFNGLMULTITEXCOORD4FARBPROC$FUNC
     );
     static final FunctionDescriptor PFNGLMULTITEXCOORD4FVARBPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLMULTITEXCOORD4FVARBPROC$MH = RuntimeHelper.downcallHandle(
-        "(ILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$89.PFNGLMULTITEXCOORD4FVARBPROC$FUNC, false
+        constants$89.PFNGLMULTITEXCOORD4FVARBPROC$FUNC
     );
 }
 

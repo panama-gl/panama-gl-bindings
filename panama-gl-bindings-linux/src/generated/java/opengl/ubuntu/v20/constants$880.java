@@ -2,40 +2,38 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_INT;
-import static jdk.incubator.foreign.CLinker.C_POINTER;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$880 {
 
     static final FunctionDescriptor PFNGLGETVIDEOCAPTUREIVNVPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLGETVIDEOCAPTUREIVNVPROC$MH = RuntimeHelper.downcallHandle(
-        "(IILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$880.PFNGLGETVIDEOCAPTUREIVNVPROC$FUNC, false
+        constants$880.PFNGLGETVIDEOCAPTUREIVNVPROC$FUNC
     );
     static final FunctionDescriptor PFNGLGETVIDEOCAPTURESTREAMIVNVPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLGETVIDEOCAPTURESTREAMIVNVPROC$MH = RuntimeHelper.downcallHandle(
-        "(IIILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$880.PFNGLGETVIDEOCAPTURESTREAMIVNVPROC$FUNC, false
+        constants$880.PFNGLGETVIDEOCAPTURESTREAMIVNVPROC$FUNC
     );
     static final FunctionDescriptor PFNGLGETVIDEOCAPTURESTREAMFVNVPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLGETVIDEOCAPTURESTREAMFVNVPROC$MH = RuntimeHelper.downcallHandle(
-        "(IIILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$880.PFNGLGETVIDEOCAPTURESTREAMFVNVPROC$FUNC, false
+        constants$880.PFNGLGETVIDEOCAPTURESTREAMFVNVPROC$FUNC
     );
 }
 

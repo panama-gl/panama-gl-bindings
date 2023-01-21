@@ -2,59 +2,54 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_CHAR;
-import static jdk.incubator.foreign.CLinker.C_POINTER;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$19 {
 
     static final FunctionDescriptor glIndexub$FUNC = FunctionDescriptor.ofVoid(
-        C_CHAR
+        Constants$root.C_CHAR$LAYOUT
     );
     static final MethodHandle glIndexub$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "glIndexub",
-        "(B)V",
-        constants$19.glIndexub$FUNC, false
+        "glIndexub",
+        constants$19.glIndexub$FUNC
     );
     static final FunctionDescriptor glIndexdv$FUNC = FunctionDescriptor.ofVoid(
-        C_POINTER
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle glIndexdv$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "glIndexdv",
-        "(Ljdk/incubator/foreign/MemoryAddress;)V",
-        constants$19.glIndexdv$FUNC, false
+        "glIndexdv",
+        constants$19.glIndexdv$FUNC
     );
     static final FunctionDescriptor glIndexfv$FUNC = FunctionDescriptor.ofVoid(
-        C_POINTER
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle glIndexfv$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "glIndexfv",
-        "(Ljdk/incubator/foreign/MemoryAddress;)V",
-        constants$19.glIndexfv$FUNC, false
+        "glIndexfv",
+        constants$19.glIndexfv$FUNC
     );
     static final FunctionDescriptor glIndexiv$FUNC = FunctionDescriptor.ofVoid(
-        C_POINTER
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle glIndexiv$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "glIndexiv",
-        "(Ljdk/incubator/foreign/MemoryAddress;)V",
-        constants$19.glIndexiv$FUNC, false
+        "glIndexiv",
+        constants$19.glIndexiv$FUNC
     );
     static final FunctionDescriptor glIndexsv$FUNC = FunctionDescriptor.ofVoid(
-        C_POINTER
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle glIndexsv$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "glIndexsv",
-        "(Ljdk/incubator/foreign/MemoryAddress;)V",
-        constants$19.glIndexsv$FUNC, false
+        "glIndexsv",
+        constants$19.glIndexsv$FUNC
     );
     static final FunctionDescriptor glIndexubv$FUNC = FunctionDescriptor.ofVoid(
-        C_POINTER
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle glIndexubv$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "glIndexubv",
-        "(Ljdk/incubator/foreign/MemoryAddress;)V",
-        constants$19.glIndexubv$FUNC, false
+        "glIndexubv",
+        constants$19.glIndexubv$FUNC
     );
 }
 

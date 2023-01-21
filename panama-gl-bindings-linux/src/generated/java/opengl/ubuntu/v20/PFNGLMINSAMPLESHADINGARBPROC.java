@@ -2,22 +2,22 @@
 
 package opengl.ubuntu.v20;
 
-import jdk.incubator.foreign.Addressable;
-import jdk.incubator.foreign.MemoryAddress;
-import jdk.incubator.foreign.ResourceScope;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public interface PFNGLMINSAMPLESHADINGARBPROC {
 
-    void apply(float x0);
-    static MemoryAddress allocate(PFNGLMINSAMPLESHADINGARBPROC fi) {
-        return RuntimeHelper.upcallStub(PFNGLMINSAMPLESHADINGARBPROC.class, fi, constants$357.PFNGLMINSAMPLESHADINGARBPROC$FUNC, "(F)V");
+    void apply(float value);
+    static MemorySegment allocate(PFNGLMINSAMPLESHADINGARBPROC fi, MemorySession session) {
+        return RuntimeHelper.upcallStub(PFNGLMINSAMPLESHADINGARBPROC.class, fi, constants$357.PFNGLMINSAMPLESHADINGARBPROC$FUNC, session);
     }
-    static MemoryAddress allocate(PFNGLMINSAMPLESHADINGARBPROC fi, ResourceScope scope) {
-        return RuntimeHelper.upcallStub(PFNGLMINSAMPLESHADINGARBPROC.class, fi, constants$357.PFNGLMINSAMPLESHADINGARBPROC$FUNC, "(F)V", scope);
-    }
-    static PFNGLMINSAMPLESHADINGARBPROC ofAddress(MemoryAddress addr) {
-        return (float x0) -> {
+    static PFNGLMINSAMPLESHADINGARBPROC ofAddress(MemoryAddress addr, MemorySession session) {
+        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
+        return (float _value) -> {
             try {
-                constants$357.PFNGLMINSAMPLESHADINGARBPROC$MH.invokeExact((Addressable)addr, x0);
+                constants$357.PFNGLMINSAMPLESHADINGARBPROC$MH.invokeExact((Addressable)symbol, _value);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

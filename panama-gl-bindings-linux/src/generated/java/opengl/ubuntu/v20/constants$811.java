@@ -2,33 +2,31 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_INT;
-import static jdk.incubator.foreign.CLinker.C_POINTER;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$811 {
 
     static final FunctionDescriptor PFNGLPRIMITIVERESTARTNVPROC$FUNC = FunctionDescriptor.ofVoid();
     static final MethodHandle PFNGLPRIMITIVERESTARTNVPROC$MH = RuntimeHelper.downcallHandle(
-        "()V",
-        constants$811.PFNGLPRIMITIVERESTARTNVPROC$FUNC, false
+        constants$811.PFNGLPRIMITIVERESTARTNVPROC$FUNC
     );
     static final FunctionDescriptor PFNGLPRIMITIVERESTARTINDEXNVPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLPRIMITIVERESTARTINDEXNVPROC$MH = RuntimeHelper.downcallHandle(
-        "(I)V",
-        constants$811.PFNGLPRIMITIVERESTARTINDEXNVPROC$FUNC, false
+        constants$811.PFNGLPRIMITIVERESTARTINDEXNVPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLQUERYRESOURCENVPROC$FUNC = FunctionDescriptor.of(C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_POINTER
+    static final FunctionDescriptor PFNGLQUERYRESOURCENVPROC$FUNC = FunctionDescriptor.of(Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLQUERYRESOURCENVPROC$MH = RuntimeHelper.downcallHandle(
-        "(IIILjdk/incubator/foreign/MemoryAddress;)I",
-        constants$811.PFNGLQUERYRESOURCENVPROC$FUNC, false
+        constants$811.PFNGLQUERYRESOURCENVPROC$FUNC
     );
 }
 

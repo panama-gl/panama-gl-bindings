@@ -2,22 +2,22 @@
 
 package opengl.ubuntu.v20;
 
-import jdk.incubator.foreign.Addressable;
-import jdk.incubator.foreign.MemoryAddress;
-import jdk.incubator.foreign.ResourceScope;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public interface PFNGLTEXCOORD2FVERTEX3FSUNPROC {
 
-    void apply(float x0, float x1, float x2, float x3, float x4);
-    static MemoryAddress allocate(PFNGLTEXCOORD2FVERTEX3FSUNPROC fi) {
-        return RuntimeHelper.upcallStub(PFNGLTEXCOORD2FVERTEX3FSUNPROC.class, fi, constants$918.PFNGLTEXCOORD2FVERTEX3FSUNPROC$FUNC, "(FFFFF)V");
+    void apply(float s, float t, float x, float y, float z);
+    static MemorySegment allocate(PFNGLTEXCOORD2FVERTEX3FSUNPROC fi, MemorySession session) {
+        return RuntimeHelper.upcallStub(PFNGLTEXCOORD2FVERTEX3FSUNPROC.class, fi, constants$918.PFNGLTEXCOORD2FVERTEX3FSUNPROC$FUNC, session);
     }
-    static MemoryAddress allocate(PFNGLTEXCOORD2FVERTEX3FSUNPROC fi, ResourceScope scope) {
-        return RuntimeHelper.upcallStub(PFNGLTEXCOORD2FVERTEX3FSUNPROC.class, fi, constants$918.PFNGLTEXCOORD2FVERTEX3FSUNPROC$FUNC, "(FFFFF)V", scope);
-    }
-    static PFNGLTEXCOORD2FVERTEX3FSUNPROC ofAddress(MemoryAddress addr) {
-        return (float x0, float x1, float x2, float x3, float x4) -> {
+    static PFNGLTEXCOORD2FVERTEX3FSUNPROC ofAddress(MemoryAddress addr, MemorySession session) {
+        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
+        return (float _s, float _t, float _x, float _y, float _z) -> {
             try {
-                constants$918.PFNGLTEXCOORD2FVERTEX3FSUNPROC$MH.invokeExact((Addressable)addr, x0, x1, x2, x3, x4);
+                constants$918.PFNGLTEXCOORD2FVERTEX3FSUNPROC$MH.invokeExact((Addressable)symbol, _s, _t, _x, _y, _z);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

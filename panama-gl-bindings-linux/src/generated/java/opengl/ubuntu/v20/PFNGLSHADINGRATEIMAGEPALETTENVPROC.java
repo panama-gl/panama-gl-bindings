@@ -2,22 +2,22 @@
 
 package opengl.ubuntu.v20;
 
-import jdk.incubator.foreign.Addressable;
-import jdk.incubator.foreign.MemoryAddress;
-import jdk.incubator.foreign.ResourceScope;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public interface PFNGLSHADINGRATEIMAGEPALETTENVPROC {
 
-    void apply(int x0, int x1, int x2, jdk.incubator.foreign.MemoryAddress x3);
-    static MemoryAddress allocate(PFNGLSHADINGRATEIMAGEPALETTENVPROC fi) {
-        return RuntimeHelper.upcallStub(PFNGLSHADINGRATEIMAGEPALETTENVPROC.class, fi, constants$825.PFNGLSHADINGRATEIMAGEPALETTENVPROC$FUNC, "(IIILjdk/incubator/foreign/MemoryAddress;)V");
+    void apply(int viewport, int first, int count, java.lang.foreign.MemoryAddress rates);
+    static MemorySegment allocate(PFNGLSHADINGRATEIMAGEPALETTENVPROC fi, MemorySession session) {
+        return RuntimeHelper.upcallStub(PFNGLSHADINGRATEIMAGEPALETTENVPROC.class, fi, constants$825.PFNGLSHADINGRATEIMAGEPALETTENVPROC$FUNC, session);
     }
-    static MemoryAddress allocate(PFNGLSHADINGRATEIMAGEPALETTENVPROC fi, ResourceScope scope) {
-        return RuntimeHelper.upcallStub(PFNGLSHADINGRATEIMAGEPALETTENVPROC.class, fi, constants$825.PFNGLSHADINGRATEIMAGEPALETTENVPROC$FUNC, "(IIILjdk/incubator/foreign/MemoryAddress;)V", scope);
-    }
-    static PFNGLSHADINGRATEIMAGEPALETTENVPROC ofAddress(MemoryAddress addr) {
-        return (int x0, int x1, int x2, jdk.incubator.foreign.MemoryAddress x3) -> {
+    static PFNGLSHADINGRATEIMAGEPALETTENVPROC ofAddress(MemoryAddress addr, MemorySession session) {
+        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
+        return (int _viewport, int _first, int _count, java.lang.foreign.MemoryAddress _rates) -> {
             try {
-                constants$825.PFNGLSHADINGRATEIMAGEPALETTENVPROC$MH.invokeExact((Addressable)addr, x0, x1, x2, x3);
+                constants$825.PFNGLSHADINGRATEIMAGEPALETTENVPROC$MH.invokeExact((Addressable)symbol, _viewport, _first, _count, (java.lang.foreign.Addressable)_rates);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

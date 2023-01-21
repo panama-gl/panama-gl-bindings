@@ -2,40 +2,38 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_INT;
-import static jdk.incubator.foreign.CLinker.C_POINTER;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$150 {
 
     static final FunctionDescriptor PFNGLGETTRANSFORMFEEDBACKVARYINGPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_INT,
-        C_POINTER,
-        C_POINTER,
-        C_POINTER,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLGETTRANSFORMFEEDBACKVARYINGPROC$MH = RuntimeHelper.downcallHandle(
-        "(IIILjdk/incubator/foreign/MemoryAddress;Ljdk/incubator/foreign/MemoryAddress;Ljdk/incubator/foreign/MemoryAddress;Ljdk/incubator/foreign/MemoryAddress;)V",
-        constants$150.PFNGLGETTRANSFORMFEEDBACKVARYINGPROC$FUNC, false
+        constants$150.PFNGLGETTRANSFORMFEEDBACKVARYINGPROC$FUNC
     );
     static final FunctionDescriptor PFNGLCLAMPCOLORPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLCLAMPCOLORPROC$MH = RuntimeHelper.downcallHandle(
-        "(II)V",
-        constants$150.PFNGLCLAMPCOLORPROC$FUNC, false
+        constants$150.PFNGLCLAMPCOLORPROC$FUNC
     );
     static final FunctionDescriptor PFNGLBEGINCONDITIONALRENDERPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLBEGINCONDITIONALRENDERPROC$MH = RuntimeHelper.downcallHandle(
-        "(II)V",
-        constants$150.PFNGLBEGINCONDITIONALRENDERPROC$FUNC, false
+        constants$150.PFNGLBEGINCONDITIONALRENDERPROC$FUNC
     );
 }
 

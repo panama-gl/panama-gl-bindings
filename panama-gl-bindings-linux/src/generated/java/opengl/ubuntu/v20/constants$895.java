@@ -2,35 +2,33 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_INT;
-import static jdk.incubator.foreign.CLinker.C_POINTER;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$895 {
 
     static final FunctionDescriptor PFNGLFRAGMENTLIGHTMODELFVSGIXPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLFRAGMENTLIGHTMODELFVSGIXPROC$MH = RuntimeHelper.downcallHandle(
-        "(ILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$895.PFNGLFRAGMENTLIGHTMODELFVSGIXPROC$FUNC, false
+        constants$895.PFNGLFRAGMENTLIGHTMODELFVSGIXPROC$FUNC
     );
     static final FunctionDescriptor PFNGLFRAGMENTLIGHTMODELISGIXPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLFRAGMENTLIGHTMODELISGIXPROC$MH = RuntimeHelper.downcallHandle(
-        "(II)V",
-        constants$895.PFNGLFRAGMENTLIGHTMODELISGIXPROC$FUNC, false
+        constants$895.PFNGLFRAGMENTLIGHTMODELISGIXPROC$FUNC
     );
     static final FunctionDescriptor PFNGLFRAGMENTLIGHTMODELIVSGIXPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLFRAGMENTLIGHTMODELIVSGIXPROC$MH = RuntimeHelper.downcallHandle(
-        "(ILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$895.PFNGLFRAGMENTLIGHTMODELIVSGIXPROC$FUNC, false
+        constants$895.PFNGLFRAGMENTLIGHTMODELIVSGIXPROC$FUNC
     );
 }
 

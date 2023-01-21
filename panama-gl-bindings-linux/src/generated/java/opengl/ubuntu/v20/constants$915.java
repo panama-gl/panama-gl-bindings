@@ -2,42 +2,38 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_CHAR;
-import static jdk.incubator.foreign.CLinker.C_FLOAT;
-import static jdk.incubator.foreign.CLinker.C_INT;
-import static jdk.incubator.foreign.CLinker.C_POINTER;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$915 {
 
     static final FunctionDescriptor PFNGLREPLACEMENTCODEPOINTERSUNPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLREPLACEMENTCODEPOINTERSUNPROC$MH = RuntimeHelper.downcallHandle(
-        "(IILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$915.PFNGLREPLACEMENTCODEPOINTERSUNPROC$FUNC, false
+        constants$915.PFNGLREPLACEMENTCODEPOINTERSUNPROC$FUNC
     );
     static final FunctionDescriptor PFNGLCOLOR4UBVERTEX2FSUNPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_CHAR,
-        C_CHAR,
-        C_CHAR,
-        C_CHAR,
-        C_FLOAT,
-        C_FLOAT
+        Constants$root.C_CHAR$LAYOUT,
+        Constants$root.C_CHAR$LAYOUT,
+        Constants$root.C_CHAR$LAYOUT,
+        Constants$root.C_CHAR$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT
     );
     static final MethodHandle PFNGLCOLOR4UBVERTEX2FSUNPROC$MH = RuntimeHelper.downcallHandle(
-        "(BBBBFF)V",
-        constants$915.PFNGLCOLOR4UBVERTEX2FSUNPROC$FUNC, false
+        constants$915.PFNGLCOLOR4UBVERTEX2FSUNPROC$FUNC
     );
     static final FunctionDescriptor PFNGLCOLOR4UBVERTEX2FVSUNPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_POINTER,
-        C_POINTER
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLCOLOR4UBVERTEX2FVSUNPROC$MH = RuntimeHelper.downcallHandle(
-        "(Ljdk/incubator/foreign/MemoryAddress;Ljdk/incubator/foreign/MemoryAddress;)V",
-        constants$915.PFNGLCOLOR4UBVERTEX2FVSUNPROC$FUNC, false
+        constants$915.PFNGLCOLOR4UBVERTEX2FVSUNPROC$FUNC
     );
 }
 

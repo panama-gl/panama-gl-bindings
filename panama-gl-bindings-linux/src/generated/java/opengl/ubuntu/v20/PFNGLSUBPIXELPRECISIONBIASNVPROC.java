@@ -2,22 +2,22 @@
 
 package opengl.ubuntu.v20;
 
-import jdk.incubator.foreign.Addressable;
-import jdk.incubator.foreign.MemoryAddress;
-import jdk.incubator.foreign.ResourceScope;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public interface PFNGLSUBPIXELPRECISIONBIASNVPROC {
 
-    void apply(int x0, int x1);
-    static MemoryAddress allocate(PFNGLSUBPIXELPRECISIONBIASNVPROC fi) {
-        return RuntimeHelper.upcallStub(PFNGLSUBPIXELPRECISIONBIASNVPROC.class, fi, constants$738.PFNGLSUBPIXELPRECISIONBIASNVPROC$FUNC, "(II)V");
+    void apply(int xbits, int ybits);
+    static MemorySegment allocate(PFNGLSUBPIXELPRECISIONBIASNVPROC fi, MemorySession session) {
+        return RuntimeHelper.upcallStub(PFNGLSUBPIXELPRECISIONBIASNVPROC.class, fi, constants$738.PFNGLSUBPIXELPRECISIONBIASNVPROC$FUNC, session);
     }
-    static MemoryAddress allocate(PFNGLSUBPIXELPRECISIONBIASNVPROC fi, ResourceScope scope) {
-        return RuntimeHelper.upcallStub(PFNGLSUBPIXELPRECISIONBIASNVPROC.class, fi, constants$738.PFNGLSUBPIXELPRECISIONBIASNVPROC$FUNC, "(II)V", scope);
-    }
-    static PFNGLSUBPIXELPRECISIONBIASNVPROC ofAddress(MemoryAddress addr) {
-        return (int x0, int x1) -> {
+    static PFNGLSUBPIXELPRECISIONBIASNVPROC ofAddress(MemoryAddress addr, MemorySession session) {
+        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
+        return (int _xbits, int _ybits) -> {
             try {
-                constants$738.PFNGLSUBPIXELPRECISIONBIASNVPROC$MH.invokeExact((Addressable)addr, x0, x1);
+                constants$738.PFNGLSUBPIXELPRECISIONBIASNVPROC$MH.invokeExact((Addressable)symbol, _xbits, _ybits);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

@@ -2,22 +2,22 @@
 
 package opengl.ubuntu.v20;
 
-import jdk.incubator.foreign.Addressable;
-import jdk.incubator.foreign.MemoryAddress;
-import jdk.incubator.foreign.ResourceScope;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public interface PFNGLSCISSOREXCLUSIVEARRAYVNVPROC {
 
-    void apply(int x0, int x1, jdk.incubator.foreign.MemoryAddress x2);
-    static MemoryAddress allocate(PFNGLSCISSOREXCLUSIVEARRAYVNVPROC fi) {
-        return RuntimeHelper.upcallStub(PFNGLSCISSOREXCLUSIVEARRAYVNVPROC.class, fi, constants$819.PFNGLSCISSOREXCLUSIVEARRAYVNVPROC$FUNC, "(IILjdk/incubator/foreign/MemoryAddress;)V");
+    void apply(int first, int count, java.lang.foreign.MemoryAddress v);
+    static MemorySegment allocate(PFNGLSCISSOREXCLUSIVEARRAYVNVPROC fi, MemorySession session) {
+        return RuntimeHelper.upcallStub(PFNGLSCISSOREXCLUSIVEARRAYVNVPROC.class, fi, constants$819.PFNGLSCISSOREXCLUSIVEARRAYVNVPROC$FUNC, session);
     }
-    static MemoryAddress allocate(PFNGLSCISSOREXCLUSIVEARRAYVNVPROC fi, ResourceScope scope) {
-        return RuntimeHelper.upcallStub(PFNGLSCISSOREXCLUSIVEARRAYVNVPROC.class, fi, constants$819.PFNGLSCISSOREXCLUSIVEARRAYVNVPROC$FUNC, "(IILjdk/incubator/foreign/MemoryAddress;)V", scope);
-    }
-    static PFNGLSCISSOREXCLUSIVEARRAYVNVPROC ofAddress(MemoryAddress addr) {
-        return (int x0, int x1, jdk.incubator.foreign.MemoryAddress x2) -> {
+    static PFNGLSCISSOREXCLUSIVEARRAYVNVPROC ofAddress(MemoryAddress addr, MemorySession session) {
+        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
+        return (int _first, int _count, java.lang.foreign.MemoryAddress _v) -> {
             try {
-                constants$819.PFNGLSCISSOREXCLUSIVEARRAYVNVPROC$MH.invokeExact((Addressable)addr, x0, x1, x2);
+                constants$819.PFNGLSCISSOREXCLUSIVEARRAYVNVPROC$MH.invokeExact((Addressable)symbol, _first, _count, (java.lang.foreign.Addressable)_v);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

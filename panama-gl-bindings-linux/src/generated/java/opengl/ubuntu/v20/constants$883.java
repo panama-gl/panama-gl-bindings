@@ -2,40 +2,38 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_INT;
-import static jdk.incubator.foreign.CLinker.C_POINTER;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$883 {
 
     static final FunctionDescriptor PFNGLFRAMEBUFFERTEXTUREMULTIVIEWOVRPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLFRAMEBUFFERTEXTUREMULTIVIEWOVRPROC$MH = RuntimeHelper.downcallHandle(
-        "(IIIIII)V",
-        constants$883.PFNGLFRAMEBUFFERTEXTUREMULTIVIEWOVRPROC$FUNC, false
+        constants$883.PFNGLFRAMEBUFFERTEXTUREMULTIVIEWOVRPROC$FUNC
     );
     static final FunctionDescriptor PFNGLHINTPGIPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLHINTPGIPROC$MH = RuntimeHelper.downcallHandle(
-        "(II)V",
-        constants$883.PFNGLHINTPGIPROC$FUNC, false
+        constants$883.PFNGLHINTPGIPROC$FUNC
     );
     static final FunctionDescriptor PFNGLDETAILTEXFUNCSGISPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLDETAILTEXFUNCSGISPROC$MH = RuntimeHelper.downcallHandle(
-        "(IILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$883.PFNGLDETAILTEXFUNCSGISPROC$FUNC, false
+        constants$883.PFNGLDETAILTEXFUNCSGISPROC$FUNC
     );
 }
 

@@ -2,39 +2,36 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_CHAR;
-import static jdk.incubator.foreign.CLinker.C_INT;
-import static jdk.incubator.foreign.CLinker.C_POINTER;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$496 {
 
-    static final FunctionDescriptor PFNGLISOBJECTBUFFERATIPROC$FUNC = FunctionDescriptor.of(C_CHAR,
-        C_INT
+    static final FunctionDescriptor PFNGLISOBJECTBUFFERATIPROC$FUNC = FunctionDescriptor.of(Constants$root.C_CHAR$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLISOBJECTBUFFERATIPROC$MH = RuntimeHelper.downcallHandle(
-        "(I)B",
-        constants$496.PFNGLISOBJECTBUFFERATIPROC$FUNC, false
+        constants$496.PFNGLISOBJECTBUFFERATIPROC$FUNC
     );
     static final FunctionDescriptor PFNGLUPDATEOBJECTBUFFERATIPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_INT,
-        C_POINTER,
-        C_INT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLUPDATEOBJECTBUFFERATIPROC$MH = RuntimeHelper.downcallHandle(
-        "(IIILjdk/incubator/foreign/MemoryAddress;I)V",
-        constants$496.PFNGLUPDATEOBJECTBUFFERATIPROC$FUNC, false
+        constants$496.PFNGLUPDATEOBJECTBUFFERATIPROC$FUNC
     );
     static final FunctionDescriptor PFNGLGETOBJECTBUFFERFVATIPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLGETOBJECTBUFFERFVATIPROC$MH = RuntimeHelper.downcallHandle(
-        "(IILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$496.PFNGLGETOBJECTBUFFERFVATIPROC$FUNC, false
+        constants$496.PFNGLGETOBJECTBUFFERFVATIPROC$FUNC
     );
 }
 

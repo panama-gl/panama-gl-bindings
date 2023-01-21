@@ -2,22 +2,22 @@
 
 package opengl.ubuntu.v20;
 
-import jdk.incubator.foreign.Addressable;
-import jdk.incubator.foreign.MemoryAddress;
-import jdk.incubator.foreign.ResourceScope;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public interface PFNGLTEXIMAGE2DMULTISAMPLECOVERAGENVPROC {
 
-    void apply(int x0, int x1, int x2, int x3, int x4, int x5, byte x6);
-    static MemoryAddress allocate(PFNGLTEXIMAGE2DMULTISAMPLECOVERAGENVPROC fi) {
-        return RuntimeHelper.upcallStub(PFNGLTEXIMAGE2DMULTISAMPLECOVERAGENVPROC.class, fi, constants$826.PFNGLTEXIMAGE2DMULTISAMPLECOVERAGENVPROC$FUNC, "(IIIIIIB)V");
+    void apply(int target, int coverageSamples, int colorSamples, int internalFormat, int width, int height, byte fixedSampleLocations);
+    static MemorySegment allocate(PFNGLTEXIMAGE2DMULTISAMPLECOVERAGENVPROC fi, MemorySession session) {
+        return RuntimeHelper.upcallStub(PFNGLTEXIMAGE2DMULTISAMPLECOVERAGENVPROC.class, fi, constants$826.PFNGLTEXIMAGE2DMULTISAMPLECOVERAGENVPROC$FUNC, session);
     }
-    static MemoryAddress allocate(PFNGLTEXIMAGE2DMULTISAMPLECOVERAGENVPROC fi, ResourceScope scope) {
-        return RuntimeHelper.upcallStub(PFNGLTEXIMAGE2DMULTISAMPLECOVERAGENVPROC.class, fi, constants$826.PFNGLTEXIMAGE2DMULTISAMPLECOVERAGENVPROC$FUNC, "(IIIIIIB)V", scope);
-    }
-    static PFNGLTEXIMAGE2DMULTISAMPLECOVERAGENVPROC ofAddress(MemoryAddress addr) {
-        return (int x0, int x1, int x2, int x3, int x4, int x5, byte x6) -> {
+    static PFNGLTEXIMAGE2DMULTISAMPLECOVERAGENVPROC ofAddress(MemoryAddress addr, MemorySession session) {
+        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
+        return (int _target, int _coverageSamples, int _colorSamples, int _internalFormat, int _width, int _height, byte _fixedSampleLocations) -> {
             try {
-                constants$826.PFNGLTEXIMAGE2DMULTISAMPLECOVERAGENVPROC$MH.invokeExact((Addressable)addr, x0, x1, x2, x3, x4, x5, x6);
+                constants$826.PFNGLTEXIMAGE2DMULTISAMPLECOVERAGENVPROC$MH.invokeExact((Addressable)symbol, _target, _coverageSamples, _colorSamples, _internalFormat, _width, _height, _fixedSampleLocations);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

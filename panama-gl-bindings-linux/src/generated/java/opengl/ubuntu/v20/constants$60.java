@@ -2,70 +2,64 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_CHAR;
-import static jdk.incubator.foreign.CLinker.C_INT;
-import static jdk.incubator.foreign.CLinker.C_POINTER;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$60 {
 
     static final FunctionDescriptor glResetHistogram$FUNC = FunctionDescriptor.ofVoid(
-        C_INT
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle glResetHistogram$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "glResetHistogram",
-        "(I)V",
-        constants$60.glResetHistogram$FUNC, false
+        "glResetHistogram",
+        constants$60.glResetHistogram$FUNC
     );
     static final FunctionDescriptor glGetHistogram$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_CHAR,
-        C_INT,
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_CHAR$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle glGetHistogram$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "glGetHistogram",
-        "(IBIILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$60.glGetHistogram$FUNC, false
+        "glGetHistogram",
+        constants$60.glGetHistogram$FUNC
     );
     static final FunctionDescriptor glGetHistogramParameterfv$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle glGetHistogramParameterfv$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "glGetHistogramParameterfv",
-        "(IILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$60.glGetHistogramParameterfv$FUNC, false
+        "glGetHistogramParameterfv",
+        constants$60.glGetHistogramParameterfv$FUNC
     );
     static final FunctionDescriptor glGetHistogramParameteriv$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle glGetHistogramParameteriv$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "glGetHistogramParameteriv",
-        "(IILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$60.glGetHistogramParameteriv$FUNC, false
+        "glGetHistogramParameteriv",
+        constants$60.glGetHistogramParameteriv$FUNC
     );
     static final FunctionDescriptor glMinmax$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_CHAR
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_CHAR$LAYOUT
     );
     static final MethodHandle glMinmax$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "glMinmax",
-        "(IIB)V",
-        constants$60.glMinmax$FUNC, false
+        "glMinmax",
+        constants$60.glMinmax$FUNC
     );
     static final FunctionDescriptor glResetMinmax$FUNC = FunctionDescriptor.ofVoid(
-        C_INT
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle glResetMinmax$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "glResetMinmax",
-        "(I)V",
-        constants$60.glResetMinmax$FUNC, false
+        "glResetMinmax",
+        constants$60.glResetMinmax$FUNC
     );
 }
 

@@ -2,76 +2,69 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_FLOAT;
-import static jdk.incubator.foreign.CLinker.C_INT;
-import static jdk.incubator.foreign.CLinker.C_POINTER;
-import static jdk.incubator.foreign.CLinker.C_SHORT;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$79 {
 
     static final FunctionDescriptor glMultiTexCoord4fARB$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_FLOAT,
-        C_FLOAT,
-        C_FLOAT,
-        C_FLOAT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT
     );
     static final MethodHandle glMultiTexCoord4fARB$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "glMultiTexCoord4fARB",
-        "(IFFFF)V",
-        constants$79.glMultiTexCoord4fARB$FUNC, false
+        "glMultiTexCoord4fARB",
+        constants$79.glMultiTexCoord4fARB$FUNC
     );
     static final FunctionDescriptor glMultiTexCoord4fvARB$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle glMultiTexCoord4fvARB$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "glMultiTexCoord4fvARB",
-        "(ILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$79.glMultiTexCoord4fvARB$FUNC, false
+        "glMultiTexCoord4fvARB",
+        constants$79.glMultiTexCoord4fvARB$FUNC
     );
     static final FunctionDescriptor glMultiTexCoord4iARB$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle glMultiTexCoord4iARB$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "glMultiTexCoord4iARB",
-        "(IIIII)V",
-        constants$79.glMultiTexCoord4iARB$FUNC, false
+        "glMultiTexCoord4iARB",
+        constants$79.glMultiTexCoord4iARB$FUNC
     );
     static final FunctionDescriptor glMultiTexCoord4ivARB$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle glMultiTexCoord4ivARB$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "glMultiTexCoord4ivARB",
-        "(ILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$79.glMultiTexCoord4ivARB$FUNC, false
+        "glMultiTexCoord4ivARB",
+        constants$79.glMultiTexCoord4ivARB$FUNC
     );
     static final FunctionDescriptor glMultiTexCoord4sARB$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_SHORT,
-        C_SHORT,
-        C_SHORT,
-        C_SHORT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_SHORT$LAYOUT,
+        Constants$root.C_SHORT$LAYOUT,
+        Constants$root.C_SHORT$LAYOUT,
+        Constants$root.C_SHORT$LAYOUT
     );
     static final MethodHandle glMultiTexCoord4sARB$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "glMultiTexCoord4sARB",
-        "(ISSSS)V",
-        constants$79.glMultiTexCoord4sARB$FUNC, false
+        "glMultiTexCoord4sARB",
+        constants$79.glMultiTexCoord4sARB$FUNC
     );
     static final FunctionDescriptor glMultiTexCoord4svARB$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle glMultiTexCoord4svARB$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "glMultiTexCoord4svARB",
-        "(ILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$79.glMultiTexCoord4svARB$FUNC, false
+        "glMultiTexCoord4svARB",
+        constants$79.glMultiTexCoord4svARB$FUNC
     );
 }
 

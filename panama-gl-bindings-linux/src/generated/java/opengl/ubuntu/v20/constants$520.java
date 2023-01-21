@@ -2,46 +2,43 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_FLOAT;
-import static jdk.incubator.foreign.CLinker.C_INT;
-import static jdk.incubator.foreign.CLinker.C_POINTER;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$520 {
 
     static final FunctionDescriptor PFNGLCONVOLUTIONFILTER1DEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLCONVOLUTIONFILTER1DEXTPROC$MH = RuntimeHelper.downcallHandle(
-        "(IIIIILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$520.PFNGLCONVOLUTIONFILTER1DEXTPROC$FUNC, false
+        constants$520.PFNGLCONVOLUTIONFILTER1DEXTPROC$FUNC
     );
     static final FunctionDescriptor PFNGLCONVOLUTIONFILTER2DEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLCONVOLUTIONFILTER2DEXTPROC$MH = RuntimeHelper.downcallHandle(
-        "(IIIIIILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$520.PFNGLCONVOLUTIONFILTER2DEXTPROC$FUNC, false
+        constants$520.PFNGLCONVOLUTIONFILTER2DEXTPROC$FUNC
     );
     static final FunctionDescriptor PFNGLCONVOLUTIONPARAMETERFEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_FLOAT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT
     );
     static final MethodHandle PFNGLCONVOLUTIONPARAMETERFEXTPROC$MH = RuntimeHelper.downcallHandle(
-        "(IIF)V",
-        constants$520.PFNGLCONVOLUTIONPARAMETERFEXTPROC$FUNC, false
+        constants$520.PFNGLCONVOLUTIONPARAMETERFEXTPROC$FUNC
     );
 }
 

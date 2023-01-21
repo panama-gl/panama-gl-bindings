@@ -2,41 +2,39 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_INT;
-import static jdk.incubator.foreign.CLinker.C_LONG;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$334 {
 
     static final FunctionDescriptor PFNGLUNIFORM2UI64ARBPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_LONG,
-        C_LONG
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT
     );
     static final MethodHandle PFNGLUNIFORM2UI64ARBPROC$MH = RuntimeHelper.downcallHandle(
-        "(IJJ)V",
-        constants$334.PFNGLUNIFORM2UI64ARBPROC$FUNC, false
+        constants$334.PFNGLUNIFORM2UI64ARBPROC$FUNC
     );
     static final FunctionDescriptor PFNGLUNIFORM3UI64ARBPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_LONG,
-        C_LONG,
-        C_LONG
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT
     );
     static final MethodHandle PFNGLUNIFORM3UI64ARBPROC$MH = RuntimeHelper.downcallHandle(
-        "(IJJJ)V",
-        constants$334.PFNGLUNIFORM3UI64ARBPROC$FUNC, false
+        constants$334.PFNGLUNIFORM3UI64ARBPROC$FUNC
     );
     static final FunctionDescriptor PFNGLUNIFORM4UI64ARBPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_LONG,
-        C_LONG,
-        C_LONG,
-        C_LONG
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT
     );
     static final MethodHandle PFNGLUNIFORM4UI64ARBPROC$MH = RuntimeHelper.downcallHandle(
-        "(IJJJJ)V",
-        constants$334.PFNGLUNIFORM4UI64ARBPROC$FUNC, false
+        constants$334.PFNGLUNIFORM4UI64ARBPROC$FUNC
     );
 }
 

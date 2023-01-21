@@ -2,22 +2,22 @@
 
 package opengl.ubuntu.v20;
 
-import jdk.incubator.foreign.Addressable;
-import jdk.incubator.foreign.MemoryAddress;
-import jdk.incubator.foreign.ResourceScope;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public interface PFNGLRESETMINMAXEXTPROC {
 
-    void apply(int x0);
-    static MemoryAddress allocate(PFNGLRESETMINMAXEXTPROC fi) {
-        return RuntimeHelper.upcallStub(PFNGLRESETMINMAXEXTPROC.class, fi, constants$638.PFNGLRESETMINMAXEXTPROC$FUNC, "(I)V");
+    void apply(int target);
+    static MemorySegment allocate(PFNGLRESETMINMAXEXTPROC fi, MemorySession session) {
+        return RuntimeHelper.upcallStub(PFNGLRESETMINMAXEXTPROC.class, fi, constants$638.PFNGLRESETMINMAXEXTPROC$FUNC, session);
     }
-    static MemoryAddress allocate(PFNGLRESETMINMAXEXTPROC fi, ResourceScope scope) {
-        return RuntimeHelper.upcallStub(PFNGLRESETMINMAXEXTPROC.class, fi, constants$638.PFNGLRESETMINMAXEXTPROC$FUNC, "(I)V", scope);
-    }
-    static PFNGLRESETMINMAXEXTPROC ofAddress(MemoryAddress addr) {
-        return (int x0) -> {
+    static PFNGLRESETMINMAXEXTPROC ofAddress(MemoryAddress addr, MemorySession session) {
+        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
+        return (int _target) -> {
             try {
-                constants$638.PFNGLRESETMINMAXEXTPROC$MH.invokeExact((Addressable)addr, x0);
+                constants$638.PFNGLRESETMINMAXEXTPROC$MH.invokeExact((Addressable)symbol, _target);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

@@ -2,41 +2,38 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_INT;
-import static jdk.incubator.foreign.CLinker.C_LONG;
-import static jdk.incubator.foreign.CLinker.C_POINTER;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$337 {
 
     static final FunctionDescriptor PFNGLGETNUNIFORMI64VARBPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLGETNUNIFORMI64VARBPROC$MH = RuntimeHelper.downcallHandle(
-        "(IIILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$337.PFNGLGETNUNIFORMI64VARBPROC$FUNC, false
+        constants$337.PFNGLGETNUNIFORMI64VARBPROC$FUNC
     );
     static final FunctionDescriptor PFNGLGETNUNIFORMUI64VARBPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLGETNUNIFORMUI64VARBPROC$MH = RuntimeHelper.downcallHandle(
-        "(IIILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$337.PFNGLGETNUNIFORMUI64VARBPROC$FUNC, false
+        constants$337.PFNGLGETNUNIFORMUI64VARBPROC$FUNC
     );
     static final FunctionDescriptor PFNGLPROGRAMUNIFORM1I64ARBPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_LONG
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT
     );
     static final MethodHandle PFNGLPROGRAMUNIFORM1I64ARBPROC$MH = RuntimeHelper.downcallHandle(
-        "(IIJ)V",
-        constants$337.PFNGLPROGRAMUNIFORM1I64ARBPROC$FUNC, false
+        constants$337.PFNGLPROGRAMUNIFORM1I64ARBPROC$FUNC
     );
 }
 

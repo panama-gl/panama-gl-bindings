@@ -2,22 +2,22 @@
 
 package opengl.ubuntu.v20;
 
-import jdk.incubator.foreign.Addressable;
-import jdk.incubator.foreign.MemoryAddress;
-import jdk.incubator.foreign.ResourceScope;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public interface PFNGLVIEWPORTPOSITIONWSCALENVPROC {
 
-    void apply(int x0, float x1, float x2);
-    static MemoryAddress allocate(PFNGLVIEWPORTPOSITIONWSCALENVPROC fi) {
-        return RuntimeHelper.upcallStub(PFNGLVIEWPORTPOSITIONWSCALENVPROC.class, fi, constants$731.PFNGLVIEWPORTPOSITIONWSCALENVPROC$FUNC, "(IFF)V");
+    void apply(int index, float xcoeff, float ycoeff);
+    static MemorySegment allocate(PFNGLVIEWPORTPOSITIONWSCALENVPROC fi, MemorySession session) {
+        return RuntimeHelper.upcallStub(PFNGLVIEWPORTPOSITIONWSCALENVPROC.class, fi, constants$731.PFNGLVIEWPORTPOSITIONWSCALENVPROC$FUNC, session);
     }
-    static MemoryAddress allocate(PFNGLVIEWPORTPOSITIONWSCALENVPROC fi, ResourceScope scope) {
-        return RuntimeHelper.upcallStub(PFNGLVIEWPORTPOSITIONWSCALENVPROC.class, fi, constants$731.PFNGLVIEWPORTPOSITIONWSCALENVPROC$FUNC, "(IFF)V", scope);
-    }
-    static PFNGLVIEWPORTPOSITIONWSCALENVPROC ofAddress(MemoryAddress addr) {
-        return (int x0, float x1, float x2) -> {
+    static PFNGLVIEWPORTPOSITIONWSCALENVPROC ofAddress(MemoryAddress addr, MemorySession session) {
+        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
+        return (int _index, float _xcoeff, float _ycoeff) -> {
             try {
-                constants$731.PFNGLVIEWPORTPOSITIONWSCALENVPROC$MH.invokeExact((Addressable)addr, x0, x1, x2);
+                constants$731.PFNGLVIEWPORTPOSITIONWSCALENVPROC$MH.invokeExact((Addressable)symbol, _index, _xcoeff, _ycoeff);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

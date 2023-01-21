@@ -2,41 +2,39 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_INT;
-import static jdk.incubator.foreign.CLinker.C_POINTER;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$284 {
 
     static final FunctionDescriptor PFNGLNAMEDRENDERBUFFERSTORAGEPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLNAMEDRENDERBUFFERSTORAGEPROC$MH = RuntimeHelper.downcallHandle(
-        "(IIII)V",
-        constants$284.PFNGLNAMEDRENDERBUFFERSTORAGEPROC$FUNC, false
+        constants$284.PFNGLNAMEDRENDERBUFFERSTORAGEPROC$FUNC
     );
     static final FunctionDescriptor PFNGLNAMEDRENDERBUFFERSTORAGEMULTISAMPLEPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLNAMEDRENDERBUFFERSTORAGEMULTISAMPLEPROC$MH = RuntimeHelper.downcallHandle(
-        "(IIIII)V",
-        constants$284.PFNGLNAMEDRENDERBUFFERSTORAGEMULTISAMPLEPROC$FUNC, false
+        constants$284.PFNGLNAMEDRENDERBUFFERSTORAGEMULTISAMPLEPROC$FUNC
     );
     static final FunctionDescriptor PFNGLGETNAMEDRENDERBUFFERPARAMETERIVPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLGETNAMEDRENDERBUFFERPARAMETERIVPROC$MH = RuntimeHelper.downcallHandle(
-        "(IILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$284.PFNGLGETNAMEDRENDERBUFFERPARAMETERIVPROC$FUNC, false
+        constants$284.PFNGLGETNAMEDRENDERBUFFERPARAMETERIVPROC$FUNC
     );
 }
 

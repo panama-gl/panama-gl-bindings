@@ -2,22 +2,22 @@
 
 package opengl.ubuntu.v20;
 
-import jdk.incubator.foreign.Addressable;
-import jdk.incubator.foreign.MemoryAddress;
-import jdk.incubator.foreign.ResourceScope;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public interface PFNGLVERTEXATTRIBARRAYOBJECTATIPROC {
 
-    void apply(int x0, int x1, int x2, byte x3, int x4, int x5, int x6);
-    static MemoryAddress allocate(PFNGLVERTEXATTRIBARRAYOBJECTATIPROC fi) {
-        return RuntimeHelper.upcallStub(PFNGLVERTEXATTRIBARRAYOBJECTATIPROC.class, fi, constants$499.PFNGLVERTEXATTRIBARRAYOBJECTATIPROC$FUNC, "(IIIBIII)V");
+    void apply(int index, int size, int type, byte normalized, int stride, int buffer, int offset);
+    static MemorySegment allocate(PFNGLVERTEXATTRIBARRAYOBJECTATIPROC fi, MemorySession session) {
+        return RuntimeHelper.upcallStub(PFNGLVERTEXATTRIBARRAYOBJECTATIPROC.class, fi, constants$499.PFNGLVERTEXATTRIBARRAYOBJECTATIPROC$FUNC, session);
     }
-    static MemoryAddress allocate(PFNGLVERTEXATTRIBARRAYOBJECTATIPROC fi, ResourceScope scope) {
-        return RuntimeHelper.upcallStub(PFNGLVERTEXATTRIBARRAYOBJECTATIPROC.class, fi, constants$499.PFNGLVERTEXATTRIBARRAYOBJECTATIPROC$FUNC, "(IIIBIII)V", scope);
-    }
-    static PFNGLVERTEXATTRIBARRAYOBJECTATIPROC ofAddress(MemoryAddress addr) {
-        return (int x0, int x1, int x2, byte x3, int x4, int x5, int x6) -> {
+    static PFNGLVERTEXATTRIBARRAYOBJECTATIPROC ofAddress(MemoryAddress addr, MemorySession session) {
+        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
+        return (int _index, int _size, int _type, byte _normalized, int _stride, int _buffer, int _offset) -> {
             try {
-                constants$499.PFNGLVERTEXATTRIBARRAYOBJECTATIPROC$MH.invokeExact((Addressable)addr, x0, x1, x2, x3, x4, x5, x6);
+                constants$499.PFNGLVERTEXATTRIBARRAYOBJECTATIPROC$MH.invokeExact((Addressable)symbol, _index, _size, _type, _normalized, _stride, _buffer, _offset);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

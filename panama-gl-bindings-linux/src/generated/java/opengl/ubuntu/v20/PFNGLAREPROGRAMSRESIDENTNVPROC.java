@@ -2,22 +2,22 @@
 
 package opengl.ubuntu.v20;
 
-import jdk.incubator.foreign.Addressable;
-import jdk.incubator.foreign.MemoryAddress;
-import jdk.incubator.foreign.ResourceScope;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public interface PFNGLAREPROGRAMSRESIDENTNVPROC {
 
-    byte apply(int x0, jdk.incubator.foreign.MemoryAddress x1, jdk.incubator.foreign.MemoryAddress x2);
-    static MemoryAddress allocate(PFNGLAREPROGRAMSRESIDENTNVPROC fi) {
-        return RuntimeHelper.upcallStub(PFNGLAREPROGRAMSRESIDENTNVPROC.class, fi, constants$849.PFNGLAREPROGRAMSRESIDENTNVPROC$FUNC, "(ILjdk/incubator/foreign/MemoryAddress;Ljdk/incubator/foreign/MemoryAddress;)B");
+    byte apply(int n, java.lang.foreign.MemoryAddress programs, java.lang.foreign.MemoryAddress residences);
+    static MemorySegment allocate(PFNGLAREPROGRAMSRESIDENTNVPROC fi, MemorySession session) {
+        return RuntimeHelper.upcallStub(PFNGLAREPROGRAMSRESIDENTNVPROC.class, fi, constants$849.PFNGLAREPROGRAMSRESIDENTNVPROC$FUNC, session);
     }
-    static MemoryAddress allocate(PFNGLAREPROGRAMSRESIDENTNVPROC fi, ResourceScope scope) {
-        return RuntimeHelper.upcallStub(PFNGLAREPROGRAMSRESIDENTNVPROC.class, fi, constants$849.PFNGLAREPROGRAMSRESIDENTNVPROC$FUNC, "(ILjdk/incubator/foreign/MemoryAddress;Ljdk/incubator/foreign/MemoryAddress;)B", scope);
-    }
-    static PFNGLAREPROGRAMSRESIDENTNVPROC ofAddress(MemoryAddress addr) {
-        return (int x0, jdk.incubator.foreign.MemoryAddress x1, jdk.incubator.foreign.MemoryAddress x2) -> {
+    static PFNGLAREPROGRAMSRESIDENTNVPROC ofAddress(MemoryAddress addr, MemorySession session) {
+        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
+        return (int _n, java.lang.foreign.MemoryAddress _programs, java.lang.foreign.MemoryAddress _residences) -> {
             try {
-                return (byte)constants$849.PFNGLAREPROGRAMSRESIDENTNVPROC$MH.invokeExact((Addressable)addr, x0, x1, x2);
+                return (byte)constants$849.PFNGLAREPROGRAMSRESIDENTNVPROC$MH.invokeExact((Addressable)symbol, _n, (java.lang.foreign.Addressable)_programs, (java.lang.foreign.Addressable)_residences);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

@@ -2,40 +2,37 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_CHAR;
-import static jdk.incubator.foreign.CLinker.C_FLOAT;
-import static jdk.incubator.foreign.CLinker.C_INT;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$799 {
 
-    static final FunctionDescriptor PFNGLISPOINTINFILLPATHNVPROC$FUNC = FunctionDescriptor.of(C_CHAR,
-        C_INT,
-        C_INT,
-        C_FLOAT,
-        C_FLOAT
+    static final FunctionDescriptor PFNGLISPOINTINFILLPATHNVPROC$FUNC = FunctionDescriptor.of(Constants$root.C_CHAR$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT
     );
     static final MethodHandle PFNGLISPOINTINFILLPATHNVPROC$MH = RuntimeHelper.downcallHandle(
-        "(IIFF)B",
-        constants$799.PFNGLISPOINTINFILLPATHNVPROC$FUNC, false
+        constants$799.PFNGLISPOINTINFILLPATHNVPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLISPOINTINSTROKEPATHNVPROC$FUNC = FunctionDescriptor.of(C_CHAR,
-        C_INT,
-        C_FLOAT,
-        C_FLOAT
+    static final FunctionDescriptor PFNGLISPOINTINSTROKEPATHNVPROC$FUNC = FunctionDescriptor.of(Constants$root.C_CHAR$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT
     );
     static final MethodHandle PFNGLISPOINTINSTROKEPATHNVPROC$MH = RuntimeHelper.downcallHandle(
-        "(IFF)B",
-        constants$799.PFNGLISPOINTINSTROKEPATHNVPROC$FUNC, false
+        constants$799.PFNGLISPOINTINSTROKEPATHNVPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLGETPATHLENGTHNVPROC$FUNC = FunctionDescriptor.of(C_FLOAT,
-        C_INT,
-        C_INT,
-        C_INT
+    static final FunctionDescriptor PFNGLGETPATHLENGTHNVPROC$FUNC = FunctionDescriptor.of(Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLGETPATHLENGTHNVPROC$MH = RuntimeHelper.downcallHandle(
-        "(III)F",
-        constants$799.PFNGLGETPATHLENGTHNVPROC$FUNC, false
+        constants$799.PFNGLGETPATHLENGTHNVPROC$FUNC
     );
 }
 

@@ -2,22 +2,22 @@
 
 package opengl.ubuntu.v20;
 
-import jdk.incubator.foreign.Addressable;
-import jdk.incubator.foreign.MemoryAddress;
-import jdk.incubator.foreign.ResourceScope;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public interface PFNGLCOVERAGEMODULATIONTABLENVPROC {
 
-    void apply(int x0, jdk.incubator.foreign.MemoryAddress x1);
-    static MemoryAddress allocate(PFNGLCOVERAGEMODULATIONTABLENVPROC fi) {
-        return RuntimeHelper.upcallStub(PFNGLCOVERAGEMODULATIONTABLENVPROC.class, fi, constants$751.PFNGLCOVERAGEMODULATIONTABLENVPROC$FUNC, "(ILjdk/incubator/foreign/MemoryAddress;)V");
+    void apply(int n, java.lang.foreign.MemoryAddress v);
+    static MemorySegment allocate(PFNGLCOVERAGEMODULATIONTABLENVPROC fi, MemorySession session) {
+        return RuntimeHelper.upcallStub(PFNGLCOVERAGEMODULATIONTABLENVPROC.class, fi, constants$751.PFNGLCOVERAGEMODULATIONTABLENVPROC$FUNC, session);
     }
-    static MemoryAddress allocate(PFNGLCOVERAGEMODULATIONTABLENVPROC fi, ResourceScope scope) {
-        return RuntimeHelper.upcallStub(PFNGLCOVERAGEMODULATIONTABLENVPROC.class, fi, constants$751.PFNGLCOVERAGEMODULATIONTABLENVPROC$FUNC, "(ILjdk/incubator/foreign/MemoryAddress;)V", scope);
-    }
-    static PFNGLCOVERAGEMODULATIONTABLENVPROC ofAddress(MemoryAddress addr) {
-        return (int x0, jdk.incubator.foreign.MemoryAddress x1) -> {
+    static PFNGLCOVERAGEMODULATIONTABLENVPROC ofAddress(MemoryAddress addr, MemorySession session) {
+        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
+        return (int _n, java.lang.foreign.MemoryAddress _v) -> {
             try {
-                constants$751.PFNGLCOVERAGEMODULATIONTABLENVPROC$MH.invokeExact((Addressable)addr, x0, x1);
+                constants$751.PFNGLCOVERAGEMODULATIONTABLENVPROC$MH.invokeExact((Addressable)symbol, _n, (java.lang.foreign.Addressable)_v);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

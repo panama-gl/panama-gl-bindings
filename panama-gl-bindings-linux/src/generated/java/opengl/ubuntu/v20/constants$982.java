@@ -2,58 +2,53 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_INT;
-import static jdk.incubator.foreign.CLinker.C_POINTER;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$982 {
 
-    static final FunctionDescriptor unsetenv$FUNC = FunctionDescriptor.of(C_INT,
-        C_POINTER
+    static final FunctionDescriptor unsetenv$FUNC = FunctionDescriptor.of(Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle unsetenv$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "unsetenv",
-        "(Ljdk/incubator/foreign/MemoryAddress;)I",
-        constants$982.unsetenv$FUNC, false
+        "unsetenv",
+        constants$982.unsetenv$FUNC
     );
-    static final FunctionDescriptor clearenv$FUNC = FunctionDescriptor.of(C_INT);
+    static final FunctionDescriptor clearenv$FUNC = FunctionDescriptor.of(Constants$root.C_INT$LAYOUT);
     static final MethodHandle clearenv$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "clearenv",
-        "()I",
-        constants$982.clearenv$FUNC, false
+        "clearenv",
+        constants$982.clearenv$FUNC
     );
-    static final FunctionDescriptor mktemp$FUNC = FunctionDescriptor.of(C_POINTER,
-        C_POINTER
+    static final FunctionDescriptor mktemp$FUNC = FunctionDescriptor.of(Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle mktemp$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "mktemp",
-        "(Ljdk/incubator/foreign/MemoryAddress;)Ljdk/incubator/foreign/MemoryAddress;",
-        constants$982.mktemp$FUNC, false
+        "mktemp",
+        constants$982.mktemp$FUNC
     );
-    static final FunctionDescriptor mkstemp$FUNC = FunctionDescriptor.of(C_INT,
-        C_POINTER
+    static final FunctionDescriptor mkstemp$FUNC = FunctionDescriptor.of(Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle mkstemp$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "mkstemp",
-        "(Ljdk/incubator/foreign/MemoryAddress;)I",
-        constants$982.mkstemp$FUNC, false
+        "mkstemp",
+        constants$982.mkstemp$FUNC
     );
-    static final FunctionDescriptor mkstemps$FUNC = FunctionDescriptor.of(C_INT,
-        C_POINTER,
-        C_INT
+    static final FunctionDescriptor mkstemps$FUNC = FunctionDescriptor.of(Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle mkstemps$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "mkstemps",
-        "(Ljdk/incubator/foreign/MemoryAddress;I)I",
-        constants$982.mkstemps$FUNC, false
+        "mkstemps",
+        constants$982.mkstemps$FUNC
     );
-    static final FunctionDescriptor mkdtemp$FUNC = FunctionDescriptor.of(C_POINTER,
-        C_POINTER
+    static final FunctionDescriptor mkdtemp$FUNC = FunctionDescriptor.of(Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle mkdtemp$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "mkdtemp",
-        "(Ljdk/incubator/foreign/MemoryAddress;)Ljdk/incubator/foreign/MemoryAddress;",
-        constants$982.mkdtemp$FUNC, false
+        "mkdtemp",
+        constants$982.mkdtemp$FUNC
     );
 }
 

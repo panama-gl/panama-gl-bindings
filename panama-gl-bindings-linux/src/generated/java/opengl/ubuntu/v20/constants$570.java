@@ -2,40 +2,37 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_INT;
-import static jdk.incubator.foreign.CLinker.C_LONG;
-import static jdk.incubator.foreign.CLinker.C_POINTER;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$570 {
 
     static final FunctionDescriptor PFNGLNAMEDBUFFERDATAEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_LONG,
-        C_POINTER,
-        C_INT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLNAMEDBUFFERDATAEXTPROC$MH = RuntimeHelper.downcallHandle(
-        "(IJLjdk/incubator/foreign/MemoryAddress;I)V",
-        constants$570.PFNGLNAMEDBUFFERDATAEXTPROC$FUNC, false
+        constants$570.PFNGLNAMEDBUFFERDATAEXTPROC$FUNC
     );
     static final FunctionDescriptor PFNGLNAMEDBUFFERSUBDATAEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_LONG,
-        C_LONG,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLNAMEDBUFFERSUBDATAEXTPROC$MH = RuntimeHelper.downcallHandle(
-        "(IJJLjdk/incubator/foreign/MemoryAddress;)V",
-        constants$570.PFNGLNAMEDBUFFERSUBDATAEXTPROC$FUNC, false
+        constants$570.PFNGLNAMEDBUFFERSUBDATAEXTPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLMAPNAMEDBUFFEREXTPROC$FUNC = FunctionDescriptor.of(C_POINTER,
-        C_INT,
-        C_INT
+    static final FunctionDescriptor PFNGLMAPNAMEDBUFFEREXTPROC$FUNC = FunctionDescriptor.of(Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLMAPNAMEDBUFFEREXTPROC$MH = RuntimeHelper.downcallHandle(
-        "(II)Ljdk/incubator/foreign/MemoryAddress;",
-        constants$570.PFNGLMAPNAMEDBUFFEREXTPROC$FUNC, false
+        constants$570.PFNGLMAPNAMEDBUFFEREXTPROC$FUNC
     );
 }
 

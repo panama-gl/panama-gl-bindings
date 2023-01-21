@@ -2,40 +2,38 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_INT;
-import static jdk.incubator.foreign.CLinker.C_POINTER;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$594 {
 
     static final FunctionDescriptor PFNGLGETNAMEDPROGRAMSTRINGEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLGETNAMEDPROGRAMSTRINGEXTPROC$MH = RuntimeHelper.downcallHandle(
-        "(IIILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$594.PFNGLGETNAMEDPROGRAMSTRINGEXTPROC$FUNC, false
+        constants$594.PFNGLGETNAMEDPROGRAMSTRINGEXTPROC$FUNC
     );
     static final FunctionDescriptor PFNGLNAMEDRENDERBUFFERSTORAGEEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLNAMEDRENDERBUFFERSTORAGEEXTPROC$MH = RuntimeHelper.downcallHandle(
-        "(IIII)V",
-        constants$594.PFNGLNAMEDRENDERBUFFERSTORAGEEXTPROC$FUNC, false
+        constants$594.PFNGLNAMEDRENDERBUFFERSTORAGEEXTPROC$FUNC
     );
     static final FunctionDescriptor PFNGLGETNAMEDRENDERBUFFERPARAMETERIVEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLGETNAMEDRENDERBUFFERPARAMETERIVEXTPROC$MH = RuntimeHelper.downcallHandle(
-        "(IILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$594.PFNGLGETNAMEDRENDERBUFFERPARAMETERIVEXTPROC$FUNC, false
+        constants$594.PFNGLGETNAMEDRENDERBUFFERPARAMETERIVEXTPROC$FUNC
     );
 }
 

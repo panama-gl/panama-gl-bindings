@@ -2,38 +2,36 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_INT;
-import static jdk.incubator.foreign.CLinker.C_POINTER;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$430 {
 
     static final FunctionDescriptor PFNGLGETCONVOLUTIONPARAMETERXVOESPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLGETCONVOLUTIONPARAMETERXVOESPROC$MH = RuntimeHelper.downcallHandle(
-        "(IILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$430.PFNGLGETCONVOLUTIONPARAMETERXVOESPROC$FUNC, false
+        constants$430.PFNGLGETCONVOLUTIONPARAMETERXVOESPROC$FUNC
     );
     static final FunctionDescriptor PFNGLGETHISTOGRAMPARAMETERXVOESPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLGETHISTOGRAMPARAMETERXVOESPROC$MH = RuntimeHelper.downcallHandle(
-        "(IILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$430.PFNGLGETHISTOGRAMPARAMETERXVOESPROC$FUNC, false
+        constants$430.PFNGLGETHISTOGRAMPARAMETERXVOESPROC$FUNC
     );
     static final FunctionDescriptor PFNGLGETLIGHTXOESPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLGETLIGHTXOESPROC$MH = RuntimeHelper.downcallHandle(
-        "(IILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$430.PFNGLGETLIGHTXOESPROC$FUNC, false
+        constants$430.PFNGLGETLIGHTXOESPROC$FUNC
     );
 }
 

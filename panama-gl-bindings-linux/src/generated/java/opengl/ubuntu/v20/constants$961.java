@@ -2,53 +2,49 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_INT;
-import static jdk.incubator.foreign.CLinker.C_POINTER;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$961 {
 
     static final FunctionDescriptor glutTabletMotionFunc$FUNC = FunctionDescriptor.ofVoid(
-        C_POINTER
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle glutTabletMotionFunc$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "glutTabletMotionFunc",
-        "(Ljdk/incubator/foreign/MemoryAddress;)V",
-        constants$961.glutTabletMotionFunc$FUNC, false
+        "glutTabletMotionFunc",
+        constants$961.glutTabletMotionFunc$FUNC
     );
     static final FunctionDescriptor glutTabletButtonFunc$callback$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle glutTabletButtonFunc$callback$MH = RuntimeHelper.downcallHandle(
-        "(IIII)V",
-        constants$961.glutTabletButtonFunc$callback$FUNC, false
+        constants$961.glutTabletButtonFunc$callback$FUNC
     );
     static final FunctionDescriptor glutTabletButtonFunc$FUNC = FunctionDescriptor.ofVoid(
-        C_POINTER
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle glutTabletButtonFunc$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "glutTabletButtonFunc",
-        "(Ljdk/incubator/foreign/MemoryAddress;)V",
-        constants$961.glutTabletButtonFunc$FUNC, false
+        "glutTabletButtonFunc",
+        constants$961.glutTabletButtonFunc$FUNC
     );
-    static final FunctionDescriptor glutGet$FUNC = FunctionDescriptor.of(C_INT,
-        C_INT
+    static final FunctionDescriptor glutGet$FUNC = FunctionDescriptor.of(Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle glutGet$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "glutGet",
-        "(I)I",
-        constants$961.glutGet$FUNC, false
+        "glutGet",
+        constants$961.glutGet$FUNC
     );
-    static final FunctionDescriptor glutDeviceGet$FUNC = FunctionDescriptor.of(C_INT,
-        C_INT
+    static final FunctionDescriptor glutDeviceGet$FUNC = FunctionDescriptor.of(Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle glutDeviceGet$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "glutDeviceGet",
-        "(I)I",
-        constants$961.glutDeviceGet$FUNC, false
+        "glutDeviceGet",
+        constants$961.glutDeviceGet$FUNC
     );
 }
 

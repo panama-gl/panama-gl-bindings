@@ -2,22 +2,22 @@
 
 package opengl.ubuntu.v20;
 
-import jdk.incubator.foreign.Addressable;
-import jdk.incubator.foreign.MemoryAddress;
-import jdk.incubator.foreign.ResourceScope;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public interface PFNGLGETACTIVEATTRIBARBPROC {
 
-    void apply(int x0, int x1, int x2, jdk.incubator.foreign.MemoryAddress x3, jdk.incubator.foreign.MemoryAddress x4, jdk.incubator.foreign.MemoryAddress x5, jdk.incubator.foreign.MemoryAddress x6);
-    static MemoryAddress allocate(PFNGLGETACTIVEATTRIBARBPROC fi) {
-        return RuntimeHelper.upcallStub(PFNGLGETACTIVEATTRIBARBPROC.class, fi, constants$399.PFNGLGETACTIVEATTRIBARBPROC$FUNC, "(IIILjdk/incubator/foreign/MemoryAddress;Ljdk/incubator/foreign/MemoryAddress;Ljdk/incubator/foreign/MemoryAddress;Ljdk/incubator/foreign/MemoryAddress;)V");
+    void apply(int programObj, int index, int maxLength, java.lang.foreign.MemoryAddress length, java.lang.foreign.MemoryAddress size, java.lang.foreign.MemoryAddress type, java.lang.foreign.MemoryAddress name);
+    static MemorySegment allocate(PFNGLGETACTIVEATTRIBARBPROC fi, MemorySession session) {
+        return RuntimeHelper.upcallStub(PFNGLGETACTIVEATTRIBARBPROC.class, fi, constants$399.PFNGLGETACTIVEATTRIBARBPROC$FUNC, session);
     }
-    static MemoryAddress allocate(PFNGLGETACTIVEATTRIBARBPROC fi, ResourceScope scope) {
-        return RuntimeHelper.upcallStub(PFNGLGETACTIVEATTRIBARBPROC.class, fi, constants$399.PFNGLGETACTIVEATTRIBARBPROC$FUNC, "(IIILjdk/incubator/foreign/MemoryAddress;Ljdk/incubator/foreign/MemoryAddress;Ljdk/incubator/foreign/MemoryAddress;Ljdk/incubator/foreign/MemoryAddress;)V", scope);
-    }
-    static PFNGLGETACTIVEATTRIBARBPROC ofAddress(MemoryAddress addr) {
-        return (int x0, int x1, int x2, jdk.incubator.foreign.MemoryAddress x3, jdk.incubator.foreign.MemoryAddress x4, jdk.incubator.foreign.MemoryAddress x5, jdk.incubator.foreign.MemoryAddress x6) -> {
+    static PFNGLGETACTIVEATTRIBARBPROC ofAddress(MemoryAddress addr, MemorySession session) {
+        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
+        return (int _programObj, int _index, int _maxLength, java.lang.foreign.MemoryAddress _length, java.lang.foreign.MemoryAddress _size, java.lang.foreign.MemoryAddress _type, java.lang.foreign.MemoryAddress _name) -> {
             try {
-                constants$399.PFNGLGETACTIVEATTRIBARBPROC$MH.invokeExact((Addressable)addr, x0, x1, x2, x3, x4, x5, x6);
+                constants$399.PFNGLGETACTIVEATTRIBARBPROC$MH.invokeExact((Addressable)symbol, _programObj, _index, _maxLength, (java.lang.foreign.Addressable)_length, (java.lang.foreign.Addressable)_size, (java.lang.foreign.Addressable)_type, (java.lang.foreign.Addressable)_name);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

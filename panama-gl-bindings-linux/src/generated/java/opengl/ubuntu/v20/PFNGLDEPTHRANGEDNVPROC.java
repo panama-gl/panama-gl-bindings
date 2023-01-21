@@ -2,22 +2,22 @@
 
 package opengl.ubuntu.v20;
 
-import jdk.incubator.foreign.Addressable;
-import jdk.incubator.foreign.MemoryAddress;
-import jdk.incubator.foreign.ResourceScope;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public interface PFNGLDEPTHRANGEDNVPROC {
 
-    void apply(double x0, double x1);
-    static MemoryAddress allocate(PFNGLDEPTHRANGEDNVPROC fi) {
-        return RuntimeHelper.upcallStub(PFNGLDEPTHRANGEDNVPROC.class, fi, constants$739.PFNGLDEPTHRANGEDNVPROC$FUNC, "(DD)V");
+    void apply(double zNear, double zFar);
+    static MemorySegment allocate(PFNGLDEPTHRANGEDNVPROC fi, MemorySession session) {
+        return RuntimeHelper.upcallStub(PFNGLDEPTHRANGEDNVPROC.class, fi, constants$739.PFNGLDEPTHRANGEDNVPROC$FUNC, session);
     }
-    static MemoryAddress allocate(PFNGLDEPTHRANGEDNVPROC fi, ResourceScope scope) {
-        return RuntimeHelper.upcallStub(PFNGLDEPTHRANGEDNVPROC.class, fi, constants$739.PFNGLDEPTHRANGEDNVPROC$FUNC, "(DD)V", scope);
-    }
-    static PFNGLDEPTHRANGEDNVPROC ofAddress(MemoryAddress addr) {
-        return (double x0, double x1) -> {
+    static PFNGLDEPTHRANGEDNVPROC ofAddress(MemoryAddress addr, MemorySession session) {
+        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
+        return (double _zNear, double _zFar) -> {
             try {
-                constants$739.PFNGLDEPTHRANGEDNVPROC$MH.invokeExact((Addressable)addr, x0, x1);
+                constants$739.PFNGLDEPTHRANGEDNVPROC$MH.invokeExact((Addressable)symbol, _zNear, _zFar);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

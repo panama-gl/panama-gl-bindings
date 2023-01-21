@@ -2,46 +2,44 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_INT;
-import static jdk.incubator.foreign.CLinker.C_POINTER;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$794 {
 
     static final FunctionDescriptor PFNGLSTENCILFILLPATHINSTANCEDNVPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_POINTER,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLSTENCILFILLPATHINSTANCEDNVPROC$MH = RuntimeHelper.downcallHandle(
-        "(IILjdk/incubator/foreign/MemoryAddress;IIIILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$794.PFNGLSTENCILFILLPATHINSTANCEDNVPROC$FUNC, false
+        constants$794.PFNGLSTENCILFILLPATHINSTANCEDNVPROC$FUNC
     );
     static final FunctionDescriptor PFNGLSTENCILSTROKEPATHINSTANCEDNVPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_POINTER,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLSTENCILSTROKEPATHINSTANCEDNVPROC$MH = RuntimeHelper.downcallHandle(
-        "(IILjdk/incubator/foreign/MemoryAddress;IIIILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$794.PFNGLSTENCILSTROKEPATHINSTANCEDNVPROC$FUNC, false
+        constants$794.PFNGLSTENCILSTROKEPATHINSTANCEDNVPROC$FUNC
     );
     static final FunctionDescriptor PFNGLPATHCOVERDEPTHFUNCNVPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLPATHCOVERDEPTHFUNCNVPROC$MH = RuntimeHelper.downcallHandle(
-        "(I)V",
-        constants$794.PFNGLPATHCOVERDEPTHFUNCNVPROC$FUNC, false
+        constants$794.PFNGLPATHCOVERDEPTHFUNCNVPROC$FUNC
     );
 }
 

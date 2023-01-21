@@ -2,22 +2,22 @@
 
 package opengl.ubuntu.v20;
 
-import jdk.incubator.foreign.Addressable;
-import jdk.incubator.foreign.MemoryAddress;
-import jdk.incubator.foreign.ResourceScope;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public interface PFNGLMULTITEXCOORD4DARBPROC {
 
-    void apply(int x0, double x1, double x2, double x3, double x4);
-    static MemoryAddress allocate(PFNGLMULTITEXCOORD4DARBPROC fi) {
-        return RuntimeHelper.upcallStub(PFNGLMULTITEXCOORD4DARBPROC.class, fi, constants$88.PFNGLMULTITEXCOORD4DARBPROC$FUNC, "(IDDDD)V");
+    void apply(int target, double s, double t, double r, double q);
+    static MemorySegment allocate(PFNGLMULTITEXCOORD4DARBPROC fi, MemorySession session) {
+        return RuntimeHelper.upcallStub(PFNGLMULTITEXCOORD4DARBPROC.class, fi, constants$88.PFNGLMULTITEXCOORD4DARBPROC$FUNC, session);
     }
-    static MemoryAddress allocate(PFNGLMULTITEXCOORD4DARBPROC fi, ResourceScope scope) {
-        return RuntimeHelper.upcallStub(PFNGLMULTITEXCOORD4DARBPROC.class, fi, constants$88.PFNGLMULTITEXCOORD4DARBPROC$FUNC, "(IDDDD)V", scope);
-    }
-    static PFNGLMULTITEXCOORD4DARBPROC ofAddress(MemoryAddress addr) {
-        return (int x0, double x1, double x2, double x3, double x4) -> {
+    static PFNGLMULTITEXCOORD4DARBPROC ofAddress(MemoryAddress addr, MemorySession session) {
+        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
+        return (int _target, double _s, double _t, double _r, double _q) -> {
             try {
-                constants$88.PFNGLMULTITEXCOORD4DARBPROC$MH.invokeExact((Addressable)addr, x0, x1, x2, x3, x4);
+                constants$88.PFNGLMULTITEXCOORD4DARBPROC$MH.invokeExact((Addressable)symbol, _target, _s, _t, _r, _q);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

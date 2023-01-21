@@ -2,22 +2,22 @@
 
 package opengl.ubuntu.v20;
 
-import jdk.incubator.foreign.Addressable;
-import jdk.incubator.foreign.MemoryAddress;
-import jdk.incubator.foreign.ResourceScope;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public interface PFNGLVERTEX3HNVPROC {
 
-    void apply(short x0, short x1, short x2);
-    static MemoryAddress allocate(PFNGLVERTEX3HNVPROC fi) {
-        return RuntimeHelper.upcallStub(PFNGLVERTEX3HNVPROC.class, fi, constants$764.PFNGLVERTEX3HNVPROC$FUNC, "(SSS)V");
+    void apply(short x, short y, short z);
+    static MemorySegment allocate(PFNGLVERTEX3HNVPROC fi, MemorySession session) {
+        return RuntimeHelper.upcallStub(PFNGLVERTEX3HNVPROC.class, fi, constants$764.PFNGLVERTEX3HNVPROC$FUNC, session);
     }
-    static MemoryAddress allocate(PFNGLVERTEX3HNVPROC fi, ResourceScope scope) {
-        return RuntimeHelper.upcallStub(PFNGLVERTEX3HNVPROC.class, fi, constants$764.PFNGLVERTEX3HNVPROC$FUNC, "(SSS)V", scope);
-    }
-    static PFNGLVERTEX3HNVPROC ofAddress(MemoryAddress addr) {
-        return (short x0, short x1, short x2) -> {
+    static PFNGLVERTEX3HNVPROC ofAddress(MemoryAddress addr, MemorySession session) {
+        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
+        return (short _x, short _y, short _z) -> {
             try {
-                constants$764.PFNGLVERTEX3HNVPROC$MH.invokeExact((Addressable)addr, x0, x1, x2);
+                constants$764.PFNGLVERTEX3HNVPROC$MH.invokeExact((Addressable)symbol, _x, _y, _z);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

@@ -2,38 +2,36 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_INT;
-import static jdk.incubator.foreign.CLinker.C_POINTER;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$212 {
 
     static final FunctionDescriptor PFNGLGETUNIFORMDVPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLGETUNIFORMDVPROC$MH = RuntimeHelper.downcallHandle(
-        "(IILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$212.PFNGLGETUNIFORMDVPROC$FUNC, false
+        constants$212.PFNGLGETUNIFORMDVPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLGETSUBROUTINEUNIFORMLOCATIONPROC$FUNC = FunctionDescriptor.of(C_INT,
-        C_INT,
-        C_INT,
-        C_POINTER
+    static final FunctionDescriptor PFNGLGETSUBROUTINEUNIFORMLOCATIONPROC$FUNC = FunctionDescriptor.of(Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLGETSUBROUTINEUNIFORMLOCATIONPROC$MH = RuntimeHelper.downcallHandle(
-        "(IILjdk/incubator/foreign/MemoryAddress;)I",
-        constants$212.PFNGLGETSUBROUTINEUNIFORMLOCATIONPROC$FUNC, false
+        constants$212.PFNGLGETSUBROUTINEUNIFORMLOCATIONPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLGETSUBROUTINEINDEXPROC$FUNC = FunctionDescriptor.of(C_INT,
-        C_INT,
-        C_INT,
-        C_POINTER
+    static final FunctionDescriptor PFNGLGETSUBROUTINEINDEXPROC$FUNC = FunctionDescriptor.of(Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLGETSUBROUTINEINDEXPROC$MH = RuntimeHelper.downcallHandle(
-        "(IILjdk/incubator/foreign/MemoryAddress;)I",
-        constants$212.PFNGLGETSUBROUTINEINDEXPROC$FUNC, false
+        constants$212.PFNGLGETSUBROUTINEINDEXPROC$FUNC
     );
 }
 

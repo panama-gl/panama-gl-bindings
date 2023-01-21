@@ -2,22 +2,22 @@
 
 package opengl.ubuntu.v20;
 
-import jdk.incubator.foreign.Addressable;
-import jdk.incubator.foreign.MemoryAddress;
-import jdk.incubator.foreign.ResourceScope;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public interface PFNGLGETNCOLORTABLEPROC {
 
-    void apply(int x0, int x1, int x2, int x3, jdk.incubator.foreign.MemoryAddress x4);
-    static MemoryAddress allocate(PFNGLGETNCOLORTABLEPROC fi) {
-        return RuntimeHelper.upcallStub(PFNGLGETNCOLORTABLEPROC.class, fi, constants$309.PFNGLGETNCOLORTABLEPROC$FUNC, "(IIIILjdk/incubator/foreign/MemoryAddress;)V");
+    void apply(int target, int format, int type, int bufSize, java.lang.foreign.MemoryAddress table);
+    static MemorySegment allocate(PFNGLGETNCOLORTABLEPROC fi, MemorySession session) {
+        return RuntimeHelper.upcallStub(PFNGLGETNCOLORTABLEPROC.class, fi, constants$309.PFNGLGETNCOLORTABLEPROC$FUNC, session);
     }
-    static MemoryAddress allocate(PFNGLGETNCOLORTABLEPROC fi, ResourceScope scope) {
-        return RuntimeHelper.upcallStub(PFNGLGETNCOLORTABLEPROC.class, fi, constants$309.PFNGLGETNCOLORTABLEPROC$FUNC, "(IIIILjdk/incubator/foreign/MemoryAddress;)V", scope);
-    }
-    static PFNGLGETNCOLORTABLEPROC ofAddress(MemoryAddress addr) {
-        return (int x0, int x1, int x2, int x3, jdk.incubator.foreign.MemoryAddress x4) -> {
+    static PFNGLGETNCOLORTABLEPROC ofAddress(MemoryAddress addr, MemorySession session) {
+        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
+        return (int _target, int _format, int _type, int _bufSize, java.lang.foreign.MemoryAddress _table) -> {
             try {
-                constants$309.PFNGLGETNCOLORTABLEPROC$MH.invokeExact((Addressable)addr, x0, x1, x2, x3, x4);
+                constants$309.PFNGLGETNCOLORTABLEPROC$MH.invokeExact((Addressable)symbol, _target, _format, _type, _bufSize, (java.lang.foreign.Addressable)_table);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

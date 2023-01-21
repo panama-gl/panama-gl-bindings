@@ -2,7 +2,12 @@
 
 package opengl.ubuntu.v20;
 
-class glut_h_3 extends glut_h_2 {
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
+ class glut_h_3 extends glut_h_2 {
 
     public static int GL_REG_4_ATI() {
         return (int)35109L;

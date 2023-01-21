@@ -2,74 +2,66 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_DOUBLE;
-import static jdk.incubator.foreign.CLinker.C_FLOAT;
-import static jdk.incubator.foreign.CLinker.C_INT;
-import static jdk.incubator.foreign.CLinker.C_POINTER;
-import static jdk.incubator.foreign.CLinker.C_SHORT;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$32 {
 
     static final FunctionDescriptor glRasterPos4d$FUNC = FunctionDescriptor.ofVoid(
-        C_DOUBLE,
-        C_DOUBLE,
-        C_DOUBLE,
-        C_DOUBLE
+        Constants$root.C_DOUBLE$LAYOUT,
+        Constants$root.C_DOUBLE$LAYOUT,
+        Constants$root.C_DOUBLE$LAYOUT,
+        Constants$root.C_DOUBLE$LAYOUT
     );
     static final MethodHandle glRasterPos4d$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "glRasterPos4d",
-        "(DDDD)V",
-        constants$32.glRasterPos4d$FUNC, false
+        "glRasterPos4d",
+        constants$32.glRasterPos4d$FUNC
     );
     static final FunctionDescriptor glRasterPos4f$FUNC = FunctionDescriptor.ofVoid(
-        C_FLOAT,
-        C_FLOAT,
-        C_FLOAT,
-        C_FLOAT
+        Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT
     );
     static final MethodHandle glRasterPos4f$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "glRasterPos4f",
-        "(FFFF)V",
-        constants$32.glRasterPos4f$FUNC, false
+        "glRasterPos4f",
+        constants$32.glRasterPos4f$FUNC
     );
     static final FunctionDescriptor glRasterPos4i$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle glRasterPos4i$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "glRasterPos4i",
-        "(IIII)V",
-        constants$32.glRasterPos4i$FUNC, false
+        "glRasterPos4i",
+        constants$32.glRasterPos4i$FUNC
     );
     static final FunctionDescriptor glRasterPos4s$FUNC = FunctionDescriptor.ofVoid(
-        C_SHORT,
-        C_SHORT,
-        C_SHORT,
-        C_SHORT
+        Constants$root.C_SHORT$LAYOUT,
+        Constants$root.C_SHORT$LAYOUT,
+        Constants$root.C_SHORT$LAYOUT,
+        Constants$root.C_SHORT$LAYOUT
     );
     static final MethodHandle glRasterPos4s$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "glRasterPos4s",
-        "(SSSS)V",
-        constants$32.glRasterPos4s$FUNC, false
+        "glRasterPos4s",
+        constants$32.glRasterPos4s$FUNC
     );
     static final FunctionDescriptor glRasterPos2dv$FUNC = FunctionDescriptor.ofVoid(
-        C_POINTER
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle glRasterPos2dv$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "glRasterPos2dv",
-        "(Ljdk/incubator/foreign/MemoryAddress;)V",
-        constants$32.glRasterPos2dv$FUNC, false
+        "glRasterPos2dv",
+        constants$32.glRasterPos2dv$FUNC
     );
     static final FunctionDescriptor glRasterPos2fv$FUNC = FunctionDescriptor.ofVoid(
-        C_POINTER
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle glRasterPos2fv$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "glRasterPos2fv",
-        "(Ljdk/incubator/foreign/MemoryAddress;)V",
-        constants$32.glRasterPos2fv$FUNC, false
+        "glRasterPos2fv",
+        constants$32.glRasterPos2fv$FUNC
     );
 }
 

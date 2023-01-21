@@ -2,53 +2,49 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_INT;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$945 {
 
     static final FunctionDescriptor glutPostWindowRedisplay$FUNC = FunctionDescriptor.ofVoid(
-        C_INT
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle glutPostWindowRedisplay$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "glutPostWindowRedisplay",
-        "(I)V",
-        constants$945.glutPostWindowRedisplay$FUNC, false
+        "glutPostWindowRedisplay",
+        constants$945.glutPostWindowRedisplay$FUNC
     );
     static final FunctionDescriptor glutPostRedisplay$FUNC = FunctionDescriptor.ofVoid();
     static final MethodHandle glutPostRedisplay$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "glutPostRedisplay",
-        "()V",
-        constants$945.glutPostRedisplay$FUNC, false
+        "glutPostRedisplay",
+        constants$945.glutPostRedisplay$FUNC
     );
     static final FunctionDescriptor glutSwapBuffers$FUNC = FunctionDescriptor.ofVoid();
     static final MethodHandle glutSwapBuffers$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "glutSwapBuffers",
-        "()V",
-        constants$945.glutSwapBuffers$FUNC, false
+        "glutSwapBuffers",
+        constants$945.glutSwapBuffers$FUNC
     );
     static final FunctionDescriptor glutWarpPointer$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle glutWarpPointer$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "glutWarpPointer",
-        "(II)V",
-        constants$945.glutWarpPointer$FUNC, false
+        "glutWarpPointer",
+        constants$945.glutWarpPointer$FUNC
     );
     static final FunctionDescriptor glutSetCursor$FUNC = FunctionDescriptor.ofVoid(
-        C_INT
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle glutSetCursor$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "glutSetCursor",
-        "(I)V",
-        constants$945.glutSetCursor$FUNC, false
+        "glutSetCursor",
+        constants$945.glutSetCursor$FUNC
     );
     static final FunctionDescriptor glutEstablishOverlay$FUNC = FunctionDescriptor.ofVoid();
     static final MethodHandle glutEstablishOverlay$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "glutEstablishOverlay",
-        "()V",
-        constants$945.glutEstablishOverlay$FUNC, false
+        "glutEstablishOverlay",
+        constants$945.glutEstablishOverlay$FUNC
     );
 }
 

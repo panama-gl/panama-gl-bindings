@@ -2,35 +2,33 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_CHAR;
-import static jdk.incubator.foreign.CLinker.C_INT;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$654 {
 
     static final FunctionDescriptor PFNGLPROVOKINGVERTEXEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLPROVOKINGVERTEXEXTPROC$MH = RuntimeHelper.downcallHandle(
-        "(I)V",
-        constants$654.PFNGLPROVOKINGVERTEXEXTPROC$FUNC, false
+        constants$654.PFNGLPROVOKINGVERTEXEXTPROC$FUNC
     );
     static final FunctionDescriptor PFNGLRASTERSAMPLESEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_CHAR
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_CHAR$LAYOUT
     );
     static final MethodHandle PFNGLRASTERSAMPLESEXTPROC$MH = RuntimeHelper.downcallHandle(
-        "(IB)V",
-        constants$654.PFNGLRASTERSAMPLESEXTPROC$FUNC, false
+        constants$654.PFNGLRASTERSAMPLESEXTPROC$FUNC
     );
     static final FunctionDescriptor PFNGLSECONDARYCOLOR3BEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_CHAR,
-        C_CHAR,
-        C_CHAR
+        Constants$root.C_CHAR$LAYOUT,
+        Constants$root.C_CHAR$LAYOUT,
+        Constants$root.C_CHAR$LAYOUT
     );
     static final MethodHandle PFNGLSECONDARYCOLOR3BEXTPROC$MH = RuntimeHelper.downcallHandle(
-        "(BBB)V",
-        constants$654.PFNGLSECONDARYCOLOR3BEXTPROC$FUNC, false
+        constants$654.PFNGLSECONDARYCOLOR3BEXTPROC$FUNC
     );
 }
 

@@ -2,42 +2,39 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_CHAR;
-import static jdk.incubator.foreign.CLinker.C_INT;
-import static jdk.incubator.foreign.CLinker.C_POINTER;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$209 {
 
     static final FunctionDescriptor PFNGLUNIFORMMATRIX2DVPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_CHAR,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_CHAR$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLUNIFORMMATRIX2DVPROC$MH = RuntimeHelper.downcallHandle(
-        "(IIBLjdk/incubator/foreign/MemoryAddress;)V",
-        constants$209.PFNGLUNIFORMMATRIX2DVPROC$FUNC, false
+        constants$209.PFNGLUNIFORMMATRIX2DVPROC$FUNC
     );
     static final FunctionDescriptor PFNGLUNIFORMMATRIX3DVPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_CHAR,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_CHAR$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLUNIFORMMATRIX3DVPROC$MH = RuntimeHelper.downcallHandle(
-        "(IIBLjdk/incubator/foreign/MemoryAddress;)V",
-        constants$209.PFNGLUNIFORMMATRIX3DVPROC$FUNC, false
+        constants$209.PFNGLUNIFORMMATRIX3DVPROC$FUNC
     );
     static final FunctionDescriptor PFNGLUNIFORMMATRIX4DVPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_CHAR,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_CHAR$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLUNIFORMMATRIX4DVPROC$MH = RuntimeHelper.downcallHandle(
-        "(IIBLjdk/incubator/foreign/MemoryAddress;)V",
-        constants$209.PFNGLUNIFORMMATRIX4DVPROC$FUNC, false
+        constants$209.PFNGLUNIFORMMATRIX4DVPROC$FUNC
     );
 }
 

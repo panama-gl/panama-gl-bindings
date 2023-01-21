@@ -2,40 +2,38 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_INT;
-import static jdk.incubator.foreign.CLinker.C_POINTER;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$881 {
 
     static final FunctionDescriptor PFNGLGETVIDEOCAPTURESTREAMDVNVPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLGETVIDEOCAPTURESTREAMDVNVPROC$MH = RuntimeHelper.downcallHandle(
-        "(IIILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$881.PFNGLGETVIDEOCAPTURESTREAMDVNVPROC$FUNC, false
+        constants$881.PFNGLGETVIDEOCAPTURESTREAMDVNVPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLVIDEOCAPTURENVPROC$FUNC = FunctionDescriptor.of(C_INT,
-        C_INT,
-        C_POINTER,
-        C_POINTER
+    static final FunctionDescriptor PFNGLVIDEOCAPTURENVPROC$FUNC = FunctionDescriptor.of(Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLVIDEOCAPTURENVPROC$MH = RuntimeHelper.downcallHandle(
-        "(ILjdk/incubator/foreign/MemoryAddress;Ljdk/incubator/foreign/MemoryAddress;)I",
-        constants$881.PFNGLVIDEOCAPTURENVPROC$FUNC, false
+        constants$881.PFNGLVIDEOCAPTURENVPROC$FUNC
     );
     static final FunctionDescriptor PFNGLVIDEOCAPTURESTREAMPARAMETERIVNVPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLVIDEOCAPTURESTREAMPARAMETERIVNVPROC$MH = RuntimeHelper.downcallHandle(
-        "(IIILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$881.PFNGLVIDEOCAPTURESTREAMPARAMETERIVNVPROC$FUNC, false
+        constants$881.PFNGLVIDEOCAPTURESTREAMPARAMETERIVNVPROC$FUNC
     );
 }
 

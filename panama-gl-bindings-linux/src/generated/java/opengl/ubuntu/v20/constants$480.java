@@ -2,39 +2,37 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_INT;
-import static jdk.incubator.foreign.CLinker.C_POINTER;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$480 {
 
-    static final FunctionDescriptor PFNGLOBJECTPURGEABLEAPPLEPROC$FUNC = FunctionDescriptor.of(C_INT,
-        C_INT,
-        C_INT,
-        C_INT
+    static final FunctionDescriptor PFNGLOBJECTPURGEABLEAPPLEPROC$FUNC = FunctionDescriptor.of(Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLOBJECTPURGEABLEAPPLEPROC$MH = RuntimeHelper.downcallHandle(
-        "(III)I",
-        constants$480.PFNGLOBJECTPURGEABLEAPPLEPROC$FUNC, false
+        constants$480.PFNGLOBJECTPURGEABLEAPPLEPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLOBJECTUNPURGEABLEAPPLEPROC$FUNC = FunctionDescriptor.of(C_INT,
-        C_INT,
-        C_INT,
-        C_INT
+    static final FunctionDescriptor PFNGLOBJECTUNPURGEABLEAPPLEPROC$FUNC = FunctionDescriptor.of(Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLOBJECTUNPURGEABLEAPPLEPROC$MH = RuntimeHelper.downcallHandle(
-        "(III)I",
-        constants$480.PFNGLOBJECTUNPURGEABLEAPPLEPROC$FUNC, false
+        constants$480.PFNGLOBJECTUNPURGEABLEAPPLEPROC$FUNC
     );
     static final FunctionDescriptor PFNGLGETOBJECTPARAMETERIVAPPLEPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLGETOBJECTPARAMETERIVAPPLEPROC$MH = RuntimeHelper.downcallHandle(
-        "(IIILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$480.PFNGLGETOBJECTPARAMETERIVAPPLEPROC$FUNC, false
+        constants$480.PFNGLGETOBJECTPARAMETERIVAPPLEPROC$FUNC
     );
 }
 

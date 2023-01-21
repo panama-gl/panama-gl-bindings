@@ -2,39 +2,38 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_INT;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$153 {
 
     static final FunctionDescriptor PFNGLVERTEXATTRIBI3IPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLVERTEXATTRIBI3IPROC$MH = RuntimeHelper.downcallHandle(
-        "(IIII)V",
-        constants$153.PFNGLVERTEXATTRIBI3IPROC$FUNC, false
+        constants$153.PFNGLVERTEXATTRIBI3IPROC$FUNC
     );
     static final FunctionDescriptor PFNGLVERTEXATTRIBI4IPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLVERTEXATTRIBI4IPROC$MH = RuntimeHelper.downcallHandle(
-        "(IIIII)V",
-        constants$153.PFNGLVERTEXATTRIBI4IPROC$FUNC, false
+        constants$153.PFNGLVERTEXATTRIBI4IPROC$FUNC
     );
     static final FunctionDescriptor PFNGLVERTEXATTRIBI1UIPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLVERTEXATTRIBI1UIPROC$MH = RuntimeHelper.downcallHandle(
-        "(II)V",
-        constants$153.PFNGLVERTEXATTRIBI1UIPROC$FUNC, false
+        constants$153.PFNGLVERTEXATTRIBI1UIPROC$FUNC
     );
 }
 

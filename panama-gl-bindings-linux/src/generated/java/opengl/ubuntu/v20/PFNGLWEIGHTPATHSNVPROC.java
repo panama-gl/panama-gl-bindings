@@ -2,22 +2,22 @@
 
 package opengl.ubuntu.v20;
 
-import jdk.incubator.foreign.Addressable;
-import jdk.incubator.foreign.MemoryAddress;
-import jdk.incubator.foreign.ResourceScope;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public interface PFNGLWEIGHTPATHSNVPROC {
 
-    void apply(int x0, int x1, jdk.incubator.foreign.MemoryAddress x2, jdk.incubator.foreign.MemoryAddress x3);
-    static MemoryAddress allocate(PFNGLWEIGHTPATHSNVPROC fi) {
-        return RuntimeHelper.upcallStub(PFNGLWEIGHTPATHSNVPROC.class, fi, constants$789.PFNGLWEIGHTPATHSNVPROC$FUNC, "(IILjdk/incubator/foreign/MemoryAddress;Ljdk/incubator/foreign/MemoryAddress;)V");
+    void apply(int resultPath, int numPaths, java.lang.foreign.MemoryAddress paths, java.lang.foreign.MemoryAddress weights);
+    static MemorySegment allocate(PFNGLWEIGHTPATHSNVPROC fi, MemorySession session) {
+        return RuntimeHelper.upcallStub(PFNGLWEIGHTPATHSNVPROC.class, fi, constants$789.PFNGLWEIGHTPATHSNVPROC$FUNC, session);
     }
-    static MemoryAddress allocate(PFNGLWEIGHTPATHSNVPROC fi, ResourceScope scope) {
-        return RuntimeHelper.upcallStub(PFNGLWEIGHTPATHSNVPROC.class, fi, constants$789.PFNGLWEIGHTPATHSNVPROC$FUNC, "(IILjdk/incubator/foreign/MemoryAddress;Ljdk/incubator/foreign/MemoryAddress;)V", scope);
-    }
-    static PFNGLWEIGHTPATHSNVPROC ofAddress(MemoryAddress addr) {
-        return (int x0, int x1, jdk.incubator.foreign.MemoryAddress x2, jdk.incubator.foreign.MemoryAddress x3) -> {
+    static PFNGLWEIGHTPATHSNVPROC ofAddress(MemoryAddress addr, MemorySession session) {
+        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
+        return (int _resultPath, int _numPaths, java.lang.foreign.MemoryAddress _paths, java.lang.foreign.MemoryAddress _weights) -> {
             try {
-                constants$789.PFNGLWEIGHTPATHSNVPROC$MH.invokeExact((Addressable)addr, x0, x1, x2, x3);
+                constants$789.PFNGLWEIGHTPATHSNVPROC$MH.invokeExact((Addressable)symbol, _resultPath, _numPaths, (java.lang.foreign.Addressable)_paths, (java.lang.foreign.Addressable)_weights);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

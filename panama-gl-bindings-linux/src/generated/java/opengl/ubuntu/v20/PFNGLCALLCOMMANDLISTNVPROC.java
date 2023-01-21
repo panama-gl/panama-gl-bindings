@@ -2,22 +2,22 @@
 
 package opengl.ubuntu.v20;
 
-import jdk.incubator.foreign.Addressable;
-import jdk.incubator.foreign.MemoryAddress;
-import jdk.incubator.foreign.ResourceScope;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public interface PFNGLCALLCOMMANDLISTNVPROC {
 
-    void apply(int x0);
-    static MemoryAddress allocate(PFNGLCALLCOMMANDLISTNVPROC fi) {
-        return RuntimeHelper.upcallStub(PFNGLCALLCOMMANDLISTNVPROC.class, fi, constants$737.PFNGLCALLCOMMANDLISTNVPROC$FUNC, "(I)V");
+    void apply(int list);
+    static MemorySegment allocate(PFNGLCALLCOMMANDLISTNVPROC fi, MemorySession session) {
+        return RuntimeHelper.upcallStub(PFNGLCALLCOMMANDLISTNVPROC.class, fi, constants$737.PFNGLCALLCOMMANDLISTNVPROC$FUNC, session);
     }
-    static MemoryAddress allocate(PFNGLCALLCOMMANDLISTNVPROC fi, ResourceScope scope) {
-        return RuntimeHelper.upcallStub(PFNGLCALLCOMMANDLISTNVPROC.class, fi, constants$737.PFNGLCALLCOMMANDLISTNVPROC$FUNC, "(I)V", scope);
-    }
-    static PFNGLCALLCOMMANDLISTNVPROC ofAddress(MemoryAddress addr) {
-        return (int x0) -> {
+    static PFNGLCALLCOMMANDLISTNVPROC ofAddress(MemoryAddress addr, MemorySession session) {
+        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
+        return (int _list) -> {
             try {
-                constants$737.PFNGLCALLCOMMANDLISTNVPROC$MH.invokeExact((Addressable)addr, x0);
+                constants$737.PFNGLCALLCOMMANDLISTNVPROC$MH.invokeExact((Addressable)symbol, _list);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

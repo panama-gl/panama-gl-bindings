@@ -2,43 +2,40 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_CHAR;
-import static jdk.incubator.foreign.CLinker.C_INT;
-import static jdk.incubator.foreign.CLinker.C_LONG;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$262 {
 
     static final FunctionDescriptor PFNGLBINDVERTEXBUFFERPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_LONG,
-        C_INT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLBINDVERTEXBUFFERPROC$MH = RuntimeHelper.downcallHandle(
-        "(IIJI)V",
-        constants$262.PFNGLBINDVERTEXBUFFERPROC$FUNC, false
+        constants$262.PFNGLBINDVERTEXBUFFERPROC$FUNC
     );
     static final FunctionDescriptor PFNGLVERTEXATTRIBFORMATPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_INT,
-        C_CHAR,
-        C_INT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_CHAR$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLVERTEXATTRIBFORMATPROC$MH = RuntimeHelper.downcallHandle(
-        "(IIIBI)V",
-        constants$262.PFNGLVERTEXATTRIBFORMATPROC$FUNC, false
+        constants$262.PFNGLVERTEXATTRIBFORMATPROC$FUNC
     );
     static final FunctionDescriptor PFNGLVERTEXATTRIBIFORMATPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLVERTEXATTRIBIFORMATPROC$MH = RuntimeHelper.downcallHandle(
-        "(IIII)V",
-        constants$262.PFNGLVERTEXATTRIBIFORMATPROC$FUNC, false
+        constants$262.PFNGLVERTEXATTRIBIFORMATPROC$FUNC
     );
 }
 

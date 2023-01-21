@@ -2,33 +2,32 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_INT;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$683 {
 
-    static final FunctionDescriptor PFNGLGENVERTEXSHADERSEXTPROC$FUNC = FunctionDescriptor.of(C_INT,
-        C_INT
+    static final FunctionDescriptor PFNGLGENVERTEXSHADERSEXTPROC$FUNC = FunctionDescriptor.of(Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLGENVERTEXSHADERSEXTPROC$MH = RuntimeHelper.downcallHandle(
-        "(I)I",
-        constants$683.PFNGLGENVERTEXSHADERSEXTPROC$FUNC, false
+        constants$683.PFNGLGENVERTEXSHADERSEXTPROC$FUNC
     );
     static final FunctionDescriptor PFNGLDELETEVERTEXSHADEREXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLDELETEVERTEXSHADEREXTPROC$MH = RuntimeHelper.downcallHandle(
-        "(I)V",
-        constants$683.PFNGLDELETEVERTEXSHADEREXTPROC$FUNC, false
+        constants$683.PFNGLDELETEVERTEXSHADEREXTPROC$FUNC
     );
     static final FunctionDescriptor PFNGLSHADEROP1EXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_INT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLSHADEROP1EXTPROC$MH = RuntimeHelper.downcallHandle(
-        "(III)V",
-        constants$683.PFNGLSHADEROP1EXTPROC$FUNC, false
+        constants$683.PFNGLSHADEROP1EXTPROC$FUNC
     );
 }
 

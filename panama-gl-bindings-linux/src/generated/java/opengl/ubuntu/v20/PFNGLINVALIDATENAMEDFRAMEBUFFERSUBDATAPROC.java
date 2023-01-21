@@ -2,22 +2,22 @@
 
 package opengl.ubuntu.v20;
 
-import jdk.incubator.foreign.Addressable;
-import jdk.incubator.foreign.MemoryAddress;
-import jdk.incubator.foreign.ResourceScope;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public interface PFNGLINVALIDATENAMEDFRAMEBUFFERSUBDATAPROC {
 
-    void apply(int x0, int x1, jdk.incubator.foreign.MemoryAddress x2, int x3, int x4, int x5, int x6);
-    static MemoryAddress allocate(PFNGLINVALIDATENAMEDFRAMEBUFFERSUBDATAPROC fi) {
-        return RuntimeHelper.upcallStub(PFNGLINVALIDATENAMEDFRAMEBUFFERSUBDATAPROC.class, fi, constants$280.PFNGLINVALIDATENAMEDFRAMEBUFFERSUBDATAPROC$FUNC, "(IILjdk/incubator/foreign/MemoryAddress;IIII)V");
+    void apply(int framebuffer, int numAttachments, java.lang.foreign.MemoryAddress attachments, int x, int y, int width, int height);
+    static MemorySegment allocate(PFNGLINVALIDATENAMEDFRAMEBUFFERSUBDATAPROC fi, MemorySession session) {
+        return RuntimeHelper.upcallStub(PFNGLINVALIDATENAMEDFRAMEBUFFERSUBDATAPROC.class, fi, constants$280.PFNGLINVALIDATENAMEDFRAMEBUFFERSUBDATAPROC$FUNC, session);
     }
-    static MemoryAddress allocate(PFNGLINVALIDATENAMEDFRAMEBUFFERSUBDATAPROC fi, ResourceScope scope) {
-        return RuntimeHelper.upcallStub(PFNGLINVALIDATENAMEDFRAMEBUFFERSUBDATAPROC.class, fi, constants$280.PFNGLINVALIDATENAMEDFRAMEBUFFERSUBDATAPROC$FUNC, "(IILjdk/incubator/foreign/MemoryAddress;IIII)V", scope);
-    }
-    static PFNGLINVALIDATENAMEDFRAMEBUFFERSUBDATAPROC ofAddress(MemoryAddress addr) {
-        return (int x0, int x1, jdk.incubator.foreign.MemoryAddress x2, int x3, int x4, int x5, int x6) -> {
+    static PFNGLINVALIDATENAMEDFRAMEBUFFERSUBDATAPROC ofAddress(MemoryAddress addr, MemorySession session) {
+        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
+        return (int _framebuffer, int _numAttachments, java.lang.foreign.MemoryAddress _attachments, int _x, int _y, int _width, int _height) -> {
             try {
-                constants$280.PFNGLINVALIDATENAMEDFRAMEBUFFERSUBDATAPROC$MH.invokeExact((Addressable)addr, x0, x1, x2, x3, x4, x5, x6);
+                constants$280.PFNGLINVALIDATENAMEDFRAMEBUFFERSUBDATAPROC$MH.invokeExact((Addressable)symbol, _framebuffer, _numAttachments, (java.lang.foreign.Addressable)_attachments, _x, _y, _width, _height);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

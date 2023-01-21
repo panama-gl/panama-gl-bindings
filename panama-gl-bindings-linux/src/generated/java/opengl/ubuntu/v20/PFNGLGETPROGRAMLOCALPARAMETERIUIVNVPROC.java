@@ -2,22 +2,22 @@
 
 package opengl.ubuntu.v20;
 
-import jdk.incubator.foreign.Addressable;
-import jdk.incubator.foreign.MemoryAddress;
-import jdk.incubator.foreign.ResourceScope;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public interface PFNGLGETPROGRAMLOCALPARAMETERIUIVNVPROC {
 
-    void apply(int x0, int x1, jdk.incubator.foreign.MemoryAddress x2);
-    static MemoryAddress allocate(PFNGLGETPROGRAMLOCALPARAMETERIUIVNVPROC fi) {
-        return RuntimeHelper.upcallStub(PFNGLGETPROGRAMLOCALPARAMETERIUIVNVPROC.class, fi, constants$762.PFNGLGETPROGRAMLOCALPARAMETERIUIVNVPROC$FUNC, "(IILjdk/incubator/foreign/MemoryAddress;)V");
+    void apply(int target, int index, java.lang.foreign.MemoryAddress params);
+    static MemorySegment allocate(PFNGLGETPROGRAMLOCALPARAMETERIUIVNVPROC fi, MemorySession session) {
+        return RuntimeHelper.upcallStub(PFNGLGETPROGRAMLOCALPARAMETERIUIVNVPROC.class, fi, constants$762.PFNGLGETPROGRAMLOCALPARAMETERIUIVNVPROC$FUNC, session);
     }
-    static MemoryAddress allocate(PFNGLGETPROGRAMLOCALPARAMETERIUIVNVPROC fi, ResourceScope scope) {
-        return RuntimeHelper.upcallStub(PFNGLGETPROGRAMLOCALPARAMETERIUIVNVPROC.class, fi, constants$762.PFNGLGETPROGRAMLOCALPARAMETERIUIVNVPROC$FUNC, "(IILjdk/incubator/foreign/MemoryAddress;)V", scope);
-    }
-    static PFNGLGETPROGRAMLOCALPARAMETERIUIVNVPROC ofAddress(MemoryAddress addr) {
-        return (int x0, int x1, jdk.incubator.foreign.MemoryAddress x2) -> {
+    static PFNGLGETPROGRAMLOCALPARAMETERIUIVNVPROC ofAddress(MemoryAddress addr, MemorySession session) {
+        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
+        return (int _target, int _index, java.lang.foreign.MemoryAddress _params) -> {
             try {
-                constants$762.PFNGLGETPROGRAMLOCALPARAMETERIUIVNVPROC$MH.invokeExact((Addressable)addr, x0, x1, x2);
+                constants$762.PFNGLGETPROGRAMLOCALPARAMETERIUIVNVPROC$MH.invokeExact((Addressable)symbol, _target, _index, (java.lang.foreign.Addressable)_params);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

@@ -2,43 +2,42 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_INT;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$684 {
 
     static final FunctionDescriptor PFNGLSHADEROP2EXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLSHADEROP2EXTPROC$MH = RuntimeHelper.downcallHandle(
-        "(IIII)V",
-        constants$684.PFNGLSHADEROP2EXTPROC$FUNC, false
+        constants$684.PFNGLSHADEROP2EXTPROC$FUNC
     );
     static final FunctionDescriptor PFNGLSHADEROP3EXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLSHADEROP3EXTPROC$MH = RuntimeHelper.downcallHandle(
-        "(IIIII)V",
-        constants$684.PFNGLSHADEROP3EXTPROC$FUNC, false
+        constants$684.PFNGLSHADEROP3EXTPROC$FUNC
     );
     static final FunctionDescriptor PFNGLSWIZZLEEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLSWIZZLEEXTPROC$MH = RuntimeHelper.downcallHandle(
-        "(IIIIII)V",
-        constants$684.PFNGLSWIZZLEEXTPROC$FUNC, false
+        constants$684.PFNGLSWIZZLEEXTPROC$FUNC
     );
 }
 

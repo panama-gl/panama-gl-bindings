@@ -2,22 +2,22 @@
 
 package opengl.ubuntu.v20;
 
-import jdk.incubator.foreign.Addressable;
-import jdk.incubator.foreign.MemoryAddress;
-import jdk.incubator.foreign.ResourceScope;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public interface PFNGLGETPERFMONITORCOUNTERDATAAMDPROC {
 
-    void apply(int x0, int x1, int x2, jdk.incubator.foreign.MemoryAddress x3, jdk.incubator.foreign.MemoryAddress x4);
-    static MemoryAddress allocate(PFNGLGETPERFMONITORCOUNTERDATAAMDPROC fi) {
-        return RuntimeHelper.upcallStub(PFNGLGETPERFMONITORCOUNTERDATAAMDPROC.class, fi, constants$472.PFNGLGETPERFMONITORCOUNTERDATAAMDPROC$FUNC, "(IIILjdk/incubator/foreign/MemoryAddress;Ljdk/incubator/foreign/MemoryAddress;)V");
+    void apply(int monitor, int pname, int dataSize, java.lang.foreign.MemoryAddress data, java.lang.foreign.MemoryAddress bytesWritten);
+    static MemorySegment allocate(PFNGLGETPERFMONITORCOUNTERDATAAMDPROC fi, MemorySession session) {
+        return RuntimeHelper.upcallStub(PFNGLGETPERFMONITORCOUNTERDATAAMDPROC.class, fi, constants$472.PFNGLGETPERFMONITORCOUNTERDATAAMDPROC$FUNC, session);
     }
-    static MemoryAddress allocate(PFNGLGETPERFMONITORCOUNTERDATAAMDPROC fi, ResourceScope scope) {
-        return RuntimeHelper.upcallStub(PFNGLGETPERFMONITORCOUNTERDATAAMDPROC.class, fi, constants$472.PFNGLGETPERFMONITORCOUNTERDATAAMDPROC$FUNC, "(IIILjdk/incubator/foreign/MemoryAddress;Ljdk/incubator/foreign/MemoryAddress;)V", scope);
-    }
-    static PFNGLGETPERFMONITORCOUNTERDATAAMDPROC ofAddress(MemoryAddress addr) {
-        return (int x0, int x1, int x2, jdk.incubator.foreign.MemoryAddress x3, jdk.incubator.foreign.MemoryAddress x4) -> {
+    static PFNGLGETPERFMONITORCOUNTERDATAAMDPROC ofAddress(MemoryAddress addr, MemorySession session) {
+        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
+        return (int _monitor, int _pname, int _dataSize, java.lang.foreign.MemoryAddress _data, java.lang.foreign.MemoryAddress _bytesWritten) -> {
             try {
-                constants$472.PFNGLGETPERFMONITORCOUNTERDATAAMDPROC$MH.invokeExact((Addressable)addr, x0, x1, x2, x3, x4);
+                constants$472.PFNGLGETPERFMONITORCOUNTERDATAAMDPROC$MH.invokeExact((Addressable)symbol, _monitor, _pname, _dataSize, (java.lang.foreign.Addressable)_data, (java.lang.foreign.Addressable)_bytesWritten);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

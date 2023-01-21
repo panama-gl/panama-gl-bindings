@@ -2,40 +2,37 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_INT;
-import static jdk.incubator.foreign.CLinker.C_LONG;
-import static jdk.incubator.foreign.CLinker.C_POINTER;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$599 {
 
     static final FunctionDescriptor PFNGLFRAMEBUFFERREADBUFFEREXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLFRAMEBUFFERREADBUFFEREXTPROC$MH = RuntimeHelper.downcallHandle(
-        "(II)V",
-        constants$599.PFNGLFRAMEBUFFERREADBUFFEREXTPROC$FUNC, false
+        constants$599.PFNGLFRAMEBUFFERREADBUFFEREXTPROC$FUNC
     );
     static final FunctionDescriptor PFNGLGETFRAMEBUFFERPARAMETERIVEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLGETFRAMEBUFFERPARAMETERIVEXTPROC$MH = RuntimeHelper.downcallHandle(
-        "(IILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$599.PFNGLGETFRAMEBUFFERPARAMETERIVEXTPROC$FUNC, false
+        constants$599.PFNGLGETFRAMEBUFFERPARAMETERIVEXTPROC$FUNC
     );
     static final FunctionDescriptor PFNGLNAMEDCOPYBUFFERSUBDATAEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_LONG,
-        C_LONG,
-        C_LONG
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT
     );
     static final MethodHandle PFNGLNAMEDCOPYBUFFERSUBDATAEXTPROC$MH = RuntimeHelper.downcallHandle(
-        "(IIJJJ)V",
-        constants$599.PFNGLNAMEDCOPYBUFFERSUBDATAEXTPROC$FUNC, false
+        constants$599.PFNGLNAMEDCOPYBUFFERSUBDATAEXTPROC$FUNC
     );
 }
 

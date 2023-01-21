@@ -2,22 +2,22 @@
 
 package opengl.ubuntu.v20;
 
-import jdk.incubator.foreign.Addressable;
-import jdk.incubator.foreign.MemoryAddress;
-import jdk.incubator.foreign.ResourceScope;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public interface PFNGLPOPDEBUGGROUPPROC {
 
     void apply();
-    static MemoryAddress allocate(PFNGLPOPDEBUGGROUPPROC fi) {
-        return RuntimeHelper.upcallStub(PFNGLPOPDEBUGGROUPPROC.class, fi, constants$265.PFNGLPOPDEBUGGROUPPROC$FUNC, "()V");
+    static MemorySegment allocate(PFNGLPOPDEBUGGROUPPROC fi, MemorySession session) {
+        return RuntimeHelper.upcallStub(PFNGLPOPDEBUGGROUPPROC.class, fi, constants$265.PFNGLPOPDEBUGGROUPPROC$FUNC, session);
     }
-    static MemoryAddress allocate(PFNGLPOPDEBUGGROUPPROC fi, ResourceScope scope) {
-        return RuntimeHelper.upcallStub(PFNGLPOPDEBUGGROUPPROC.class, fi, constants$265.PFNGLPOPDEBUGGROUPPROC$FUNC, "()V", scope);
-    }
-    static PFNGLPOPDEBUGGROUPPROC ofAddress(MemoryAddress addr) {
+    static PFNGLPOPDEBUGGROUPPROC ofAddress(MemoryAddress addr, MemorySession session) {
+        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return () -> {
             try {
-                constants$265.PFNGLPOPDEBUGGROUPPROC$MH.invokeExact((Addressable)addr);
+                constants$265.PFNGLPOPDEBUGGROUPPROC$MH.invokeExact((Addressable)symbol);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

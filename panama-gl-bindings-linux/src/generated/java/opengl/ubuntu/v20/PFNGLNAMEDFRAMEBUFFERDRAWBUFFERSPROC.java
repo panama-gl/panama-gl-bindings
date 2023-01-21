@@ -2,22 +2,22 @@
 
 package opengl.ubuntu.v20;
 
-import jdk.incubator.foreign.Addressable;
-import jdk.incubator.foreign.MemoryAddress;
-import jdk.incubator.foreign.ResourceScope;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public interface PFNGLNAMEDFRAMEBUFFERDRAWBUFFERSPROC {
 
-    void apply(int x0, int x1, jdk.incubator.foreign.MemoryAddress x2);
-    static MemoryAddress allocate(PFNGLNAMEDFRAMEBUFFERDRAWBUFFERSPROC fi) {
-        return RuntimeHelper.upcallStub(PFNGLNAMEDFRAMEBUFFERDRAWBUFFERSPROC.class, fi, constants$279.PFNGLNAMEDFRAMEBUFFERDRAWBUFFERSPROC$FUNC, "(IILjdk/incubator/foreign/MemoryAddress;)V");
+    void apply(int framebuffer, int n, java.lang.foreign.MemoryAddress bufs);
+    static MemorySegment allocate(PFNGLNAMEDFRAMEBUFFERDRAWBUFFERSPROC fi, MemorySession session) {
+        return RuntimeHelper.upcallStub(PFNGLNAMEDFRAMEBUFFERDRAWBUFFERSPROC.class, fi, constants$279.PFNGLNAMEDFRAMEBUFFERDRAWBUFFERSPROC$FUNC, session);
     }
-    static MemoryAddress allocate(PFNGLNAMEDFRAMEBUFFERDRAWBUFFERSPROC fi, ResourceScope scope) {
-        return RuntimeHelper.upcallStub(PFNGLNAMEDFRAMEBUFFERDRAWBUFFERSPROC.class, fi, constants$279.PFNGLNAMEDFRAMEBUFFERDRAWBUFFERSPROC$FUNC, "(IILjdk/incubator/foreign/MemoryAddress;)V", scope);
-    }
-    static PFNGLNAMEDFRAMEBUFFERDRAWBUFFERSPROC ofAddress(MemoryAddress addr) {
-        return (int x0, int x1, jdk.incubator.foreign.MemoryAddress x2) -> {
+    static PFNGLNAMEDFRAMEBUFFERDRAWBUFFERSPROC ofAddress(MemoryAddress addr, MemorySession session) {
+        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
+        return (int _framebuffer, int _n, java.lang.foreign.MemoryAddress _bufs) -> {
             try {
-                constants$279.PFNGLNAMEDFRAMEBUFFERDRAWBUFFERSPROC$MH.invokeExact((Addressable)addr, x0, x1, x2);
+                constants$279.PFNGLNAMEDFRAMEBUFFERDRAWBUFFERSPROC$MH.invokeExact((Addressable)symbol, _framebuffer, _n, (java.lang.foreign.Addressable)_bufs);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

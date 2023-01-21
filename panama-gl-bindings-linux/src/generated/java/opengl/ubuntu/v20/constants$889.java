@@ -2,58 +2,55 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_CHAR;
-import static jdk.incubator.foreign.CLinker.C_INT;
-import static jdk.incubator.foreign.CLinker.C_POINTER;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$889 {
 
     static final FunctionDescriptor PFNGLTEXIMAGE4DSGISPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLTEXIMAGE4DSGISPROC$MH = RuntimeHelper.downcallHandle(
-        "(IIIIIIIIIILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$889.PFNGLTEXIMAGE4DSGISPROC$FUNC, false
+        constants$889.PFNGLTEXIMAGE4DSGISPROC$FUNC
     );
     static final FunctionDescriptor PFNGLTEXSUBIMAGE4DSGISPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLTEXSUBIMAGE4DSGISPROC$MH = RuntimeHelper.downcallHandle(
-        "(IIIIIIIIIIIILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$889.PFNGLTEXSUBIMAGE4DSGISPROC$FUNC, false
+        constants$889.PFNGLTEXSUBIMAGE4DSGISPROC$FUNC
     );
     static final FunctionDescriptor PFNGLTEXTURECOLORMASKSGISPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_CHAR,
-        C_CHAR,
-        C_CHAR,
-        C_CHAR
+        Constants$root.C_CHAR$LAYOUT,
+        Constants$root.C_CHAR$LAYOUT,
+        Constants$root.C_CHAR$LAYOUT,
+        Constants$root.C_CHAR$LAYOUT
     );
     static final MethodHandle PFNGLTEXTURECOLORMASKSGISPROC$MH = RuntimeHelper.downcallHandle(
-        "(BBBB)V",
-        constants$889.PFNGLTEXTURECOLORMASKSGISPROC$FUNC, false
+        constants$889.PFNGLTEXTURECOLORMASKSGISPROC$FUNC
     );
 }
 

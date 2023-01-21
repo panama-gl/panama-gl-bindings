@@ -2,41 +2,39 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_INT;
-import static jdk.incubator.foreign.CLinker.C_POINTER;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$908 {
 
     static final FunctionDescriptor PFNGLCOLORTABLEPARAMETERIVSGIPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLCOLORTABLEPARAMETERIVSGIPROC$MH = RuntimeHelper.downcallHandle(
-        "(IILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$908.PFNGLCOLORTABLEPARAMETERIVSGIPROC$FUNC, false
+        constants$908.PFNGLCOLORTABLEPARAMETERIVSGIPROC$FUNC
     );
     static final FunctionDescriptor PFNGLCOPYCOLORTABLESGIPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLCOPYCOLORTABLESGIPROC$MH = RuntimeHelper.downcallHandle(
-        "(IIIII)V",
-        constants$908.PFNGLCOPYCOLORTABLESGIPROC$FUNC, false
+        constants$908.PFNGLCOPYCOLORTABLESGIPROC$FUNC
     );
     static final FunctionDescriptor PFNGLGETCOLORTABLESGIPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLGETCOLORTABLESGIPROC$MH = RuntimeHelper.downcallHandle(
-        "(IIILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$908.PFNGLGETCOLORTABLESGIPROC$FUNC, false
+        constants$908.PFNGLGETCOLORTABLESGIPROC$FUNC
     );
 }
 

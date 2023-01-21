@@ -2,82 +2,75 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_CHAR;
-import static jdk.incubator.foreign.CLinker.C_FLOAT;
-import static jdk.incubator.foreign.CLinker.C_INT;
-import static jdk.incubator.foreign.CLinker.C_POINTER;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$61 {
 
     static final FunctionDescriptor glGetMinmax$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_CHAR,
-        C_INT,
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_CHAR$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle glGetMinmax$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "glGetMinmax",
-        "(IBIILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$61.glGetMinmax$FUNC, false
+        "glGetMinmax",
+        constants$61.glGetMinmax$FUNC
     );
     static final FunctionDescriptor glGetMinmaxParameterfv$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle glGetMinmaxParameterfv$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "glGetMinmaxParameterfv",
-        "(IILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$61.glGetMinmaxParameterfv$FUNC, false
+        "glGetMinmaxParameterfv",
+        constants$61.glGetMinmaxParameterfv$FUNC
     );
     static final FunctionDescriptor glGetMinmaxParameteriv$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle glGetMinmaxParameteriv$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "glGetMinmaxParameteriv",
-        "(IILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$61.glGetMinmaxParameteriv$FUNC, false
+        "glGetMinmaxParameteriv",
+        constants$61.glGetMinmaxParameteriv$FUNC
     );
     static final FunctionDescriptor glConvolutionFilter1D$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle glConvolutionFilter1D$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "glConvolutionFilter1D",
-        "(IIIIILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$61.glConvolutionFilter1D$FUNC, false
+        "glConvolutionFilter1D",
+        constants$61.glConvolutionFilter1D$FUNC
     );
     static final FunctionDescriptor glConvolutionFilter2D$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle glConvolutionFilter2D$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "glConvolutionFilter2D",
-        "(IIIIIILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$61.glConvolutionFilter2D$FUNC, false
+        "glConvolutionFilter2D",
+        constants$61.glConvolutionFilter2D$FUNC
     );
     static final FunctionDescriptor glConvolutionParameterf$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_FLOAT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT
     );
     static final MethodHandle glConvolutionParameterf$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "glConvolutionParameterf",
-        "(IIF)V",
-        constants$61.glConvolutionParameterf$FUNC, false
+        "glConvolutionParameterf",
+        constants$61.glConvolutionParameterf$FUNC
     );
 }
 

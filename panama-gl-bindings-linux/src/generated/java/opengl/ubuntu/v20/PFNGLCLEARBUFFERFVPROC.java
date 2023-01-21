@@ -2,22 +2,22 @@
 
 package opengl.ubuntu.v20;
 
-import jdk.incubator.foreign.Addressable;
-import jdk.incubator.foreign.MemoryAddress;
-import jdk.incubator.foreign.ResourceScope;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public interface PFNGLCLEARBUFFERFVPROC {
 
-    void apply(int x0, int x1, jdk.incubator.foreign.MemoryAddress x2);
-    static MemoryAddress allocate(PFNGLCLEARBUFFERFVPROC fi) {
-        return RuntimeHelper.upcallStub(PFNGLCLEARBUFFERFVPROC.class, fi, constants$164.PFNGLCLEARBUFFERFVPROC$FUNC, "(IILjdk/incubator/foreign/MemoryAddress;)V");
+    void apply(int buffer, int drawbuffer, java.lang.foreign.MemoryAddress value);
+    static MemorySegment allocate(PFNGLCLEARBUFFERFVPROC fi, MemorySession session) {
+        return RuntimeHelper.upcallStub(PFNGLCLEARBUFFERFVPROC.class, fi, constants$164.PFNGLCLEARBUFFERFVPROC$FUNC, session);
     }
-    static MemoryAddress allocate(PFNGLCLEARBUFFERFVPROC fi, ResourceScope scope) {
-        return RuntimeHelper.upcallStub(PFNGLCLEARBUFFERFVPROC.class, fi, constants$164.PFNGLCLEARBUFFERFVPROC$FUNC, "(IILjdk/incubator/foreign/MemoryAddress;)V", scope);
-    }
-    static PFNGLCLEARBUFFERFVPROC ofAddress(MemoryAddress addr) {
-        return (int x0, int x1, jdk.incubator.foreign.MemoryAddress x2) -> {
+    static PFNGLCLEARBUFFERFVPROC ofAddress(MemoryAddress addr, MemorySession session) {
+        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
+        return (int _buffer, int _drawbuffer, java.lang.foreign.MemoryAddress _value) -> {
             try {
-                constants$164.PFNGLCLEARBUFFERFVPROC$MH.invokeExact((Addressable)addr, x0, x1, x2);
+                constants$164.PFNGLCLEARBUFFERFVPROC$MH.invokeExact((Addressable)symbol, _buffer, _drawbuffer, (java.lang.foreign.Addressable)_value);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

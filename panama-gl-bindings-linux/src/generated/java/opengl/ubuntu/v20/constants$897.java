@@ -2,38 +2,36 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_INT;
-import static jdk.incubator.foreign.CLinker.C_POINTER;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$897 {
 
     static final FunctionDescriptor PFNGLFRAGMENTMATERIALIVSGIXPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLFRAGMENTMATERIALIVSGIXPROC$MH = RuntimeHelper.downcallHandle(
-        "(IILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$897.PFNGLFRAGMENTMATERIALIVSGIXPROC$FUNC, false
+        constants$897.PFNGLFRAGMENTMATERIALIVSGIXPROC$FUNC
     );
     static final FunctionDescriptor PFNGLGETFRAGMENTLIGHTFVSGIXPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLGETFRAGMENTLIGHTFVSGIXPROC$MH = RuntimeHelper.downcallHandle(
-        "(IILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$897.PFNGLGETFRAGMENTLIGHTFVSGIXPROC$FUNC, false
+        constants$897.PFNGLGETFRAGMENTLIGHTFVSGIXPROC$FUNC
     );
     static final FunctionDescriptor PFNGLGETFRAGMENTLIGHTIVSGIXPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLGETFRAGMENTLIGHTIVSGIXPROC$MH = RuntimeHelper.downcallHandle(
-        "(IILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$897.PFNGLGETFRAGMENTLIGHTIVSGIXPROC$FUNC, false
+        constants$897.PFNGLGETFRAGMENTLIGHTIVSGIXPROC$FUNC
     );
 }
 

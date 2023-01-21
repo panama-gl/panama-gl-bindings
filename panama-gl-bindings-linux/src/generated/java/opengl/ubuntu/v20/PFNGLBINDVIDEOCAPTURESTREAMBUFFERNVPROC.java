@@ -2,22 +2,22 @@
 
 package opengl.ubuntu.v20;
 
-import jdk.incubator.foreign.Addressable;
-import jdk.incubator.foreign.MemoryAddress;
-import jdk.incubator.foreign.ResourceScope;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public interface PFNGLBINDVIDEOCAPTURESTREAMBUFFERNVPROC {
 
-    void apply(int x0, int x1, int x2, long x3);
-    static MemoryAddress allocate(PFNGLBINDVIDEOCAPTURESTREAMBUFFERNVPROC fi) {
-        return RuntimeHelper.upcallStub(PFNGLBINDVIDEOCAPTURESTREAMBUFFERNVPROC.class, fi, constants$879.PFNGLBINDVIDEOCAPTURESTREAMBUFFERNVPROC$FUNC, "(IIIJ)V");
+    void apply(int video_capture_slot, int stream, int frame_region, long offset);
+    static MemorySegment allocate(PFNGLBINDVIDEOCAPTURESTREAMBUFFERNVPROC fi, MemorySession session) {
+        return RuntimeHelper.upcallStub(PFNGLBINDVIDEOCAPTURESTREAMBUFFERNVPROC.class, fi, constants$879.PFNGLBINDVIDEOCAPTURESTREAMBUFFERNVPROC$FUNC, session);
     }
-    static MemoryAddress allocate(PFNGLBINDVIDEOCAPTURESTREAMBUFFERNVPROC fi, ResourceScope scope) {
-        return RuntimeHelper.upcallStub(PFNGLBINDVIDEOCAPTURESTREAMBUFFERNVPROC.class, fi, constants$879.PFNGLBINDVIDEOCAPTURESTREAMBUFFERNVPROC$FUNC, "(IIIJ)V", scope);
-    }
-    static PFNGLBINDVIDEOCAPTURESTREAMBUFFERNVPROC ofAddress(MemoryAddress addr) {
-        return (int x0, int x1, int x2, long x3) -> {
+    static PFNGLBINDVIDEOCAPTURESTREAMBUFFERNVPROC ofAddress(MemoryAddress addr, MemorySession session) {
+        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
+        return (int _video_capture_slot, int _stream, int _frame_region, long _offset) -> {
             try {
-                constants$879.PFNGLBINDVIDEOCAPTURESTREAMBUFFERNVPROC$MH.invokeExact((Addressable)addr, x0, x1, x2, x3);
+                constants$879.PFNGLBINDVIDEOCAPTURESTREAMBUFFERNVPROC$MH.invokeExact((Addressable)symbol, _video_capture_slot, _stream, _frame_region, _offset);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

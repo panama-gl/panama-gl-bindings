@@ -2,22 +2,22 @@
 
 package opengl.ubuntu.v20;
 
-import jdk.incubator.foreign.Addressable;
-import jdk.incubator.foreign.MemoryAddress;
-import jdk.incubator.foreign.ResourceScope;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public interface PFNGLMULTIDRAWARRAYSEXTPROC {
 
-    void apply(int x0, jdk.incubator.foreign.MemoryAddress x1, jdk.incubator.foreign.MemoryAddress x2, int x3);
-    static MemoryAddress allocate(PFNGLMULTIDRAWARRAYSEXTPROC fi) {
-        return RuntimeHelper.upcallStub(PFNGLMULTIDRAWARRAYSEXTPROC.class, fi, constants$648.PFNGLMULTIDRAWARRAYSEXTPROC$FUNC, "(ILjdk/incubator/foreign/MemoryAddress;Ljdk/incubator/foreign/MemoryAddress;I)V");
+    void apply(int mode, java.lang.foreign.MemoryAddress first, java.lang.foreign.MemoryAddress count, int primcount);
+    static MemorySegment allocate(PFNGLMULTIDRAWARRAYSEXTPROC fi, MemorySession session) {
+        return RuntimeHelper.upcallStub(PFNGLMULTIDRAWARRAYSEXTPROC.class, fi, constants$648.PFNGLMULTIDRAWARRAYSEXTPROC$FUNC, session);
     }
-    static MemoryAddress allocate(PFNGLMULTIDRAWARRAYSEXTPROC fi, ResourceScope scope) {
-        return RuntimeHelper.upcallStub(PFNGLMULTIDRAWARRAYSEXTPROC.class, fi, constants$648.PFNGLMULTIDRAWARRAYSEXTPROC$FUNC, "(ILjdk/incubator/foreign/MemoryAddress;Ljdk/incubator/foreign/MemoryAddress;I)V", scope);
-    }
-    static PFNGLMULTIDRAWARRAYSEXTPROC ofAddress(MemoryAddress addr) {
-        return (int x0, jdk.incubator.foreign.MemoryAddress x1, jdk.incubator.foreign.MemoryAddress x2, int x3) -> {
+    static PFNGLMULTIDRAWARRAYSEXTPROC ofAddress(MemoryAddress addr, MemorySession session) {
+        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
+        return (int _mode, java.lang.foreign.MemoryAddress _first, java.lang.foreign.MemoryAddress _count, int _primcount) -> {
             try {
-                constants$648.PFNGLMULTIDRAWARRAYSEXTPROC$MH.invokeExact((Addressable)addr, x0, x1, x2, x3);
+                constants$648.PFNGLMULTIDRAWARRAYSEXTPROC$MH.invokeExact((Addressable)symbol, _mode, (java.lang.foreign.Addressable)_first, (java.lang.foreign.Addressable)_count, _primcount);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

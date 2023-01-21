@@ -2,36 +2,33 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_CHAR;
-import static jdk.incubator.foreign.CLinker.C_INT;
-import static jdk.incubator.foreign.CLinker.C_POINTER;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$112 {
 
-    static final FunctionDescriptor PFNGLMAPBUFFERPROC$FUNC = FunctionDescriptor.of(C_POINTER,
-        C_INT,
-        C_INT
+    static final FunctionDescriptor PFNGLMAPBUFFERPROC$FUNC = FunctionDescriptor.of(Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLMAPBUFFERPROC$MH = RuntimeHelper.downcallHandle(
-        "(II)Ljdk/incubator/foreign/MemoryAddress;",
-        constants$112.PFNGLMAPBUFFERPROC$FUNC, false
+        constants$112.PFNGLMAPBUFFERPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLUNMAPBUFFERPROC$FUNC = FunctionDescriptor.of(C_CHAR,
-        C_INT
+    static final FunctionDescriptor PFNGLUNMAPBUFFERPROC$FUNC = FunctionDescriptor.of(Constants$root.C_CHAR$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLUNMAPBUFFERPROC$MH = RuntimeHelper.downcallHandle(
-        "(I)B",
-        constants$112.PFNGLUNMAPBUFFERPROC$FUNC, false
+        constants$112.PFNGLUNMAPBUFFERPROC$FUNC
     );
     static final FunctionDescriptor PFNGLGETBUFFERPARAMETERIVPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLGETBUFFERPARAMETERIVPROC$MH = RuntimeHelper.downcallHandle(
-        "(IILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$112.PFNGLGETBUFFERPARAMETERIVPROC$FUNC, false
+        constants$112.PFNGLGETBUFFERPARAMETERIVPROC$FUNC
     );
 }
 

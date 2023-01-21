@@ -2,22 +2,22 @@
 
 package opengl.ubuntu.v20;
 
-import jdk.incubator.foreign.Addressable;
-import jdk.incubator.foreign.MemoryAddress;
-import jdk.incubator.foreign.ResourceScope;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public interface PFNGLINDEXPOINTERLISTIBMPROC {
 
-    void apply(int x0, int x1, jdk.incubator.foreign.MemoryAddress x2, int x3);
-    static MemoryAddress allocate(PFNGLINDEXPOINTERLISTIBMPROC fi) {
-        return RuntimeHelper.upcallStub(PFNGLINDEXPOINTERLISTIBMPROC.class, fi, constants$703.PFNGLINDEXPOINTERLISTIBMPROC$FUNC, "(IILjdk/incubator/foreign/MemoryAddress;I)V");
+    void apply(int type, int stride, java.lang.foreign.MemoryAddress pointer, int ptrstride);
+    static MemorySegment allocate(PFNGLINDEXPOINTERLISTIBMPROC fi, MemorySession session) {
+        return RuntimeHelper.upcallStub(PFNGLINDEXPOINTERLISTIBMPROC.class, fi, constants$703.PFNGLINDEXPOINTERLISTIBMPROC$FUNC, session);
     }
-    static MemoryAddress allocate(PFNGLINDEXPOINTERLISTIBMPROC fi, ResourceScope scope) {
-        return RuntimeHelper.upcallStub(PFNGLINDEXPOINTERLISTIBMPROC.class, fi, constants$703.PFNGLINDEXPOINTERLISTIBMPROC$FUNC, "(IILjdk/incubator/foreign/MemoryAddress;I)V", scope);
-    }
-    static PFNGLINDEXPOINTERLISTIBMPROC ofAddress(MemoryAddress addr) {
-        return (int x0, int x1, jdk.incubator.foreign.MemoryAddress x2, int x3) -> {
+    static PFNGLINDEXPOINTERLISTIBMPROC ofAddress(MemoryAddress addr, MemorySession session) {
+        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
+        return (int _type, int _stride, java.lang.foreign.MemoryAddress _pointer, int _ptrstride) -> {
             try {
-                constants$703.PFNGLINDEXPOINTERLISTIBMPROC$MH.invokeExact((Addressable)addr, x0, x1, x2, x3);
+                constants$703.PFNGLINDEXPOINTERLISTIBMPROC$MH.invokeExact((Addressable)symbol, _type, _stride, (java.lang.foreign.Addressable)_pointer, _ptrstride);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

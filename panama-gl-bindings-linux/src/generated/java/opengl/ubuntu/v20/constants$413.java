@@ -2,37 +2,34 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_CHAR;
-import static jdk.incubator.foreign.CLinker.C_INT;
-import static jdk.incubator.foreign.CLinker.C_POINTER;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$413 {
 
     static final FunctionDescriptor PFNGLVERTEX4BOESPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_CHAR,
-        C_CHAR,
-        C_CHAR,
-        C_CHAR
+        Constants$root.C_CHAR$LAYOUT,
+        Constants$root.C_CHAR$LAYOUT,
+        Constants$root.C_CHAR$LAYOUT,
+        Constants$root.C_CHAR$LAYOUT
     );
     static final MethodHandle PFNGLVERTEX4BOESPROC$MH = RuntimeHelper.downcallHandle(
-        "(BBBB)V",
-        constants$413.PFNGLVERTEX4BOESPROC$FUNC, false
+        constants$413.PFNGLVERTEX4BOESPROC$FUNC
     );
     static final FunctionDescriptor PFNGLVERTEX4BVOESPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_POINTER
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLVERTEX4BVOESPROC$MH = RuntimeHelper.downcallHandle(
-        "(Ljdk/incubator/foreign/MemoryAddress;)V",
-        constants$413.PFNGLVERTEX4BVOESPROC$FUNC, false
+        constants$413.PFNGLVERTEX4BVOESPROC$FUNC
     );
     static final FunctionDescriptor PFNGLALPHAFUNCXOESPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLALPHAFUNCXOESPROC$MH = RuntimeHelper.downcallHandle(
-        "(II)V",
-        constants$413.PFNGLALPHAFUNCXOESPROC$FUNC, false
+        constants$413.PFNGLALPHAFUNCXOESPROC$FUNC
     );
 }
 

@@ -2,22 +2,22 @@
 
 package opengl.ubuntu.v20;
 
-import jdk.incubator.foreign.Addressable;
-import jdk.incubator.foreign.MemoryAddress;
-import jdk.incubator.foreign.ResourceScope;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public interface PFNGLISSEMAPHOREEXTPROC {
 
-    byte apply(int x0);
-    static MemoryAddress allocate(PFNGLISSEMAPHOREEXTPROC fi) {
-        return RuntimeHelper.upcallStub(PFNGLISSEMAPHOREEXTPROC.class, fi, constants$661.PFNGLISSEMAPHOREEXTPROC$FUNC, "(I)B");
+    byte apply(int semaphore);
+    static MemorySegment allocate(PFNGLISSEMAPHOREEXTPROC fi, MemorySession session) {
+        return RuntimeHelper.upcallStub(PFNGLISSEMAPHOREEXTPROC.class, fi, constants$661.PFNGLISSEMAPHOREEXTPROC$FUNC, session);
     }
-    static MemoryAddress allocate(PFNGLISSEMAPHOREEXTPROC fi, ResourceScope scope) {
-        return RuntimeHelper.upcallStub(PFNGLISSEMAPHOREEXTPROC.class, fi, constants$661.PFNGLISSEMAPHOREEXTPROC$FUNC, "(I)B", scope);
-    }
-    static PFNGLISSEMAPHOREEXTPROC ofAddress(MemoryAddress addr) {
-        return (int x0) -> {
+    static PFNGLISSEMAPHOREEXTPROC ofAddress(MemoryAddress addr, MemorySession session) {
+        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
+        return (int _semaphore) -> {
             try {
-                return (byte)constants$661.PFNGLISSEMAPHOREEXTPROC$MH.invokeExact((Addressable)addr, x0);
+                return (byte)constants$661.PFNGLISSEMAPHOREEXTPROC$MH.invokeExact((Addressable)symbol, _semaphore);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

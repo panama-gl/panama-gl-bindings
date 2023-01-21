@@ -2,22 +2,22 @@
 
 package opengl.ubuntu.v20;
 
-import jdk.incubator.foreign.Addressable;
-import jdk.incubator.foreign.MemoryAddress;
-import jdk.incubator.foreign.ResourceScope;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public interface PFNGLPOINTALONGPATHNVPROC {
 
-    byte apply(int x0, int x1, int x2, float x3, jdk.incubator.foreign.MemoryAddress x4, jdk.incubator.foreign.MemoryAddress x5, jdk.incubator.foreign.MemoryAddress x6, jdk.incubator.foreign.MemoryAddress x7);
-    static MemoryAddress allocate(PFNGLPOINTALONGPATHNVPROC fi) {
-        return RuntimeHelper.upcallStub(PFNGLPOINTALONGPATHNVPROC.class, fi, constants$800.PFNGLPOINTALONGPATHNVPROC$FUNC, "(IIIFLjdk/incubator/foreign/MemoryAddress;Ljdk/incubator/foreign/MemoryAddress;Ljdk/incubator/foreign/MemoryAddress;Ljdk/incubator/foreign/MemoryAddress;)B");
+    byte apply(int path, int startSegment, int numSegments, float distance, java.lang.foreign.MemoryAddress x, java.lang.foreign.MemoryAddress y, java.lang.foreign.MemoryAddress tangentX, java.lang.foreign.MemoryAddress tangentY);
+    static MemorySegment allocate(PFNGLPOINTALONGPATHNVPROC fi, MemorySession session) {
+        return RuntimeHelper.upcallStub(PFNGLPOINTALONGPATHNVPROC.class, fi, constants$800.PFNGLPOINTALONGPATHNVPROC$FUNC, session);
     }
-    static MemoryAddress allocate(PFNGLPOINTALONGPATHNVPROC fi, ResourceScope scope) {
-        return RuntimeHelper.upcallStub(PFNGLPOINTALONGPATHNVPROC.class, fi, constants$800.PFNGLPOINTALONGPATHNVPROC$FUNC, "(IIIFLjdk/incubator/foreign/MemoryAddress;Ljdk/incubator/foreign/MemoryAddress;Ljdk/incubator/foreign/MemoryAddress;Ljdk/incubator/foreign/MemoryAddress;)B", scope);
-    }
-    static PFNGLPOINTALONGPATHNVPROC ofAddress(MemoryAddress addr) {
-        return (int x0, int x1, int x2, float x3, jdk.incubator.foreign.MemoryAddress x4, jdk.incubator.foreign.MemoryAddress x5, jdk.incubator.foreign.MemoryAddress x6, jdk.incubator.foreign.MemoryAddress x7) -> {
+    static PFNGLPOINTALONGPATHNVPROC ofAddress(MemoryAddress addr, MemorySession session) {
+        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
+        return (int _path, int _startSegment, int _numSegments, float _distance, java.lang.foreign.MemoryAddress _x, java.lang.foreign.MemoryAddress _y, java.lang.foreign.MemoryAddress _tangentX, java.lang.foreign.MemoryAddress _tangentY) -> {
             try {
-                return (byte)constants$800.PFNGLPOINTALONGPATHNVPROC$MH.invokeExact((Addressable)addr, x0, x1, x2, x3, x4, x5, x6, x7);
+                return (byte)constants$800.PFNGLPOINTALONGPATHNVPROC$MH.invokeExact((Addressable)symbol, _path, _startSegment, _numSegments, _distance, (java.lang.foreign.Addressable)_x, (java.lang.foreign.Addressable)_y, (java.lang.foreign.Addressable)_tangentX, (java.lang.foreign.Addressable)_tangentY);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

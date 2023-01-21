@@ -2,40 +2,38 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_INT;
-import static jdk.incubator.foreign.CLinker.C_LONG;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$605 {
 
     static final FunctionDescriptor PFNGLVERTEXARRAYVERTEXATTRIBIOFFSETEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_LONG
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT
     );
     static final MethodHandle PFNGLVERTEXARRAYVERTEXATTRIBIOFFSETEXTPROC$MH = RuntimeHelper.downcallHandle(
-        "(IIIIIIJ)V",
-        constants$605.PFNGLVERTEXARRAYVERTEXATTRIBIOFFSETEXTPROC$FUNC, false
+        constants$605.PFNGLVERTEXARRAYVERTEXATTRIBIOFFSETEXTPROC$FUNC
     );
     static final FunctionDescriptor PFNGLENABLEVERTEXARRAYEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLENABLEVERTEXARRAYEXTPROC$MH = RuntimeHelper.downcallHandle(
-        "(II)V",
-        constants$605.PFNGLENABLEVERTEXARRAYEXTPROC$FUNC, false
+        constants$605.PFNGLENABLEVERTEXARRAYEXTPROC$FUNC
     );
     static final FunctionDescriptor PFNGLDISABLEVERTEXARRAYEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLDISABLEVERTEXARRAYEXTPROC$MH = RuntimeHelper.downcallHandle(
-        "(II)V",
-        constants$605.PFNGLDISABLEVERTEXARRAYEXTPROC$FUNC, false
+        constants$605.PFNGLDISABLEVERTEXARRAYEXTPROC$FUNC
     );
 }
 

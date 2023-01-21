@@ -2,22 +2,22 @@
 
 package opengl.ubuntu.v20;
 
-import jdk.incubator.foreign.Addressable;
-import jdk.incubator.foreign.MemoryAddress;
-import jdk.incubator.foreign.ResourceScope;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public interface glutDisplayFunc$callback {
 
     void apply();
-    static MemoryAddress allocate(glutDisplayFunc$callback fi) {
-        return RuntimeHelper.upcallStub(glutDisplayFunc$callback.class, fi, constants$952.glutDisplayFunc$callback$FUNC, "()V");
+    static MemorySegment allocate(glutDisplayFunc$callback fi, MemorySession session) {
+        return RuntimeHelper.upcallStub(glutDisplayFunc$callback.class, fi, constants$952.glutDisplayFunc$callback$FUNC, session);
     }
-    static MemoryAddress allocate(glutDisplayFunc$callback fi, ResourceScope scope) {
-        return RuntimeHelper.upcallStub(glutDisplayFunc$callback.class, fi, constants$952.glutDisplayFunc$callback$FUNC, "()V", scope);
-    }
-    static glutDisplayFunc$callback ofAddress(MemoryAddress addr) {
+    static glutDisplayFunc$callback ofAddress(MemoryAddress addr, MemorySession session) {
+        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return () -> {
             try {
-                constants$952.glutDisplayFunc$callback$MH.invokeExact((Addressable)addr);
+                constants$952.glutDisplayFunc$callback$MH.invokeExact((Addressable)symbol);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

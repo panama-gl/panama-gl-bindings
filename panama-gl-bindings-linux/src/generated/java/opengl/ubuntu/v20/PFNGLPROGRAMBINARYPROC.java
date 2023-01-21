@@ -2,22 +2,22 @@
 
 package opengl.ubuntu.v20;
 
-import jdk.incubator.foreign.Addressable;
-import jdk.incubator.foreign.MemoryAddress;
-import jdk.incubator.foreign.ResourceScope;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public interface PFNGLPROGRAMBINARYPROC {
 
-    void apply(int x0, int x1, jdk.incubator.foreign.MemoryAddress x2, int x3);
-    static MemoryAddress allocate(PFNGLPROGRAMBINARYPROC fi) {
-        return RuntimeHelper.upcallStub(PFNGLPROGRAMBINARYPROC.class, fi, constants$221.PFNGLPROGRAMBINARYPROC$FUNC, "(IILjdk/incubator/foreign/MemoryAddress;I)V");
+    void apply(int program, int binaryFormat, java.lang.foreign.MemoryAddress binary, int length);
+    static MemorySegment allocate(PFNGLPROGRAMBINARYPROC fi, MemorySession session) {
+        return RuntimeHelper.upcallStub(PFNGLPROGRAMBINARYPROC.class, fi, constants$221.PFNGLPROGRAMBINARYPROC$FUNC, session);
     }
-    static MemoryAddress allocate(PFNGLPROGRAMBINARYPROC fi, ResourceScope scope) {
-        return RuntimeHelper.upcallStub(PFNGLPROGRAMBINARYPROC.class, fi, constants$221.PFNGLPROGRAMBINARYPROC$FUNC, "(IILjdk/incubator/foreign/MemoryAddress;I)V", scope);
-    }
-    static PFNGLPROGRAMBINARYPROC ofAddress(MemoryAddress addr) {
-        return (int x0, int x1, jdk.incubator.foreign.MemoryAddress x2, int x3) -> {
+    static PFNGLPROGRAMBINARYPROC ofAddress(MemoryAddress addr, MemorySession session) {
+        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
+        return (int _program, int _binaryFormat, java.lang.foreign.MemoryAddress _binary, int _length) -> {
             try {
-                constants$221.PFNGLPROGRAMBINARYPROC$MH.invokeExact((Addressable)addr, x0, x1, x2, x3);
+                constants$221.PFNGLPROGRAMBINARYPROC$MH.invokeExact((Addressable)symbol, _program, _binaryFormat, (java.lang.foreign.Addressable)_binary, _length);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

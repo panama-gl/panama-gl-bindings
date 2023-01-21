@@ -2,39 +2,38 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_INT;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$753 {
 
     static final FunctionDescriptor PFNGLPROGRAMVERTEXLIMITNVPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLPROGRAMVERTEXLIMITNVPROC$MH = RuntimeHelper.downcallHandle(
-        "(II)V",
-        constants$753.PFNGLPROGRAMVERTEXLIMITNVPROC$FUNC, false
+        constants$753.PFNGLPROGRAMVERTEXLIMITNVPROC$FUNC
     );
     static final FunctionDescriptor PFNGLFRAMEBUFFERTEXTUREEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLFRAMEBUFFERTEXTUREEXTPROC$MH = RuntimeHelper.downcallHandle(
-        "(IIII)V",
-        constants$753.PFNGLFRAMEBUFFERTEXTUREEXTPROC$FUNC, false
+        constants$753.PFNGLFRAMEBUFFERTEXTUREEXTPROC$FUNC
     );
     static final FunctionDescriptor PFNGLFRAMEBUFFERTEXTUREFACEEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLFRAMEBUFFERTEXTUREFACEEXTPROC$MH = RuntimeHelper.downcallHandle(
-        "(IIIII)V",
-        constants$753.PFNGLFRAMEBUFFERTEXTUREFACEEXTPROC$FUNC, false
+        constants$753.PFNGLFRAMEBUFFERTEXTUREFACEEXTPROC$FUNC
     );
 }
 

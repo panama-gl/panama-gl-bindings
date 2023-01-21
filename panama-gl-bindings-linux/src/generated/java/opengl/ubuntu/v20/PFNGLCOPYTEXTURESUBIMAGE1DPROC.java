@@ -2,22 +2,22 @@
 
 package opengl.ubuntu.v20;
 
-import jdk.incubator.foreign.Addressable;
-import jdk.incubator.foreign.MemoryAddress;
-import jdk.incubator.foreign.ResourceScope;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public interface PFNGLCOPYTEXTURESUBIMAGE1DPROC {
 
-    void apply(int x0, int x1, int x2, int x3, int x4, int x5);
-    static MemoryAddress allocate(PFNGLCOPYTEXTURESUBIMAGE1DPROC fi) {
-        return RuntimeHelper.upcallStub(PFNGLCOPYTEXTURESUBIMAGE1DPROC.class, fi, constants$289.PFNGLCOPYTEXTURESUBIMAGE1DPROC$FUNC, "(IIIIII)V");
+    void apply(int texture, int level, int xoffset, int x, int y, int width);
+    static MemorySegment allocate(PFNGLCOPYTEXTURESUBIMAGE1DPROC fi, MemorySession session) {
+        return RuntimeHelper.upcallStub(PFNGLCOPYTEXTURESUBIMAGE1DPROC.class, fi, constants$289.PFNGLCOPYTEXTURESUBIMAGE1DPROC$FUNC, session);
     }
-    static MemoryAddress allocate(PFNGLCOPYTEXTURESUBIMAGE1DPROC fi, ResourceScope scope) {
-        return RuntimeHelper.upcallStub(PFNGLCOPYTEXTURESUBIMAGE1DPROC.class, fi, constants$289.PFNGLCOPYTEXTURESUBIMAGE1DPROC$FUNC, "(IIIIII)V", scope);
-    }
-    static PFNGLCOPYTEXTURESUBIMAGE1DPROC ofAddress(MemoryAddress addr) {
-        return (int x0, int x1, int x2, int x3, int x4, int x5) -> {
+    static PFNGLCOPYTEXTURESUBIMAGE1DPROC ofAddress(MemoryAddress addr, MemorySession session) {
+        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
+        return (int _texture, int _level, int _xoffset, int _x, int _y, int _width) -> {
             try {
-                constants$289.PFNGLCOPYTEXTURESUBIMAGE1DPROC$MH.invokeExact((Addressable)addr, x0, x1, x2, x3, x4, x5);
+                constants$289.PFNGLCOPYTEXTURESUBIMAGE1DPROC$MH.invokeExact((Addressable)symbol, _texture, _level, _xoffset, _x, _y, _width);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

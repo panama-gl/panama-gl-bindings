@@ -2,37 +2,35 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_INT;
-import static jdk.incubator.foreign.CLinker.C_POINTER;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$487 {
 
     static final FunctionDescriptor PFNGLDRAWELEMENTARRAYATIPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLDRAWELEMENTARRAYATIPROC$MH = RuntimeHelper.downcallHandle(
-        "(II)V",
-        constants$487.PFNGLDRAWELEMENTARRAYATIPROC$FUNC, false
+        constants$487.PFNGLDRAWELEMENTARRAYATIPROC$FUNC
     );
     static final FunctionDescriptor PFNGLDRAWRANGEELEMENTARRAYATIPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLDRAWRANGEELEMENTARRAYATIPROC$MH = RuntimeHelper.downcallHandle(
-        "(IIII)V",
-        constants$487.PFNGLDRAWRANGEELEMENTARRAYATIPROC$FUNC, false
+        constants$487.PFNGLDRAWRANGEELEMENTARRAYATIPROC$FUNC
     );
     static final FunctionDescriptor PFNGLTEXBUMPPARAMETERIVATIPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLTEXBUMPPARAMETERIVATIPROC$MH = RuntimeHelper.downcallHandle(
-        "(ILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$487.PFNGLTEXBUMPPARAMETERIVATIPROC$FUNC, false
+        constants$487.PFNGLTEXBUMPPARAMETERIVATIPROC$FUNC
     );
 }
 

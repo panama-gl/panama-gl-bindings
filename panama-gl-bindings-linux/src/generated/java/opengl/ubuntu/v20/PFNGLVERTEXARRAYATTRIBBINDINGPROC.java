@@ -2,22 +2,22 @@
 
 package opengl.ubuntu.v20;
 
-import jdk.incubator.foreign.Addressable;
-import jdk.incubator.foreign.MemoryAddress;
-import jdk.incubator.foreign.ResourceScope;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public interface PFNGLVERTEXARRAYATTRIBBINDINGPROC {
 
-    void apply(int x0, int x1, int x2);
-    static MemoryAddress allocate(PFNGLVERTEXARRAYATTRIBBINDINGPROC fi) {
-        return RuntimeHelper.upcallStub(PFNGLVERTEXARRAYATTRIBBINDINGPROC.class, fi, constants$298.PFNGLVERTEXARRAYATTRIBBINDINGPROC$FUNC, "(III)V");
+    void apply(int vaobj, int attribindex, int bindingindex);
+    static MemorySegment allocate(PFNGLVERTEXARRAYATTRIBBINDINGPROC fi, MemorySession session) {
+        return RuntimeHelper.upcallStub(PFNGLVERTEXARRAYATTRIBBINDINGPROC.class, fi, constants$298.PFNGLVERTEXARRAYATTRIBBINDINGPROC$FUNC, session);
     }
-    static MemoryAddress allocate(PFNGLVERTEXARRAYATTRIBBINDINGPROC fi, ResourceScope scope) {
-        return RuntimeHelper.upcallStub(PFNGLVERTEXARRAYATTRIBBINDINGPROC.class, fi, constants$298.PFNGLVERTEXARRAYATTRIBBINDINGPROC$FUNC, "(III)V", scope);
-    }
-    static PFNGLVERTEXARRAYATTRIBBINDINGPROC ofAddress(MemoryAddress addr) {
-        return (int x0, int x1, int x2) -> {
+    static PFNGLVERTEXARRAYATTRIBBINDINGPROC ofAddress(MemoryAddress addr, MemorySession session) {
+        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
+        return (int _vaobj, int _attribindex, int _bindingindex) -> {
             try {
-                constants$298.PFNGLVERTEXARRAYATTRIBBINDINGPROC$MH.invokeExact((Addressable)addr, x0, x1, x2);
+                constants$298.PFNGLVERTEXARRAYATTRIBBINDINGPROC$MH.invokeExact((Addressable)symbol, _vaobj, _attribindex, _bindingindex);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

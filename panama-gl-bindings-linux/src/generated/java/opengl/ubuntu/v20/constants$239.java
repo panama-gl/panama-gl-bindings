@@ -2,45 +2,42 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_CHAR;
-import static jdk.incubator.foreign.CLinker.C_INT;
-import static jdk.incubator.foreign.CLinker.C_POINTER;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$239 {
 
     static final FunctionDescriptor PFNGLPROGRAMUNIFORMMATRIX4X3FVPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_INT,
-        C_CHAR,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_CHAR$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLPROGRAMUNIFORMMATRIX4X3FVPROC$MH = RuntimeHelper.downcallHandle(
-        "(IIIBLjdk/incubator/foreign/MemoryAddress;)V",
-        constants$239.PFNGLPROGRAMUNIFORMMATRIX4X3FVPROC$FUNC, false
+        constants$239.PFNGLPROGRAMUNIFORMMATRIX4X3FVPROC$FUNC
     );
     static final FunctionDescriptor PFNGLPROGRAMUNIFORMMATRIX2X3DVPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_INT,
-        C_CHAR,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_CHAR$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLPROGRAMUNIFORMMATRIX2X3DVPROC$MH = RuntimeHelper.downcallHandle(
-        "(IIIBLjdk/incubator/foreign/MemoryAddress;)V",
-        constants$239.PFNGLPROGRAMUNIFORMMATRIX2X3DVPROC$FUNC, false
+        constants$239.PFNGLPROGRAMUNIFORMMATRIX2X3DVPROC$FUNC
     );
     static final FunctionDescriptor PFNGLPROGRAMUNIFORMMATRIX3X2DVPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_INT,
-        C_CHAR,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_CHAR$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLPROGRAMUNIFORMMATRIX3X2DVPROC$MH = RuntimeHelper.downcallHandle(
-        "(IIIBLjdk/incubator/foreign/MemoryAddress;)V",
-        constants$239.PFNGLPROGRAMUNIFORMMATRIX3X2DVPROC$FUNC, false
+        constants$239.PFNGLPROGRAMUNIFORMMATRIX3X2DVPROC$FUNC
     );
 }
 

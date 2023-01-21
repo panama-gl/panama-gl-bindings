@@ -2,22 +2,22 @@
 
 package opengl.ubuntu.v20;
 
-import jdk.incubator.foreign.Addressable;
-import jdk.incubator.foreign.MemoryAddress;
-import jdk.incubator.foreign.ResourceScope;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public interface PFNGLGETNHISTOGRAMPROC {
 
-    void apply(int x0, byte x1, int x2, int x3, int x4, jdk.incubator.foreign.MemoryAddress x5);
-    static MemoryAddress allocate(PFNGLGETNHISTOGRAMPROC fi) {
-        return RuntimeHelper.upcallStub(PFNGLGETNHISTOGRAMPROC.class, fi, constants$310.PFNGLGETNHISTOGRAMPROC$FUNC, "(IBIIILjdk/incubator/foreign/MemoryAddress;)V");
+    void apply(int target, byte reset, int format, int type, int bufSize, java.lang.foreign.MemoryAddress values);
+    static MemorySegment allocate(PFNGLGETNHISTOGRAMPROC fi, MemorySession session) {
+        return RuntimeHelper.upcallStub(PFNGLGETNHISTOGRAMPROC.class, fi, constants$310.PFNGLGETNHISTOGRAMPROC$FUNC, session);
     }
-    static MemoryAddress allocate(PFNGLGETNHISTOGRAMPROC fi, ResourceScope scope) {
-        return RuntimeHelper.upcallStub(PFNGLGETNHISTOGRAMPROC.class, fi, constants$310.PFNGLGETNHISTOGRAMPROC$FUNC, "(IBIIILjdk/incubator/foreign/MemoryAddress;)V", scope);
-    }
-    static PFNGLGETNHISTOGRAMPROC ofAddress(MemoryAddress addr) {
-        return (int x0, byte x1, int x2, int x3, int x4, jdk.incubator.foreign.MemoryAddress x5) -> {
+    static PFNGLGETNHISTOGRAMPROC ofAddress(MemoryAddress addr, MemorySession session) {
+        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
+        return (int _target, byte _reset, int _format, int _type, int _bufSize, java.lang.foreign.MemoryAddress _values) -> {
             try {
-                constants$310.PFNGLGETNHISTOGRAMPROC$MH.invokeExact((Addressable)addr, x0, x1, x2, x3, x4, x5);
+                constants$310.PFNGLGETNHISTOGRAMPROC$MH.invokeExact((Addressable)symbol, _target, _reset, _format, _type, _bufSize, (java.lang.foreign.Addressable)_values);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

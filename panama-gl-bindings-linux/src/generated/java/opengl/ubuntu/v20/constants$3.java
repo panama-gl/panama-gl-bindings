@@ -2,64 +2,59 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_INT;
-import static jdk.incubator.foreign.CLinker.C_POINTER;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$3 {
 
     static final FunctionDescriptor glEdgeFlagv$FUNC = FunctionDescriptor.ofVoid(
-        C_POINTER
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle glEdgeFlagv$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "glEdgeFlagv",
-        "(Ljdk/incubator/foreign/MemoryAddress;)V",
-        constants$3.glEdgeFlagv$FUNC, false
+        "glEdgeFlagv",
+        constants$3.glEdgeFlagv$FUNC
     );
     static final FunctionDescriptor glScissor$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle glScissor$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "glScissor",
-        "(IIII)V",
-        constants$3.glScissor$FUNC, false
+        "glScissor",
+        constants$3.glScissor$FUNC
     );
     static final FunctionDescriptor glClipPlane$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle glClipPlane$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "glClipPlane",
-        "(ILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$3.glClipPlane$FUNC, false
+        "glClipPlane",
+        constants$3.glClipPlane$FUNC
     );
     static final FunctionDescriptor glGetClipPlane$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle glGetClipPlane$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "glGetClipPlane",
-        "(ILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$3.glGetClipPlane$FUNC, false
+        "glGetClipPlane",
+        constants$3.glGetClipPlane$FUNC
     );
     static final FunctionDescriptor glDrawBuffer$FUNC = FunctionDescriptor.ofVoid(
-        C_INT
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle glDrawBuffer$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "glDrawBuffer",
-        "(I)V",
-        constants$3.glDrawBuffer$FUNC, false
+        "glDrawBuffer",
+        constants$3.glDrawBuffer$FUNC
     );
     static final FunctionDescriptor glReadBuffer$FUNC = FunctionDescriptor.ofVoid(
-        C_INT
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle glReadBuffer$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "glReadBuffer",
-        "(I)V",
-        constants$3.glReadBuffer$FUNC, false
+        "glReadBuffer",
+        constants$3.glReadBuffer$FUNC
     );
 }
 

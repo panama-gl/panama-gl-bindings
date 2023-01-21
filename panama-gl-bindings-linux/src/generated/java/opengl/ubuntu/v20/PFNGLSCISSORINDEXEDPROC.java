@@ -2,22 +2,22 @@
 
 package opengl.ubuntu.v20;
 
-import jdk.incubator.foreign.Addressable;
-import jdk.incubator.foreign.MemoryAddress;
-import jdk.incubator.foreign.ResourceScope;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public interface PFNGLSCISSORINDEXEDPROC {
 
-    void apply(int x0, int x1, int x2, int x3, int x4);
-    static MemoryAddress allocate(PFNGLSCISSORINDEXEDPROC fi) {
-        return RuntimeHelper.upcallStub(PFNGLSCISSORINDEXEDPROC.class, fi, constants$246.PFNGLSCISSORINDEXEDPROC$FUNC, "(IIIII)V");
+    void apply(int index, int left, int bottom, int width, int height);
+    static MemorySegment allocate(PFNGLSCISSORINDEXEDPROC fi, MemorySession session) {
+        return RuntimeHelper.upcallStub(PFNGLSCISSORINDEXEDPROC.class, fi, constants$246.PFNGLSCISSORINDEXEDPROC$FUNC, session);
     }
-    static MemoryAddress allocate(PFNGLSCISSORINDEXEDPROC fi, ResourceScope scope) {
-        return RuntimeHelper.upcallStub(PFNGLSCISSORINDEXEDPROC.class, fi, constants$246.PFNGLSCISSORINDEXEDPROC$FUNC, "(IIIII)V", scope);
-    }
-    static PFNGLSCISSORINDEXEDPROC ofAddress(MemoryAddress addr) {
-        return (int x0, int x1, int x2, int x3, int x4) -> {
+    static PFNGLSCISSORINDEXEDPROC ofAddress(MemoryAddress addr, MemorySession session) {
+        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
+        return (int _index, int _left, int _bottom, int _width, int _height) -> {
             try {
-                constants$246.PFNGLSCISSORINDEXEDPROC$MH.invokeExact((Addressable)addr, x0, x1, x2, x3, x4);
+                constants$246.PFNGLSCISSORINDEXEDPROC$MH.invokeExact((Addressable)symbol, _index, _left, _bottom, _width, _height);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

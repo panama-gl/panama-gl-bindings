@@ -2,22 +2,22 @@
 
 package opengl.ubuntu.v20;
 
-import jdk.incubator.foreign.Addressable;
-import jdk.incubator.foreign.MemoryAddress;
-import jdk.incubator.foreign.ResourceScope;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public interface PFNGLMAPNAMEDBUFFERRANGEPROC {
 
-    jdk.incubator.foreign.MemoryAddress apply(int x0, long x1, long x2, int x3);
-    static MemoryAddress allocate(PFNGLMAPNAMEDBUFFERRANGEPROC fi) {
-        return RuntimeHelper.upcallStub(PFNGLMAPNAMEDBUFFERRANGEPROC.class, fi, constants$275.PFNGLMAPNAMEDBUFFERRANGEPROC$FUNC, "(IJJI)Ljdk/incubator/foreign/MemoryAddress;");
+    java.lang.foreign.Addressable apply(int buffer, long offset, long length, int access);
+    static MemorySegment allocate(PFNGLMAPNAMEDBUFFERRANGEPROC fi, MemorySession session) {
+        return RuntimeHelper.upcallStub(PFNGLMAPNAMEDBUFFERRANGEPROC.class, fi, constants$275.PFNGLMAPNAMEDBUFFERRANGEPROC$FUNC, session);
     }
-    static MemoryAddress allocate(PFNGLMAPNAMEDBUFFERRANGEPROC fi, ResourceScope scope) {
-        return RuntimeHelper.upcallStub(PFNGLMAPNAMEDBUFFERRANGEPROC.class, fi, constants$275.PFNGLMAPNAMEDBUFFERRANGEPROC$FUNC, "(IJJI)Ljdk/incubator/foreign/MemoryAddress;", scope);
-    }
-    static PFNGLMAPNAMEDBUFFERRANGEPROC ofAddress(MemoryAddress addr) {
-        return (int x0, long x1, long x2, int x3) -> {
+    static PFNGLMAPNAMEDBUFFERRANGEPROC ofAddress(MemoryAddress addr, MemorySession session) {
+        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
+        return (int _buffer, long _offset, long _length, int _access) -> {
             try {
-                return (jdk.incubator.foreign.MemoryAddress)constants$275.PFNGLMAPNAMEDBUFFERRANGEPROC$MH.invokeExact((Addressable)addr, x0, x1, x2, x3);
+                return (java.lang.foreign.Addressable)(java.lang.foreign.MemoryAddress)constants$275.PFNGLMAPNAMEDBUFFERRANGEPROC$MH.invokeExact((Addressable)symbol, _buffer, _offset, _length, _access);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

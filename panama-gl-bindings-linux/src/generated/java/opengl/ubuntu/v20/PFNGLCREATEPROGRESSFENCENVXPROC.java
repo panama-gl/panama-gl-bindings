@@ -2,22 +2,22 @@
 
 package opengl.ubuntu.v20;
 
-import jdk.incubator.foreign.Addressable;
-import jdk.incubator.foreign.MemoryAddress;
-import jdk.incubator.foreign.ResourceScope;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public interface PFNGLCREATEPROGRESSFENCENVXPROC {
 
     int apply();
-    static MemoryAddress allocate(PFNGLCREATEPROGRESSFENCENVXPROC fi) {
-        return RuntimeHelper.upcallStub(PFNGLCREATEPROGRESSFENCENVXPROC.class, fi, constants$723.PFNGLCREATEPROGRESSFENCENVXPROC$FUNC, "()I");
+    static MemorySegment allocate(PFNGLCREATEPROGRESSFENCENVXPROC fi, MemorySession session) {
+        return RuntimeHelper.upcallStub(PFNGLCREATEPROGRESSFENCENVXPROC.class, fi, constants$723.PFNGLCREATEPROGRESSFENCENVXPROC$FUNC, session);
     }
-    static MemoryAddress allocate(PFNGLCREATEPROGRESSFENCENVXPROC fi, ResourceScope scope) {
-        return RuntimeHelper.upcallStub(PFNGLCREATEPROGRESSFENCENVXPROC.class, fi, constants$723.PFNGLCREATEPROGRESSFENCENVXPROC$FUNC, "()I", scope);
-    }
-    static PFNGLCREATEPROGRESSFENCENVXPROC ofAddress(MemoryAddress addr) {
+    static PFNGLCREATEPROGRESSFENCENVXPROC ofAddress(MemoryAddress addr, MemorySession session) {
+        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return () -> {
             try {
-                return (int)constants$723.PFNGLCREATEPROGRESSFENCENVXPROC$MH.invokeExact((Addressable)addr);
+                return (int)constants$723.PFNGLCREATEPROGRESSFENCENVXPROC$MH.invokeExact((Addressable)symbol);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

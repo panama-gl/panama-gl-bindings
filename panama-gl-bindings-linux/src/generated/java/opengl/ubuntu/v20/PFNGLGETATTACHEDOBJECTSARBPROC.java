@@ -2,22 +2,22 @@
 
 package opengl.ubuntu.v20;
 
-import jdk.incubator.foreign.Addressable;
-import jdk.incubator.foreign.MemoryAddress;
-import jdk.incubator.foreign.ResourceScope;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public interface PFNGLGETATTACHEDOBJECTSARBPROC {
 
-    void apply(int x0, int x1, jdk.incubator.foreign.MemoryAddress x2, jdk.incubator.foreign.MemoryAddress x3);
-    static MemoryAddress allocate(PFNGLGETATTACHEDOBJECTSARBPROC fi) {
-        return RuntimeHelper.upcallStub(PFNGLGETATTACHEDOBJECTSARBPROC.class, fi, constants$368.PFNGLGETATTACHEDOBJECTSARBPROC$FUNC, "(IILjdk/incubator/foreign/MemoryAddress;Ljdk/incubator/foreign/MemoryAddress;)V");
+    void apply(int containerObj, int maxCount, java.lang.foreign.MemoryAddress count, java.lang.foreign.MemoryAddress obj);
+    static MemorySegment allocate(PFNGLGETATTACHEDOBJECTSARBPROC fi, MemorySession session) {
+        return RuntimeHelper.upcallStub(PFNGLGETATTACHEDOBJECTSARBPROC.class, fi, constants$368.PFNGLGETATTACHEDOBJECTSARBPROC$FUNC, session);
     }
-    static MemoryAddress allocate(PFNGLGETATTACHEDOBJECTSARBPROC fi, ResourceScope scope) {
-        return RuntimeHelper.upcallStub(PFNGLGETATTACHEDOBJECTSARBPROC.class, fi, constants$368.PFNGLGETATTACHEDOBJECTSARBPROC$FUNC, "(IILjdk/incubator/foreign/MemoryAddress;Ljdk/incubator/foreign/MemoryAddress;)V", scope);
-    }
-    static PFNGLGETATTACHEDOBJECTSARBPROC ofAddress(MemoryAddress addr) {
-        return (int x0, int x1, jdk.incubator.foreign.MemoryAddress x2, jdk.incubator.foreign.MemoryAddress x3) -> {
+    static PFNGLGETATTACHEDOBJECTSARBPROC ofAddress(MemoryAddress addr, MemorySession session) {
+        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
+        return (int _containerObj, int _maxCount, java.lang.foreign.MemoryAddress _count, java.lang.foreign.MemoryAddress _obj) -> {
             try {
-                constants$368.PFNGLGETATTACHEDOBJECTSARBPROC$MH.invokeExact((Addressable)addr, x0, x1, x2, x3);
+                constants$368.PFNGLGETATTACHEDOBJECTSARBPROC$MH.invokeExact((Addressable)symbol, _containerObj, _maxCount, (java.lang.foreign.Addressable)_count, (java.lang.foreign.Addressable)_obj);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

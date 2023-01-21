@@ -2,22 +2,22 @@
 
 package opengl.ubuntu.v20;
 
-import jdk.incubator.foreign.Addressable;
-import jdk.incubator.foreign.MemoryAddress;
-import jdk.incubator.foreign.ResourceScope;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public interface PFNGLLISTDRAWCOMMANDSSTATESCLIENTNVPROC {
 
-    void apply(int x0, int x1, jdk.incubator.foreign.MemoryAddress x2, jdk.incubator.foreign.MemoryAddress x3, jdk.incubator.foreign.MemoryAddress x4, jdk.incubator.foreign.MemoryAddress x5, int x6);
-    static MemoryAddress allocate(PFNGLLISTDRAWCOMMANDSSTATESCLIENTNVPROC fi) {
-        return RuntimeHelper.upcallStub(PFNGLLISTDRAWCOMMANDSSTATESCLIENTNVPROC.class, fi, constants$736.PFNGLLISTDRAWCOMMANDSSTATESCLIENTNVPROC$FUNC, "(IILjdk/incubator/foreign/MemoryAddress;Ljdk/incubator/foreign/MemoryAddress;Ljdk/incubator/foreign/MemoryAddress;Ljdk/incubator/foreign/MemoryAddress;I)V");
+    void apply(int list, int segment, java.lang.foreign.MemoryAddress indirects, java.lang.foreign.MemoryAddress sizes, java.lang.foreign.MemoryAddress states, java.lang.foreign.MemoryAddress fbos, int count);
+    static MemorySegment allocate(PFNGLLISTDRAWCOMMANDSSTATESCLIENTNVPROC fi, MemorySession session) {
+        return RuntimeHelper.upcallStub(PFNGLLISTDRAWCOMMANDSSTATESCLIENTNVPROC.class, fi, constants$736.PFNGLLISTDRAWCOMMANDSSTATESCLIENTNVPROC$FUNC, session);
     }
-    static MemoryAddress allocate(PFNGLLISTDRAWCOMMANDSSTATESCLIENTNVPROC fi, ResourceScope scope) {
-        return RuntimeHelper.upcallStub(PFNGLLISTDRAWCOMMANDSSTATESCLIENTNVPROC.class, fi, constants$736.PFNGLLISTDRAWCOMMANDSSTATESCLIENTNVPROC$FUNC, "(IILjdk/incubator/foreign/MemoryAddress;Ljdk/incubator/foreign/MemoryAddress;Ljdk/incubator/foreign/MemoryAddress;Ljdk/incubator/foreign/MemoryAddress;I)V", scope);
-    }
-    static PFNGLLISTDRAWCOMMANDSSTATESCLIENTNVPROC ofAddress(MemoryAddress addr) {
-        return (int x0, int x1, jdk.incubator.foreign.MemoryAddress x2, jdk.incubator.foreign.MemoryAddress x3, jdk.incubator.foreign.MemoryAddress x4, jdk.incubator.foreign.MemoryAddress x5, int x6) -> {
+    static PFNGLLISTDRAWCOMMANDSSTATESCLIENTNVPROC ofAddress(MemoryAddress addr, MemorySession session) {
+        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
+        return (int _list, int _segment, java.lang.foreign.MemoryAddress _indirects, java.lang.foreign.MemoryAddress _sizes, java.lang.foreign.MemoryAddress _states, java.lang.foreign.MemoryAddress _fbos, int _count) -> {
             try {
-                constants$736.PFNGLLISTDRAWCOMMANDSSTATESCLIENTNVPROC$MH.invokeExact((Addressable)addr, x0, x1, x2, x3, x4, x5, x6);
+                constants$736.PFNGLLISTDRAWCOMMANDSSTATESCLIENTNVPROC$MH.invokeExact((Addressable)symbol, _list, _segment, (java.lang.foreign.Addressable)_indirects, (java.lang.foreign.Addressable)_sizes, (java.lang.foreign.Addressable)_states, (java.lang.foreign.Addressable)_fbos, _count);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

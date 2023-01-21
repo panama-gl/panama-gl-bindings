@@ -2,37 +2,35 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_INT;
-import static jdk.incubator.foreign.CLinker.C_POINTER;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$219 {
 
     static final FunctionDescriptor PFNGLGETQUERYINDEXEDIVPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLGETQUERYINDEXEDIVPROC$MH = RuntimeHelper.downcallHandle(
-        "(IIILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$219.PFNGLGETQUERYINDEXEDIVPROC$FUNC, false
+        constants$219.PFNGLGETQUERYINDEXEDIVPROC$FUNC
     );
     static final FunctionDescriptor PFNGLRELEASESHADERCOMPILERPROC$FUNC = FunctionDescriptor.ofVoid();
     static final MethodHandle PFNGLRELEASESHADERCOMPILERPROC$MH = RuntimeHelper.downcallHandle(
-        "()V",
-        constants$219.PFNGLRELEASESHADERCOMPILERPROC$FUNC, false
+        constants$219.PFNGLRELEASESHADERCOMPILERPROC$FUNC
     );
     static final FunctionDescriptor PFNGLSHADERBINARYPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_POINTER,
-        C_INT,
-        C_POINTER,
-        C_INT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLSHADERBINARYPROC$MH = RuntimeHelper.downcallHandle(
-        "(ILjdk/incubator/foreign/MemoryAddress;ILjdk/incubator/foreign/MemoryAddress;I)V",
-        constants$219.PFNGLSHADERBINARYPROC$FUNC, false
+        constants$219.PFNGLSHADERBINARYPROC$FUNC
     );
 }
 

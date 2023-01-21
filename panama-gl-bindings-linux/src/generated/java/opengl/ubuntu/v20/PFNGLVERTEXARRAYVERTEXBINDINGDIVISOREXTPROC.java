@@ -2,22 +2,22 @@
 
 package opengl.ubuntu.v20;
 
-import jdk.incubator.foreign.Addressable;
-import jdk.incubator.foreign.MemoryAddress;
-import jdk.incubator.foreign.ResourceScope;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public interface PFNGLVERTEXARRAYVERTEXBINDINGDIVISOREXTPROC {
 
-    void apply(int x0, int x1, int x2);
-    static MemoryAddress allocate(PFNGLVERTEXARRAYVERTEXBINDINGDIVISOREXTPROC fi) {
-        return RuntimeHelper.upcallStub(PFNGLVERTEXARRAYVERTEXBINDINGDIVISOREXTPROC.class, fi, constants$619.PFNGLVERTEXARRAYVERTEXBINDINGDIVISOREXTPROC$FUNC, "(III)V");
+    void apply(int vaobj, int bindingindex, int divisor);
+    static MemorySegment allocate(PFNGLVERTEXARRAYVERTEXBINDINGDIVISOREXTPROC fi, MemorySession session) {
+        return RuntimeHelper.upcallStub(PFNGLVERTEXARRAYVERTEXBINDINGDIVISOREXTPROC.class, fi, constants$619.PFNGLVERTEXARRAYVERTEXBINDINGDIVISOREXTPROC$FUNC, session);
     }
-    static MemoryAddress allocate(PFNGLVERTEXARRAYVERTEXBINDINGDIVISOREXTPROC fi, ResourceScope scope) {
-        return RuntimeHelper.upcallStub(PFNGLVERTEXARRAYVERTEXBINDINGDIVISOREXTPROC.class, fi, constants$619.PFNGLVERTEXARRAYVERTEXBINDINGDIVISOREXTPROC$FUNC, "(III)V", scope);
-    }
-    static PFNGLVERTEXARRAYVERTEXBINDINGDIVISOREXTPROC ofAddress(MemoryAddress addr) {
-        return (int x0, int x1, int x2) -> {
+    static PFNGLVERTEXARRAYVERTEXBINDINGDIVISOREXTPROC ofAddress(MemoryAddress addr, MemorySession session) {
+        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
+        return (int _vaobj, int _bindingindex, int _divisor) -> {
             try {
-                constants$619.PFNGLVERTEXARRAYVERTEXBINDINGDIVISOREXTPROC$MH.invokeExact((Addressable)addr, x0, x1, x2);
+                constants$619.PFNGLVERTEXARRAYVERTEXBINDINGDIVISOREXTPROC$MH.invokeExact((Addressable)symbol, _vaobj, _bindingindex, _divisor);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

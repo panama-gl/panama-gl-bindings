@@ -2,33 +2,30 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_DOUBLE;
-import static jdk.incubator.foreign.CLinker.C_FLOAT;
-import static jdk.incubator.foreign.CLinker.C_POINTER;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$623 {
 
     static final FunctionDescriptor PFNGLFOGCOORDFEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_FLOAT
+        Constants$root.C_FLOAT$LAYOUT
     );
     static final MethodHandle PFNGLFOGCOORDFEXTPROC$MH = RuntimeHelper.downcallHandle(
-        "(F)V",
-        constants$623.PFNGLFOGCOORDFEXTPROC$FUNC, false
+        constants$623.PFNGLFOGCOORDFEXTPROC$FUNC
     );
     static final FunctionDescriptor PFNGLFOGCOORDFVEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_POINTER
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLFOGCOORDFVEXTPROC$MH = RuntimeHelper.downcallHandle(
-        "(Ljdk/incubator/foreign/MemoryAddress;)V",
-        constants$623.PFNGLFOGCOORDFVEXTPROC$FUNC, false
+        constants$623.PFNGLFOGCOORDFVEXTPROC$FUNC
     );
     static final FunctionDescriptor PFNGLFOGCOORDDEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_DOUBLE
+        Constants$root.C_DOUBLE$LAYOUT
     );
     static final MethodHandle PFNGLFOGCOORDDEXTPROC$MH = RuntimeHelper.downcallHandle(
-        "(D)V",
-        constants$623.PFNGLFOGCOORDDEXTPROC$FUNC, false
+        constants$623.PFNGLFOGCOORDDEXTPROC$FUNC
     );
 }
 

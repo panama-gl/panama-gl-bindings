@@ -2,35 +2,32 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_CHAR;
-import static jdk.incubator.foreign.CLinker.C_FLOAT;
-import static jdk.incubator.foreign.CLinker.C_INT;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$885 {
 
     static final FunctionDescriptor PFNGLSAMPLEMASKSGISPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_FLOAT,
-        C_CHAR
+        Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_CHAR$LAYOUT
     );
     static final MethodHandle PFNGLSAMPLEMASKSGISPROC$MH = RuntimeHelper.downcallHandle(
-        "(FB)V",
-        constants$885.PFNGLSAMPLEMASKSGISPROC$FUNC, false
+        constants$885.PFNGLSAMPLEMASKSGISPROC$FUNC
     );
     static final FunctionDescriptor PFNGLSAMPLEPATTERNSGISPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLSAMPLEPATTERNSGISPROC$MH = RuntimeHelper.downcallHandle(
-        "(I)V",
-        constants$885.PFNGLSAMPLEPATTERNSGISPROC$FUNC, false
+        constants$885.PFNGLSAMPLEPATTERNSGISPROC$FUNC
     );
     static final FunctionDescriptor PFNGLPIXELTEXGENPARAMETERISGISPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLPIXELTEXGENPARAMETERISGISPROC$MH = RuntimeHelper.downcallHandle(
-        "(II)V",
-        constants$885.PFNGLPIXELTEXGENPARAMETERISGISPROC$FUNC, false
+        constants$885.PFNGLPIXELTEXGENPARAMETERISGISPROC$FUNC
     );
 }
 

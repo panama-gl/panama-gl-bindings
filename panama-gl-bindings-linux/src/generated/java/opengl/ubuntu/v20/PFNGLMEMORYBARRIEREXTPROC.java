@@ -2,22 +2,22 @@
 
 package opengl.ubuntu.v20;
 
-import jdk.incubator.foreign.Addressable;
-import jdk.incubator.foreign.MemoryAddress;
-import jdk.incubator.foreign.ResourceScope;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public interface PFNGLMEMORYBARRIEREXTPROC {
 
-    void apply(int x0);
-    static MemoryAddress allocate(PFNGLMEMORYBARRIEREXTPROC fi) {
-        return RuntimeHelper.upcallStub(PFNGLMEMORYBARRIEREXTPROC.class, fi, constants$665.PFNGLMEMORYBARRIEREXTPROC$FUNC, "(I)V");
+    void apply(int barriers);
+    static MemorySegment allocate(PFNGLMEMORYBARRIEREXTPROC fi, MemorySession session) {
+        return RuntimeHelper.upcallStub(PFNGLMEMORYBARRIEREXTPROC.class, fi, constants$665.PFNGLMEMORYBARRIEREXTPROC$FUNC, session);
     }
-    static MemoryAddress allocate(PFNGLMEMORYBARRIEREXTPROC fi, ResourceScope scope) {
-        return RuntimeHelper.upcallStub(PFNGLMEMORYBARRIEREXTPROC.class, fi, constants$665.PFNGLMEMORYBARRIEREXTPROC$FUNC, "(I)V", scope);
-    }
-    static PFNGLMEMORYBARRIEREXTPROC ofAddress(MemoryAddress addr) {
-        return (int x0) -> {
+    static PFNGLMEMORYBARRIEREXTPROC ofAddress(MemoryAddress addr, MemorySession session) {
+        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
+        return (int _barriers) -> {
             try {
-                constants$665.PFNGLMEMORYBARRIEREXTPROC$MH.invokeExact((Addressable)addr, x0);
+                constants$665.PFNGLMEMORYBARRIEREXTPROC$MH.invokeExact((Addressable)symbol, _barriers);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

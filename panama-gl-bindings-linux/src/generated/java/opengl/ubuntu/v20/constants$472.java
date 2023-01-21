@@ -2,36 +2,34 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_INT;
-import static jdk.incubator.foreign.CLinker.C_POINTER;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$472 {
 
     static final FunctionDescriptor PFNGLBEGINPERFMONITORAMDPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLBEGINPERFMONITORAMDPROC$MH = RuntimeHelper.downcallHandle(
-        "(I)V",
-        constants$472.PFNGLBEGINPERFMONITORAMDPROC$FUNC, false
+        constants$472.PFNGLBEGINPERFMONITORAMDPROC$FUNC
     );
     static final FunctionDescriptor PFNGLENDPERFMONITORAMDPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLENDPERFMONITORAMDPROC$MH = RuntimeHelper.downcallHandle(
-        "(I)V",
-        constants$472.PFNGLENDPERFMONITORAMDPROC$FUNC, false
+        constants$472.PFNGLENDPERFMONITORAMDPROC$FUNC
     );
     static final FunctionDescriptor PFNGLGETPERFMONITORCOUNTERDATAAMDPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_INT,
-        C_POINTER,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLGETPERFMONITORCOUNTERDATAAMDPROC$MH = RuntimeHelper.downcallHandle(
-        "(IIILjdk/incubator/foreign/MemoryAddress;Ljdk/incubator/foreign/MemoryAddress;)V",
-        constants$472.PFNGLGETPERFMONITORCOUNTERDATAAMDPROC$FUNC, false
+        constants$472.PFNGLGETPERFMONITORCOUNTERDATAAMDPROC$FUNC
     );
 }
 

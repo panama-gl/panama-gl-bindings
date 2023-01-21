@@ -2,22 +2,22 @@
 
 package opengl.ubuntu.v20;
 
-import jdk.incubator.foreign.Addressable;
-import jdk.incubator.foreign.MemoryAddress;
-import jdk.incubator.foreign.ResourceScope;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public interface PFNGLFOGCOORDDEXTPROC {
 
-    void apply(double x0);
-    static MemoryAddress allocate(PFNGLFOGCOORDDEXTPROC fi) {
-        return RuntimeHelper.upcallStub(PFNGLFOGCOORDDEXTPROC.class, fi, constants$623.PFNGLFOGCOORDDEXTPROC$FUNC, "(D)V");
+    void apply(double coord);
+    static MemorySegment allocate(PFNGLFOGCOORDDEXTPROC fi, MemorySession session) {
+        return RuntimeHelper.upcallStub(PFNGLFOGCOORDDEXTPROC.class, fi, constants$623.PFNGLFOGCOORDDEXTPROC$FUNC, session);
     }
-    static MemoryAddress allocate(PFNGLFOGCOORDDEXTPROC fi, ResourceScope scope) {
-        return RuntimeHelper.upcallStub(PFNGLFOGCOORDDEXTPROC.class, fi, constants$623.PFNGLFOGCOORDDEXTPROC$FUNC, "(D)V", scope);
-    }
-    static PFNGLFOGCOORDDEXTPROC ofAddress(MemoryAddress addr) {
-        return (double x0) -> {
+    static PFNGLFOGCOORDDEXTPROC ofAddress(MemoryAddress addr, MemorySession session) {
+        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
+        return (double _coord) -> {
             try {
-                constants$623.PFNGLFOGCOORDDEXTPROC$MH.invokeExact((Addressable)addr, x0);
+                constants$623.PFNGLFOGCOORDDEXTPROC$MH.invokeExact((Addressable)symbol, _coord);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

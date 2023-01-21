@@ -2,22 +2,22 @@
 
 package opengl.ubuntu.v20;
 
-import jdk.incubator.foreign.Addressable;
-import jdk.incubator.foreign.MemoryAddress;
-import jdk.incubator.foreign.ResourceScope;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public interface PFNGLINTERPOLATEPATHSNVPROC {
 
-    void apply(int x0, int x1, int x2, float x3);
-    static MemoryAddress allocate(PFNGLINTERPOLATEPATHSNVPROC fi) {
-        return RuntimeHelper.upcallStub(PFNGLINTERPOLATEPATHSNVPROC.class, fi, constants$790.PFNGLINTERPOLATEPATHSNVPROC$FUNC, "(IIIF)V");
+    void apply(int resultPath, int pathA, int pathB, float weight);
+    static MemorySegment allocate(PFNGLINTERPOLATEPATHSNVPROC fi, MemorySession session) {
+        return RuntimeHelper.upcallStub(PFNGLINTERPOLATEPATHSNVPROC.class, fi, constants$790.PFNGLINTERPOLATEPATHSNVPROC$FUNC, session);
     }
-    static MemoryAddress allocate(PFNGLINTERPOLATEPATHSNVPROC fi, ResourceScope scope) {
-        return RuntimeHelper.upcallStub(PFNGLINTERPOLATEPATHSNVPROC.class, fi, constants$790.PFNGLINTERPOLATEPATHSNVPROC$FUNC, "(IIIF)V", scope);
-    }
-    static PFNGLINTERPOLATEPATHSNVPROC ofAddress(MemoryAddress addr) {
-        return (int x0, int x1, int x2, float x3) -> {
+    static PFNGLINTERPOLATEPATHSNVPROC ofAddress(MemoryAddress addr, MemorySession session) {
+        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
+        return (int _resultPath, int _pathA, int _pathB, float _weight) -> {
             try {
-                constants$790.PFNGLINTERPOLATEPATHSNVPROC$MH.invokeExact((Addressable)addr, x0, x1, x2, x3);
+                constants$790.PFNGLINTERPOLATEPATHSNVPROC$MH.invokeExact((Addressable)symbol, _resultPath, _pathA, _pathB, _weight);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

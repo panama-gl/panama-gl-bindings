@@ -2,22 +2,22 @@
 
 package opengl.ubuntu.v20;
 
-import jdk.incubator.foreign.Addressable;
-import jdk.incubator.foreign.MemoryAddress;
-import jdk.incubator.foreign.ResourceScope;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public interface PFNGLREADINSTRUMENTSSGIXPROC {
 
-    void apply(int x0);
-    static MemoryAddress allocate(PFNGLREADINSTRUMENTSSGIXPROC fi) {
-        return RuntimeHelper.upcallStub(PFNGLREADINSTRUMENTSSGIXPROC.class, fi, constants$900.PFNGLREADINSTRUMENTSSGIXPROC$FUNC, "(I)V");
+    void apply(int marker);
+    static MemorySegment allocate(PFNGLREADINSTRUMENTSSGIXPROC fi, MemorySession session) {
+        return RuntimeHelper.upcallStub(PFNGLREADINSTRUMENTSSGIXPROC.class, fi, constants$900.PFNGLREADINSTRUMENTSSGIXPROC$FUNC, session);
     }
-    static MemoryAddress allocate(PFNGLREADINSTRUMENTSSGIXPROC fi, ResourceScope scope) {
-        return RuntimeHelper.upcallStub(PFNGLREADINSTRUMENTSSGIXPROC.class, fi, constants$900.PFNGLREADINSTRUMENTSSGIXPROC$FUNC, "(I)V", scope);
-    }
-    static PFNGLREADINSTRUMENTSSGIXPROC ofAddress(MemoryAddress addr) {
-        return (int x0) -> {
+    static PFNGLREADINSTRUMENTSSGIXPROC ofAddress(MemoryAddress addr, MemorySession session) {
+        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
+        return (int _marker) -> {
             try {
-                constants$900.PFNGLREADINSTRUMENTSSGIXPROC$MH.invokeExact((Addressable)addr, x0);
+                constants$900.PFNGLREADINSTRUMENTSSGIXPROC$MH.invokeExact((Addressable)symbol, _marker);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

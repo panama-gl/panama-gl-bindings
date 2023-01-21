@@ -2,22 +2,22 @@
 
 package opengl.ubuntu.v20;
 
-import jdk.incubator.foreign.Addressable;
-import jdk.incubator.foreign.MemoryAddress;
-import jdk.incubator.foreign.ResourceScope;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public interface PFNGLPIXELTEXGENPARAMETERISGISPROC {
 
-    void apply(int x0, int x1);
-    static MemoryAddress allocate(PFNGLPIXELTEXGENPARAMETERISGISPROC fi) {
-        return RuntimeHelper.upcallStub(PFNGLPIXELTEXGENPARAMETERISGISPROC.class, fi, constants$885.PFNGLPIXELTEXGENPARAMETERISGISPROC$FUNC, "(II)V");
+    void apply(int pname, int param);
+    static MemorySegment allocate(PFNGLPIXELTEXGENPARAMETERISGISPROC fi, MemorySession session) {
+        return RuntimeHelper.upcallStub(PFNGLPIXELTEXGENPARAMETERISGISPROC.class, fi, constants$885.PFNGLPIXELTEXGENPARAMETERISGISPROC$FUNC, session);
     }
-    static MemoryAddress allocate(PFNGLPIXELTEXGENPARAMETERISGISPROC fi, ResourceScope scope) {
-        return RuntimeHelper.upcallStub(PFNGLPIXELTEXGENPARAMETERISGISPROC.class, fi, constants$885.PFNGLPIXELTEXGENPARAMETERISGISPROC$FUNC, "(II)V", scope);
-    }
-    static PFNGLPIXELTEXGENPARAMETERISGISPROC ofAddress(MemoryAddress addr) {
-        return (int x0, int x1) -> {
+    static PFNGLPIXELTEXGENPARAMETERISGISPROC ofAddress(MemoryAddress addr, MemorySession session) {
+        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
+        return (int _pname, int _param) -> {
             try {
-                constants$885.PFNGLPIXELTEXGENPARAMETERISGISPROC$MH.invokeExact((Addressable)addr, x0, x1);
+                constants$885.PFNGLPIXELTEXGENPARAMETERISGISPROC$MH.invokeExact((Addressable)symbol, _pname, _param);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

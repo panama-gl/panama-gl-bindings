@@ -2,22 +2,22 @@
 
 package opengl.ubuntu.v20;
 
-import jdk.incubator.foreign.Addressable;
-import jdk.incubator.foreign.MemoryAddress;
-import jdk.incubator.foreign.ResourceScope;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public interface PFNGLCREATETEXTURESPROC {
 
-    void apply(int x0, int x1, jdk.incubator.foreign.MemoryAddress x2);
-    static MemoryAddress allocate(PFNGLCREATETEXTURESPROC fi) {
-        return RuntimeHelper.upcallStub(PFNGLCREATETEXTURESPROC.class, fi, constants$285.PFNGLCREATETEXTURESPROC$FUNC, "(IILjdk/incubator/foreign/MemoryAddress;)V");
+    void apply(int target, int n, java.lang.foreign.MemoryAddress textures);
+    static MemorySegment allocate(PFNGLCREATETEXTURESPROC fi, MemorySession session) {
+        return RuntimeHelper.upcallStub(PFNGLCREATETEXTURESPROC.class, fi, constants$285.PFNGLCREATETEXTURESPROC$FUNC, session);
     }
-    static MemoryAddress allocate(PFNGLCREATETEXTURESPROC fi, ResourceScope scope) {
-        return RuntimeHelper.upcallStub(PFNGLCREATETEXTURESPROC.class, fi, constants$285.PFNGLCREATETEXTURESPROC$FUNC, "(IILjdk/incubator/foreign/MemoryAddress;)V", scope);
-    }
-    static PFNGLCREATETEXTURESPROC ofAddress(MemoryAddress addr) {
-        return (int x0, int x1, jdk.incubator.foreign.MemoryAddress x2) -> {
+    static PFNGLCREATETEXTURESPROC ofAddress(MemoryAddress addr, MemorySession session) {
+        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
+        return (int _target, int _n, java.lang.foreign.MemoryAddress _textures) -> {
             try {
-                constants$285.PFNGLCREATETEXTURESPROC$MH.invokeExact((Addressable)addr, x0, x1, x2);
+                constants$285.PFNGLCREATETEXTURESPROC$MH.invokeExact((Addressable)symbol, _target, _n, (java.lang.foreign.Addressable)_textures);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

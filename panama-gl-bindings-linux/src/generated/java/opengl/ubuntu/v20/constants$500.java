@@ -2,38 +2,35 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_INT;
-import static jdk.incubator.foreign.CLinker.C_POINTER;
-import static jdk.incubator.foreign.CLinker.C_SHORT;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$500 {
 
     static final FunctionDescriptor PFNGLGETVERTEXATTRIBARRAYOBJECTFVATIPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLGETVERTEXATTRIBARRAYOBJECTFVATIPROC$MH = RuntimeHelper.downcallHandle(
-        "(IILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$500.PFNGLGETVERTEXATTRIBARRAYOBJECTFVATIPROC$FUNC, false
+        constants$500.PFNGLGETVERTEXATTRIBARRAYOBJECTFVATIPROC$FUNC
     );
     static final FunctionDescriptor PFNGLGETVERTEXATTRIBARRAYOBJECTIVATIPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLGETVERTEXATTRIBARRAYOBJECTIVATIPROC$MH = RuntimeHelper.downcallHandle(
-        "(IILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$500.PFNGLGETVERTEXATTRIBARRAYOBJECTIVATIPROC$FUNC, false
+        constants$500.PFNGLGETVERTEXATTRIBARRAYOBJECTIVATIPROC$FUNC
     );
     static final FunctionDescriptor PFNGLVERTEXSTREAM1SATIPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_SHORT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_SHORT$LAYOUT
     );
     static final MethodHandle PFNGLVERTEXSTREAM1SATIPROC$MH = RuntimeHelper.downcallHandle(
-        "(IS)V",
-        constants$500.PFNGLVERTEXSTREAM1SATIPROC$FUNC, false
+        constants$500.PFNGLVERTEXSTREAM1SATIPROC$FUNC
     );
 }
 

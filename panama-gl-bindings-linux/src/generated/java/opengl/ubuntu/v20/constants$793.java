@@ -2,37 +2,35 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_FLOAT;
-import static jdk.incubator.foreign.CLinker.C_INT;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$793 {
 
     static final FunctionDescriptor PFNGLPATHSTENCILDEPTHOFFSETNVPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_FLOAT,
-        C_FLOAT
+        Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT
     );
     static final MethodHandle PFNGLPATHSTENCILDEPTHOFFSETNVPROC$MH = RuntimeHelper.downcallHandle(
-        "(FF)V",
-        constants$793.PFNGLPATHSTENCILDEPTHOFFSETNVPROC$FUNC, false
+        constants$793.PFNGLPATHSTENCILDEPTHOFFSETNVPROC$FUNC
     );
     static final FunctionDescriptor PFNGLSTENCILFILLPATHNVPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_INT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLSTENCILFILLPATHNVPROC$MH = RuntimeHelper.downcallHandle(
-        "(III)V",
-        constants$793.PFNGLSTENCILFILLPATHNVPROC$FUNC, false
+        constants$793.PFNGLSTENCILFILLPATHNVPROC$FUNC
     );
     static final FunctionDescriptor PFNGLSTENCILSTROKEPATHNVPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_INT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLSTENCILSTROKEPATHNVPROC$MH = RuntimeHelper.downcallHandle(
-        "(III)V",
-        constants$793.PFNGLSTENCILSTROKEPATHNVPROC$FUNC, false
+        constants$793.PFNGLSTENCILSTROKEPATHNVPROC$FUNC
     );
 }
 

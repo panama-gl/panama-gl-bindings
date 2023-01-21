@@ -2,41 +2,39 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_INT;
-import static jdk.incubator.foreign.CLinker.C_POINTER;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$467 {
 
     static final FunctionDescriptor PFNGLVERTEXATTRIBPARAMETERIAMDPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_INT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLVERTEXATTRIBPARAMETERIAMDPROC$MH = RuntimeHelper.downcallHandle(
-        "(III)V",
-        constants$467.PFNGLVERTEXATTRIBPARAMETERIAMDPROC$FUNC, false
+        constants$467.PFNGLVERTEXATTRIBPARAMETERIAMDPROC$FUNC
     );
     static final FunctionDescriptor PFNGLMULTIDRAWARRAYSINDIRECTAMDPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_POINTER,
-        C_INT,
-        C_INT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLMULTIDRAWARRAYSINDIRECTAMDPROC$MH = RuntimeHelper.downcallHandle(
-        "(ILjdk/incubator/foreign/MemoryAddress;II)V",
-        constants$467.PFNGLMULTIDRAWARRAYSINDIRECTAMDPROC$FUNC, false
+        constants$467.PFNGLMULTIDRAWARRAYSINDIRECTAMDPROC$FUNC
     );
     static final FunctionDescriptor PFNGLMULTIDRAWELEMENTSINDIRECTAMDPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_POINTER,
-        C_INT,
-        C_INT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLMULTIDRAWELEMENTSINDIRECTAMDPROC$MH = RuntimeHelper.downcallHandle(
-        "(IILjdk/incubator/foreign/MemoryAddress;II)V",
-        constants$467.PFNGLMULTIDRAWELEMENTSINDIRECTAMDPROC$FUNC, false
+        constants$467.PFNGLMULTIDRAWELEMENTSINDIRECTAMDPROC$FUNC
     );
 }
 

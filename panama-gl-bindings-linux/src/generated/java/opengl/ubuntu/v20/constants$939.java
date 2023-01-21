@@ -2,87 +2,81 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_DOUBLE;
-import static jdk.incubator.foreign.CLinker.C_INT;
-import static jdk.incubator.foreign.CLinker.C_POINTER;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$939 {
 
     static final FunctionDescriptor gluTessEndPolygon$FUNC = FunctionDescriptor.ofVoid(
-        C_POINTER
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle gluTessEndPolygon$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "gluTessEndPolygon",
-        "(Ljdk/incubator/foreign/MemoryAddress;)V",
-        constants$939.gluTessEndPolygon$FUNC, false
+        "gluTessEndPolygon",
+        constants$939.gluTessEndPolygon$FUNC
     );
     static final FunctionDescriptor gluTessNormal$FUNC = FunctionDescriptor.ofVoid(
-        C_POINTER,
-        C_DOUBLE,
-        C_DOUBLE,
-        C_DOUBLE
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_DOUBLE$LAYOUT,
+        Constants$root.C_DOUBLE$LAYOUT,
+        Constants$root.C_DOUBLE$LAYOUT
     );
     static final MethodHandle gluTessNormal$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "gluTessNormal",
-        "(Ljdk/incubator/foreign/MemoryAddress;DDD)V",
-        constants$939.gluTessNormal$FUNC, false
+        "gluTessNormal",
+        constants$939.gluTessNormal$FUNC
     );
     static final FunctionDescriptor gluTessProperty$FUNC = FunctionDescriptor.ofVoid(
-        C_POINTER,
-        C_INT,
-        C_DOUBLE
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_DOUBLE$LAYOUT
     );
     static final MethodHandle gluTessProperty$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "gluTessProperty",
-        "(Ljdk/incubator/foreign/MemoryAddress;ID)V",
-        constants$939.gluTessProperty$FUNC, false
+        "gluTessProperty",
+        constants$939.gluTessProperty$FUNC
     );
     static final FunctionDescriptor gluTessVertex$FUNC = FunctionDescriptor.ofVoid(
-        C_POINTER,
-        C_POINTER,
-        C_POINTER
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle gluTessVertex$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "gluTessVertex",
-        "(Ljdk/incubator/foreign/MemoryAddress;Ljdk/incubator/foreign/MemoryAddress;Ljdk/incubator/foreign/MemoryAddress;)V",
-        constants$939.gluTessVertex$FUNC, false
+        "gluTessVertex",
+        constants$939.gluTessVertex$FUNC
     );
-    static final FunctionDescriptor gluUnProject$FUNC = FunctionDescriptor.of(C_INT,
-        C_DOUBLE,
-        C_DOUBLE,
-        C_DOUBLE,
-        C_POINTER,
-        C_POINTER,
-        C_POINTER,
-        C_POINTER,
-        C_POINTER,
-        C_POINTER
+    static final FunctionDescriptor gluUnProject$FUNC = FunctionDescriptor.of(Constants$root.C_INT$LAYOUT,
+        Constants$root.C_DOUBLE$LAYOUT,
+        Constants$root.C_DOUBLE$LAYOUT,
+        Constants$root.C_DOUBLE$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle gluUnProject$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "gluUnProject",
-        "(DDDLjdk/incubator/foreign/MemoryAddress;Ljdk/incubator/foreign/MemoryAddress;Ljdk/incubator/foreign/MemoryAddress;Ljdk/incubator/foreign/MemoryAddress;Ljdk/incubator/foreign/MemoryAddress;Ljdk/incubator/foreign/MemoryAddress;)I",
-        constants$939.gluUnProject$FUNC, false
+        "gluUnProject",
+        constants$939.gluUnProject$FUNC
     );
-    static final FunctionDescriptor gluUnProject4$FUNC = FunctionDescriptor.of(C_INT,
-        C_DOUBLE,
-        C_DOUBLE,
-        C_DOUBLE,
-        C_DOUBLE,
-        C_POINTER,
-        C_POINTER,
-        C_POINTER,
-        C_DOUBLE,
-        C_DOUBLE,
-        C_POINTER,
-        C_POINTER,
-        C_POINTER,
-        C_POINTER
+    static final FunctionDescriptor gluUnProject4$FUNC = FunctionDescriptor.of(Constants$root.C_INT$LAYOUT,
+        Constants$root.C_DOUBLE$LAYOUT,
+        Constants$root.C_DOUBLE$LAYOUT,
+        Constants$root.C_DOUBLE$LAYOUT,
+        Constants$root.C_DOUBLE$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_DOUBLE$LAYOUT,
+        Constants$root.C_DOUBLE$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle gluUnProject4$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "gluUnProject4",
-        "(DDDDLjdk/incubator/foreign/MemoryAddress;Ljdk/incubator/foreign/MemoryAddress;Ljdk/incubator/foreign/MemoryAddress;DDLjdk/incubator/foreign/MemoryAddress;Ljdk/incubator/foreign/MemoryAddress;Ljdk/incubator/foreign/MemoryAddress;Ljdk/incubator/foreign/MemoryAddress;)I",
-        constants$939.gluUnProject4$FUNC, false
+        "gluUnProject4",
+        constants$939.gluUnProject4$FUNC
     );
 }
 

@@ -2,32 +2,30 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_INT;
-import static jdk.incubator.foreign.CLinker.C_POINTER;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$784 {
 
     static final FunctionDescriptor PFNGLBEGINOCCLUSIONQUERYNVPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLBEGINOCCLUSIONQUERYNVPROC$MH = RuntimeHelper.downcallHandle(
-        "(I)V",
-        constants$784.PFNGLBEGINOCCLUSIONQUERYNVPROC$FUNC, false
+        constants$784.PFNGLBEGINOCCLUSIONQUERYNVPROC$FUNC
     );
     static final FunctionDescriptor PFNGLENDOCCLUSIONQUERYNVPROC$FUNC = FunctionDescriptor.ofVoid();
     static final MethodHandle PFNGLENDOCCLUSIONQUERYNVPROC$MH = RuntimeHelper.downcallHandle(
-        "()V",
-        constants$784.PFNGLENDOCCLUSIONQUERYNVPROC$FUNC, false
+        constants$784.PFNGLENDOCCLUSIONQUERYNVPROC$FUNC
     );
     static final FunctionDescriptor PFNGLGETOCCLUSIONQUERYIVNVPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLGETOCCLUSIONQUERYIVNVPROC$MH = RuntimeHelper.downcallHandle(
-        "(IILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$784.PFNGLGETOCCLUSIONQUERYIVNVPROC$FUNC, false
+        constants$784.PFNGLGETOCCLUSIONQUERYIVNVPROC$FUNC
     );
 }
 

@@ -2,22 +2,22 @@
 
 package opengl.ubuntu.v20;
 
-import jdk.incubator.foreign.Addressable;
-import jdk.incubator.foreign.MemoryAddress;
-import jdk.incubator.foreign.ResourceScope;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public interface PFNGLDRAWTRANSFORMFEEDBACKSTREAMINSTANCEDPROC {
 
-    void apply(int x0, int x1, int x2, int x3);
-    static MemoryAddress allocate(PFNGLDRAWTRANSFORMFEEDBACKSTREAMINSTANCEDPROC fi) {
-        return RuntimeHelper.upcallStub(PFNGLDRAWTRANSFORMFEEDBACKSTREAMINSTANCEDPROC.class, fi, constants$252.PFNGLDRAWTRANSFORMFEEDBACKSTREAMINSTANCEDPROC$FUNC, "(IIII)V");
+    void apply(int mode, int id, int stream, int instancecount);
+    static MemorySegment allocate(PFNGLDRAWTRANSFORMFEEDBACKSTREAMINSTANCEDPROC fi, MemorySession session) {
+        return RuntimeHelper.upcallStub(PFNGLDRAWTRANSFORMFEEDBACKSTREAMINSTANCEDPROC.class, fi, constants$252.PFNGLDRAWTRANSFORMFEEDBACKSTREAMINSTANCEDPROC$FUNC, session);
     }
-    static MemoryAddress allocate(PFNGLDRAWTRANSFORMFEEDBACKSTREAMINSTANCEDPROC fi, ResourceScope scope) {
-        return RuntimeHelper.upcallStub(PFNGLDRAWTRANSFORMFEEDBACKSTREAMINSTANCEDPROC.class, fi, constants$252.PFNGLDRAWTRANSFORMFEEDBACKSTREAMINSTANCEDPROC$FUNC, "(IIII)V", scope);
-    }
-    static PFNGLDRAWTRANSFORMFEEDBACKSTREAMINSTANCEDPROC ofAddress(MemoryAddress addr) {
-        return (int x0, int x1, int x2, int x3) -> {
+    static PFNGLDRAWTRANSFORMFEEDBACKSTREAMINSTANCEDPROC ofAddress(MemoryAddress addr, MemorySession session) {
+        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
+        return (int _mode, int _id, int _stream, int _instancecount) -> {
             try {
-                constants$252.PFNGLDRAWTRANSFORMFEEDBACKSTREAMINSTANCEDPROC$MH.invokeExact((Addressable)addr, x0, x1, x2, x3);
+                constants$252.PFNGLDRAWTRANSFORMFEEDBACKSTREAMINSTANCEDPROC$MH.invokeExact((Addressable)symbol, _mode, _id, _stream, _instancecount);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

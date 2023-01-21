@@ -2,38 +2,35 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_INT;
-import static jdk.incubator.foreign.CLinker.C_LONG;
-import static jdk.incubator.foreign.CLinker.C_POINTER;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$458 {
 
     static final FunctionDescriptor PFNGLUNIFORM4I64VNVPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLUNIFORM4I64VNVPROC$MH = RuntimeHelper.downcallHandle(
-        "(IILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$458.PFNGLUNIFORM4I64VNVPROC$FUNC, false
+        constants$458.PFNGLUNIFORM4I64VNVPROC$FUNC
     );
     static final FunctionDescriptor PFNGLUNIFORM1UI64NVPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_LONG
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT
     );
     static final MethodHandle PFNGLUNIFORM1UI64NVPROC$MH = RuntimeHelper.downcallHandle(
-        "(IJ)V",
-        constants$458.PFNGLUNIFORM1UI64NVPROC$FUNC, false
+        constants$458.PFNGLUNIFORM1UI64NVPROC$FUNC
     );
     static final FunctionDescriptor PFNGLUNIFORM2UI64NVPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_LONG,
-        C_LONG
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT
     );
     static final MethodHandle PFNGLUNIFORM2UI64NVPROC$MH = RuntimeHelper.downcallHandle(
-        "(IJJ)V",
-        constants$458.PFNGLUNIFORM2UI64NVPROC$FUNC, false
+        constants$458.PFNGLUNIFORM2UI64NVPROC$FUNC
     );
 }
 

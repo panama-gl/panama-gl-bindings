@@ -2,43 +2,41 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_INT;
-import static jdk.incubator.foreign.CLinker.C_POINTER;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$322 {
 
     static final FunctionDescriptor PFNGLBLENDFUNCSEPARATEIARBPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLBLENDFUNCSEPARATEIARBPROC$MH = RuntimeHelper.downcallHandle(
-        "(IIIII)V",
-        constants$322.PFNGLBLENDFUNCSEPARATEIARBPROC$FUNC, false
+        constants$322.PFNGLBLENDFUNCSEPARATEIARBPROC$FUNC
     );
     static final FunctionDescriptor PFNGLDRAWARRAYSINSTANCEDARBPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLDRAWARRAYSINSTANCEDARBPROC$MH = RuntimeHelper.downcallHandle(
-        "(IIII)V",
-        constants$322.PFNGLDRAWARRAYSINSTANCEDARBPROC$FUNC, false
+        constants$322.PFNGLDRAWARRAYSINSTANCEDARBPROC$FUNC
     );
     static final FunctionDescriptor PFNGLDRAWELEMENTSINSTANCEDARBPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_INT,
-        C_POINTER,
-        C_INT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLDRAWELEMENTSINSTANCEDARBPROC$MH = RuntimeHelper.downcallHandle(
-        "(IIILjdk/incubator/foreign/MemoryAddress;I)V",
-        constants$322.PFNGLDRAWELEMENTSINSTANCEDARBPROC$FUNC, false
+        constants$322.PFNGLDRAWELEMENTSINSTANCEDARBPROC$FUNC
     );
 }
 

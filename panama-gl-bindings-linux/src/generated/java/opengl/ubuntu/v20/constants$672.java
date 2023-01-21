@@ -2,36 +2,34 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_INT;
-import static jdk.incubator.foreign.CLinker.C_POINTER;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$672 {
 
     static final FunctionDescriptor PFNGLPRIORITIZETEXTURESEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_POINTER,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLPRIORITIZETEXTURESEXTPROC$MH = RuntimeHelper.downcallHandle(
-        "(ILjdk/incubator/foreign/MemoryAddress;Ljdk/incubator/foreign/MemoryAddress;)V",
-        constants$672.PFNGLPRIORITIZETEXTURESEXTPROC$FUNC, false
+        constants$672.PFNGLPRIORITIZETEXTURESEXTPROC$FUNC
     );
     static final FunctionDescriptor PFNGLTEXTURENORMALEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLTEXTURENORMALEXTPROC$MH = RuntimeHelper.downcallHandle(
-        "(I)V",
-        constants$672.PFNGLTEXTURENORMALEXTPROC$FUNC, false
+        constants$672.PFNGLTEXTURENORMALEXTPROC$FUNC
     );
     static final FunctionDescriptor PFNGLGETQUERYOBJECTI64VEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLGETQUERYOBJECTI64VEXTPROC$MH = RuntimeHelper.downcallHandle(
-        "(IILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$672.PFNGLGETQUERYOBJECTI64VEXTPROC$FUNC, false
+        constants$672.PFNGLGETQUERYOBJECTI64VEXTPROC$FUNC
     );
 }
 

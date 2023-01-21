@@ -2,22 +2,22 @@
 
 package opengl.ubuntu.v20;
 
-import jdk.incubator.foreign.Addressable;
-import jdk.incubator.foreign.MemoryAddress;
-import jdk.incubator.foreign.ResourceScope;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public interface PFNGLTEXTURESTORAGEMEM2DMULTISAMPLEEXTPROC {
 
-    void apply(int x0, int x1, int x2, int x3, int x4, byte x5, int x6, long x7);
-    static MemoryAddress allocate(PFNGLTEXTURESTORAGEMEM2DMULTISAMPLEEXTPROC fi) {
-        return RuntimeHelper.upcallStub(PFNGLTEXTURESTORAGEMEM2DMULTISAMPLEEXTPROC.class, fi, constants$645.PFNGLTEXTURESTORAGEMEM2DMULTISAMPLEEXTPROC$FUNC, "(IIIIIBIJ)V");
+    void apply(int texture, int samples, int internalFormat, int width, int height, byte fixedSampleLocations, int memory, long offset);
+    static MemorySegment allocate(PFNGLTEXTURESTORAGEMEM2DMULTISAMPLEEXTPROC fi, MemorySession session) {
+        return RuntimeHelper.upcallStub(PFNGLTEXTURESTORAGEMEM2DMULTISAMPLEEXTPROC.class, fi, constants$645.PFNGLTEXTURESTORAGEMEM2DMULTISAMPLEEXTPROC$FUNC, session);
     }
-    static MemoryAddress allocate(PFNGLTEXTURESTORAGEMEM2DMULTISAMPLEEXTPROC fi, ResourceScope scope) {
-        return RuntimeHelper.upcallStub(PFNGLTEXTURESTORAGEMEM2DMULTISAMPLEEXTPROC.class, fi, constants$645.PFNGLTEXTURESTORAGEMEM2DMULTISAMPLEEXTPROC$FUNC, "(IIIIIBIJ)V", scope);
-    }
-    static PFNGLTEXTURESTORAGEMEM2DMULTISAMPLEEXTPROC ofAddress(MemoryAddress addr) {
-        return (int x0, int x1, int x2, int x3, int x4, byte x5, int x6, long x7) -> {
+    static PFNGLTEXTURESTORAGEMEM2DMULTISAMPLEEXTPROC ofAddress(MemoryAddress addr, MemorySession session) {
+        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
+        return (int _texture, int _samples, int _internalFormat, int _width, int _height, byte _fixedSampleLocations, int _memory, long _offset) -> {
             try {
-                constants$645.PFNGLTEXTURESTORAGEMEM2DMULTISAMPLEEXTPROC$MH.invokeExact((Addressable)addr, x0, x1, x2, x3, x4, x5, x6, x7);
+                constants$645.PFNGLTEXTURESTORAGEMEM2DMULTISAMPLEEXTPROC$MH.invokeExact((Addressable)symbol, _texture, _samples, _internalFormat, _width, _height, _fixedSampleLocations, _memory, _offset);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

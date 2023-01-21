@@ -2,22 +2,22 @@
 
 package opengl.ubuntu.v20;
 
-import jdk.incubator.foreign.Addressable;
-import jdk.incubator.foreign.MemoryAddress;
-import jdk.incubator.foreign.ResourceScope;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public interface PFNGLGETSHADINGRATEIMAGEPALETTENVPROC {
 
-    void apply(int x0, int x1, jdk.incubator.foreign.MemoryAddress x2);
-    static MemoryAddress allocate(PFNGLGETSHADINGRATEIMAGEPALETTENVPROC fi) {
-        return RuntimeHelper.upcallStub(PFNGLGETSHADINGRATEIMAGEPALETTENVPROC.class, fi, constants$824.PFNGLGETSHADINGRATEIMAGEPALETTENVPROC$FUNC, "(IILjdk/incubator/foreign/MemoryAddress;)V");
+    void apply(int viewport, int entry, java.lang.foreign.MemoryAddress rate);
+    static MemorySegment allocate(PFNGLGETSHADINGRATEIMAGEPALETTENVPROC fi, MemorySession session) {
+        return RuntimeHelper.upcallStub(PFNGLGETSHADINGRATEIMAGEPALETTENVPROC.class, fi, constants$824.PFNGLGETSHADINGRATEIMAGEPALETTENVPROC$FUNC, session);
     }
-    static MemoryAddress allocate(PFNGLGETSHADINGRATEIMAGEPALETTENVPROC fi, ResourceScope scope) {
-        return RuntimeHelper.upcallStub(PFNGLGETSHADINGRATEIMAGEPALETTENVPROC.class, fi, constants$824.PFNGLGETSHADINGRATEIMAGEPALETTENVPROC$FUNC, "(IILjdk/incubator/foreign/MemoryAddress;)V", scope);
-    }
-    static PFNGLGETSHADINGRATEIMAGEPALETTENVPROC ofAddress(MemoryAddress addr) {
-        return (int x0, int x1, jdk.incubator.foreign.MemoryAddress x2) -> {
+    static PFNGLGETSHADINGRATEIMAGEPALETTENVPROC ofAddress(MemoryAddress addr, MemorySession session) {
+        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
+        return (int _viewport, int _entry, java.lang.foreign.MemoryAddress _rate) -> {
             try {
-                constants$824.PFNGLGETSHADINGRATEIMAGEPALETTENVPROC$MH.invokeExact((Addressable)addr, x0, x1, x2);
+                constants$824.PFNGLGETSHADINGRATEIMAGEPALETTENVPROC$MH.invokeExact((Addressable)symbol, _viewport, _entry, (java.lang.foreign.Addressable)_rate);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

@@ -2,22 +2,22 @@
 
 package opengl.ubuntu.v20;
 
-import jdk.incubator.foreign.Addressable;
-import jdk.incubator.foreign.MemoryAddress;
-import jdk.incubator.foreign.ResourceScope;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public interface PFNGLVARIANTSVEXTPROC {
 
-    void apply(int x0, jdk.incubator.foreign.MemoryAddress x1);
-    static MemoryAddress allocate(PFNGLVARIANTSVEXTPROC fi) {
-        return RuntimeHelper.upcallStub(PFNGLVARIANTSVEXTPROC.class, fi, constants$687.PFNGLVARIANTSVEXTPROC$FUNC, "(ILjdk/incubator/foreign/MemoryAddress;)V");
+    void apply(int id, java.lang.foreign.MemoryAddress addr);
+    static MemorySegment allocate(PFNGLVARIANTSVEXTPROC fi, MemorySession session) {
+        return RuntimeHelper.upcallStub(PFNGLVARIANTSVEXTPROC.class, fi, constants$687.PFNGLVARIANTSVEXTPROC$FUNC, session);
     }
-    static MemoryAddress allocate(PFNGLVARIANTSVEXTPROC fi, ResourceScope scope) {
-        return RuntimeHelper.upcallStub(PFNGLVARIANTSVEXTPROC.class, fi, constants$687.PFNGLVARIANTSVEXTPROC$FUNC, "(ILjdk/incubator/foreign/MemoryAddress;)V", scope);
-    }
-    static PFNGLVARIANTSVEXTPROC ofAddress(MemoryAddress addr) {
-        return (int x0, jdk.incubator.foreign.MemoryAddress x1) -> {
+    static PFNGLVARIANTSVEXTPROC ofAddress(MemoryAddress addr, MemorySession session) {
+        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
+        return (int _id, java.lang.foreign.MemoryAddress _addr) -> {
             try {
-                constants$687.PFNGLVARIANTSVEXTPROC$MH.invokeExact((Addressable)addr, x0, x1);
+                constants$687.PFNGLVARIANTSVEXTPROC$MH.invokeExact((Addressable)symbol, _id, (java.lang.foreign.Addressable)_addr);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

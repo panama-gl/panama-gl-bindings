@@ -2,22 +2,22 @@
 
 package opengl.ubuntu.v20;
 
-import jdk.incubator.foreign.Addressable;
-import jdk.incubator.foreign.MemoryAddress;
-import jdk.incubator.foreign.ResourceScope;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public interface PFNGLDRAWCOMMANDSSTATESNVPROC {
 
-    void apply(int x0, jdk.incubator.foreign.MemoryAddress x1, jdk.incubator.foreign.MemoryAddress x2, jdk.incubator.foreign.MemoryAddress x3, jdk.incubator.foreign.MemoryAddress x4, int x5);
-    static MemoryAddress allocate(PFNGLDRAWCOMMANDSSTATESNVPROC fi) {
-        return RuntimeHelper.upcallStub(PFNGLDRAWCOMMANDSSTATESNVPROC.class, fi, constants$734.PFNGLDRAWCOMMANDSSTATESNVPROC$FUNC, "(ILjdk/incubator/foreign/MemoryAddress;Ljdk/incubator/foreign/MemoryAddress;Ljdk/incubator/foreign/MemoryAddress;Ljdk/incubator/foreign/MemoryAddress;I)V");
+    void apply(int buffer, java.lang.foreign.MemoryAddress indirects, java.lang.foreign.MemoryAddress sizes, java.lang.foreign.MemoryAddress states, java.lang.foreign.MemoryAddress fbos, int count);
+    static MemorySegment allocate(PFNGLDRAWCOMMANDSSTATESNVPROC fi, MemorySession session) {
+        return RuntimeHelper.upcallStub(PFNGLDRAWCOMMANDSSTATESNVPROC.class, fi, constants$734.PFNGLDRAWCOMMANDSSTATESNVPROC$FUNC, session);
     }
-    static MemoryAddress allocate(PFNGLDRAWCOMMANDSSTATESNVPROC fi, ResourceScope scope) {
-        return RuntimeHelper.upcallStub(PFNGLDRAWCOMMANDSSTATESNVPROC.class, fi, constants$734.PFNGLDRAWCOMMANDSSTATESNVPROC$FUNC, "(ILjdk/incubator/foreign/MemoryAddress;Ljdk/incubator/foreign/MemoryAddress;Ljdk/incubator/foreign/MemoryAddress;Ljdk/incubator/foreign/MemoryAddress;I)V", scope);
-    }
-    static PFNGLDRAWCOMMANDSSTATESNVPROC ofAddress(MemoryAddress addr) {
-        return (int x0, jdk.incubator.foreign.MemoryAddress x1, jdk.incubator.foreign.MemoryAddress x2, jdk.incubator.foreign.MemoryAddress x3, jdk.incubator.foreign.MemoryAddress x4, int x5) -> {
+    static PFNGLDRAWCOMMANDSSTATESNVPROC ofAddress(MemoryAddress addr, MemorySession session) {
+        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
+        return (int _buffer, java.lang.foreign.MemoryAddress _indirects, java.lang.foreign.MemoryAddress _sizes, java.lang.foreign.MemoryAddress _states, java.lang.foreign.MemoryAddress _fbos, int _count) -> {
             try {
-                constants$734.PFNGLDRAWCOMMANDSSTATESNVPROC$MH.invokeExact((Addressable)addr, x0, x1, x2, x3, x4, x5);
+                constants$734.PFNGLDRAWCOMMANDSSTATESNVPROC$MH.invokeExact((Addressable)symbol, _buffer, (java.lang.foreign.Addressable)_indirects, (java.lang.foreign.Addressable)_sizes, (java.lang.foreign.Addressable)_states, (java.lang.foreign.Addressable)_fbos, _count);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

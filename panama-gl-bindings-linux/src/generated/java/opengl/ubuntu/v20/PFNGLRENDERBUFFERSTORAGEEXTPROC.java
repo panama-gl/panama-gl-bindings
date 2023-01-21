@@ -2,22 +2,22 @@
 
 package opengl.ubuntu.v20;
 
-import jdk.incubator.foreign.Addressable;
-import jdk.incubator.foreign.MemoryAddress;
-import jdk.incubator.foreign.ResourceScope;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public interface PFNGLRENDERBUFFERSTORAGEEXTPROC {
 
-    void apply(int x0, int x1, int x2, int x3);
-    static MemoryAddress allocate(PFNGLRENDERBUFFERSTORAGEEXTPROC fi) {
-        return RuntimeHelper.upcallStub(PFNGLRENDERBUFFERSTORAGEEXTPROC.class, fi, constants$626.PFNGLRENDERBUFFERSTORAGEEXTPROC$FUNC, "(IIII)V");
+    void apply(int target, int internalformat, int width, int height);
+    static MemorySegment allocate(PFNGLRENDERBUFFERSTORAGEEXTPROC fi, MemorySession session) {
+        return RuntimeHelper.upcallStub(PFNGLRENDERBUFFERSTORAGEEXTPROC.class, fi, constants$626.PFNGLRENDERBUFFERSTORAGEEXTPROC$FUNC, session);
     }
-    static MemoryAddress allocate(PFNGLRENDERBUFFERSTORAGEEXTPROC fi, ResourceScope scope) {
-        return RuntimeHelper.upcallStub(PFNGLRENDERBUFFERSTORAGEEXTPROC.class, fi, constants$626.PFNGLRENDERBUFFERSTORAGEEXTPROC$FUNC, "(IIII)V", scope);
-    }
-    static PFNGLRENDERBUFFERSTORAGEEXTPROC ofAddress(MemoryAddress addr) {
-        return (int x0, int x1, int x2, int x3) -> {
+    static PFNGLRENDERBUFFERSTORAGEEXTPROC ofAddress(MemoryAddress addr, MemorySession session) {
+        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
+        return (int _target, int _internalformat, int _width, int _height) -> {
             try {
-                constants$626.PFNGLRENDERBUFFERSTORAGEEXTPROC$MH.invokeExact((Addressable)addr, x0, x1, x2, x3);
+                constants$626.PFNGLRENDERBUFFERSTORAGEEXTPROC$MH.invokeExact((Addressable)symbol, _target, _internalformat, _width, _height);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

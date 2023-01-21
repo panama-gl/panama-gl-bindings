@@ -2,22 +2,22 @@
 
 package opengl.ubuntu.v20;
 
-import jdk.incubator.foreign.Addressable;
-import jdk.incubator.foreign.MemoryAddress;
-import jdk.incubator.foreign.ResourceScope;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public interface PFNGLWINDOWPOS3SARBPROC {
 
-    void apply(short x0, short x1, short x2);
-    static MemoryAddress allocate(PFNGLWINDOWPOS3SARBPROC fi) {
-        return RuntimeHelper.upcallStub(PFNGLWINDOWPOS3SARBPROC.class, fi, constants$405.PFNGLWINDOWPOS3SARBPROC$FUNC, "(SSS)V");
+    void apply(short x, short y, short z);
+    static MemorySegment allocate(PFNGLWINDOWPOS3SARBPROC fi, MemorySession session) {
+        return RuntimeHelper.upcallStub(PFNGLWINDOWPOS3SARBPROC.class, fi, constants$405.PFNGLWINDOWPOS3SARBPROC$FUNC, session);
     }
-    static MemoryAddress allocate(PFNGLWINDOWPOS3SARBPROC fi, ResourceScope scope) {
-        return RuntimeHelper.upcallStub(PFNGLWINDOWPOS3SARBPROC.class, fi, constants$405.PFNGLWINDOWPOS3SARBPROC$FUNC, "(SSS)V", scope);
-    }
-    static PFNGLWINDOWPOS3SARBPROC ofAddress(MemoryAddress addr) {
-        return (short x0, short x1, short x2) -> {
+    static PFNGLWINDOWPOS3SARBPROC ofAddress(MemoryAddress addr, MemorySession session) {
+        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
+        return (short _x, short _y, short _z) -> {
             try {
-                constants$405.PFNGLWINDOWPOS3SARBPROC$MH.invokeExact((Addressable)addr, x0, x1, x2);
+                constants$405.PFNGLWINDOWPOS3SARBPROC$MH.invokeExact((Addressable)symbol, _x, _y, _z);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

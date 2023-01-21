@@ -2,22 +2,22 @@
 
 package opengl.ubuntu.v20;
 
-import jdk.incubator.foreign.Addressable;
-import jdk.incubator.foreign.MemoryAddress;
-import jdk.incubator.foreign.ResourceScope;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public interface PFNGLBINDFRAGDATALOCATIONEXTPROC {
 
-    void apply(int x0, int x1, jdk.incubator.foreign.MemoryAddress x2);
-    static MemoryAddress allocate(PFNGLBINDFRAGDATALOCATIONEXTPROC fi) {
-        return RuntimeHelper.upcallStub(PFNGLBINDFRAGDATALOCATIONEXTPROC.class, fi, constants$632.PFNGLBINDFRAGDATALOCATIONEXTPROC$FUNC, "(IILjdk/incubator/foreign/MemoryAddress;)V");
+    void apply(int program, int color, java.lang.foreign.MemoryAddress name);
+    static MemorySegment allocate(PFNGLBINDFRAGDATALOCATIONEXTPROC fi, MemorySession session) {
+        return RuntimeHelper.upcallStub(PFNGLBINDFRAGDATALOCATIONEXTPROC.class, fi, constants$632.PFNGLBINDFRAGDATALOCATIONEXTPROC$FUNC, session);
     }
-    static MemoryAddress allocate(PFNGLBINDFRAGDATALOCATIONEXTPROC fi, ResourceScope scope) {
-        return RuntimeHelper.upcallStub(PFNGLBINDFRAGDATALOCATIONEXTPROC.class, fi, constants$632.PFNGLBINDFRAGDATALOCATIONEXTPROC$FUNC, "(IILjdk/incubator/foreign/MemoryAddress;)V", scope);
-    }
-    static PFNGLBINDFRAGDATALOCATIONEXTPROC ofAddress(MemoryAddress addr) {
-        return (int x0, int x1, jdk.incubator.foreign.MemoryAddress x2) -> {
+    static PFNGLBINDFRAGDATALOCATIONEXTPROC ofAddress(MemoryAddress addr, MemorySession session) {
+        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
+        return (int _program, int _color, java.lang.foreign.MemoryAddress _name) -> {
             try {
-                constants$632.PFNGLBINDFRAGDATALOCATIONEXTPROC$MH.invokeExact((Addressable)addr, x0, x1, x2);
+                constants$632.PFNGLBINDFRAGDATALOCATIONEXTPROC$MH.invokeExact((Addressable)symbol, _program, _color, (java.lang.foreign.Addressable)_name);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

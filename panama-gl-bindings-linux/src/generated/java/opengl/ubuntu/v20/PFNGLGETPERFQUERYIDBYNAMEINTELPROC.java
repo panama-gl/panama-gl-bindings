@@ -2,22 +2,22 @@
 
 package opengl.ubuntu.v20;
 
-import jdk.incubator.foreign.Addressable;
-import jdk.incubator.foreign.MemoryAddress;
-import jdk.incubator.foreign.ResourceScope;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public interface PFNGLGETPERFQUERYIDBYNAMEINTELPROC {
 
-    void apply(jdk.incubator.foreign.MemoryAddress x0, jdk.incubator.foreign.MemoryAddress x1);
-    static MemoryAddress allocate(PFNGLGETPERFQUERYIDBYNAMEINTELPROC fi) {
-        return RuntimeHelper.upcallStub(PFNGLGETPERFQUERYIDBYNAMEINTELPROC.class, fi, constants$710.PFNGLGETPERFQUERYIDBYNAMEINTELPROC$FUNC, "(Ljdk/incubator/foreign/MemoryAddress;Ljdk/incubator/foreign/MemoryAddress;)V");
+    void apply(java.lang.foreign.MemoryAddress queryName, java.lang.foreign.MemoryAddress queryId);
+    static MemorySegment allocate(PFNGLGETPERFQUERYIDBYNAMEINTELPROC fi, MemorySession session) {
+        return RuntimeHelper.upcallStub(PFNGLGETPERFQUERYIDBYNAMEINTELPROC.class, fi, constants$710.PFNGLGETPERFQUERYIDBYNAMEINTELPROC$FUNC, session);
     }
-    static MemoryAddress allocate(PFNGLGETPERFQUERYIDBYNAMEINTELPROC fi, ResourceScope scope) {
-        return RuntimeHelper.upcallStub(PFNGLGETPERFQUERYIDBYNAMEINTELPROC.class, fi, constants$710.PFNGLGETPERFQUERYIDBYNAMEINTELPROC$FUNC, "(Ljdk/incubator/foreign/MemoryAddress;Ljdk/incubator/foreign/MemoryAddress;)V", scope);
-    }
-    static PFNGLGETPERFQUERYIDBYNAMEINTELPROC ofAddress(MemoryAddress addr) {
-        return (jdk.incubator.foreign.MemoryAddress x0, jdk.incubator.foreign.MemoryAddress x1) -> {
+    static PFNGLGETPERFQUERYIDBYNAMEINTELPROC ofAddress(MemoryAddress addr, MemorySession session) {
+        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
+        return (java.lang.foreign.MemoryAddress _queryName, java.lang.foreign.MemoryAddress _queryId) -> {
             try {
-                constants$710.PFNGLGETPERFQUERYIDBYNAMEINTELPROC$MH.invokeExact((Addressable)addr, x0, x1);
+                constants$710.PFNGLGETPERFQUERYIDBYNAMEINTELPROC$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)_queryName, (java.lang.foreign.Addressable)_queryId);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

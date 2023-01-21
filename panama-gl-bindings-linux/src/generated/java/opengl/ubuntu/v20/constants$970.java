@@ -2,73 +2,64 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_DOUBLE;
-import static jdk.incubator.foreign.CLinker.C_FLOAT;
-import static jdk.incubator.foreign.CLinker.C_INT;
-import static jdk.incubator.foreign.CLinker.C_LONG;
-import static jdk.incubator.foreign.CLinker.C_LONG_LONG;
-import static jdk.incubator.foreign.CLinker.C_POINTER;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$970 {
 
-    static final FunctionDescriptor strtod$FUNC = FunctionDescriptor.of(C_DOUBLE,
-        C_POINTER,
-        C_POINTER
+    static final FunctionDescriptor strtod$FUNC = FunctionDescriptor.of(Constants$root.C_DOUBLE$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle strtod$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "strtod",
-        "(Ljdk/incubator/foreign/MemoryAddress;Ljdk/incubator/foreign/MemoryAddress;)D",
-        constants$970.strtod$FUNC, false
+        "strtod",
+        constants$970.strtod$FUNC
     );
-    static final FunctionDescriptor strtof$FUNC = FunctionDescriptor.of(C_FLOAT,
-        C_POINTER,
-        C_POINTER
+    static final FunctionDescriptor strtof$FUNC = FunctionDescriptor.of(Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle strtof$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "strtof",
-        "(Ljdk/incubator/foreign/MemoryAddress;Ljdk/incubator/foreign/MemoryAddress;)F",
-        constants$970.strtof$FUNC, false
+        "strtof",
+        constants$970.strtof$FUNC
     );
-    static final FunctionDescriptor strtol$FUNC = FunctionDescriptor.of(C_LONG,
-        C_POINTER,
-        C_POINTER,
-        C_INT
+    static final FunctionDescriptor strtol$FUNC = FunctionDescriptor.of(Constants$root.C_LONG_LONG$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle strtol$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "strtol",
-        "(Ljdk/incubator/foreign/MemoryAddress;Ljdk/incubator/foreign/MemoryAddress;I)J",
-        constants$970.strtol$FUNC, false
+        "strtol",
+        constants$970.strtol$FUNC
     );
-    static final FunctionDescriptor strtoul$FUNC = FunctionDescriptor.of(C_LONG,
-        C_POINTER,
-        C_POINTER,
-        C_INT
+    static final FunctionDescriptor strtoul$FUNC = FunctionDescriptor.of(Constants$root.C_LONG_LONG$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle strtoul$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "strtoul",
-        "(Ljdk/incubator/foreign/MemoryAddress;Ljdk/incubator/foreign/MemoryAddress;I)J",
-        constants$970.strtoul$FUNC, false
+        "strtoul",
+        constants$970.strtoul$FUNC
     );
-    static final FunctionDescriptor strtoq$FUNC = FunctionDescriptor.of(C_LONG_LONG,
-        C_POINTER,
-        C_POINTER,
-        C_INT
+    static final FunctionDescriptor strtoq$FUNC = FunctionDescriptor.of(Constants$root.C_LONG_LONG$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle strtoq$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "strtoq",
-        "(Ljdk/incubator/foreign/MemoryAddress;Ljdk/incubator/foreign/MemoryAddress;I)J",
-        constants$970.strtoq$FUNC, false
+        "strtoq",
+        constants$970.strtoq$FUNC
     );
-    static final FunctionDescriptor strtouq$FUNC = FunctionDescriptor.of(C_LONG_LONG,
-        C_POINTER,
-        C_POINTER,
-        C_INT
+    static final FunctionDescriptor strtouq$FUNC = FunctionDescriptor.of(Constants$root.C_LONG_LONG$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle strtouq$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "strtouq",
-        "(Ljdk/incubator/foreign/MemoryAddress;Ljdk/incubator/foreign/MemoryAddress;I)J",
-        constants$970.strtouq$FUNC, false
+        "strtouq",
+        constants$970.strtouq$FUNC
     );
 }
 

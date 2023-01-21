@@ -2,22 +2,22 @@
 
 package opengl.ubuntu.v20;
 
-import jdk.incubator.foreign.Addressable;
-import jdk.incubator.foreign.MemoryAddress;
-import jdk.incubator.foreign.ResourceScope;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public interface PFNGLVERTEXATTRIBP3UIPROC {
 
-    void apply(int x0, int x1, byte x2, int x3);
-    static MemoryAddress allocate(PFNGLVERTEXATTRIBP3UIPROC fi) {
-        return RuntimeHelper.upcallStub(PFNGLVERTEXATTRIBP3UIPROC.class, fi, constants$192.PFNGLVERTEXATTRIBP3UIPROC$FUNC, "(IIBI)V");
+    void apply(int index, int type, byte normalized, int value);
+    static MemorySegment allocate(PFNGLVERTEXATTRIBP3UIPROC fi, MemorySession session) {
+        return RuntimeHelper.upcallStub(PFNGLVERTEXATTRIBP3UIPROC.class, fi, constants$192.PFNGLVERTEXATTRIBP3UIPROC$FUNC, session);
     }
-    static MemoryAddress allocate(PFNGLVERTEXATTRIBP3UIPROC fi, ResourceScope scope) {
-        return RuntimeHelper.upcallStub(PFNGLVERTEXATTRIBP3UIPROC.class, fi, constants$192.PFNGLVERTEXATTRIBP3UIPROC$FUNC, "(IIBI)V", scope);
-    }
-    static PFNGLVERTEXATTRIBP3UIPROC ofAddress(MemoryAddress addr) {
-        return (int x0, int x1, byte x2, int x3) -> {
+    static PFNGLVERTEXATTRIBP3UIPROC ofAddress(MemoryAddress addr, MemorySession session) {
+        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
+        return (int _index, int _type, byte _normalized, int _value) -> {
             try {
-                constants$192.PFNGLVERTEXATTRIBP3UIPROC$MH.invokeExact((Addressable)addr, x0, x1, x2, x3);
+                constants$192.PFNGLVERTEXATTRIBP3UIPROC$MH.invokeExact((Addressable)symbol, _index, _type, _normalized, _value);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

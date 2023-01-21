@@ -2,71 +2,66 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_INT;
-import static jdk.incubator.foreign.CLinker.C_POINTER;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$43 {
 
     static final FunctionDescriptor glDrawPixels$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle glDrawPixels$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "glDrawPixels",
-        "(IIIILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$43.glDrawPixels$FUNC, false
+        "glDrawPixels",
+        constants$43.glDrawPixels$FUNC
     );
     static final FunctionDescriptor glCopyPixels$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle glCopyPixels$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "glCopyPixels",
-        "(IIIII)V",
-        constants$43.glCopyPixels$FUNC, false
+        "glCopyPixels",
+        constants$43.glCopyPixels$FUNC
     );
     static final FunctionDescriptor glStencilFunc$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_INT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle glStencilFunc$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "glStencilFunc",
-        "(III)V",
-        constants$43.glStencilFunc$FUNC, false
+        "glStencilFunc",
+        constants$43.glStencilFunc$FUNC
     );
     static final FunctionDescriptor glStencilMask$FUNC = FunctionDescriptor.ofVoid(
-        C_INT
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle glStencilMask$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "glStencilMask",
-        "(I)V",
-        constants$43.glStencilMask$FUNC, false
+        "glStencilMask",
+        constants$43.glStencilMask$FUNC
     );
     static final FunctionDescriptor glStencilOp$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_INT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle glStencilOp$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "glStencilOp",
-        "(III)V",
-        constants$43.glStencilOp$FUNC, false
+        "glStencilOp",
+        constants$43.glStencilOp$FUNC
     );
     static final FunctionDescriptor glClearStencil$FUNC = FunctionDescriptor.ofVoid(
-        C_INT
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle glClearStencil$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "glClearStencil",
-        "(I)V",
-        constants$43.glClearStencil$FUNC, false
+        "glClearStencil",
+        constants$43.glClearStencil$FUNC
     );
 }
 

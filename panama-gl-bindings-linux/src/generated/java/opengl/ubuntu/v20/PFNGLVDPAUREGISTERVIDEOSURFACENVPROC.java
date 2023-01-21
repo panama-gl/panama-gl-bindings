@@ -2,22 +2,22 @@
 
 package opengl.ubuntu.v20;
 
-import jdk.incubator.foreign.Addressable;
-import jdk.incubator.foreign.MemoryAddress;
-import jdk.incubator.foreign.ResourceScope;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public interface PFNGLVDPAUREGISTERVIDEOSURFACENVPROC {
 
-    long apply(jdk.incubator.foreign.MemoryAddress x0, int x1, int x2, jdk.incubator.foreign.MemoryAddress x3);
-    static MemoryAddress allocate(PFNGLVDPAUREGISTERVIDEOSURFACENVPROC fi) {
-        return RuntimeHelper.upcallStub(PFNGLVDPAUREGISTERVIDEOSURFACENVPROC.class, fi, constants$835.PFNGLVDPAUREGISTERVIDEOSURFACENVPROC$FUNC, "(Ljdk/incubator/foreign/MemoryAddress;IILjdk/incubator/foreign/MemoryAddress;)J");
+    long apply(java.lang.foreign.MemoryAddress vdpSurface, int target, int numTextureNames, java.lang.foreign.MemoryAddress textureNames);
+    static MemorySegment allocate(PFNGLVDPAUREGISTERVIDEOSURFACENVPROC fi, MemorySession session) {
+        return RuntimeHelper.upcallStub(PFNGLVDPAUREGISTERVIDEOSURFACENVPROC.class, fi, constants$835.PFNGLVDPAUREGISTERVIDEOSURFACENVPROC$FUNC, session);
     }
-    static MemoryAddress allocate(PFNGLVDPAUREGISTERVIDEOSURFACENVPROC fi, ResourceScope scope) {
-        return RuntimeHelper.upcallStub(PFNGLVDPAUREGISTERVIDEOSURFACENVPROC.class, fi, constants$835.PFNGLVDPAUREGISTERVIDEOSURFACENVPROC$FUNC, "(Ljdk/incubator/foreign/MemoryAddress;IILjdk/incubator/foreign/MemoryAddress;)J", scope);
-    }
-    static PFNGLVDPAUREGISTERVIDEOSURFACENVPROC ofAddress(MemoryAddress addr) {
-        return (jdk.incubator.foreign.MemoryAddress x0, int x1, int x2, jdk.incubator.foreign.MemoryAddress x3) -> {
+    static PFNGLVDPAUREGISTERVIDEOSURFACENVPROC ofAddress(MemoryAddress addr, MemorySession session) {
+        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
+        return (java.lang.foreign.MemoryAddress _vdpSurface, int _target, int _numTextureNames, java.lang.foreign.MemoryAddress _textureNames) -> {
             try {
-                return (long)constants$835.PFNGLVDPAUREGISTERVIDEOSURFACENVPROC$MH.invokeExact((Addressable)addr, x0, x1, x2, x3);
+                return (long)constants$835.PFNGLVDPAUREGISTERVIDEOSURFACENVPROC$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)_vdpSurface, _target, _numTextureNames, (java.lang.foreign.Addressable)_textureNames);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

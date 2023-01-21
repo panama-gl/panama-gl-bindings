@@ -2,22 +2,22 @@
 
 package opengl.ubuntu.v20;
 
-import jdk.incubator.foreign.Addressable;
-import jdk.incubator.foreign.MemoryAddress;
-import jdk.incubator.foreign.ResourceScope;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public interface PFNGLGETHANDLEARBPROC {
 
-    int apply(int x0);
-    static MemoryAddress allocate(PFNGLGETHANDLEARBPROC fi) {
-        return RuntimeHelper.upcallStub(PFNGLGETHANDLEARBPROC.class, fi, constants$358.PFNGLGETHANDLEARBPROC$FUNC, "(I)I");
+    int apply(int pname);
+    static MemorySegment allocate(PFNGLGETHANDLEARBPROC fi, MemorySession session) {
+        return RuntimeHelper.upcallStub(PFNGLGETHANDLEARBPROC.class, fi, constants$358.PFNGLGETHANDLEARBPROC$FUNC, session);
     }
-    static MemoryAddress allocate(PFNGLGETHANDLEARBPROC fi, ResourceScope scope) {
-        return RuntimeHelper.upcallStub(PFNGLGETHANDLEARBPROC.class, fi, constants$358.PFNGLGETHANDLEARBPROC$FUNC, "(I)I", scope);
-    }
-    static PFNGLGETHANDLEARBPROC ofAddress(MemoryAddress addr) {
-        return (int x0) -> {
+    static PFNGLGETHANDLEARBPROC ofAddress(MemoryAddress addr, MemorySession session) {
+        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
+        return (int _pname) -> {
             try {
-                return (int)constants$358.PFNGLGETHANDLEARBPROC$MH.invokeExact((Addressable)addr, x0);
+                return (int)constants$358.PFNGLGETHANDLEARBPROC$MH.invokeExact((Addressable)symbol, _pname);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

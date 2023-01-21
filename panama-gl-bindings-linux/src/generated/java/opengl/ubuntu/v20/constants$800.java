@@ -2,43 +2,39 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_CHAR;
-import static jdk.incubator.foreign.CLinker.C_FLOAT;
-import static jdk.incubator.foreign.CLinker.C_INT;
-import static jdk.incubator.foreign.CLinker.C_POINTER;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$800 {
 
-    static final FunctionDescriptor PFNGLPOINTALONGPATHNVPROC$FUNC = FunctionDescriptor.of(C_CHAR,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_FLOAT,
-        C_POINTER,
-        C_POINTER,
-        C_POINTER,
-        C_POINTER
+    static final FunctionDescriptor PFNGLPOINTALONGPATHNVPROC$FUNC = FunctionDescriptor.of(Constants$root.C_CHAR$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLPOINTALONGPATHNVPROC$MH = RuntimeHelper.downcallHandle(
-        "(IIIFLjdk/incubator/foreign/MemoryAddress;Ljdk/incubator/foreign/MemoryAddress;Ljdk/incubator/foreign/MemoryAddress;Ljdk/incubator/foreign/MemoryAddress;)B",
-        constants$800.PFNGLPOINTALONGPATHNVPROC$FUNC, false
+        constants$800.PFNGLPOINTALONGPATHNVPROC$FUNC
     );
     static final FunctionDescriptor PFNGLMATRIXLOAD3X2FNVPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLMATRIXLOAD3X2FNVPROC$MH = RuntimeHelper.downcallHandle(
-        "(ILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$800.PFNGLMATRIXLOAD3X2FNVPROC$FUNC, false
+        constants$800.PFNGLMATRIXLOAD3X2FNVPROC$FUNC
     );
     static final FunctionDescriptor PFNGLMATRIXLOAD3X3FNVPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLMATRIXLOAD3X3FNVPROC$MH = RuntimeHelper.downcallHandle(
-        "(ILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$800.PFNGLMATRIXLOAD3X3FNVPROC$FUNC, false
+        constants$800.PFNGLMATRIXLOAD3X3FNVPROC$FUNC
     );
 }
 

@@ -2,36 +2,33 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_CHAR;
-import static jdk.incubator.foreign.CLinker.C_INT;
-import static jdk.incubator.foreign.CLinker.C_POINTER;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$627 {
 
     static final FunctionDescriptor PFNGLGETRENDERBUFFERPARAMETERIVEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLGETRENDERBUFFERPARAMETERIVEXTPROC$MH = RuntimeHelper.downcallHandle(
-        "(IILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$627.PFNGLGETRENDERBUFFERPARAMETERIVEXTPROC$FUNC, false
+        constants$627.PFNGLGETRENDERBUFFERPARAMETERIVEXTPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLISFRAMEBUFFEREXTPROC$FUNC = FunctionDescriptor.of(C_CHAR,
-        C_INT
+    static final FunctionDescriptor PFNGLISFRAMEBUFFEREXTPROC$FUNC = FunctionDescriptor.of(Constants$root.C_CHAR$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLISFRAMEBUFFEREXTPROC$MH = RuntimeHelper.downcallHandle(
-        "(I)B",
-        constants$627.PFNGLISFRAMEBUFFEREXTPROC$FUNC, false
+        constants$627.PFNGLISFRAMEBUFFEREXTPROC$FUNC
     );
     static final FunctionDescriptor PFNGLBINDFRAMEBUFFEREXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLBINDFRAMEBUFFEREXTPROC$MH = RuntimeHelper.downcallHandle(
-        "(II)V",
-        constants$627.PFNGLBINDFRAMEBUFFEREXTPROC$FUNC, false
+        constants$627.PFNGLBINDFRAMEBUFFEREXTPROC$FUNC
     );
 }
 

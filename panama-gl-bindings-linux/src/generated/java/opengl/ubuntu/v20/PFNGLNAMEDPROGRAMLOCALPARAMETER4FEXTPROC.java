@@ -2,22 +2,22 @@
 
 package opengl.ubuntu.v20;
 
-import jdk.incubator.foreign.Addressable;
-import jdk.incubator.foreign.MemoryAddress;
-import jdk.incubator.foreign.ResourceScope;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public interface PFNGLNAMEDPROGRAMLOCALPARAMETER4FEXTPROC {
 
-    void apply(int x0, int x1, int x2, float x3, float x4, float x5, float x6);
-    static MemoryAddress allocate(PFNGLNAMEDPROGRAMLOCALPARAMETER4FEXTPROC fi) {
-        return RuntimeHelper.upcallStub(PFNGLNAMEDPROGRAMLOCALPARAMETER4FEXTPROC.class, fi, constants$592.PFNGLNAMEDPROGRAMLOCALPARAMETER4FEXTPROC$FUNC, "(IIIFFFF)V");
+    void apply(int program, int target, int index, float x, float y, float z, float w);
+    static MemorySegment allocate(PFNGLNAMEDPROGRAMLOCALPARAMETER4FEXTPROC fi, MemorySession session) {
+        return RuntimeHelper.upcallStub(PFNGLNAMEDPROGRAMLOCALPARAMETER4FEXTPROC.class, fi, constants$592.PFNGLNAMEDPROGRAMLOCALPARAMETER4FEXTPROC$FUNC, session);
     }
-    static MemoryAddress allocate(PFNGLNAMEDPROGRAMLOCALPARAMETER4FEXTPROC fi, ResourceScope scope) {
-        return RuntimeHelper.upcallStub(PFNGLNAMEDPROGRAMLOCALPARAMETER4FEXTPROC.class, fi, constants$592.PFNGLNAMEDPROGRAMLOCALPARAMETER4FEXTPROC$FUNC, "(IIIFFFF)V", scope);
-    }
-    static PFNGLNAMEDPROGRAMLOCALPARAMETER4FEXTPROC ofAddress(MemoryAddress addr) {
-        return (int x0, int x1, int x2, float x3, float x4, float x5, float x6) -> {
+    static PFNGLNAMEDPROGRAMLOCALPARAMETER4FEXTPROC ofAddress(MemoryAddress addr, MemorySession session) {
+        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
+        return (int _program, int _target, int _index, float _x, float _y, float _z, float _w) -> {
             try {
-                constants$592.PFNGLNAMEDPROGRAMLOCALPARAMETER4FEXTPROC$MH.invokeExact((Addressable)addr, x0, x1, x2, x3, x4, x5, x6);
+                constants$592.PFNGLNAMEDPROGRAMLOCALPARAMETER4FEXTPROC$MH.invokeExact((Addressable)symbol, _program, _target, _index, _x, _y, _z, _w);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

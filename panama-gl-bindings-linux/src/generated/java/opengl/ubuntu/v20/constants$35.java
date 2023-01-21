@@ -2,70 +2,64 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_INT;
-import static jdk.incubator.foreign.CLinker.C_POINTER;
-import static jdk.incubator.foreign.CLinker.C_SHORT;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$35 {
 
     static final FunctionDescriptor glRecti$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle glRecti$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "glRecti",
-        "(IIII)V",
-        constants$35.glRecti$FUNC, false
+        "glRecti",
+        constants$35.glRecti$FUNC
     );
     static final FunctionDescriptor glRects$FUNC = FunctionDescriptor.ofVoid(
-        C_SHORT,
-        C_SHORT,
-        C_SHORT,
-        C_SHORT
+        Constants$root.C_SHORT$LAYOUT,
+        Constants$root.C_SHORT$LAYOUT,
+        Constants$root.C_SHORT$LAYOUT,
+        Constants$root.C_SHORT$LAYOUT
     );
     static final MethodHandle glRects$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "glRects",
-        "(SSSS)V",
-        constants$35.glRects$FUNC, false
+        "glRects",
+        constants$35.glRects$FUNC
     );
     static final FunctionDescriptor glRectdv$FUNC = FunctionDescriptor.ofVoid(
-        C_POINTER,
-        C_POINTER
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle glRectdv$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "glRectdv",
-        "(Ljdk/incubator/foreign/MemoryAddress;Ljdk/incubator/foreign/MemoryAddress;)V",
-        constants$35.glRectdv$FUNC, false
+        "glRectdv",
+        constants$35.glRectdv$FUNC
     );
     static final FunctionDescriptor glRectfv$FUNC = FunctionDescriptor.ofVoid(
-        C_POINTER,
-        C_POINTER
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle glRectfv$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "glRectfv",
-        "(Ljdk/incubator/foreign/MemoryAddress;Ljdk/incubator/foreign/MemoryAddress;)V",
-        constants$35.glRectfv$FUNC, false
+        "glRectfv",
+        constants$35.glRectfv$FUNC
     );
     static final FunctionDescriptor glRectiv$FUNC = FunctionDescriptor.ofVoid(
-        C_POINTER,
-        C_POINTER
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle glRectiv$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "glRectiv",
-        "(Ljdk/incubator/foreign/MemoryAddress;Ljdk/incubator/foreign/MemoryAddress;)V",
-        constants$35.glRectiv$FUNC, false
+        "glRectiv",
+        constants$35.glRectiv$FUNC
     );
     static final FunctionDescriptor glRectsv$FUNC = FunctionDescriptor.ofVoid(
-        C_POINTER,
-        C_POINTER
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle glRectsv$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "glRectsv",
-        "(Ljdk/incubator/foreign/MemoryAddress;Ljdk/incubator/foreign/MemoryAddress;)V",
-        constants$35.glRectsv$FUNC, false
+        "glRectsv",
+        constants$35.glRectsv$FUNC
     );
 }
 

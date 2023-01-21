@@ -2,37 +2,35 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_INT;
-import static jdk.incubator.foreign.CLinker.C_POINTER;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$663 {
 
     static final FunctionDescriptor PFNGLIMPORTSEMAPHOREWIN32HANDLEEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLIMPORTSEMAPHOREWIN32HANDLEEXTPROC$MH = RuntimeHelper.downcallHandle(
-        "(IILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$663.PFNGLIMPORTSEMAPHOREWIN32HANDLEEXTPROC$FUNC, false
+        constants$663.PFNGLIMPORTSEMAPHOREWIN32HANDLEEXTPROC$FUNC
     );
     static final FunctionDescriptor PFNGLIMPORTSEMAPHOREWIN32NAMEEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLIMPORTSEMAPHOREWIN32NAMEEXTPROC$MH = RuntimeHelper.downcallHandle(
-        "(IILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$663.PFNGLIMPORTSEMAPHOREWIN32NAMEEXTPROC$FUNC, false
+        constants$663.PFNGLIMPORTSEMAPHOREWIN32NAMEEXTPROC$FUNC
     );
     static final FunctionDescriptor PFNGLUSESHADERPROGRAMEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLUSESHADERPROGRAMEXTPROC$MH = RuntimeHelper.downcallHandle(
-        "(II)V",
-        constants$663.PFNGLUSESHADERPROGRAMEXTPROC$FUNC, false
+        constants$663.PFNGLUSESHADERPROGRAMEXTPROC$FUNC
     );
 }
 

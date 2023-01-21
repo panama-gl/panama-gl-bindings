@@ -2,22 +2,22 @@
 
 package opengl.ubuntu.v20;
 
-import jdk.incubator.foreign.Addressable;
-import jdk.incubator.foreign.MemoryAddress;
-import jdk.incubator.foreign.ResourceScope;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public interface PFNGLFLUSHMAPPEDBUFFERRANGEAPPLEPROC {
 
-    void apply(int x0, long x1, long x2);
-    static MemoryAddress allocate(PFNGLFLUSHMAPPEDBUFFERRANGEAPPLEPROC fi) {
-        return RuntimeHelper.upcallStub(PFNGLFLUSHMAPPEDBUFFERRANGEAPPLEPROC.class, fi, constants$479.PFNGLFLUSHMAPPEDBUFFERRANGEAPPLEPROC$FUNC, "(IJJ)V");
+    void apply(int target, long offset, long size);
+    static MemorySegment allocate(PFNGLFLUSHMAPPEDBUFFERRANGEAPPLEPROC fi, MemorySession session) {
+        return RuntimeHelper.upcallStub(PFNGLFLUSHMAPPEDBUFFERRANGEAPPLEPROC.class, fi, constants$479.PFNGLFLUSHMAPPEDBUFFERRANGEAPPLEPROC$FUNC, session);
     }
-    static MemoryAddress allocate(PFNGLFLUSHMAPPEDBUFFERRANGEAPPLEPROC fi, ResourceScope scope) {
-        return RuntimeHelper.upcallStub(PFNGLFLUSHMAPPEDBUFFERRANGEAPPLEPROC.class, fi, constants$479.PFNGLFLUSHMAPPEDBUFFERRANGEAPPLEPROC$FUNC, "(IJJ)V", scope);
-    }
-    static PFNGLFLUSHMAPPEDBUFFERRANGEAPPLEPROC ofAddress(MemoryAddress addr) {
-        return (int x0, long x1, long x2) -> {
+    static PFNGLFLUSHMAPPEDBUFFERRANGEAPPLEPROC ofAddress(MemoryAddress addr, MemorySession session) {
+        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
+        return (int _target, long _offset, long _size) -> {
             try {
-                constants$479.PFNGLFLUSHMAPPEDBUFFERRANGEAPPLEPROC$MH.invokeExact((Addressable)addr, x0, x1, x2);
+                constants$479.PFNGLFLUSHMAPPEDBUFFERRANGEAPPLEPROC$MH.invokeExact((Addressable)symbol, _target, _offset, _size);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

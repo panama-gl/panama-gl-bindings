@@ -2,22 +2,22 @@
 
 package opengl.ubuntu.v20;
 
-import jdk.incubator.foreign.Addressable;
-import jdk.incubator.foreign.MemoryAddress;
-import jdk.incubator.foreign.ResourceScope;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public interface PFNGLNAMEDFRAMEBUFFERTEXTUREFACEEXTPROC {
 
-    void apply(int x0, int x1, int x2, int x3, int x4);
-    static MemoryAddress allocate(PFNGLNAMEDFRAMEBUFFERTEXTUREFACEEXTPROC fi) {
-        return RuntimeHelper.upcallStub(PFNGLNAMEDFRAMEBUFFERTEXTUREFACEEXTPROC.class, fi, constants$600.PFNGLNAMEDFRAMEBUFFERTEXTUREFACEEXTPROC$FUNC, "(IIIII)V");
+    void apply(int framebuffer, int attachment, int texture, int level, int face);
+    static MemorySegment allocate(PFNGLNAMEDFRAMEBUFFERTEXTUREFACEEXTPROC fi, MemorySession session) {
+        return RuntimeHelper.upcallStub(PFNGLNAMEDFRAMEBUFFERTEXTUREFACEEXTPROC.class, fi, constants$600.PFNGLNAMEDFRAMEBUFFERTEXTUREFACEEXTPROC$FUNC, session);
     }
-    static MemoryAddress allocate(PFNGLNAMEDFRAMEBUFFERTEXTUREFACEEXTPROC fi, ResourceScope scope) {
-        return RuntimeHelper.upcallStub(PFNGLNAMEDFRAMEBUFFERTEXTUREFACEEXTPROC.class, fi, constants$600.PFNGLNAMEDFRAMEBUFFERTEXTUREFACEEXTPROC$FUNC, "(IIIII)V", scope);
-    }
-    static PFNGLNAMEDFRAMEBUFFERTEXTUREFACEEXTPROC ofAddress(MemoryAddress addr) {
-        return (int x0, int x1, int x2, int x3, int x4) -> {
+    static PFNGLNAMEDFRAMEBUFFERTEXTUREFACEEXTPROC ofAddress(MemoryAddress addr, MemorySession session) {
+        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
+        return (int _framebuffer, int _attachment, int _texture, int _level, int _face) -> {
             try {
-                constants$600.PFNGLNAMEDFRAMEBUFFERTEXTUREFACEEXTPROC$MH.invokeExact((Addressable)addr, x0, x1, x2, x3, x4);
+                constants$600.PFNGLNAMEDFRAMEBUFFERTEXTUREFACEEXTPROC$MH.invokeExact((Addressable)symbol, _framebuffer, _attachment, _texture, _level, _face);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

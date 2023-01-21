@@ -2,22 +2,22 @@
 
 package opengl.ubuntu.v20;
 
-import jdk.incubator.foreign.Addressable;
-import jdk.incubator.foreign.MemoryAddress;
-import jdk.incubator.foreign.ResourceScope;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public interface PFNGLFOGCOORDFVEXTPROC {
 
-    void apply(jdk.incubator.foreign.MemoryAddress x0);
-    static MemoryAddress allocate(PFNGLFOGCOORDFVEXTPROC fi) {
-        return RuntimeHelper.upcallStub(PFNGLFOGCOORDFVEXTPROC.class, fi, constants$623.PFNGLFOGCOORDFVEXTPROC$FUNC, "(Ljdk/incubator/foreign/MemoryAddress;)V");
+    void apply(java.lang.foreign.MemoryAddress coord);
+    static MemorySegment allocate(PFNGLFOGCOORDFVEXTPROC fi, MemorySession session) {
+        return RuntimeHelper.upcallStub(PFNGLFOGCOORDFVEXTPROC.class, fi, constants$623.PFNGLFOGCOORDFVEXTPROC$FUNC, session);
     }
-    static MemoryAddress allocate(PFNGLFOGCOORDFVEXTPROC fi, ResourceScope scope) {
-        return RuntimeHelper.upcallStub(PFNGLFOGCOORDFVEXTPROC.class, fi, constants$623.PFNGLFOGCOORDFVEXTPROC$FUNC, "(Ljdk/incubator/foreign/MemoryAddress;)V", scope);
-    }
-    static PFNGLFOGCOORDFVEXTPROC ofAddress(MemoryAddress addr) {
-        return (jdk.incubator.foreign.MemoryAddress x0) -> {
+    static PFNGLFOGCOORDFVEXTPROC ofAddress(MemoryAddress addr, MemorySession session) {
+        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
+        return (java.lang.foreign.MemoryAddress _coord) -> {
             try {
-                constants$623.PFNGLFOGCOORDFVEXTPROC$MH.invokeExact((Addressable)addr, x0);
+                constants$623.PFNGLFOGCOORDFVEXTPROC$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)_coord);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

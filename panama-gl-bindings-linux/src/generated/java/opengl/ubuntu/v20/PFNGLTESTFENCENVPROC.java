@@ -2,22 +2,22 @@
 
 package opengl.ubuntu.v20;
 
-import jdk.incubator.foreign.Addressable;
-import jdk.incubator.foreign.MemoryAddress;
-import jdk.incubator.foreign.ResourceScope;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public interface PFNGLTESTFENCENVPROC {
 
-    byte apply(int x0);
-    static MemoryAddress allocate(PFNGLTESTFENCENVPROC fi) {
-        return RuntimeHelper.upcallStub(PFNGLTESTFENCENVPROC.class, fi, constants$748.PFNGLTESTFENCENVPROC$FUNC, "(I)B");
+    byte apply(int fence);
+    static MemorySegment allocate(PFNGLTESTFENCENVPROC fi, MemorySession session) {
+        return RuntimeHelper.upcallStub(PFNGLTESTFENCENVPROC.class, fi, constants$748.PFNGLTESTFENCENVPROC$FUNC, session);
     }
-    static MemoryAddress allocate(PFNGLTESTFENCENVPROC fi, ResourceScope scope) {
-        return RuntimeHelper.upcallStub(PFNGLTESTFENCENVPROC.class, fi, constants$748.PFNGLTESTFENCENVPROC$FUNC, "(I)B", scope);
-    }
-    static PFNGLTESTFENCENVPROC ofAddress(MemoryAddress addr) {
-        return (int x0) -> {
+    static PFNGLTESTFENCENVPROC ofAddress(MemoryAddress addr, MemorySession session) {
+        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
+        return (int _fence) -> {
             try {
-                return (byte)constants$748.PFNGLTESTFENCENVPROC$MH.invokeExact((Addressable)addr, x0);
+                return (byte)constants$748.PFNGLTESTFENCENVPROC$MH.invokeExact((Addressable)symbol, _fence);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

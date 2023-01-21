@@ -2,22 +2,22 @@
 
 package opengl.ubuntu.v20;
 
-import jdk.incubator.foreign.Addressable;
-import jdk.incubator.foreign.MemoryAddress;
-import jdk.incubator.foreign.ResourceScope;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public interface PFNGLBINDIMAGETEXTUREEXTPROC {
 
-    void apply(int x0, int x1, int x2, byte x3, int x4, int x5, int x6);
-    static MemoryAddress allocate(PFNGLBINDIMAGETEXTUREEXTPROC fi) {
-        return RuntimeHelper.upcallStub(PFNGLBINDIMAGETEXTUREEXTPROC.class, fi, constants$665.PFNGLBINDIMAGETEXTUREEXTPROC$FUNC, "(IIIBIII)V");
+    void apply(int index, int texture, int level, byte layered, int layer, int access, int format);
+    static MemorySegment allocate(PFNGLBINDIMAGETEXTUREEXTPROC fi, MemorySession session) {
+        return RuntimeHelper.upcallStub(PFNGLBINDIMAGETEXTUREEXTPROC.class, fi, constants$665.PFNGLBINDIMAGETEXTUREEXTPROC$FUNC, session);
     }
-    static MemoryAddress allocate(PFNGLBINDIMAGETEXTUREEXTPROC fi, ResourceScope scope) {
-        return RuntimeHelper.upcallStub(PFNGLBINDIMAGETEXTUREEXTPROC.class, fi, constants$665.PFNGLBINDIMAGETEXTUREEXTPROC$FUNC, "(IIIBIII)V", scope);
-    }
-    static PFNGLBINDIMAGETEXTUREEXTPROC ofAddress(MemoryAddress addr) {
-        return (int x0, int x1, int x2, byte x3, int x4, int x5, int x6) -> {
+    static PFNGLBINDIMAGETEXTUREEXTPROC ofAddress(MemoryAddress addr, MemorySession session) {
+        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
+        return (int _index, int _texture, int _level, byte _layered, int _layer, int _access, int _format) -> {
             try {
-                constants$665.PFNGLBINDIMAGETEXTUREEXTPROC$MH.invokeExact((Addressable)addr, x0, x1, x2, x3, x4, x5, x6);
+                constants$665.PFNGLBINDIMAGETEXTUREEXTPROC$MH.invokeExact((Addressable)symbol, _index, _texture, _level, _layered, _layer, _access, _format);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

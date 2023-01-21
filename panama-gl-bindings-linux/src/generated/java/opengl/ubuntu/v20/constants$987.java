@@ -2,27 +2,23 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_INT;
-import static jdk.incubator.foreign.CLinker.C_POINTER;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.CLinker;
-import jdk.incubator.foreign.FunctionDescriptor;
-import jdk.incubator.foreign.MemoryAddress;
-import jdk.incubator.foreign.MemorySegment;
-import jdk.incubator.foreign.ResourceScope;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$987 {
 
-    static final FunctionDescriptor getloadavg$FUNC = FunctionDescriptor.of(C_INT,
-        C_POINTER,
-        C_INT
+    static final FunctionDescriptor getloadavg$FUNC = FunctionDescriptor.of(Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle getloadavg$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "getloadavg",
-        "(Ljdk/incubator/foreign/MemoryAddress;I)I",
-        constants$987.getloadavg$FUNC, false
+        "getloadavg",
+        constants$987.getloadavg$FUNC
     );
     static final MemoryAddress NULL$ADDR = MemoryAddress.ofLong(0L);
-    static final MemorySegment __FD_ZERO_STOS$SEGMENT = CLinker.toCString("stosq", ResourceScope.newImplicitScope());
+    static final MemorySegment __FD_ZERO_STOS$SEGMENT = RuntimeHelper.CONSTANT_ALLOCATOR.allocateUtf8String("stosq");
 }
 
 

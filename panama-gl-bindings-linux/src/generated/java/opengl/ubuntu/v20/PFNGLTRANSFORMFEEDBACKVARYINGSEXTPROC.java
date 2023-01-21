@@ -2,22 +2,22 @@
 
 package opengl.ubuntu.v20;
 
-import jdk.incubator.foreign.Addressable;
-import jdk.incubator.foreign.MemoryAddress;
-import jdk.incubator.foreign.ResourceScope;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public interface PFNGLTRANSFORMFEEDBACKVARYINGSEXTPROC {
 
-    void apply(int x0, int x1, jdk.incubator.foreign.MemoryAddress x2, int x3);
-    static MemoryAddress allocate(PFNGLTRANSFORMFEEDBACKVARYINGSEXTPROC fi) {
-        return RuntimeHelper.upcallStub(PFNGLTRANSFORMFEEDBACKVARYINGSEXTPROC.class, fi, constants$675.PFNGLTRANSFORMFEEDBACKVARYINGSEXTPROC$FUNC, "(IILjdk/incubator/foreign/MemoryAddress;I)V");
+    void apply(int program, int count, java.lang.foreign.MemoryAddress varyings, int bufferMode);
+    static MemorySegment allocate(PFNGLTRANSFORMFEEDBACKVARYINGSEXTPROC fi, MemorySession session) {
+        return RuntimeHelper.upcallStub(PFNGLTRANSFORMFEEDBACKVARYINGSEXTPROC.class, fi, constants$675.PFNGLTRANSFORMFEEDBACKVARYINGSEXTPROC$FUNC, session);
     }
-    static MemoryAddress allocate(PFNGLTRANSFORMFEEDBACKVARYINGSEXTPROC fi, ResourceScope scope) {
-        return RuntimeHelper.upcallStub(PFNGLTRANSFORMFEEDBACKVARYINGSEXTPROC.class, fi, constants$675.PFNGLTRANSFORMFEEDBACKVARYINGSEXTPROC$FUNC, "(IILjdk/incubator/foreign/MemoryAddress;I)V", scope);
-    }
-    static PFNGLTRANSFORMFEEDBACKVARYINGSEXTPROC ofAddress(MemoryAddress addr) {
-        return (int x0, int x1, jdk.incubator.foreign.MemoryAddress x2, int x3) -> {
+    static PFNGLTRANSFORMFEEDBACKVARYINGSEXTPROC ofAddress(MemoryAddress addr, MemorySession session) {
+        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
+        return (int _program, int _count, java.lang.foreign.MemoryAddress _varyings, int _bufferMode) -> {
             try {
-                constants$675.PFNGLTRANSFORMFEEDBACKVARYINGSEXTPROC$MH.invokeExact((Addressable)addr, x0, x1, x2, x3);
+                constants$675.PFNGLTRANSFORMFEEDBACKVARYINGSEXTPROC$MH.invokeExact((Addressable)symbol, _program, _count, (java.lang.foreign.Addressable)_varyings, _bufferMode);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

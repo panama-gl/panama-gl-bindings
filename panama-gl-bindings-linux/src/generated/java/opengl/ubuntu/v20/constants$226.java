@@ -2,40 +2,37 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_DOUBLE;
-import static jdk.incubator.foreign.CLinker.C_INT;
-import static jdk.incubator.foreign.CLinker.C_POINTER;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$226 {
 
     static final FunctionDescriptor PFNGLPROGRAMUNIFORM1DPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_DOUBLE
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_DOUBLE$LAYOUT
     );
     static final MethodHandle PFNGLPROGRAMUNIFORM1DPROC$MH = RuntimeHelper.downcallHandle(
-        "(IID)V",
-        constants$226.PFNGLPROGRAMUNIFORM1DPROC$FUNC, false
+        constants$226.PFNGLPROGRAMUNIFORM1DPROC$FUNC
     );
     static final FunctionDescriptor PFNGLPROGRAMUNIFORM1DVPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLPROGRAMUNIFORM1DVPROC$MH = RuntimeHelper.downcallHandle(
-        "(IIILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$226.PFNGLPROGRAMUNIFORM1DVPROC$FUNC, false
+        constants$226.PFNGLPROGRAMUNIFORM1DVPROC$FUNC
     );
     static final FunctionDescriptor PFNGLPROGRAMUNIFORM1UIPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_INT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLPROGRAMUNIFORM1UIPROC$MH = RuntimeHelper.downcallHandle(
-        "(III)V",
-        constants$226.PFNGLPROGRAMUNIFORM1UIPROC$FUNC, false
+        constants$226.PFNGLPROGRAMUNIFORM1UIPROC$FUNC
     );
 }
 

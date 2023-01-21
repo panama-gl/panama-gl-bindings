@@ -2,42 +2,39 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_FLOAT;
-import static jdk.incubator.foreign.CLinker.C_INT;
-import static jdk.incubator.foreign.CLinker.C_POINTER;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$326 {
 
     static final FunctionDescriptor PFNGLPROGRAMLOCALPARAMETER4DVARBPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLPROGRAMLOCALPARAMETER4DVARBPROC$MH = RuntimeHelper.downcallHandle(
-        "(IILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$326.PFNGLPROGRAMLOCALPARAMETER4DVARBPROC$FUNC, false
+        constants$326.PFNGLPROGRAMLOCALPARAMETER4DVARBPROC$FUNC
     );
     static final FunctionDescriptor PFNGLPROGRAMLOCALPARAMETER4FARBPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_FLOAT,
-        C_FLOAT,
-        C_FLOAT,
-        C_FLOAT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT
     );
     static final MethodHandle PFNGLPROGRAMLOCALPARAMETER4FARBPROC$MH = RuntimeHelper.downcallHandle(
-        "(IIFFFF)V",
-        constants$326.PFNGLPROGRAMLOCALPARAMETER4FARBPROC$FUNC, false
+        constants$326.PFNGLPROGRAMLOCALPARAMETER4FARBPROC$FUNC
     );
     static final FunctionDescriptor PFNGLPROGRAMLOCALPARAMETER4FVARBPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLPROGRAMLOCALPARAMETER4FVARBPROC$MH = RuntimeHelper.downcallHandle(
-        "(IILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$326.PFNGLPROGRAMLOCALPARAMETER4FVARBPROC$FUNC, false
+        constants$326.PFNGLPROGRAMLOCALPARAMETER4FVARBPROC$FUNC
     );
 }
 

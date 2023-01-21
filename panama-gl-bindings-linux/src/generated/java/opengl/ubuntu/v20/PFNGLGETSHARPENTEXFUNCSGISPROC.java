@@ -2,22 +2,22 @@
 
 package opengl.ubuntu.v20;
 
-import jdk.incubator.foreign.Addressable;
-import jdk.incubator.foreign.MemoryAddress;
-import jdk.incubator.foreign.ResourceScope;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public interface PFNGLGETSHARPENTEXFUNCSGISPROC {
 
-    void apply(int x0, jdk.incubator.foreign.MemoryAddress x1);
-    static MemoryAddress allocate(PFNGLGETSHARPENTEXFUNCSGISPROC fi) {
-        return RuntimeHelper.upcallStub(PFNGLGETSHARPENTEXFUNCSGISPROC.class, fi, constants$888.PFNGLGETSHARPENTEXFUNCSGISPROC$FUNC, "(ILjdk/incubator/foreign/MemoryAddress;)V");
+    void apply(int target, java.lang.foreign.MemoryAddress points);
+    static MemorySegment allocate(PFNGLGETSHARPENTEXFUNCSGISPROC fi, MemorySession session) {
+        return RuntimeHelper.upcallStub(PFNGLGETSHARPENTEXFUNCSGISPROC.class, fi, constants$888.PFNGLGETSHARPENTEXFUNCSGISPROC$FUNC, session);
     }
-    static MemoryAddress allocate(PFNGLGETSHARPENTEXFUNCSGISPROC fi, ResourceScope scope) {
-        return RuntimeHelper.upcallStub(PFNGLGETSHARPENTEXFUNCSGISPROC.class, fi, constants$888.PFNGLGETSHARPENTEXFUNCSGISPROC$FUNC, "(ILjdk/incubator/foreign/MemoryAddress;)V", scope);
-    }
-    static PFNGLGETSHARPENTEXFUNCSGISPROC ofAddress(MemoryAddress addr) {
-        return (int x0, jdk.incubator.foreign.MemoryAddress x1) -> {
+    static PFNGLGETSHARPENTEXFUNCSGISPROC ofAddress(MemoryAddress addr, MemorySession session) {
+        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
+        return (int _target, java.lang.foreign.MemoryAddress _points) -> {
             try {
-                constants$888.PFNGLGETSHARPENTEXFUNCSGISPROC$MH.invokeExact((Addressable)addr, x0, x1);
+                constants$888.PFNGLGETSHARPENTEXFUNCSGISPROC$MH.invokeExact((Addressable)symbol, _target, (java.lang.foreign.Addressable)_points);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

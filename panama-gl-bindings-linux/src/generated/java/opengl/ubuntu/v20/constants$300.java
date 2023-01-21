@@ -2,39 +2,37 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_INT;
-import static jdk.incubator.foreign.CLinker.C_POINTER;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$300 {
 
     static final FunctionDescriptor PFNGLGETVERTEXARRAYINDEXEDIVPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLGETVERTEXARRAYINDEXEDIVPROC$MH = RuntimeHelper.downcallHandle(
-        "(IIILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$300.PFNGLGETVERTEXARRAYINDEXEDIVPROC$FUNC, false
+        constants$300.PFNGLGETVERTEXARRAYINDEXEDIVPROC$FUNC
     );
     static final FunctionDescriptor PFNGLGETVERTEXARRAYINDEXED64IVPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLGETVERTEXARRAYINDEXED64IVPROC$MH = RuntimeHelper.downcallHandle(
-        "(IIILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$300.PFNGLGETVERTEXARRAYINDEXED64IVPROC$FUNC, false
+        constants$300.PFNGLGETVERTEXARRAYINDEXED64IVPROC$FUNC
     );
     static final FunctionDescriptor PFNGLCREATESAMPLERSPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLCREATESAMPLERSPROC$MH = RuntimeHelper.downcallHandle(
-        "(ILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$300.PFNGLCREATESAMPLERSPROC$FUNC, false
+        constants$300.PFNGLCREATESAMPLERSPROC$FUNC
     );
 }
 

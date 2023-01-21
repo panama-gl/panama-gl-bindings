@@ -2,64 +2,58 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_CHAR;
-import static jdk.incubator.foreign.CLinker.C_DOUBLE;
-import static jdk.incubator.foreign.CLinker.C_POINTER;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$16 {
 
     static final FunctionDescriptor glVertex4dv$FUNC = FunctionDescriptor.ofVoid(
-        C_POINTER
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle glVertex4dv$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "glVertex4dv",
-        "(Ljdk/incubator/foreign/MemoryAddress;)V",
-        constants$16.glVertex4dv$FUNC, false
+        "glVertex4dv",
+        constants$16.glVertex4dv$FUNC
     );
     static final FunctionDescriptor glVertex4fv$FUNC = FunctionDescriptor.ofVoid(
-        C_POINTER
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle glVertex4fv$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "glVertex4fv",
-        "(Ljdk/incubator/foreign/MemoryAddress;)V",
-        constants$16.glVertex4fv$FUNC, false
+        "glVertex4fv",
+        constants$16.glVertex4fv$FUNC
     );
     static final FunctionDescriptor glVertex4iv$FUNC = FunctionDescriptor.ofVoid(
-        C_POINTER
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle glVertex4iv$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "glVertex4iv",
-        "(Ljdk/incubator/foreign/MemoryAddress;)V",
-        constants$16.glVertex4iv$FUNC, false
+        "glVertex4iv",
+        constants$16.glVertex4iv$FUNC
     );
     static final FunctionDescriptor glVertex4sv$FUNC = FunctionDescriptor.ofVoid(
-        C_POINTER
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle glVertex4sv$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "glVertex4sv",
-        "(Ljdk/incubator/foreign/MemoryAddress;)V",
-        constants$16.glVertex4sv$FUNC, false
+        "glVertex4sv",
+        constants$16.glVertex4sv$FUNC
     );
     static final FunctionDescriptor glNormal3b$FUNC = FunctionDescriptor.ofVoid(
-        C_CHAR,
-        C_CHAR,
-        C_CHAR
+        Constants$root.C_CHAR$LAYOUT,
+        Constants$root.C_CHAR$LAYOUT,
+        Constants$root.C_CHAR$LAYOUT
     );
     static final MethodHandle glNormal3b$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "glNormal3b",
-        "(BBB)V",
-        constants$16.glNormal3b$FUNC, false
+        "glNormal3b",
+        constants$16.glNormal3b$FUNC
     );
     static final FunctionDescriptor glNormal3d$FUNC = FunctionDescriptor.ofVoid(
-        C_DOUBLE,
-        C_DOUBLE,
-        C_DOUBLE
+        Constants$root.C_DOUBLE$LAYOUT,
+        Constants$root.C_DOUBLE$LAYOUT,
+        Constants$root.C_DOUBLE$LAYOUT
     );
     static final MethodHandle glNormal3d$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "glNormal3d",
-        "(DDD)V",
-        constants$16.glNormal3d$FUNC, false
+        "glNormal3d",
+        constants$16.glNormal3d$FUNC
     );
 }
 

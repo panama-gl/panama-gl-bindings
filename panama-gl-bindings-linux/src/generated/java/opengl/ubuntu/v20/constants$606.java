@@ -2,36 +2,34 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_INT;
-import static jdk.incubator.foreign.CLinker.C_POINTER;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$606 {
 
     static final FunctionDescriptor PFNGLENABLEVERTEXARRAYATTRIBEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLENABLEVERTEXARRAYATTRIBEXTPROC$MH = RuntimeHelper.downcallHandle(
-        "(II)V",
-        constants$606.PFNGLENABLEVERTEXARRAYATTRIBEXTPROC$FUNC, false
+        constants$606.PFNGLENABLEVERTEXARRAYATTRIBEXTPROC$FUNC
     );
     static final FunctionDescriptor PFNGLDISABLEVERTEXARRAYATTRIBEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLDISABLEVERTEXARRAYATTRIBEXTPROC$MH = RuntimeHelper.downcallHandle(
-        "(II)V",
-        constants$606.PFNGLDISABLEVERTEXARRAYATTRIBEXTPROC$FUNC, false
+        constants$606.PFNGLDISABLEVERTEXARRAYATTRIBEXTPROC$FUNC
     );
     static final FunctionDescriptor PFNGLGETVERTEXARRAYINTEGERVEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLGETVERTEXARRAYINTEGERVEXTPROC$MH = RuntimeHelper.downcallHandle(
-        "(IILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$606.PFNGLGETVERTEXARRAYINTEGERVEXTPROC$FUNC, false
+        constants$606.PFNGLGETVERTEXARRAYINTEGERVEXTPROC$FUNC
     );
 }
 

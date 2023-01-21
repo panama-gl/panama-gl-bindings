@@ -2,47 +2,45 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_CHAR;
-import static jdk.incubator.foreign.CLinker.C_INT;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$828 {
 
     static final FunctionDescriptor PFNGLTEXTUREIMAGE2DMULTISAMPLECOVERAGENVPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_CHAR
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_CHAR$LAYOUT
     );
     static final MethodHandle PFNGLTEXTUREIMAGE2DMULTISAMPLECOVERAGENVPROC$MH = RuntimeHelper.downcallHandle(
-        "(IIIIIIIB)V",
-        constants$828.PFNGLTEXTUREIMAGE2DMULTISAMPLECOVERAGENVPROC$FUNC, false
+        constants$828.PFNGLTEXTUREIMAGE2DMULTISAMPLECOVERAGENVPROC$FUNC
     );
     static final FunctionDescriptor PFNGLTEXTUREIMAGE3DMULTISAMPLECOVERAGENVPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_CHAR
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_CHAR$LAYOUT
     );
     static final MethodHandle PFNGLTEXTUREIMAGE3DMULTISAMPLECOVERAGENVPROC$MH = RuntimeHelper.downcallHandle(
-        "(IIIIIIIIB)V",
-        constants$828.PFNGLTEXTUREIMAGE3DMULTISAMPLECOVERAGENVPROC$FUNC, false
+        constants$828.PFNGLTEXTUREIMAGE3DMULTISAMPLECOVERAGENVPROC$FUNC
     );
     static final FunctionDescriptor PFNGLBEGINTRANSFORMFEEDBACKNVPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLBEGINTRANSFORMFEEDBACKNVPROC$MH = RuntimeHelper.downcallHandle(
-        "(I)V",
-        constants$828.PFNGLBEGINTRANSFORMFEEDBACKNVPROC$FUNC, false
+        constants$828.PFNGLBEGINTRANSFORMFEEDBACKNVPROC$FUNC
     );
 }
 

@@ -2,41 +2,39 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_DOUBLE;
-import static jdk.incubator.foreign.CLinker.C_INT;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$679 {
 
     static final FunctionDescriptor PFNGLVERTEXATTRIBL2DEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_DOUBLE,
-        C_DOUBLE
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_DOUBLE$LAYOUT,
+        Constants$root.C_DOUBLE$LAYOUT
     );
     static final MethodHandle PFNGLVERTEXATTRIBL2DEXTPROC$MH = RuntimeHelper.downcallHandle(
-        "(IDD)V",
-        constants$679.PFNGLVERTEXATTRIBL2DEXTPROC$FUNC, false
+        constants$679.PFNGLVERTEXATTRIBL2DEXTPROC$FUNC
     );
     static final FunctionDescriptor PFNGLVERTEXATTRIBL3DEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_DOUBLE,
-        C_DOUBLE,
-        C_DOUBLE
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_DOUBLE$LAYOUT,
+        Constants$root.C_DOUBLE$LAYOUT,
+        Constants$root.C_DOUBLE$LAYOUT
     );
     static final MethodHandle PFNGLVERTEXATTRIBL3DEXTPROC$MH = RuntimeHelper.downcallHandle(
-        "(IDDD)V",
-        constants$679.PFNGLVERTEXATTRIBL3DEXTPROC$FUNC, false
+        constants$679.PFNGLVERTEXATTRIBL3DEXTPROC$FUNC
     );
     static final FunctionDescriptor PFNGLVERTEXATTRIBL4DEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_DOUBLE,
-        C_DOUBLE,
-        C_DOUBLE,
-        C_DOUBLE
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_DOUBLE$LAYOUT,
+        Constants$root.C_DOUBLE$LAYOUT,
+        Constants$root.C_DOUBLE$LAYOUT,
+        Constants$root.C_DOUBLE$LAYOUT
     );
     static final MethodHandle PFNGLVERTEXATTRIBL4DEXTPROC$MH = RuntimeHelper.downcallHandle(
-        "(IDDDD)V",
-        constants$679.PFNGLVERTEXATTRIBL4DEXTPROC$FUNC, false
+        constants$679.PFNGLVERTEXATTRIBL4DEXTPROC$FUNC
     );
 }
 

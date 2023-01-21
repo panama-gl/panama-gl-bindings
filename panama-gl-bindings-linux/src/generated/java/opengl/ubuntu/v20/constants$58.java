@@ -2,81 +2,76 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_INT;
-import static jdk.incubator.foreign.CLinker.C_POINTER;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$58 {
 
     static final FunctionDescriptor glColorTable$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle glColorTable$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "glColorTable",
-        "(IIIIILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$58.glColorTable$FUNC, false
+        "glColorTable",
+        constants$58.glColorTable$FUNC
     );
     static final FunctionDescriptor glColorSubTable$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle glColorSubTable$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "glColorSubTable",
-        "(IIIIILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$58.glColorSubTable$FUNC, false
+        "glColorSubTable",
+        constants$58.glColorSubTable$FUNC
     );
     static final FunctionDescriptor glColorTableParameteriv$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle glColorTableParameteriv$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "glColorTableParameteriv",
-        "(IILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$58.glColorTableParameteriv$FUNC, false
+        "glColorTableParameteriv",
+        constants$58.glColorTableParameteriv$FUNC
     );
     static final FunctionDescriptor glColorTableParameterfv$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle glColorTableParameterfv$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "glColorTableParameterfv",
-        "(IILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$58.glColorTableParameterfv$FUNC, false
+        "glColorTableParameterfv",
+        constants$58.glColorTableParameterfv$FUNC
     );
     static final FunctionDescriptor glCopyColorSubTable$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle glCopyColorSubTable$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "glCopyColorSubTable",
-        "(IIIII)V",
-        constants$58.glCopyColorSubTable$FUNC, false
+        "glCopyColorSubTable",
+        constants$58.glCopyColorSubTable$FUNC
     );
     static final FunctionDescriptor glCopyColorTable$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle glCopyColorTable$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "glCopyColorTable",
-        "(IIIII)V",
-        constants$58.glCopyColorTable$FUNC, false
+        "glCopyColorTable",
+        constants$58.glCopyColorTable$FUNC
     );
 }
 

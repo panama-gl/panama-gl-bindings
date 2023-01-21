@@ -2,74 +2,67 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_DOUBLE;
-import static jdk.incubator.foreign.CLinker.C_INT;
-import static jdk.incubator.foreign.CLinker.C_POINTER;
-import static jdk.incubator.foreign.CLinker.C_SHORT;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$78 {
 
     static final FunctionDescriptor glMultiTexCoord3iARB$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle glMultiTexCoord3iARB$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "glMultiTexCoord3iARB",
-        "(IIII)V",
-        constants$78.glMultiTexCoord3iARB$FUNC, false
+        "glMultiTexCoord3iARB",
+        constants$78.glMultiTexCoord3iARB$FUNC
     );
     static final FunctionDescriptor glMultiTexCoord3ivARB$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle glMultiTexCoord3ivARB$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "glMultiTexCoord3ivARB",
-        "(ILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$78.glMultiTexCoord3ivARB$FUNC, false
+        "glMultiTexCoord3ivARB",
+        constants$78.glMultiTexCoord3ivARB$FUNC
     );
     static final FunctionDescriptor glMultiTexCoord3sARB$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_SHORT,
-        C_SHORT,
-        C_SHORT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_SHORT$LAYOUT,
+        Constants$root.C_SHORT$LAYOUT,
+        Constants$root.C_SHORT$LAYOUT
     );
     static final MethodHandle glMultiTexCoord3sARB$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "glMultiTexCoord3sARB",
-        "(ISSS)V",
-        constants$78.glMultiTexCoord3sARB$FUNC, false
+        "glMultiTexCoord3sARB",
+        constants$78.glMultiTexCoord3sARB$FUNC
     );
     static final FunctionDescriptor glMultiTexCoord3svARB$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle glMultiTexCoord3svARB$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "glMultiTexCoord3svARB",
-        "(ILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$78.glMultiTexCoord3svARB$FUNC, false
+        "glMultiTexCoord3svARB",
+        constants$78.glMultiTexCoord3svARB$FUNC
     );
     static final FunctionDescriptor glMultiTexCoord4dARB$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_DOUBLE,
-        C_DOUBLE,
-        C_DOUBLE,
-        C_DOUBLE
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_DOUBLE$LAYOUT,
+        Constants$root.C_DOUBLE$LAYOUT,
+        Constants$root.C_DOUBLE$LAYOUT,
+        Constants$root.C_DOUBLE$LAYOUT
     );
     static final MethodHandle glMultiTexCoord4dARB$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "glMultiTexCoord4dARB",
-        "(IDDDD)V",
-        constants$78.glMultiTexCoord4dARB$FUNC, false
+        "glMultiTexCoord4dARB",
+        constants$78.glMultiTexCoord4dARB$FUNC
     );
     static final FunctionDescriptor glMultiTexCoord4dvARB$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle glMultiTexCoord4dvARB$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "glMultiTexCoord4dvARB",
-        "(ILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$78.glMultiTexCoord4dvARB$FUNC, false
+        "glMultiTexCoord4dvARB",
+        constants$78.glMultiTexCoord4dvARB$FUNC
     );
 }
 

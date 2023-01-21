@@ -2,41 +2,39 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_INT;
-import static jdk.incubator.foreign.CLinker.C_POINTER;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$281 {
 
     static final FunctionDescriptor PFNGLCLEARNAMEDFRAMEBUFFERIVPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLCLEARNAMEDFRAMEBUFFERIVPROC$MH = RuntimeHelper.downcallHandle(
-        "(IIILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$281.PFNGLCLEARNAMEDFRAMEBUFFERIVPROC$FUNC, false
+        constants$281.PFNGLCLEARNAMEDFRAMEBUFFERIVPROC$FUNC
     );
     static final FunctionDescriptor PFNGLCLEARNAMEDFRAMEBUFFERUIVPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLCLEARNAMEDFRAMEBUFFERUIVPROC$MH = RuntimeHelper.downcallHandle(
-        "(IIILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$281.PFNGLCLEARNAMEDFRAMEBUFFERUIVPROC$FUNC, false
+        constants$281.PFNGLCLEARNAMEDFRAMEBUFFERUIVPROC$FUNC
     );
     static final FunctionDescriptor PFNGLCLEARNAMEDFRAMEBUFFERFVPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLCLEARNAMEDFRAMEBUFFERFVPROC$MH = RuntimeHelper.downcallHandle(
-        "(IIILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$281.PFNGLCLEARNAMEDFRAMEBUFFERFVPROC$FUNC, false
+        constants$281.PFNGLCLEARNAMEDFRAMEBUFFERFVPROC$FUNC
     );
 }
 

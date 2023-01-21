@@ -2,22 +2,22 @@
 
 package opengl.ubuntu.v20;
 
-import jdk.incubator.foreign.Addressable;
-import jdk.incubator.foreign.MemoryAddress;
-import jdk.incubator.foreign.ResourceScope;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public interface PFNGLFRAMEBUFFERTEXTUREMULTIVIEWOVRPROC {
 
-    void apply(int x0, int x1, int x2, int x3, int x4, int x5);
-    static MemoryAddress allocate(PFNGLFRAMEBUFFERTEXTUREMULTIVIEWOVRPROC fi) {
-        return RuntimeHelper.upcallStub(PFNGLFRAMEBUFFERTEXTUREMULTIVIEWOVRPROC.class, fi, constants$883.PFNGLFRAMEBUFFERTEXTUREMULTIVIEWOVRPROC$FUNC, "(IIIIII)V");
+    void apply(int target, int attachment, int texture, int level, int baseViewIndex, int numViews);
+    static MemorySegment allocate(PFNGLFRAMEBUFFERTEXTUREMULTIVIEWOVRPROC fi, MemorySession session) {
+        return RuntimeHelper.upcallStub(PFNGLFRAMEBUFFERTEXTUREMULTIVIEWOVRPROC.class, fi, constants$883.PFNGLFRAMEBUFFERTEXTUREMULTIVIEWOVRPROC$FUNC, session);
     }
-    static MemoryAddress allocate(PFNGLFRAMEBUFFERTEXTUREMULTIVIEWOVRPROC fi, ResourceScope scope) {
-        return RuntimeHelper.upcallStub(PFNGLFRAMEBUFFERTEXTUREMULTIVIEWOVRPROC.class, fi, constants$883.PFNGLFRAMEBUFFERTEXTUREMULTIVIEWOVRPROC$FUNC, "(IIIIII)V", scope);
-    }
-    static PFNGLFRAMEBUFFERTEXTUREMULTIVIEWOVRPROC ofAddress(MemoryAddress addr) {
-        return (int x0, int x1, int x2, int x3, int x4, int x5) -> {
+    static PFNGLFRAMEBUFFERTEXTUREMULTIVIEWOVRPROC ofAddress(MemoryAddress addr, MemorySession session) {
+        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
+        return (int _target, int _attachment, int _texture, int _level, int _baseViewIndex, int _numViews) -> {
             try {
-                constants$883.PFNGLFRAMEBUFFERTEXTUREMULTIVIEWOVRPROC$MH.invokeExact((Addressable)addr, x0, x1, x2, x3, x4, x5);
+                constants$883.PFNGLFRAMEBUFFERTEXTUREMULTIVIEWOVRPROC$MH.invokeExact((Addressable)symbol, _target, _attachment, _texture, _level, _baseViewIndex, _numViews);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

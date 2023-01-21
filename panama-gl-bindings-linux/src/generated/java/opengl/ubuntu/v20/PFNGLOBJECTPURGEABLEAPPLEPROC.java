@@ -2,22 +2,22 @@
 
 package opengl.ubuntu.v20;
 
-import jdk.incubator.foreign.Addressable;
-import jdk.incubator.foreign.MemoryAddress;
-import jdk.incubator.foreign.ResourceScope;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public interface PFNGLOBJECTPURGEABLEAPPLEPROC {
 
-    int apply(int x0, int x1, int x2);
-    static MemoryAddress allocate(PFNGLOBJECTPURGEABLEAPPLEPROC fi) {
-        return RuntimeHelper.upcallStub(PFNGLOBJECTPURGEABLEAPPLEPROC.class, fi, constants$480.PFNGLOBJECTPURGEABLEAPPLEPROC$FUNC, "(III)I");
+    int apply(int objectType, int name, int option);
+    static MemorySegment allocate(PFNGLOBJECTPURGEABLEAPPLEPROC fi, MemorySession session) {
+        return RuntimeHelper.upcallStub(PFNGLOBJECTPURGEABLEAPPLEPROC.class, fi, constants$480.PFNGLOBJECTPURGEABLEAPPLEPROC$FUNC, session);
     }
-    static MemoryAddress allocate(PFNGLOBJECTPURGEABLEAPPLEPROC fi, ResourceScope scope) {
-        return RuntimeHelper.upcallStub(PFNGLOBJECTPURGEABLEAPPLEPROC.class, fi, constants$480.PFNGLOBJECTPURGEABLEAPPLEPROC$FUNC, "(III)I", scope);
-    }
-    static PFNGLOBJECTPURGEABLEAPPLEPROC ofAddress(MemoryAddress addr) {
-        return (int x0, int x1, int x2) -> {
+    static PFNGLOBJECTPURGEABLEAPPLEPROC ofAddress(MemoryAddress addr, MemorySession session) {
+        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
+        return (int _objectType, int _name, int _option) -> {
             try {
-                return (int)constants$480.PFNGLOBJECTPURGEABLEAPPLEPROC$MH.invokeExact((Addressable)addr, x0, x1, x2);
+                return (int)constants$480.PFNGLOBJECTPURGEABLEAPPLEPROC$MH.invokeExact((Addressable)symbol, _objectType, _name, _option);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

@@ -2,22 +2,22 @@
 
 package opengl.ubuntu.v20;
 
-import jdk.incubator.foreign.Addressable;
-import jdk.incubator.foreign.MemoryAddress;
-import jdk.incubator.foreign.ResourceScope;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public interface PFNGLTEXCOORD4FCOLOR4FNORMAL3FVERTEX4FSUNPROC {
 
-    void apply(float x0, float x1, float x2, float x3, float x4, float x5, float x6, float x7, float x8, float x9, float x10, float x11, float x12, float x13, float x14);
-    static MemoryAddress allocate(PFNGLTEXCOORD4FCOLOR4FNORMAL3FVERTEX4FSUNPROC fi) {
-        return RuntimeHelper.upcallStub(PFNGLTEXCOORD4FCOLOR4FNORMAL3FVERTEX4FSUNPROC.class, fi, constants$922.PFNGLTEXCOORD4FCOLOR4FNORMAL3FVERTEX4FSUNPROC$FUNC, "(FFFFFFFFFFFFFFF)V");
+    void apply(float s, float t, float p, float q, float r, float g, float b, float a, float nx, float ny, float nz, float x, float y, float z, float w);
+    static MemorySegment allocate(PFNGLTEXCOORD4FCOLOR4FNORMAL3FVERTEX4FSUNPROC fi, MemorySession session) {
+        return RuntimeHelper.upcallStub(PFNGLTEXCOORD4FCOLOR4FNORMAL3FVERTEX4FSUNPROC.class, fi, constants$922.PFNGLTEXCOORD4FCOLOR4FNORMAL3FVERTEX4FSUNPROC$FUNC, session);
     }
-    static MemoryAddress allocate(PFNGLTEXCOORD4FCOLOR4FNORMAL3FVERTEX4FSUNPROC fi, ResourceScope scope) {
-        return RuntimeHelper.upcallStub(PFNGLTEXCOORD4FCOLOR4FNORMAL3FVERTEX4FSUNPROC.class, fi, constants$922.PFNGLTEXCOORD4FCOLOR4FNORMAL3FVERTEX4FSUNPROC$FUNC, "(FFFFFFFFFFFFFFF)V", scope);
-    }
-    static PFNGLTEXCOORD4FCOLOR4FNORMAL3FVERTEX4FSUNPROC ofAddress(MemoryAddress addr) {
-        return (float x0, float x1, float x2, float x3, float x4, float x5, float x6, float x7, float x8, float x9, float x10, float x11, float x12, float x13, float x14) -> {
+    static PFNGLTEXCOORD4FCOLOR4FNORMAL3FVERTEX4FSUNPROC ofAddress(MemoryAddress addr, MemorySession session) {
+        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
+        return (float _s, float _t, float _p, float _q, float _r, float _g, float _b, float _a, float _nx, float _ny, float _nz, float _x, float _y, float _z, float _w) -> {
             try {
-                constants$922.PFNGLTEXCOORD4FCOLOR4FNORMAL3FVERTEX4FSUNPROC$MH.invokeExact((Addressable)addr, x0, x1, x2, x3, x4, x5, x6, x7, x8, x9, x10, x11, x12, x13, x14);
+                constants$922.PFNGLTEXCOORD4FCOLOR4FNORMAL3FVERTEX4FSUNPROC$MH.invokeExact((Addressable)symbol, _s, _t, _p, _q, _r, _g, _b, _a, _nx, _ny, _nz, _x, _y, _z, _w);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

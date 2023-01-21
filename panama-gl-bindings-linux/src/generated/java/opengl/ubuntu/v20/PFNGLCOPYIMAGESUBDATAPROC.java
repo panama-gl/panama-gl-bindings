@@ -2,22 +2,22 @@
 
 package opengl.ubuntu.v20;
 
-import jdk.incubator.foreign.Addressable;
-import jdk.incubator.foreign.MemoryAddress;
-import jdk.incubator.foreign.ResourceScope;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public interface PFNGLCOPYIMAGESUBDATAPROC {
 
-    void apply(int x0, int x1, int x2, int x3, int x4, int x5, int x6, int x7, int x8, int x9, int x10, int x11, int x12, int x13, int x14);
-    static MemoryAddress allocate(PFNGLCOPYIMAGESUBDATAPROC fi) {
-        return RuntimeHelper.upcallStub(PFNGLCOPYIMAGESUBDATAPROC.class, fi, constants$254.PFNGLCOPYIMAGESUBDATAPROC$FUNC, "(IIIIIIIIIIIIIII)V");
+    void apply(int srcName, int srcTarget, int srcLevel, int srcX, int srcY, int srcZ, int dstName, int dstTarget, int dstLevel, int dstX, int dstY, int dstZ, int srcWidth, int srcHeight, int srcDepth);
+    static MemorySegment allocate(PFNGLCOPYIMAGESUBDATAPROC fi, MemorySession session) {
+        return RuntimeHelper.upcallStub(PFNGLCOPYIMAGESUBDATAPROC.class, fi, constants$254.PFNGLCOPYIMAGESUBDATAPROC$FUNC, session);
     }
-    static MemoryAddress allocate(PFNGLCOPYIMAGESUBDATAPROC fi, ResourceScope scope) {
-        return RuntimeHelper.upcallStub(PFNGLCOPYIMAGESUBDATAPROC.class, fi, constants$254.PFNGLCOPYIMAGESUBDATAPROC$FUNC, "(IIIIIIIIIIIIIII)V", scope);
-    }
-    static PFNGLCOPYIMAGESUBDATAPROC ofAddress(MemoryAddress addr) {
-        return (int x0, int x1, int x2, int x3, int x4, int x5, int x6, int x7, int x8, int x9, int x10, int x11, int x12, int x13, int x14) -> {
+    static PFNGLCOPYIMAGESUBDATAPROC ofAddress(MemoryAddress addr, MemorySession session) {
+        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
+        return (int _srcName, int _srcTarget, int _srcLevel, int _srcX, int _srcY, int _srcZ, int _dstName, int _dstTarget, int _dstLevel, int _dstX, int _dstY, int _dstZ, int _srcWidth, int _srcHeight, int _srcDepth) -> {
             try {
-                constants$254.PFNGLCOPYIMAGESUBDATAPROC$MH.invokeExact((Addressable)addr, x0, x1, x2, x3, x4, x5, x6, x7, x8, x9, x10, x11, x12, x13, x14);
+                constants$254.PFNGLCOPYIMAGESUBDATAPROC$MH.invokeExact((Addressable)symbol, _srcName, _srcTarget, _srcLevel, _srcX, _srcY, _srcZ, _dstName, _dstTarget, _dstLevel, _dstX, _dstY, _dstZ, _srcWidth, _srcHeight, _srcDepth);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

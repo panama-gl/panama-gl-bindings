@@ -2,22 +2,22 @@
 
 package opengl.ubuntu.v20;
 
-import jdk.incubator.foreign.Addressable;
-import jdk.incubator.foreign.MemoryAddress;
-import jdk.incubator.foreign.ResourceScope;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public interface PFNGLREPLACEMENTCODEUICOLOR4UBVERTEX3FVSUNPROC {
 
-    void apply(jdk.incubator.foreign.MemoryAddress x0, jdk.incubator.foreign.MemoryAddress x1, jdk.incubator.foreign.MemoryAddress x2);
-    static MemoryAddress allocate(PFNGLREPLACEMENTCODEUICOLOR4UBVERTEX3FVSUNPROC fi) {
-        return RuntimeHelper.upcallStub(PFNGLREPLACEMENTCODEUICOLOR4UBVERTEX3FVSUNPROC.class, fi, constants$924.PFNGLREPLACEMENTCODEUICOLOR4UBVERTEX3FVSUNPROC$FUNC, "(Ljdk/incubator/foreign/MemoryAddress;Ljdk/incubator/foreign/MemoryAddress;Ljdk/incubator/foreign/MemoryAddress;)V");
+    void apply(java.lang.foreign.MemoryAddress rc, java.lang.foreign.MemoryAddress c, java.lang.foreign.MemoryAddress v);
+    static MemorySegment allocate(PFNGLREPLACEMENTCODEUICOLOR4UBVERTEX3FVSUNPROC fi, MemorySession session) {
+        return RuntimeHelper.upcallStub(PFNGLREPLACEMENTCODEUICOLOR4UBVERTEX3FVSUNPROC.class, fi, constants$924.PFNGLREPLACEMENTCODEUICOLOR4UBVERTEX3FVSUNPROC$FUNC, session);
     }
-    static MemoryAddress allocate(PFNGLREPLACEMENTCODEUICOLOR4UBVERTEX3FVSUNPROC fi, ResourceScope scope) {
-        return RuntimeHelper.upcallStub(PFNGLREPLACEMENTCODEUICOLOR4UBVERTEX3FVSUNPROC.class, fi, constants$924.PFNGLREPLACEMENTCODEUICOLOR4UBVERTEX3FVSUNPROC$FUNC, "(Ljdk/incubator/foreign/MemoryAddress;Ljdk/incubator/foreign/MemoryAddress;Ljdk/incubator/foreign/MemoryAddress;)V", scope);
-    }
-    static PFNGLREPLACEMENTCODEUICOLOR4UBVERTEX3FVSUNPROC ofAddress(MemoryAddress addr) {
-        return (jdk.incubator.foreign.MemoryAddress x0, jdk.incubator.foreign.MemoryAddress x1, jdk.incubator.foreign.MemoryAddress x2) -> {
+    static PFNGLREPLACEMENTCODEUICOLOR4UBVERTEX3FVSUNPROC ofAddress(MemoryAddress addr, MemorySession session) {
+        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
+        return (java.lang.foreign.MemoryAddress _rc, java.lang.foreign.MemoryAddress _c, java.lang.foreign.MemoryAddress _v) -> {
             try {
-                constants$924.PFNGLREPLACEMENTCODEUICOLOR4UBVERTEX3FVSUNPROC$MH.invokeExact((Addressable)addr, x0, x1, x2);
+                constants$924.PFNGLREPLACEMENTCODEUICOLOR4UBVERTEX3FVSUNPROC$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)_rc, (java.lang.foreign.Addressable)_c, (java.lang.foreign.Addressable)_v);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

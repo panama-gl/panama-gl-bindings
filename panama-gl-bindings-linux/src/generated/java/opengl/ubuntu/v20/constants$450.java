@@ -2,43 +2,40 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_FLOAT;
-import static jdk.incubator.foreign.CLinker.C_INT;
-import static jdk.incubator.foreign.CLinker.C_POINTER;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$450 {
 
     static final FunctionDescriptor PFNGLORTHOFOESPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_FLOAT,
-        C_FLOAT,
-        C_FLOAT,
-        C_FLOAT,
-        C_FLOAT,
-        C_FLOAT
+        Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT
     );
     static final MethodHandle PFNGLORTHOFOESPROC$MH = RuntimeHelper.downcallHandle(
-        "(FFFFFF)V",
-        constants$450.PFNGLORTHOFOESPROC$FUNC, false
+        constants$450.PFNGLORTHOFOESPROC$FUNC
     );
     static final FunctionDescriptor PFNGLTBUFFERMASK3DFXPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLTBUFFERMASK3DFXPROC$MH = RuntimeHelper.downcallHandle(
-        "(I)V",
-        constants$450.PFNGLTBUFFERMASK3DFXPROC$FUNC, false
+        constants$450.PFNGLTBUFFERMASK3DFXPROC$FUNC
     );
     static final FunctionDescriptor GLDEBUGPROCAMD$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_POINTER,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle GLDEBUGPROCAMD$MH = RuntimeHelper.downcallHandle(
-        "(IIIILjdk/incubator/foreign/MemoryAddress;Ljdk/incubator/foreign/MemoryAddress;)V",
-        constants$450.GLDEBUGPROCAMD$FUNC, false
+        constants$450.GLDEBUGPROCAMD$FUNC
     );
 }
 

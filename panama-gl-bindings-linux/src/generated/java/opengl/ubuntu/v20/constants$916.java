@@ -2,45 +2,42 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_CHAR;
-import static jdk.incubator.foreign.CLinker.C_FLOAT;
-import static jdk.incubator.foreign.CLinker.C_POINTER;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$916 {
 
     static final FunctionDescriptor PFNGLCOLOR4UBVERTEX3FSUNPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_CHAR,
-        C_CHAR,
-        C_CHAR,
-        C_CHAR,
-        C_FLOAT,
-        C_FLOAT,
-        C_FLOAT
+        Constants$root.C_CHAR$LAYOUT,
+        Constants$root.C_CHAR$LAYOUT,
+        Constants$root.C_CHAR$LAYOUT,
+        Constants$root.C_CHAR$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT
     );
     static final MethodHandle PFNGLCOLOR4UBVERTEX3FSUNPROC$MH = RuntimeHelper.downcallHandle(
-        "(BBBBFFF)V",
-        constants$916.PFNGLCOLOR4UBVERTEX3FSUNPROC$FUNC, false
+        constants$916.PFNGLCOLOR4UBVERTEX3FSUNPROC$FUNC
     );
     static final FunctionDescriptor PFNGLCOLOR4UBVERTEX3FVSUNPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_POINTER,
-        C_POINTER
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLCOLOR4UBVERTEX3FVSUNPROC$MH = RuntimeHelper.downcallHandle(
-        "(Ljdk/incubator/foreign/MemoryAddress;Ljdk/incubator/foreign/MemoryAddress;)V",
-        constants$916.PFNGLCOLOR4UBVERTEX3FVSUNPROC$FUNC, false
+        constants$916.PFNGLCOLOR4UBVERTEX3FVSUNPROC$FUNC
     );
     static final FunctionDescriptor PFNGLCOLOR3FVERTEX3FSUNPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_FLOAT,
-        C_FLOAT,
-        C_FLOAT,
-        C_FLOAT,
-        C_FLOAT,
-        C_FLOAT
+        Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT
     );
     static final MethodHandle PFNGLCOLOR3FVERTEX3FSUNPROC$MH = RuntimeHelper.downcallHandle(
-        "(FFFFFF)V",
-        constants$916.PFNGLCOLOR3FVERTEX3FSUNPROC$FUNC, false
+        constants$916.PFNGLCOLOR3FVERTEX3FSUNPROC$FUNC
     );
 }
 

@@ -2,22 +2,22 @@
 
 package opengl.ubuntu.v20;
 
-import jdk.incubator.foreign.Addressable;
-import jdk.incubator.foreign.MemoryAddress;
-import jdk.incubator.foreign.ResourceScope;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public interface PFNGLCOMPILESHADERINCLUDEARBPROC {
 
-    void apply(int x0, int x1, jdk.incubator.foreign.MemoryAddress x2, jdk.incubator.foreign.MemoryAddress x3);
-    static MemoryAddress allocate(PFNGLCOMPILESHADERINCLUDEARBPROC fi) {
-        return RuntimeHelper.upcallStub(PFNGLCOMPILESHADERINCLUDEARBPROC.class, fi, constants$371.PFNGLCOMPILESHADERINCLUDEARBPROC$FUNC, "(IILjdk/incubator/foreign/MemoryAddress;Ljdk/incubator/foreign/MemoryAddress;)V");
+    void apply(int shader, int count, java.lang.foreign.MemoryAddress path, java.lang.foreign.MemoryAddress length);
+    static MemorySegment allocate(PFNGLCOMPILESHADERINCLUDEARBPROC fi, MemorySession session) {
+        return RuntimeHelper.upcallStub(PFNGLCOMPILESHADERINCLUDEARBPROC.class, fi, constants$371.PFNGLCOMPILESHADERINCLUDEARBPROC$FUNC, session);
     }
-    static MemoryAddress allocate(PFNGLCOMPILESHADERINCLUDEARBPROC fi, ResourceScope scope) {
-        return RuntimeHelper.upcallStub(PFNGLCOMPILESHADERINCLUDEARBPROC.class, fi, constants$371.PFNGLCOMPILESHADERINCLUDEARBPROC$FUNC, "(IILjdk/incubator/foreign/MemoryAddress;Ljdk/incubator/foreign/MemoryAddress;)V", scope);
-    }
-    static PFNGLCOMPILESHADERINCLUDEARBPROC ofAddress(MemoryAddress addr) {
-        return (int x0, int x1, jdk.incubator.foreign.MemoryAddress x2, jdk.incubator.foreign.MemoryAddress x3) -> {
+    static PFNGLCOMPILESHADERINCLUDEARBPROC ofAddress(MemoryAddress addr, MemorySession session) {
+        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
+        return (int _shader, int _count, java.lang.foreign.MemoryAddress _path, java.lang.foreign.MemoryAddress _length) -> {
             try {
-                constants$371.PFNGLCOMPILESHADERINCLUDEARBPROC$MH.invokeExact((Addressable)addr, x0, x1, x2, x3);
+                constants$371.PFNGLCOMPILESHADERINCLUDEARBPROC$MH.invokeExact((Addressable)symbol, _shader, _count, (java.lang.foreign.Addressable)_path, (java.lang.foreign.Addressable)_length);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

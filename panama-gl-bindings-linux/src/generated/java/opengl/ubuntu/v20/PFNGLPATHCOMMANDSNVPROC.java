@@ -2,22 +2,22 @@
 
 package opengl.ubuntu.v20;
 
-import jdk.incubator.foreign.Addressable;
-import jdk.incubator.foreign.MemoryAddress;
-import jdk.incubator.foreign.ResourceScope;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public interface PFNGLPATHCOMMANDSNVPROC {
 
-    void apply(int x0, int x1, jdk.incubator.foreign.MemoryAddress x2, int x3, int x4, jdk.incubator.foreign.MemoryAddress x5);
-    static MemoryAddress allocate(PFNGLPATHCOMMANDSNVPROC fi) {
-        return RuntimeHelper.upcallStub(PFNGLPATHCOMMANDSNVPROC.class, fi, constants$787.PFNGLPATHCOMMANDSNVPROC$FUNC, "(IILjdk/incubator/foreign/MemoryAddress;IILjdk/incubator/foreign/MemoryAddress;)V");
+    void apply(int path, int numCommands, java.lang.foreign.MemoryAddress commands, int numCoords, int coordType, java.lang.foreign.MemoryAddress coords);
+    static MemorySegment allocate(PFNGLPATHCOMMANDSNVPROC fi, MemorySession session) {
+        return RuntimeHelper.upcallStub(PFNGLPATHCOMMANDSNVPROC.class, fi, constants$787.PFNGLPATHCOMMANDSNVPROC$FUNC, session);
     }
-    static MemoryAddress allocate(PFNGLPATHCOMMANDSNVPROC fi, ResourceScope scope) {
-        return RuntimeHelper.upcallStub(PFNGLPATHCOMMANDSNVPROC.class, fi, constants$787.PFNGLPATHCOMMANDSNVPROC$FUNC, "(IILjdk/incubator/foreign/MemoryAddress;IILjdk/incubator/foreign/MemoryAddress;)V", scope);
-    }
-    static PFNGLPATHCOMMANDSNVPROC ofAddress(MemoryAddress addr) {
-        return (int x0, int x1, jdk.incubator.foreign.MemoryAddress x2, int x3, int x4, jdk.incubator.foreign.MemoryAddress x5) -> {
+    static PFNGLPATHCOMMANDSNVPROC ofAddress(MemoryAddress addr, MemorySession session) {
+        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
+        return (int _path, int _numCommands, java.lang.foreign.MemoryAddress _commands, int _numCoords, int _coordType, java.lang.foreign.MemoryAddress _coords) -> {
             try {
-                constants$787.PFNGLPATHCOMMANDSNVPROC$MH.invokeExact((Addressable)addr, x0, x1, x2, x3, x4, x5);
+                constants$787.PFNGLPATHCOMMANDSNVPROC$MH.invokeExact((Addressable)symbol, _path, _numCommands, (java.lang.foreign.Addressable)_commands, _numCoords, _coordType, (java.lang.foreign.Addressable)_coords);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

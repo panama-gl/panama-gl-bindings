@@ -2,37 +2,34 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_CHAR;
-import static jdk.incubator.foreign.CLinker.C_INT;
-import static jdk.incubator.foreign.CLinker.C_POINTER;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$661 {
 
-    static final FunctionDescriptor PFNGLISSEMAPHOREEXTPROC$FUNC = FunctionDescriptor.of(C_CHAR,
-        C_INT
+    static final FunctionDescriptor PFNGLISSEMAPHOREEXTPROC$FUNC = FunctionDescriptor.of(Constants$root.C_CHAR$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLISSEMAPHOREEXTPROC$MH = RuntimeHelper.downcallHandle(
-        "(I)B",
-        constants$661.PFNGLISSEMAPHOREEXTPROC$FUNC, false
+        constants$661.PFNGLISSEMAPHOREEXTPROC$FUNC
     );
     static final FunctionDescriptor PFNGLSEMAPHOREPARAMETERUI64VEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLSEMAPHOREPARAMETERUI64VEXTPROC$MH = RuntimeHelper.downcallHandle(
-        "(IILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$661.PFNGLSEMAPHOREPARAMETERUI64VEXTPROC$FUNC, false
+        constants$661.PFNGLSEMAPHOREPARAMETERUI64VEXTPROC$FUNC
     );
     static final FunctionDescriptor PFNGLGETSEMAPHOREPARAMETERUI64VEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLGETSEMAPHOREPARAMETERUI64VEXTPROC$MH = RuntimeHelper.downcallHandle(
-        "(IILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$661.PFNGLGETSEMAPHOREPARAMETERUI64VEXTPROC$FUNC, false
+        constants$661.PFNGLGETSEMAPHOREPARAMETERUI64VEXTPROC$FUNC
     );
 }
 

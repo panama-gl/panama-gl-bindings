@@ -2,22 +2,22 @@
 
 package opengl.ubuntu.v20;
 
-import jdk.incubator.foreign.Addressable;
-import jdk.incubator.foreign.MemoryAddress;
-import jdk.incubator.foreign.ResourceScope;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public interface PFNGLRESETMEMORYOBJECTPARAMETERNVPROC {
 
-    void apply(int x0, int x1);
-    static MemoryAddress allocate(PFNGLRESETMEMORYOBJECTPARAMETERNVPROC fi) {
-        return RuntimeHelper.upcallStub(PFNGLRESETMEMORYOBJECTPARAMETERNVPROC.class, fi, constants$780.PFNGLRESETMEMORYOBJECTPARAMETERNVPROC$FUNC, "(II)V");
+    void apply(int memory, int pname);
+    static MemorySegment allocate(PFNGLRESETMEMORYOBJECTPARAMETERNVPROC fi, MemorySession session) {
+        return RuntimeHelper.upcallStub(PFNGLRESETMEMORYOBJECTPARAMETERNVPROC.class, fi, constants$780.PFNGLRESETMEMORYOBJECTPARAMETERNVPROC$FUNC, session);
     }
-    static MemoryAddress allocate(PFNGLRESETMEMORYOBJECTPARAMETERNVPROC fi, ResourceScope scope) {
-        return RuntimeHelper.upcallStub(PFNGLRESETMEMORYOBJECTPARAMETERNVPROC.class, fi, constants$780.PFNGLRESETMEMORYOBJECTPARAMETERNVPROC$FUNC, "(II)V", scope);
-    }
-    static PFNGLRESETMEMORYOBJECTPARAMETERNVPROC ofAddress(MemoryAddress addr) {
-        return (int x0, int x1) -> {
+    static PFNGLRESETMEMORYOBJECTPARAMETERNVPROC ofAddress(MemoryAddress addr, MemorySession session) {
+        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
+        return (int _memory, int _pname) -> {
             try {
-                constants$780.PFNGLRESETMEMORYOBJECTPARAMETERNVPROC$MH.invokeExact((Addressable)addr, x0, x1);
+                constants$780.PFNGLRESETMEMORYOBJECTPARAMETERNVPROC$MH.invokeExact((Addressable)symbol, _memory, _pname);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

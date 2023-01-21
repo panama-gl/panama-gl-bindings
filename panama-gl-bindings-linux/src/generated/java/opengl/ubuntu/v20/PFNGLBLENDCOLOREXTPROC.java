@@ -2,22 +2,22 @@
 
 package opengl.ubuntu.v20;
 
-import jdk.incubator.foreign.Addressable;
-import jdk.incubator.foreign.MemoryAddress;
-import jdk.incubator.foreign.ResourceScope;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public interface PFNGLBLENDCOLOREXTPROC {
 
-    void apply(float x0, float x1, float x2, float x3);
-    static MemoryAddress allocate(PFNGLBLENDCOLOREXTPROC fi) {
-        return RuntimeHelper.upcallStub(PFNGLBLENDCOLOREXTPROC.class, fi, constants$517.PFNGLBLENDCOLOREXTPROC$FUNC, "(FFFF)V");
+    void apply(float red, float green, float blue, float alpha);
+    static MemorySegment allocate(PFNGLBLENDCOLOREXTPROC fi, MemorySession session) {
+        return RuntimeHelper.upcallStub(PFNGLBLENDCOLOREXTPROC.class, fi, constants$517.PFNGLBLENDCOLOREXTPROC$FUNC, session);
     }
-    static MemoryAddress allocate(PFNGLBLENDCOLOREXTPROC fi, ResourceScope scope) {
-        return RuntimeHelper.upcallStub(PFNGLBLENDCOLOREXTPROC.class, fi, constants$517.PFNGLBLENDCOLOREXTPROC$FUNC, "(FFFF)V", scope);
-    }
-    static PFNGLBLENDCOLOREXTPROC ofAddress(MemoryAddress addr) {
-        return (float x0, float x1, float x2, float x3) -> {
+    static PFNGLBLENDCOLOREXTPROC ofAddress(MemoryAddress addr, MemorySession session) {
+        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
+        return (float _red, float _green, float _blue, float _alpha) -> {
             try {
-                constants$517.PFNGLBLENDCOLOREXTPROC$MH.invokeExact((Addressable)addr, x0, x1, x2, x3);
+                constants$517.PFNGLBLENDCOLOREXTPROC$MH.invokeExact((Addressable)symbol, _red, _green, _blue, _alpha);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

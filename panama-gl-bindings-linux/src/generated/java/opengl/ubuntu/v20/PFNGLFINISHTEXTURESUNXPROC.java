@@ -2,22 +2,22 @@
 
 package opengl.ubuntu.v20;
 
-import jdk.incubator.foreign.Addressable;
-import jdk.incubator.foreign.MemoryAddress;
-import jdk.incubator.foreign.ResourceScope;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public interface PFNGLFINISHTEXTURESUNXPROC {
 
     void apply();
-    static MemoryAddress allocate(PFNGLFINISHTEXTURESUNXPROC fi) {
-        return RuntimeHelper.upcallStub(PFNGLFINISHTEXTURESUNXPROC.class, fi, constants$909.PFNGLFINISHTEXTURESUNXPROC$FUNC, "()V");
+    static MemorySegment allocate(PFNGLFINISHTEXTURESUNXPROC fi, MemorySession session) {
+        return RuntimeHelper.upcallStub(PFNGLFINISHTEXTURESUNXPROC.class, fi, constants$909.PFNGLFINISHTEXTURESUNXPROC$FUNC, session);
     }
-    static MemoryAddress allocate(PFNGLFINISHTEXTURESUNXPROC fi, ResourceScope scope) {
-        return RuntimeHelper.upcallStub(PFNGLFINISHTEXTURESUNXPROC.class, fi, constants$909.PFNGLFINISHTEXTURESUNXPROC$FUNC, "()V", scope);
-    }
-    static PFNGLFINISHTEXTURESUNXPROC ofAddress(MemoryAddress addr) {
+    static PFNGLFINISHTEXTURESUNXPROC ofAddress(MemoryAddress addr, MemorySession session) {
+        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return () -> {
             try {
-                constants$909.PFNGLFINISHTEXTURESUNXPROC$MH.invokeExact((Addressable)addr);
+                constants$909.PFNGLFINISHTEXTURESUNXPROC$MH.invokeExact((Addressable)symbol);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

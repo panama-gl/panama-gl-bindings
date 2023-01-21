@@ -2,22 +2,22 @@
 
 package opengl.ubuntu.v20;
 
-import jdk.incubator.foreign.Addressable;
-import jdk.incubator.foreign.MemoryAddress;
-import jdk.incubator.foreign.ResourceScope;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public interface PFNGLNORMALSTREAM3BATIPROC {
 
-    void apply(int x0, byte x1, byte x2, byte x3);
-    static MemoryAddress allocate(PFNGLNORMALSTREAM3BATIPROC fi) {
-        return RuntimeHelper.upcallStub(PFNGLNORMALSTREAM3BATIPROC.class, fi, constants$511.PFNGLNORMALSTREAM3BATIPROC$FUNC, "(IBBB)V");
+    void apply(int stream, byte nx, byte ny, byte nz);
+    static MemorySegment allocate(PFNGLNORMALSTREAM3BATIPROC fi, MemorySession session) {
+        return RuntimeHelper.upcallStub(PFNGLNORMALSTREAM3BATIPROC.class, fi, constants$511.PFNGLNORMALSTREAM3BATIPROC$FUNC, session);
     }
-    static MemoryAddress allocate(PFNGLNORMALSTREAM3BATIPROC fi, ResourceScope scope) {
-        return RuntimeHelper.upcallStub(PFNGLNORMALSTREAM3BATIPROC.class, fi, constants$511.PFNGLNORMALSTREAM3BATIPROC$FUNC, "(IBBB)V", scope);
-    }
-    static PFNGLNORMALSTREAM3BATIPROC ofAddress(MemoryAddress addr) {
-        return (int x0, byte x1, byte x2, byte x3) -> {
+    static PFNGLNORMALSTREAM3BATIPROC ofAddress(MemoryAddress addr, MemorySession session) {
+        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
+        return (int _stream, byte _nx, byte _ny, byte _nz) -> {
             try {
-                constants$511.PFNGLNORMALSTREAM3BATIPROC$MH.invokeExact((Addressable)addr, x0, x1, x2, x3);
+                constants$511.PFNGLNORMALSTREAM3BATIPROC$MH.invokeExact((Addressable)symbol, _stream, _nx, _ny, _nz);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

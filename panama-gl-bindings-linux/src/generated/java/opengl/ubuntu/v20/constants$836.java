@@ -2,37 +2,33 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_CHAR;
-import static jdk.incubator.foreign.CLinker.C_INT;
-import static jdk.incubator.foreign.CLinker.C_LONG;
-import static jdk.incubator.foreign.CLinker.C_POINTER;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$836 {
 
-    static final FunctionDescriptor PFNGLVDPAUREGISTEROUTPUTSURFACENVPROC$FUNC = FunctionDescriptor.of(C_LONG,
-        C_POINTER,
-        C_INT,
-        C_INT,
-        C_POINTER
+    static final FunctionDescriptor PFNGLVDPAUREGISTEROUTPUTSURFACENVPROC$FUNC = FunctionDescriptor.of(Constants$root.C_LONG_LONG$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLVDPAUREGISTEROUTPUTSURFACENVPROC$MH = RuntimeHelper.downcallHandle(
-        "(Ljdk/incubator/foreign/MemoryAddress;IILjdk/incubator/foreign/MemoryAddress;)J",
-        constants$836.PFNGLVDPAUREGISTEROUTPUTSURFACENVPROC$FUNC, false
+        constants$836.PFNGLVDPAUREGISTEROUTPUTSURFACENVPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLVDPAUISSURFACENVPROC$FUNC = FunctionDescriptor.of(C_CHAR,
-        C_LONG
+    static final FunctionDescriptor PFNGLVDPAUISSURFACENVPROC$FUNC = FunctionDescriptor.of(Constants$root.C_CHAR$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT
     );
     static final MethodHandle PFNGLVDPAUISSURFACENVPROC$MH = RuntimeHelper.downcallHandle(
-        "(J)B",
-        constants$836.PFNGLVDPAUISSURFACENVPROC$FUNC, false
+        constants$836.PFNGLVDPAUISSURFACENVPROC$FUNC
     );
     static final FunctionDescriptor PFNGLVDPAUUNREGISTERSURFACENVPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_LONG
+        Constants$root.C_LONG_LONG$LAYOUT
     );
     static final MethodHandle PFNGLVDPAUUNREGISTERSURFACENVPROC$MH = RuntimeHelper.downcallHandle(
-        "(J)V",
-        constants$836.PFNGLVDPAUUNREGISTERSURFACENVPROC$FUNC, false
+        constants$836.PFNGLVDPAUUNREGISTERSURFACENVPROC$FUNC
     );
 }
 

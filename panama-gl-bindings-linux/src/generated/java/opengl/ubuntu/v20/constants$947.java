@@ -2,48 +2,44 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_INT;
-import static jdk.incubator.foreign.CLinker.C_POINTER;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$947 {
 
     static final FunctionDescriptor glutCreateMenu$callback$FUNC = FunctionDescriptor.ofVoid(
-        C_INT
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle glutCreateMenu$callback$MH = RuntimeHelper.downcallHandle(
-        "(I)V",
-        constants$947.glutCreateMenu$callback$FUNC, false
+        constants$947.glutCreateMenu$callback$FUNC
     );
-    static final FunctionDescriptor glutCreateMenu$FUNC = FunctionDescriptor.of(C_INT,
-        C_POINTER
+    static final FunctionDescriptor glutCreateMenu$FUNC = FunctionDescriptor.of(Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle glutCreateMenu$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "glutCreateMenu",
-        "(Ljdk/incubator/foreign/MemoryAddress;)I",
-        constants$947.glutCreateMenu$FUNC, false
+        "glutCreateMenu",
+        constants$947.glutCreateMenu$FUNC
     );
     static final FunctionDescriptor glutDestroyMenu$FUNC = FunctionDescriptor.ofVoid(
-        C_INT
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle glutDestroyMenu$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "glutDestroyMenu",
-        "(I)V",
-        constants$947.glutDestroyMenu$FUNC, false
+        "glutDestroyMenu",
+        constants$947.glutDestroyMenu$FUNC
     );
-    static final FunctionDescriptor glutGetMenu$FUNC = FunctionDescriptor.of(C_INT);
+    static final FunctionDescriptor glutGetMenu$FUNC = FunctionDescriptor.of(Constants$root.C_INT$LAYOUT);
     static final MethodHandle glutGetMenu$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "glutGetMenu",
-        "()I",
-        constants$947.glutGetMenu$FUNC, false
+        "glutGetMenu",
+        constants$947.glutGetMenu$FUNC
     );
     static final FunctionDescriptor glutSetMenu$FUNC = FunctionDescriptor.ofVoid(
-        C_INT
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle glutSetMenu$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "glutSetMenu",
-        "(I)V",
-        constants$947.glutSetMenu$FUNC, false
+        "glutSetMenu",
+        constants$947.glutSetMenu$FUNC
     );
 }
 

@@ -2,39 +2,37 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_INT;
-import static jdk.incubator.foreign.CLinker.C_POINTER;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$246 {
 
     static final FunctionDescriptor PFNGLVIEWPORTINDEXEDFVPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLVIEWPORTINDEXEDFVPROC$MH = RuntimeHelper.downcallHandle(
-        "(ILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$246.PFNGLVIEWPORTINDEXEDFVPROC$FUNC, false
+        constants$246.PFNGLVIEWPORTINDEXEDFVPROC$FUNC
     );
     static final FunctionDescriptor PFNGLSCISSORARRAYVPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLSCISSORARRAYVPROC$MH = RuntimeHelper.downcallHandle(
-        "(IILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$246.PFNGLSCISSORARRAYVPROC$FUNC, false
+        constants$246.PFNGLSCISSORARRAYVPROC$FUNC
     );
     static final FunctionDescriptor PFNGLSCISSORINDEXEDPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLSCISSORINDEXEDPROC$MH = RuntimeHelper.downcallHandle(
-        "(IIIII)V",
-        constants$246.PFNGLSCISSORINDEXEDPROC$FUNC, false
+        constants$246.PFNGLSCISSORINDEXEDPROC$FUNC
     );
 }
 

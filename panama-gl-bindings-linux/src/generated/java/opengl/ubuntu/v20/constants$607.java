@@ -2,40 +2,38 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_INT;
-import static jdk.incubator.foreign.CLinker.C_POINTER;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$607 {
 
     static final FunctionDescriptor PFNGLGETVERTEXARRAYPOINTERVEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLGETVERTEXARRAYPOINTERVEXTPROC$MH = RuntimeHelper.downcallHandle(
-        "(IILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$607.PFNGLGETVERTEXARRAYPOINTERVEXTPROC$FUNC, false
+        constants$607.PFNGLGETVERTEXARRAYPOINTERVEXTPROC$FUNC
     );
     static final FunctionDescriptor PFNGLGETVERTEXARRAYINTEGERI_VEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLGETVERTEXARRAYINTEGERI_VEXTPROC$MH = RuntimeHelper.downcallHandle(
-        "(IIILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$607.PFNGLGETVERTEXARRAYINTEGERI_VEXTPROC$FUNC, false
+        constants$607.PFNGLGETVERTEXARRAYINTEGERI_VEXTPROC$FUNC
     );
     static final FunctionDescriptor PFNGLGETVERTEXARRAYPOINTERI_VEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLGETVERTEXARRAYPOINTERI_VEXTPROC$MH = RuntimeHelper.downcallHandle(
-        "(IIILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$607.PFNGLGETVERTEXARRAYPOINTERI_VEXTPROC$FUNC, false
+        constants$607.PFNGLGETVERTEXARRAYPOINTERI_VEXTPROC$FUNC
     );
 }
 

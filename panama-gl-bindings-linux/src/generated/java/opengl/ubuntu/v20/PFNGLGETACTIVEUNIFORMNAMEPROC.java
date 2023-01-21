@@ -2,22 +2,22 @@
 
 package opengl.ubuntu.v20;
 
-import jdk.incubator.foreign.Addressable;
-import jdk.incubator.foreign.MemoryAddress;
-import jdk.incubator.foreign.ResourceScope;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public interface PFNGLGETACTIVEUNIFORMNAMEPROC {
 
-    void apply(int x0, int x1, int x2, jdk.incubator.foreign.MemoryAddress x3, jdk.incubator.foreign.MemoryAddress x4);
-    static MemoryAddress allocate(PFNGLGETACTIVEUNIFORMNAMEPROC fi) {
-        return RuntimeHelper.upcallStub(PFNGLGETACTIVEUNIFORMNAMEPROC.class, fi, constants$176.PFNGLGETACTIVEUNIFORMNAMEPROC$FUNC, "(IIILjdk/incubator/foreign/MemoryAddress;Ljdk/incubator/foreign/MemoryAddress;)V");
+    void apply(int program, int uniformIndex, int bufSize, java.lang.foreign.MemoryAddress length, java.lang.foreign.MemoryAddress uniformName);
+    static MemorySegment allocate(PFNGLGETACTIVEUNIFORMNAMEPROC fi, MemorySession session) {
+        return RuntimeHelper.upcallStub(PFNGLGETACTIVEUNIFORMNAMEPROC.class, fi, constants$176.PFNGLGETACTIVEUNIFORMNAMEPROC$FUNC, session);
     }
-    static MemoryAddress allocate(PFNGLGETACTIVEUNIFORMNAMEPROC fi, ResourceScope scope) {
-        return RuntimeHelper.upcallStub(PFNGLGETACTIVEUNIFORMNAMEPROC.class, fi, constants$176.PFNGLGETACTIVEUNIFORMNAMEPROC$FUNC, "(IIILjdk/incubator/foreign/MemoryAddress;Ljdk/incubator/foreign/MemoryAddress;)V", scope);
-    }
-    static PFNGLGETACTIVEUNIFORMNAMEPROC ofAddress(MemoryAddress addr) {
-        return (int x0, int x1, int x2, jdk.incubator.foreign.MemoryAddress x3, jdk.incubator.foreign.MemoryAddress x4) -> {
+    static PFNGLGETACTIVEUNIFORMNAMEPROC ofAddress(MemoryAddress addr, MemorySession session) {
+        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
+        return (int _program, int _uniformIndex, int _bufSize, java.lang.foreign.MemoryAddress _length, java.lang.foreign.MemoryAddress _uniformName) -> {
             try {
-                constants$176.PFNGLGETACTIVEUNIFORMNAMEPROC$MH.invokeExact((Addressable)addr, x0, x1, x2, x3, x4);
+                constants$176.PFNGLGETACTIVEUNIFORMNAMEPROC$MH.invokeExact((Addressable)symbol, _program, _uniformIndex, _bufSize, (java.lang.foreign.Addressable)_length, (java.lang.foreign.Addressable)_uniformName);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

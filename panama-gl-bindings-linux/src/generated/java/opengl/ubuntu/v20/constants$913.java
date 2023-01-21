@@ -2,33 +2,30 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_CHAR;
-import static jdk.incubator.foreign.CLinker.C_INT;
-import static jdk.incubator.foreign.CLinker.C_SHORT;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$913 {
 
     static final FunctionDescriptor PFNGLREPLACEMENTCODEUISUNPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLREPLACEMENTCODEUISUNPROC$MH = RuntimeHelper.downcallHandle(
-        "(I)V",
-        constants$913.PFNGLREPLACEMENTCODEUISUNPROC$FUNC, false
+        constants$913.PFNGLREPLACEMENTCODEUISUNPROC$FUNC
     );
     static final FunctionDescriptor PFNGLREPLACEMENTCODEUSSUNPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_SHORT
+        Constants$root.C_SHORT$LAYOUT
     );
     static final MethodHandle PFNGLREPLACEMENTCODEUSSUNPROC$MH = RuntimeHelper.downcallHandle(
-        "(S)V",
-        constants$913.PFNGLREPLACEMENTCODEUSSUNPROC$FUNC, false
+        constants$913.PFNGLREPLACEMENTCODEUSSUNPROC$FUNC
     );
     static final FunctionDescriptor PFNGLREPLACEMENTCODEUBSUNPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_CHAR
+        Constants$root.C_CHAR$LAYOUT
     );
     static final MethodHandle PFNGLREPLACEMENTCODEUBSUNPROC$MH = RuntimeHelper.downcallHandle(
-        "(B)V",
-        constants$913.PFNGLREPLACEMENTCODEUBSUNPROC$FUNC, false
+        constants$913.PFNGLREPLACEMENTCODEUBSUNPROC$FUNC
     );
 }
 

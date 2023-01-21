@@ -2,36 +2,35 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_INT;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$415 {
 
     static final FunctionDescriptor PFNGLCOLOR4XOESPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLCOLOR4XOESPROC$MH = RuntimeHelper.downcallHandle(
-        "(IIII)V",
-        constants$415.PFNGLCOLOR4XOESPROC$FUNC, false
+        constants$415.PFNGLCOLOR4XOESPROC$FUNC
     );
     static final FunctionDescriptor PFNGLDEPTHRANGEXOESPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLDEPTHRANGEXOESPROC$MH = RuntimeHelper.downcallHandle(
-        "(II)V",
-        constants$415.PFNGLDEPTHRANGEXOESPROC$FUNC, false
+        constants$415.PFNGLDEPTHRANGEXOESPROC$FUNC
     );
     static final FunctionDescriptor PFNGLFOGXOESPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLFOGXOESPROC$MH = RuntimeHelper.downcallHandle(
-        "(II)V",
-        constants$415.PFNGLFOGXOESPROC$FUNC, false
+        constants$415.PFNGLFOGXOESPROC$FUNC
     );
 }
 

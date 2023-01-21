@@ -2,22 +2,22 @@
 
 package opengl.ubuntu.v20;
 
-import jdk.incubator.foreign.Addressable;
-import jdk.incubator.foreign.MemoryAddress;
-import jdk.incubator.foreign.ResourceScope;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public interface PFNGLDISABLECLIENTSTATEINDEXEDEXTPROC {
 
-    void apply(int x0, int x1);
-    static MemoryAddress allocate(PFNGLDISABLECLIENTSTATEINDEXEDEXTPROC fi) {
-        return RuntimeHelper.upcallStub(PFNGLDISABLECLIENTSTATEINDEXEDEXTPROC.class, fi, constants$561.PFNGLDISABLECLIENTSTATEINDEXEDEXTPROC$FUNC, "(II)V");
+    void apply(int array, int index);
+    static MemorySegment allocate(PFNGLDISABLECLIENTSTATEINDEXEDEXTPROC fi, MemorySession session) {
+        return RuntimeHelper.upcallStub(PFNGLDISABLECLIENTSTATEINDEXEDEXTPROC.class, fi, constants$561.PFNGLDISABLECLIENTSTATEINDEXEDEXTPROC$FUNC, session);
     }
-    static MemoryAddress allocate(PFNGLDISABLECLIENTSTATEINDEXEDEXTPROC fi, ResourceScope scope) {
-        return RuntimeHelper.upcallStub(PFNGLDISABLECLIENTSTATEINDEXEDEXTPROC.class, fi, constants$561.PFNGLDISABLECLIENTSTATEINDEXEDEXTPROC$FUNC, "(II)V", scope);
-    }
-    static PFNGLDISABLECLIENTSTATEINDEXEDEXTPROC ofAddress(MemoryAddress addr) {
-        return (int x0, int x1) -> {
+    static PFNGLDISABLECLIENTSTATEINDEXEDEXTPROC ofAddress(MemoryAddress addr, MemorySession session) {
+        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
+        return (int _array, int _index) -> {
             try {
-                constants$561.PFNGLDISABLECLIENTSTATEINDEXEDEXTPROC$MH.invokeExact((Addressable)addr, x0, x1);
+                constants$561.PFNGLDISABLECLIENTSTATEINDEXEDEXTPROC$MH.invokeExact((Addressable)symbol, _array, _index);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

@@ -2,22 +2,22 @@
 
 package opengl.ubuntu.v20;
 
-import jdk.incubator.foreign.Addressable;
-import jdk.incubator.foreign.MemoryAddress;
-import jdk.incubator.foreign.ResourceScope;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public interface PFNGLMATRIXROTATEFEXTPROC {
 
-    void apply(int x0, float x1, float x2, float x3, float x4);
-    static MemoryAddress allocate(PFNGLMATRIXROTATEFEXTPROC fi) {
-        return RuntimeHelper.upcallStub(PFNGLMATRIXROTATEFEXTPROC.class, fi, constants$537.PFNGLMATRIXROTATEFEXTPROC$FUNC, "(IFFFF)V");
+    void apply(int mode, float angle, float x, float y, float z);
+    static MemorySegment allocate(PFNGLMATRIXROTATEFEXTPROC fi, MemorySession session) {
+        return RuntimeHelper.upcallStub(PFNGLMATRIXROTATEFEXTPROC.class, fi, constants$537.PFNGLMATRIXROTATEFEXTPROC$FUNC, session);
     }
-    static MemoryAddress allocate(PFNGLMATRIXROTATEFEXTPROC fi, ResourceScope scope) {
-        return RuntimeHelper.upcallStub(PFNGLMATRIXROTATEFEXTPROC.class, fi, constants$537.PFNGLMATRIXROTATEFEXTPROC$FUNC, "(IFFFF)V", scope);
-    }
-    static PFNGLMATRIXROTATEFEXTPROC ofAddress(MemoryAddress addr) {
-        return (int x0, float x1, float x2, float x3, float x4) -> {
+    static PFNGLMATRIXROTATEFEXTPROC ofAddress(MemoryAddress addr, MemorySession session) {
+        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
+        return (int _mode, float _angle, float _x, float _y, float _z) -> {
             try {
-                constants$537.PFNGLMATRIXROTATEFEXTPROC$MH.invokeExact((Addressable)addr, x0, x1, x2, x3, x4);
+                constants$537.PFNGLMATRIXROTATEFEXTPROC$MH.invokeExact((Addressable)symbol, _mode, _angle, _x, _y, _z);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

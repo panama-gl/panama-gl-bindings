@@ -2,39 +2,37 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_INT;
-import static jdk.incubator.foreign.CLinker.C_POINTER;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$589 {
 
     static final FunctionDescriptor PFNGLGETNAMEDPROGRAMLOCALPARAMETERIIVEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLGETNAMEDPROGRAMLOCALPARAMETERIIVEXTPROC$MH = RuntimeHelper.downcallHandle(
-        "(IIILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$589.PFNGLGETNAMEDPROGRAMLOCALPARAMETERIIVEXTPROC$FUNC, false
+        constants$589.PFNGLGETNAMEDPROGRAMLOCALPARAMETERIIVEXTPROC$FUNC
     );
     static final FunctionDescriptor PFNGLGETNAMEDPROGRAMLOCALPARAMETERIUIVEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLGETNAMEDPROGRAMLOCALPARAMETERIUIVEXTPROC$MH = RuntimeHelper.downcallHandle(
-        "(IIILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$589.PFNGLGETNAMEDPROGRAMLOCALPARAMETERIUIVEXTPROC$FUNC, false
+        constants$589.PFNGLGETNAMEDPROGRAMLOCALPARAMETERIUIVEXTPROC$FUNC
     );
     static final FunctionDescriptor PFNGLENABLECLIENTSTATEIEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLENABLECLIENTSTATEIEXTPROC$MH = RuntimeHelper.downcallHandle(
-        "(II)V",
-        constants$589.PFNGLENABLECLIENTSTATEIEXTPROC$FUNC, false
+        constants$589.PFNGLENABLECLIENTSTATEIEXTPROC$FUNC
     );
 }
 

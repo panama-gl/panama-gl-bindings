@@ -2,22 +2,22 @@
 
 package opengl.ubuntu.v20;
 
-import jdk.incubator.foreign.Addressable;
-import jdk.incubator.foreign.MemoryAddress;
-import jdk.incubator.foreign.ResourceScope;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public interface PFNGLENABLEINDEXEDEXTPROC {
 
-    void apply(int x0, int x1);
-    static MemoryAddress allocate(PFNGLENABLEINDEXEDEXTPROC fi) {
-        return RuntimeHelper.upcallStub(PFNGLENABLEINDEXEDEXTPROC.class, fi, constants$562.PFNGLENABLEINDEXEDEXTPROC$FUNC, "(II)V");
+    void apply(int target, int index);
+    static MemorySegment allocate(PFNGLENABLEINDEXEDEXTPROC fi, MemorySession session) {
+        return RuntimeHelper.upcallStub(PFNGLENABLEINDEXEDEXTPROC.class, fi, constants$562.PFNGLENABLEINDEXEDEXTPROC$FUNC, session);
     }
-    static MemoryAddress allocate(PFNGLENABLEINDEXEDEXTPROC fi, ResourceScope scope) {
-        return RuntimeHelper.upcallStub(PFNGLENABLEINDEXEDEXTPROC.class, fi, constants$562.PFNGLENABLEINDEXEDEXTPROC$FUNC, "(II)V", scope);
-    }
-    static PFNGLENABLEINDEXEDEXTPROC ofAddress(MemoryAddress addr) {
-        return (int x0, int x1) -> {
+    static PFNGLENABLEINDEXEDEXTPROC ofAddress(MemoryAddress addr, MemorySession session) {
+        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
+        return (int _target, int _index) -> {
             try {
-                constants$562.PFNGLENABLEINDEXEDEXTPROC$MH.invokeExact((Addressable)addr, x0, x1);
+                constants$562.PFNGLENABLEINDEXEDEXTPROC$MH.invokeExact((Addressable)symbol, _target, _index);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

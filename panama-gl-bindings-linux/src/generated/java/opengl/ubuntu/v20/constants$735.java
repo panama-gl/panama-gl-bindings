@@ -2,38 +2,36 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_INT;
-import static jdk.incubator.foreign.CLinker.C_POINTER;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$735 {
 
     static final FunctionDescriptor PFNGLDRAWCOMMANDSSTATESADDRESSNVPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_POINTER,
-        C_POINTER,
-        C_POINTER,
-        C_POINTER,
-        C_INT
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLDRAWCOMMANDSSTATESADDRESSNVPROC$MH = RuntimeHelper.downcallHandle(
-        "(Ljdk/incubator/foreign/MemoryAddress;Ljdk/incubator/foreign/MemoryAddress;Ljdk/incubator/foreign/MemoryAddress;Ljdk/incubator/foreign/MemoryAddress;I)V",
-        constants$735.PFNGLDRAWCOMMANDSSTATESADDRESSNVPROC$FUNC, false
+        constants$735.PFNGLDRAWCOMMANDSSTATESADDRESSNVPROC$FUNC
     );
     static final FunctionDescriptor PFNGLCREATECOMMANDLISTSNVPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLCREATECOMMANDLISTSNVPROC$MH = RuntimeHelper.downcallHandle(
-        "(ILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$735.PFNGLCREATECOMMANDLISTSNVPROC$FUNC, false
+        constants$735.PFNGLCREATECOMMANDLISTSNVPROC$FUNC
     );
     static final FunctionDescriptor PFNGLDELETECOMMANDLISTSNVPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLDELETECOMMANDLISTSNVPROC$MH = RuntimeHelper.downcallHandle(
-        "(ILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$735.PFNGLDELETECOMMANDLISTSNVPROC$FUNC, false
+        constants$735.PFNGLDELETECOMMANDLISTSNVPROC$FUNC
     );
 }
 

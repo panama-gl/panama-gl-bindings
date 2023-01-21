@@ -2,31 +2,29 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_INT;
-import static jdk.incubator.foreign.CLinker.C_POINTER;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$664 {
 
     static final FunctionDescriptor PFNGLACTIVEPROGRAMEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLACTIVEPROGRAMEXTPROC$MH = RuntimeHelper.downcallHandle(
-        "(I)V",
-        constants$664.PFNGLACTIVEPROGRAMEXTPROC$FUNC, false
+        constants$664.PFNGLACTIVEPROGRAMEXTPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLCREATESHADERPROGRAMEXTPROC$FUNC = FunctionDescriptor.of(C_INT,
-        C_INT,
-        C_POINTER
+    static final FunctionDescriptor PFNGLCREATESHADERPROGRAMEXTPROC$FUNC = FunctionDescriptor.of(Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLCREATESHADERPROGRAMEXTPROC$MH = RuntimeHelper.downcallHandle(
-        "(ILjdk/incubator/foreign/MemoryAddress;)I",
-        constants$664.PFNGLCREATESHADERPROGRAMEXTPROC$FUNC, false
+        constants$664.PFNGLCREATESHADERPROGRAMEXTPROC$FUNC
     );
     static final FunctionDescriptor PFNGLFRAMEBUFFERFETCHBARRIEREXTPROC$FUNC = FunctionDescriptor.ofVoid();
     static final MethodHandle PFNGLFRAMEBUFFERFETCHBARRIEREXTPROC$MH = RuntimeHelper.downcallHandle(
-        "()V",
-        constants$664.PFNGLFRAMEBUFFERFETCHBARRIEREXTPROC$FUNC, false
+        constants$664.PFNGLFRAMEBUFFERFETCHBARRIEREXTPROC$FUNC
     );
 }
 

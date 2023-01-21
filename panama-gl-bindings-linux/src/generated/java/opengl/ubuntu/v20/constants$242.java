@@ -2,38 +2,36 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_DOUBLE;
-import static jdk.incubator.foreign.CLinker.C_INT;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$242 {
 
     static final FunctionDescriptor PFNGLVERTEXATTRIBL1DPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_DOUBLE
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_DOUBLE$LAYOUT
     );
     static final MethodHandle PFNGLVERTEXATTRIBL1DPROC$MH = RuntimeHelper.downcallHandle(
-        "(ID)V",
-        constants$242.PFNGLVERTEXATTRIBL1DPROC$FUNC, false
+        constants$242.PFNGLVERTEXATTRIBL1DPROC$FUNC
     );
     static final FunctionDescriptor PFNGLVERTEXATTRIBL2DPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_DOUBLE,
-        C_DOUBLE
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_DOUBLE$LAYOUT,
+        Constants$root.C_DOUBLE$LAYOUT
     );
     static final MethodHandle PFNGLVERTEXATTRIBL2DPROC$MH = RuntimeHelper.downcallHandle(
-        "(IDD)V",
-        constants$242.PFNGLVERTEXATTRIBL2DPROC$FUNC, false
+        constants$242.PFNGLVERTEXATTRIBL2DPROC$FUNC
     );
     static final FunctionDescriptor PFNGLVERTEXATTRIBL3DPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_DOUBLE,
-        C_DOUBLE,
-        C_DOUBLE
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_DOUBLE$LAYOUT,
+        Constants$root.C_DOUBLE$LAYOUT,
+        Constants$root.C_DOUBLE$LAYOUT
     );
     static final MethodHandle PFNGLVERTEXATTRIBL3DPROC$MH = RuntimeHelper.downcallHandle(
-        "(IDDD)V",
-        constants$242.PFNGLVERTEXATTRIBL3DPROC$FUNC, false
+        constants$242.PFNGLVERTEXATTRIBL3DPROC$FUNC
     );
 }
 

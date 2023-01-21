@@ -2,36 +2,34 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_INT;
-import static jdk.incubator.foreign.CLinker.C_POINTER;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$850 {
 
     static final FunctionDescriptor PFNGLBINDPROGRAMNVPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLBINDPROGRAMNVPROC$MH = RuntimeHelper.downcallHandle(
-        "(II)V",
-        constants$850.PFNGLBINDPROGRAMNVPROC$FUNC, false
+        constants$850.PFNGLBINDPROGRAMNVPROC$FUNC
     );
     static final FunctionDescriptor PFNGLDELETEPROGRAMSNVPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLDELETEPROGRAMSNVPROC$MH = RuntimeHelper.downcallHandle(
-        "(ILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$850.PFNGLDELETEPROGRAMSNVPROC$FUNC, false
+        constants$850.PFNGLDELETEPROGRAMSNVPROC$FUNC
     );
     static final FunctionDescriptor PFNGLEXECUTEPROGRAMNVPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLEXECUTEPROGRAMNVPROC$MH = RuntimeHelper.downcallHandle(
-        "(IILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$850.PFNGLEXECUTEPROGRAMNVPROC$FUNC, false
+        constants$850.PFNGLEXECUTEPROGRAMNVPROC$FUNC
     );
 }
 

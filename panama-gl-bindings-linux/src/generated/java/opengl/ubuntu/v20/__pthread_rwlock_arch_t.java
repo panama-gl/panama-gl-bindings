@@ -2,36 +2,32 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_CHAR;
-import static jdk.incubator.foreign.CLinker.C_INT;
-import static jdk.incubator.foreign.CLinker.C_LONG;
+import java.lang.invoke.MethodHandle;
 import java.lang.invoke.VarHandle;
-import jdk.incubator.foreign.MemoryAddress;
-import jdk.incubator.foreign.MemoryLayout;
-import jdk.incubator.foreign.MemorySegment;
-import jdk.incubator.foreign.ResourceScope;
-import jdk.incubator.foreign.SegmentAllocator;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public class __pthread_rwlock_arch_t {
 
-    static final MemoryLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        C_INT.withName("__readers"),
-        C_INT.withName("__writers"),
-        C_INT.withName("__wrphase_futex"),
-        C_INT.withName("__writers_futex"),
-        C_INT.withName("__pad3"),
-        C_INT.withName("__pad4"),
-        C_INT.withName("__cur_writer"),
-        C_INT.withName("__shared"),
-        C_CHAR.withName("__rwelision"),
-        MemoryLayout.sequenceLayout(7, C_CHAR).withName("__pad1"),
-        C_LONG.withName("__pad2"),
-        C_INT.withName("__flags"),
+    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
+        Constants$root.C_INT$LAYOUT.withName("__readers"),
+        Constants$root.C_INT$LAYOUT.withName("__writers"),
+        Constants$root.C_INT$LAYOUT.withName("__wrphase_futex"),
+        Constants$root.C_INT$LAYOUT.withName("__writers_futex"),
+        Constants$root.C_INT$LAYOUT.withName("__pad3"),
+        Constants$root.C_INT$LAYOUT.withName("__pad4"),
+        Constants$root.C_INT$LAYOUT.withName("__cur_writer"),
+        Constants$root.C_INT$LAYOUT.withName("__shared"),
+        Constants$root.C_CHAR$LAYOUT.withName("__rwelision"),
+        MemoryLayout.sequenceLayout(7, Constants$root.C_CHAR$LAYOUT).withName("__pad1"),
+        Constants$root.C_LONG_LONG$LAYOUT.withName("__pad2"),
+        Constants$root.C_INT$LAYOUT.withName("__flags"),
         MemoryLayout.paddingLayout(32)
     ).withName("__pthread_rwlock_arch_t");
     public static MemoryLayout $LAYOUT() {
         return __pthread_rwlock_arch_t.$struct$LAYOUT;
     }
-    static final VarHandle __readers$VH = $struct$LAYOUT.varHandle(int.class, MemoryLayout.PathElement.groupElement("__readers"));
+    static final VarHandle __readers$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("__readers"));
     public static VarHandle __readers$VH() {
         return __pthread_rwlock_arch_t.__readers$VH;
     }
@@ -47,7 +43,7 @@ public class __pthread_rwlock_arch_t {
     public static void __readers$set(MemorySegment seg, long index, int x) {
         __pthread_rwlock_arch_t.__readers$VH.set(seg.asSlice(index*sizeof()), x);
     }
-    static final VarHandle __writers$VH = $struct$LAYOUT.varHandle(int.class, MemoryLayout.PathElement.groupElement("__writers"));
+    static final VarHandle __writers$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("__writers"));
     public static VarHandle __writers$VH() {
         return __pthread_rwlock_arch_t.__writers$VH;
     }
@@ -63,7 +59,7 @@ public class __pthread_rwlock_arch_t {
     public static void __writers$set(MemorySegment seg, long index, int x) {
         __pthread_rwlock_arch_t.__writers$VH.set(seg.asSlice(index*sizeof()), x);
     }
-    static final VarHandle __wrphase_futex$VH = $struct$LAYOUT.varHandle(int.class, MemoryLayout.PathElement.groupElement("__wrphase_futex"));
+    static final VarHandle __wrphase_futex$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("__wrphase_futex"));
     public static VarHandle __wrphase_futex$VH() {
         return __pthread_rwlock_arch_t.__wrphase_futex$VH;
     }
@@ -79,7 +75,7 @@ public class __pthread_rwlock_arch_t {
     public static void __wrphase_futex$set(MemorySegment seg, long index, int x) {
         __pthread_rwlock_arch_t.__wrphase_futex$VH.set(seg.asSlice(index*sizeof()), x);
     }
-    static final VarHandle __writers_futex$VH = $struct$LAYOUT.varHandle(int.class, MemoryLayout.PathElement.groupElement("__writers_futex"));
+    static final VarHandle __writers_futex$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("__writers_futex"));
     public static VarHandle __writers_futex$VH() {
         return __pthread_rwlock_arch_t.__writers_futex$VH;
     }
@@ -95,7 +91,7 @@ public class __pthread_rwlock_arch_t {
     public static void __writers_futex$set(MemorySegment seg, long index, int x) {
         __pthread_rwlock_arch_t.__writers_futex$VH.set(seg.asSlice(index*sizeof()), x);
     }
-    static final VarHandle __pad3$VH = $struct$LAYOUT.varHandle(int.class, MemoryLayout.PathElement.groupElement("__pad3"));
+    static final VarHandle __pad3$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("__pad3"));
     public static VarHandle __pad3$VH() {
         return __pthread_rwlock_arch_t.__pad3$VH;
     }
@@ -111,7 +107,7 @@ public class __pthread_rwlock_arch_t {
     public static void __pad3$set(MemorySegment seg, long index, int x) {
         __pthread_rwlock_arch_t.__pad3$VH.set(seg.asSlice(index*sizeof()), x);
     }
-    static final VarHandle __pad4$VH = $struct$LAYOUT.varHandle(int.class, MemoryLayout.PathElement.groupElement("__pad4"));
+    static final VarHandle __pad4$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("__pad4"));
     public static VarHandle __pad4$VH() {
         return __pthread_rwlock_arch_t.__pad4$VH;
     }
@@ -127,7 +123,7 @@ public class __pthread_rwlock_arch_t {
     public static void __pad4$set(MemorySegment seg, long index, int x) {
         __pthread_rwlock_arch_t.__pad4$VH.set(seg.asSlice(index*sizeof()), x);
     }
-    static final VarHandle __cur_writer$VH = $struct$LAYOUT.varHandle(int.class, MemoryLayout.PathElement.groupElement("__cur_writer"));
+    static final VarHandle __cur_writer$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("__cur_writer"));
     public static VarHandle __cur_writer$VH() {
         return __pthread_rwlock_arch_t.__cur_writer$VH;
     }
@@ -143,7 +139,7 @@ public class __pthread_rwlock_arch_t {
     public static void __cur_writer$set(MemorySegment seg, long index, int x) {
         __pthread_rwlock_arch_t.__cur_writer$VH.set(seg.asSlice(index*sizeof()), x);
     }
-    static final VarHandle __shared$VH = $struct$LAYOUT.varHandle(int.class, MemoryLayout.PathElement.groupElement("__shared"));
+    static final VarHandle __shared$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("__shared"));
     public static VarHandle __shared$VH() {
         return __pthread_rwlock_arch_t.__shared$VH;
     }
@@ -159,7 +155,7 @@ public class __pthread_rwlock_arch_t {
     public static void __shared$set(MemorySegment seg, long index, int x) {
         __pthread_rwlock_arch_t.__shared$VH.set(seg.asSlice(index*sizeof()), x);
     }
-    static final VarHandle __rwelision$VH = $struct$LAYOUT.varHandle(byte.class, MemoryLayout.PathElement.groupElement("__rwelision"));
+    static final VarHandle __rwelision$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("__rwelision"));
     public static VarHandle __rwelision$VH() {
         return __pthread_rwlock_arch_t.__rwelision$VH;
     }
@@ -178,7 +174,7 @@ public class __pthread_rwlock_arch_t {
     public static MemorySegment __pad1$slice(MemorySegment seg) {
         return seg.asSlice(33, 7);
     }
-    static final VarHandle __pad2$VH = $struct$LAYOUT.varHandle(long.class, MemoryLayout.PathElement.groupElement("__pad2"));
+    static final VarHandle __pad2$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("__pad2"));
     public static VarHandle __pad2$VH() {
         return __pthread_rwlock_arch_t.__pad2$VH;
     }
@@ -194,7 +190,7 @@ public class __pthread_rwlock_arch_t {
     public static void __pad2$set(MemorySegment seg, long index, long x) {
         __pthread_rwlock_arch_t.__pad2$VH.set(seg.asSlice(index*sizeof()), x);
     }
-    static final VarHandle __flags$VH = $struct$LAYOUT.varHandle(int.class, MemoryLayout.PathElement.groupElement("__flags"));
+    static final VarHandle __flags$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("__flags"));
     public static VarHandle __flags$VH() {
         return __pthread_rwlock_arch_t.__flags$VH;
     }
@@ -212,14 +208,10 @@ public class __pthread_rwlock_arch_t {
     }
     public static long sizeof() { return $LAYOUT().byteSize(); }
     public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocate(ResourceScope scope) { return allocate(SegmentAllocator.ofScope(scope)); }
     public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
         return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
     }
-    public static MemorySegment allocateArray(int len, ResourceScope scope) {
-        return allocateArray(len, SegmentAllocator.ofScope(scope));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, ResourceScope scope) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, scope); }
+    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
 }
 
 

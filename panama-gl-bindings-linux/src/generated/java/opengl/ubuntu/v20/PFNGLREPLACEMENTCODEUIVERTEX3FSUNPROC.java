@@ -2,22 +2,22 @@
 
 package opengl.ubuntu.v20;
 
-import jdk.incubator.foreign.Addressable;
-import jdk.incubator.foreign.MemoryAddress;
-import jdk.incubator.foreign.ResourceScope;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public interface PFNGLREPLACEMENTCODEUIVERTEX3FSUNPROC {
 
-    void apply(int x0, float x1, float x2, float x3);
-    static MemoryAddress allocate(PFNGLREPLACEMENTCODEUIVERTEX3FSUNPROC fi) {
-        return RuntimeHelper.upcallStub(PFNGLREPLACEMENTCODEUIVERTEX3FSUNPROC.class, fi, constants$923.PFNGLREPLACEMENTCODEUIVERTEX3FSUNPROC$FUNC, "(IFFF)V");
+    void apply(int rc, float x, float y, float z);
+    static MemorySegment allocate(PFNGLREPLACEMENTCODEUIVERTEX3FSUNPROC fi, MemorySession session) {
+        return RuntimeHelper.upcallStub(PFNGLREPLACEMENTCODEUIVERTEX3FSUNPROC.class, fi, constants$923.PFNGLREPLACEMENTCODEUIVERTEX3FSUNPROC$FUNC, session);
     }
-    static MemoryAddress allocate(PFNGLREPLACEMENTCODEUIVERTEX3FSUNPROC fi, ResourceScope scope) {
-        return RuntimeHelper.upcallStub(PFNGLREPLACEMENTCODEUIVERTEX3FSUNPROC.class, fi, constants$923.PFNGLREPLACEMENTCODEUIVERTEX3FSUNPROC$FUNC, "(IFFF)V", scope);
-    }
-    static PFNGLREPLACEMENTCODEUIVERTEX3FSUNPROC ofAddress(MemoryAddress addr) {
-        return (int x0, float x1, float x2, float x3) -> {
+    static PFNGLREPLACEMENTCODEUIVERTEX3FSUNPROC ofAddress(MemoryAddress addr, MemorySession session) {
+        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
+        return (int _rc, float _x, float _y, float _z) -> {
             try {
-                constants$923.PFNGLREPLACEMENTCODEUIVERTEX3FSUNPROC$MH.invokeExact((Addressable)addr, x0, x1, x2, x3);
+                constants$923.PFNGLREPLACEMENTCODEUIVERTEX3FSUNPROC$MH.invokeExact((Addressable)symbol, _rc, _x, _y, _z);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

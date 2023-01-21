@@ -2,22 +2,22 @@
 
 package opengl.ubuntu.v20;
 
-import jdk.incubator.foreign.Addressable;
-import jdk.incubator.foreign.MemoryAddress;
-import jdk.incubator.foreign.ResourceScope;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public interface PFNGLGETPROGRAMPIPELINEINFOLOGPROC {
 
-    void apply(int x0, int x1, jdk.incubator.foreign.MemoryAddress x2, jdk.incubator.foreign.MemoryAddress x3);
-    static MemoryAddress allocate(PFNGLGETPROGRAMPIPELINEINFOLOGPROC fi) {
-        return RuntimeHelper.upcallStub(PFNGLGETPROGRAMPIPELINEINFOLOGPROC.class, fi, constants$241.PFNGLGETPROGRAMPIPELINEINFOLOGPROC$FUNC, "(IILjdk/incubator/foreign/MemoryAddress;Ljdk/incubator/foreign/MemoryAddress;)V");
+    void apply(int pipeline, int bufSize, java.lang.foreign.MemoryAddress length, java.lang.foreign.MemoryAddress infoLog);
+    static MemorySegment allocate(PFNGLGETPROGRAMPIPELINEINFOLOGPROC fi, MemorySession session) {
+        return RuntimeHelper.upcallStub(PFNGLGETPROGRAMPIPELINEINFOLOGPROC.class, fi, constants$241.PFNGLGETPROGRAMPIPELINEINFOLOGPROC$FUNC, session);
     }
-    static MemoryAddress allocate(PFNGLGETPROGRAMPIPELINEINFOLOGPROC fi, ResourceScope scope) {
-        return RuntimeHelper.upcallStub(PFNGLGETPROGRAMPIPELINEINFOLOGPROC.class, fi, constants$241.PFNGLGETPROGRAMPIPELINEINFOLOGPROC$FUNC, "(IILjdk/incubator/foreign/MemoryAddress;Ljdk/incubator/foreign/MemoryAddress;)V", scope);
-    }
-    static PFNGLGETPROGRAMPIPELINEINFOLOGPROC ofAddress(MemoryAddress addr) {
-        return (int x0, int x1, jdk.incubator.foreign.MemoryAddress x2, jdk.incubator.foreign.MemoryAddress x3) -> {
+    static PFNGLGETPROGRAMPIPELINEINFOLOGPROC ofAddress(MemoryAddress addr, MemorySession session) {
+        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
+        return (int _pipeline, int _bufSize, java.lang.foreign.MemoryAddress _length, java.lang.foreign.MemoryAddress _infoLog) -> {
             try {
-                constants$241.PFNGLGETPROGRAMPIPELINEINFOLOGPROC$MH.invokeExact((Addressable)addr, x0, x1, x2, x3);
+                constants$241.PFNGLGETPROGRAMPIPELINEINFOLOGPROC$MH.invokeExact((Addressable)symbol, _pipeline, _bufSize, (java.lang.foreign.Addressable)_length, (java.lang.foreign.Addressable)_infoLog);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

@@ -2,22 +2,22 @@
 
 package opengl.ubuntu.v20;
 
-import jdk.incubator.foreign.Addressable;
-import jdk.incubator.foreign.MemoryAddress;
-import jdk.incubator.foreign.ResourceScope;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public interface PFNGLGETTEXTUREHANDLEARBPROC {
 
-    long apply(int x0);
-    static MemoryAddress allocate(PFNGLGETTEXTUREHANDLEARBPROC fi) {
-        return RuntimeHelper.upcallStub(PFNGLGETTEXTUREHANDLEARBPROC.class, fi, constants$312.PFNGLGETTEXTUREHANDLEARBPROC$FUNC, "(I)J");
+    long apply(int texture);
+    static MemorySegment allocate(PFNGLGETTEXTUREHANDLEARBPROC fi, MemorySession session) {
+        return RuntimeHelper.upcallStub(PFNGLGETTEXTUREHANDLEARBPROC.class, fi, constants$312.PFNGLGETTEXTUREHANDLEARBPROC$FUNC, session);
     }
-    static MemoryAddress allocate(PFNGLGETTEXTUREHANDLEARBPROC fi, ResourceScope scope) {
-        return RuntimeHelper.upcallStub(PFNGLGETTEXTUREHANDLEARBPROC.class, fi, constants$312.PFNGLGETTEXTUREHANDLEARBPROC$FUNC, "(I)J", scope);
-    }
-    static PFNGLGETTEXTUREHANDLEARBPROC ofAddress(MemoryAddress addr) {
-        return (int x0) -> {
+    static PFNGLGETTEXTUREHANDLEARBPROC ofAddress(MemoryAddress addr, MemorySession session) {
+        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
+        return (int _texture) -> {
             try {
-                return (long)constants$312.PFNGLGETTEXTUREHANDLEARBPROC$MH.invokeExact((Addressable)addr, x0);
+                return (long)constants$312.PFNGLGETTEXTUREHANDLEARBPROC$MH.invokeExact((Addressable)symbol, _texture);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

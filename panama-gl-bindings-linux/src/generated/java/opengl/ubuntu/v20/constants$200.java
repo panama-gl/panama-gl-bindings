@@ -2,38 +2,36 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_INT;
-import static jdk.incubator.foreign.CLinker.C_POINTER;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$200 {
 
     static final FunctionDescriptor PFNGLMULTITEXCOORDP3UIPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_INT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLMULTITEXCOORDP3UIPROC$MH = RuntimeHelper.downcallHandle(
-        "(III)V",
-        constants$200.PFNGLMULTITEXCOORDP3UIPROC$FUNC, false
+        constants$200.PFNGLMULTITEXCOORDP3UIPROC$FUNC
     );
     static final FunctionDescriptor PFNGLMULTITEXCOORDP3UIVPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLMULTITEXCOORDP3UIVPROC$MH = RuntimeHelper.downcallHandle(
-        "(IILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$200.PFNGLMULTITEXCOORDP3UIVPROC$FUNC, false
+        constants$200.PFNGLMULTITEXCOORDP3UIVPROC$FUNC
     );
     static final FunctionDescriptor PFNGLMULTITEXCOORDP4UIPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_INT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLMULTITEXCOORDP4UIPROC$MH = RuntimeHelper.downcallHandle(
-        "(III)V",
-        constants$200.PFNGLMULTITEXCOORDP4UIPROC$FUNC, false
+        constants$200.PFNGLMULTITEXCOORDP4UIPROC$FUNC
     );
 }
 

@@ -2,22 +2,22 @@
 
 package opengl.ubuntu.v20;
 
-import jdk.incubator.foreign.Addressable;
-import jdk.incubator.foreign.MemoryAddress;
-import jdk.incubator.foreign.ResourceScope;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public interface PFNGLIMPORTSEMAPHOREWIN32NAMEEXTPROC {
 
-    void apply(int x0, int x1, jdk.incubator.foreign.MemoryAddress x2);
-    static MemoryAddress allocate(PFNGLIMPORTSEMAPHOREWIN32NAMEEXTPROC fi) {
-        return RuntimeHelper.upcallStub(PFNGLIMPORTSEMAPHOREWIN32NAMEEXTPROC.class, fi, constants$663.PFNGLIMPORTSEMAPHOREWIN32NAMEEXTPROC$FUNC, "(IILjdk/incubator/foreign/MemoryAddress;)V");
+    void apply(int semaphore, int handleType, java.lang.foreign.MemoryAddress name);
+    static MemorySegment allocate(PFNGLIMPORTSEMAPHOREWIN32NAMEEXTPROC fi, MemorySession session) {
+        return RuntimeHelper.upcallStub(PFNGLIMPORTSEMAPHOREWIN32NAMEEXTPROC.class, fi, constants$663.PFNGLIMPORTSEMAPHOREWIN32NAMEEXTPROC$FUNC, session);
     }
-    static MemoryAddress allocate(PFNGLIMPORTSEMAPHOREWIN32NAMEEXTPROC fi, ResourceScope scope) {
-        return RuntimeHelper.upcallStub(PFNGLIMPORTSEMAPHOREWIN32NAMEEXTPROC.class, fi, constants$663.PFNGLIMPORTSEMAPHOREWIN32NAMEEXTPROC$FUNC, "(IILjdk/incubator/foreign/MemoryAddress;)V", scope);
-    }
-    static PFNGLIMPORTSEMAPHOREWIN32NAMEEXTPROC ofAddress(MemoryAddress addr) {
-        return (int x0, int x1, jdk.incubator.foreign.MemoryAddress x2) -> {
+    static PFNGLIMPORTSEMAPHOREWIN32NAMEEXTPROC ofAddress(MemoryAddress addr, MemorySession session) {
+        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
+        return (int _semaphore, int _handleType, java.lang.foreign.MemoryAddress _name) -> {
             try {
-                constants$663.PFNGLIMPORTSEMAPHOREWIN32NAMEEXTPROC$MH.invokeExact((Addressable)addr, x0, x1, x2);
+                constants$663.PFNGLIMPORTSEMAPHOREWIN32NAMEEXTPROC$MH.invokeExact((Addressable)symbol, _semaphore, _handleType, (java.lang.foreign.Addressable)_name);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

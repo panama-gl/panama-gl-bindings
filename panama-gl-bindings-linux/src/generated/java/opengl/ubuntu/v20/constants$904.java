@@ -2,60 +2,56 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_DOUBLE;
-import static jdk.incubator.foreign.CLinker.C_FLOAT;
-import static jdk.incubator.foreign.CLinker.C_INT;
-import static jdk.incubator.foreign.CLinker.C_POINTER;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$904 {
 
     static final FunctionDescriptor PFNGLDEFORMATIONMAP3DSGIXPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_DOUBLE,
-        C_DOUBLE,
-        C_INT,
-        C_INT,
-        C_DOUBLE,
-        C_DOUBLE,
-        C_INT,
-        C_INT,
-        C_DOUBLE,
-        C_DOUBLE,
-        C_INT,
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_DOUBLE$LAYOUT,
+        Constants$root.C_DOUBLE$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_DOUBLE$LAYOUT,
+        Constants$root.C_DOUBLE$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_DOUBLE$LAYOUT,
+        Constants$root.C_DOUBLE$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLDEFORMATIONMAP3DSGIXPROC$MH = RuntimeHelper.downcallHandle(
-        "(IDDIIDDIIDDIILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$904.PFNGLDEFORMATIONMAP3DSGIXPROC$FUNC, false
+        constants$904.PFNGLDEFORMATIONMAP3DSGIXPROC$FUNC
     );
     static final FunctionDescriptor PFNGLDEFORMATIONMAP3FSGIXPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_FLOAT,
-        C_FLOAT,
-        C_INT,
-        C_INT,
-        C_FLOAT,
-        C_FLOAT,
-        C_INT,
-        C_INT,
-        C_FLOAT,
-        C_FLOAT,
-        C_INT,
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLDEFORMATIONMAP3FSGIXPROC$MH = RuntimeHelper.downcallHandle(
-        "(IFFIIFFIIFFIILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$904.PFNGLDEFORMATIONMAP3FSGIXPROC$FUNC, false
+        constants$904.PFNGLDEFORMATIONMAP3FSGIXPROC$FUNC
     );
     static final FunctionDescriptor PFNGLDEFORMSGIXPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLDEFORMSGIXPROC$MH = RuntimeHelper.downcallHandle(
-        "(I)V",
-        constants$904.PFNGLDEFORMSGIXPROC$FUNC, false
+        constants$904.PFNGLDEFORMSGIXPROC$FUNC
     );
 }
 

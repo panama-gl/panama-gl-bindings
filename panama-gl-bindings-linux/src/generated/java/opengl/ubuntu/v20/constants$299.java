@@ -2,40 +2,38 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_INT;
-import static jdk.incubator.foreign.CLinker.C_POINTER;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$299 {
 
     static final FunctionDescriptor PFNGLVERTEXARRAYATTRIBLFORMATPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLVERTEXARRAYATTRIBLFORMATPROC$MH = RuntimeHelper.downcallHandle(
-        "(IIIII)V",
-        constants$299.PFNGLVERTEXARRAYATTRIBLFORMATPROC$FUNC, false
+        constants$299.PFNGLVERTEXARRAYATTRIBLFORMATPROC$FUNC
     );
     static final FunctionDescriptor PFNGLVERTEXARRAYBINDINGDIVISORPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_INT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLVERTEXARRAYBINDINGDIVISORPROC$MH = RuntimeHelper.downcallHandle(
-        "(III)V",
-        constants$299.PFNGLVERTEXARRAYBINDINGDIVISORPROC$FUNC, false
+        constants$299.PFNGLVERTEXARRAYBINDINGDIVISORPROC$FUNC
     );
     static final FunctionDescriptor PFNGLGETVERTEXARRAYIVPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLGETVERTEXARRAYIVPROC$MH = RuntimeHelper.downcallHandle(
-        "(IILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$299.PFNGLGETVERTEXARRAYIVPROC$FUNC, false
+        constants$299.PFNGLGETVERTEXARRAYIVPROC$FUNC
     );
 }
 

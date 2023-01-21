@@ -2,35 +2,33 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_INT;
-import static jdk.incubator.foreign.CLinker.C_POINTER;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$906 {
 
     static final FunctionDescriptor PFNGLSPRITEPARAMETERFVSGIXPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLSPRITEPARAMETERFVSGIXPROC$MH = RuntimeHelper.downcallHandle(
-        "(ILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$906.PFNGLSPRITEPARAMETERFVSGIXPROC$FUNC, false
+        constants$906.PFNGLSPRITEPARAMETERFVSGIXPROC$FUNC
     );
     static final FunctionDescriptor PFNGLSPRITEPARAMETERISGIXPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLSPRITEPARAMETERISGIXPROC$MH = RuntimeHelper.downcallHandle(
-        "(II)V",
-        constants$906.PFNGLSPRITEPARAMETERISGIXPROC$FUNC, false
+        constants$906.PFNGLSPRITEPARAMETERISGIXPROC$FUNC
     );
     static final FunctionDescriptor PFNGLSPRITEPARAMETERIVSGIXPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLSPRITEPARAMETERIVSGIXPROC$MH = RuntimeHelper.downcallHandle(
-        "(ILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$906.PFNGLSPRITEPARAMETERIVSGIXPROC$FUNC, false
+        constants$906.PFNGLSPRITEPARAMETERIVSGIXPROC$FUNC
     );
 }
 

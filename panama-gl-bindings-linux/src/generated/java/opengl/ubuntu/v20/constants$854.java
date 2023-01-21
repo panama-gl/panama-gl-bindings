@@ -2,38 +2,35 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_CHAR;
-import static jdk.incubator.foreign.CLinker.C_INT;
-import static jdk.incubator.foreign.CLinker.C_POINTER;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$854 {
 
     static final FunctionDescriptor PFNGLGETVERTEXATTRIBPOINTERVNVPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLGETVERTEXATTRIBPOINTERVNVPROC$MH = RuntimeHelper.downcallHandle(
-        "(IILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$854.PFNGLGETVERTEXATTRIBPOINTERVNVPROC$FUNC, false
+        constants$854.PFNGLGETVERTEXATTRIBPOINTERVNVPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLISPROGRAMNVPROC$FUNC = FunctionDescriptor.of(C_CHAR,
-        C_INT
+    static final FunctionDescriptor PFNGLISPROGRAMNVPROC$FUNC = FunctionDescriptor.of(Constants$root.C_CHAR$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLISPROGRAMNVPROC$MH = RuntimeHelper.downcallHandle(
-        "(I)B",
-        constants$854.PFNGLISPROGRAMNVPROC$FUNC, false
+        constants$854.PFNGLISPROGRAMNVPROC$FUNC
     );
     static final FunctionDescriptor PFNGLLOADPROGRAMNVPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLLOADPROGRAMNVPROC$MH = RuntimeHelper.downcallHandle(
-        "(IIILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$854.PFNGLLOADPROGRAMNVPROC$FUNC, false
+        constants$854.PFNGLLOADPROGRAMNVPROC$FUNC
     );
 }
 

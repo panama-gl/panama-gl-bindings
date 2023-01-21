@@ -2,22 +2,22 @@
 
 package opengl.ubuntu.v20;
 
-import jdk.incubator.foreign.Addressable;
-import jdk.incubator.foreign.MemoryAddress;
-import jdk.incubator.foreign.ResourceScope;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public interface PFNGLWAITSEMAPHOREEXTPROC {
 
-    void apply(int x0, int x1, jdk.incubator.foreign.MemoryAddress x2, int x3, jdk.incubator.foreign.MemoryAddress x4, jdk.incubator.foreign.MemoryAddress x5);
-    static MemoryAddress allocate(PFNGLWAITSEMAPHOREEXTPROC fi) {
-        return RuntimeHelper.upcallStub(PFNGLWAITSEMAPHOREEXTPROC.class, fi, constants$662.PFNGLWAITSEMAPHOREEXTPROC$FUNC, "(IILjdk/incubator/foreign/MemoryAddress;ILjdk/incubator/foreign/MemoryAddress;Ljdk/incubator/foreign/MemoryAddress;)V");
+    void apply(int semaphore, int numBufferBarriers, java.lang.foreign.MemoryAddress buffers, int numTextureBarriers, java.lang.foreign.MemoryAddress textures, java.lang.foreign.MemoryAddress srcLayouts);
+    static MemorySegment allocate(PFNGLWAITSEMAPHOREEXTPROC fi, MemorySession session) {
+        return RuntimeHelper.upcallStub(PFNGLWAITSEMAPHOREEXTPROC.class, fi, constants$662.PFNGLWAITSEMAPHOREEXTPROC$FUNC, session);
     }
-    static MemoryAddress allocate(PFNGLWAITSEMAPHOREEXTPROC fi, ResourceScope scope) {
-        return RuntimeHelper.upcallStub(PFNGLWAITSEMAPHOREEXTPROC.class, fi, constants$662.PFNGLWAITSEMAPHOREEXTPROC$FUNC, "(IILjdk/incubator/foreign/MemoryAddress;ILjdk/incubator/foreign/MemoryAddress;Ljdk/incubator/foreign/MemoryAddress;)V", scope);
-    }
-    static PFNGLWAITSEMAPHOREEXTPROC ofAddress(MemoryAddress addr) {
-        return (int x0, int x1, jdk.incubator.foreign.MemoryAddress x2, int x3, jdk.incubator.foreign.MemoryAddress x4, jdk.incubator.foreign.MemoryAddress x5) -> {
+    static PFNGLWAITSEMAPHOREEXTPROC ofAddress(MemoryAddress addr, MemorySession session) {
+        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
+        return (int _semaphore, int _numBufferBarriers, java.lang.foreign.MemoryAddress _buffers, int _numTextureBarriers, java.lang.foreign.MemoryAddress _textures, java.lang.foreign.MemoryAddress _srcLayouts) -> {
             try {
-                constants$662.PFNGLWAITSEMAPHOREEXTPROC$MH.invokeExact((Addressable)addr, x0, x1, x2, x3, x4, x5);
+                constants$662.PFNGLWAITSEMAPHOREEXTPROC$MH.invokeExact((Addressable)symbol, _semaphore, _numBufferBarriers, (java.lang.foreign.Addressable)_buffers, _numTextureBarriers, (java.lang.foreign.Addressable)_textures, (java.lang.foreign.Addressable)_srcLayouts);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

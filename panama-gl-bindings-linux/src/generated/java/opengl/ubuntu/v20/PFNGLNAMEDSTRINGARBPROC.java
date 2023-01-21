@@ -2,22 +2,22 @@
 
 package opengl.ubuntu.v20;
 
-import jdk.incubator.foreign.Addressable;
-import jdk.incubator.foreign.MemoryAddress;
-import jdk.incubator.foreign.ResourceScope;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public interface PFNGLNAMEDSTRINGARBPROC {
 
-    void apply(int x0, int x1, jdk.incubator.foreign.MemoryAddress x2, int x3, jdk.incubator.foreign.MemoryAddress x4);
-    static MemoryAddress allocate(PFNGLNAMEDSTRINGARBPROC fi) {
-        return RuntimeHelper.upcallStub(PFNGLNAMEDSTRINGARBPROC.class, fi, constants$370.PFNGLNAMEDSTRINGARBPROC$FUNC, "(IILjdk/incubator/foreign/MemoryAddress;ILjdk/incubator/foreign/MemoryAddress;)V");
+    void apply(int type, int namelen, java.lang.foreign.MemoryAddress name, int stringlen, java.lang.foreign.MemoryAddress string);
+    static MemorySegment allocate(PFNGLNAMEDSTRINGARBPROC fi, MemorySession session) {
+        return RuntimeHelper.upcallStub(PFNGLNAMEDSTRINGARBPROC.class, fi, constants$370.PFNGLNAMEDSTRINGARBPROC$FUNC, session);
     }
-    static MemoryAddress allocate(PFNGLNAMEDSTRINGARBPROC fi, ResourceScope scope) {
-        return RuntimeHelper.upcallStub(PFNGLNAMEDSTRINGARBPROC.class, fi, constants$370.PFNGLNAMEDSTRINGARBPROC$FUNC, "(IILjdk/incubator/foreign/MemoryAddress;ILjdk/incubator/foreign/MemoryAddress;)V", scope);
-    }
-    static PFNGLNAMEDSTRINGARBPROC ofAddress(MemoryAddress addr) {
-        return (int x0, int x1, jdk.incubator.foreign.MemoryAddress x2, int x3, jdk.incubator.foreign.MemoryAddress x4) -> {
+    static PFNGLNAMEDSTRINGARBPROC ofAddress(MemoryAddress addr, MemorySession session) {
+        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
+        return (int _type, int _namelen, java.lang.foreign.MemoryAddress _name, int _stringlen, java.lang.foreign.MemoryAddress _string) -> {
             try {
-                constants$370.PFNGLNAMEDSTRINGARBPROC$MH.invokeExact((Addressable)addr, x0, x1, x2, x3, x4);
+                constants$370.PFNGLNAMEDSTRINGARBPROC$MH.invokeExact((Addressable)symbol, _type, _namelen, (java.lang.foreign.Addressable)_name, _stringlen, (java.lang.foreign.Addressable)_string);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

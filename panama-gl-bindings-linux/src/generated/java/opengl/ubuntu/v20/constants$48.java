@@ -2,76 +2,71 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_INT;
-import static jdk.incubator.foreign.CLinker.C_POINTER;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$48 {
 
     static final FunctionDescriptor glTexImage2D$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle glTexImage2D$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "glTexImage2D",
-        "(IIIIIIIILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$48.glTexImage2D$FUNC, false
+        "glTexImage2D",
+        constants$48.glTexImage2D$FUNC
     );
     static final FunctionDescriptor glGetTexImage$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle glGetTexImage$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "glGetTexImage",
-        "(IIIILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$48.glGetTexImage$FUNC, false
+        "glGetTexImage",
+        constants$48.glGetTexImage$FUNC
     );
     static final FunctionDescriptor glGenTextures$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle glGenTextures$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "glGenTextures",
-        "(ILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$48.glGenTextures$FUNC, false
+        "glGenTextures",
+        constants$48.glGenTextures$FUNC
     );
     static final FunctionDescriptor glDeleteTextures$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle glDeleteTextures$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "glDeleteTextures",
-        "(ILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$48.glDeleteTextures$FUNC, false
+        "glDeleteTextures",
+        constants$48.glDeleteTextures$FUNC
     );
     static final FunctionDescriptor glBindTexture$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle glBindTexture$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "glBindTexture",
-        "(II)V",
-        constants$48.glBindTexture$FUNC, false
+        "glBindTexture",
+        constants$48.glBindTexture$FUNC
     );
     static final FunctionDescriptor glPrioritizeTextures$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_POINTER,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle glPrioritizeTextures$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "glPrioritizeTextures",
-        "(ILjdk/incubator/foreign/MemoryAddress;Ljdk/incubator/foreign/MemoryAddress;)V",
-        constants$48.glPrioritizeTextures$FUNC, false
+        "glPrioritizeTextures",
+        constants$48.glPrioritizeTextures$FUNC
     );
 }
 

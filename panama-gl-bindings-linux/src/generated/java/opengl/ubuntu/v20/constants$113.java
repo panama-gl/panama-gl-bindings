@@ -2,36 +2,34 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_INT;
-import static jdk.incubator.foreign.CLinker.C_POINTER;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$113 {
 
     static final FunctionDescriptor PFNGLGETBUFFERPOINTERVPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLGETBUFFERPOINTERVPROC$MH = RuntimeHelper.downcallHandle(
-        "(IILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$113.PFNGLGETBUFFERPOINTERVPROC$FUNC, false
+        constants$113.PFNGLGETBUFFERPOINTERVPROC$FUNC
     );
     static final FunctionDescriptor PFNGLBLENDEQUATIONSEPARATEPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLBLENDEQUATIONSEPARATEPROC$MH = RuntimeHelper.downcallHandle(
-        "(II)V",
-        constants$113.PFNGLBLENDEQUATIONSEPARATEPROC$FUNC, false
+        constants$113.PFNGLBLENDEQUATIONSEPARATEPROC$FUNC
     );
     static final FunctionDescriptor PFNGLDRAWBUFFERSPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLDRAWBUFFERSPROC$MH = RuntimeHelper.downcallHandle(
-        "(ILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$113.PFNGLDRAWBUFFERSPROC$FUNC, false
+        constants$113.PFNGLDRAWBUFFERSPROC$FUNC
     );
 }
 

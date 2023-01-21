@@ -2,41 +2,38 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_INT;
-import static jdk.incubator.foreign.CLinker.C_LONG;
-import static jdk.incubator.foreign.CLinker.C_POINTER;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$285 {
 
     static final FunctionDescriptor PFNGLCREATETEXTURESPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLCREATETEXTURESPROC$MH = RuntimeHelper.downcallHandle(
-        "(IILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$285.PFNGLCREATETEXTURESPROC$FUNC, false
+        constants$285.PFNGLCREATETEXTURESPROC$FUNC
     );
     static final FunctionDescriptor PFNGLTEXTUREBUFFERPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_INT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLTEXTUREBUFFERPROC$MH = RuntimeHelper.downcallHandle(
-        "(III)V",
-        constants$285.PFNGLTEXTUREBUFFERPROC$FUNC, false
+        constants$285.PFNGLTEXTUREBUFFERPROC$FUNC
     );
     static final FunctionDescriptor PFNGLTEXTUREBUFFERRANGEPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_INT,
-        C_LONG,
-        C_LONG
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT
     );
     static final MethodHandle PFNGLTEXTUREBUFFERRANGEPROC$MH = RuntimeHelper.downcallHandle(
-        "(IIIJJ)V",
-        constants$285.PFNGLTEXTUREBUFFERRANGEPROC$FUNC, false
+        constants$285.PFNGLTEXTUREBUFFERRANGEPROC$FUNC
     );
 }
 

@@ -2,35 +2,32 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_CHAR;
-import static jdk.incubator.foreign.CLinker.C_INT;
-import static jdk.incubator.foreign.CLinker.C_POINTER;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$671 {
 
     static final FunctionDescriptor PFNGLDELETETEXTURESEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLDELETETEXTURESEXTPROC$MH = RuntimeHelper.downcallHandle(
-        "(ILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$671.PFNGLDELETETEXTURESEXTPROC$FUNC, false
+        constants$671.PFNGLDELETETEXTURESEXTPROC$FUNC
     );
     static final FunctionDescriptor PFNGLGENTEXTURESEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLGENTEXTURESEXTPROC$MH = RuntimeHelper.downcallHandle(
-        "(ILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$671.PFNGLGENTEXTURESEXTPROC$FUNC, false
+        constants$671.PFNGLGENTEXTURESEXTPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLISTEXTUREEXTPROC$FUNC = FunctionDescriptor.of(C_CHAR,
-        C_INT
+    static final FunctionDescriptor PFNGLISTEXTUREEXTPROC$FUNC = FunctionDescriptor.of(Constants$root.C_CHAR$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLISTEXTUREEXTPROC$MH = RuntimeHelper.downcallHandle(
-        "(I)B",
-        constants$671.PFNGLISTEXTUREEXTPROC$FUNC, false
+        constants$671.PFNGLISTEXTUREEXTPROC$FUNC
     );
 }
 

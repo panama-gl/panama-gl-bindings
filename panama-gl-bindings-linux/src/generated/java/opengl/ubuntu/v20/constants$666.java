@@ -2,46 +2,44 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_INT;
-import static jdk.incubator.foreign.CLinker.C_POINTER;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$666 {
 
     static final FunctionDescriptor PFNGLACTIVESTENCILFACEEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLACTIVESTENCILFACEEXTPROC$MH = RuntimeHelper.downcallHandle(
-        "(I)V",
-        constants$666.PFNGLACTIVESTENCILFACEEXTPROC$FUNC, false
+        constants$666.PFNGLACTIVESTENCILFACEEXTPROC$FUNC
     );
     static final FunctionDescriptor PFNGLTEXSUBIMAGE1DEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLTEXSUBIMAGE1DEXTPROC$MH = RuntimeHelper.downcallHandle(
-        "(IIIIIILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$666.PFNGLTEXSUBIMAGE1DEXTPROC$FUNC, false
+        constants$666.PFNGLTEXSUBIMAGE1DEXTPROC$FUNC
     );
     static final FunctionDescriptor PFNGLTEXSUBIMAGE2DEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLTEXSUBIMAGE2DEXTPROC$MH = RuntimeHelper.downcallHandle(
-        "(IIIIIIIILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$666.PFNGLTEXSUBIMAGE2DEXTPROC$FUNC, false
+        constants$666.PFNGLTEXSUBIMAGE2DEXTPROC$FUNC
     );
 }
 

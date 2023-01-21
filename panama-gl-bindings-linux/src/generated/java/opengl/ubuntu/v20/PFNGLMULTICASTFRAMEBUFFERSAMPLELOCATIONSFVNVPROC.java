@@ -2,22 +2,22 @@
 
 package opengl.ubuntu.v20;
 
-import jdk.incubator.foreign.Addressable;
-import jdk.incubator.foreign.MemoryAddress;
-import jdk.incubator.foreign.ResourceScope;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public interface PFNGLMULTICASTFRAMEBUFFERSAMPLELOCATIONSFVNVPROC {
 
-    void apply(int x0, int x1, int x2, int x3, jdk.incubator.foreign.MemoryAddress x4);
-    static MemoryAddress allocate(PFNGLMULTICASTFRAMEBUFFERSAMPLELOCATIONSFVNVPROC fi) {
-        return RuntimeHelper.upcallStub(PFNGLMULTICASTFRAMEBUFFERSAMPLELOCATIONSFVNVPROC.class, fi, constants$755.PFNGLMULTICASTFRAMEBUFFERSAMPLELOCATIONSFVNVPROC$FUNC, "(IIIILjdk/incubator/foreign/MemoryAddress;)V");
+    void apply(int gpu, int framebuffer, int start, int count, java.lang.foreign.MemoryAddress v);
+    static MemorySegment allocate(PFNGLMULTICASTFRAMEBUFFERSAMPLELOCATIONSFVNVPROC fi, MemorySession session) {
+        return RuntimeHelper.upcallStub(PFNGLMULTICASTFRAMEBUFFERSAMPLELOCATIONSFVNVPROC.class, fi, constants$755.PFNGLMULTICASTFRAMEBUFFERSAMPLELOCATIONSFVNVPROC$FUNC, session);
     }
-    static MemoryAddress allocate(PFNGLMULTICASTFRAMEBUFFERSAMPLELOCATIONSFVNVPROC fi, ResourceScope scope) {
-        return RuntimeHelper.upcallStub(PFNGLMULTICASTFRAMEBUFFERSAMPLELOCATIONSFVNVPROC.class, fi, constants$755.PFNGLMULTICASTFRAMEBUFFERSAMPLELOCATIONSFVNVPROC$FUNC, "(IIIILjdk/incubator/foreign/MemoryAddress;)V", scope);
-    }
-    static PFNGLMULTICASTFRAMEBUFFERSAMPLELOCATIONSFVNVPROC ofAddress(MemoryAddress addr) {
-        return (int x0, int x1, int x2, int x3, jdk.incubator.foreign.MemoryAddress x4) -> {
+    static PFNGLMULTICASTFRAMEBUFFERSAMPLELOCATIONSFVNVPROC ofAddress(MemoryAddress addr, MemorySession session) {
+        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
+        return (int _gpu, int _framebuffer, int _start, int _count, java.lang.foreign.MemoryAddress _v) -> {
             try {
-                constants$755.PFNGLMULTICASTFRAMEBUFFERSAMPLELOCATIONSFVNVPROC$MH.invokeExact((Addressable)addr, x0, x1, x2, x3, x4);
+                constants$755.PFNGLMULTICASTFRAMEBUFFERSAMPLELOCATIONSFVNVPROC$MH.invokeExact((Addressable)symbol, _gpu, _framebuffer, _start, _count, (java.lang.foreign.Addressable)_v);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

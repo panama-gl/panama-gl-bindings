@@ -2,35 +2,29 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_CHAR;
-import static jdk.incubator.foreign.CLinker.C_INT;
-import static jdk.incubator.foreign.CLinker.C_LONG;
-import static jdk.incubator.foreign.CLinker.C_POINTER;
-import static jdk.incubator.foreign.CLinker.C_SHORT;
+import java.lang.invoke.MethodHandle;
 import java.lang.invoke.VarHandle;
-import jdk.incubator.foreign.MemoryAddress;
-import jdk.incubator.foreign.MemoryLayout;
-import jdk.incubator.foreign.MemorySegment;
-import jdk.incubator.foreign.ResourceScope;
-import jdk.incubator.foreign.SegmentAllocator;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public class pthread_mutex_t {
 
-    static final MemoryLayout $union$LAYOUT = MemoryLayout.unionLayout(
+    static final  GroupLayout $union$LAYOUT = MemoryLayout.unionLayout(
         MemoryLayout.structLayout(
-            C_INT.withName("__lock"),
-            C_INT.withName("__count"),
-            C_INT.withName("__owner"),
-            C_INT.withName("__nusers"),
-            C_INT.withName("__kind"),
-            C_SHORT.withName("__spins"),
-            C_SHORT.withName("__elision"),
+            Constants$root.C_INT$LAYOUT.withName("__lock"),
+            Constants$root.C_INT$LAYOUT.withName("__count"),
+            Constants$root.C_INT$LAYOUT.withName("__owner"),
+            Constants$root.C_INT$LAYOUT.withName("__nusers"),
+            Constants$root.C_INT$LAYOUT.withName("__kind"),
+            Constants$root.C_SHORT$LAYOUT.withName("__spins"),
+            Constants$root.C_SHORT$LAYOUT.withName("__elision"),
             MemoryLayout.structLayout(
-                C_POINTER.withName("__prev"),
-                C_POINTER.withName("__next")
+                Constants$root.C_POINTER$LAYOUT.withName("__prev"),
+                Constants$root.C_POINTER$LAYOUT.withName("__next")
             ).withName("__list")
         ).withName("__data"),
-        MemoryLayout.sequenceLayout(40, C_CHAR).withName("__size"),
-        C_LONG.withName("__align")
+        MemoryLayout.sequenceLayout(40, Constants$root.C_CHAR$LAYOUT).withName("__size"),
+        Constants$root.C_LONG_LONG$LAYOUT.withName("__align")
     );
     public static MemoryLayout $LAYOUT() {
         return pthread_mutex_t.$union$LAYOUT;
@@ -41,7 +35,7 @@ public class pthread_mutex_t {
     public static MemorySegment __size$slice(MemorySegment seg) {
         return seg.asSlice(0, 40);
     }
-    static final VarHandle __align$VH = $union$LAYOUT.varHandle(long.class, MemoryLayout.PathElement.groupElement("__align"));
+    static final VarHandle __align$VH = $union$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("__align"));
     public static VarHandle __align$VH() {
         return pthread_mutex_t.__align$VH;
     }
@@ -59,14 +53,10 @@ public class pthread_mutex_t {
     }
     public static long sizeof() { return $LAYOUT().byteSize(); }
     public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocate(ResourceScope scope) { return allocate(SegmentAllocator.ofScope(scope)); }
     public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
         return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
     }
-    public static MemorySegment allocateArray(int len, ResourceScope scope) {
-        return allocateArray(len, SegmentAllocator.ofScope(scope));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, ResourceScope scope) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, scope); }
+    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
 }
 
 

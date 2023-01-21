@@ -2,39 +2,37 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_CHAR;
-import static jdk.incubator.foreign.CLinker.C_INT;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$665 {
 
     static final FunctionDescriptor PFNGLBINDIMAGETEXTUREEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_INT,
-        C_CHAR,
-        C_INT,
-        C_INT,
-        C_INT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_CHAR$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLBINDIMAGETEXTUREEXTPROC$MH = RuntimeHelper.downcallHandle(
-        "(IIIBIII)V",
-        constants$665.PFNGLBINDIMAGETEXTUREEXTPROC$FUNC, false
+        constants$665.PFNGLBINDIMAGETEXTUREEXTPROC$FUNC
     );
     static final FunctionDescriptor PFNGLMEMORYBARRIEREXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLMEMORYBARRIEREXTPROC$MH = RuntimeHelper.downcallHandle(
-        "(I)V",
-        constants$665.PFNGLMEMORYBARRIEREXTPROC$FUNC, false
+        constants$665.PFNGLMEMORYBARRIEREXTPROC$FUNC
     );
     static final FunctionDescriptor PFNGLSTENCILCLEARTAGEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLSTENCILCLEARTAGEXTPROC$MH = RuntimeHelper.downcallHandle(
-        "(II)V",
-        constants$665.PFNGLSTENCILCLEARTAGEXTPROC$FUNC, false
+        constants$665.PFNGLSTENCILCLEARTAGEXTPROC$FUNC
     );
 }
 

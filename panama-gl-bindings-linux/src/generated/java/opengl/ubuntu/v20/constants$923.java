@@ -2,40 +2,37 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_FLOAT;
-import static jdk.incubator.foreign.CLinker.C_INT;
-import static jdk.incubator.foreign.CLinker.C_POINTER;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$923 {
 
     static final FunctionDescriptor PFNGLTEXCOORD4FCOLOR4FNORMAL3FVERTEX4FVSUNPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_POINTER,
-        C_POINTER,
-        C_POINTER,
-        C_POINTER
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLTEXCOORD4FCOLOR4FNORMAL3FVERTEX4FVSUNPROC$MH = RuntimeHelper.downcallHandle(
-        "(Ljdk/incubator/foreign/MemoryAddress;Ljdk/incubator/foreign/MemoryAddress;Ljdk/incubator/foreign/MemoryAddress;Ljdk/incubator/foreign/MemoryAddress;)V",
-        constants$923.PFNGLTEXCOORD4FCOLOR4FNORMAL3FVERTEX4FVSUNPROC$FUNC, false
+        constants$923.PFNGLTEXCOORD4FCOLOR4FNORMAL3FVERTEX4FVSUNPROC$FUNC
     );
     static final FunctionDescriptor PFNGLREPLACEMENTCODEUIVERTEX3FSUNPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_FLOAT,
-        C_FLOAT,
-        C_FLOAT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT
     );
     static final MethodHandle PFNGLREPLACEMENTCODEUIVERTEX3FSUNPROC$MH = RuntimeHelper.downcallHandle(
-        "(IFFF)V",
-        constants$923.PFNGLREPLACEMENTCODEUIVERTEX3FSUNPROC$FUNC, false
+        constants$923.PFNGLREPLACEMENTCODEUIVERTEX3FSUNPROC$FUNC
     );
     static final FunctionDescriptor PFNGLREPLACEMENTCODEUIVERTEX3FVSUNPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_POINTER,
-        C_POINTER
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLREPLACEMENTCODEUIVERTEX3FVSUNPROC$MH = RuntimeHelper.downcallHandle(
-        "(Ljdk/incubator/foreign/MemoryAddress;Ljdk/incubator/foreign/MemoryAddress;)V",
-        constants$923.PFNGLREPLACEMENTCODEUIVERTEX3FVSUNPROC$FUNC, false
+        constants$923.PFNGLREPLACEMENTCODEUIVERTEX3FVSUNPROC$FUNC
     );
 }
 

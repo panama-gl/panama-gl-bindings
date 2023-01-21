@@ -2,36 +2,34 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_INT;
-import static jdk.incubator.foreign.CLinker.C_POINTER;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$746 {
 
     static final FunctionDescriptor PFNGLGETMULTISAMPLEFVNVPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLGETMULTISAMPLEFVNVPROC$MH = RuntimeHelper.downcallHandle(
-        "(IILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$746.PFNGLGETMULTISAMPLEFVNVPROC$FUNC, false
+        constants$746.PFNGLGETMULTISAMPLEFVNVPROC$FUNC
     );
     static final FunctionDescriptor PFNGLSAMPLEMASKINDEXEDNVPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLSAMPLEMASKINDEXEDNVPROC$MH = RuntimeHelper.downcallHandle(
-        "(II)V",
-        constants$746.PFNGLSAMPLEMASKINDEXEDNVPROC$FUNC, false
+        constants$746.PFNGLSAMPLEMASKINDEXEDNVPROC$FUNC
     );
     static final FunctionDescriptor PFNGLTEXRENDERBUFFERNVPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLTEXRENDERBUFFERNVPROC$MH = RuntimeHelper.downcallHandle(
-        "(II)V",
-        constants$746.PFNGLTEXRENDERBUFFERNVPROC$FUNC, false
+        constants$746.PFNGLTEXRENDERBUFFERNVPROC$FUNC
     );
 }
 

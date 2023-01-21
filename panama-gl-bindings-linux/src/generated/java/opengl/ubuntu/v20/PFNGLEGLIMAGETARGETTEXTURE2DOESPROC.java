@@ -2,22 +2,22 @@
 
 package opengl.ubuntu.v20;
 
-import jdk.incubator.foreign.Addressable;
-import jdk.incubator.foreign.MemoryAddress;
-import jdk.incubator.foreign.ResourceScope;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public interface PFNGLEGLIMAGETARGETTEXTURE2DOESPROC {
 
-    void apply(int x0, jdk.incubator.foreign.MemoryAddress x1);
-    static MemoryAddress allocate(PFNGLEGLIMAGETARGETTEXTURE2DOESPROC fi) {
-        return RuntimeHelper.upcallStub(PFNGLEGLIMAGETARGETTEXTURE2DOESPROC.class, fi, constants$929.PFNGLEGLIMAGETARGETTEXTURE2DOESPROC$FUNC, "(ILjdk/incubator/foreign/MemoryAddress;)V");
+    void apply(int target, java.lang.foreign.MemoryAddress image);
+    static MemorySegment allocate(PFNGLEGLIMAGETARGETTEXTURE2DOESPROC fi, MemorySession session) {
+        return RuntimeHelper.upcallStub(PFNGLEGLIMAGETARGETTEXTURE2DOESPROC.class, fi, constants$929.PFNGLEGLIMAGETARGETTEXTURE2DOESPROC$FUNC, session);
     }
-    static MemoryAddress allocate(PFNGLEGLIMAGETARGETTEXTURE2DOESPROC fi, ResourceScope scope) {
-        return RuntimeHelper.upcallStub(PFNGLEGLIMAGETARGETTEXTURE2DOESPROC.class, fi, constants$929.PFNGLEGLIMAGETARGETTEXTURE2DOESPROC$FUNC, "(ILjdk/incubator/foreign/MemoryAddress;)V", scope);
-    }
-    static PFNGLEGLIMAGETARGETTEXTURE2DOESPROC ofAddress(MemoryAddress addr) {
-        return (int x0, jdk.incubator.foreign.MemoryAddress x1) -> {
+    static PFNGLEGLIMAGETARGETTEXTURE2DOESPROC ofAddress(MemoryAddress addr, MemorySession session) {
+        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
+        return (int _target, java.lang.foreign.MemoryAddress _image) -> {
             try {
-                constants$929.PFNGLEGLIMAGETARGETTEXTURE2DOESPROC$MH.invokeExact((Addressable)addr, x0, x1);
+                constants$929.PFNGLEGLIMAGETARGETTEXTURE2DOESPROC$MH.invokeExact((Addressable)symbol, _target, (java.lang.foreign.Addressable)_image);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

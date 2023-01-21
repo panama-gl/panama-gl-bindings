@@ -2,39 +2,37 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_INT;
-import static jdk.incubator.foreign.CLinker.C_POINTER;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$751 {
 
     static final FunctionDescriptor PFNGLGETPROGRAMNAMEDPARAMETERFVNVPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_POINTER,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLGETPROGRAMNAMEDPARAMETERFVNVPROC$MH = RuntimeHelper.downcallHandle(
-        "(IILjdk/incubator/foreign/MemoryAddress;Ljdk/incubator/foreign/MemoryAddress;)V",
-        constants$751.PFNGLGETPROGRAMNAMEDPARAMETERFVNVPROC$FUNC, false
+        constants$751.PFNGLGETPROGRAMNAMEDPARAMETERFVNVPROC$FUNC
     );
     static final FunctionDescriptor PFNGLGETPROGRAMNAMEDPARAMETERDVNVPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_POINTER,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLGETPROGRAMNAMEDPARAMETERDVNVPROC$MH = RuntimeHelper.downcallHandle(
-        "(IILjdk/incubator/foreign/MemoryAddress;Ljdk/incubator/foreign/MemoryAddress;)V",
-        constants$751.PFNGLGETPROGRAMNAMEDPARAMETERDVNVPROC$FUNC, false
+        constants$751.PFNGLGETPROGRAMNAMEDPARAMETERDVNVPROC$FUNC
     );
     static final FunctionDescriptor PFNGLCOVERAGEMODULATIONTABLENVPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLCOVERAGEMODULATIONTABLENVPROC$MH = RuntimeHelper.downcallHandle(
-        "(ILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$751.PFNGLCOVERAGEMODULATIONTABLENVPROC$FUNC, false
+        constants$751.PFNGLCOVERAGEMODULATIONTABLENVPROC$FUNC
     );
 }
 

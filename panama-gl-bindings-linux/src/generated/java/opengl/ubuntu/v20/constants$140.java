@@ -2,39 +2,36 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_DOUBLE;
-import static jdk.incubator.foreign.CLinker.C_INT;
-import static jdk.incubator.foreign.CLinker.C_POINTER;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$140 {
 
     static final FunctionDescriptor PFNGLVERTEXATTRIB4NUSVPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLVERTEXATTRIB4NUSVPROC$MH = RuntimeHelper.downcallHandle(
-        "(ILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$140.PFNGLVERTEXATTRIB4NUSVPROC$FUNC, false
+        constants$140.PFNGLVERTEXATTRIB4NUSVPROC$FUNC
     );
     static final FunctionDescriptor PFNGLVERTEXATTRIB4BVPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLVERTEXATTRIB4BVPROC$MH = RuntimeHelper.downcallHandle(
-        "(ILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$140.PFNGLVERTEXATTRIB4BVPROC$FUNC, false
+        constants$140.PFNGLVERTEXATTRIB4BVPROC$FUNC
     );
     static final FunctionDescriptor PFNGLVERTEXATTRIB4DPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_DOUBLE,
-        C_DOUBLE,
-        C_DOUBLE,
-        C_DOUBLE
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_DOUBLE$LAYOUT,
+        Constants$root.C_DOUBLE$LAYOUT,
+        Constants$root.C_DOUBLE$LAYOUT,
+        Constants$root.C_DOUBLE$LAYOUT
     );
     static final MethodHandle PFNGLVERTEXATTRIB4DPROC$MH = RuntimeHelper.downcallHandle(
-        "(IDDDD)V",
-        constants$140.PFNGLVERTEXATTRIB4DPROC$FUNC, false
+        constants$140.PFNGLVERTEXATTRIB4DPROC$FUNC
     );
 }
 

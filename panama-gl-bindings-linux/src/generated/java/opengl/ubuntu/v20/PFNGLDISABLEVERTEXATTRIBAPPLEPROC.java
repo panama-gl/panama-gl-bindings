@@ -2,22 +2,22 @@
 
 package opengl.ubuntu.v20;
 
-import jdk.incubator.foreign.Addressable;
-import jdk.incubator.foreign.MemoryAddress;
-import jdk.incubator.foreign.ResourceScope;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public interface PFNGLDISABLEVERTEXATTRIBAPPLEPROC {
 
-    void apply(int x0, int x1);
-    static MemoryAddress allocate(PFNGLDISABLEVERTEXATTRIBAPPLEPROC fi) {
-        return RuntimeHelper.upcallStub(PFNGLDISABLEVERTEXATTRIBAPPLEPROC.class, fi, constants$484.PFNGLDISABLEVERTEXATTRIBAPPLEPROC$FUNC, "(II)V");
+    void apply(int index, int pname);
+    static MemorySegment allocate(PFNGLDISABLEVERTEXATTRIBAPPLEPROC fi, MemorySession session) {
+        return RuntimeHelper.upcallStub(PFNGLDISABLEVERTEXATTRIBAPPLEPROC.class, fi, constants$484.PFNGLDISABLEVERTEXATTRIBAPPLEPROC$FUNC, session);
     }
-    static MemoryAddress allocate(PFNGLDISABLEVERTEXATTRIBAPPLEPROC fi, ResourceScope scope) {
-        return RuntimeHelper.upcallStub(PFNGLDISABLEVERTEXATTRIBAPPLEPROC.class, fi, constants$484.PFNGLDISABLEVERTEXATTRIBAPPLEPROC$FUNC, "(II)V", scope);
-    }
-    static PFNGLDISABLEVERTEXATTRIBAPPLEPROC ofAddress(MemoryAddress addr) {
-        return (int x0, int x1) -> {
+    static PFNGLDISABLEVERTEXATTRIBAPPLEPROC ofAddress(MemoryAddress addr, MemorySession session) {
+        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
+        return (int _index, int _pname) -> {
             try {
-                constants$484.PFNGLDISABLEVERTEXATTRIBAPPLEPROC$MH.invokeExact((Addressable)addr, x0, x1);
+                constants$484.PFNGLDISABLEVERTEXATTRIBAPPLEPROC$MH.invokeExact((Addressable)symbol, _index, _pname);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

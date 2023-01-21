@@ -2,37 +2,34 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_CHAR;
-import static jdk.incubator.foreign.CLinker.C_INT;
-import static jdk.incubator.foreign.CLinker.C_POINTER;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$224 {
 
-    static final FunctionDescriptor PFNGLISPROGRAMPIPELINEPROC$FUNC = FunctionDescriptor.of(C_CHAR,
-        C_INT
+    static final FunctionDescriptor PFNGLISPROGRAMPIPELINEPROC$FUNC = FunctionDescriptor.of(Constants$root.C_CHAR$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLISPROGRAMPIPELINEPROC$MH = RuntimeHelper.downcallHandle(
-        "(I)B",
-        constants$224.PFNGLISPROGRAMPIPELINEPROC$FUNC, false
+        constants$224.PFNGLISPROGRAMPIPELINEPROC$FUNC
     );
     static final FunctionDescriptor PFNGLGETPROGRAMPIPELINEIVPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLGETPROGRAMPIPELINEIVPROC$MH = RuntimeHelper.downcallHandle(
-        "(IILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$224.PFNGLGETPROGRAMPIPELINEIVPROC$FUNC, false
+        constants$224.PFNGLGETPROGRAMPIPELINEIVPROC$FUNC
     );
     static final FunctionDescriptor PFNGLPROGRAMUNIFORM1IPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_INT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLPROGRAMUNIFORM1IPROC$MH = RuntimeHelper.downcallHandle(
-        "(III)V",
-        constants$224.PFNGLPROGRAMUNIFORM1IPROC$FUNC, false
+        constants$224.PFNGLPROGRAMUNIFORM1IPROC$FUNC
     );
 }
 

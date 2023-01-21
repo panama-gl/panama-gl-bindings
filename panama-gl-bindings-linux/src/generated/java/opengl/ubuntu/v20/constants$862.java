@@ -2,41 +2,37 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_DOUBLE;
-import static jdk.incubator.foreign.CLinker.C_FLOAT;
-import static jdk.incubator.foreign.CLinker.C_INT;
-import static jdk.incubator.foreign.CLinker.C_POINTER;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$862 {
 
     static final FunctionDescriptor PFNGLVERTEXATTRIB3DNVPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_DOUBLE,
-        C_DOUBLE,
-        C_DOUBLE
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_DOUBLE$LAYOUT,
+        Constants$root.C_DOUBLE$LAYOUT,
+        Constants$root.C_DOUBLE$LAYOUT
     );
     static final MethodHandle PFNGLVERTEXATTRIB3DNVPROC$MH = RuntimeHelper.downcallHandle(
-        "(IDDD)V",
-        constants$862.PFNGLVERTEXATTRIB3DNVPROC$FUNC, false
+        constants$862.PFNGLVERTEXATTRIB3DNVPROC$FUNC
     );
     static final FunctionDescriptor PFNGLVERTEXATTRIB3DVNVPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLVERTEXATTRIB3DVNVPROC$MH = RuntimeHelper.downcallHandle(
-        "(ILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$862.PFNGLVERTEXATTRIB3DVNVPROC$FUNC, false
+        constants$862.PFNGLVERTEXATTRIB3DVNVPROC$FUNC
     );
     static final FunctionDescriptor PFNGLVERTEXATTRIB3FNVPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_FLOAT,
-        C_FLOAT,
-        C_FLOAT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT
     );
     static final MethodHandle PFNGLVERTEXATTRIB3FNVPROC$MH = RuntimeHelper.downcallHandle(
-        "(IFFF)V",
-        constants$862.PFNGLVERTEXATTRIB3FNVPROC$FUNC, false
+        constants$862.PFNGLVERTEXATTRIB3FNVPROC$FUNC
     );
 }
 

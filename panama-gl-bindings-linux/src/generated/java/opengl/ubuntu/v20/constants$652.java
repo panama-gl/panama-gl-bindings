@@ -2,38 +2,35 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_FLOAT;
-import static jdk.incubator.foreign.CLinker.C_INT;
-import static jdk.incubator.foreign.CLinker.C_POINTER;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$652 {
 
     static final FunctionDescriptor PFNGLGETPIXELTRANSFORMPARAMETERIVEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLGETPIXELTRANSFORMPARAMETERIVEXTPROC$MH = RuntimeHelper.downcallHandle(
-        "(IILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$652.PFNGLGETPIXELTRANSFORMPARAMETERIVEXTPROC$FUNC, false
+        constants$652.PFNGLGETPIXELTRANSFORMPARAMETERIVEXTPROC$FUNC
     );
     static final FunctionDescriptor PFNGLGETPIXELTRANSFORMPARAMETERFVEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLGETPIXELTRANSFORMPARAMETERFVEXTPROC$MH = RuntimeHelper.downcallHandle(
-        "(IILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$652.PFNGLGETPIXELTRANSFORMPARAMETERFVEXTPROC$FUNC, false
+        constants$652.PFNGLGETPIXELTRANSFORMPARAMETERFVEXTPROC$FUNC
     );
     static final FunctionDescriptor PFNGLPOINTPARAMETERFEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_FLOAT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT
     );
     static final MethodHandle PFNGLPOINTPARAMETERFEXTPROC$MH = RuntimeHelper.downcallHandle(
-        "(IF)V",
-        constants$652.PFNGLPOINTPARAMETERFEXTPROC$FUNC, false
+        constants$652.PFNGLPOINTPARAMETERFEXTPROC$FUNC
     );
 }
 

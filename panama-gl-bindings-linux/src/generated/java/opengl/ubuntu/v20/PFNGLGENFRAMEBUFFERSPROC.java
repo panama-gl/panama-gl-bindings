@@ -2,22 +2,22 @@
 
 package opengl.ubuntu.v20;
 
-import jdk.incubator.foreign.Addressable;
-import jdk.incubator.foreign.MemoryAddress;
-import jdk.incubator.foreign.ResourceScope;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public interface PFNGLGENFRAMEBUFFERSPROC {
 
-    void apply(int x0, jdk.incubator.foreign.MemoryAddress x1);
-    static MemoryAddress allocate(PFNGLGENFRAMEBUFFERSPROC fi) {
-        return RuntimeHelper.upcallStub(PFNGLGENFRAMEBUFFERSPROC.class, fi, constants$168.PFNGLGENFRAMEBUFFERSPROC$FUNC, "(ILjdk/incubator/foreign/MemoryAddress;)V");
+    void apply(int n, java.lang.foreign.MemoryAddress framebuffers);
+    static MemorySegment allocate(PFNGLGENFRAMEBUFFERSPROC fi, MemorySession session) {
+        return RuntimeHelper.upcallStub(PFNGLGENFRAMEBUFFERSPROC.class, fi, constants$168.PFNGLGENFRAMEBUFFERSPROC$FUNC, session);
     }
-    static MemoryAddress allocate(PFNGLGENFRAMEBUFFERSPROC fi, ResourceScope scope) {
-        return RuntimeHelper.upcallStub(PFNGLGENFRAMEBUFFERSPROC.class, fi, constants$168.PFNGLGENFRAMEBUFFERSPROC$FUNC, "(ILjdk/incubator/foreign/MemoryAddress;)V", scope);
-    }
-    static PFNGLGENFRAMEBUFFERSPROC ofAddress(MemoryAddress addr) {
-        return (int x0, jdk.incubator.foreign.MemoryAddress x1) -> {
+    static PFNGLGENFRAMEBUFFERSPROC ofAddress(MemoryAddress addr, MemorySession session) {
+        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
+        return (int _n, java.lang.foreign.MemoryAddress _framebuffers) -> {
             try {
-                constants$168.PFNGLGENFRAMEBUFFERSPROC$MH.invokeExact((Addressable)addr, x0, x1);
+                constants$168.PFNGLGENFRAMEBUFFERSPROC$MH.invokeExact((Addressable)symbol, _n, (java.lang.foreign.Addressable)_framebuffers);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

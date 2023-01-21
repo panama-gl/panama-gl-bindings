@@ -2,32 +2,31 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_INT;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$690 {
 
     static final FunctionDescriptor PFNGLENABLEVARIANTCLIENTSTATEEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLENABLEVARIANTCLIENTSTATEEXTPROC$MH = RuntimeHelper.downcallHandle(
-        "(I)V",
-        constants$690.PFNGLENABLEVARIANTCLIENTSTATEEXTPROC$FUNC, false
+        constants$690.PFNGLENABLEVARIANTCLIENTSTATEEXTPROC$FUNC
     );
     static final FunctionDescriptor PFNGLDISABLEVARIANTCLIENTSTATEEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLDISABLEVARIANTCLIENTSTATEEXTPROC$MH = RuntimeHelper.downcallHandle(
-        "(I)V",
-        constants$690.PFNGLDISABLEVARIANTCLIENTSTATEEXTPROC$FUNC, false
+        constants$690.PFNGLDISABLEVARIANTCLIENTSTATEEXTPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLBINDLIGHTPARAMETEREXTPROC$FUNC = FunctionDescriptor.of(C_INT,
-        C_INT,
-        C_INT
+    static final FunctionDescriptor PFNGLBINDLIGHTPARAMETEREXTPROC$FUNC = FunctionDescriptor.of(Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLBINDLIGHTPARAMETEREXTPROC$MH = RuntimeHelper.downcallHandle(
-        "(II)I",
-        constants$690.PFNGLBINDLIGHTPARAMETEREXTPROC$FUNC, false
+        constants$690.PFNGLBINDLIGHTPARAMETEREXTPROC$FUNC
     );
 }
 

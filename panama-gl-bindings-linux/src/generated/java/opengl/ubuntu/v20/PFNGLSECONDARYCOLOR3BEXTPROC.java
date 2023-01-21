@@ -2,22 +2,22 @@
 
 package opengl.ubuntu.v20;
 
-import jdk.incubator.foreign.Addressable;
-import jdk.incubator.foreign.MemoryAddress;
-import jdk.incubator.foreign.ResourceScope;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public interface PFNGLSECONDARYCOLOR3BEXTPROC {
 
-    void apply(byte x0, byte x1, byte x2);
-    static MemoryAddress allocate(PFNGLSECONDARYCOLOR3BEXTPROC fi) {
-        return RuntimeHelper.upcallStub(PFNGLSECONDARYCOLOR3BEXTPROC.class, fi, constants$654.PFNGLSECONDARYCOLOR3BEXTPROC$FUNC, "(BBB)V");
+    void apply(byte red, byte green, byte blue);
+    static MemorySegment allocate(PFNGLSECONDARYCOLOR3BEXTPROC fi, MemorySession session) {
+        return RuntimeHelper.upcallStub(PFNGLSECONDARYCOLOR3BEXTPROC.class, fi, constants$654.PFNGLSECONDARYCOLOR3BEXTPROC$FUNC, session);
     }
-    static MemoryAddress allocate(PFNGLSECONDARYCOLOR3BEXTPROC fi, ResourceScope scope) {
-        return RuntimeHelper.upcallStub(PFNGLSECONDARYCOLOR3BEXTPROC.class, fi, constants$654.PFNGLSECONDARYCOLOR3BEXTPROC$FUNC, "(BBB)V", scope);
-    }
-    static PFNGLSECONDARYCOLOR3BEXTPROC ofAddress(MemoryAddress addr) {
-        return (byte x0, byte x1, byte x2) -> {
+    static PFNGLSECONDARYCOLOR3BEXTPROC ofAddress(MemoryAddress addr, MemorySession session) {
+        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
+        return (byte _red, byte _green, byte _blue) -> {
             try {
-                constants$654.PFNGLSECONDARYCOLOR3BEXTPROC$MH.invokeExact((Addressable)addr, x0, x1, x2);
+                constants$654.PFNGLSECONDARYCOLOR3BEXTPROC$MH.invokeExact((Addressable)symbol, _red, _green, _blue);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

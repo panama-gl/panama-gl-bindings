@@ -2,50 +2,49 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_INT;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$532 {
 
     static final FunctionDescriptor PFNGLCOPYTEXIMAGE2DEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLCOPYTEXIMAGE2DEXTPROC$MH = RuntimeHelper.downcallHandle(
-        "(IIIIIIII)V",
-        constants$532.PFNGLCOPYTEXIMAGE2DEXTPROC$FUNC, false
+        constants$532.PFNGLCOPYTEXIMAGE2DEXTPROC$FUNC
     );
     static final FunctionDescriptor PFNGLCOPYTEXSUBIMAGE1DEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLCOPYTEXSUBIMAGE1DEXTPROC$MH = RuntimeHelper.downcallHandle(
-        "(IIIIII)V",
-        constants$532.PFNGLCOPYTEXSUBIMAGE1DEXTPROC$FUNC, false
+        constants$532.PFNGLCOPYTEXSUBIMAGE1DEXTPROC$FUNC
     );
     static final FunctionDescriptor PFNGLCOPYTEXSUBIMAGE2DEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLCOPYTEXSUBIMAGE2DEXTPROC$MH = RuntimeHelper.downcallHandle(
-        "(IIIIIIII)V",
-        constants$532.PFNGLCOPYTEXSUBIMAGE2DEXTPROC$FUNC, false
+        constants$532.PFNGLCOPYTEXSUBIMAGE2DEXTPROC$FUNC
     );
 }
 

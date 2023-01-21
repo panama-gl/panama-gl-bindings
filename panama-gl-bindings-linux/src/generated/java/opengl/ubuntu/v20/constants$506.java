@@ -2,40 +2,37 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_INT;
-import static jdk.incubator.foreign.CLinker.C_POINTER;
-import static jdk.incubator.foreign.CLinker.C_SHORT;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$506 {
 
     static final FunctionDescriptor PFNGLVERTEXSTREAM3SATIPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_SHORT,
-        C_SHORT,
-        C_SHORT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_SHORT$LAYOUT,
+        Constants$root.C_SHORT$LAYOUT,
+        Constants$root.C_SHORT$LAYOUT
     );
     static final MethodHandle PFNGLVERTEXSTREAM3SATIPROC$MH = RuntimeHelper.downcallHandle(
-        "(ISSS)V",
-        constants$506.PFNGLVERTEXSTREAM3SATIPROC$FUNC, false
+        constants$506.PFNGLVERTEXSTREAM3SATIPROC$FUNC
     );
     static final FunctionDescriptor PFNGLVERTEXSTREAM3SVATIPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLVERTEXSTREAM3SVATIPROC$MH = RuntimeHelper.downcallHandle(
-        "(ILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$506.PFNGLVERTEXSTREAM3SVATIPROC$FUNC, false
+        constants$506.PFNGLVERTEXSTREAM3SVATIPROC$FUNC
     );
     static final FunctionDescriptor PFNGLVERTEXSTREAM3IATIPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLVERTEXSTREAM3IATIPROC$MH = RuntimeHelper.downcallHandle(
-        "(IIII)V",
-        constants$506.PFNGLVERTEXSTREAM3IATIPROC$FUNC, false
+        constants$506.PFNGLVERTEXSTREAM3IATIPROC$FUNC
     );
 }
 

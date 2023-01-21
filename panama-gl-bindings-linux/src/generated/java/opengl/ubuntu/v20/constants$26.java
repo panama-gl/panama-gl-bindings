@@ -2,69 +2,62 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_DOUBLE;
-import static jdk.incubator.foreign.CLinker.C_FLOAT;
-import static jdk.incubator.foreign.CLinker.C_INT;
-import static jdk.incubator.foreign.CLinker.C_SHORT;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$26 {
 
     static final FunctionDescriptor glTexCoord2d$FUNC = FunctionDescriptor.ofVoid(
-        C_DOUBLE,
-        C_DOUBLE
+        Constants$root.C_DOUBLE$LAYOUT,
+        Constants$root.C_DOUBLE$LAYOUT
     );
     static final MethodHandle glTexCoord2d$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "glTexCoord2d",
-        "(DD)V",
-        constants$26.glTexCoord2d$FUNC, false
+        "glTexCoord2d",
+        constants$26.glTexCoord2d$FUNC
     );
     static final FunctionDescriptor glTexCoord2f$FUNC = FunctionDescriptor.ofVoid(
-        C_FLOAT,
-        C_FLOAT
+        Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT
     );
     static final MethodHandle glTexCoord2f$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "glTexCoord2f",
-        "(FF)V",
-        constants$26.glTexCoord2f$FUNC, false
+        "glTexCoord2f",
+        constants$26.glTexCoord2f$FUNC
     );
     static final FunctionDescriptor glTexCoord2i$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle glTexCoord2i$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "glTexCoord2i",
-        "(II)V",
-        constants$26.glTexCoord2i$FUNC, false
+        "glTexCoord2i",
+        constants$26.glTexCoord2i$FUNC
     );
     static final FunctionDescriptor glTexCoord2s$FUNC = FunctionDescriptor.ofVoid(
-        C_SHORT,
-        C_SHORT
+        Constants$root.C_SHORT$LAYOUT,
+        Constants$root.C_SHORT$LAYOUT
     );
     static final MethodHandle glTexCoord2s$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "glTexCoord2s",
-        "(SS)V",
-        constants$26.glTexCoord2s$FUNC, false
+        "glTexCoord2s",
+        constants$26.glTexCoord2s$FUNC
     );
     static final FunctionDescriptor glTexCoord3d$FUNC = FunctionDescriptor.ofVoid(
-        C_DOUBLE,
-        C_DOUBLE,
-        C_DOUBLE
+        Constants$root.C_DOUBLE$LAYOUT,
+        Constants$root.C_DOUBLE$LAYOUT,
+        Constants$root.C_DOUBLE$LAYOUT
     );
     static final MethodHandle glTexCoord3d$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "glTexCoord3d",
-        "(DDD)V",
-        constants$26.glTexCoord3d$FUNC, false
+        "glTexCoord3d",
+        constants$26.glTexCoord3d$FUNC
     );
     static final FunctionDescriptor glTexCoord3f$FUNC = FunctionDescriptor.ofVoid(
-        C_FLOAT,
-        C_FLOAT,
-        C_FLOAT
+        Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT
     );
     static final MethodHandle glTexCoord3f$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "glTexCoord3f",
-        "(FFF)V",
-        constants$26.glTexCoord3f$FUNC, false
+        "glTexCoord3f",
+        constants$26.glTexCoord3f$FUNC
     );
 }
 

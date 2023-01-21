@@ -2,38 +2,35 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_CHAR;
-import static jdk.incubator.foreign.CLinker.C_INT;
-import static jdk.incubator.foreign.CLinker.C_LONG;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$728 {
 
-    static final FunctionDescriptor PFNGLGETIMAGEHANDLENVPROC$FUNC = FunctionDescriptor.of(C_LONG,
-        C_INT,
-        C_INT,
-        C_CHAR,
-        C_INT,
-        C_INT
+    static final FunctionDescriptor PFNGLGETIMAGEHANDLENVPROC$FUNC = FunctionDescriptor.of(Constants$root.C_LONG_LONG$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_CHAR$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLGETIMAGEHANDLENVPROC$MH = RuntimeHelper.downcallHandle(
-        "(IIBII)J",
-        constants$728.PFNGLGETIMAGEHANDLENVPROC$FUNC, false
+        constants$728.PFNGLGETIMAGEHANDLENVPROC$FUNC
     );
     static final FunctionDescriptor PFNGLMAKEIMAGEHANDLERESIDENTNVPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_LONG,
-        C_INT
+        Constants$root.C_LONG_LONG$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLMAKEIMAGEHANDLERESIDENTNVPROC$MH = RuntimeHelper.downcallHandle(
-        "(JI)V",
-        constants$728.PFNGLMAKEIMAGEHANDLERESIDENTNVPROC$FUNC, false
+        constants$728.PFNGLMAKEIMAGEHANDLERESIDENTNVPROC$FUNC
     );
     static final FunctionDescriptor PFNGLMAKEIMAGEHANDLENONRESIDENTNVPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_LONG
+        Constants$root.C_LONG_LONG$LAYOUT
     );
     static final MethodHandle PFNGLMAKEIMAGEHANDLENONRESIDENTNVPROC$MH = RuntimeHelper.downcallHandle(
-        "(J)V",
-        constants$728.PFNGLMAKEIMAGEHANDLENONRESIDENTNVPROC$FUNC, false
+        constants$728.PFNGLMAKEIMAGEHANDLENONRESIDENTNVPROC$FUNC
     );
 }
 

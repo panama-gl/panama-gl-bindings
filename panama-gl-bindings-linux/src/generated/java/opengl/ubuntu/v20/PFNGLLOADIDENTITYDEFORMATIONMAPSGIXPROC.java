@@ -2,22 +2,22 @@
 
 package opengl.ubuntu.v20;
 
-import jdk.incubator.foreign.Addressable;
-import jdk.incubator.foreign.MemoryAddress;
-import jdk.incubator.foreign.ResourceScope;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public interface PFNGLLOADIDENTITYDEFORMATIONMAPSGIXPROC {
 
-    void apply(int x0);
-    static MemoryAddress allocate(PFNGLLOADIDENTITYDEFORMATIONMAPSGIXPROC fi) {
-        return RuntimeHelper.upcallStub(PFNGLLOADIDENTITYDEFORMATIONMAPSGIXPROC.class, fi, constants$905.PFNGLLOADIDENTITYDEFORMATIONMAPSGIXPROC$FUNC, "(I)V");
+    void apply(int mask);
+    static MemorySegment allocate(PFNGLLOADIDENTITYDEFORMATIONMAPSGIXPROC fi, MemorySession session) {
+        return RuntimeHelper.upcallStub(PFNGLLOADIDENTITYDEFORMATIONMAPSGIXPROC.class, fi, constants$905.PFNGLLOADIDENTITYDEFORMATIONMAPSGIXPROC$FUNC, session);
     }
-    static MemoryAddress allocate(PFNGLLOADIDENTITYDEFORMATIONMAPSGIXPROC fi, ResourceScope scope) {
-        return RuntimeHelper.upcallStub(PFNGLLOADIDENTITYDEFORMATIONMAPSGIXPROC.class, fi, constants$905.PFNGLLOADIDENTITYDEFORMATIONMAPSGIXPROC$FUNC, "(I)V", scope);
-    }
-    static PFNGLLOADIDENTITYDEFORMATIONMAPSGIXPROC ofAddress(MemoryAddress addr) {
-        return (int x0) -> {
+    static PFNGLLOADIDENTITYDEFORMATIONMAPSGIXPROC ofAddress(MemoryAddress addr, MemorySession session) {
+        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
+        return (int _mask) -> {
             try {
-                constants$905.PFNGLLOADIDENTITYDEFORMATIONMAPSGIXPROC$MH.invokeExact((Addressable)addr, x0);
+                constants$905.PFNGLLOADIDENTITYDEFORMATIONMAPSGIXPROC$MH.invokeExact((Addressable)symbol, _mask);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

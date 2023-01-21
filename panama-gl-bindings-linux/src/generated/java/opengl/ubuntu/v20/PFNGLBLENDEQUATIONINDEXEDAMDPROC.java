@@ -2,22 +2,22 @@
 
 package opengl.ubuntu.v20;
 
-import jdk.incubator.foreign.Addressable;
-import jdk.incubator.foreign.MemoryAddress;
-import jdk.incubator.foreign.ResourceScope;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public interface PFNGLBLENDEQUATIONINDEXEDAMDPROC {
 
-    void apply(int x0, int x1);
-    static MemoryAddress allocate(PFNGLBLENDEQUATIONINDEXEDAMDPROC fi) {
-        return RuntimeHelper.upcallStub(PFNGLBLENDEQUATIONINDEXEDAMDPROC.class, fi, constants$453.PFNGLBLENDEQUATIONINDEXEDAMDPROC$FUNC, "(II)V");
+    void apply(int buf, int mode);
+    static MemorySegment allocate(PFNGLBLENDEQUATIONINDEXEDAMDPROC fi, MemorySession session) {
+        return RuntimeHelper.upcallStub(PFNGLBLENDEQUATIONINDEXEDAMDPROC.class, fi, constants$453.PFNGLBLENDEQUATIONINDEXEDAMDPROC$FUNC, session);
     }
-    static MemoryAddress allocate(PFNGLBLENDEQUATIONINDEXEDAMDPROC fi, ResourceScope scope) {
-        return RuntimeHelper.upcallStub(PFNGLBLENDEQUATIONINDEXEDAMDPROC.class, fi, constants$453.PFNGLBLENDEQUATIONINDEXEDAMDPROC$FUNC, "(II)V", scope);
-    }
-    static PFNGLBLENDEQUATIONINDEXEDAMDPROC ofAddress(MemoryAddress addr) {
-        return (int x0, int x1) -> {
+    static PFNGLBLENDEQUATIONINDEXEDAMDPROC ofAddress(MemoryAddress addr, MemorySession session) {
+        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
+        return (int _buf, int _mode) -> {
             try {
-                constants$453.PFNGLBLENDEQUATIONINDEXEDAMDPROC$MH.invokeExact((Addressable)addr, x0, x1);
+                constants$453.PFNGLBLENDEQUATIONINDEXEDAMDPROC$MH.invokeExact((Addressable)symbol, _buf, _mode);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

@@ -2,42 +2,39 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_INT;
-import static jdk.incubator.foreign.CLinker.C_POINTER;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$952 {
 
     static final FunctionDescriptor glutVisibilityFunc$FUNC = FunctionDescriptor.ofVoid(
-        C_POINTER
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle glutVisibilityFunc$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "glutVisibilityFunc",
-        "(Ljdk/incubator/foreign/MemoryAddress;)V",
-        constants$952.glutVisibilityFunc$FUNC, false
+        "glutVisibilityFunc",
+        constants$952.glutVisibilityFunc$FUNC
     );
     static final FunctionDescriptor glutDisplayFunc$callback$FUNC = FunctionDescriptor.ofVoid();
     static final MethodHandle glutDisplayFunc$callback$MH = RuntimeHelper.downcallHandle(
-        "()V",
-        constants$952.glutDisplayFunc$callback$FUNC, false
+        constants$952.glutDisplayFunc$callback$FUNC
     );
     static final FunctionDescriptor glutDisplayFunc$FUNC = FunctionDescriptor.ofVoid(
-        C_POINTER
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle glutDisplayFunc$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "glutDisplayFunc",
-        "(Ljdk/incubator/foreign/MemoryAddress;)V",
-        constants$952.glutDisplayFunc$FUNC, false
+        "glutDisplayFunc",
+        constants$952.glutDisplayFunc$FUNC
     );
     static final FunctionDescriptor glutMouseFunc$callback$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle glutMouseFunc$callback$MH = RuntimeHelper.downcallHandle(
-        "(IIII)V",
-        constants$952.glutMouseFunc$callback$FUNC, false
+        constants$952.glutMouseFunc$callback$FUNC
     );
 }
 

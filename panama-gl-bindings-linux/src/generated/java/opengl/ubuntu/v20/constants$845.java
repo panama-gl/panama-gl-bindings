@@ -2,41 +2,38 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_INT;
-import static jdk.incubator.foreign.CLinker.C_LONG;
-import static jdk.incubator.foreign.CLinker.C_POINTER;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$845 {
 
     static final FunctionDescriptor PFNGLGETVERTEXATTRIBLUI64VNVPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLGETVERTEXATTRIBLUI64VNVPROC$MH = RuntimeHelper.downcallHandle(
-        "(IILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$845.PFNGLGETVERTEXATTRIBLUI64VNVPROC$FUNC, false
+        constants$845.PFNGLGETVERTEXATTRIBLUI64VNVPROC$FUNC
     );
     static final FunctionDescriptor PFNGLVERTEXATTRIBLFORMATNVPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLVERTEXATTRIBLFORMATNVPROC$MH = RuntimeHelper.downcallHandle(
-        "(IIII)V",
-        constants$845.PFNGLVERTEXATTRIBLFORMATNVPROC$FUNC, false
+        constants$845.PFNGLVERTEXATTRIBLFORMATNVPROC$FUNC
     );
     static final FunctionDescriptor PFNGLBUFFERADDRESSRANGENVPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_LONG,
-        C_LONG
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT
     );
     static final MethodHandle PFNGLBUFFERADDRESSRANGENVPROC$MH = RuntimeHelper.downcallHandle(
-        "(IIJJ)V",
-        constants$845.PFNGLBUFFERADDRESSRANGENVPROC$FUNC, false
+        constants$845.PFNGLBUFFERADDRESSRANGENVPROC$FUNC
     );
 }
 

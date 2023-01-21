@@ -2,42 +2,39 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_CHAR;
-import static jdk.incubator.foreign.CLinker.C_INT;
-import static jdk.incubator.foreign.CLinker.C_POINTER;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$451 {
 
     static final FunctionDescriptor PFNGLDEBUGMESSAGEENABLEAMDPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_INT,
-        C_POINTER,
-        C_CHAR
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_CHAR$LAYOUT
     );
     static final MethodHandle PFNGLDEBUGMESSAGEENABLEAMDPROC$MH = RuntimeHelper.downcallHandle(
-        "(IIILjdk/incubator/foreign/MemoryAddress;B)V",
-        constants$451.PFNGLDEBUGMESSAGEENABLEAMDPROC$FUNC, false
+        constants$451.PFNGLDEBUGMESSAGEENABLEAMDPROC$FUNC
     );
     static final FunctionDescriptor PFNGLDEBUGMESSAGEINSERTAMDPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLDEBUGMESSAGEINSERTAMDPROC$MH = RuntimeHelper.downcallHandle(
-        "(IIIILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$451.PFNGLDEBUGMESSAGEINSERTAMDPROC$FUNC, false
+        constants$451.PFNGLDEBUGMESSAGEINSERTAMDPROC$FUNC
     );
     static final FunctionDescriptor PFNGLDEBUGMESSAGECALLBACKAMDPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_POINTER,
-        C_POINTER
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLDEBUGMESSAGECALLBACKAMDPROC$MH = RuntimeHelper.downcallHandle(
-        "(Ljdk/incubator/foreign/MemoryAddress;Ljdk/incubator/foreign/MemoryAddress;)V",
-        constants$451.PFNGLDEBUGMESSAGECALLBACKAMDPROC$FUNC, false
+        constants$451.PFNGLDEBUGMESSAGECALLBACKAMDPROC$FUNC
     );
 }
 

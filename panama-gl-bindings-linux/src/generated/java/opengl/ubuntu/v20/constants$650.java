@@ -2,38 +2,36 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_INT;
-import static jdk.incubator.foreign.CLinker.C_POINTER;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$650 {
 
     static final FunctionDescriptor PFNGLGETCOLORTABLEPARAMETERIVEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLGETCOLORTABLEPARAMETERIVEXTPROC$MH = RuntimeHelper.downcallHandle(
-        "(IILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$650.PFNGLGETCOLORTABLEPARAMETERIVEXTPROC$FUNC, false
+        constants$650.PFNGLGETCOLORTABLEPARAMETERIVEXTPROC$FUNC
     );
     static final FunctionDescriptor PFNGLGETCOLORTABLEPARAMETERFVEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLGETCOLORTABLEPARAMETERFVEXTPROC$MH = RuntimeHelper.downcallHandle(
-        "(IILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$650.PFNGLGETCOLORTABLEPARAMETERFVEXTPROC$FUNC, false
+        constants$650.PFNGLGETCOLORTABLEPARAMETERFVEXTPROC$FUNC
     );
     static final FunctionDescriptor PFNGLPIXELTRANSFORMPARAMETERIEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_INT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLPIXELTRANSFORMPARAMETERIEXTPROC$MH = RuntimeHelper.downcallHandle(
-        "(III)V",
-        constants$650.PFNGLPIXELTRANSFORMPARAMETERIEXTPROC$FUNC, false
+        constants$650.PFNGLPIXELTRANSFORMPARAMETERIEXTPROC$FUNC
     );
 }
 

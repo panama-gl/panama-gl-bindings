@@ -2,35 +2,32 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_CHAR;
-import static jdk.incubator.foreign.CLinker.C_INT;
-import static jdk.incubator.foreign.CLinker.C_POINTER;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$732 {
 
     static final FunctionDescriptor PFNGLCREATESTATESNVPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLCREATESTATESNVPROC$MH = RuntimeHelper.downcallHandle(
-        "(ILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$732.PFNGLCREATESTATESNVPROC$FUNC, false
+        constants$732.PFNGLCREATESTATESNVPROC$FUNC
     );
     static final FunctionDescriptor PFNGLDELETESTATESNVPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLDELETESTATESNVPROC$MH = RuntimeHelper.downcallHandle(
-        "(ILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$732.PFNGLDELETESTATESNVPROC$FUNC, false
+        constants$732.PFNGLDELETESTATESNVPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLISSTATENVPROC$FUNC = FunctionDescriptor.of(C_CHAR,
-        C_INT
+    static final FunctionDescriptor PFNGLISSTATENVPROC$FUNC = FunctionDescriptor.of(Constants$root.C_CHAR$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLISSTATENVPROC$MH = RuntimeHelper.downcallHandle(
-        "(I)B",
-        constants$732.PFNGLISSTATENVPROC$FUNC, false
+        constants$732.PFNGLISSTATENVPROC$FUNC
     );
 }
 

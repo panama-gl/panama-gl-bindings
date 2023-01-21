@@ -2,22 +2,22 @@
 
 package opengl.ubuntu.v20;
 
-import jdk.incubator.foreign.Addressable;
-import jdk.incubator.foreign.MemoryAddress;
-import jdk.incubator.foreign.ResourceScope;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public interface PFNGLTRANSFORMPATHNVPROC {
 
-    void apply(int x0, int x1, int x2, jdk.incubator.foreign.MemoryAddress x3);
-    static MemoryAddress allocate(PFNGLTRANSFORMPATHNVPROC fi) {
-        return RuntimeHelper.upcallStub(PFNGLTRANSFORMPATHNVPROC.class, fi, constants$790.PFNGLTRANSFORMPATHNVPROC$FUNC, "(IIILjdk/incubator/foreign/MemoryAddress;)V");
+    void apply(int resultPath, int srcPath, int transformType, java.lang.foreign.MemoryAddress transformValues);
+    static MemorySegment allocate(PFNGLTRANSFORMPATHNVPROC fi, MemorySession session) {
+        return RuntimeHelper.upcallStub(PFNGLTRANSFORMPATHNVPROC.class, fi, constants$790.PFNGLTRANSFORMPATHNVPROC$FUNC, session);
     }
-    static MemoryAddress allocate(PFNGLTRANSFORMPATHNVPROC fi, ResourceScope scope) {
-        return RuntimeHelper.upcallStub(PFNGLTRANSFORMPATHNVPROC.class, fi, constants$790.PFNGLTRANSFORMPATHNVPROC$FUNC, "(IIILjdk/incubator/foreign/MemoryAddress;)V", scope);
-    }
-    static PFNGLTRANSFORMPATHNVPROC ofAddress(MemoryAddress addr) {
-        return (int x0, int x1, int x2, jdk.incubator.foreign.MemoryAddress x3) -> {
+    static PFNGLTRANSFORMPATHNVPROC ofAddress(MemoryAddress addr, MemorySession session) {
+        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
+        return (int _resultPath, int _srcPath, int _transformType, java.lang.foreign.MemoryAddress _transformValues) -> {
             try {
-                constants$790.PFNGLTRANSFORMPATHNVPROC$MH.invokeExact((Addressable)addr, x0, x1, x2, x3);
+                constants$790.PFNGLTRANSFORMPATHNVPROC$MH.invokeExact((Addressable)symbol, _resultPath, _srcPath, _transformType, (java.lang.foreign.Addressable)_transformValues);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

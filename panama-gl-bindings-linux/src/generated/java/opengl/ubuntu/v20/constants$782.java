@@ -2,37 +2,35 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_INT;
-import static jdk.incubator.foreign.CLinker.C_LONG;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$782 {
 
     static final FunctionDescriptor PFNGLDRAWMESHTASKSINDIRECTNVPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_LONG
+        Constants$root.C_LONG_LONG$LAYOUT
     );
     static final MethodHandle PFNGLDRAWMESHTASKSINDIRECTNVPROC$MH = RuntimeHelper.downcallHandle(
-        "(J)V",
-        constants$782.PFNGLDRAWMESHTASKSINDIRECTNVPROC$FUNC, false
+        constants$782.PFNGLDRAWMESHTASKSINDIRECTNVPROC$FUNC
     );
     static final FunctionDescriptor PFNGLMULTIDRAWMESHTASKSINDIRECTNVPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_LONG,
-        C_INT,
-        C_INT
+        Constants$root.C_LONG_LONG$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLMULTIDRAWMESHTASKSINDIRECTNVPROC$MH = RuntimeHelper.downcallHandle(
-        "(JII)V",
-        constants$782.PFNGLMULTIDRAWMESHTASKSINDIRECTNVPROC$FUNC, false
+        constants$782.PFNGLMULTIDRAWMESHTASKSINDIRECTNVPROC$FUNC
     );
     static final FunctionDescriptor PFNGLMULTIDRAWMESHTASKSINDIRECTCOUNTNVPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_LONG,
-        C_LONG,
-        C_INT,
-        C_INT
+        Constants$root.C_LONG_LONG$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLMULTIDRAWMESHTASKSINDIRECTCOUNTNVPROC$MH = RuntimeHelper.downcallHandle(
-        "(JJII)V",
-        constants$782.PFNGLMULTIDRAWMESHTASKSINDIRECTCOUNTNVPROC$FUNC, false
+        constants$782.PFNGLMULTIDRAWMESHTASKSINDIRECTCOUNTNVPROC$FUNC
     );
 }
 

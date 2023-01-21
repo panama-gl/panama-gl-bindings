@@ -2,64 +2,59 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_INT;
-import static jdk.incubator.foreign.CLinker.C_POINTER;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$930 {
 
     static final FunctionDescriptor _GLUfuncptr$FUNC = FunctionDescriptor.ofVoid();
     static final MethodHandle _GLUfuncptr$MH = RuntimeHelper.downcallHandle(
-        "()V",
-        constants$930._GLUfuncptr$FUNC, false
+        constants$930._GLUfuncptr$FUNC
     );
     static final FunctionDescriptor gluBeginCurve$FUNC = FunctionDescriptor.ofVoid(
-        C_POINTER
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle gluBeginCurve$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "gluBeginCurve",
-        "(Ljdk/incubator/foreign/MemoryAddress;)V",
-        constants$930.gluBeginCurve$FUNC, false
+        "gluBeginCurve",
+        constants$930.gluBeginCurve$FUNC
     );
     static final FunctionDescriptor gluBeginPolygon$FUNC = FunctionDescriptor.ofVoid(
-        C_POINTER
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle gluBeginPolygon$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "gluBeginPolygon",
-        "(Ljdk/incubator/foreign/MemoryAddress;)V",
-        constants$930.gluBeginPolygon$FUNC, false
+        "gluBeginPolygon",
+        constants$930.gluBeginPolygon$FUNC
     );
     static final FunctionDescriptor gluBeginSurface$FUNC = FunctionDescriptor.ofVoid(
-        C_POINTER
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle gluBeginSurface$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "gluBeginSurface",
-        "(Ljdk/incubator/foreign/MemoryAddress;)V",
-        constants$930.gluBeginSurface$FUNC, false
+        "gluBeginSurface",
+        constants$930.gluBeginSurface$FUNC
     );
     static final FunctionDescriptor gluBeginTrim$FUNC = FunctionDescriptor.ofVoid(
-        C_POINTER
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle gluBeginTrim$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "gluBeginTrim",
-        "(Ljdk/incubator/foreign/MemoryAddress;)V",
-        constants$930.gluBeginTrim$FUNC, false
+        "gluBeginTrim",
+        constants$930.gluBeginTrim$FUNC
     );
-    static final FunctionDescriptor gluBuild1DMipmapLevels$FUNC = FunctionDescriptor.of(C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_POINTER
+    static final FunctionDescriptor gluBuild1DMipmapLevels$FUNC = FunctionDescriptor.of(Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle gluBuild1DMipmapLevels$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "gluBuild1DMipmapLevels",
-        "(IIIIIIIILjdk/incubator/foreign/MemoryAddress;)I",
-        constants$930.gluBuild1DMipmapLevels$FUNC, false
+        "gluBuild1DMipmapLevels",
+        constants$930.gluBuild1DMipmapLevels$FUNC
     );
 }
 

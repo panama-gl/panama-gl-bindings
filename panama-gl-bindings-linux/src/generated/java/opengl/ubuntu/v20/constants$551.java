@@ -2,42 +2,39 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_FLOAT;
-import static jdk.incubator.foreign.CLinker.C_INT;
-import static jdk.incubator.foreign.CLinker.C_POINTER;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$551 {
 
     static final FunctionDescriptor PFNGLMULTITEXGENFEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_INT,
-        C_FLOAT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT
     );
     static final MethodHandle PFNGLMULTITEXGENFEXTPROC$MH = RuntimeHelper.downcallHandle(
-        "(IIIF)V",
-        constants$551.PFNGLMULTITEXGENFEXTPROC$FUNC, false
+        constants$551.PFNGLMULTITEXGENFEXTPROC$FUNC
     );
     static final FunctionDescriptor PFNGLMULTITEXGENFVEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLMULTITEXGENFVEXTPROC$MH = RuntimeHelper.downcallHandle(
-        "(IIILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$551.PFNGLMULTITEXGENFVEXTPROC$FUNC, false
+        constants$551.PFNGLMULTITEXGENFVEXTPROC$FUNC
     );
     static final FunctionDescriptor PFNGLMULTITEXGENIEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLMULTITEXGENIEXTPROC$MH = RuntimeHelper.downcallHandle(
-        "(IIII)V",
-        constants$551.PFNGLMULTITEXGENIEXTPROC$FUNC, false
+        constants$551.PFNGLMULTITEXGENIEXTPROC$FUNC
     );
 }
 

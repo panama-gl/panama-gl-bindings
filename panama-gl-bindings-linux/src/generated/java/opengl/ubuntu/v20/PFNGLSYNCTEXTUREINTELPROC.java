@@ -2,22 +2,22 @@
 
 package opengl.ubuntu.v20;
 
-import jdk.incubator.foreign.Addressable;
-import jdk.incubator.foreign.MemoryAddress;
-import jdk.incubator.foreign.ResourceScope;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public interface PFNGLSYNCTEXTUREINTELPROC {
 
-    void apply(int x0);
-    static MemoryAddress allocate(PFNGLSYNCTEXTUREINTELPROC fi) {
-        return RuntimeHelper.upcallStub(PFNGLSYNCTEXTUREINTELPROC.class, fi, constants$705.PFNGLSYNCTEXTUREINTELPROC$FUNC, "(I)V");
+    void apply(int texture);
+    static MemorySegment allocate(PFNGLSYNCTEXTUREINTELPROC fi, MemorySession session) {
+        return RuntimeHelper.upcallStub(PFNGLSYNCTEXTUREINTELPROC.class, fi, constants$705.PFNGLSYNCTEXTUREINTELPROC$FUNC, session);
     }
-    static MemoryAddress allocate(PFNGLSYNCTEXTUREINTELPROC fi, ResourceScope scope) {
-        return RuntimeHelper.upcallStub(PFNGLSYNCTEXTUREINTELPROC.class, fi, constants$705.PFNGLSYNCTEXTUREINTELPROC$FUNC, "(I)V", scope);
-    }
-    static PFNGLSYNCTEXTUREINTELPROC ofAddress(MemoryAddress addr) {
-        return (int x0) -> {
+    static PFNGLSYNCTEXTUREINTELPROC ofAddress(MemoryAddress addr, MemorySession session) {
+        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
+        return (int _texture) -> {
             try {
-                constants$705.PFNGLSYNCTEXTUREINTELPROC$MH.invokeExact((Addressable)addr, x0);
+                constants$705.PFNGLSYNCTEXTUREINTELPROC$MH.invokeExact((Addressable)symbol, _texture);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

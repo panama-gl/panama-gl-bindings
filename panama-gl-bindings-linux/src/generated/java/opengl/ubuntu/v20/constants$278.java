@@ -2,39 +2,38 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_INT;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$278 {
 
     static final FunctionDescriptor PFNGLNAMEDFRAMEBUFFERRENDERBUFFERPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLNAMEDFRAMEBUFFERRENDERBUFFERPROC$MH = RuntimeHelper.downcallHandle(
-        "(IIII)V",
-        constants$278.PFNGLNAMEDFRAMEBUFFERRENDERBUFFERPROC$FUNC, false
+        constants$278.PFNGLNAMEDFRAMEBUFFERRENDERBUFFERPROC$FUNC
     );
     static final FunctionDescriptor PFNGLNAMEDFRAMEBUFFERPARAMETERIPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_INT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLNAMEDFRAMEBUFFERPARAMETERIPROC$MH = RuntimeHelper.downcallHandle(
-        "(III)V",
-        constants$278.PFNGLNAMEDFRAMEBUFFERPARAMETERIPROC$FUNC, false
+        constants$278.PFNGLNAMEDFRAMEBUFFERPARAMETERIPROC$FUNC
     );
     static final FunctionDescriptor PFNGLNAMEDFRAMEBUFFERTEXTUREPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLNAMEDFRAMEBUFFERTEXTUREPROC$MH = RuntimeHelper.downcallHandle(
-        "(IIII)V",
-        constants$278.PFNGLNAMEDFRAMEBUFFERTEXTUREPROC$FUNC, false
+        constants$278.PFNGLNAMEDFRAMEBUFFERTEXTUREPROC$FUNC
     );
 }
 

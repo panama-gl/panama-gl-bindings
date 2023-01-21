@@ -2,22 +2,22 @@
 
 package opengl.ubuntu.v20;
 
-import jdk.incubator.foreign.Addressable;
-import jdk.incubator.foreign.MemoryAddress;
-import jdk.incubator.foreign.ResourceScope;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public interface PFNGLBINDSAMPLERPROC {
 
-    void apply(int x0, int x1);
-    static MemoryAddress allocate(PFNGLBINDSAMPLERPROC fi) {
-        return RuntimeHelper.upcallStub(PFNGLBINDSAMPLERPROC.class, fi, constants$186.PFNGLBINDSAMPLERPROC$FUNC, "(II)V");
+    void apply(int unit, int sampler);
+    static MemorySegment allocate(PFNGLBINDSAMPLERPROC fi, MemorySession session) {
+        return RuntimeHelper.upcallStub(PFNGLBINDSAMPLERPROC.class, fi, constants$186.PFNGLBINDSAMPLERPROC$FUNC, session);
     }
-    static MemoryAddress allocate(PFNGLBINDSAMPLERPROC fi, ResourceScope scope) {
-        return RuntimeHelper.upcallStub(PFNGLBINDSAMPLERPROC.class, fi, constants$186.PFNGLBINDSAMPLERPROC$FUNC, "(II)V", scope);
-    }
-    static PFNGLBINDSAMPLERPROC ofAddress(MemoryAddress addr) {
-        return (int x0, int x1) -> {
+    static PFNGLBINDSAMPLERPROC ofAddress(MemoryAddress addr, MemorySession session) {
+        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
+        return (int _unit, int _sampler) -> {
             try {
-                constants$186.PFNGLBINDSAMPLERPROC$MH.invokeExact((Addressable)addr, x0, x1);
+                constants$186.PFNGLBINDSAMPLERPROC$MH.invokeExact((Addressable)symbol, _unit, _sampler);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

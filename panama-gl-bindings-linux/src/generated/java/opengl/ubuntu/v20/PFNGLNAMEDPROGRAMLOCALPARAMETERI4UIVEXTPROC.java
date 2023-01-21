@@ -2,22 +2,22 @@
 
 package opengl.ubuntu.v20;
 
-import jdk.incubator.foreign.Addressable;
-import jdk.incubator.foreign.MemoryAddress;
-import jdk.incubator.foreign.ResourceScope;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public interface PFNGLNAMEDPROGRAMLOCALPARAMETERI4UIVEXTPROC {
 
-    void apply(int x0, int x1, int x2, jdk.incubator.foreign.MemoryAddress x3);
-    static MemoryAddress allocate(PFNGLNAMEDPROGRAMLOCALPARAMETERI4UIVEXTPROC fi) {
-        return RuntimeHelper.upcallStub(PFNGLNAMEDPROGRAMLOCALPARAMETERI4UIVEXTPROC.class, fi, constants$588.PFNGLNAMEDPROGRAMLOCALPARAMETERI4UIVEXTPROC$FUNC, "(IIILjdk/incubator/foreign/MemoryAddress;)V");
+    void apply(int program, int target, int index, java.lang.foreign.MemoryAddress params);
+    static MemorySegment allocate(PFNGLNAMEDPROGRAMLOCALPARAMETERI4UIVEXTPROC fi, MemorySession session) {
+        return RuntimeHelper.upcallStub(PFNGLNAMEDPROGRAMLOCALPARAMETERI4UIVEXTPROC.class, fi, constants$588.PFNGLNAMEDPROGRAMLOCALPARAMETERI4UIVEXTPROC$FUNC, session);
     }
-    static MemoryAddress allocate(PFNGLNAMEDPROGRAMLOCALPARAMETERI4UIVEXTPROC fi, ResourceScope scope) {
-        return RuntimeHelper.upcallStub(PFNGLNAMEDPROGRAMLOCALPARAMETERI4UIVEXTPROC.class, fi, constants$588.PFNGLNAMEDPROGRAMLOCALPARAMETERI4UIVEXTPROC$FUNC, "(IIILjdk/incubator/foreign/MemoryAddress;)V", scope);
-    }
-    static PFNGLNAMEDPROGRAMLOCALPARAMETERI4UIVEXTPROC ofAddress(MemoryAddress addr) {
-        return (int x0, int x1, int x2, jdk.incubator.foreign.MemoryAddress x3) -> {
+    static PFNGLNAMEDPROGRAMLOCALPARAMETERI4UIVEXTPROC ofAddress(MemoryAddress addr, MemorySession session) {
+        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
+        return (int _program, int _target, int _index, java.lang.foreign.MemoryAddress _params) -> {
             try {
-                constants$588.PFNGLNAMEDPROGRAMLOCALPARAMETERI4UIVEXTPROC$MH.invokeExact((Addressable)addr, x0, x1, x2, x3);
+                constants$588.PFNGLNAMEDPROGRAMLOCALPARAMETERI4UIVEXTPROC$MH.invokeExact((Addressable)symbol, _program, _target, _index, (java.lang.foreign.Addressable)_params);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

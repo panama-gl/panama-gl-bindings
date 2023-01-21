@@ -2,41 +2,39 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_INT;
-import static jdk.incubator.foreign.CLinker.C_POINTER;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$469 {
 
     static final FunctionDescriptor PFNGLQUERYOBJECTPARAMETERUIAMDPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLQUERYOBJECTPARAMETERUIAMDPROC$MH = RuntimeHelper.downcallHandle(
-        "(IIII)V",
-        constants$469.PFNGLQUERYOBJECTPARAMETERUIAMDPROC$FUNC, false
+        constants$469.PFNGLQUERYOBJECTPARAMETERUIAMDPROC$FUNC
     );
     static final FunctionDescriptor PFNGLGETPERFMONITORGROUPSAMDPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_POINTER,
-        C_INT,
-        C_POINTER
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLGETPERFMONITORGROUPSAMDPROC$MH = RuntimeHelper.downcallHandle(
-        "(Ljdk/incubator/foreign/MemoryAddress;ILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$469.PFNGLGETPERFMONITORGROUPSAMDPROC$FUNC, false
+        constants$469.PFNGLGETPERFMONITORGROUPSAMDPROC$FUNC
     );
     static final FunctionDescriptor PFNGLGETPERFMONITORCOUNTERSAMDPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_POINTER,
-        C_POINTER,
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLGETPERFMONITORCOUNTERSAMDPROC$MH = RuntimeHelper.downcallHandle(
-        "(ILjdk/incubator/foreign/MemoryAddress;Ljdk/incubator/foreign/MemoryAddress;ILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$469.PFNGLGETPERFMONITORCOUNTERSAMDPROC$FUNC, false
+        constants$469.PFNGLGETPERFMONITORCOUNTERSAMDPROC$FUNC
     );
 }
 

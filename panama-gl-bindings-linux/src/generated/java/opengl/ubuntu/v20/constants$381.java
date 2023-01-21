@@ -2,34 +2,32 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_INT;
-import static jdk.incubator.foreign.CLinker.C_POINTER;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$381 {
 
     static final FunctionDescriptor PFNGLVERTEXBLENDARBPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLVERTEXBLENDARBPROC$MH = RuntimeHelper.downcallHandle(
-        "(I)V",
-        constants$381.PFNGLVERTEXBLENDARBPROC$FUNC, false
+        constants$381.PFNGLVERTEXBLENDARBPROC$FUNC
     );
     static final FunctionDescriptor PFNGLBINDBUFFERARBPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLBINDBUFFERARBPROC$MH = RuntimeHelper.downcallHandle(
-        "(II)V",
-        constants$381.PFNGLBINDBUFFERARBPROC$FUNC, false
+        constants$381.PFNGLBINDBUFFERARBPROC$FUNC
     );
     static final FunctionDescriptor PFNGLDELETEBUFFERSARBPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLDELETEBUFFERSARBPROC$MH = RuntimeHelper.downcallHandle(
-        "(ILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$381.PFNGLDELETEBUFFERSARBPROC$FUNC, false
+        constants$381.PFNGLDELETEBUFFERSARBPROC$FUNC
     );
 }
 

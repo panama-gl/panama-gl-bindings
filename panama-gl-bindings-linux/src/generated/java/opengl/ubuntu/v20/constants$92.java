@@ -2,39 +2,36 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_FLOAT;
-import static jdk.incubator.foreign.CLinker.C_INT;
-import static jdk.incubator.foreign.CLinker.C_POINTER;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$92 {
 
     static final FunctionDescriptor PFNGLMULTIDRAWELEMENTSPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_POINTER,
-        C_INT,
-        C_POINTER,
-        C_INT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLMULTIDRAWELEMENTSPROC$MH = RuntimeHelper.downcallHandle(
-        "(ILjdk/incubator/foreign/MemoryAddress;ILjdk/incubator/foreign/MemoryAddress;I)V",
-        constants$92.PFNGLMULTIDRAWELEMENTSPROC$FUNC, false
+        constants$92.PFNGLMULTIDRAWELEMENTSPROC$FUNC
     );
     static final FunctionDescriptor PFNGLPOINTPARAMETERFPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_FLOAT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT
     );
     static final MethodHandle PFNGLPOINTPARAMETERFPROC$MH = RuntimeHelper.downcallHandle(
-        "(IF)V",
-        constants$92.PFNGLPOINTPARAMETERFPROC$FUNC, false
+        constants$92.PFNGLPOINTPARAMETERFPROC$FUNC
     );
     static final FunctionDescriptor PFNGLPOINTPARAMETERFVPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLPOINTPARAMETERFVPROC$MH = RuntimeHelper.downcallHandle(
-        "(ILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$92.PFNGLPOINTPARAMETERFVPROC$FUNC, false
+        constants$92.PFNGLPOINTPARAMETERFVPROC$FUNC
     );
 }
 

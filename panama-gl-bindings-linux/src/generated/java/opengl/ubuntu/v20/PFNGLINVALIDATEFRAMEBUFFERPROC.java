@@ -2,22 +2,22 @@
 
 package opengl.ubuntu.v20;
 
-import jdk.incubator.foreign.Addressable;
-import jdk.incubator.foreign.MemoryAddress;
-import jdk.incubator.foreign.ResourceScope;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public interface PFNGLINVALIDATEFRAMEBUFFERPROC {
 
-    void apply(int x0, int x1, jdk.incubator.foreign.MemoryAddress x2);
-    static MemoryAddress allocate(PFNGLINVALIDATEFRAMEBUFFERPROC fi) {
-        return RuntimeHelper.upcallStub(PFNGLINVALIDATEFRAMEBUFFERPROC.class, fi, constants$257.PFNGLINVALIDATEFRAMEBUFFERPROC$FUNC, "(IILjdk/incubator/foreign/MemoryAddress;)V");
+    void apply(int target, int numAttachments, java.lang.foreign.MemoryAddress attachments);
+    static MemorySegment allocate(PFNGLINVALIDATEFRAMEBUFFERPROC fi, MemorySession session) {
+        return RuntimeHelper.upcallStub(PFNGLINVALIDATEFRAMEBUFFERPROC.class, fi, constants$257.PFNGLINVALIDATEFRAMEBUFFERPROC$FUNC, session);
     }
-    static MemoryAddress allocate(PFNGLINVALIDATEFRAMEBUFFERPROC fi, ResourceScope scope) {
-        return RuntimeHelper.upcallStub(PFNGLINVALIDATEFRAMEBUFFERPROC.class, fi, constants$257.PFNGLINVALIDATEFRAMEBUFFERPROC$FUNC, "(IILjdk/incubator/foreign/MemoryAddress;)V", scope);
-    }
-    static PFNGLINVALIDATEFRAMEBUFFERPROC ofAddress(MemoryAddress addr) {
-        return (int x0, int x1, jdk.incubator.foreign.MemoryAddress x2) -> {
+    static PFNGLINVALIDATEFRAMEBUFFERPROC ofAddress(MemoryAddress addr, MemorySession session) {
+        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
+        return (int _target, int _numAttachments, java.lang.foreign.MemoryAddress _attachments) -> {
             try {
-                constants$257.PFNGLINVALIDATEFRAMEBUFFERPROC$MH.invokeExact((Addressable)addr, x0, x1, x2);
+                constants$257.PFNGLINVALIDATEFRAMEBUFFERPROC$MH.invokeExact((Addressable)symbol, _target, _numAttachments, (java.lang.foreign.Addressable)_attachments);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

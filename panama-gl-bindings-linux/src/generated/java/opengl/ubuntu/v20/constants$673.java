@@ -2,32 +2,30 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_INT;
-import static jdk.incubator.foreign.CLinker.C_POINTER;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$673 {
 
     static final FunctionDescriptor PFNGLGETQUERYOBJECTUI64VEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLGETQUERYOBJECTUI64VEXTPROC$MH = RuntimeHelper.downcallHandle(
-        "(IILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$673.PFNGLGETQUERYOBJECTUI64VEXTPROC$FUNC, false
+        constants$673.PFNGLGETQUERYOBJECTUI64VEXTPROC$FUNC
     );
     static final FunctionDescriptor PFNGLBEGINTRANSFORMFEEDBACKEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLBEGINTRANSFORMFEEDBACKEXTPROC$MH = RuntimeHelper.downcallHandle(
-        "(I)V",
-        constants$673.PFNGLBEGINTRANSFORMFEEDBACKEXTPROC$FUNC, false
+        constants$673.PFNGLBEGINTRANSFORMFEEDBACKEXTPROC$FUNC
     );
     static final FunctionDescriptor PFNGLENDTRANSFORMFEEDBACKEXTPROC$FUNC = FunctionDescriptor.ofVoid();
     static final MethodHandle PFNGLENDTRANSFORMFEEDBACKEXTPROC$MH = RuntimeHelper.downcallHandle(
-        "()V",
-        constants$673.PFNGLENDTRANSFORMFEEDBACKEXTPROC$FUNC, false
+        constants$673.PFNGLENDTRANSFORMFEEDBACKEXTPROC$FUNC
     );
 }
 

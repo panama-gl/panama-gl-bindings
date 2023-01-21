@@ -2,22 +2,22 @@
 
 package opengl.ubuntu.v20;
 
-import jdk.incubator.foreign.Addressable;
-import jdk.incubator.foreign.MemoryAddress;
-import jdk.incubator.foreign.ResourceScope;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public interface PFNGLFRAMEZOOMSGIXPROC {
 
-    void apply(int x0);
-    static MemoryAddress allocate(PFNGLFRAMEZOOMSGIXPROC fi) {
-        return RuntimeHelper.upcallStub(PFNGLFRAMEZOOMSGIXPROC.class, fi, constants$899.PFNGLFRAMEZOOMSGIXPROC$FUNC, "(I)V");
+    void apply(int factor);
+    static MemorySegment allocate(PFNGLFRAMEZOOMSGIXPROC fi, MemorySession session) {
+        return RuntimeHelper.upcallStub(PFNGLFRAMEZOOMSGIXPROC.class, fi, constants$899.PFNGLFRAMEZOOMSGIXPROC$FUNC, session);
     }
-    static MemoryAddress allocate(PFNGLFRAMEZOOMSGIXPROC fi, ResourceScope scope) {
-        return RuntimeHelper.upcallStub(PFNGLFRAMEZOOMSGIXPROC.class, fi, constants$899.PFNGLFRAMEZOOMSGIXPROC$FUNC, "(I)V", scope);
-    }
-    static PFNGLFRAMEZOOMSGIXPROC ofAddress(MemoryAddress addr) {
-        return (int x0) -> {
+    static PFNGLFRAMEZOOMSGIXPROC ofAddress(MemoryAddress addr, MemorySession session) {
+        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
+        return (int _factor) -> {
             try {
-                constants$899.PFNGLFRAMEZOOMSGIXPROC$MH.invokeExact((Addressable)addr, x0);
+                constants$899.PFNGLFRAMEZOOMSGIXPROC$MH.invokeExact((Addressable)symbol, _factor);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

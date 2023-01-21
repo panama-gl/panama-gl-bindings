@@ -2,33 +2,31 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_CHAR;
-import static jdk.incubator.foreign.CLinker.C_INT;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$820 {
 
     static final FunctionDescriptor PFNGLMAKEBUFFERNONRESIDENTNVPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLMAKEBUFFERNONRESIDENTNVPROC$MH = RuntimeHelper.downcallHandle(
-        "(I)V",
-        constants$820.PFNGLMAKEBUFFERNONRESIDENTNVPROC$FUNC, false
+        constants$820.PFNGLMAKEBUFFERNONRESIDENTNVPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLISBUFFERRESIDENTNVPROC$FUNC = FunctionDescriptor.of(C_CHAR,
-        C_INT
+    static final FunctionDescriptor PFNGLISBUFFERRESIDENTNVPROC$FUNC = FunctionDescriptor.of(Constants$root.C_CHAR$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLISBUFFERRESIDENTNVPROC$MH = RuntimeHelper.downcallHandle(
-        "(I)B",
-        constants$820.PFNGLISBUFFERRESIDENTNVPROC$FUNC, false
+        constants$820.PFNGLISBUFFERRESIDENTNVPROC$FUNC
     );
     static final FunctionDescriptor PFNGLMAKENAMEDBUFFERRESIDENTNVPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLMAKENAMEDBUFFERRESIDENTNVPROC$MH = RuntimeHelper.downcallHandle(
-        "(II)V",
-        constants$820.PFNGLMAKENAMEDBUFFERRESIDENTNVPROC$FUNC, false
+        constants$820.PFNGLMAKENAMEDBUFFERRESIDENTNVPROC$FUNC
     );
 }
 

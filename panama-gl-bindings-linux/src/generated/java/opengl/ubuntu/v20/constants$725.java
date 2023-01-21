@@ -2,41 +2,39 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_INT;
-import static jdk.incubator.foreign.CLinker.C_POINTER;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$725 {
 
     static final FunctionDescriptor PFNGLALPHATOCOVERAGEDITHERCONTROLNVPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLALPHATOCOVERAGEDITHERCONTROLNVPROC$MH = RuntimeHelper.downcallHandle(
-        "(I)V",
-        constants$725.PFNGLALPHATOCOVERAGEDITHERCONTROLNVPROC$FUNC, false
+        constants$725.PFNGLALPHATOCOVERAGEDITHERCONTROLNVPROC$FUNC
     );
     static final FunctionDescriptor PFNGLMULTIDRAWARRAYSINDIRECTBINDLESSNVPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_POINTER,
-        C_INT,
-        C_INT,
-        C_INT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLMULTIDRAWARRAYSINDIRECTBINDLESSNVPROC$MH = RuntimeHelper.downcallHandle(
-        "(ILjdk/incubator/foreign/MemoryAddress;III)V",
-        constants$725.PFNGLMULTIDRAWARRAYSINDIRECTBINDLESSNVPROC$FUNC, false
+        constants$725.PFNGLMULTIDRAWARRAYSINDIRECTBINDLESSNVPROC$FUNC
     );
     static final FunctionDescriptor PFNGLMULTIDRAWELEMENTSINDIRECTBINDLESSNVPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_POINTER,
-        C_INT,
-        C_INT,
-        C_INT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLMULTIDRAWELEMENTSINDIRECTBINDLESSNVPROC$MH = RuntimeHelper.downcallHandle(
-        "(IILjdk/incubator/foreign/MemoryAddress;III)V",
-        constants$725.PFNGLMULTIDRAWELEMENTSINDIRECTBINDLESSNVPROC$FUNC, false
+        constants$725.PFNGLMULTIDRAWELEMENTSINDIRECTBINDLESSNVPROC$FUNC
     );
 }
 

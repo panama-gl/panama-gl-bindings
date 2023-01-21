@@ -2,22 +2,22 @@
 
 package opengl.ubuntu.v20;
 
-import jdk.incubator.foreign.Addressable;
-import jdk.incubator.foreign.MemoryAddress;
-import jdk.incubator.foreign.ResourceScope;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public interface PFNGLBUFFERSTORAGEEXTERNALEXTPROC {
 
-    void apply(int x0, long x1, long x2, jdk.incubator.foreign.MemoryAddress x3, int x4);
-    static MemoryAddress allocate(PFNGLBUFFERSTORAGEEXTERNALEXTPROC fi) {
-        return RuntimeHelper.upcallStub(PFNGLBUFFERSTORAGEEXTERNALEXTPROC.class, fi, constants$622.PFNGLBUFFERSTORAGEEXTERNALEXTPROC$FUNC, "(IJJLjdk/incubator/foreign/MemoryAddress;I)V");
+    void apply(int target, long offset, long size, java.lang.foreign.MemoryAddress clientBuffer, int flags);
+    static MemorySegment allocate(PFNGLBUFFERSTORAGEEXTERNALEXTPROC fi, MemorySession session) {
+        return RuntimeHelper.upcallStub(PFNGLBUFFERSTORAGEEXTERNALEXTPROC.class, fi, constants$622.PFNGLBUFFERSTORAGEEXTERNALEXTPROC$FUNC, session);
     }
-    static MemoryAddress allocate(PFNGLBUFFERSTORAGEEXTERNALEXTPROC fi, ResourceScope scope) {
-        return RuntimeHelper.upcallStub(PFNGLBUFFERSTORAGEEXTERNALEXTPROC.class, fi, constants$622.PFNGLBUFFERSTORAGEEXTERNALEXTPROC$FUNC, "(IJJLjdk/incubator/foreign/MemoryAddress;I)V", scope);
-    }
-    static PFNGLBUFFERSTORAGEEXTERNALEXTPROC ofAddress(MemoryAddress addr) {
-        return (int x0, long x1, long x2, jdk.incubator.foreign.MemoryAddress x3, int x4) -> {
+    static PFNGLBUFFERSTORAGEEXTERNALEXTPROC ofAddress(MemoryAddress addr, MemorySession session) {
+        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
+        return (int _target, long _offset, long _size, java.lang.foreign.MemoryAddress _clientBuffer, int _flags) -> {
             try {
-                constants$622.PFNGLBUFFERSTORAGEEXTERNALEXTPROC$MH.invokeExact((Addressable)addr, x0, x1, x2, x3, x4);
+                constants$622.PFNGLBUFFERSTORAGEEXTERNALEXTPROC$MH.invokeExact((Addressable)symbol, _target, _offset, _size, (java.lang.foreign.Addressable)_clientBuffer, _flags);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

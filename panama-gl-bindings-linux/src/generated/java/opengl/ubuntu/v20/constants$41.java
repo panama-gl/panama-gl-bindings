@@ -2,68 +2,62 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_FLOAT;
-import static jdk.incubator.foreign.CLinker.C_INT;
-import static jdk.incubator.foreign.CLinker.C_POINTER;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$41 {
 
     static final FunctionDescriptor glPixelStoref$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_FLOAT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT
     );
     static final MethodHandle glPixelStoref$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "glPixelStoref",
-        "(IF)V",
-        constants$41.glPixelStoref$FUNC, false
+        "glPixelStoref",
+        constants$41.glPixelStoref$FUNC
     );
     static final FunctionDescriptor glPixelStorei$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle glPixelStorei$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "glPixelStorei",
-        "(II)V",
-        constants$41.glPixelStorei$FUNC, false
+        "glPixelStorei",
+        constants$41.glPixelStorei$FUNC
     );
     static final FunctionDescriptor glPixelTransferf$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_FLOAT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT
     );
     static final MethodHandle glPixelTransferf$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "glPixelTransferf",
-        "(IF)V",
-        constants$41.glPixelTransferf$FUNC, false
+        "glPixelTransferf",
+        constants$41.glPixelTransferf$FUNC
     );
     static final FunctionDescriptor glPixelTransferi$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle glPixelTransferi$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "glPixelTransferi",
-        "(II)V",
-        constants$41.glPixelTransferi$FUNC, false
+        "glPixelTransferi",
+        constants$41.glPixelTransferi$FUNC
     );
     static final FunctionDescriptor glPixelMapfv$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle glPixelMapfv$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "glPixelMapfv",
-        "(IILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$41.glPixelMapfv$FUNC, false
+        "glPixelMapfv",
+        constants$41.glPixelMapfv$FUNC
     );
     static final FunctionDescriptor glPixelMapuiv$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle glPixelMapuiv$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "glPixelMapuiv",
-        "(IILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$41.glPixelMapuiv$FUNC, false
+        "glPixelMapuiv",
+        constants$41.glPixelMapuiv$FUNC
     );
 }
 

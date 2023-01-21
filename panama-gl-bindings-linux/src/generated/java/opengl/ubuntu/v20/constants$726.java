@@ -2,44 +2,41 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_INT;
-import static jdk.incubator.foreign.CLinker.C_LONG;
-import static jdk.incubator.foreign.CLinker.C_POINTER;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$726 {
 
     static final FunctionDescriptor PFNGLMULTIDRAWARRAYSINDIRECTBINDLESSCOUNTNVPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_POINTER,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLMULTIDRAWARRAYSINDIRECTBINDLESSCOUNTNVPROC$MH = RuntimeHelper.downcallHandle(
-        "(ILjdk/incubator/foreign/MemoryAddress;IIII)V",
-        constants$726.PFNGLMULTIDRAWARRAYSINDIRECTBINDLESSCOUNTNVPROC$FUNC, false
+        constants$726.PFNGLMULTIDRAWARRAYSINDIRECTBINDLESSCOUNTNVPROC$FUNC
     );
     static final FunctionDescriptor PFNGLMULTIDRAWELEMENTSINDIRECTBINDLESSCOUNTNVPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_POINTER,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLMULTIDRAWELEMENTSINDIRECTBINDLESSCOUNTNVPROC$MH = RuntimeHelper.downcallHandle(
-        "(IILjdk/incubator/foreign/MemoryAddress;IIII)V",
-        constants$726.PFNGLMULTIDRAWELEMENTSINDIRECTBINDLESSCOUNTNVPROC$FUNC, false
+        constants$726.PFNGLMULTIDRAWELEMENTSINDIRECTBINDLESSCOUNTNVPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLGETTEXTUREHANDLENVPROC$FUNC = FunctionDescriptor.of(C_LONG,
-        C_INT
+    static final FunctionDescriptor PFNGLGETTEXTUREHANDLENVPROC$FUNC = FunctionDescriptor.of(Constants$root.C_LONG_LONG$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLGETTEXTUREHANDLENVPROC$MH = RuntimeHelper.downcallHandle(
-        "(I)J",
-        constants$726.PFNGLGETTEXTUREHANDLENVPROC$FUNC, false
+        constants$726.PFNGLGETTEXTUREHANDLENVPROC$FUNC
     );
 }
 

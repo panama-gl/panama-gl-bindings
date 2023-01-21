@@ -2,39 +2,36 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_INT;
-import static jdk.incubator.foreign.CLinker.C_POINTER;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$957 {
 
     static final FunctionDescriptor glutMenuStatusFunc$FUNC = FunctionDescriptor.ofVoid(
-        C_POINTER
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle glutMenuStatusFunc$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "glutMenuStatusFunc",
-        "(Ljdk/incubator/foreign/MemoryAddress;)V",
-        constants$957.glutMenuStatusFunc$FUNC, false
+        "glutMenuStatusFunc",
+        constants$957.glutMenuStatusFunc$FUNC
     );
     static final FunctionDescriptor glutOverlayDisplayFunc$callback$FUNC = FunctionDescriptor.ofVoid();
     static final MethodHandle glutOverlayDisplayFunc$callback$MH = RuntimeHelper.downcallHandle(
-        "()V",
-        constants$957.glutOverlayDisplayFunc$callback$FUNC, false
+        constants$957.glutOverlayDisplayFunc$callback$FUNC
     );
     static final FunctionDescriptor glutOverlayDisplayFunc$FUNC = FunctionDescriptor.ofVoid(
-        C_POINTER
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle glutOverlayDisplayFunc$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "glutOverlayDisplayFunc",
-        "(Ljdk/incubator/foreign/MemoryAddress;)V",
-        constants$957.glutOverlayDisplayFunc$FUNC, false
+        "glutOverlayDisplayFunc",
+        constants$957.glutOverlayDisplayFunc$FUNC
     );
     static final FunctionDescriptor glutWindowStatusFunc$callback$FUNC = FunctionDescriptor.ofVoid(
-        C_INT
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle glutWindowStatusFunc$callback$MH = RuntimeHelper.downcallHandle(
-        "(I)V",
-        constants$957.glutWindowStatusFunc$callback$FUNC, false
+        constants$957.glutWindowStatusFunc$callback$FUNC
     );
 }
 

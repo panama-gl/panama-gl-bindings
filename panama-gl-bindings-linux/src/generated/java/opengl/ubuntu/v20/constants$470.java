@@ -2,42 +2,40 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_INT;
-import static jdk.incubator.foreign.CLinker.C_POINTER;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$470 {
 
     static final FunctionDescriptor PFNGLGETPERFMONITORGROUPSTRINGAMDPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_POINTER,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLGETPERFMONITORGROUPSTRINGAMDPROC$MH = RuntimeHelper.downcallHandle(
-        "(IILjdk/incubator/foreign/MemoryAddress;Ljdk/incubator/foreign/MemoryAddress;)V",
-        constants$470.PFNGLGETPERFMONITORGROUPSTRINGAMDPROC$FUNC, false
+        constants$470.PFNGLGETPERFMONITORGROUPSTRINGAMDPROC$FUNC
     );
     static final FunctionDescriptor PFNGLGETPERFMONITORCOUNTERSTRINGAMDPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_INT,
-        C_POINTER,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLGETPERFMONITORCOUNTERSTRINGAMDPROC$MH = RuntimeHelper.downcallHandle(
-        "(IIILjdk/incubator/foreign/MemoryAddress;Ljdk/incubator/foreign/MemoryAddress;)V",
-        constants$470.PFNGLGETPERFMONITORCOUNTERSTRINGAMDPROC$FUNC, false
+        constants$470.PFNGLGETPERFMONITORCOUNTERSTRINGAMDPROC$FUNC
     );
     static final FunctionDescriptor PFNGLGETPERFMONITORCOUNTERINFOAMDPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLGETPERFMONITORCOUNTERINFOAMDPROC$MH = RuntimeHelper.downcallHandle(
-        "(IIILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$470.PFNGLGETPERFMONITORCOUNTERINFOAMDPROC$FUNC, false
+        constants$470.PFNGLGETPERFMONITORCOUNTERINFOAMDPROC$FUNC
     );
 }
 

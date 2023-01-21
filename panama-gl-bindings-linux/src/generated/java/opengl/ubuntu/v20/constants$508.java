@@ -2,42 +2,38 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_DOUBLE;
-import static jdk.incubator.foreign.CLinker.C_INT;
-import static jdk.incubator.foreign.CLinker.C_POINTER;
-import static jdk.incubator.foreign.CLinker.C_SHORT;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$508 {
 
     static final FunctionDescriptor PFNGLVERTEXSTREAM3DATIPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_DOUBLE,
-        C_DOUBLE,
-        C_DOUBLE
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_DOUBLE$LAYOUT,
+        Constants$root.C_DOUBLE$LAYOUT,
+        Constants$root.C_DOUBLE$LAYOUT
     );
     static final MethodHandle PFNGLVERTEXSTREAM3DATIPROC$MH = RuntimeHelper.downcallHandle(
-        "(IDDD)V",
-        constants$508.PFNGLVERTEXSTREAM3DATIPROC$FUNC, false
+        constants$508.PFNGLVERTEXSTREAM3DATIPROC$FUNC
     );
     static final FunctionDescriptor PFNGLVERTEXSTREAM3DVATIPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLVERTEXSTREAM3DVATIPROC$MH = RuntimeHelper.downcallHandle(
-        "(ILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$508.PFNGLVERTEXSTREAM3DVATIPROC$FUNC, false
+        constants$508.PFNGLVERTEXSTREAM3DVATIPROC$FUNC
     );
     static final FunctionDescriptor PFNGLVERTEXSTREAM4SATIPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_SHORT,
-        C_SHORT,
-        C_SHORT,
-        C_SHORT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_SHORT$LAYOUT,
+        Constants$root.C_SHORT$LAYOUT,
+        Constants$root.C_SHORT$LAYOUT,
+        Constants$root.C_SHORT$LAYOUT
     );
     static final MethodHandle PFNGLVERTEXSTREAM4SATIPROC$MH = RuntimeHelper.downcallHandle(
-        "(ISSSS)V",
-        constants$508.PFNGLVERTEXSTREAM4SATIPROC$FUNC, false
+        constants$508.PFNGLVERTEXSTREAM4SATIPROC$FUNC
     );
 }
 

@@ -2,22 +2,22 @@
 
 package opengl.ubuntu.v20;
 
-import jdk.incubator.foreign.Addressable;
-import jdk.incubator.foreign.MemoryAddress;
-import jdk.incubator.foreign.ResourceScope;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public interface PFNGLCLIENTWAITSEMAPHOREUI64NVXPROC {
 
-    void apply(int x0, jdk.incubator.foreign.MemoryAddress x1, jdk.incubator.foreign.MemoryAddress x2);
-    static MemoryAddress allocate(PFNGLCLIENTWAITSEMAPHOREUI64NVXPROC fi) {
-        return RuntimeHelper.upcallStub(PFNGLCLIENTWAITSEMAPHOREUI64NVXPROC.class, fi, constants$724.PFNGLCLIENTWAITSEMAPHOREUI64NVXPROC$FUNC, "(ILjdk/incubator/foreign/MemoryAddress;Ljdk/incubator/foreign/MemoryAddress;)V");
+    void apply(int fenceObjectCount, java.lang.foreign.MemoryAddress semaphoreArray, java.lang.foreign.MemoryAddress fenceValueArray);
+    static MemorySegment allocate(PFNGLCLIENTWAITSEMAPHOREUI64NVXPROC fi, MemorySession session) {
+        return RuntimeHelper.upcallStub(PFNGLCLIENTWAITSEMAPHOREUI64NVXPROC.class, fi, constants$724.PFNGLCLIENTWAITSEMAPHOREUI64NVXPROC$FUNC, session);
     }
-    static MemoryAddress allocate(PFNGLCLIENTWAITSEMAPHOREUI64NVXPROC fi, ResourceScope scope) {
-        return RuntimeHelper.upcallStub(PFNGLCLIENTWAITSEMAPHOREUI64NVXPROC.class, fi, constants$724.PFNGLCLIENTWAITSEMAPHOREUI64NVXPROC$FUNC, "(ILjdk/incubator/foreign/MemoryAddress;Ljdk/incubator/foreign/MemoryAddress;)V", scope);
-    }
-    static PFNGLCLIENTWAITSEMAPHOREUI64NVXPROC ofAddress(MemoryAddress addr) {
-        return (int x0, jdk.incubator.foreign.MemoryAddress x1, jdk.incubator.foreign.MemoryAddress x2) -> {
+    static PFNGLCLIENTWAITSEMAPHOREUI64NVXPROC ofAddress(MemoryAddress addr, MemorySession session) {
+        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
+        return (int _fenceObjectCount, java.lang.foreign.MemoryAddress _semaphoreArray, java.lang.foreign.MemoryAddress _fenceValueArray) -> {
             try {
-                constants$724.PFNGLCLIENTWAITSEMAPHOREUI64NVXPROC$MH.invokeExact((Addressable)addr, x0, x1, x2);
+                constants$724.PFNGLCLIENTWAITSEMAPHOREUI64NVXPROC$MH.invokeExact((Addressable)symbol, _fenceObjectCount, (java.lang.foreign.Addressable)_semaphoreArray, (java.lang.foreign.Addressable)_fenceValueArray);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

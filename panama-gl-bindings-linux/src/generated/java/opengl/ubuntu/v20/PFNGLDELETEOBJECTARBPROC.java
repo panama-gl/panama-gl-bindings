@@ -2,22 +2,22 @@
 
 package opengl.ubuntu.v20;
 
-import jdk.incubator.foreign.Addressable;
-import jdk.incubator.foreign.MemoryAddress;
-import jdk.incubator.foreign.ResourceScope;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public interface PFNGLDELETEOBJECTARBPROC {
 
-    void apply(int x0);
-    static MemoryAddress allocate(PFNGLDELETEOBJECTARBPROC fi) {
-        return RuntimeHelper.upcallStub(PFNGLDELETEOBJECTARBPROC.class, fi, constants$357.PFNGLDELETEOBJECTARBPROC$FUNC, "(I)V");
+    void apply(int obj);
+    static MemorySegment allocate(PFNGLDELETEOBJECTARBPROC fi, MemorySession session) {
+        return RuntimeHelper.upcallStub(PFNGLDELETEOBJECTARBPROC.class, fi, constants$357.PFNGLDELETEOBJECTARBPROC$FUNC, session);
     }
-    static MemoryAddress allocate(PFNGLDELETEOBJECTARBPROC fi, ResourceScope scope) {
-        return RuntimeHelper.upcallStub(PFNGLDELETEOBJECTARBPROC.class, fi, constants$357.PFNGLDELETEOBJECTARBPROC$FUNC, "(I)V", scope);
-    }
-    static PFNGLDELETEOBJECTARBPROC ofAddress(MemoryAddress addr) {
-        return (int x0) -> {
+    static PFNGLDELETEOBJECTARBPROC ofAddress(MemoryAddress addr, MemorySession session) {
+        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
+        return (int _obj) -> {
             try {
-                constants$357.PFNGLDELETEOBJECTARBPROC$MH.invokeExact((Addressable)addr, x0);
+                constants$357.PFNGLDELETEOBJECTARBPROC$MH.invokeExact((Addressable)symbol, _obj);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

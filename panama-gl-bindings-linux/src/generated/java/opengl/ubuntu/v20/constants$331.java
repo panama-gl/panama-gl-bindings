@@ -2,38 +2,36 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_INT;
-import static jdk.incubator.foreign.CLinker.C_LONG;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$331 {
 
     static final FunctionDescriptor PFNGLUNIFORM1I64ARBPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_LONG
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT
     );
     static final MethodHandle PFNGLUNIFORM1I64ARBPROC$MH = RuntimeHelper.downcallHandle(
-        "(IJ)V",
-        constants$331.PFNGLUNIFORM1I64ARBPROC$FUNC, false
+        constants$331.PFNGLUNIFORM1I64ARBPROC$FUNC
     );
     static final FunctionDescriptor PFNGLUNIFORM2I64ARBPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_LONG,
-        C_LONG
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT
     );
     static final MethodHandle PFNGLUNIFORM2I64ARBPROC$MH = RuntimeHelper.downcallHandle(
-        "(IJJ)V",
-        constants$331.PFNGLUNIFORM2I64ARBPROC$FUNC, false
+        constants$331.PFNGLUNIFORM2I64ARBPROC$FUNC
     );
     static final FunctionDescriptor PFNGLUNIFORM3I64ARBPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_LONG,
-        C_LONG,
-        C_LONG
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT
     );
     static final MethodHandle PFNGLUNIFORM3I64ARBPROC$MH = RuntimeHelper.downcallHandle(
-        "(IJJJ)V",
-        constants$331.PFNGLUNIFORM3I64ARBPROC$FUNC, false
+        constants$331.PFNGLUNIFORM3I64ARBPROC$FUNC
     );
 }
 

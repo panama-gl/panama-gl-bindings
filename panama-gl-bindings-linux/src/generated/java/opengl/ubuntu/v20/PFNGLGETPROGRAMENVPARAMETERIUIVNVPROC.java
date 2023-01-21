@@ -2,22 +2,22 @@
 
 package opengl.ubuntu.v20;
 
-import jdk.incubator.foreign.Addressable;
-import jdk.incubator.foreign.MemoryAddress;
-import jdk.incubator.foreign.ResourceScope;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public interface PFNGLGETPROGRAMENVPARAMETERIUIVNVPROC {
 
-    void apply(int x0, int x1, jdk.incubator.foreign.MemoryAddress x2);
-    static MemoryAddress allocate(PFNGLGETPROGRAMENVPARAMETERIUIVNVPROC fi) {
-        return RuntimeHelper.upcallStub(PFNGLGETPROGRAMENVPARAMETERIUIVNVPROC.class, fi, constants$763.PFNGLGETPROGRAMENVPARAMETERIUIVNVPROC$FUNC, "(IILjdk/incubator/foreign/MemoryAddress;)V");
+    void apply(int target, int index, java.lang.foreign.MemoryAddress params);
+    static MemorySegment allocate(PFNGLGETPROGRAMENVPARAMETERIUIVNVPROC fi, MemorySession session) {
+        return RuntimeHelper.upcallStub(PFNGLGETPROGRAMENVPARAMETERIUIVNVPROC.class, fi, constants$763.PFNGLGETPROGRAMENVPARAMETERIUIVNVPROC$FUNC, session);
     }
-    static MemoryAddress allocate(PFNGLGETPROGRAMENVPARAMETERIUIVNVPROC fi, ResourceScope scope) {
-        return RuntimeHelper.upcallStub(PFNGLGETPROGRAMENVPARAMETERIUIVNVPROC.class, fi, constants$763.PFNGLGETPROGRAMENVPARAMETERIUIVNVPROC$FUNC, "(IILjdk/incubator/foreign/MemoryAddress;)V", scope);
-    }
-    static PFNGLGETPROGRAMENVPARAMETERIUIVNVPROC ofAddress(MemoryAddress addr) {
-        return (int x0, int x1, jdk.incubator.foreign.MemoryAddress x2) -> {
+    static PFNGLGETPROGRAMENVPARAMETERIUIVNVPROC ofAddress(MemoryAddress addr, MemorySession session) {
+        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
+        return (int _target, int _index, java.lang.foreign.MemoryAddress _params) -> {
             try {
-                constants$763.PFNGLGETPROGRAMENVPARAMETERIUIVNVPROC$MH.invokeExact((Addressable)addr, x0, x1, x2);
+                constants$763.PFNGLGETPROGRAMENVPARAMETERIUIVNVPROC$MH.invokeExact((Addressable)symbol, _target, _index, (java.lang.foreign.Addressable)_params);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

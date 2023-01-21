@@ -2,22 +2,22 @@
 
 package opengl.ubuntu.v20;
 
-import jdk.incubator.foreign.Addressable;
-import jdk.incubator.foreign.MemoryAddress;
-import jdk.incubator.foreign.ResourceScope;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public interface PFNGLDELETEFRAGMENTSHADERATIPROC {
 
-    void apply(int x0);
-    static MemoryAddress allocate(PFNGLDELETEFRAGMENTSHADERATIPROC fi) {
-        return RuntimeHelper.upcallStub(PFNGLDELETEFRAGMENTSHADERATIPROC.class, fi, constants$489.PFNGLDELETEFRAGMENTSHADERATIPROC$FUNC, "(I)V");
+    void apply(int id);
+    static MemorySegment allocate(PFNGLDELETEFRAGMENTSHADERATIPROC fi, MemorySession session) {
+        return RuntimeHelper.upcallStub(PFNGLDELETEFRAGMENTSHADERATIPROC.class, fi, constants$489.PFNGLDELETEFRAGMENTSHADERATIPROC$FUNC, session);
     }
-    static MemoryAddress allocate(PFNGLDELETEFRAGMENTSHADERATIPROC fi, ResourceScope scope) {
-        return RuntimeHelper.upcallStub(PFNGLDELETEFRAGMENTSHADERATIPROC.class, fi, constants$489.PFNGLDELETEFRAGMENTSHADERATIPROC$FUNC, "(I)V", scope);
-    }
-    static PFNGLDELETEFRAGMENTSHADERATIPROC ofAddress(MemoryAddress addr) {
-        return (int x0) -> {
+    static PFNGLDELETEFRAGMENTSHADERATIPROC ofAddress(MemoryAddress addr, MemorySession session) {
+        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
+        return (int _id) -> {
             try {
-                constants$489.PFNGLDELETEFRAGMENTSHADERATIPROC$MH.invokeExact((Addressable)addr, x0);
+                constants$489.PFNGLDELETEFRAGMENTSHADERATIPROC$MH.invokeExact((Addressable)symbol, _id);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

@@ -2,34 +2,31 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_CHAR;
-import static jdk.incubator.foreign.CLinker.C_INT;
-import static jdk.incubator.foreign.CLinker.C_POINTER;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$477 {
 
     static final FunctionDescriptor PFNGLDELETEFENCESAPPLEPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLDELETEFENCESAPPLEPROC$MH = RuntimeHelper.downcallHandle(
-        "(ILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$477.PFNGLDELETEFENCESAPPLEPROC$FUNC, false
+        constants$477.PFNGLDELETEFENCESAPPLEPROC$FUNC
     );
     static final FunctionDescriptor PFNGLSETFENCEAPPLEPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLSETFENCEAPPLEPROC$MH = RuntimeHelper.downcallHandle(
-        "(I)V",
-        constants$477.PFNGLSETFENCEAPPLEPROC$FUNC, false
+        constants$477.PFNGLSETFENCEAPPLEPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLISFENCEAPPLEPROC$FUNC = FunctionDescriptor.of(C_CHAR,
-        C_INT
+    static final FunctionDescriptor PFNGLISFENCEAPPLEPROC$FUNC = FunctionDescriptor.of(Constants$root.C_CHAR$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLISFENCEAPPLEPROC$MH = RuntimeHelper.downcallHandle(
-        "(I)B",
-        constants$477.PFNGLISFENCEAPPLEPROC$FUNC, false
+        constants$477.PFNGLISFENCEAPPLEPROC$FUNC
     );
 }
 

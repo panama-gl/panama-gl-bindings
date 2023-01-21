@@ -2,63 +2,58 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_LONG;
-import static jdk.incubator.foreign.CLinker.C_POINTER;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$978 {
 
-    static final FunctionDescriptor calloc$FUNC = FunctionDescriptor.of(C_POINTER,
-        C_LONG,
-        C_LONG
+    static final FunctionDescriptor calloc$FUNC = FunctionDescriptor.of(Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT
     );
     static final MethodHandle calloc$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "calloc",
-        "(JJ)Ljdk/incubator/foreign/MemoryAddress;",
-        constants$978.calloc$FUNC, false
+        "calloc",
+        constants$978.calloc$FUNC
     );
-    static final FunctionDescriptor realloc$FUNC = FunctionDescriptor.of(C_POINTER,
-        C_POINTER,
-        C_LONG
+    static final FunctionDescriptor realloc$FUNC = FunctionDescriptor.of(Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT
     );
     static final MethodHandle realloc$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "realloc",
-        "(Ljdk/incubator/foreign/MemoryAddress;J)Ljdk/incubator/foreign/MemoryAddress;",
-        constants$978.realloc$FUNC, false
+        "realloc",
+        constants$978.realloc$FUNC
     );
-    static final FunctionDescriptor reallocarray$FUNC = FunctionDescriptor.of(C_POINTER,
-        C_POINTER,
-        C_LONG,
-        C_LONG
+    static final FunctionDescriptor reallocarray$FUNC = FunctionDescriptor.of(Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT
     );
     static final MethodHandle reallocarray$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "reallocarray",
-        "(Ljdk/incubator/foreign/MemoryAddress;JJ)Ljdk/incubator/foreign/MemoryAddress;",
-        constants$978.reallocarray$FUNC, false
+        "reallocarray",
+        constants$978.reallocarray$FUNC
     );
     static final FunctionDescriptor free$FUNC = FunctionDescriptor.ofVoid(
-        C_POINTER
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle free$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "free",
-        "(Ljdk/incubator/foreign/MemoryAddress;)V",
-        constants$978.free$FUNC, false
+        "free",
+        constants$978.free$FUNC
     );
-    static final FunctionDescriptor alloca$FUNC = FunctionDescriptor.of(C_POINTER,
-        C_LONG
+    static final FunctionDescriptor alloca$FUNC = FunctionDescriptor.of(Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT
     );
     static final MethodHandle alloca$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "alloca",
-        "(J)Ljdk/incubator/foreign/MemoryAddress;",
-        constants$978.alloca$FUNC, false
+        "alloca",
+        constants$978.alloca$FUNC
     );
-    static final FunctionDescriptor valloc$FUNC = FunctionDescriptor.of(C_POINTER,
-        C_LONG
+    static final FunctionDescriptor valloc$FUNC = FunctionDescriptor.of(Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT
     );
     static final MethodHandle valloc$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "valloc",
-        "(J)Ljdk/incubator/foreign/MemoryAddress;",
-        constants$978.valloc$FUNC, false
+        "valloc",
+        constants$978.valloc$FUNC
     );
 }
 

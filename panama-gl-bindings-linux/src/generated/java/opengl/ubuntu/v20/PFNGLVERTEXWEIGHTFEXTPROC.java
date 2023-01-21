@@ -2,22 +2,22 @@
 
 package opengl.ubuntu.v20;
 
-import jdk.incubator.foreign.Addressable;
-import jdk.incubator.foreign.MemoryAddress;
-import jdk.incubator.foreign.ResourceScope;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public interface PFNGLVERTEXWEIGHTFEXTPROC {
 
-    void apply(float x0);
-    static MemoryAddress allocate(PFNGLVERTEXWEIGHTFEXTPROC fi) {
-        return RuntimeHelper.upcallStub(PFNGLVERTEXWEIGHTFEXTPROC.class, fi, constants$696.PFNGLVERTEXWEIGHTFEXTPROC$FUNC, "(F)V");
+    void apply(float weight);
+    static MemorySegment allocate(PFNGLVERTEXWEIGHTFEXTPROC fi, MemorySession session) {
+        return RuntimeHelper.upcallStub(PFNGLVERTEXWEIGHTFEXTPROC.class, fi, constants$696.PFNGLVERTEXWEIGHTFEXTPROC$FUNC, session);
     }
-    static MemoryAddress allocate(PFNGLVERTEXWEIGHTFEXTPROC fi, ResourceScope scope) {
-        return RuntimeHelper.upcallStub(PFNGLVERTEXWEIGHTFEXTPROC.class, fi, constants$696.PFNGLVERTEXWEIGHTFEXTPROC$FUNC, "(F)V", scope);
-    }
-    static PFNGLVERTEXWEIGHTFEXTPROC ofAddress(MemoryAddress addr) {
-        return (float x0) -> {
+    static PFNGLVERTEXWEIGHTFEXTPROC ofAddress(MemoryAddress addr, MemorySession session) {
+        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
+        return (float _weight) -> {
             try {
-                constants$696.PFNGLVERTEXWEIGHTFEXTPROC$MH.invokeExact((Addressable)addr, x0);
+                constants$696.PFNGLVERTEXWEIGHTFEXTPROC$MH.invokeExact((Addressable)symbol, _weight);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

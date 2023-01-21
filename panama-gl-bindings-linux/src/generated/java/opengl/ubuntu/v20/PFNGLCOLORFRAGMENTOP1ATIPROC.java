@@ -2,22 +2,22 @@
 
 package opengl.ubuntu.v20;
 
-import jdk.incubator.foreign.Addressable;
-import jdk.incubator.foreign.MemoryAddress;
-import jdk.incubator.foreign.ResourceScope;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public interface PFNGLCOLORFRAGMENTOP1ATIPROC {
 
-    void apply(int x0, int x1, int x2, int x3, int x4, int x5, int x6);
-    static MemoryAddress allocate(PFNGLCOLORFRAGMENTOP1ATIPROC fi) {
-        return RuntimeHelper.upcallStub(PFNGLCOLORFRAGMENTOP1ATIPROC.class, fi, constants$491.PFNGLCOLORFRAGMENTOP1ATIPROC$FUNC, "(IIIIIII)V");
+    void apply(int op, int dst, int dstMask, int dstMod, int arg1, int arg1Rep, int arg1Mod);
+    static MemorySegment allocate(PFNGLCOLORFRAGMENTOP1ATIPROC fi, MemorySession session) {
+        return RuntimeHelper.upcallStub(PFNGLCOLORFRAGMENTOP1ATIPROC.class, fi, constants$491.PFNGLCOLORFRAGMENTOP1ATIPROC$FUNC, session);
     }
-    static MemoryAddress allocate(PFNGLCOLORFRAGMENTOP1ATIPROC fi, ResourceScope scope) {
-        return RuntimeHelper.upcallStub(PFNGLCOLORFRAGMENTOP1ATIPROC.class, fi, constants$491.PFNGLCOLORFRAGMENTOP1ATIPROC$FUNC, "(IIIIIII)V", scope);
-    }
-    static PFNGLCOLORFRAGMENTOP1ATIPROC ofAddress(MemoryAddress addr) {
-        return (int x0, int x1, int x2, int x3, int x4, int x5, int x6) -> {
+    static PFNGLCOLORFRAGMENTOP1ATIPROC ofAddress(MemoryAddress addr, MemorySession session) {
+        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
+        return (int _op, int _dst, int _dstMask, int _dstMod, int _arg1, int _arg1Rep, int _arg1Mod) -> {
             try {
-                constants$491.PFNGLCOLORFRAGMENTOP1ATIPROC$MH.invokeExact((Addressable)addr, x0, x1, x2, x3, x4, x5, x6);
+                constants$491.PFNGLCOLORFRAGMENTOP1ATIPROC$MH.invokeExact((Addressable)symbol, _op, _dst, _dstMask, _dstMod, _arg1, _arg1Rep, _arg1Mod);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

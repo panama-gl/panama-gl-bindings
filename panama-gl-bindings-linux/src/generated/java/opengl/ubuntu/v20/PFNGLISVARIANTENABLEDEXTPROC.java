@@ -2,22 +2,22 @@
 
 package opengl.ubuntu.v20;
 
-import jdk.incubator.foreign.Addressable;
-import jdk.incubator.foreign.MemoryAddress;
-import jdk.incubator.foreign.ResourceScope;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public interface PFNGLISVARIANTENABLEDEXTPROC {
 
-    byte apply(int x0, int x1);
-    static MemoryAddress allocate(PFNGLISVARIANTENABLEDEXTPROC fi) {
-        return RuntimeHelper.upcallStub(PFNGLISVARIANTENABLEDEXTPROC.class, fi, constants$692.PFNGLISVARIANTENABLEDEXTPROC$FUNC, "(II)B");
+    byte apply(int id, int cap);
+    static MemorySegment allocate(PFNGLISVARIANTENABLEDEXTPROC fi, MemorySession session) {
+        return RuntimeHelper.upcallStub(PFNGLISVARIANTENABLEDEXTPROC.class, fi, constants$692.PFNGLISVARIANTENABLEDEXTPROC$FUNC, session);
     }
-    static MemoryAddress allocate(PFNGLISVARIANTENABLEDEXTPROC fi, ResourceScope scope) {
-        return RuntimeHelper.upcallStub(PFNGLISVARIANTENABLEDEXTPROC.class, fi, constants$692.PFNGLISVARIANTENABLEDEXTPROC$FUNC, "(II)B", scope);
-    }
-    static PFNGLISVARIANTENABLEDEXTPROC ofAddress(MemoryAddress addr) {
-        return (int x0, int x1) -> {
+    static PFNGLISVARIANTENABLEDEXTPROC ofAddress(MemoryAddress addr, MemorySession session) {
+        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
+        return (int _id, int _cap) -> {
             try {
-                return (byte)constants$692.PFNGLISVARIANTENABLEDEXTPROC$MH.invokeExact((Addressable)addr, x0, x1);
+                return (byte)constants$692.PFNGLISVARIANTENABLEDEXTPROC$MH.invokeExact((Addressable)symbol, _id, _cap);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

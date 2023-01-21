@@ -2,23 +2,21 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_LONG_LONG;
+import java.lang.invoke.MethodHandle;
 import java.lang.invoke.VarHandle;
-import jdk.incubator.foreign.MemoryAddress;
-import jdk.incubator.foreign.MemoryLayout;
-import jdk.incubator.foreign.MemorySegment;
-import jdk.incubator.foreign.ResourceScope;
-import jdk.incubator.foreign.SegmentAllocator;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public class lldiv_t {
 
-    static final MemoryLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        C_LONG_LONG.withName("quot"),
-        C_LONG_LONG.withName("rem")
+    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
+        Constants$root.C_LONG_LONG$LAYOUT.withName("quot"),
+        Constants$root.C_LONG_LONG$LAYOUT.withName("rem")
     );
     public static MemoryLayout $LAYOUT() {
         return lldiv_t.$struct$LAYOUT;
     }
-    static final VarHandle quot$VH = $struct$LAYOUT.varHandle(long.class, MemoryLayout.PathElement.groupElement("quot"));
+    static final VarHandle quot$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("quot"));
     public static VarHandle quot$VH() {
         return lldiv_t.quot$VH;
     }
@@ -34,7 +32,7 @@ public class lldiv_t {
     public static void quot$set(MemorySegment seg, long index, long x) {
         lldiv_t.quot$VH.set(seg.asSlice(index*sizeof()), x);
     }
-    static final VarHandle rem$VH = $struct$LAYOUT.varHandle(long.class, MemoryLayout.PathElement.groupElement("rem"));
+    static final VarHandle rem$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("rem"));
     public static VarHandle rem$VH() {
         return lldiv_t.rem$VH;
     }
@@ -52,14 +50,10 @@ public class lldiv_t {
     }
     public static long sizeof() { return $LAYOUT().byteSize(); }
     public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocate(ResourceScope scope) { return allocate(SegmentAllocator.ofScope(scope)); }
     public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
         return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
     }
-    public static MemorySegment allocateArray(int len, ResourceScope scope) {
-        return allocateArray(len, SegmentAllocator.ofScope(scope));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, ResourceScope scope) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, scope); }
+    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
 }
 
 

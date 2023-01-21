@@ -2,39 +2,37 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_INT;
-import static jdk.incubator.foreign.CLinker.C_POINTER;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$91 {
 
     static final FunctionDescriptor PFNGLMULTITEXCOORD4SVARBPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLMULTITEXCOORD4SVARBPROC$MH = RuntimeHelper.downcallHandle(
-        "(ILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$91.PFNGLMULTITEXCOORD4SVARBPROC$FUNC, false
+        constants$91.PFNGLMULTITEXCOORD4SVARBPROC$FUNC
     );
     static final FunctionDescriptor PFNGLBLENDFUNCSEPARATEPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLBLENDFUNCSEPARATEPROC$MH = RuntimeHelper.downcallHandle(
-        "(IIII)V",
-        constants$91.PFNGLBLENDFUNCSEPARATEPROC$FUNC, false
+        constants$91.PFNGLBLENDFUNCSEPARATEPROC$FUNC
     );
     static final FunctionDescriptor PFNGLMULTIDRAWARRAYSPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_POINTER,
-        C_POINTER,
-        C_INT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLMULTIDRAWARRAYSPROC$MH = RuntimeHelper.downcallHandle(
-        "(ILjdk/incubator/foreign/MemoryAddress;Ljdk/incubator/foreign/MemoryAddress;I)V",
-        constants$91.PFNGLMULTIDRAWARRAYSPROC$FUNC, false
+        constants$91.PFNGLMULTIDRAWARRAYSPROC$FUNC
     );
 }
 

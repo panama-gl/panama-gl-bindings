@@ -2,22 +2,22 @@
 
 package opengl.ubuntu.v20;
 
-import jdk.incubator.foreign.Addressable;
-import jdk.incubator.foreign.MemoryAddress;
-import jdk.incubator.foreign.ResourceScope;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public interface PFNGLREADNPIXELSPROC {
 
-    void apply(int x0, int x1, int x2, int x3, int x4, int x5, int x6, jdk.incubator.foreign.MemoryAddress x7);
-    static MemoryAddress allocate(PFNGLREADNPIXELSPROC fi) {
-        return RuntimeHelper.upcallStub(PFNGLREADNPIXELSPROC.class, fi, constants$306.PFNGLREADNPIXELSPROC$FUNC, "(IIIIIIILjdk/incubator/foreign/MemoryAddress;)V");
+    void apply(int x, int y, int width, int height, int format, int type, int bufSize, java.lang.foreign.MemoryAddress data);
+    static MemorySegment allocate(PFNGLREADNPIXELSPROC fi, MemorySession session) {
+        return RuntimeHelper.upcallStub(PFNGLREADNPIXELSPROC.class, fi, constants$306.PFNGLREADNPIXELSPROC$FUNC, session);
     }
-    static MemoryAddress allocate(PFNGLREADNPIXELSPROC fi, ResourceScope scope) {
-        return RuntimeHelper.upcallStub(PFNGLREADNPIXELSPROC.class, fi, constants$306.PFNGLREADNPIXELSPROC$FUNC, "(IIIIIIILjdk/incubator/foreign/MemoryAddress;)V", scope);
-    }
-    static PFNGLREADNPIXELSPROC ofAddress(MemoryAddress addr) {
-        return (int x0, int x1, int x2, int x3, int x4, int x5, int x6, jdk.incubator.foreign.MemoryAddress x7) -> {
+    static PFNGLREADNPIXELSPROC ofAddress(MemoryAddress addr, MemorySession session) {
+        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
+        return (int _x, int _y, int _width, int _height, int _format, int _type, int _bufSize, java.lang.foreign.MemoryAddress _data) -> {
             try {
-                constants$306.PFNGLREADNPIXELSPROC$MH.invokeExact((Addressable)addr, x0, x1, x2, x3, x4, x5, x6, x7);
+                constants$306.PFNGLREADNPIXELSPROC$MH.invokeExact((Addressable)symbol, _x, _y, _width, _height, _format, _type, _bufSize, (java.lang.foreign.Addressable)_data);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

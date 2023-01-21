@@ -2,39 +2,36 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_CHAR;
-import static jdk.incubator.foreign.CLinker.C_INT;
-import static jdk.incubator.foreign.CLinker.C_POINTER;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$826 {
 
     static final FunctionDescriptor PFNGLSHADINGRATESAMPLEORDERCUSTOMNVPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLSHADINGRATESAMPLEORDERCUSTOMNVPROC$MH = RuntimeHelper.downcallHandle(
-        "(IILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$826.PFNGLSHADINGRATESAMPLEORDERCUSTOMNVPROC$FUNC, false
+        constants$826.PFNGLSHADINGRATESAMPLEORDERCUSTOMNVPROC$FUNC
     );
     static final FunctionDescriptor PFNGLTEXTUREBARRIERNVPROC$FUNC = FunctionDescriptor.ofVoid();
     static final MethodHandle PFNGLTEXTUREBARRIERNVPROC$MH = RuntimeHelper.downcallHandle(
-        "()V",
-        constants$826.PFNGLTEXTUREBARRIERNVPROC$FUNC, false
+        constants$826.PFNGLTEXTUREBARRIERNVPROC$FUNC
     );
     static final FunctionDescriptor PFNGLTEXIMAGE2DMULTISAMPLECOVERAGENVPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_INT,
-        C_CHAR
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_CHAR$LAYOUT
     );
     static final MethodHandle PFNGLTEXIMAGE2DMULTISAMPLECOVERAGENVPROC$MH = RuntimeHelper.downcallHandle(
-        "(IIIIIIB)V",
-        constants$826.PFNGLTEXIMAGE2DMULTISAMPLECOVERAGENVPROC$FUNC, false
+        constants$826.PFNGLTEXIMAGE2DMULTISAMPLECOVERAGENVPROC$FUNC
     );
 }
 

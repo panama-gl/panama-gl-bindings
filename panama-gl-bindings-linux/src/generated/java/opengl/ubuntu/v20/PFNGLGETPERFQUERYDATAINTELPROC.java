@@ -2,22 +2,22 @@
 
 package opengl.ubuntu.v20;
 
-import jdk.incubator.foreign.Addressable;
-import jdk.incubator.foreign.MemoryAddress;
-import jdk.incubator.foreign.ResourceScope;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public interface PFNGLGETPERFQUERYDATAINTELPROC {
 
-    void apply(int x0, int x1, int x2, jdk.incubator.foreign.MemoryAddress x3, jdk.incubator.foreign.MemoryAddress x4);
-    static MemoryAddress allocate(PFNGLGETPERFQUERYDATAINTELPROC fi) {
-        return RuntimeHelper.upcallStub(PFNGLGETPERFQUERYDATAINTELPROC.class, fi, constants$710.PFNGLGETPERFQUERYDATAINTELPROC$FUNC, "(IIILjdk/incubator/foreign/MemoryAddress;Ljdk/incubator/foreign/MemoryAddress;)V");
+    void apply(int queryHandle, int flags, int dataSize, java.lang.foreign.MemoryAddress data, java.lang.foreign.MemoryAddress bytesWritten);
+    static MemorySegment allocate(PFNGLGETPERFQUERYDATAINTELPROC fi, MemorySession session) {
+        return RuntimeHelper.upcallStub(PFNGLGETPERFQUERYDATAINTELPROC.class, fi, constants$710.PFNGLGETPERFQUERYDATAINTELPROC$FUNC, session);
     }
-    static MemoryAddress allocate(PFNGLGETPERFQUERYDATAINTELPROC fi, ResourceScope scope) {
-        return RuntimeHelper.upcallStub(PFNGLGETPERFQUERYDATAINTELPROC.class, fi, constants$710.PFNGLGETPERFQUERYDATAINTELPROC$FUNC, "(IIILjdk/incubator/foreign/MemoryAddress;Ljdk/incubator/foreign/MemoryAddress;)V", scope);
-    }
-    static PFNGLGETPERFQUERYDATAINTELPROC ofAddress(MemoryAddress addr) {
-        return (int x0, int x1, int x2, jdk.incubator.foreign.MemoryAddress x3, jdk.incubator.foreign.MemoryAddress x4) -> {
+    static PFNGLGETPERFQUERYDATAINTELPROC ofAddress(MemoryAddress addr, MemorySession session) {
+        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
+        return (int _queryHandle, int _flags, int _dataSize, java.lang.foreign.MemoryAddress _data, java.lang.foreign.MemoryAddress _bytesWritten) -> {
             try {
-                constants$710.PFNGLGETPERFQUERYDATAINTELPROC$MH.invokeExact((Addressable)addr, x0, x1, x2, x3, x4);
+                constants$710.PFNGLGETPERFQUERYDATAINTELPROC$MH.invokeExact((Addressable)symbol, _queryHandle, _flags, _dataSize, (java.lang.foreign.Addressable)_data, (java.lang.foreign.Addressable)_bytesWritten);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

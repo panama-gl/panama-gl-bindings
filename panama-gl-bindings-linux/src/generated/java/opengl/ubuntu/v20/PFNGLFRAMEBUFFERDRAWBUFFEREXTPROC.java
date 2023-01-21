@@ -2,22 +2,22 @@
 
 package opengl.ubuntu.v20;
 
-import jdk.incubator.foreign.Addressable;
-import jdk.incubator.foreign.MemoryAddress;
-import jdk.incubator.foreign.ResourceScope;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public interface PFNGLFRAMEBUFFERDRAWBUFFEREXTPROC {
 
-    void apply(int x0, int x1);
-    static MemoryAddress allocate(PFNGLFRAMEBUFFERDRAWBUFFEREXTPROC fi) {
-        return RuntimeHelper.upcallStub(PFNGLFRAMEBUFFERDRAWBUFFEREXTPROC.class, fi, constants$598.PFNGLFRAMEBUFFERDRAWBUFFEREXTPROC$FUNC, "(II)V");
+    void apply(int framebuffer, int mode);
+    static MemorySegment allocate(PFNGLFRAMEBUFFERDRAWBUFFEREXTPROC fi, MemorySession session) {
+        return RuntimeHelper.upcallStub(PFNGLFRAMEBUFFERDRAWBUFFEREXTPROC.class, fi, constants$598.PFNGLFRAMEBUFFERDRAWBUFFEREXTPROC$FUNC, session);
     }
-    static MemoryAddress allocate(PFNGLFRAMEBUFFERDRAWBUFFEREXTPROC fi, ResourceScope scope) {
-        return RuntimeHelper.upcallStub(PFNGLFRAMEBUFFERDRAWBUFFEREXTPROC.class, fi, constants$598.PFNGLFRAMEBUFFERDRAWBUFFEREXTPROC$FUNC, "(II)V", scope);
-    }
-    static PFNGLFRAMEBUFFERDRAWBUFFEREXTPROC ofAddress(MemoryAddress addr) {
-        return (int x0, int x1) -> {
+    static PFNGLFRAMEBUFFERDRAWBUFFEREXTPROC ofAddress(MemoryAddress addr, MemorySession session) {
+        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
+        return (int _framebuffer, int _mode) -> {
             try {
-                constants$598.PFNGLFRAMEBUFFERDRAWBUFFEREXTPROC$MH.invokeExact((Addressable)addr, x0, x1);
+                constants$598.PFNGLFRAMEBUFFERDRAWBUFFEREXTPROC$MH.invokeExact((Addressable)symbol, _framebuffer, _mode);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

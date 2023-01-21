@@ -2,22 +2,22 @@
 
 package opengl.ubuntu.v20;
 
-import jdk.incubator.foreign.Addressable;
-import jdk.incubator.foreign.MemoryAddress;
-import jdk.incubator.foreign.ResourceScope;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public interface PFNGLVERTEXATTRIBL2I64NVPROC {
 
-    void apply(int x0, long x1, long x2);
-    static MemoryAddress allocate(PFNGLVERTEXATTRIBL2I64NVPROC fi) {
-        return RuntimeHelper.upcallStub(PFNGLVERTEXATTRIBL2I64NVPROC.class, fi, constants$839.PFNGLVERTEXATTRIBL2I64NVPROC$FUNC, "(IJJ)V");
+    void apply(int index, long x, long y);
+    static MemorySegment allocate(PFNGLVERTEXATTRIBL2I64NVPROC fi, MemorySession session) {
+        return RuntimeHelper.upcallStub(PFNGLVERTEXATTRIBL2I64NVPROC.class, fi, constants$839.PFNGLVERTEXATTRIBL2I64NVPROC$FUNC, session);
     }
-    static MemoryAddress allocate(PFNGLVERTEXATTRIBL2I64NVPROC fi, ResourceScope scope) {
-        return RuntimeHelper.upcallStub(PFNGLVERTEXATTRIBL2I64NVPROC.class, fi, constants$839.PFNGLVERTEXATTRIBL2I64NVPROC$FUNC, "(IJJ)V", scope);
-    }
-    static PFNGLVERTEXATTRIBL2I64NVPROC ofAddress(MemoryAddress addr) {
-        return (int x0, long x1, long x2) -> {
+    static PFNGLVERTEXATTRIBL2I64NVPROC ofAddress(MemoryAddress addr, MemorySession session) {
+        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
+        return (int _index, long _x, long _y) -> {
             try {
-                constants$839.PFNGLVERTEXATTRIBL2I64NVPROC$MH.invokeExact((Addressable)addr, x0, x1, x2);
+                constants$839.PFNGLVERTEXATTRIBL2I64NVPROC$MH.invokeExact((Addressable)symbol, _index, _x, _y);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

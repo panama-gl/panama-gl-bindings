@@ -2,22 +2,22 @@
 
 package opengl.ubuntu.v20;
 
-import jdk.incubator.foreign.Addressable;
-import jdk.incubator.foreign.MemoryAddress;
-import jdk.incubator.foreign.ResourceScope;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public interface PFNGLASYNCCOPYIMAGESUBDATANVXPROC {
 
-    int apply(int x0, jdk.incubator.foreign.MemoryAddress x1, jdk.incubator.foreign.MemoryAddress x2, int x3, int x4, int x5, int x6, int x7, int x8, int x9, int x10, int x11, int x12, int x13, int x14, int x15, int x16, int x17, int x18, int x19, int x20, jdk.incubator.foreign.MemoryAddress x21, jdk.incubator.foreign.MemoryAddress x22);
-    static MemoryAddress allocate(PFNGLASYNCCOPYIMAGESUBDATANVXPROC fi) {
-        return RuntimeHelper.upcallStub(PFNGLASYNCCOPYIMAGESUBDATANVXPROC.class, fi, constants$722.PFNGLASYNCCOPYIMAGESUBDATANVXPROC$FUNC, "(ILjdk/incubator/foreign/MemoryAddress;Ljdk/incubator/foreign/MemoryAddress;IIIIIIIIIIIIIIIIIILjdk/incubator/foreign/MemoryAddress;Ljdk/incubator/foreign/MemoryAddress;)I");
+    int apply(int waitSemaphoreCount, java.lang.foreign.MemoryAddress waitSemaphoreArray, java.lang.foreign.MemoryAddress waitValueArray, int srcGpu, int dstGpuMask, int srcName, int srcTarget, int srcLevel, int srcX, int srcY, int srcZ, int dstName, int dstTarget, int dstLevel, int dstX, int dstY, int dstZ, int srcWidth, int srcHeight, int srcDepth, int signalSemaphoreCount, java.lang.foreign.MemoryAddress signalSemaphoreArray, java.lang.foreign.MemoryAddress signalValueArray);
+    static MemorySegment allocate(PFNGLASYNCCOPYIMAGESUBDATANVXPROC fi, MemorySession session) {
+        return RuntimeHelper.upcallStub(PFNGLASYNCCOPYIMAGESUBDATANVXPROC.class, fi, constants$722.PFNGLASYNCCOPYIMAGESUBDATANVXPROC$FUNC, session);
     }
-    static MemoryAddress allocate(PFNGLASYNCCOPYIMAGESUBDATANVXPROC fi, ResourceScope scope) {
-        return RuntimeHelper.upcallStub(PFNGLASYNCCOPYIMAGESUBDATANVXPROC.class, fi, constants$722.PFNGLASYNCCOPYIMAGESUBDATANVXPROC$FUNC, "(ILjdk/incubator/foreign/MemoryAddress;Ljdk/incubator/foreign/MemoryAddress;IIIIIIIIIIIIIIIIIILjdk/incubator/foreign/MemoryAddress;Ljdk/incubator/foreign/MemoryAddress;)I", scope);
-    }
-    static PFNGLASYNCCOPYIMAGESUBDATANVXPROC ofAddress(MemoryAddress addr) {
-        return (int x0, jdk.incubator.foreign.MemoryAddress x1, jdk.incubator.foreign.MemoryAddress x2, int x3, int x4, int x5, int x6, int x7, int x8, int x9, int x10, int x11, int x12, int x13, int x14, int x15, int x16, int x17, int x18, int x19, int x20, jdk.incubator.foreign.MemoryAddress x21, jdk.incubator.foreign.MemoryAddress x22) -> {
+    static PFNGLASYNCCOPYIMAGESUBDATANVXPROC ofAddress(MemoryAddress addr, MemorySession session) {
+        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
+        return (int _waitSemaphoreCount, java.lang.foreign.MemoryAddress _waitSemaphoreArray, java.lang.foreign.MemoryAddress _waitValueArray, int _srcGpu, int _dstGpuMask, int _srcName, int _srcTarget, int _srcLevel, int _srcX, int _srcY, int _srcZ, int _dstName, int _dstTarget, int _dstLevel, int _dstX, int _dstY, int _dstZ, int _srcWidth, int _srcHeight, int _srcDepth, int _signalSemaphoreCount, java.lang.foreign.MemoryAddress _signalSemaphoreArray, java.lang.foreign.MemoryAddress _signalValueArray) -> {
             try {
-                return (int)constants$722.PFNGLASYNCCOPYIMAGESUBDATANVXPROC$MH.invokeExact((Addressable)addr, x0, x1, x2, x3, x4, x5, x6, x7, x8, x9, x10, x11, x12, x13, x14, x15, x16, x17, x18, x19, x20, x21, x22);
+                return (int)constants$722.PFNGLASYNCCOPYIMAGESUBDATANVXPROC$MH.invokeExact((Addressable)symbol, _waitSemaphoreCount, (java.lang.foreign.Addressable)_waitSemaphoreArray, (java.lang.foreign.Addressable)_waitValueArray, _srcGpu, _dstGpuMask, _srcName, _srcTarget, _srcLevel, _srcX, _srcY, _srcZ, _dstName, _dstTarget, _dstLevel, _dstX, _dstY, _dstZ, _srcWidth, _srcHeight, _srcDepth, _signalSemaphoreCount, (java.lang.foreign.Addressable)_signalSemaphoreArray, (java.lang.foreign.Addressable)_signalValueArray);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

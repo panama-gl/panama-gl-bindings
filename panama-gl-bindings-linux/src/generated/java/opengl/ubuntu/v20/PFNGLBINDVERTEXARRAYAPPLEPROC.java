@@ -2,22 +2,22 @@
 
 package opengl.ubuntu.v20;
 
-import jdk.incubator.foreign.Addressable;
-import jdk.incubator.foreign.MemoryAddress;
-import jdk.incubator.foreign.ResourceScope;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public interface PFNGLBINDVERTEXARRAYAPPLEPROC {
 
-    void apply(int x0);
-    static MemoryAddress allocate(PFNGLBINDVERTEXARRAYAPPLEPROC fi) {
-        return RuntimeHelper.upcallStub(PFNGLBINDVERTEXARRAYAPPLEPROC.class, fi, constants$481.PFNGLBINDVERTEXARRAYAPPLEPROC$FUNC, "(I)V");
+    void apply(int array);
+    static MemorySegment allocate(PFNGLBINDVERTEXARRAYAPPLEPROC fi, MemorySession session) {
+        return RuntimeHelper.upcallStub(PFNGLBINDVERTEXARRAYAPPLEPROC.class, fi, constants$481.PFNGLBINDVERTEXARRAYAPPLEPROC$FUNC, session);
     }
-    static MemoryAddress allocate(PFNGLBINDVERTEXARRAYAPPLEPROC fi, ResourceScope scope) {
-        return RuntimeHelper.upcallStub(PFNGLBINDVERTEXARRAYAPPLEPROC.class, fi, constants$481.PFNGLBINDVERTEXARRAYAPPLEPROC$FUNC, "(I)V", scope);
-    }
-    static PFNGLBINDVERTEXARRAYAPPLEPROC ofAddress(MemoryAddress addr) {
-        return (int x0) -> {
+    static PFNGLBINDVERTEXARRAYAPPLEPROC ofAddress(MemoryAddress addr, MemorySession session) {
+        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
+        return (int _array) -> {
             try {
-                constants$481.PFNGLBINDVERTEXARRAYAPPLEPROC$MH.invokeExact((Addressable)addr, x0);
+                constants$481.PFNGLBINDVERTEXARRAYAPPLEPROC$MH.invokeExact((Addressable)symbol, _array);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

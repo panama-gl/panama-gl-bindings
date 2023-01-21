@@ -2,31 +2,30 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_INT;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$489 {
 
-    static final FunctionDescriptor PFNGLGENFRAGMENTSHADERSATIPROC$FUNC = FunctionDescriptor.of(C_INT,
-        C_INT
+    static final FunctionDescriptor PFNGLGENFRAGMENTSHADERSATIPROC$FUNC = FunctionDescriptor.of(Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLGENFRAGMENTSHADERSATIPROC$MH = RuntimeHelper.downcallHandle(
-        "(I)I",
-        constants$489.PFNGLGENFRAGMENTSHADERSATIPROC$FUNC, false
+        constants$489.PFNGLGENFRAGMENTSHADERSATIPROC$FUNC
     );
     static final FunctionDescriptor PFNGLBINDFRAGMENTSHADERATIPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLBINDFRAGMENTSHADERATIPROC$MH = RuntimeHelper.downcallHandle(
-        "(I)V",
-        constants$489.PFNGLBINDFRAGMENTSHADERATIPROC$FUNC, false
+        constants$489.PFNGLBINDFRAGMENTSHADERATIPROC$FUNC
     );
     static final FunctionDescriptor PFNGLDELETEFRAGMENTSHADERATIPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLDELETEFRAGMENTSHADERATIPROC$MH = RuntimeHelper.downcallHandle(
-        "(I)V",
-        constants$489.PFNGLDELETEFRAGMENTSHADERATIPROC$FUNC, false
+        constants$489.PFNGLDELETEFRAGMENTSHADERATIPROC$FUNC
     );
 }
 

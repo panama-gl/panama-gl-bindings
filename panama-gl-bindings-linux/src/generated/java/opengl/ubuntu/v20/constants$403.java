@@ -2,37 +2,34 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_DOUBLE;
-import static jdk.incubator.foreign.CLinker.C_FLOAT;
-import static jdk.incubator.foreign.CLinker.C_POINTER;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$403 {
 
     static final FunctionDescriptor PFNGLWINDOWPOS3DARBPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_DOUBLE,
-        C_DOUBLE,
-        C_DOUBLE
+        Constants$root.C_DOUBLE$LAYOUT,
+        Constants$root.C_DOUBLE$LAYOUT,
+        Constants$root.C_DOUBLE$LAYOUT
     );
     static final MethodHandle PFNGLWINDOWPOS3DARBPROC$MH = RuntimeHelper.downcallHandle(
-        "(DDD)V",
-        constants$403.PFNGLWINDOWPOS3DARBPROC$FUNC, false
+        constants$403.PFNGLWINDOWPOS3DARBPROC$FUNC
     );
     static final FunctionDescriptor PFNGLWINDOWPOS3DVARBPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_POINTER
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLWINDOWPOS3DVARBPROC$MH = RuntimeHelper.downcallHandle(
-        "(Ljdk/incubator/foreign/MemoryAddress;)V",
-        constants$403.PFNGLWINDOWPOS3DVARBPROC$FUNC, false
+        constants$403.PFNGLWINDOWPOS3DVARBPROC$FUNC
     );
     static final FunctionDescriptor PFNGLWINDOWPOS3FARBPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_FLOAT,
-        C_FLOAT,
-        C_FLOAT
+        Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT
     );
     static final MethodHandle PFNGLWINDOWPOS3FARBPROC$MH = RuntimeHelper.downcallHandle(
-        "(FFF)V",
-        constants$403.PFNGLWINDOWPOS3FARBPROC$FUNC, false
+        constants$403.PFNGLWINDOWPOS3FARBPROC$FUNC
     );
 }
 

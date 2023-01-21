@@ -2,22 +2,22 @@
 
 package opengl.ubuntu.v20;
 
-import jdk.incubator.foreign.Addressable;
-import jdk.incubator.foreign.MemoryAddress;
-import jdk.incubator.foreign.ResourceScope;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public interface PFNGLGETSTAGEINDEXNVPROC {
 
-    short apply(int x0);
-    static MemoryAddress allocate(PFNGLGETSTAGEINDEXNVPROC fi) {
-        return RuntimeHelper.upcallStub(PFNGLGETSTAGEINDEXNVPROC.class, fi, constants$733.PFNGLGETSTAGEINDEXNVPROC$FUNC, "(I)S");
+    short apply(int shadertype);
+    static MemorySegment allocate(PFNGLGETSTAGEINDEXNVPROC fi, MemorySession session) {
+        return RuntimeHelper.upcallStub(PFNGLGETSTAGEINDEXNVPROC.class, fi, constants$733.PFNGLGETSTAGEINDEXNVPROC$FUNC, session);
     }
-    static MemoryAddress allocate(PFNGLGETSTAGEINDEXNVPROC fi, ResourceScope scope) {
-        return RuntimeHelper.upcallStub(PFNGLGETSTAGEINDEXNVPROC.class, fi, constants$733.PFNGLGETSTAGEINDEXNVPROC$FUNC, "(I)S", scope);
-    }
-    static PFNGLGETSTAGEINDEXNVPROC ofAddress(MemoryAddress addr) {
-        return (int x0) -> {
+    static PFNGLGETSTAGEINDEXNVPROC ofAddress(MemoryAddress addr, MemorySession session) {
+        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
+        return (int _shadertype) -> {
             try {
-                return (short)constants$733.PFNGLGETSTAGEINDEXNVPROC$MH.invokeExact((Addressable)addr, x0);
+                return (short)constants$733.PFNGLGETSTAGEINDEXNVPROC$MH.invokeExact((Addressable)symbol, _shadertype);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

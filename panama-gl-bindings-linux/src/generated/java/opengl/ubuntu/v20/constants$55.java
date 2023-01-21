@@ -2,57 +2,51 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_FLOAT;
-import static jdk.incubator.foreign.CLinker.C_INT;
-import static jdk.incubator.foreign.CLinker.C_POINTER;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$55 {
 
     static final FunctionDescriptor glPassThrough$FUNC = FunctionDescriptor.ofVoid(
-        C_FLOAT
+        Constants$root.C_FLOAT$LAYOUT
     );
     static final MethodHandle glPassThrough$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "glPassThrough",
-        "(F)V",
-        constants$55.glPassThrough$FUNC, false
+        "glPassThrough",
+        constants$55.glPassThrough$FUNC
     );
     static final FunctionDescriptor glSelectBuffer$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle glSelectBuffer$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "glSelectBuffer",
-        "(ILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$55.glSelectBuffer$FUNC, false
+        "glSelectBuffer",
+        constants$55.glSelectBuffer$FUNC
     );
     static final FunctionDescriptor glInitNames$FUNC = FunctionDescriptor.ofVoid();
     static final MethodHandle glInitNames$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "glInitNames",
-        "()V",
-        constants$55.glInitNames$FUNC, false
+        "glInitNames",
+        constants$55.glInitNames$FUNC
     );
     static final FunctionDescriptor glLoadName$FUNC = FunctionDescriptor.ofVoid(
-        C_INT
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle glLoadName$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "glLoadName",
-        "(I)V",
-        constants$55.glLoadName$FUNC, false
+        "glLoadName",
+        constants$55.glLoadName$FUNC
     );
     static final FunctionDescriptor glPushName$FUNC = FunctionDescriptor.ofVoid(
-        C_INT
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle glPushName$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "glPushName",
-        "(I)V",
-        constants$55.glPushName$FUNC, false
+        "glPushName",
+        constants$55.glPushName$FUNC
     );
     static final FunctionDescriptor glPopName$FUNC = FunctionDescriptor.ofVoid();
     static final MethodHandle glPopName$MH = RuntimeHelper.downcallHandle(
-        glut_h.LIBRARIES, "glPopName",
-        "()V",
-        constants$55.glPopName$FUNC, false
+        "glPopName",
+        constants$55.glPopName$FUNC
     );
 }
 

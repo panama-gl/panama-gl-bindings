@@ -2,38 +2,35 @@
 
 package opengl.ubuntu.v20;
 
-import static jdk.incubator.foreign.CLinker.C_FLOAT;
-import static jdk.incubator.foreign.CLinker.C_INT;
-import static jdk.incubator.foreign.CLinker.C_POINTER;
 import java.lang.invoke.MethodHandle;
-import jdk.incubator.foreign.FunctionDescriptor;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 class constants$893 {
 
     static final FunctionDescriptor PFNGLFRAGMENTCOLORMATERIALSGIXPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
     static final MethodHandle PFNGLFRAGMENTCOLORMATERIALSGIXPROC$MH = RuntimeHelper.downcallHandle(
-        "(II)V",
-        constants$893.PFNGLFRAGMENTCOLORMATERIALSGIXPROC$FUNC, false
+        constants$893.PFNGLFRAGMENTCOLORMATERIALSGIXPROC$FUNC
     );
     static final FunctionDescriptor PFNGLFRAGMENTLIGHTFSGIXPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_FLOAT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT
     );
     static final MethodHandle PFNGLFRAGMENTLIGHTFSGIXPROC$MH = RuntimeHelper.downcallHandle(
-        "(IIF)V",
-        constants$893.PFNGLFRAGMENTLIGHTFSGIXPROC$FUNC, false
+        constants$893.PFNGLFRAGMENTLIGHTFSGIXPROC$FUNC
     );
     static final FunctionDescriptor PFNGLFRAGMENTLIGHTFVSGIXPROC$FUNC = FunctionDescriptor.ofVoid(
-        C_INT,
-        C_INT,
-        C_POINTER
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
     static final MethodHandle PFNGLFRAGMENTLIGHTFVSGIXPROC$MH = RuntimeHelper.downcallHandle(
-        "(IILjdk/incubator/foreign/MemoryAddress;)V",
-        constants$893.PFNGLFRAGMENTLIGHTFVSGIXPROC$FUNC, false
+        constants$893.PFNGLFRAGMENTLIGHTFVSGIXPROC$FUNC
     );
 }
 

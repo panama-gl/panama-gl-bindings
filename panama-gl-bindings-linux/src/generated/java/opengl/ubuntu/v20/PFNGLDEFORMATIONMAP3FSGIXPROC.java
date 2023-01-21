@@ -2,22 +2,22 @@
 
 package opengl.ubuntu.v20;
 
-import jdk.incubator.foreign.Addressable;
-import jdk.incubator.foreign.MemoryAddress;
-import jdk.incubator.foreign.ResourceScope;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public interface PFNGLDEFORMATIONMAP3FSGIXPROC {
 
-    void apply(int x0, float x1, float x2, int x3, int x4, float x5, float x6, int x7, int x8, float x9, float x10, int x11, int x12, jdk.incubator.foreign.MemoryAddress x13);
-    static MemoryAddress allocate(PFNGLDEFORMATIONMAP3FSGIXPROC fi) {
-        return RuntimeHelper.upcallStub(PFNGLDEFORMATIONMAP3FSGIXPROC.class, fi, constants$904.PFNGLDEFORMATIONMAP3FSGIXPROC$FUNC, "(IFFIIFFIIFFIILjdk/incubator/foreign/MemoryAddress;)V");
+    void apply(int target, float u1, float u2, int ustride, int uorder, float v1, float v2, int vstride, int vorder, float w1, float w2, int wstride, int worder, java.lang.foreign.MemoryAddress points);
+    static MemorySegment allocate(PFNGLDEFORMATIONMAP3FSGIXPROC fi, MemorySession session) {
+        return RuntimeHelper.upcallStub(PFNGLDEFORMATIONMAP3FSGIXPROC.class, fi, constants$904.PFNGLDEFORMATIONMAP3FSGIXPROC$FUNC, session);
     }
-    static MemoryAddress allocate(PFNGLDEFORMATIONMAP3FSGIXPROC fi, ResourceScope scope) {
-        return RuntimeHelper.upcallStub(PFNGLDEFORMATIONMAP3FSGIXPROC.class, fi, constants$904.PFNGLDEFORMATIONMAP3FSGIXPROC$FUNC, "(IFFIIFFIIFFIILjdk/incubator/foreign/MemoryAddress;)V", scope);
-    }
-    static PFNGLDEFORMATIONMAP3FSGIXPROC ofAddress(MemoryAddress addr) {
-        return (int x0, float x1, float x2, int x3, int x4, float x5, float x6, int x7, int x8, float x9, float x10, int x11, int x12, jdk.incubator.foreign.MemoryAddress x13) -> {
+    static PFNGLDEFORMATIONMAP3FSGIXPROC ofAddress(MemoryAddress addr, MemorySession session) {
+        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
+        return (int _target, float _u1, float _u2, int _ustride, int _uorder, float _v1, float _v2, int _vstride, int _vorder, float _w1, float _w2, int _wstride, int _worder, java.lang.foreign.MemoryAddress _points) -> {
             try {
-                constants$904.PFNGLDEFORMATIONMAP3FSGIXPROC$MH.invokeExact((Addressable)addr, x0, x1, x2, x3, x4, x5, x6, x7, x8, x9, x10, x11, x12, x13);
+                constants$904.PFNGLDEFORMATIONMAP3FSGIXPROC$MH.invokeExact((Addressable)symbol, _target, _u1, _u2, _ustride, _uorder, _v1, _v2, _vstride, _vorder, _w1, _w2, _wstride, _worder, (java.lang.foreign.Addressable)_points);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

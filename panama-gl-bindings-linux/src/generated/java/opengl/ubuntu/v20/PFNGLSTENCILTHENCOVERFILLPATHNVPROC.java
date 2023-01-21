@@ -2,22 +2,22 @@
 
 package opengl.ubuntu.v20;
 
-import jdk.incubator.foreign.Addressable;
-import jdk.incubator.foreign.MemoryAddress;
-import jdk.incubator.foreign.ResourceScope;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.VarHandle;
+import java.nio.ByteOrder;
+import java.lang.foreign.*;
+import static java.lang.foreign.ValueLayout.*;
 public interface PFNGLSTENCILTHENCOVERFILLPATHNVPROC {
 
-    void apply(int x0, int x1, int x2, int x3);
-    static MemoryAddress allocate(PFNGLSTENCILTHENCOVERFILLPATHNVPROC fi) {
-        return RuntimeHelper.upcallStub(PFNGLSTENCILTHENCOVERFILLPATHNVPROC.class, fi, constants$802.PFNGLSTENCILTHENCOVERFILLPATHNVPROC$FUNC, "(IIII)V");
+    void apply(int path, int fillMode, int mask, int coverMode);
+    static MemorySegment allocate(PFNGLSTENCILTHENCOVERFILLPATHNVPROC fi, MemorySession session) {
+        return RuntimeHelper.upcallStub(PFNGLSTENCILTHENCOVERFILLPATHNVPROC.class, fi, constants$802.PFNGLSTENCILTHENCOVERFILLPATHNVPROC$FUNC, session);
     }
-    static MemoryAddress allocate(PFNGLSTENCILTHENCOVERFILLPATHNVPROC fi, ResourceScope scope) {
-        return RuntimeHelper.upcallStub(PFNGLSTENCILTHENCOVERFILLPATHNVPROC.class, fi, constants$802.PFNGLSTENCILTHENCOVERFILLPATHNVPROC$FUNC, "(IIII)V", scope);
-    }
-    static PFNGLSTENCILTHENCOVERFILLPATHNVPROC ofAddress(MemoryAddress addr) {
-        return (int x0, int x1, int x2, int x3) -> {
+    static PFNGLSTENCILTHENCOVERFILLPATHNVPROC ofAddress(MemoryAddress addr, MemorySession session) {
+        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
+        return (int _path, int _fillMode, int _mask, int _coverMode) -> {
             try {
-                constants$802.PFNGLSTENCILTHENCOVERFILLPATHNVPROC$MH.invokeExact((Addressable)addr, x0, x1, x2, x3);
+                constants$802.PFNGLSTENCILTHENCOVERFILLPATHNVPROC$MH.invokeExact((Addressable)symbol, _path, _fillMode, _mask, _coverMode);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }
