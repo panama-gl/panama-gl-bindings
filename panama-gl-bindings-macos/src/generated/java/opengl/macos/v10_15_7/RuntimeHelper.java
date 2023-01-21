@@ -37,7 +37,8 @@ final class RuntimeHelper {
             (size, align) -> MemorySegment.allocateNative(size, align, MemorySession.openImplicit());
 
     static {
-        System.loadLibrary("OpenGL.framework"); 
+        //System.loadLibrary("OpenGL.framework"); 
+        //SymbolLookup.loadLibrary("OpenGL.framework/OpenGL", MemorySession.openImplicit());
         // https://github.com/manuelbl/JavaDoesUSB/issues/5#issuecomment-1369150698
         //System.loadLibrary("GLUT.framework");
         //SymbolLookup loaderLookup = SymbolLookup.loaderLookup();
