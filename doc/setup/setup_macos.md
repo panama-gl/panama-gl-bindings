@@ -29,10 +29,10 @@ jextract -d {OUTPUT_DIR} --source -t {PACKAGE_NAME} \
 
 #### OpenGL
 ```
-/Library/Java/JavaVirtualMachines/jdk-17.jdk-panama/Contents/Home/bin/jextract \
-  -d ./panama-gl-bindings-macos/src/generated/java/ \
+/Library/Java/JavaVirtualMachines/jextract-19/bin/jextract \
+  --output ./panama-gl-bindings-macos/src/generated/java/ \
   --source \
-  -t opengl.macos.v10_15_3 \
+  -t opengl.macos.v10_15_7 \
   -lGL \
   -l/System/Library/Frameworks/GLUT.framework/Versions/Current/GLUT \
   -I  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/ \
@@ -45,9 +45,9 @@ jextract -d {OUTPUT_DIR} --source -t {PACKAGE_NAME} \
 CGL is most largely defined in `OpenGL.h`
 
 ```
-/Library/Java/JavaVirtualMachines/jdk-17.jdk-panama/Contents/Home/bin/jextract \
+/Library/Java/JavaVirtualMachines/jdk-19.jdk-panama/Contents/Home/bin/jextract \
   -d ./panama-gl-bindings-macos/src/generated/java/ \
-  --source -t opengl.cgl.macos.v10_15_7 \
+  --source -t cgl.macos.v10_15_7 \
   -lGL \
   -I  /Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk/System/Library/Frameworks/OpenGL.framework/Versions/A/Headers \
   -I /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/ \
@@ -76,7 +76,7 @@ CGL is most largely defined in `OpenGL.h`
 Keep this line out
   -l/Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk/System/Library/Frameworks/OpenGL.framework/Versions/A/Libraries \
 
-When complaint about 
+When complaint about
 /Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk/System/Library/Frameworks/OpenGL.framework/Versions/A/Headers/OpenGL.h:8:10: fatal error: 'OpenGL/OpenGLAvailability.h' file not found
 Copy paste all sources in Headers/ into Headers/OpenGL/
 

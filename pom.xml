@@ -5,7 +5,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>org.jzy3d</groupId>
 	<artifactId>panama-gl-bindings</artifactId>
-	<version>1.0.0-SNAPSHOT</version>
+	<version>1.0.1-SNAPSHOT</version>
 	<name>Panama GL Bindings</name>
 	<packaging>pom</packaging>
 
@@ -16,7 +16,7 @@
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<jdk.version>17</jdk.version>
+		<jdk.version>19</jdk.version>
 	</properties>
 
 	<modules>
@@ -106,7 +106,7 @@
 					<target>${jdk.version}</target>
 					<encoding>UTF-8</encoding>
 					<compilerArgs>
-						<arg>--add-modules=jdk.incubator.foreign</arg>
+						<arg>--enable-preview</arg>
 					</compilerArgs>
 				</configuration>
 			</plugin>
@@ -186,14 +186,9 @@
 							<!-- Ensure stack trace get displayed -->
 							<trimStackTrace>false</trimStackTrace>
 
-							<!-- Parallel tests DISABLE PARALLEL TEST OTHERWISE CANVAS DO NOT UPDATE
-								PROPERLY (?!)
-								<parallel>classes</parallel> <useUnlimitedThreads>true</useUnlimitedThreads>
-								<forkCount>1</forkCount>-->
-
 							<!-- Configure Panama -->
 							<argLine>
-								--enable-native-access=ALL-UNNAMED --add-modules jdk.incubator.foreign -Djava.library.path=.:/usr/lib/x86_64-linux-gnu/
+								--enable-native-access=ALL-UNNAMED --enable-preview -Djava.library.path=.:/usr/lib/x86_64-linux-gnu/
 							</argLine>
 						</configuration>
 					</plugin>
@@ -225,14 +220,9 @@
 							<!-- Ensure stack trace get displayed -->
 							<trimStackTrace>false</trimStackTrace>
 
-							<!-- Parallel tests DISABLE PARALLEL TEST OTHERWISE CANVAS DO NOT UPDATE
-								PROPERLY (?!)
-								<parallel>classes</parallel> <useUnlimitedThreads>true</useUnlimitedThreads>
-								<forkCount>1</forkCount>-->
-
 							<!-- Configure Panama -->
 							<argLine>
-								-XstartOnFirstThread --enable-native-access=ALL-UNNAMED --add-modules jdk.incubator.foreign -Djava.library.path=.:/System/Library/Frameworks/OpenGL.framework/Versions/Current/Libraries/
+								-XstartOnFirstThread --enable-native-access=ALL-UNNAMED --enable-preview -Djava.library.path=.:/System/Library/Frameworks/OpenGL.framework/Versions/Current/Libraries/
 							</argLine>
 						</configuration>
 					</plugin>
@@ -264,14 +254,9 @@
 							<!-- Ensure stack trace get displayed -->
 							<trimStackTrace>false</trimStackTrace>
 
-							<!-- Parallel tests DISABLE PARALLEL TEST OTHERWISE CANVAS DO NOT UPDATE
-								PROPERLY (?!)
-								<parallel>classes</parallel> <useUnlimitedThreads>true</useUnlimitedThreads>
-								<forkCount>1</forkCount>-->
-
 							<!-- Configure Panama -->
 							<argLine>
-								-XstartOnFirstThread --enable-native-access=ALL-UNNAMED --add-modules jdk.incubator.foreign -Djava.library.path=.:/System/Library/Frameworks/OpenGL.framework/Versions/Current/Libraries/
+								-XstartOnFirstThread --enable-native-access=ALL-UNNAMED --enable-preview -Djava.library.path=.:/System/Library/Frameworks/OpenGL.framework/Versions/Current/Libraries/
 							</argLine>
 						</configuration>
 					</plugin>
@@ -302,14 +287,9 @@
 							<!-- Ensure stack trace get displayed -->
 							<trimStackTrace>false</trimStackTrace>
 
-							<!-- Parallel tests DISABLE PARALLEL TEST OTHERWISE CANVAS DO NOT UPDATE
-								PROPERLY (?!)
-								<parallel>classes</parallel> <useUnlimitedThreads>true</useUnlimitedThreads>
-								<forkCount>1</forkCount>-->
-
 							<!-- Configure Panama -->
 							<argLine>
-								-XstartOnFirstThread --enable-native-access=ALL-UNNAMED --add-modules jdk.incubator.foreign -Djava.library.path=.:/System/Library/Frameworks/OpenGL.framework/Versions/Current/Libraries/
+								-XstartOnFirstThread --enable-native-access=ALL-UNNAMED --enable-preview -Djava.library.path=.:/System/Library/Frameworks/OpenGL.framework/Versions/Current/Libraries/
 							</argLine>
 						</configuration>
 					</plugin>
