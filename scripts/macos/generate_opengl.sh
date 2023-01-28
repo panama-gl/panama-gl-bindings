@@ -21,6 +21,20 @@ $JEXTRACT \
   --header-class-name glut_h \
  opengl_helper.h
 
+
+# Generate OpenGL EXT Binding (for GL > 1.1)
+$JEXTRACT \
+  -I $SDK_DIR/usr/include \
+  -I /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/ \
+  -lOpenGL.framework \
+  -lGLUT.framework \
+  --target-package glext.macos.v10_15_7 \
+  --output ../../panama-gl-bindings-macos/src/generated/java/ \
+  --source \
+  --header-class-name glext_h \
+ glext_helper.h
+
+
 # Generate CGL Binding
 $JEXTRACT \
   -I $SDK_DIR/usr/include \
