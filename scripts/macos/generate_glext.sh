@@ -9,19 +9,17 @@ JEXTRACT=/Library/Java/JavaVirtualMachines/jextract-19/bin/jextract
 SDK_DIR=/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk
 #-F/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks
 
-# Generate OpenGL Binding
+# Generate OpenGL EXT Binding (for GL > 1.1)
 $JEXTRACT \
   -I $SDK_DIR/usr/include \
   -I /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/ \
   -lOpenGL.framework \
   -lGLUT.framework \
-  --target-package opengl.macos.v10_15_7 \
+  --target-package glext.macos.v10_15_7 \
   --output ../../panama-gl-bindings-macos/src/generated/java/ \
   --source \
-  --header-class-name glut_h \
- include_opengl.h
-
-
+  --header-class-name glext_h \
+include_glext.h
 
 # Can't find OpenGL/OpenGLAvailability.h with this
 #/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks/GLUT.framework/Headers/glut.h
