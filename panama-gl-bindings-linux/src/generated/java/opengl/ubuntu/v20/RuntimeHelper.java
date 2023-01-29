@@ -38,9 +38,9 @@ final class RuntimeHelper {
 
     static {
         System.loadLibrary("GL"); 
-        System.load("/usr/lib/x86_64-linux-gnu/libglut.so.3.9.0"); 
-        System.load("/usr/lib/x86_64-linux-gnu/libGLU.so.1.3.1"); 
-        System.load("/usr/lib/x86_64-linux-gnu/libGLEW.so");
+        System.loadLibrary("glut"); 
+        System.loadLibrary("GLU"); 
+        //System.loadLibrary("GLEW"); 
         SymbolLookup loaderLookup = SymbolLookup.loaderLookup();
         SYMBOL_LOOKUP = name -> loaderLookup.lookup(name).or(() -> LINKER.defaultLookup().lookup(name));
     }
