@@ -327,7 +327,7 @@
 
 	<!-- Used to deploy to Jzy3d repository -->
 <distributionManagement>
-	<repository>
+	<!--<repository>
 		<id>jzy3d-ftp</id>
 		<name>Jzy3d Maven Folder</name>
 		<url>ftp://ftp.cluster013.ovh.net/maven/releases</url>
@@ -336,7 +336,21 @@
 		<id>jzy3d-ftp</id>
 		<name>Jzy3d Maven Folder SNAPSHOTS</name>
 		<url>ftp://ftp.cluster013.ovh.net/maven/snapshots</url>
+	</snapshotRepository>-->
+
+	<repository>
+		<id>panama-ftp</id>
+		<name>Jzy3d Maven Folder</name>
+		<url>${env.MAVEN_REPO_URL}/maven/releases</url>
+	</repository>
+	<snapshotRepository>
+		<id>panama-ftp</id>
+		<name>Jzy3d Maven Folder SNAPSHOTS</name>
+		<url>${env.MAVEN_REPO_URL}/maven/snapshots</url>
 	</snapshotRepository>
+
+
+
 </distributionManagement>
 
 </project>
