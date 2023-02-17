@@ -11,13 +11,13 @@ public interface PFNGLPATHSTENCILDEPTHOFFSETNVPROC {
 
     void apply(float factor, float units);
     static MemorySegment allocate(PFNGLPATHSTENCILDEPTHOFFSETNVPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLPATHSTENCILDEPTHOFFSETNVPROC.class, fi, constants$793.PFNGLPATHSTENCILDEPTHOFFSETNVPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLPATHSTENCILDEPTHOFFSETNVPROC.class, fi, constants$1139.PFNGLPATHSTENCILDEPTHOFFSETNVPROC$FUNC, session);
     }
     static PFNGLPATHSTENCILDEPTHOFFSETNVPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (float _factor, float _units) -> {
             try {
-                constants$793.PFNGLPATHSTENCILDEPTHOFFSETNVPROC$MH.invokeExact((Addressable)symbol, _factor, _units);
+                constants$1139.PFNGLPATHSTENCILDEPTHOFFSETNVPROC$MH.invokeExact((Addressable)symbol, _factor, _units);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

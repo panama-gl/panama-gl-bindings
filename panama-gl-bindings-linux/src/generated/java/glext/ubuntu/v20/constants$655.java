@@ -9,25 +9,49 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$655 {
 
-    static final FunctionDescriptor PFNGLSECONDARYCOLOR3BVEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLMULTIDRAWELEMENTSINDIRECTAMDPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle PFNGLMULTIDRAWELEMENTSINDIRECTAMDPROC$MH = RuntimeHelper.downcallHandle(
+        constants$655.PFNGLMULTIDRAWELEMENTSINDIRECTAMDPROC$FUNC
+    );
+    static final FunctionDescriptor glMultiDrawArraysIndirectAMD$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle glMultiDrawArraysIndirectAMD$MH = RuntimeHelper.downcallHandle(
+        "glMultiDrawArraysIndirectAMD",
+        constants$655.glMultiDrawArraysIndirectAMD$FUNC
+    );
+    static final FunctionDescriptor glMultiDrawElementsIndirectAMD$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle glMultiDrawElementsIndirectAMD$MH = RuntimeHelper.downcallHandle(
+        "glMultiDrawElementsIndirectAMD",
+        constants$655.glMultiDrawElementsIndirectAMD$FUNC
+    );
+    static final FunctionDescriptor PFNGLGENNAMESAMDPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLSECONDARYCOLOR3BVEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$655.PFNGLSECONDARYCOLOR3BVEXTPROC$FUNC
+    static final MethodHandle PFNGLGENNAMESAMDPROC$MH = RuntimeHelper.downcallHandle(
+        constants$655.PFNGLGENNAMESAMDPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLSECONDARYCOLOR3DEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_DOUBLE$LAYOUT,
-        Constants$root.C_DOUBLE$LAYOUT,
-        Constants$root.C_DOUBLE$LAYOUT
-    );
-    static final MethodHandle PFNGLSECONDARYCOLOR3DEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$655.PFNGLSECONDARYCOLOR3DEXTPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLSECONDARYCOLOR3DVEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLDELETENAMESAMDPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle PFNGLSECONDARYCOLOR3DVEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$655.PFNGLSECONDARYCOLOR3DVEXTPROC$FUNC
     );
 }
 

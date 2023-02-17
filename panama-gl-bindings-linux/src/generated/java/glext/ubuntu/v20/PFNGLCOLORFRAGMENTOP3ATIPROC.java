@@ -11,13 +11,13 @@ public interface PFNGLCOLORFRAGMENTOP3ATIPROC {
 
     void apply(int op, int dst, int dstMask, int dstMod, int arg1, int arg1Rep, int arg1Mod, int arg2, int arg2Rep, int arg2Mod, int arg3, int arg3Rep, int arg3Mod);
     static MemorySegment allocate(PFNGLCOLORFRAGMENTOP3ATIPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLCOLORFRAGMENTOP3ATIPROC.class, fi, constants$492.PFNGLCOLORFRAGMENTOP3ATIPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLCOLORFRAGMENTOP3ATIPROC.class, fi, constants$690.PFNGLCOLORFRAGMENTOP3ATIPROC$FUNC, session);
     }
     static PFNGLCOLORFRAGMENTOP3ATIPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _op, int _dst, int _dstMask, int _dstMod, int _arg1, int _arg1Rep, int _arg1Mod, int _arg2, int _arg2Rep, int _arg2Mod, int _arg3, int _arg3Rep, int _arg3Mod) -> {
             try {
-                constants$492.PFNGLCOLORFRAGMENTOP3ATIPROC$MH.invokeExact((Addressable)symbol, _op, _dst, _dstMask, _dstMod, _arg1, _arg1Rep, _arg1Mod, _arg2, _arg2Rep, _arg2Mod, _arg3, _arg3Rep, _arg3Mod);
+                constants$690.PFNGLCOLORFRAGMENTOP3ATIPROC$MH.invokeExact((Addressable)symbol, _op, _dst, _dstMask, _dstMod, _arg1, _arg1Rep, _arg1Mod, _arg2, _arg2Rep, _arg2Mod, _arg3, _arg3Rep, _arg3Mod);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

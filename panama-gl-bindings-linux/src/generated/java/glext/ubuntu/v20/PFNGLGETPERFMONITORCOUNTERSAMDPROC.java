@@ -11,13 +11,13 @@ public interface PFNGLGETPERFMONITORCOUNTERSAMDPROC {
 
     void apply(int group, java.lang.foreign.MemoryAddress numCounters, java.lang.foreign.MemoryAddress maxActiveCounters, int counterSize, java.lang.foreign.MemoryAddress counters);
     static MemorySegment allocate(PFNGLGETPERFMONITORCOUNTERSAMDPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLGETPERFMONITORCOUNTERSAMDPROC.class, fi, constants$469.PFNGLGETPERFMONITORCOUNTERSAMDPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLGETPERFMONITORCOUNTERSAMDPROC.class, fi, constants$657.PFNGLGETPERFMONITORCOUNTERSAMDPROC$FUNC, session);
     }
     static PFNGLGETPERFMONITORCOUNTERSAMDPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _group, java.lang.foreign.MemoryAddress _numCounters, java.lang.foreign.MemoryAddress _maxActiveCounters, int _counterSize, java.lang.foreign.MemoryAddress _counters) -> {
             try {
-                constants$469.PFNGLGETPERFMONITORCOUNTERSAMDPROC$MH.invokeExact((Addressable)symbol, _group, (java.lang.foreign.Addressable)_numCounters, (java.lang.foreign.Addressable)_maxActiveCounters, _counterSize, (java.lang.foreign.Addressable)_counters);
+                constants$658.PFNGLGETPERFMONITORCOUNTERSAMDPROC$MH.invokeExact((Addressable)symbol, _group, (java.lang.foreign.Addressable)_numCounters, (java.lang.foreign.Addressable)_maxActiveCounters, _counterSize, (java.lang.foreign.Addressable)_counters);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

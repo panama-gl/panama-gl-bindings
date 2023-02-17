@@ -11,13 +11,13 @@ public interface PFNGLSHADEROP1EXTPROC {
 
     void apply(int op, int res, int arg1);
     static MemorySegment allocate(PFNGLSHADEROP1EXTPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLSHADEROP1EXTPROC.class, fi, constants$683.PFNGLSHADEROP1EXTPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLSHADEROP1EXTPROC.class, fi, constants$978.PFNGLSHADEROP1EXTPROC$FUNC, session);
     }
     static PFNGLSHADEROP1EXTPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _op, int _res, int _arg1) -> {
             try {
-                constants$683.PFNGLSHADEROP1EXTPROC$MH.invokeExact((Addressable)symbol, _op, _res, _arg1);
+                constants$978.PFNGLSHADEROP1EXTPROC$MH.invokeExact((Addressable)symbol, _op, _res, _arg1);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

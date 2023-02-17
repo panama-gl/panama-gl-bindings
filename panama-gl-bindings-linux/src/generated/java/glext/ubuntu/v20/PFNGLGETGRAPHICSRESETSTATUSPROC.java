@@ -11,13 +11,13 @@ public interface PFNGLGETGRAPHICSRESETSTATUSPROC {
 
     int apply();
     static MemorySegment allocate(PFNGLGETGRAPHICSRESETSTATUSPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLGETGRAPHICSRESETSTATUSPROC.class, fi, constants$304.PFNGLGETGRAPHICSRESETSTATUSPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLGETGRAPHICSRESETSTATUSPROC.class, fi, constants$393.PFNGLGETGRAPHICSRESETSTATUSPROC$FUNC, session);
     }
     static PFNGLGETGRAPHICSRESETSTATUSPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return () -> {
             try {
-                return (int)constants$304.PFNGLGETGRAPHICSRESETSTATUSPROC$MH.invokeExact((Addressable)symbol);
+                return (int)constants$393.PFNGLGETGRAPHICSRESETSTATUSPROC$MH.invokeExact((Addressable)symbol);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

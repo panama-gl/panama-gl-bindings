@@ -9,28 +9,30 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$329 {
 
-    static final FunctionDescriptor PFNGLISPROGRAMARBPROC$FUNC = FunctionDescriptor.of(Constants$root.C_CHAR$LAYOUT,
+    static final FunctionDescriptor PFNGLMEMORYBARRIERPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLISPROGRAMARBPROC$MH = RuntimeHelper.downcallHandle(
-        constants$329.PFNGLISPROGRAMARBPROC$FUNC
+    static final MethodHandle PFNGLMEMORYBARRIERPROC$MH = RuntimeHelper.downcallHandle(
+        constants$329.PFNGLMEMORYBARRIERPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLPROGRAMPARAMETERIARBPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT
-    );
-    static final MethodHandle PFNGLPROGRAMPARAMETERIARBPROC$MH = RuntimeHelper.downcallHandle(
-        constants$329.PFNGLPROGRAMPARAMETERIARBPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLFRAMEBUFFERTEXTUREARBPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLTEXSTORAGE1DPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLFRAMEBUFFERTEXTUREARBPROC$MH = RuntimeHelper.downcallHandle(
-        constants$329.PFNGLFRAMEBUFFERTEXTUREARBPROC$FUNC
+    static final MethodHandle PFNGLTEXSTORAGE1DPROC$MH = RuntimeHelper.downcallHandle(
+        constants$329.PFNGLTEXSTORAGE1DPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLTEXSTORAGE2DPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle PFNGLTEXSTORAGE2DPROC$MH = RuntimeHelper.downcallHandle(
+        constants$329.PFNGLTEXSTORAGE2DPROC$FUNC
     );
 }
 

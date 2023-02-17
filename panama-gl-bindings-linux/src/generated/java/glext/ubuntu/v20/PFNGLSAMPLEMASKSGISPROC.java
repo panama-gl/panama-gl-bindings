@@ -11,13 +11,13 @@ public interface PFNGLSAMPLEMASKSGISPROC {
 
     void apply(float value, byte invert);
     static MemorySegment allocate(PFNGLSAMPLEMASKSGISPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLSAMPLEMASKSGISPROC.class, fi, constants$885.PFNGLSAMPLEMASKSGISPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLSAMPLEMASKSGISPROC.class, fi, constants$1280.PFNGLSAMPLEMASKSGISPROC$FUNC, session);
     }
     static PFNGLSAMPLEMASKSGISPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (float _value, byte _invert) -> {
             try {
-                constants$885.PFNGLSAMPLEMASKSGISPROC$MH.invokeExact((Addressable)symbol, _value, _invert);
+                constants$1281.PFNGLSAMPLEMASKSGISPROC$MH.invokeExact((Addressable)symbol, _value, _invert);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

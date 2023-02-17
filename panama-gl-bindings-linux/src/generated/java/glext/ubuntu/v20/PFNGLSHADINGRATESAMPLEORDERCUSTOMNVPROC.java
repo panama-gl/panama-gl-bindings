@@ -11,13 +11,13 @@ public interface PFNGLSHADINGRATESAMPLEORDERCUSTOMNVPROC {
 
     void apply(int rate, int samples, java.lang.foreign.MemoryAddress locations);
     static MemorySegment allocate(PFNGLSHADINGRATESAMPLEORDERCUSTOMNVPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLSHADINGRATESAMPLEORDERCUSTOMNVPROC.class, fi, constants$826.PFNGLSHADINGRATESAMPLEORDERCUSTOMNVPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLSHADINGRATESAMPLEORDERCUSTOMNVPROC.class, fi, constants$1191.PFNGLSHADINGRATESAMPLEORDERCUSTOMNVPROC$FUNC, session);
     }
     static PFNGLSHADINGRATESAMPLEORDERCUSTOMNVPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _rate, int _samples, java.lang.foreign.MemoryAddress _locations) -> {
             try {
-                constants$826.PFNGLSHADINGRATESAMPLEORDERCUSTOMNVPROC$MH.invokeExact((Addressable)symbol, _rate, _samples, (java.lang.foreign.Addressable)_locations);
+                constants$1191.PFNGLSHADINGRATESAMPLEORDERCUSTOMNVPROC$MH.invokeExact((Addressable)symbol, _rate, _samples, (java.lang.foreign.Addressable)_locations);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

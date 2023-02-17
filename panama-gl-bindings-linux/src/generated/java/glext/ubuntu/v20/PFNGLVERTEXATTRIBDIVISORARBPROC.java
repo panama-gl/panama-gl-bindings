@@ -11,13 +11,13 @@ public interface PFNGLVERTEXATTRIBDIVISORARBPROC {
 
     void apply(int index, int divisor);
     static MemorySegment allocate(PFNGLVERTEXATTRIBDIVISORARBPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLVERTEXATTRIBDIVISORARBPROC.class, fi, constants$343.PFNGLVERTEXATTRIBDIVISORARBPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLVERTEXATTRIBDIVISORARBPROC.class, fi, constants$469.PFNGLVERTEXATTRIBDIVISORARBPROC$FUNC, session);
     }
     static PFNGLVERTEXATTRIBDIVISORARBPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _index, int _divisor) -> {
             try {
-                constants$343.PFNGLVERTEXATTRIBDIVISORARBPROC$MH.invokeExact((Addressable)symbol, _index, _divisor);
+                constants$469.PFNGLVERTEXATTRIBDIVISORARBPROC$MH.invokeExact((Addressable)symbol, _index, _divisor);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

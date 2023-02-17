@@ -9,25 +9,26 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$528 {
 
-    static final FunctionDescriptor PFNGLBINORMAL3BVEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLMAPBUFFERARBPROC$FUNC = FunctionDescriptor.of(Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle PFNGLMAPBUFFERARBPROC$MH = RuntimeHelper.downcallHandle(
+        constants$528.PFNGLMAPBUFFERARBPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLUNMAPBUFFERARBPROC$FUNC = FunctionDescriptor.of(Constants$root.C_CHAR$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle PFNGLUNMAPBUFFERARBPROC$MH = RuntimeHelper.downcallHandle(
+        constants$528.PFNGLUNMAPBUFFERARBPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLGETBUFFERPARAMETERIVARBPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLBINORMAL3BVEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$528.PFNGLBINORMAL3BVEXTPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLBINORMAL3DEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_DOUBLE$LAYOUT,
-        Constants$root.C_DOUBLE$LAYOUT,
-        Constants$root.C_DOUBLE$LAYOUT
-    );
-    static final MethodHandle PFNGLBINORMAL3DEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$528.PFNGLBINORMAL3DEXTPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLBINORMAL3DVEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle PFNGLBINORMAL3DVEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$528.PFNGLBINORMAL3DVEXTPROC$FUNC
+    static final MethodHandle PFNGLGETBUFFERPARAMETERIVARBPROC$MH = RuntimeHelper.downcallHandle(
+        constants$528.PFNGLGETBUFFERPARAMETERIVARBPROC$FUNC
     );
 }
 

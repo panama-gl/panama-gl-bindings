@@ -11,13 +11,13 @@ public interface PFNGLVIEWPORTARRAYVPROC {
 
     void apply(int first, int count, java.lang.foreign.MemoryAddress v);
     static MemorySegment allocate(PFNGLVIEWPORTARRAYVPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLVIEWPORTARRAYVPROC.class, fi, constants$245.PFNGLVIEWPORTARRAYVPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLVIEWPORTARRAYVPROC.class, fi, constants$309.PFNGLVIEWPORTARRAYVPROC$FUNC, session);
     }
     static PFNGLVIEWPORTARRAYVPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _first, int _count, java.lang.foreign.MemoryAddress _v) -> {
             try {
-                constants$245.PFNGLVIEWPORTARRAYVPROC$MH.invokeExact((Addressable)symbol, _first, _count, (java.lang.foreign.Addressable)_v);
+                constants$309.PFNGLVIEWPORTARRAYVPROC$MH.invokeExact((Addressable)symbol, _first, _count, (java.lang.foreign.Addressable)_v);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

@@ -9,31 +9,32 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$534 {
 
-    static final FunctionDescriptor PFNGLLABELOBJECTEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLVERTEXATTRIB2FARBPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT
+    );
+    static final MethodHandle PFNGLVERTEXATTRIB2FARBPROC$MH = RuntimeHelper.downcallHandle(
+        constants$534.PFNGLVERTEXATTRIB2FARBPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLVERTEXATTRIB2FVARBPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLLABELOBJECTEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$534.PFNGLLABELOBJECTEXTPROC$FUNC
+    static final MethodHandle PFNGLVERTEXATTRIB2FVARBPROC$MH = RuntimeHelper.downcallHandle(
+        constants$534.PFNGLVERTEXATTRIB2FVARBPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLGETOBJECTLABELEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLVERTEXATTRIB2SARBPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
+        Constants$root.C_SHORT$LAYOUT,
+        Constants$root.C_SHORT$LAYOUT
     );
-    static final MethodHandle PFNGLGETOBJECTLABELEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$534.PFNGLGETOBJECTLABELEXTPROC$FUNC
+    static final MethodHandle PFNGLVERTEXATTRIB2SARBPROC$MH = RuntimeHelper.downcallHandle(
+        constants$534.PFNGLVERTEXATTRIB2SARBPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLINSERTEVENTMARKEREXTPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLVERTEXATTRIB2SVARBPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle PFNGLINSERTEVENTMARKEREXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$534.PFNGLINSERTEVENTMARKEREXTPROC$FUNC
     );
 }
 

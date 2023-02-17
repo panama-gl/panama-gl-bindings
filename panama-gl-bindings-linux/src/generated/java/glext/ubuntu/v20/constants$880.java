@@ -9,31 +9,68 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$880 {
 
-    static final FunctionDescriptor PFNGLGETVIDEOCAPTUREIVNVPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glProgramUniform3dEXT$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_DOUBLE$LAYOUT,
+        Constants$root.C_DOUBLE$LAYOUT,
+        Constants$root.C_DOUBLE$LAYOUT
+    );
+    static final MethodHandle glProgramUniform3dEXT$MH = RuntimeHelper.downcallHandle(
+        "glProgramUniform3dEXT",
+        constants$880.glProgramUniform3dEXT$FUNC
+    );
+    static final FunctionDescriptor glProgramUniform4dEXT$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_DOUBLE$LAYOUT,
+        Constants$root.C_DOUBLE$LAYOUT,
+        Constants$root.C_DOUBLE$LAYOUT,
+        Constants$root.C_DOUBLE$LAYOUT
+    );
+    static final MethodHandle glProgramUniform4dEXT$MH = RuntimeHelper.downcallHandle(
+        "glProgramUniform4dEXT",
+        constants$880.glProgramUniform4dEXT$FUNC
+    );
+    static final FunctionDescriptor glProgramUniform1dvEXT$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLGETVIDEOCAPTUREIVNVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$880.PFNGLGETVIDEOCAPTUREIVNVPROC$FUNC
+    static final MethodHandle glProgramUniform1dvEXT$MH = RuntimeHelper.downcallHandle(
+        "glProgramUniform1dvEXT",
+        constants$880.glProgramUniform1dvEXT$FUNC
     );
-    static final FunctionDescriptor PFNGLGETVIDEOCAPTURESTREAMIVNVPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glProgramUniform2dvEXT$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLGETVIDEOCAPTURESTREAMIVNVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$880.PFNGLGETVIDEOCAPTURESTREAMIVNVPROC$FUNC
+    static final MethodHandle glProgramUniform2dvEXT$MH = RuntimeHelper.downcallHandle(
+        "glProgramUniform2dvEXT",
+        constants$880.glProgramUniform2dvEXT$FUNC
     );
-    static final FunctionDescriptor PFNGLGETVIDEOCAPTURESTREAMFVNVPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glProgramUniform3dvEXT$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLGETVIDEOCAPTURESTREAMFVNVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$880.PFNGLGETVIDEOCAPTURESTREAMFVNVPROC$FUNC
+    static final MethodHandle glProgramUniform3dvEXT$MH = RuntimeHelper.downcallHandle(
+        "glProgramUniform3dvEXT",
+        constants$880.glProgramUniform3dvEXT$FUNC
+    );
+    static final FunctionDescriptor glProgramUniform4dvEXT$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glProgramUniform4dvEXT$MH = RuntimeHelper.downcallHandle(
+        "glProgramUniform4dvEXT",
+        constants$880.glProgramUniform4dvEXT$FUNC
     );
 }
 

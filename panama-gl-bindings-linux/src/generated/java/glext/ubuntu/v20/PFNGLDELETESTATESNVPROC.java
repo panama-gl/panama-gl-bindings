@@ -11,13 +11,13 @@ public interface PFNGLDELETESTATESNVPROC {
 
     void apply(int n, java.lang.foreign.MemoryAddress states);
     static MemorySegment allocate(PFNGLDELETESTATESNVPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLDELETESTATESNVPROC.class, fi, constants$732.PFNGLDELETESTATESNVPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLDELETESTATESNVPROC.class, fi, constants$1051.PFNGLDELETESTATESNVPROC$FUNC, session);
     }
     static PFNGLDELETESTATESNVPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _n, java.lang.foreign.MemoryAddress _states) -> {
             try {
-                constants$732.PFNGLDELETESTATESNVPROC$MH.invokeExact((Addressable)symbol, _n, (java.lang.foreign.Addressable)_states);
+                constants$1052.PFNGLDELETESTATESNVPROC$MH.invokeExact((Addressable)symbol, _n, (java.lang.foreign.Addressable)_states);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

@@ -9,35 +9,27 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$493 {
 
-    static final FunctionDescriptor PFNGLALPHAFRAGMENTOP3ATIPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
+    static final FunctionDescriptor PFNGLLINKPROGRAMARBPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLALPHAFRAGMENTOP3ATIPROC$MH = RuntimeHelper.downcallHandle(
-        constants$493.PFNGLALPHAFRAGMENTOP3ATIPROC$FUNC
+    static final MethodHandle PFNGLLINKPROGRAMARBPROC$MH = RuntimeHelper.downcallHandle(
+        constants$493.PFNGLLINKPROGRAMARBPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLSETFRAGMENTSHADERCONSTANTATIPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle PFNGLSETFRAGMENTSHADERCONSTANTATIPROC$MH = RuntimeHelper.downcallHandle(
-        constants$493.PFNGLSETFRAGMENTSHADERCONSTANTATIPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLMAPOBJECTBUFFERATIPROC$FUNC = FunctionDescriptor.of(Constants$root.C_POINTER$LAYOUT,
+    static final FunctionDescriptor PFNGLUSEPROGRAMOBJECTARBPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLMAPOBJECTBUFFERATIPROC$MH = RuntimeHelper.downcallHandle(
-        constants$493.PFNGLMAPOBJECTBUFFERATIPROC$FUNC
+    static final MethodHandle PFNGLUSEPROGRAMOBJECTARBPROC$MH = RuntimeHelper.downcallHandle(
+        constants$493.PFNGLUSEPROGRAMOBJECTARBPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLVALIDATEPROGRAMARBPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle PFNGLVALIDATEPROGRAMARBPROC$MH = RuntimeHelper.downcallHandle(
+        constants$493.PFNGLVALIDATEPROGRAMARBPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLUNIFORM1FARBPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT
     );
 }
 

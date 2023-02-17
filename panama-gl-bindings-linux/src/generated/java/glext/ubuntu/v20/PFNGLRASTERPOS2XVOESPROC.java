@@ -11,13 +11,13 @@ public interface PFNGLRASTERPOS2XVOESPROC {
 
     void apply(java.lang.foreign.MemoryAddress coords);
     static MemorySegment allocate(PFNGLRASTERPOS2XVOESPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLRASTERPOS2XVOESPROC.class, fi, constants$440.PFNGLRASTERPOS2XVOESPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLRASTERPOS2XVOESPROC.class, fi, constants$600.PFNGLRASTERPOS2XVOESPROC$FUNC, session);
     }
     static PFNGLRASTERPOS2XVOESPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (java.lang.foreign.MemoryAddress _coords) -> {
             try {
-                constants$440.PFNGLRASTERPOS2XVOESPROC$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)_coords);
+                constants$601.PFNGLRASTERPOS2XVOESPROC$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)_coords);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

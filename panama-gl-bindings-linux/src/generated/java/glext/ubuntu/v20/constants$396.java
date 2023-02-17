@@ -9,26 +9,31 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$396 {
 
-    static final FunctionDescriptor PFNGLVERTEXATTRIB4UBVARBPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLGETNMAPFVPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLVERTEXATTRIB4UBVARBPROC$MH = RuntimeHelper.downcallHandle(
-        constants$396.PFNGLVERTEXATTRIB4UBVARBPROC$FUNC
+    static final MethodHandle PFNGLGETNMAPFVPROC$MH = RuntimeHelper.downcallHandle(
+        constants$396.PFNGLGETNMAPFVPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLVERTEXATTRIB4UIVARBPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLGETNMAPIVPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLVERTEXATTRIB4UIVARBPROC$MH = RuntimeHelper.downcallHandle(
-        constants$396.PFNGLVERTEXATTRIB4UIVARBPROC$FUNC
+    static final MethodHandle PFNGLGETNMAPIVPROC$MH = RuntimeHelper.downcallHandle(
+        constants$396.PFNGLGETNMAPIVPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLVERTEXATTRIB4USVARBPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLGETNPIXELMAPFVPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLVERTEXATTRIB4USVARBPROC$MH = RuntimeHelper.downcallHandle(
-        constants$396.PFNGLVERTEXATTRIB4USVARBPROC$FUNC
+    static final MethodHandle PFNGLGETNPIXELMAPFVPROC$MH = RuntimeHelper.downcallHandle(
+        constants$396.PFNGLGETNPIXELMAPFVPROC$FUNC
     );
 }
 

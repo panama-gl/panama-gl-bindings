@@ -9,28 +9,52 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$898 {
 
-    static final FunctionDescriptor PFNGLGETFRAGMENTMATERIALFVSGIXPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glGetRenderbufferParameterivEXT$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLGETFRAGMENTMATERIALFVSGIXPROC$MH = RuntimeHelper.downcallHandle(
-        constants$898.PFNGLGETFRAGMENTMATERIALFVSGIXPROC$FUNC
+    static final MethodHandle glGetRenderbufferParameterivEXT$MH = RuntimeHelper.downcallHandle(
+        "glGetRenderbufferParameterivEXT",
+        constants$898.glGetRenderbufferParameterivEXT$FUNC
     );
-    static final FunctionDescriptor PFNGLGETFRAGMENTMATERIALIVSGIXPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
+    static final FunctionDescriptor glIsFramebufferEXT$FUNC = FunctionDescriptor.of(Constants$root.C_CHAR$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLGETFRAGMENTMATERIALIVSGIXPROC$MH = RuntimeHelper.downcallHandle(
-        constants$898.PFNGLGETFRAGMENTMATERIALIVSGIXPROC$FUNC
+    static final MethodHandle glIsFramebufferEXT$MH = RuntimeHelper.downcallHandle(
+        "glIsFramebufferEXT",
+        constants$898.glIsFramebufferEXT$FUNC
     );
-    static final FunctionDescriptor PFNGLLIGHTENVISGIXPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glBindFramebufferEXT$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLLIGHTENVISGIXPROC$MH = RuntimeHelper.downcallHandle(
-        constants$898.PFNGLLIGHTENVISGIXPROC$FUNC
+    static final MethodHandle glBindFramebufferEXT$MH = RuntimeHelper.downcallHandle(
+        "glBindFramebufferEXT",
+        constants$898.glBindFramebufferEXT$FUNC
+    );
+    static final FunctionDescriptor glDeleteFramebuffersEXT$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glDeleteFramebuffersEXT$MH = RuntimeHelper.downcallHandle(
+        "glDeleteFramebuffersEXT",
+        constants$898.glDeleteFramebuffersEXT$FUNC
+    );
+    static final FunctionDescriptor glGenFramebuffersEXT$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glGenFramebuffersEXT$MH = RuntimeHelper.downcallHandle(
+        "glGenFramebuffersEXT",
+        constants$898.glGenFramebuffersEXT$FUNC
+    );
+    static final FunctionDescriptor glCheckFramebufferStatusEXT$FUNC = FunctionDescriptor.of(Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle glCheckFramebufferStatusEXT$MH = RuntimeHelper.downcallHandle(
+        "glCheckFramebufferStatusEXT",
+        constants$898.glCheckFramebufferStatusEXT$FUNC
     );
 }
 

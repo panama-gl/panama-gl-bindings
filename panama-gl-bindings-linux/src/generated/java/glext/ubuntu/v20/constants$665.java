@@ -9,30 +9,31 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$665 {
 
-    static final FunctionDescriptor PFNGLBINDIMAGETEXTUREEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_CHAR$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
+    static final FunctionDescriptor PFNGLTESSELLATIONFACTORAMDPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_FLOAT$LAYOUT
+    );
+    static final MethodHandle PFNGLTESSELLATIONFACTORAMDPROC$MH = RuntimeHelper.downcallHandle(
+        constants$665.PFNGLTESSELLATIONFACTORAMDPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLTESSELLATIONMODEAMDPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLBINDIMAGETEXTUREEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$665.PFNGLBINDIMAGETEXTUREEXTPROC$FUNC
+    static final MethodHandle PFNGLTESSELLATIONMODEAMDPROC$MH = RuntimeHelper.downcallHandle(
+        constants$665.PFNGLTESSELLATIONMODEAMDPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLMEMORYBARRIEREXTPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glTessellationFactorAMD$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_FLOAT$LAYOUT
+    );
+    static final MethodHandle glTessellationFactorAMD$MH = RuntimeHelper.downcallHandle(
+        "glTessellationFactorAMD",
+        constants$665.glTessellationFactorAMD$FUNC
+    );
+    static final FunctionDescriptor glTessellationModeAMD$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLMEMORYBARRIEREXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$665.PFNGLMEMORYBARRIEREXTPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLSTENCILCLEARTAGEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT
-    );
-    static final MethodHandle PFNGLSTENCILCLEARTAGEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$665.PFNGLSTENCILCLEARTAGEXTPROC$FUNC
+    static final MethodHandle glTessellationModeAMD$MH = RuntimeHelper.downcallHandle(
+        "glTessellationModeAMD",
+        constants$665.glTessellationModeAMD$FUNC
     );
 }
 

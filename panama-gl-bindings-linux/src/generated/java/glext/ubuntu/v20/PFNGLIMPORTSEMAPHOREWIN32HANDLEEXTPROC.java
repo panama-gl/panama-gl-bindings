@@ -11,13 +11,13 @@ public interface PFNGLIMPORTSEMAPHOREWIN32HANDLEEXTPROC {
 
     void apply(int semaphore, int handleType, java.lang.foreign.MemoryAddress handle);
     static MemorySegment allocate(PFNGLIMPORTSEMAPHOREWIN32HANDLEEXTPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLIMPORTSEMAPHOREWIN32HANDLEEXTPROC.class, fi, constants$663.PFNGLIMPORTSEMAPHOREWIN32HANDLEEXTPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLIMPORTSEMAPHOREWIN32HANDLEEXTPROC.class, fi, constants$948.PFNGLIMPORTSEMAPHOREWIN32HANDLEEXTPROC$FUNC, session);
     }
     static PFNGLIMPORTSEMAPHOREWIN32HANDLEEXTPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _semaphore, int _handleType, java.lang.foreign.MemoryAddress _handle) -> {
             try {
-                constants$663.PFNGLIMPORTSEMAPHOREWIN32HANDLEEXTPROC$MH.invokeExact((Addressable)symbol, _semaphore, _handleType, (java.lang.foreign.Addressable)_handle);
+                constants$948.PFNGLIMPORTSEMAPHOREWIN32HANDLEEXTPROC$MH.invokeExact((Addressable)symbol, _semaphore, _handleType, (java.lang.foreign.Addressable)_handle);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

@@ -9,26 +9,47 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$838 {
 
-    static final FunctionDescriptor PFNGLVDPAUUNMAPSURFACESNVPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLTEXTURESTORAGE1DEXTPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLVDPAUUNMAPSURFACESNVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$838.PFNGLVDPAUUNMAPSURFACESNVPROC$FUNC
+    static final MethodHandle PFNGLTEXTURESTORAGE1DEXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$838.PFNGLTEXTURESTORAGE1DEXTPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLVDPAUREGISTERVIDEOSURFACEWITHPICTURESTRUCTURENVPROC$FUNC = FunctionDescriptor.of(Constants$root.C_LONG_LONG$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
+    static final FunctionDescriptor PFNGLTEXTURESTORAGE2DEXTPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle PFNGLTEXTURESTORAGE2DEXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$838.PFNGLTEXTURESTORAGE2DEXTPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLTEXTURESTORAGE3DEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle PFNGLTEXTURESTORAGE3DEXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$838.PFNGLTEXTURESTORAGE3DEXTPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLTEXTURESTORAGE2DMULTISAMPLEEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_CHAR$LAYOUT
-    );
-    static final MethodHandle PFNGLVDPAUREGISTERVIDEOSURFACEWITHPICTURESTRUCTURENVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$838.PFNGLVDPAUREGISTERVIDEOSURFACEWITHPICTURESTRUCTURENVPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLFLUSHVERTEXARRAYRANGENVPROC$FUNC = FunctionDescriptor.ofVoid();
-    static final MethodHandle PFNGLFLUSHVERTEXARRAYRANGENVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$838.PFNGLFLUSHVERTEXARRAYRANGENVPROC$FUNC
     );
 }
 

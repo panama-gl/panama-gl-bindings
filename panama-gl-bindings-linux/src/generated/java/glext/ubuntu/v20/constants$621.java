@@ -9,34 +9,53 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$621 {
 
-    static final FunctionDescriptor PFNGLCOLORMASKINDEXEDEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_CHAR$LAYOUT,
-        Constants$root.C_CHAR$LAYOUT,
-        Constants$root.C_CHAR$LAYOUT,
-        Constants$root.C_CHAR$LAYOUT
-    );
-    static final MethodHandle PFNGLCOLORMASKINDEXEDEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$621.PFNGLCOLORMASKINDEXEDEXTPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLDRAWARRAYSINSTANCEDEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
+    static final FunctionDescriptor glPixelStorex$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLDRAWARRAYSINSTANCEDEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$621.PFNGLDRAWARRAYSINSTANCEDEXTPROC$FUNC
+    static final MethodHandle glPixelStorex$MH = RuntimeHelper.downcallHandle(
+        "glPixelStorex",
+        constants$621.glPixelStorex$FUNC
     );
-    static final FunctionDescriptor PFNGLDRAWELEMENTSINSTANCEDEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glPixelTransferxOES$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle glPixelTransferxOES$MH = RuntimeHelper.downcallHandle(
+        "glPixelTransferxOES",
+        constants$621.glPixelTransferxOES$FUNC
+    );
+    static final FunctionDescriptor glPixelZoomxOES$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle glPixelZoomxOES$MH = RuntimeHelper.downcallHandle(
+        "glPixelZoomxOES",
+        constants$621.glPixelZoomxOES$FUNC
+    );
+    static final FunctionDescriptor glPrioritizeTexturesxOES$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glPrioritizeTexturesxOES$MH = RuntimeHelper.downcallHandle(
+        "glPrioritizeTexturesxOES",
+        constants$621.glPrioritizeTexturesxOES$FUNC
+    );
+    static final FunctionDescriptor glRasterPos2xOES$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLDRAWELEMENTSINSTANCEDEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$621.PFNGLDRAWELEMENTSINSTANCEDEXTPROC$FUNC
+    static final MethodHandle glRasterPos2xOES$MH = RuntimeHelper.downcallHandle(
+        "glRasterPos2xOES",
+        constants$621.glRasterPos2xOES$FUNC
+    );
+    static final FunctionDescriptor glRasterPos2xvOES$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glRasterPos2xvOES$MH = RuntimeHelper.downcallHandle(
+        "glRasterPos2xvOES",
+        constants$621.glRasterPos2xvOES$FUNC
     );
 }
 

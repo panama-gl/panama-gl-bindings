@@ -11,13 +11,13 @@ public interface PFNGLBEGINVIDEOCAPTURENVPROC {
 
     void apply(int video_capture_slot);
     static MemorySegment allocate(PFNGLBEGINVIDEOCAPTURENVPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLBEGINVIDEOCAPTURENVPROC.class, fi, constants$878.PFNGLBEGINVIDEOCAPTURENVPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLBEGINVIDEOCAPTURENVPROC.class, fi, constants$1271.PFNGLBEGINVIDEOCAPTURENVPROC$FUNC, session);
     }
     static PFNGLBEGINVIDEOCAPTURENVPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _video_capture_slot) -> {
             try {
-                constants$878.PFNGLBEGINVIDEOCAPTURENVPROC$MH.invokeExact((Addressable)symbol, _video_capture_slot);
+                constants$1271.PFNGLBEGINVIDEOCAPTURENVPROC$MH.invokeExact((Addressable)symbol, _video_capture_slot);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

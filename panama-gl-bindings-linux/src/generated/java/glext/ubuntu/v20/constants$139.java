@@ -9,29 +9,29 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$139 {
 
-    static final FunctionDescriptor PFNGLVERTEXATTRIB4NUBPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLUNIFORM2FVPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_CHAR$LAYOUT,
-        Constants$root.C_CHAR$LAYOUT,
-        Constants$root.C_CHAR$LAYOUT,
-        Constants$root.C_CHAR$LAYOUT
-    );
-    static final MethodHandle PFNGLVERTEXATTRIB4NUBPROC$MH = RuntimeHelper.downcallHandle(
-        constants$139.PFNGLVERTEXATTRIB4NUBPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLVERTEXATTRIB4NUBVPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLVERTEXATTRIB4NUBVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$139.PFNGLVERTEXATTRIB4NUBVPROC$FUNC
+    static final MethodHandle PFNGLUNIFORM2FVPROC$MH = RuntimeHelper.downcallHandle(
+        constants$139.PFNGLUNIFORM2FVPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLVERTEXATTRIB4NUIVPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLUNIFORM3FVPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLVERTEXATTRIB4NUIVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$139.PFNGLVERTEXATTRIB4NUIVPROC$FUNC
+    static final MethodHandle PFNGLUNIFORM3FVPROC$MH = RuntimeHelper.downcallHandle(
+        constants$139.PFNGLUNIFORM3FVPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLUNIFORM4FVPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle PFNGLUNIFORM4FVPROC$MH = RuntimeHelper.downcallHandle(
+        constants$139.PFNGLUNIFORM4FVPROC$FUNC
     );
 }
 

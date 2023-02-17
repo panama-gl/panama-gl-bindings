@@ -9,26 +9,34 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$296 {
 
-    static final FunctionDescriptor PFNGLCREATEVERTEXARRAYSPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLPROGRAMUNIFORM3UIVPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLCREATEVERTEXARRAYSPROC$MH = RuntimeHelper.downcallHandle(
-        constants$296.PFNGLCREATEVERTEXARRAYSPROC$FUNC
+    static final MethodHandle PFNGLPROGRAMUNIFORM3UIVPROC$MH = RuntimeHelper.downcallHandle(
+        constants$296.PFNGLPROGRAMUNIFORM3UIVPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLDISABLEVERTEXARRAYATTRIBPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLPROGRAMUNIFORM4IPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLDISABLEVERTEXARRAYATTRIBPROC$MH = RuntimeHelper.downcallHandle(
-        constants$296.PFNGLDISABLEVERTEXARRAYATTRIBPROC$FUNC
+    static final MethodHandle PFNGLPROGRAMUNIFORM4IPROC$MH = RuntimeHelper.downcallHandle(
+        constants$296.PFNGLPROGRAMUNIFORM4IPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLENABLEVERTEXARRAYATTRIBPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLPROGRAMUNIFORM4IVPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLENABLEVERTEXARRAYATTRIBPROC$MH = RuntimeHelper.downcallHandle(
-        constants$296.PFNGLENABLEVERTEXARRAYATTRIBPROC$FUNC
+    static final MethodHandle PFNGLPROGRAMUNIFORM4IVPROC$MH = RuntimeHelper.downcallHandle(
+        constants$296.PFNGLPROGRAMUNIFORM4IVPROC$FUNC
     );
 }
 

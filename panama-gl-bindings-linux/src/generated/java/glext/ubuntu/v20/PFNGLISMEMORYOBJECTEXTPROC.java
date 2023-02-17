@@ -11,13 +11,13 @@ public interface PFNGLISMEMORYOBJECTEXTPROC {
 
     byte apply(int memoryObject);
     static MemorySegment allocate(PFNGLISMEMORYOBJECTEXTPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLISMEMORYOBJECTEXTPROC.class, fi, constants$641.PFNGLISMEMORYOBJECTEXTPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLISMEMORYOBJECTEXTPROC.class, fi, constants$915.PFNGLISMEMORYOBJECTEXTPROC$FUNC, session);
     }
     static PFNGLISMEMORYOBJECTEXTPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _memoryObject) -> {
             try {
-                return (byte)constants$641.PFNGLISMEMORYOBJECTEXTPROC$MH.invokeExact((Addressable)symbol, _memoryObject);
+                return (byte)constants$915.PFNGLISMEMORYOBJECTEXTPROC$MH.invokeExact((Addressable)symbol, _memoryObject);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

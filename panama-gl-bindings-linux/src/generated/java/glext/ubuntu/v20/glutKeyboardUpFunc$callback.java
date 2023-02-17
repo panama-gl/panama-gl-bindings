@@ -11,13 +11,13 @@ public interface glutKeyboardUpFunc$callback {
 
     void apply(byte _x0, int _x1, int _x2);
     static MemorySegment allocate(glutKeyboardUpFunc$callback fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(glutKeyboardUpFunc$callback.class, fi, constants$954.glutKeyboardUpFunc$callback$FUNC, session);
+        return RuntimeHelper.upcallStub(glutKeyboardUpFunc$callback.class, fi, constants$1372.glutKeyboardUpFunc$callback$FUNC, session);
     }
     static glutKeyboardUpFunc$callback ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (byte __x0, int __x1, int __x2) -> {
             try {
-                constants$954.glutKeyboardUpFunc$callback$MH.invokeExact((Addressable)symbol, __x0, __x1, __x2);
+                constants$1372.glutKeyboardUpFunc$callback$MH.invokeExact((Addressable)symbol, __x0, __x1, __x2);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

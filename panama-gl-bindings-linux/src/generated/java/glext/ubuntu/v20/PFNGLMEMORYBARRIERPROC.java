@@ -11,13 +11,13 @@ public interface PFNGLMEMORYBARRIERPROC {
 
     void apply(int barriers);
     static MemorySegment allocate(PFNGLMEMORYBARRIERPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLMEMORYBARRIERPROC.class, fi, constants$250.PFNGLMEMORYBARRIERPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLMEMORYBARRIERPROC.class, fi, constants$329.PFNGLMEMORYBARRIERPROC$FUNC, session);
     }
     static PFNGLMEMORYBARRIERPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _barriers) -> {
             try {
-                constants$250.PFNGLMEMORYBARRIERPROC$MH.invokeExact((Addressable)symbol, _barriers);
+                constants$329.PFNGLMEMORYBARRIERPROC$MH.invokeExact((Addressable)symbol, _barriers);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

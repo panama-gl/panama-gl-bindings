@@ -11,13 +11,13 @@ public interface PFNGLQUERYMATRIXXOESPROC {
 
     int apply(java.lang.foreign.MemoryAddress mantissa, java.lang.foreign.MemoryAddress exponent);
     static MemorySegment allocate(PFNGLQUERYMATRIXXOESPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLQUERYMATRIXXOESPROC.class, fi, constants$448.PFNGLQUERYMATRIXXOESPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLQUERYMATRIXXOESPROC.class, fi, constants$625.PFNGLQUERYMATRIXXOESPROC$FUNC, session);
     }
     static PFNGLQUERYMATRIXXOESPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (java.lang.foreign.MemoryAddress _mantissa, java.lang.foreign.MemoryAddress _exponent) -> {
             try {
-                return (int)constants$448.PFNGLQUERYMATRIXXOESPROC$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)_mantissa, (java.lang.foreign.Addressable)_exponent);
+                return (int)constants$625.PFNGLQUERYMATRIXXOESPROC$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)_mantissa, (java.lang.foreign.Addressable)_exponent);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

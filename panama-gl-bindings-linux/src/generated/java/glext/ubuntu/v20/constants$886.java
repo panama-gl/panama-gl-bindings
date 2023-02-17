@@ -9,26 +9,59 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$886 {
 
-    static final FunctionDescriptor PFNGLPIXELTEXGENPARAMETERIVSGISPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLDRAWELEMENTSINSTANCEDEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle PFNGLDRAWELEMENTSINSTANCEDEXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$886.PFNGLDRAWELEMENTSINSTANCEDEXTPROC$FUNC
+    );
+    static final FunctionDescriptor glDrawArraysInstancedEXT$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle glDrawArraysInstancedEXT$MH = RuntimeHelper.downcallHandle(
+        "glDrawArraysInstancedEXT",
+        constants$886.glDrawArraysInstancedEXT$FUNC
+    );
+    static final FunctionDescriptor glDrawElementsInstancedEXT$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle glDrawElementsInstancedEXT$MH = RuntimeHelper.downcallHandle(
+        "glDrawElementsInstancedEXT",
+        constants$886.glDrawElementsInstancedEXT$FUNC
+    );
+    static final FunctionDescriptor PFNGLDRAWRANGEELEMENTSEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLPIXELTEXGENPARAMETERIVSGISPROC$MH = RuntimeHelper.downcallHandle(
-        constants$886.PFNGLPIXELTEXGENPARAMETERIVSGISPROC$FUNC
+    static final MethodHandle PFNGLDRAWRANGEELEMENTSEXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$886.PFNGLDRAWRANGEELEMENTSEXTPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLPIXELTEXGENPARAMETERFSGISPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glDrawRangeElementsEXT$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT
-    );
-    static final MethodHandle PFNGLPIXELTEXGENPARAMETERFSGISPROC$MH = RuntimeHelper.downcallHandle(
-        constants$886.PFNGLPIXELTEXGENPARAMETERFSGISPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLPIXELTEXGENPARAMETERFVSGISPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLPIXELTEXGENPARAMETERFVSGISPROC$MH = RuntimeHelper.downcallHandle(
-        constants$886.PFNGLPIXELTEXGENPARAMETERFVSGISPROC$FUNC
+    static final MethodHandle glDrawRangeElementsEXT$MH = RuntimeHelper.downcallHandle(
+        "glDrawRangeElementsEXT",
+        constants$886.glDrawRangeElementsEXT$FUNC
     );
 }
 

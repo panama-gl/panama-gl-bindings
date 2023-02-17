@@ -11,13 +11,13 @@ public interface PFNGLFRAGMENTCOLORMATERIALSGIXPROC {
 
     void apply(int face, int mode);
     static MemorySegment allocate(PFNGLFRAGMENTCOLORMATERIALSGIXPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLFRAGMENTCOLORMATERIALSGIXPROC.class, fi, constants$893.PFNGLFRAGMENTCOLORMATERIALSGIXPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLFRAGMENTCOLORMATERIALSGIXPROC.class, fi, constants$1292.PFNGLFRAGMENTCOLORMATERIALSGIXPROC$FUNC, session);
     }
     static PFNGLFRAGMENTCOLORMATERIALSGIXPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _face, int _mode) -> {
             try {
-                constants$893.PFNGLFRAGMENTCOLORMATERIALSGIXPROC$MH.invokeExact((Addressable)symbol, _face, _mode);
+                constants$1293.PFNGLFRAGMENTCOLORMATERIALSGIXPROC$MH.invokeExact((Addressable)symbol, _face, _mode);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

@@ -9,30 +9,42 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$226 {
 
-    static final FunctionDescriptor PFNGLPROGRAMUNIFORM1DPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_DOUBLE$LAYOUT
-    );
-    static final MethodHandle PFNGLPROGRAMUNIFORM1DPROC$MH = RuntimeHelper.downcallHandle(
-        constants$226.PFNGLPROGRAMUNIFORM1DPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLPROGRAMUNIFORM1DVPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
+    static final FunctionDescriptor PFNGLGETBUFFERPARAMETERI64VPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLPROGRAMUNIFORM1DVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$226.PFNGLPROGRAMUNIFORM1DVPROC$FUNC
+    static final MethodHandle PFNGLGETBUFFERPARAMETERI64VPROC$MH = RuntimeHelper.downcallHandle(
+        constants$226.PFNGLGETBUFFERPARAMETERI64VPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLPROGRAMUNIFORM1UIPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLFRAMEBUFFERTEXTUREPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLPROGRAMUNIFORM1UIPROC$MH = RuntimeHelper.downcallHandle(
-        constants$226.PFNGLPROGRAMUNIFORM1UIPROC$FUNC
+    static final MethodHandle PFNGLFRAMEBUFFERTEXTUREPROC$MH = RuntimeHelper.downcallHandle(
+        constants$226.PFNGLFRAMEBUFFERTEXTUREPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLTEXIMAGE2DMULTISAMPLEPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_CHAR$LAYOUT
+    );
+    static final MethodHandle PFNGLTEXIMAGE2DMULTISAMPLEPROC$MH = RuntimeHelper.downcallHandle(
+        constants$226.PFNGLTEXIMAGE2DMULTISAMPLEPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLTEXIMAGE3DMULTISAMPLEPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_CHAR$LAYOUT
     );
 }
 

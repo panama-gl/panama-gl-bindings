@@ -9,29 +9,33 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$336 {
 
-    static final FunctionDescriptor PFNGLUNIFORM4UI64VARBPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLINVALIDATETEXSUBIMAGEPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLUNIFORM4UI64VARBPROC$MH = RuntimeHelper.downcallHandle(
-        constants$336.PFNGLUNIFORM4UI64VARBPROC$FUNC
+    static final MethodHandle PFNGLINVALIDATETEXSUBIMAGEPROC$MH = RuntimeHelper.downcallHandle(
+        constants$336.PFNGLINVALIDATETEXSUBIMAGEPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLGETUNIFORMI64VARBPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLINVALIDATETEXIMAGEPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
+        Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLGETUNIFORMI64VARBPROC$MH = RuntimeHelper.downcallHandle(
-        constants$336.PFNGLGETUNIFORMI64VARBPROC$FUNC
+    static final MethodHandle PFNGLINVALIDATETEXIMAGEPROC$MH = RuntimeHelper.downcallHandle(
+        constants$336.PFNGLINVALIDATETEXIMAGEPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLGETUNIFORMUI64VARBPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLINVALIDATEBUFFERSUBDATAPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
+        Constants$root.C_LONG_LONG$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT
     );
-    static final MethodHandle PFNGLGETUNIFORMUI64VARBPROC$MH = RuntimeHelper.downcallHandle(
-        constants$336.PFNGLGETUNIFORMUI64VARBPROC$FUNC
+    static final MethodHandle PFNGLINVALIDATEBUFFERSUBDATAPROC$MH = RuntimeHelper.downcallHandle(
+        constants$336.PFNGLINVALIDATEBUFFERSUBDATAPROC$FUNC
     );
 }
 

@@ -9,25 +9,32 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$640 {
 
-    static final FunctionDescriptor PFNGLTEXTURELIGHTEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT
-    );
-    static final MethodHandle PFNGLTEXTURELIGHTEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$640.PFNGLTEXTURELIGHTEXTPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLTEXTUREMATERIALEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLUNIFORM2UI64NVPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT
+        Constants$root.C_LONG_LONG$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT
     );
-    static final MethodHandle PFNGLTEXTUREMATERIALEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$640.PFNGLTEXTUREMATERIALEXTPROC$FUNC
+    static final MethodHandle PFNGLUNIFORM2UI64NVPROC$MH = RuntimeHelper.downcallHandle(
+        constants$640.PFNGLUNIFORM2UI64NVPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLGETUNSIGNEDBYTEVEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLUNIFORM3UI64NVPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
+        Constants$root.C_LONG_LONG$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT
     );
-    static final MethodHandle PFNGLGETUNSIGNEDBYTEVEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$640.PFNGLGETUNSIGNEDBYTEVEXTPROC$FUNC
+    static final MethodHandle PFNGLUNIFORM3UI64NVPROC$MH = RuntimeHelper.downcallHandle(
+        constants$640.PFNGLUNIFORM3UI64NVPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLUNIFORM4UI64NVPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT
+    );
+    static final MethodHandle PFNGLUNIFORM4UI64NVPROC$MH = RuntimeHelper.downcallHandle(
+        constants$640.PFNGLUNIFORM4UI64NVPROC$FUNC
     );
 }
 

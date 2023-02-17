@@ -11,13 +11,13 @@ public interface PFNGLGETNAMEDSTRINGIVARBPROC {
 
     void apply(int namelen, java.lang.foreign.MemoryAddress name, int pname, java.lang.foreign.MemoryAddress params);
     static MemorySegment allocate(PFNGLGETNAMEDSTRINGIVARBPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLGETNAMEDSTRINGIVARBPROC.class, fi, constants$372.PFNGLGETNAMEDSTRINGIVARBPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLGETNAMEDSTRINGIVARBPROC.class, fi, constants$511.PFNGLGETNAMEDSTRINGIVARBPROC$FUNC, session);
     }
     static PFNGLGETNAMEDSTRINGIVARBPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _namelen, java.lang.foreign.MemoryAddress _name, int _pname, java.lang.foreign.MemoryAddress _params) -> {
             try {
-                constants$372.PFNGLGETNAMEDSTRINGIVARBPROC$MH.invokeExact((Addressable)symbol, _namelen, (java.lang.foreign.Addressable)_name, _pname, (java.lang.foreign.Addressable)_params);
+                constants$511.PFNGLGETNAMEDSTRINGIVARBPROC$MH.invokeExact((Addressable)symbol, _namelen, (java.lang.foreign.Addressable)_name, _pname, (java.lang.foreign.Addressable)_params);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

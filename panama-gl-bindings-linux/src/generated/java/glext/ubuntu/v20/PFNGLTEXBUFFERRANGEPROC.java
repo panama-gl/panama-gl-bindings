@@ -11,13 +11,13 @@ public interface PFNGLTEXBUFFERRANGEPROC {
 
     void apply(int target, int internalformat, int buffer, long offset, long size);
     static MemorySegment allocate(PFNGLTEXBUFFERRANGEPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLTEXBUFFERRANGEPROC.class, fi, constants$260.PFNGLTEXBUFFERRANGEPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLTEXBUFFERRANGEPROC.class, fi, constants$341.PFNGLTEXBUFFERRANGEPROC$FUNC, session);
     }
     static PFNGLTEXBUFFERRANGEPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _target, int _internalformat, int _buffer, long _offset, long _size) -> {
             try {
-                constants$260.PFNGLTEXBUFFERRANGEPROC$MH.invokeExact((Addressable)symbol, _target, _internalformat, _buffer, _offset, _size);
+                constants$341.PFNGLTEXBUFFERRANGEPROC$MH.invokeExact((Addressable)symbol, _target, _internalformat, _buffer, _offset, _size);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

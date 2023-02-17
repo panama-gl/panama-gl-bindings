@@ -9,43 +9,30 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$827 {
 
-    static final FunctionDescriptor PFNGLTEXIMAGE3DMULTISAMPLECOVERAGENVPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLENABLEVERTEXARRAYEXTPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_CHAR$LAYOUT
+        Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLTEXIMAGE3DMULTISAMPLECOVERAGENVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$827.PFNGLTEXIMAGE3DMULTISAMPLECOVERAGENVPROC$FUNC
+    static final MethodHandle PFNGLENABLEVERTEXARRAYEXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$827.PFNGLENABLEVERTEXARRAYEXTPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLTEXTUREIMAGE2DMULTISAMPLENVPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLDISABLEVERTEXARRAYEXTPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_CHAR$LAYOUT
+        Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLTEXTUREIMAGE2DMULTISAMPLENVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$827.PFNGLTEXTUREIMAGE2DMULTISAMPLENVPROC$FUNC
+    static final MethodHandle PFNGLDISABLEVERTEXARRAYEXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$827.PFNGLDISABLEVERTEXARRAYEXTPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLTEXTUREIMAGE3DMULTISAMPLENVPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLENABLEVERTEXARRAYATTRIBEXTPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_CHAR$LAYOUT
+        Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLTEXTUREIMAGE3DMULTISAMPLENVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$827.PFNGLTEXTUREIMAGE3DMULTISAMPLENVPROC$FUNC
+    static final MethodHandle PFNGLENABLEVERTEXARRAYATTRIBEXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$827.PFNGLENABLEVERTEXARRAYATTRIBEXTPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLDISABLEVERTEXARRAYATTRIBEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
 }
 

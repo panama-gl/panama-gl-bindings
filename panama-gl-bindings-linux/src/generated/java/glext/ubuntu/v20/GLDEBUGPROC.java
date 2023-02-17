@@ -11,13 +11,13 @@ public interface GLDEBUGPROC {
 
     void apply(int source, int type, int id, int severity, int length, java.lang.foreign.MemoryAddress message, java.lang.foreign.MemoryAddress userParam);
     static MemorySegment allocate(GLDEBUGPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(GLDEBUGPROC.class, fi, constants$252.GLDEBUGPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(GLDEBUGPROC.class, fi, constants$333.GLDEBUGPROC$FUNC, session);
     }
     static GLDEBUGPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _source, int _type, int _id, int _severity, int _length, java.lang.foreign.MemoryAddress _message, java.lang.foreign.MemoryAddress _userParam) -> {
             try {
-                constants$252.GLDEBUGPROC$MH.invokeExact((Addressable)symbol, _source, _type, _id, _severity, _length, (java.lang.foreign.Addressable)_message, (java.lang.foreign.Addressable)_userParam);
+                constants$333.GLDEBUGPROC$MH.invokeExact((Addressable)symbol, _source, _type, _id, _severity, _length, (java.lang.foreign.Addressable)_message, (java.lang.foreign.Addressable)_userParam);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

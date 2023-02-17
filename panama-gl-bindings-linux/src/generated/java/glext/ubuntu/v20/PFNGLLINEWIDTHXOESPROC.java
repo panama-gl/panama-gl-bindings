@@ -11,13 +11,13 @@ public interface PFNGLLINEWIDTHXOESPROC {
 
     void apply(int width);
     static MemorySegment allocate(PFNGLLINEWIDTHXOESPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLLINEWIDTHXOESPROC.class, fi, constants$419.PFNGLLINEWIDTHXOESPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLLINEWIDTHXOESPROC.class, fi, constants$579.PFNGLLINEWIDTHXOESPROC$FUNC, session);
     }
     static PFNGLLINEWIDTHXOESPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _width) -> {
             try {
-                constants$419.PFNGLLINEWIDTHXOESPROC$MH.invokeExact((Addressable)symbol, _width);
+                constants$580.PFNGLLINEWIDTHXOESPROC$MH.invokeExact((Addressable)symbol, _width);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

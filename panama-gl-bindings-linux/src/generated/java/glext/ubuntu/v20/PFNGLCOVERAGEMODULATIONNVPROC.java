@@ -11,13 +11,13 @@ public interface PFNGLCOVERAGEMODULATIONNVPROC {
 
     void apply(int components);
     static MemorySegment allocate(PFNGLCOVERAGEMODULATIONNVPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLCOVERAGEMODULATIONNVPROC.class, fi, constants$752.PFNGLCOVERAGEMODULATIONNVPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLCOVERAGEMODULATIONNVPROC.class, fi, constants$1081.PFNGLCOVERAGEMODULATIONNVPROC$FUNC, session);
     }
     static PFNGLCOVERAGEMODULATIONNVPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _components) -> {
             try {
-                constants$752.PFNGLCOVERAGEMODULATIONNVPROC$MH.invokeExact((Addressable)symbol, _components);
+                constants$1081.PFNGLCOVERAGEMODULATIONNVPROC$MH.invokeExact((Addressable)symbol, _components);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

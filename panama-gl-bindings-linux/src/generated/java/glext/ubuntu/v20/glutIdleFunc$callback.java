@@ -11,13 +11,13 @@ public interface glutIdleFunc$callback {
 
     void apply();
     static MemorySegment allocate(glutIdleFunc$callback fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(glutIdleFunc$callback.class, fi, constants$949.glutIdleFunc$callback$FUNC, session);
+        return RuntimeHelper.upcallStub(glutIdleFunc$callback.class, fi, constants$1367.glutIdleFunc$callback$FUNC, session);
     }
     static glutIdleFunc$callback ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return () -> {
             try {
-                constants$949.glutIdleFunc$callback$MH.invokeExact((Addressable)symbol);
+                constants$1367.glutIdleFunc$callback$MH.invokeExact((Addressable)symbol);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

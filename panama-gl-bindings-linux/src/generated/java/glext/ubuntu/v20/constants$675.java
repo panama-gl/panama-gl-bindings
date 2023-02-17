@@ -9,32 +9,39 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$675 {
 
-    static final FunctionDescriptor PFNGLTRANSFORMFEEDBACKVARYINGSEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLTEXTURERANGEAPPLEPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_INT$LAYOUT
-    );
-    static final MethodHandle PFNGLTRANSFORMFEEDBACKVARYINGSEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$675.PFNGLTRANSFORMFEEDBACKVARYINGSEXTPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLGETTRANSFORMFEEDBACKVARYINGEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLGETTRANSFORMFEEDBACKVARYINGEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$675.PFNGLGETTRANSFORMFEEDBACKVARYINGEXTPROC$FUNC
+    static final MethodHandle PFNGLTEXTURERANGEAPPLEPROC$MH = RuntimeHelper.downcallHandle(
+        constants$675.PFNGLTEXTURERANGEAPPLEPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLARRAYELEMENTEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT
+    static final FunctionDescriptor PFNGLGETTEXPARAMETERPOINTERVAPPLEPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLARRAYELEMENTEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$675.PFNGLARRAYELEMENTEXTPROC$FUNC
+    static final MethodHandle PFNGLGETTEXPARAMETERPOINTERVAPPLEPROC$MH = RuntimeHelper.downcallHandle(
+        constants$675.PFNGLGETTEXPARAMETERPOINTERVAPPLEPROC$FUNC
+    );
+    static final FunctionDescriptor glTextureRangeAPPLE$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glTextureRangeAPPLE$MH = RuntimeHelper.downcallHandle(
+        "glTextureRangeAPPLE",
+        constants$675.glTextureRangeAPPLE$FUNC
+    );
+    static final FunctionDescriptor glGetTexParameterPointervAPPLE$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glGetTexParameterPointervAPPLE$MH = RuntimeHelper.downcallHandle(
+        "glGetTexParameterPointervAPPLE",
+        constants$675.glGetTexParameterPointervAPPLE$FUNC
     );
 }
 

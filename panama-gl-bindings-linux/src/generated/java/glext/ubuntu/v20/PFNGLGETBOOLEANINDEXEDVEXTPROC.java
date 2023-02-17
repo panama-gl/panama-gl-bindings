@@ -11,13 +11,13 @@ public interface PFNGLGETBOOLEANINDEXEDVEXTPROC {
 
     void apply(int target, int index, java.lang.foreign.MemoryAddress data);
     static MemorySegment allocate(PFNGLGETBOOLEANINDEXEDVEXTPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLGETBOOLEANINDEXEDVEXTPROC.class, fi, constants$563.PFNGLGETBOOLEANINDEXEDVEXTPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLGETBOOLEANINDEXEDVEXTPROC.class, fi, constants$785.PFNGLGETBOOLEANINDEXEDVEXTPROC$FUNC, session);
     }
     static PFNGLGETBOOLEANINDEXEDVEXTPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _target, int _index, java.lang.foreign.MemoryAddress _data) -> {
             try {
-                constants$563.PFNGLGETBOOLEANINDEXEDVEXTPROC$MH.invokeExact((Addressable)symbol, _target, _index, (java.lang.foreign.Addressable)_data);
+                constants$785.PFNGLGETBOOLEANINDEXEDVEXTPROC$MH.invokeExact((Addressable)symbol, _target, _index, (java.lang.foreign.Addressable)_data);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

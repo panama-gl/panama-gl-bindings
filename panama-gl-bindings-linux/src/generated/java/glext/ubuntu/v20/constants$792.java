@@ -9,29 +9,32 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$792 {
 
-    static final FunctionDescriptor PFNGLPATHPARAMETERFNVPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLNAMEDBUFFERSUBDATAEXTPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT
-    );
-    static final MethodHandle PFNGLPATHPARAMETERFNVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$792.PFNGLPATHPARAMETERFNVPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLPATHDASHARRAYNVPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLPATHDASHARRAYNVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$792.PFNGLPATHDASHARRAYNVPROC$FUNC
+    static final MethodHandle PFNGLNAMEDBUFFERSUBDATAEXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$792.PFNGLNAMEDBUFFERSUBDATAEXTPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLPATHSTENCILFUNCNVPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
+    static final FunctionDescriptor PFNGLMAPNAMEDBUFFEREXTPROC$FUNC = FunctionDescriptor.of(Constants$root.C_POINTER$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLPATHSTENCILFUNCNVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$792.PFNGLPATHSTENCILFUNCNVPROC$FUNC
+    static final MethodHandle PFNGLMAPNAMEDBUFFEREXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$792.PFNGLMAPNAMEDBUFFEREXTPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLUNMAPNAMEDBUFFEREXTPROC$FUNC = FunctionDescriptor.of(Constants$root.C_CHAR$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle PFNGLUNMAPNAMEDBUFFEREXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$792.PFNGLUNMAPNAMEDBUFFEREXTPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLGETNAMEDBUFFERPARAMETERIVEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
 }
 

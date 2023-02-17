@@ -11,13 +11,13 @@ public interface PFNGLGETNMINMAXARBPROC {
 
     void apply(int target, byte reset, int format, int type, int bufSize, java.lang.foreign.MemoryAddress values);
     static MemorySegment allocate(PFNGLGETNMINMAXARBPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLGETNMINMAXARBPROC.class, fi, constants$356.PFNGLGETNMINMAXARBPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLGETNMINMAXARBPROC.class, fi, constants$484.PFNGLGETNMINMAXARBPROC$FUNC, session);
     }
     static PFNGLGETNMINMAXARBPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _target, byte _reset, int _format, int _type, int _bufSize, java.lang.foreign.MemoryAddress _values) -> {
             try {
-                constants$356.PFNGLGETNMINMAXARBPROC$MH.invokeExact((Addressable)symbol, _target, _reset, _format, _type, _bufSize, (java.lang.foreign.Addressable)_values);
+                constants$484.PFNGLGETNMINMAXARBPROC$MH.invokeExact((Addressable)symbol, _target, _reset, _format, _type, _bufSize, (java.lang.foreign.Addressable)_values);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

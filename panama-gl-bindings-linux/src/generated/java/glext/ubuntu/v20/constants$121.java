@@ -9,29 +9,53 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$121 {
 
-    static final FunctionDescriptor PFNGLGETSHADERSOURCEPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle PFNGLGETSHADERSOURCEPROC$MH = RuntimeHelper.downcallHandle(
-        constants$121.PFNGLGETSHADERSOURCEPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLGETUNIFORMLOCATIONPROC$FUNC = FunctionDescriptor.of(Constants$root.C_INT$LAYOUT,
+    static final FunctionDescriptor glDeleteQueries$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLGETUNIFORMLOCATIONPROC$MH = RuntimeHelper.downcallHandle(
-        constants$121.PFNGLGETUNIFORMLOCATIONPROC$FUNC
+    static final MethodHandle glDeleteQueries$MH = RuntimeHelper.downcallHandle(
+        "glDeleteQueries",
+        constants$121.glDeleteQueries$FUNC
     );
-    static final FunctionDescriptor PFNGLGETUNIFORMFVPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glIsQuery$FUNC = FunctionDescriptor.of(Constants$root.C_CHAR$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle glIsQuery$MH = RuntimeHelper.downcallHandle(
+        "glIsQuery",
+        constants$121.glIsQuery$FUNC
+    );
+    static final FunctionDescriptor glBeginQuery$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle glBeginQuery$MH = RuntimeHelper.downcallHandle(
+        "glBeginQuery",
+        constants$121.glBeginQuery$FUNC
+    );
+    static final FunctionDescriptor glEndQuery$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle glEndQuery$MH = RuntimeHelper.downcallHandle(
+        "glEndQuery",
+        constants$121.glEndQuery$FUNC
+    );
+    static final FunctionDescriptor glGetQueryiv$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLGETUNIFORMFVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$121.PFNGLGETUNIFORMFVPROC$FUNC
+    static final MethodHandle glGetQueryiv$MH = RuntimeHelper.downcallHandle(
+        "glGetQueryiv",
+        constants$121.glGetQueryiv$FUNC
+    );
+    static final FunctionDescriptor glGetQueryObjectiv$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glGetQueryObjectiv$MH = RuntimeHelper.downcallHandle(
+        "glGetQueryObjectiv",
+        constants$121.glGetQueryObjectiv$FUNC
     );
 }
 

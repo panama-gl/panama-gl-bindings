@@ -9,24 +9,36 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$713 {
 
-    static final FunctionDescriptor PFNGLWINDOWPOS2FVMESAPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLVERTEXSTREAM4SVATIPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLWINDOWPOS2FVMESAPROC$MH = RuntimeHelper.downcallHandle(
-        constants$713.PFNGLWINDOWPOS2FVMESAPROC$FUNC
+    static final MethodHandle PFNGLVERTEXSTREAM4SVATIPROC$MH = RuntimeHelper.downcallHandle(
+        constants$713.PFNGLVERTEXSTREAM4SVATIPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLWINDOWPOS2IMESAPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLVERTEXSTREAM4IATIPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLWINDOWPOS2IMESAPROC$MH = RuntimeHelper.downcallHandle(
-        constants$713.PFNGLWINDOWPOS2IMESAPROC$FUNC
+    static final MethodHandle PFNGLVERTEXSTREAM4IATIPROC$MH = RuntimeHelper.downcallHandle(
+        constants$713.PFNGLVERTEXSTREAM4IATIPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLWINDOWPOS2IVMESAPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLVERTEXSTREAM4IVATIPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLWINDOWPOS2IVMESAPROC$MH = RuntimeHelper.downcallHandle(
-        constants$713.PFNGLWINDOWPOS2IVMESAPROC$FUNC
+    static final MethodHandle PFNGLVERTEXSTREAM4IVATIPROC$MH = RuntimeHelper.downcallHandle(
+        constants$713.PFNGLVERTEXSTREAM4IVATIPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLVERTEXSTREAM4FATIPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT
     );
 }
 

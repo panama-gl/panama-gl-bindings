@@ -11,13 +11,13 @@ public interface PFNGLGETTEXTUREHANDLENVPROC {
 
     long apply(int texture);
     static MemorySegment allocate(PFNGLGETTEXTUREHANDLENVPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLGETTEXTUREHANDLENVPROC.class, fi, constants$726.PFNGLGETTEXTUREHANDLENVPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLGETTEXTUREHANDLENVPROC.class, fi, constants$1043.PFNGLGETTEXTUREHANDLENVPROC$FUNC, session);
     }
     static PFNGLGETTEXTUREHANDLENVPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _texture) -> {
             try {
-                return (long)constants$726.PFNGLGETTEXTUREHANDLENVPROC$MH.invokeExact((Addressable)symbol, _texture);
+                return (long)constants$1043.PFNGLGETTEXTUREHANDLENVPROC$MH.invokeExact((Addressable)symbol, _texture);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

@@ -9,36 +9,38 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$171 {
 
-    static final FunctionDescriptor PFNGLGENERATEMIPMAPPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT
+    static final FunctionDescriptor PFNGLUNIFORMMATRIX3X2FVPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_CHAR$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLGENERATEMIPMAPPROC$MH = RuntimeHelper.downcallHandle(
-        constants$171.PFNGLGENERATEMIPMAPPROC$FUNC
+    static final MethodHandle PFNGLUNIFORMMATRIX3X2FVPROC$MH = RuntimeHelper.downcallHandle(
+        constants$171.PFNGLUNIFORMMATRIX3X2FVPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLBLITFRAMEBUFFERPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLUNIFORMMATRIX2X4FVPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT
+        Constants$root.C_CHAR$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLBLITFRAMEBUFFERPROC$MH = RuntimeHelper.downcallHandle(
-        constants$171.PFNGLBLITFRAMEBUFFERPROC$FUNC
+    static final MethodHandle PFNGLUNIFORMMATRIX2X4FVPROC$MH = RuntimeHelper.downcallHandle(
+        constants$171.PFNGLUNIFORMMATRIX2X4FVPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLRENDERBUFFERSTORAGEMULTISAMPLEPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLUNIFORMMATRIX4X2FVPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT
+        Constants$root.C_CHAR$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLRENDERBUFFERSTORAGEMULTISAMPLEPROC$MH = RuntimeHelper.downcallHandle(
-        constants$171.PFNGLRENDERBUFFERSTORAGEMULTISAMPLEPROC$FUNC
+    static final MethodHandle PFNGLUNIFORMMATRIX4X2FVPROC$MH = RuntimeHelper.downcallHandle(
+        constants$171.PFNGLUNIFORMMATRIX4X2FVPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLUNIFORMMATRIX3X4FVPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_CHAR$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
 }
 

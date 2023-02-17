@@ -11,13 +11,13 @@ public interface PFNGLBEGINVERTEXSHADEREXTPROC {
 
     void apply();
     static MemorySegment allocate(PFNGLBEGINVERTEXSHADEREXTPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLBEGINVERTEXSHADEREXTPROC.class, fi, constants$682.PFNGLBEGINVERTEXSHADEREXTPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLBEGINVERTEXSHADEREXTPROC.class, fi, constants$976.PFNGLBEGINVERTEXSHADEREXTPROC$FUNC, session);
     }
     static PFNGLBEGINVERTEXSHADEREXTPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return () -> {
             try {
-                constants$682.PFNGLBEGINVERTEXSHADEREXTPROC$MH.invokeExact((Addressable)symbol);
+                constants$976.PFNGLBEGINVERTEXSHADEREXTPROC$MH.invokeExact((Addressable)symbol);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

@@ -9,27 +9,67 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$418 {
 
-    static final FunctionDescriptor PFNGLLIGHTMODELXOESPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glReadnPixels$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT
-    );
-    static final MethodHandle PFNGLLIGHTMODELXOESPROC$MH = RuntimeHelper.downcallHandle(
-        constants$418.PFNGLLIGHTMODELXOESPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLLIGHTMODELXVOESPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLLIGHTMODELXVOESPROC$MH = RuntimeHelper.downcallHandle(
-        constants$418.PFNGLLIGHTMODELXVOESPROC$FUNC
+    static final MethodHandle glReadnPixels$MH = RuntimeHelper.downcallHandle(
+        "glReadnPixels",
+        constants$418.glReadnPixels$FUNC
     );
-    static final FunctionDescriptor PFNGLLIGHTXOESPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glGetnMapdv$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLLIGHTXOESPROC$MH = RuntimeHelper.downcallHandle(
-        constants$418.PFNGLLIGHTXOESPROC$FUNC
+    static final MethodHandle glGetnMapdv$MH = RuntimeHelper.downcallHandle(
+        "glGetnMapdv",
+        constants$418.glGetnMapdv$FUNC
+    );
+    static final FunctionDescriptor glGetnMapfv$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glGetnMapfv$MH = RuntimeHelper.downcallHandle(
+        "glGetnMapfv",
+        constants$418.glGetnMapfv$FUNC
+    );
+    static final FunctionDescriptor glGetnMapiv$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glGetnMapiv$MH = RuntimeHelper.downcallHandle(
+        "glGetnMapiv",
+        constants$418.glGetnMapiv$FUNC
+    );
+    static final FunctionDescriptor glGetnPixelMapfv$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glGetnPixelMapfv$MH = RuntimeHelper.downcallHandle(
+        "glGetnPixelMapfv",
+        constants$418.glGetnPixelMapfv$FUNC
+    );
+    static final FunctionDescriptor glGetnPixelMapuiv$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glGetnPixelMapuiv$MH = RuntimeHelper.downcallHandle(
+        "glGetnPixelMapuiv",
+        constants$418.glGetnPixelMapuiv$FUNC
     );
 }
 

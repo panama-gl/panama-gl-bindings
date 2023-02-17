@@ -11,13 +11,13 @@ public interface PFNGLTANGENT3BVEXTPROC {
 
     void apply(java.lang.foreign.MemoryAddress v);
     static MemorySegment allocate(PFNGLTANGENT3BVEXTPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLTANGENT3BVEXTPROC.class, fi, constants$524.PFNGLTANGENT3BVEXTPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLTANGENT3BVEXTPROC.class, fi, constants$740.PFNGLTANGENT3BVEXTPROC$FUNC, session);
     }
     static PFNGLTANGENT3BVEXTPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (java.lang.foreign.MemoryAddress _v) -> {
             try {
-                constants$524.PFNGLTANGENT3BVEXTPROC$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)_v);
+                constants$740.PFNGLTANGENT3BVEXTPROC$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)_v);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

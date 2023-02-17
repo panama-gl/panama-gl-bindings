@@ -9,30 +9,65 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$851 {
 
-    static final FunctionDescriptor PFNGLGENPROGRAMSNVPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle PFNGLGENPROGRAMSNVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$851.PFNGLGENPROGRAMSNVPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLGETPROGRAMPARAMETERDVNVPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glGetMultiTexGendvEXT$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLGETPROGRAMPARAMETERDVNVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$851.PFNGLGETPROGRAMPARAMETERDVNVPROC$FUNC
+    static final MethodHandle glGetMultiTexGendvEXT$MH = RuntimeHelper.downcallHandle(
+        "glGetMultiTexGendvEXT",
+        constants$851.glGetMultiTexGendvEXT$FUNC
     );
-    static final FunctionDescriptor PFNGLGETPROGRAMPARAMETERFVNVPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glGetMultiTexGenfvEXT$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLGETPROGRAMPARAMETERFVNVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$851.PFNGLGETPROGRAMPARAMETERFVNVPROC$FUNC
+    static final MethodHandle glGetMultiTexGenfvEXT$MH = RuntimeHelper.downcallHandle(
+        "glGetMultiTexGenfvEXT",
+        constants$851.glGetMultiTexGenfvEXT$FUNC
+    );
+    static final FunctionDescriptor glGetMultiTexGenivEXT$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glGetMultiTexGenivEXT$MH = RuntimeHelper.downcallHandle(
+        "glGetMultiTexGenivEXT",
+        constants$851.glGetMultiTexGenivEXT$FUNC
+    );
+    static final FunctionDescriptor glMultiTexParameteriEXT$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle glMultiTexParameteriEXT$MH = RuntimeHelper.downcallHandle(
+        "glMultiTexParameteriEXT",
+        constants$851.glMultiTexParameteriEXT$FUNC
+    );
+    static final FunctionDescriptor glMultiTexParameterivEXT$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glMultiTexParameterivEXT$MH = RuntimeHelper.downcallHandle(
+        "glMultiTexParameterivEXT",
+        constants$851.glMultiTexParameterivEXT$FUNC
+    );
+    static final FunctionDescriptor glMultiTexParameterfEXT$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT
+    );
+    static final MethodHandle glMultiTexParameterfEXT$MH = RuntimeHelper.downcallHandle(
+        "glMultiTexParameterfEXT",
+        constants$851.glMultiTexParameterfEXT$FUNC
     );
 }
 

@@ -9,31 +9,35 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$120 {
 
-    static final FunctionDescriptor PFNGLGETPROGRAMINFOLOGPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
+    static final FunctionDescriptor PFNGLUNMAPBUFFERPROC$FUNC = FunctionDescriptor.of(Constants$root.C_CHAR$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLGETPROGRAMINFOLOGPROC$MH = RuntimeHelper.downcallHandle(
-        constants$120.PFNGLGETPROGRAMINFOLOGPROC$FUNC
+    static final MethodHandle PFNGLUNMAPBUFFERPROC$MH = RuntimeHelper.downcallHandle(
+        constants$120.PFNGLUNMAPBUFFERPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLGETSHADERIVPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLGETBUFFERPARAMETERIVPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLGETSHADERIVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$120.PFNGLGETSHADERIVPROC$FUNC
+    static final MethodHandle PFNGLGETBUFFERPARAMETERIVPROC$MH = RuntimeHelper.downcallHandle(
+        constants$120.PFNGLGETBUFFERPARAMETERIVPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLGETSHADERINFOLOGPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLGETBUFFERPOINTERVPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLGETSHADERINFOLOGPROC$MH = RuntimeHelper.downcallHandle(
-        constants$120.PFNGLGETSHADERINFOLOGPROC$FUNC
+    static final MethodHandle PFNGLGETBUFFERPOINTERVPROC$MH = RuntimeHelper.downcallHandle(
+        constants$120.PFNGLGETBUFFERPOINTERVPROC$FUNC
+    );
+    static final FunctionDescriptor glGenQueries$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glGenQueries$MH = RuntimeHelper.downcallHandle(
+        "glGenQueries",
+        constants$120.glGenQueries$FUNC
     );
 }
 

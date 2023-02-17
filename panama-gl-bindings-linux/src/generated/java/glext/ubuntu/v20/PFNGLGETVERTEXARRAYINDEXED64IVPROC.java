@@ -11,13 +11,13 @@ public interface PFNGLGETVERTEXARRAYINDEXED64IVPROC {
 
     void apply(int vaobj, int index, int pname, java.lang.foreign.MemoryAddress param);
     static MemorySegment allocate(PFNGLGETVERTEXARRAYINDEXED64IVPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLGETVERTEXARRAYINDEXED64IVPROC.class, fi, constants$300.PFNGLGETVERTEXARRAYINDEXED64IVPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLGETVERTEXARRAYINDEXED64IVPROC.class, fi, constants$389.PFNGLGETVERTEXARRAYINDEXED64IVPROC$FUNC, session);
     }
     static PFNGLGETVERTEXARRAYINDEXED64IVPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _vaobj, int _index, int _pname, java.lang.foreign.MemoryAddress _param) -> {
             try {
-                constants$300.PFNGLGETVERTEXARRAYINDEXED64IVPROC$MH.invokeExact((Addressable)symbol, _vaobj, _index, _pname, (java.lang.foreign.Addressable)_param);
+                constants$389.PFNGLGETVERTEXARRAYINDEXED64IVPROC$MH.invokeExact((Addressable)symbol, _vaobj, _index, _pname, (java.lang.foreign.Addressable)_param);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

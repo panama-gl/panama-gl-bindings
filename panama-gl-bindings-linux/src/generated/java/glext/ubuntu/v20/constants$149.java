@@ -9,32 +9,29 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$149 {
 
-    static final FunctionDescriptor PFNGLBINDBUFFERRANGEPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLVERTEXATTRIB4NIVPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_LONG_LONG$LAYOUT,
-        Constants$root.C_LONG_LONG$LAYOUT
+        Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLBINDBUFFERRANGEPROC$MH = RuntimeHelper.downcallHandle(
-        constants$149.PFNGLBINDBUFFERRANGEPROC$FUNC
+    static final MethodHandle PFNGLVERTEXATTRIB4NIVPROC$MH = RuntimeHelper.downcallHandle(
+        constants$149.PFNGLVERTEXATTRIB4NIVPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLBINDBUFFERBASEPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLVERTEXATTRIB4NSVPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT
+        Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLBINDBUFFERBASEPROC$MH = RuntimeHelper.downcallHandle(
-        constants$149.PFNGLBINDBUFFERBASEPROC$FUNC
+    static final MethodHandle PFNGLVERTEXATTRIB4NSVPROC$MH = RuntimeHelper.downcallHandle(
+        constants$149.PFNGLVERTEXATTRIB4NSVPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLTRANSFORMFEEDBACKVARYINGSPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLVERTEXATTRIB4NUBPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_INT$LAYOUT
+        Constants$root.C_CHAR$LAYOUT,
+        Constants$root.C_CHAR$LAYOUT,
+        Constants$root.C_CHAR$LAYOUT,
+        Constants$root.C_CHAR$LAYOUT
     );
-    static final MethodHandle PFNGLTRANSFORMFEEDBACKVARYINGSPROC$MH = RuntimeHelper.downcallHandle(
-        constants$149.PFNGLTRANSFORMFEEDBACKVARYINGSPROC$FUNC
+    static final MethodHandle PFNGLVERTEXATTRIB4NUBPROC$MH = RuntimeHelper.downcallHandle(
+        constants$149.PFNGLVERTEXATTRIB4NUBPROC$FUNC
     );
 }
 

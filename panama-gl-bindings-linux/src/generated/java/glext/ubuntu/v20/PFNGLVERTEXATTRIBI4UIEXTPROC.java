@@ -11,13 +11,13 @@ public interface PFNGLVERTEXATTRIBI4UIEXTPROC {
 
     void apply(int index, int x, int y, int z, int w);
     static MemorySegment allocate(PFNGLVERTEXATTRIBI4UIEXTPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLVERTEXATTRIBI4UIEXTPROC.class, fi, constants$873.PFNGLVERTEXATTRIBI4UIEXTPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLVERTEXATTRIBI4UIEXTPROC.class, fi, constants$1262.PFNGLVERTEXATTRIBI4UIEXTPROC$FUNC, session);
     }
     static PFNGLVERTEXATTRIBI4UIEXTPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _index, int _x, int _y, int _z, int _w) -> {
             try {
-                constants$873.PFNGLVERTEXATTRIBI4UIEXTPROC$MH.invokeExact((Addressable)symbol, _index, _x, _y, _z, _w);
+                constants$1262.PFNGLVERTEXATTRIBI4UIEXTPROC$MH.invokeExact((Addressable)symbol, _index, _x, _y, _z, _w);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

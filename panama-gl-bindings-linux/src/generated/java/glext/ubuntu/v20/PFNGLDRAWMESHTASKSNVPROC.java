@@ -11,13 +11,13 @@ public interface PFNGLDRAWMESHTASKSNVPROC {
 
     void apply(int first, int count);
     static MemorySegment allocate(PFNGLDRAWMESHTASKSNVPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLDRAWMESHTASKSNVPROC.class, fi, constants$781.PFNGLDRAWMESHTASKSNVPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLDRAWMESHTASKSNVPROC.class, fi, constants$1125.PFNGLDRAWMESHTASKSNVPROC$FUNC, session);
     }
     static PFNGLDRAWMESHTASKSNVPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _first, int _count) -> {
             try {
-                constants$781.PFNGLDRAWMESHTASKSNVPROC$MH.invokeExact((Addressable)symbol, _first, _count);
+                constants$1126.PFNGLDRAWMESHTASKSNVPROC$MH.invokeExact((Addressable)symbol, _first, _count);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

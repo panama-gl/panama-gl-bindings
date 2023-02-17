@@ -9,26 +9,28 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$125 {
 
-    static final FunctionDescriptor PFNGLUSEPROGRAMPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLSTENCILFUNCSEPARATEPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLUSEPROGRAMPROC$MH = RuntimeHelper.downcallHandle(
-        constants$125.PFNGLUSEPROGRAMPROC$FUNC
+    static final MethodHandle PFNGLSTENCILFUNCSEPARATEPROC$MH = RuntimeHelper.downcallHandle(
+        constants$125.PFNGLSTENCILFUNCSEPARATEPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLUNIFORM1FPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLSTENCILMASKSEPARATEPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT
+        Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLUNIFORM1FPROC$MH = RuntimeHelper.downcallHandle(
-        constants$125.PFNGLUNIFORM1FPROC$FUNC
+    static final MethodHandle PFNGLSTENCILMASKSEPARATEPROC$MH = RuntimeHelper.downcallHandle(
+        constants$125.PFNGLSTENCILMASKSEPARATEPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLUNIFORM2FPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLATTACHSHADERPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT
+        Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLUNIFORM2FPROC$MH = RuntimeHelper.downcallHandle(
-        constants$125.PFNGLUNIFORM2FPROC$FUNC
+    static final MethodHandle PFNGLATTACHSHADERPROC$MH = RuntimeHelper.downcallHandle(
+        constants$125.PFNGLATTACHSHADERPROC$FUNC
     );
 }
 

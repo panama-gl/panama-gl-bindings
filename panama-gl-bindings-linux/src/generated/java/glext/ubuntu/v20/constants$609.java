@@ -9,35 +9,59 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$609 {
 
-    static final FunctionDescriptor PFNGLCLEARNAMEDBUFFERDATAEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
+    static final FunctionDescriptor glClipPlanexOES$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLCLEARNAMEDBUFFERDATAEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$609.PFNGLCLEARNAMEDBUFFERDATAEXTPROC$FUNC
+    static final MethodHandle glClipPlanexOES$MH = RuntimeHelper.downcallHandle(
+        "glClipPlanexOES",
+        constants$609.glClipPlanexOES$FUNC
     );
-    static final FunctionDescriptor PFNGLCLEARNAMEDBUFFERSUBDATAEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glColor4xOES$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_LONG_LONG$LAYOUT,
-        Constants$root.C_LONG_LONG$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle PFNGLCLEARNAMEDBUFFERSUBDATAEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$609.PFNGLCLEARNAMEDBUFFERSUBDATAEXTPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLNAMEDFRAMEBUFFERPARAMETERIEXTPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLNAMEDFRAMEBUFFERPARAMETERIEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$609.PFNGLNAMEDFRAMEBUFFERPARAMETERIEXTPROC$FUNC
+    static final MethodHandle glColor4xOES$MH = RuntimeHelper.downcallHandle(
+        "glColor4xOES",
+        constants$609.glColor4xOES$FUNC
+    );
+    static final FunctionDescriptor glDepthRangexOES$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle glDepthRangexOES$MH = RuntimeHelper.downcallHandle(
+        "glDepthRangexOES",
+        constants$609.glDepthRangexOES$FUNC
+    );
+    static final FunctionDescriptor glFogxOES$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle glFogxOES$MH = RuntimeHelper.downcallHandle(
+        "glFogxOES",
+        constants$609.glFogxOES$FUNC
+    );
+    static final FunctionDescriptor glFogxvOES$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glFogxvOES$MH = RuntimeHelper.downcallHandle(
+        "glFogxvOES",
+        constants$609.glFogxvOES$FUNC
+    );
+    static final FunctionDescriptor glFrustumxOES$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle glFrustumxOES$MH = RuntimeHelper.downcallHandle(
+        "glFrustumxOES",
+        constants$609.glFrustumxOES$FUNC
     );
 }
 

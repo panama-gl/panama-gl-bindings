@@ -11,13 +11,13 @@ public interface PFNGLGETNCOLORTABLEARBPROC {
 
     void apply(int target, int format, int type, int bufSize, java.lang.foreign.MemoryAddress table);
     static MemorySegment allocate(PFNGLGETNCOLORTABLEARBPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLGETNCOLORTABLEARBPROC.class, fi, constants$354.PFNGLGETNCOLORTABLEARBPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLGETNCOLORTABLEARBPROC.class, fi, constants$483.PFNGLGETNCOLORTABLEARBPROC$FUNC, session);
     }
     static PFNGLGETNCOLORTABLEARBPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _target, int _format, int _type, int _bufSize, java.lang.foreign.MemoryAddress _table) -> {
             try {
-                constants$354.PFNGLGETNCOLORTABLEARBPROC$MH.invokeExact((Addressable)symbol, _target, _format, _type, _bufSize, (java.lang.foreign.Addressable)_table);
+                constants$483.PFNGLGETNCOLORTABLEARBPROC$MH.invokeExact((Addressable)symbol, _target, _format, _type, _bufSize, (java.lang.foreign.Addressable)_table);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

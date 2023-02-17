@@ -9,37 +9,32 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$373 {
 
-    static final FunctionDescriptor PFNGLNAMEDBUFFERPAGECOMMITMENTEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLNAMEDRENDERBUFFERSTORAGEPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_LONG_LONG$LAYOUT,
-        Constants$root.C_LONG_LONG$LAYOUT,
-        Constants$root.C_CHAR$LAYOUT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLNAMEDBUFFERPAGECOMMITMENTEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$373.PFNGLNAMEDBUFFERPAGECOMMITMENTEXTPROC$FUNC
+    static final MethodHandle PFNGLNAMEDRENDERBUFFERSTORAGEPROC$MH = RuntimeHelper.downcallHandle(
+        constants$373.PFNGLNAMEDRENDERBUFFERSTORAGEPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLNAMEDBUFFERPAGECOMMITMENTARBPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLNAMEDRENDERBUFFERSTORAGEMULTISAMPLEPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_LONG_LONG$LAYOUT,
-        Constants$root.C_LONG_LONG$LAYOUT,
-        Constants$root.C_CHAR$LAYOUT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLNAMEDBUFFERPAGECOMMITMENTARBPROC$MH = RuntimeHelper.downcallHandle(
-        constants$373.PFNGLNAMEDBUFFERPAGECOMMITMENTARBPROC$FUNC
+    static final MethodHandle PFNGLNAMEDRENDERBUFFERSTORAGEMULTISAMPLEPROC$MH = RuntimeHelper.downcallHandle(
+        constants$373.PFNGLNAMEDRENDERBUFFERSTORAGEMULTISAMPLEPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLTEXPAGECOMMITMENTARBPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLGETNAMEDRENDERBUFFERPARAMETERIVPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_CHAR$LAYOUT
+        Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLTEXPAGECOMMITMENTARBPROC$MH = RuntimeHelper.downcallHandle(
-        constants$373.PFNGLTEXPAGECOMMITMENTARBPROC$FUNC
+    static final MethodHandle PFNGLGETNAMEDRENDERBUFFERPARAMETERIVPROC$MH = RuntimeHelper.downcallHandle(
+        constants$373.PFNGLGETNAMEDRENDERBUFFERPARAMETERIVPROC$FUNC
     );
 }
 

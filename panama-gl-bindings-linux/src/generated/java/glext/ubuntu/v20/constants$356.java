@@ -9,34 +9,38 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$356 {
 
-    static final FunctionDescriptor PFNGLGETNMINMAXARBPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_CHAR$LAYOUT,
+    static final FunctionDescriptor PFNGLBINDBUFFERSBASEPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLGETNMINMAXARBPROC$MH = RuntimeHelper.downcallHandle(
-        constants$356.PFNGLGETNMINMAXARBPROC$FUNC
+    static final MethodHandle PFNGLBINDBUFFERSBASEPROC$MH = RuntimeHelper.downcallHandle(
+        constants$356.PFNGLBINDBUFFERSBASEPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLFRAMEBUFFERSAMPLELOCATIONSFVARBPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLBINDBUFFERSRANGEPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle PFNGLBINDBUFFERSRANGEPROC$MH = RuntimeHelper.downcallHandle(
+        constants$356.PFNGLBINDBUFFERSRANGEPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLBINDTEXTURESPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLFRAMEBUFFERSAMPLELOCATIONSFVARBPROC$MH = RuntimeHelper.downcallHandle(
-        constants$356.PFNGLFRAMEBUFFERSAMPLELOCATIONSFVARBPROC$FUNC
+    static final MethodHandle PFNGLBINDTEXTURESPROC$MH = RuntimeHelper.downcallHandle(
+        constants$356.PFNGLBINDTEXTURESPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLNAMEDFRAMEBUFFERSAMPLELOCATIONSFVARBPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
+    static final FunctionDescriptor PFNGLBINDSAMPLERSPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle PFNGLNAMEDFRAMEBUFFERSAMPLELOCATIONSFVARBPROC$MH = RuntimeHelper.downcallHandle(
-        constants$356.PFNGLNAMEDFRAMEBUFFERSAMPLELOCATIONSFVARBPROC$FUNC
     );
 }
 

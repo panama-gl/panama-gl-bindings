@@ -11,13 +11,13 @@ public interface PFNGLINSTRUMENTSBUFFERSGIXPROC {
 
     void apply(int size, java.lang.foreign.MemoryAddress buffer);
     static MemorySegment allocate(PFNGLINSTRUMENTSBUFFERSGIXPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLINSTRUMENTSBUFFERSGIXPROC.class, fi, constants$900.PFNGLINSTRUMENTSBUFFERSGIXPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLINSTRUMENTSBUFFERSGIXPROC.class, fi, constants$1303.PFNGLINSTRUMENTSBUFFERSGIXPROC$FUNC, session);
     }
     static PFNGLINSTRUMENTSBUFFERSGIXPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _size, java.lang.foreign.MemoryAddress _buffer) -> {
             try {
-                constants$900.PFNGLINSTRUMENTSBUFFERSGIXPROC$MH.invokeExact((Addressable)symbol, _size, (java.lang.foreign.Addressable)_buffer);
+                constants$1303.PFNGLINSTRUMENTSBUFFERSGIXPROC$MH.invokeExact((Addressable)symbol, _size, (java.lang.foreign.Addressable)_buffer);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

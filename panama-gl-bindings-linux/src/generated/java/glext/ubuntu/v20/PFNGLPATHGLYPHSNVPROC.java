@@ -11,13 +11,13 @@ public interface PFNGLPATHGLYPHSNVPROC {
 
     void apply(int firstPathName, int fontTarget, java.lang.foreign.MemoryAddress fontName, int fontStyle, int numGlyphs, int type, java.lang.foreign.MemoryAddress charcodes, int handleMissingGlyphs, int pathParameterTemplate, float emScale);
     static MemorySegment allocate(PFNGLPATHGLYPHSNVPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLPATHGLYPHSNVPROC.class, fi, constants$789.PFNGLPATHGLYPHSNVPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLPATHGLYPHSNVPROC.class, fi, constants$1135.PFNGLPATHGLYPHSNVPROC$FUNC, session);
     }
     static PFNGLPATHGLYPHSNVPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _firstPathName, int _fontTarget, java.lang.foreign.MemoryAddress _fontName, int _fontStyle, int _numGlyphs, int _type, java.lang.foreign.MemoryAddress _charcodes, int _handleMissingGlyphs, int _pathParameterTemplate, float _emScale) -> {
             try {
-                constants$789.PFNGLPATHGLYPHSNVPROC$MH.invokeExact((Addressable)symbol, _firstPathName, _fontTarget, (java.lang.foreign.Addressable)_fontName, _fontStyle, _numGlyphs, _type, (java.lang.foreign.Addressable)_charcodes, _handleMissingGlyphs, _pathParameterTemplate, _emScale);
+                constants$1135.PFNGLPATHGLYPHSNVPROC$MH.invokeExact((Addressable)symbol, _firstPathName, _fontTarget, (java.lang.foreign.Addressable)_fontName, _fontStyle, _numGlyphs, _type, (java.lang.foreign.Addressable)_charcodes, _handleMissingGlyphs, _pathParameterTemplate, _emScale);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

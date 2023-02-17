@@ -9,42 +9,32 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$945 {
 
-    static final FunctionDescriptor glutPostWindowRedisplay$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT
-    );
-    static final MethodHandle glutPostWindowRedisplay$MH = RuntimeHelper.downcallHandle(
-        "glutPostWindowRedisplay",
-        constants$945.glutPostWindowRedisplay$FUNC
-    );
-    static final FunctionDescriptor glutPostRedisplay$FUNC = FunctionDescriptor.ofVoid();
-    static final MethodHandle glutPostRedisplay$MH = RuntimeHelper.downcallHandle(
-        "glutPostRedisplay",
-        constants$945.glutPostRedisplay$FUNC
-    );
-    static final FunctionDescriptor glutSwapBuffers$FUNC = FunctionDescriptor.ofVoid();
-    static final MethodHandle glutSwapBuffers$MH = RuntimeHelper.downcallHandle(
-        "glutSwapBuffers",
-        constants$945.glutSwapBuffers$FUNC
-    );
-    static final FunctionDescriptor glutWarpPointer$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLSEMAPHOREPARAMETERUI64VEXTPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle glutWarpPointer$MH = RuntimeHelper.downcallHandle(
-        "glutWarpPointer",
-        constants$945.glutWarpPointer$FUNC
+    static final MethodHandle PFNGLSEMAPHOREPARAMETERUI64VEXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$945.PFNGLSEMAPHOREPARAMETERUI64VEXTPROC$FUNC
     );
-    static final FunctionDescriptor glutSetCursor$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT
+    static final FunctionDescriptor PFNGLGETSEMAPHOREPARAMETERUI64VEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle glutSetCursor$MH = RuntimeHelper.downcallHandle(
-        "glutSetCursor",
-        constants$945.glutSetCursor$FUNC
+    static final MethodHandle PFNGLGETSEMAPHOREPARAMETERUI64VEXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$945.PFNGLGETSEMAPHOREPARAMETERUI64VEXTPROC$FUNC
     );
-    static final FunctionDescriptor glutEstablishOverlay$FUNC = FunctionDescriptor.ofVoid();
-    static final MethodHandle glutEstablishOverlay$MH = RuntimeHelper.downcallHandle(
-        "glutEstablishOverlay",
-        constants$945.glutEstablishOverlay$FUNC
+    static final FunctionDescriptor PFNGLWAITSEMAPHOREEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle PFNGLWAITSEMAPHOREEXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$945.PFNGLWAITSEMAPHOREEXTPROC$FUNC
     );
 }
 

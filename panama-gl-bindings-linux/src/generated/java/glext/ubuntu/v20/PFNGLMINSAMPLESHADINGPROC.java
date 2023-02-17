@@ -11,13 +11,13 @@ public interface PFNGLMINSAMPLESHADINGPROC {
 
     void apply(float value);
     static MemorySegment allocate(PFNGLMINSAMPLESHADINGPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLMINSAMPLESHADINGPROC.class, fi, constants$204.PFNGLMINSAMPLESHADINGPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLMINSAMPLESHADINGPROC.class, fi, constants$260.PFNGLMINSAMPLESHADINGPROC$FUNC, session);
     }
     static PFNGLMINSAMPLESHADINGPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (float _value) -> {
             try {
-                constants$204.PFNGLMINSAMPLESHADINGPROC$MH.invokeExact((Addressable)symbol, _value);
+                constants$260.PFNGLMINSAMPLESHADINGPROC$MH.invokeExact((Addressable)symbol, _value);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

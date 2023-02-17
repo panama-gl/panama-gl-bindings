@@ -9,24 +9,39 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$359 {
 
-    static final FunctionDescriptor PFNGLSHADERSOURCEARBPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glBindImageTextures$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glBindImageTextures$MH = RuntimeHelper.downcallHandle(
+        "glBindImageTextures",
+        constants$359.glBindImageTextures$FUNC
+    );
+    static final FunctionDescriptor glBindVertexBuffers$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLSHADERSOURCEARBPROC$MH = RuntimeHelper.downcallHandle(
-        constants$359.PFNGLSHADERSOURCEARBPROC$FUNC
+    static final MethodHandle glBindVertexBuffers$MH = RuntimeHelper.downcallHandle(
+        "glBindVertexBuffers",
+        constants$359.glBindVertexBuffers$FUNC
     );
-    static final FunctionDescriptor PFNGLCOMPILESHADERARBPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLCLIPCONTROLPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLCOMPILESHADERARBPROC$MH = RuntimeHelper.downcallHandle(
-        constants$359.PFNGLCOMPILESHADERARBPROC$FUNC
+    static final MethodHandle PFNGLCLIPCONTROLPROC$MH = RuntimeHelper.downcallHandle(
+        constants$359.PFNGLCLIPCONTROLPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLCREATEPROGRAMOBJECTARBPROC$FUNC = FunctionDescriptor.of(Constants$root.C_INT$LAYOUT);
-    static final MethodHandle PFNGLCREATEPROGRAMOBJECTARBPROC$MH = RuntimeHelper.downcallHandle(
-        constants$359.PFNGLCREATEPROGRAMOBJECTARBPROC$FUNC
+    static final FunctionDescriptor PFNGLCREATETRANSFORMFEEDBACKSPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle PFNGLCREATETRANSFORMFEEDBACKSPROC$MH = RuntimeHelper.downcallHandle(
+        constants$359.PFNGLCREATETRANSFORMFEEDBACKSPROC$FUNC
     );
 }
 

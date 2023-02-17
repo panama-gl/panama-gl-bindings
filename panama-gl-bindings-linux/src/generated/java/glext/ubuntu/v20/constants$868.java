@@ -9,29 +9,73 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$868 {
 
-    static final FunctionDescriptor PFNGLVERTEXATTRIBS2FVNVPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glNamedProgramLocalParameterI4iEXT$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle glNamedProgramLocalParameterI4iEXT$MH = RuntimeHelper.downcallHandle(
+        "glNamedProgramLocalParameterI4iEXT",
+        constants$868.glNamedProgramLocalParameterI4iEXT$FUNC
+    );
+    static final FunctionDescriptor glNamedProgramLocalParameterI4ivEXT$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLVERTEXATTRIBS2FVNVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$868.PFNGLVERTEXATTRIBS2FVNVPROC$FUNC
+    static final MethodHandle glNamedProgramLocalParameterI4ivEXT$MH = RuntimeHelper.downcallHandle(
+        "glNamedProgramLocalParameterI4ivEXT",
+        constants$868.glNamedProgramLocalParameterI4ivEXT$FUNC
     );
-    static final FunctionDescriptor PFNGLVERTEXATTRIBS2SVNVPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glNamedProgramLocalParametersI4ivEXT$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLVERTEXATTRIBS2SVNVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$868.PFNGLVERTEXATTRIBS2SVNVPROC$FUNC
+    static final MethodHandle glNamedProgramLocalParametersI4ivEXT$MH = RuntimeHelper.downcallHandle(
+        "glNamedProgramLocalParametersI4ivEXT",
+        constants$868.glNamedProgramLocalParametersI4ivEXT$FUNC
     );
-    static final FunctionDescriptor PFNGLVERTEXATTRIBS3DVNVPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glNamedProgramLocalParameterI4uiEXT$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle glNamedProgramLocalParameterI4uiEXT$MH = RuntimeHelper.downcallHandle(
+        "glNamedProgramLocalParameterI4uiEXT",
+        constants$868.glNamedProgramLocalParameterI4uiEXT$FUNC
+    );
+    static final FunctionDescriptor glNamedProgramLocalParameterI4uivEXT$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLVERTEXATTRIBS3DVNVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$868.PFNGLVERTEXATTRIBS3DVNVPROC$FUNC
+    static final MethodHandle glNamedProgramLocalParameterI4uivEXT$MH = RuntimeHelper.downcallHandle(
+        "glNamedProgramLocalParameterI4uivEXT",
+        constants$868.glNamedProgramLocalParameterI4uivEXT$FUNC
+    );
+    static final FunctionDescriptor glNamedProgramLocalParametersI4uivEXT$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glNamedProgramLocalParametersI4uivEXT$MH = RuntimeHelper.downcallHandle(
+        "glNamedProgramLocalParametersI4uivEXT",
+        constants$868.glNamedProgramLocalParametersI4uivEXT$FUNC
     );
 }
 

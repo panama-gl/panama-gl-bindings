@@ -11,13 +11,13 @@ public interface PFNGLISPOINTINSTROKEPATHNVPROC {
 
     byte apply(int path, float x, float y);
     static MemorySegment allocate(PFNGLISPOINTINSTROKEPATHNVPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLISPOINTINSTROKEPATHNVPROC.class, fi, constants$799.PFNGLISPOINTINSTROKEPATHNVPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLISPOINTINSTROKEPATHNVPROC.class, fi, constants$1145.PFNGLISPOINTINSTROKEPATHNVPROC$FUNC, session);
     }
     static PFNGLISPOINTINSTROKEPATHNVPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _path, float _x, float _y) -> {
             try {
-                return (byte)constants$799.PFNGLISPOINTINSTROKEPATHNVPROC$MH.invokeExact((Addressable)symbol, _path, _x, _y);
+                return (byte)constants$1146.PFNGLISPOINTINSTROKEPATHNVPROC$MH.invokeExact((Addressable)symbol, _path, _x, _y);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

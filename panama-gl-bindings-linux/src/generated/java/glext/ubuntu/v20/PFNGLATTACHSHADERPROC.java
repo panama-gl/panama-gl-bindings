@@ -11,13 +11,13 @@ public interface PFNGLATTACHSHADERPROC {
 
     void apply(int program, int shader);
     static MemorySegment allocate(PFNGLATTACHSHADERPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLATTACHSHADERPROC.class, fi, constants$115.PFNGLATTACHSHADERPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLATTACHSHADERPROC.class, fi, constants$125.PFNGLATTACHSHADERPROC$FUNC, session);
     }
     static PFNGLATTACHSHADERPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _program, int _shader) -> {
             try {
-                constants$115.PFNGLATTACHSHADERPROC$MH.invokeExact((Addressable)symbol, _program, _shader);
+                constants$125.PFNGLATTACHSHADERPROC$MH.invokeExact((Addressable)symbol, _program, _shader);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

@@ -11,13 +11,13 @@ public interface PFNGLTEXTURESUBIMAGE2DPROC {
 
     void apply(int texture, int level, int xoffset, int yoffset, int width, int height, int format, int type, java.lang.foreign.MemoryAddress pixels);
     static MemorySegment allocate(PFNGLTEXTURESUBIMAGE2DPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLTEXTURESUBIMAGE2DPROC.class, fi, constants$288.PFNGLTEXTURESUBIMAGE2DPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLTEXTURESUBIMAGE2DPROC.class, fi, constants$377.PFNGLTEXTURESUBIMAGE2DPROC$FUNC, session);
     }
     static PFNGLTEXTURESUBIMAGE2DPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _texture, int _level, int _xoffset, int _yoffset, int _width, int _height, int _format, int _type, java.lang.foreign.MemoryAddress _pixels) -> {
             try {
-                constants$288.PFNGLTEXTURESUBIMAGE2DPROC$MH.invokeExact((Addressable)symbol, _texture, _level, _xoffset, _yoffset, _width, _height, _format, _type, (java.lang.foreign.Addressable)_pixels);
+                constants$377.PFNGLTEXTURESUBIMAGE2DPROC$MH.invokeExact((Addressable)symbol, _texture, _level, _xoffset, _yoffset, _width, _height, _format, _type, (java.lang.foreign.Addressable)_pixels);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

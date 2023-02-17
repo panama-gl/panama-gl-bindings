@@ -11,13 +11,13 @@ public interface PFNGLSAMPLEPATTERNEXTPROC {
 
     void apply(int pattern);
     static MemorySegment allocate(PFNGLSAMPLEPATTERNEXTPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLSAMPLEPATTERNEXTPROC.class, fi, constants$649.PFNGLSAMPLEPATTERNEXTPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLSAMPLEPATTERNEXTPROC.class, fi, constants$926.PFNGLSAMPLEPATTERNEXTPROC$FUNC, session);
     }
     static PFNGLSAMPLEPATTERNEXTPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _pattern) -> {
             try {
-                constants$649.PFNGLSAMPLEPATTERNEXTPROC$MH.invokeExact((Addressable)symbol, _pattern);
+                constants$927.PFNGLSAMPLEPATTERNEXTPROC$MH.invokeExact((Addressable)symbol, _pattern);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

@@ -9,34 +9,33 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$585 {
 
-    static final FunctionDescriptor PFNGLPROGRAMUNIFORM4UIEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
+    static final FunctionDescriptor PFNGLTEXPARAMETERXOESPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLPROGRAMUNIFORM4UIEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$585.PFNGLPROGRAMUNIFORM4UIEXTPROC$FUNC
+    static final MethodHandle PFNGLTEXPARAMETERXOESPROC$MH = RuntimeHelper.downcallHandle(
+        constants$585.PFNGLTEXPARAMETERXOESPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLPROGRAMUNIFORM1UIVEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
+    static final FunctionDescriptor PFNGLTEXPARAMETERXVOESPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLPROGRAMUNIFORM1UIVEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$585.PFNGLPROGRAMUNIFORM1UIVEXTPROC$FUNC
+    static final MethodHandle PFNGLTEXPARAMETERXVOESPROC$MH = RuntimeHelper.downcallHandle(
+        constants$585.PFNGLTEXPARAMETERXVOESPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLPROGRAMUNIFORM2UIVEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLTRANSLATEXOESPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
+        Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLPROGRAMUNIFORM2UIVEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$585.PFNGLPROGRAMUNIFORM2UIVEXTPROC$FUNC
+    static final MethodHandle PFNGLTRANSLATEXOESPROC$MH = RuntimeHelper.downcallHandle(
+        constants$585.PFNGLTRANSLATEXOESPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLACCUMXOESPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
 }
 

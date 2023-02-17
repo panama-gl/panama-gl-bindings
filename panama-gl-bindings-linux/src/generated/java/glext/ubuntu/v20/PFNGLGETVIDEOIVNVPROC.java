@@ -11,13 +11,13 @@ public interface PFNGLGETVIDEOIVNVPROC {
 
     void apply(int video_slot, int pname, java.lang.foreign.MemoryAddress params);
     static MemorySegment allocate(PFNGLGETVIDEOIVNVPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLGETVIDEOIVNVPROC.class, fi, constants$809.PFNGLGETVIDEOIVNVPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLGETVIDEOIVNVPROC.class, fi, constants$1167.PFNGLGETVIDEOIVNVPROC$FUNC, session);
     }
     static PFNGLGETVIDEOIVNVPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _video_slot, int _pname, java.lang.foreign.MemoryAddress _params) -> {
             try {
-                constants$809.PFNGLGETVIDEOIVNVPROC$MH.invokeExact((Addressable)symbol, _video_slot, _pname, (java.lang.foreign.Addressable)_params);
+                constants$1167.PFNGLGETVIDEOIVNVPROC$MH.invokeExact((Addressable)symbol, _video_slot, _pname, (java.lang.foreign.Addressable)_params);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

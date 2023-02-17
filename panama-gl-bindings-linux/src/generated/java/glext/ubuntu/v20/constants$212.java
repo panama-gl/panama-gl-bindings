@@ -9,29 +9,52 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$212 {
 
-    static final FunctionDescriptor PFNGLGETUNIFORMDVPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glGetRenderbufferParameteriv$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLGETUNIFORMDVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$212.PFNGLGETUNIFORMDVPROC$FUNC
+    static final MethodHandle glGetRenderbufferParameteriv$MH = RuntimeHelper.downcallHandle(
+        "glGetRenderbufferParameteriv",
+        constants$212.glGetRenderbufferParameteriv$FUNC
     );
-    static final FunctionDescriptor PFNGLGETSUBROUTINEUNIFORMLOCATIONPROC$FUNC = FunctionDescriptor.of(Constants$root.C_INT$LAYOUT,
+    static final FunctionDescriptor glIsFramebuffer$FUNC = FunctionDescriptor.of(Constants$root.C_CHAR$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle glIsFramebuffer$MH = RuntimeHelper.downcallHandle(
+        "glIsFramebuffer",
+        constants$212.glIsFramebuffer$FUNC
+    );
+    static final FunctionDescriptor glBindFramebuffer$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle glBindFramebuffer$MH = RuntimeHelper.downcallHandle(
+        "glBindFramebuffer",
+        constants$212.glBindFramebuffer$FUNC
+    );
+    static final FunctionDescriptor glDeleteFramebuffers$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLGETSUBROUTINEUNIFORMLOCATIONPROC$MH = RuntimeHelper.downcallHandle(
-        constants$212.PFNGLGETSUBROUTINEUNIFORMLOCATIONPROC$FUNC
+    static final MethodHandle glDeleteFramebuffers$MH = RuntimeHelper.downcallHandle(
+        "glDeleteFramebuffers",
+        constants$212.glDeleteFramebuffers$FUNC
     );
-    static final FunctionDescriptor PFNGLGETSUBROUTINEINDEXPROC$FUNC = FunctionDescriptor.of(Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
+    static final FunctionDescriptor glGenFramebuffers$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLGETSUBROUTINEINDEXPROC$MH = RuntimeHelper.downcallHandle(
-        constants$212.PFNGLGETSUBROUTINEINDEXPROC$FUNC
+    static final MethodHandle glGenFramebuffers$MH = RuntimeHelper.downcallHandle(
+        "glGenFramebuffers",
+        constants$212.glGenFramebuffers$FUNC
+    );
+    static final FunctionDescriptor glCheckFramebufferStatus$FUNC = FunctionDescriptor.of(Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle glCheckFramebufferStatus$MH = RuntimeHelper.downcallHandle(
+        "glCheckFramebufferStatus",
+        constants$212.glCheckFramebufferStatus$FUNC
     );
 }
 

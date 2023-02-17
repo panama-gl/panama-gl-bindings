@@ -11,13 +11,13 @@ public interface PFNGLRESETMEMORYOBJECTPARAMETERNVPROC {
 
     void apply(int memory, int pname);
     static MemorySegment allocate(PFNGLRESETMEMORYOBJECTPARAMETERNVPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLRESETMEMORYOBJECTPARAMETERNVPROC.class, fi, constants$780.PFNGLRESETMEMORYOBJECTPARAMETERNVPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLRESETMEMORYOBJECTPARAMETERNVPROC.class, fi, constants$1123.PFNGLRESETMEMORYOBJECTPARAMETERNVPROC$FUNC, session);
     }
     static PFNGLRESETMEMORYOBJECTPARAMETERNVPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _memory, int _pname) -> {
             try {
-                constants$780.PFNGLRESETMEMORYOBJECTPARAMETERNVPROC$MH.invokeExact((Addressable)symbol, _memory, _pname);
+                constants$1123.PFNGLRESETMEMORYOBJECTPARAMETERNVPROC$MH.invokeExact((Addressable)symbol, _memory, _pname);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

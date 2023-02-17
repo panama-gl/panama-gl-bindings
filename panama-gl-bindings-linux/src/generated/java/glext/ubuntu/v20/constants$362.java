@@ -9,31 +9,32 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$362 {
 
-    static final FunctionDescriptor PFNGLUNIFORM3FARBPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLNAMEDBUFFERSTORAGEPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT
-    );
-    static final MethodHandle PFNGLUNIFORM3FARBPROC$MH = RuntimeHelper.downcallHandle(
-        constants$362.PFNGLUNIFORM3FARBPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLUNIFORM4FARBPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT
-    );
-    static final MethodHandle PFNGLUNIFORM4FARBPROC$MH = RuntimeHelper.downcallHandle(
-        constants$362.PFNGLUNIFORM4FARBPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLUNIFORM1IARBPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
         Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLUNIFORM1IARBPROC$MH = RuntimeHelper.downcallHandle(
-        constants$362.PFNGLUNIFORM1IARBPROC$FUNC
+    static final MethodHandle PFNGLNAMEDBUFFERSTORAGEPROC$MH = RuntimeHelper.downcallHandle(
+        constants$362.PFNGLNAMEDBUFFERSTORAGEPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLNAMEDBUFFERDATAPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle PFNGLNAMEDBUFFERDATAPROC$MH = RuntimeHelper.downcallHandle(
+        constants$362.PFNGLNAMEDBUFFERDATAPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLNAMEDBUFFERSUBDATAPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle PFNGLNAMEDBUFFERSUBDATAPROC$MH = RuntimeHelper.downcallHandle(
+        constants$362.PFNGLNAMEDBUFFERSUBDATAPROC$FUNC
     );
 }
 

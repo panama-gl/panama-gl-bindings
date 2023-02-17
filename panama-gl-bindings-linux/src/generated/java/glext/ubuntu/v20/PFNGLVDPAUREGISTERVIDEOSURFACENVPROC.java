@@ -11,13 +11,13 @@ public interface PFNGLVDPAUREGISTERVIDEOSURFACENVPROC {
 
     long apply(java.lang.foreign.MemoryAddress vdpSurface, int target, int numTextureNames, java.lang.foreign.MemoryAddress textureNames);
     static MemorySegment allocate(PFNGLVDPAUREGISTERVIDEOSURFACENVPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLVDPAUREGISTERVIDEOSURFACENVPROC.class, fi, constants$835.PFNGLVDPAUREGISTERVIDEOSURFACENVPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLVDPAUREGISTERVIDEOSURFACENVPROC.class, fi, constants$1206.PFNGLVDPAUREGISTERVIDEOSURFACENVPROC$FUNC, session);
     }
     static PFNGLVDPAUREGISTERVIDEOSURFACENVPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (java.lang.foreign.MemoryAddress _vdpSurface, int _target, int _numTextureNames, java.lang.foreign.MemoryAddress _textureNames) -> {
             try {
-                return (long)constants$835.PFNGLVDPAUREGISTERVIDEOSURFACENVPROC$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)_vdpSurface, _target, _numTextureNames, (java.lang.foreign.Addressable)_textureNames);
+                return (long)constants$1206.PFNGLVDPAUREGISTERVIDEOSURFACENVPROC$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)_vdpSurface, _target, _numTextureNames, (java.lang.foreign.Addressable)_textureNames);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

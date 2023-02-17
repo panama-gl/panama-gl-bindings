@@ -11,13 +11,13 @@ public interface PFNGLGETPERFMONITORGROUPSTRINGAMDPROC {
 
     void apply(int group, int bufSize, java.lang.foreign.MemoryAddress length, java.lang.foreign.MemoryAddress groupString);
     static MemorySegment allocate(PFNGLGETPERFMONITORGROUPSTRINGAMDPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLGETPERFMONITORGROUPSTRINGAMDPROC.class, fi, constants$470.PFNGLGETPERFMONITORGROUPSTRINGAMDPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLGETPERFMONITORGROUPSTRINGAMDPROC.class, fi, constants$658.PFNGLGETPERFMONITORGROUPSTRINGAMDPROC$FUNC, session);
     }
     static PFNGLGETPERFMONITORGROUPSTRINGAMDPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _group, int _bufSize, java.lang.foreign.MemoryAddress _length, java.lang.foreign.MemoryAddress _groupString) -> {
             try {
-                constants$470.PFNGLGETPERFMONITORGROUPSTRINGAMDPROC$MH.invokeExact((Addressable)symbol, _group, _bufSize, (java.lang.foreign.Addressable)_length, (java.lang.foreign.Addressable)_groupString);
+                constants$658.PFNGLGETPERFMONITORGROUPSTRINGAMDPROC$MH.invokeExact((Addressable)symbol, _group, _bufSize, (java.lang.foreign.Addressable)_length, (java.lang.foreign.Addressable)_groupString);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

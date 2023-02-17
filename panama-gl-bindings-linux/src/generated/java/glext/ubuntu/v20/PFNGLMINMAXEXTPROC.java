@@ -11,13 +11,13 @@ public interface PFNGLMINMAXEXTPROC {
 
     void apply(int target, int internalformat, byte sink);
     static MemorySegment allocate(PFNGLMINMAXEXTPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLMINMAXEXTPROC.class, fi, constants$638.PFNGLMINMAXEXTPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLMINMAXEXTPROC.class, fi, constants$909.PFNGLMINMAXEXTPROC$FUNC, session);
     }
     static PFNGLMINMAXEXTPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _target, int _internalformat, byte _sink) -> {
             try {
-                constants$638.PFNGLMINMAXEXTPROC$MH.invokeExact((Addressable)symbol, _target, _internalformat, _sink);
+                constants$909.PFNGLMINMAXEXTPROC$MH.invokeExact((Addressable)symbol, _target, _internalformat, _sink);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

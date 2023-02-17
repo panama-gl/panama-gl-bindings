@@ -11,13 +11,13 @@ public interface PFNGLVERTEXARRAYTEXCOORDOFFSETEXTPROC {
 
     void apply(int vaobj, int buffer, int size, int type, int stride, long offset);
     static MemorySegment allocate(PFNGLVERTEXARRAYTEXCOORDOFFSETEXTPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLVERTEXARRAYTEXCOORDOFFSETEXTPROC.class, fi, constants$603.PFNGLVERTEXARRAYTEXCOORDOFFSETEXTPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLVERTEXARRAYTEXCOORDOFFSETEXTPROC.class, fi, constants$824.PFNGLVERTEXARRAYTEXCOORDOFFSETEXTPROC$FUNC, session);
     }
     static PFNGLVERTEXARRAYTEXCOORDOFFSETEXTPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _vaobj, int _buffer, int _size, int _type, int _stride, long _offset) -> {
             try {
-                constants$603.PFNGLVERTEXARRAYTEXCOORDOFFSETEXTPROC$MH.invokeExact((Addressable)symbol, _vaobj, _buffer, _size, _type, _stride, _offset);
+                constants$825.PFNGLVERTEXARRAYTEXCOORDOFFSETEXTPROC$MH.invokeExact((Addressable)symbol, _vaobj, _buffer, _size, _type, _stride, _offset);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

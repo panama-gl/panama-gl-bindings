@@ -11,13 +11,13 @@ public interface PFNGLDELETEQUERYRESOURCETAGNVPROC {
 
     void apply(int n, java.lang.foreign.MemoryAddress tagIds);
     static MemorySegment allocate(PFNGLDELETEQUERYRESOURCETAGNVPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLDELETEQUERYRESOURCETAGNVPROC.class, fi, constants$812.PFNGLDELETEQUERYRESOURCETAGNVPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLDELETEQUERYRESOURCETAGNVPROC.class, fi, constants$1171.PFNGLDELETEQUERYRESOURCETAGNVPROC$FUNC, session);
     }
     static PFNGLDELETEQUERYRESOURCETAGNVPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _n, java.lang.foreign.MemoryAddress _tagIds) -> {
             try {
-                constants$812.PFNGLDELETEQUERYRESOURCETAGNVPROC$MH.invokeExact((Addressable)symbol, _n, (java.lang.foreign.Addressable)_tagIds);
+                constants$1171.PFNGLDELETEQUERYRESOURCETAGNVPROC$MH.invokeExact((Addressable)symbol, _n, (java.lang.foreign.Addressable)_tagIds);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

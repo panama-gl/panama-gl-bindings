@@ -9,47 +9,32 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$544 {
 
-    static final FunctionDescriptor PFNGLTEXTURESUBIMAGE2DEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
+    static final FunctionDescriptor PFNGLDISABLEVERTEXATTRIBARRAYARBPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle PFNGLDISABLEVERTEXATTRIBARRAYARBPROC$MH = RuntimeHelper.downcallHandle(
+        constants$544.PFNGLDISABLEVERTEXATTRIBARRAYARBPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLGETVERTEXATTRIBDVARBPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLTEXTURESUBIMAGE2DEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$544.PFNGLTEXTURESUBIMAGE2DEXTPROC$FUNC
+    static final MethodHandle PFNGLGETVERTEXATTRIBDVARBPROC$MH = RuntimeHelper.downcallHandle(
+        constants$544.PFNGLGETVERTEXATTRIBDVARBPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLCOPYTEXTUREIMAGE1DEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLGETVERTEXATTRIBFVARBPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT
+        Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLCOPYTEXTUREIMAGE1DEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$544.PFNGLCOPYTEXTUREIMAGE1DEXTPROC$FUNC
+    static final MethodHandle PFNGLGETVERTEXATTRIBFVARBPROC$MH = RuntimeHelper.downcallHandle(
+        constants$544.PFNGLGETVERTEXATTRIBFVARBPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLCOPYTEXTUREIMAGE2DEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLGETVERTEXATTRIBIVARBPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT
-    );
-    static final MethodHandle PFNGLCOPYTEXTUREIMAGE2DEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$544.PFNGLCOPYTEXTUREIMAGE2DEXTPROC$FUNC
+        Constants$root.C_POINTER$LAYOUT
     );
 }
 

@@ -11,13 +11,13 @@ public interface PFNGLISBUFFERPROC {
 
     byte apply(int buffer);
     static MemorySegment allocate(PFNGLISBUFFERPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLISBUFFERPROC.class, fi, constants$110.PFNGLISBUFFERPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLISBUFFERPROC.class, fi, constants$118.PFNGLISBUFFERPROC$FUNC, session);
     }
     static PFNGLISBUFFERPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _buffer) -> {
             try {
-                return (byte)constants$110.PFNGLISBUFFERPROC$MH.invokeExact((Addressable)symbol, _buffer);
+                return (byte)constants$118.PFNGLISBUFFERPROC$MH.invokeExact((Addressable)symbol, _buffer);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

@@ -9,28 +9,30 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$626 {
 
-    static final FunctionDescriptor PFNGLDELETERENDERBUFFERSEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glQueryMatrixxOES$FUNC = FunctionDescriptor.of(Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glQueryMatrixxOES$MH = RuntimeHelper.downcallHandle(
+        "glQueryMatrixxOES",
+        constants$626.glQueryMatrixxOES$FUNC
+    );
+    static final FunctionDescriptor PFNGLCLEARDEPTHFOESPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_FLOAT$LAYOUT
+    );
+    static final MethodHandle PFNGLCLEARDEPTHFOESPROC$MH = RuntimeHelper.downcallHandle(
+        constants$626.PFNGLCLEARDEPTHFOESPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLCLIPPLANEFOESPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLDELETERENDERBUFFERSEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$626.PFNGLDELETERENDERBUFFERSEXTPROC$FUNC
+    static final MethodHandle PFNGLCLIPPLANEFOESPROC$MH = RuntimeHelper.downcallHandle(
+        constants$626.PFNGLCLIPPLANEFOESPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLGENRENDERBUFFERSEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle PFNGLGENRENDERBUFFERSEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$626.PFNGLGENRENDERBUFFERSEXTPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLRENDERBUFFERSTORAGEEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT
-    );
-    static final MethodHandle PFNGLRENDERBUFFERSTORAGEEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$626.PFNGLRENDERBUFFERSTORAGEEXTPROC$FUNC
+    static final FunctionDescriptor PFNGLDEPTHRANGEFOESPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT
     );
 }
 

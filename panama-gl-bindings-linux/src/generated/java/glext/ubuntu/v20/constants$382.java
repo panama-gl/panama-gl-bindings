@@ -9,27 +9,32 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$382 {
 
-    static final FunctionDescriptor PFNGLGENBUFFERSARBPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLBINDTEXTUREUNITPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle PFNGLBINDTEXTUREUNITPROC$MH = RuntimeHelper.downcallHandle(
+        constants$382.PFNGLBINDTEXTUREUNITPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLGETTEXTUREIMAGEPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLGENBUFFERSARBPROC$MH = RuntimeHelper.downcallHandle(
-        constants$382.PFNGLGENBUFFERSARBPROC$FUNC
+    static final MethodHandle PFNGLGETTEXTUREIMAGEPROC$MH = RuntimeHelper.downcallHandle(
+        constants$382.PFNGLGETTEXTUREIMAGEPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLISBUFFERARBPROC$FUNC = FunctionDescriptor.of(Constants$root.C_CHAR$LAYOUT,
-        Constants$root.C_INT$LAYOUT
-    );
-    static final MethodHandle PFNGLISBUFFERARBPROC$MH = RuntimeHelper.downcallHandle(
-        constants$382.PFNGLISBUFFERARBPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLBUFFERDATAARBPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLGETCOMPRESSEDTEXTUREIMAGEPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_LONG_LONG$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_INT$LAYOUT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLBUFFERDATAARBPROC$MH = RuntimeHelper.downcallHandle(
-        constants$382.PFNGLBUFFERDATAARBPROC$FUNC
+    static final MethodHandle PFNGLGETCOMPRESSEDTEXTUREIMAGEPROC$MH = RuntimeHelper.downcallHandle(
+        constants$382.PFNGLGETCOMPRESSEDTEXTUREIMAGEPROC$FUNC
     );
 }
 

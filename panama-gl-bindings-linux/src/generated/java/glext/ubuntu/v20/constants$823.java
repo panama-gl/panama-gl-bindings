@@ -9,30 +9,41 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$823 {
 
-    static final FunctionDescriptor PFNGLUNIFORMUI64VNVPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLMULTITEXRENDERBUFFEREXTPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
+        Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLUNIFORMUI64VNVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$823.PFNGLUNIFORMUI64VNVPROC$FUNC
+    static final MethodHandle PFNGLMULTITEXRENDERBUFFEREXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$823.PFNGLMULTITEXRENDERBUFFEREXTPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLPROGRAMUNIFORMUI64NVPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLVERTEXARRAYVERTEXOFFSETEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_LONG_LONG$LAYOUT
     );
-    static final MethodHandle PFNGLPROGRAMUNIFORMUI64NVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$823.PFNGLPROGRAMUNIFORMUI64NVPROC$FUNC
+    static final MethodHandle PFNGLVERTEXARRAYVERTEXOFFSETEXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$823.PFNGLVERTEXARRAYVERTEXOFFSETEXTPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLPROGRAMUNIFORMUI64VNVPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLVERTEXARRAYCOLOROFFSETEXTPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT
     );
-    static final MethodHandle PFNGLPROGRAMUNIFORMUI64VNVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$823.PFNGLPROGRAMUNIFORMUI64VNVPROC$FUNC
+    static final MethodHandle PFNGLVERTEXARRAYCOLOROFFSETEXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$823.PFNGLVERTEXARRAYCOLOROFFSETEXTPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLVERTEXARRAYEDGEFLAGOFFSETEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT
     );
 }
 

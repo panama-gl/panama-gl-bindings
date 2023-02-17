@@ -11,13 +11,13 @@ public interface PFNGLCOMPRESSEDTEXTURESUBIMAGE3DEXTPROC {
 
     void apply(int texture, int target, int level, int xoffset, int yoffset, int zoffset, int width, int height, int depth, int format, int imageSize, java.lang.foreign.MemoryAddress bits);
     static MemorySegment allocate(PFNGLCOMPRESSEDTEXTURESUBIMAGE3DEXTPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLCOMPRESSEDTEXTURESUBIMAGE3DEXTPROC.class, fi, constants$565.PFNGLCOMPRESSEDTEXTURESUBIMAGE3DEXTPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLCOMPRESSEDTEXTURESUBIMAGE3DEXTPROC.class, fi, constants$786.PFNGLCOMPRESSEDTEXTURESUBIMAGE3DEXTPROC$FUNC, session);
     }
     static PFNGLCOMPRESSEDTEXTURESUBIMAGE3DEXTPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _texture, int _target, int _level, int _xoffset, int _yoffset, int _zoffset, int _width, int _height, int _depth, int _format, int _imageSize, java.lang.foreign.MemoryAddress _bits) -> {
             try {
-                constants$565.PFNGLCOMPRESSEDTEXTURESUBIMAGE3DEXTPROC$MH.invokeExact((Addressable)symbol, _texture, _target, _level, _xoffset, _yoffset, _zoffset, _width, _height, _depth, _format, _imageSize, (java.lang.foreign.Addressable)_bits);
+                constants$786.PFNGLCOMPRESSEDTEXTURESUBIMAGE3DEXTPROC$MH.invokeExact((Addressable)symbol, _texture, _target, _level, _xoffset, _yoffset, _zoffset, _width, _height, _depth, _format, _imageSize, (java.lang.foreign.Addressable)_bits);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

@@ -9,30 +9,27 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$669 {
 
-    static final FunctionDescriptor PFNGLGETTEXPARAMETERIIVEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle PFNGLGETTEXPARAMETERIIVEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$669.PFNGLGETTEXPARAMETERIIVEXTPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLGETTEXPARAMETERIUIVEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
+    static final FunctionDescriptor PFNGLDELETEFENCESAPPLEPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLGETTEXPARAMETERIUIVEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$669.PFNGLGETTEXPARAMETERIUIVEXTPROC$FUNC
+    static final MethodHandle PFNGLDELETEFENCESAPPLEPROC$MH = RuntimeHelper.downcallHandle(
+        constants$669.PFNGLDELETEFENCESAPPLEPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLCLEARCOLORIIEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
+    static final FunctionDescriptor PFNGLSETFENCEAPPLEPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLCLEARCOLORIIEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$669.PFNGLCLEARCOLORIIEXTPROC$FUNC
+    static final MethodHandle PFNGLSETFENCEAPPLEPROC$MH = RuntimeHelper.downcallHandle(
+        constants$669.PFNGLSETFENCEAPPLEPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLISFENCEAPPLEPROC$FUNC = FunctionDescriptor.of(Constants$root.C_CHAR$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle PFNGLISFENCEAPPLEPROC$MH = RuntimeHelper.downcallHandle(
+        constants$669.PFNGLISFENCEAPPLEPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLTESTFENCEAPPLEPROC$FUNC = FunctionDescriptor.of(Constants$root.C_CHAR$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
 }
 

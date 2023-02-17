@@ -11,13 +11,13 @@ public interface PFNGLDRAWTRANSFORMFEEDBACKSTREAMINSTANCEDPROC {
 
     void apply(int mode, int id, int stream, int instancecount);
     static MemorySegment allocate(PFNGLDRAWTRANSFORMFEEDBACKSTREAMINSTANCEDPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLDRAWTRANSFORMFEEDBACKSTREAMINSTANCEDPROC.class, fi, constants$252.PFNGLDRAWTRANSFORMFEEDBACKSTREAMINSTANCEDPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLDRAWTRANSFORMFEEDBACKSTREAMINSTANCEDPROC.class, fi, constants$330.PFNGLDRAWTRANSFORMFEEDBACKSTREAMINSTANCEDPROC$FUNC, session);
     }
     static PFNGLDRAWTRANSFORMFEEDBACKSTREAMINSTANCEDPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _mode, int _id, int _stream, int _instancecount) -> {
             try {
-                constants$252.PFNGLDRAWTRANSFORMFEEDBACKSTREAMINSTANCEDPROC$MH.invokeExact((Addressable)symbol, _mode, _id, _stream, _instancecount);
+                constants$330.PFNGLDRAWTRANSFORMFEEDBACKSTREAMINSTANCEDPROC$MH.invokeExact((Addressable)symbol, _mode, _id, _stream, _instancecount);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

@@ -11,13 +11,13 @@ public interface PFNGLDRAWCOMMANDSSTATESADDRESSNVPROC {
 
     void apply(java.lang.foreign.MemoryAddress indirects, java.lang.foreign.MemoryAddress sizes, java.lang.foreign.MemoryAddress states, java.lang.foreign.MemoryAddress fbos, int count);
     static MemorySegment allocate(PFNGLDRAWCOMMANDSSTATESADDRESSNVPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLDRAWCOMMANDSSTATESADDRESSNVPROC.class, fi, constants$735.PFNGLDRAWCOMMANDSSTATESADDRESSNVPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLDRAWCOMMANDSSTATESADDRESSNVPROC.class, fi, constants$1054.PFNGLDRAWCOMMANDSSTATESADDRESSNVPROC$FUNC, session);
     }
     static PFNGLDRAWCOMMANDSSTATESADDRESSNVPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (java.lang.foreign.MemoryAddress _indirects, java.lang.foreign.MemoryAddress _sizes, java.lang.foreign.MemoryAddress _states, java.lang.foreign.MemoryAddress _fbos, int _count) -> {
             try {
-                constants$735.PFNGLDRAWCOMMANDSSTATESADDRESSNVPROC$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)_indirects, (java.lang.foreign.Addressable)_sizes, (java.lang.foreign.Addressable)_states, (java.lang.foreign.Addressable)_fbos, _count);
+                constants$1054.PFNGLDRAWCOMMANDSSTATESADDRESSNVPROC$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)_indirects, (java.lang.foreign.Addressable)_sizes, (java.lang.foreign.Addressable)_states, (java.lang.foreign.Addressable)_fbos, _count);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

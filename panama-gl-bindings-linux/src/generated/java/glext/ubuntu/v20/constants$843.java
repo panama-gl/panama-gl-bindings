@@ -9,29 +9,62 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$843 {
 
-    static final FunctionDescriptor PFNGLVERTEXATTRIBL4UI64NVPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_LONG_LONG$LAYOUT,
-        Constants$root.C_LONG_LONG$LAYOUT,
-        Constants$root.C_LONG_LONG$LAYOUT,
-        Constants$root.C_LONG_LONG$LAYOUT
-    );
-    static final MethodHandle PFNGLVERTEXATTRIBL4UI64NVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$843.PFNGLVERTEXATTRIBL4UI64NVPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLVERTEXATTRIBL1UI64VNVPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glMatrixMultdEXT$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLVERTEXATTRIBL1UI64VNVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$843.PFNGLVERTEXATTRIBL1UI64VNVPROC$FUNC
+    static final MethodHandle glMatrixMultdEXT$MH = RuntimeHelper.downcallHandle(
+        "glMatrixMultdEXT",
+        constants$843.glMatrixMultdEXT$FUNC
     );
-    static final FunctionDescriptor PFNGLVERTEXATTRIBL2UI64VNVPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glMatrixLoadIdentityEXT$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle glMatrixLoadIdentityEXT$MH = RuntimeHelper.downcallHandle(
+        "glMatrixLoadIdentityEXT",
+        constants$843.glMatrixLoadIdentityEXT$FUNC
+    );
+    static final FunctionDescriptor glMatrixRotatefEXT$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
+        Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT
     );
-    static final MethodHandle PFNGLVERTEXATTRIBL2UI64VNVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$843.PFNGLVERTEXATTRIBL2UI64VNVPROC$FUNC
+    static final MethodHandle glMatrixRotatefEXT$MH = RuntimeHelper.downcallHandle(
+        "glMatrixRotatefEXT",
+        constants$843.glMatrixRotatefEXT$FUNC
+    );
+    static final FunctionDescriptor glMatrixRotatedEXT$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_DOUBLE$LAYOUT,
+        Constants$root.C_DOUBLE$LAYOUT,
+        Constants$root.C_DOUBLE$LAYOUT,
+        Constants$root.C_DOUBLE$LAYOUT
+    );
+    static final MethodHandle glMatrixRotatedEXT$MH = RuntimeHelper.downcallHandle(
+        "glMatrixRotatedEXT",
+        constants$843.glMatrixRotatedEXT$FUNC
+    );
+    static final FunctionDescriptor glMatrixScalefEXT$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT
+    );
+    static final MethodHandle glMatrixScalefEXT$MH = RuntimeHelper.downcallHandle(
+        "glMatrixScalefEXT",
+        constants$843.glMatrixScalefEXT$FUNC
+    );
+    static final FunctionDescriptor glMatrixScaledEXT$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_DOUBLE$LAYOUT,
+        Constants$root.C_DOUBLE$LAYOUT,
+        Constants$root.C_DOUBLE$LAYOUT
+    );
+    static final MethodHandle glMatrixScaledEXT$MH = RuntimeHelper.downcallHandle(
+        "glMatrixScaledEXT",
+        constants$843.glMatrixScaledEXT$FUNC
     );
 }
 

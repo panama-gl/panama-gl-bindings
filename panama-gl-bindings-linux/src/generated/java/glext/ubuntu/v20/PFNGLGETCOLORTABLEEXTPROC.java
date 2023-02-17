@@ -11,13 +11,13 @@ public interface PFNGLGETCOLORTABLEEXTPROC {
 
     void apply(int target, int format, int type, java.lang.foreign.MemoryAddress data);
     static MemorySegment allocate(PFNGLGETCOLORTABLEEXTPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLGETCOLORTABLEEXTPROC.class, fi, constants$649.PFNGLGETCOLORTABLEEXTPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLGETCOLORTABLEEXTPROC.class, fi, constants$927.PFNGLGETCOLORTABLEEXTPROC$FUNC, session);
     }
     static PFNGLGETCOLORTABLEEXTPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _target, int _format, int _type, java.lang.foreign.MemoryAddress _data) -> {
             try {
-                constants$649.PFNGLGETCOLORTABLEEXTPROC$MH.invokeExact((Addressable)symbol, _target, _format, _type, (java.lang.foreign.Addressable)_data);
+                constants$928.PFNGLGETCOLORTABLEEXTPROC$MH.invokeExact((Addressable)symbol, _target, _format, _type, (java.lang.foreign.Addressable)_data);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

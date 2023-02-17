@@ -11,13 +11,13 @@ public interface PFNGLGETOBJECTLABELPROC {
 
     void apply(int identifier, int name, int bufSize, java.lang.foreign.MemoryAddress length, java.lang.foreign.MemoryAddress label);
     static MemorySegment allocate(PFNGLGETOBJECTLABELPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLGETOBJECTLABELPROC.class, fi, constants$266.PFNGLGETOBJECTLABELPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLGETOBJECTLABELPROC.class, fi, constants$346.PFNGLGETOBJECTLABELPROC$FUNC, session);
     }
     static PFNGLGETOBJECTLABELPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _identifier, int _name, int _bufSize, java.lang.foreign.MemoryAddress _length, java.lang.foreign.MemoryAddress _label) -> {
             try {
-                constants$266.PFNGLGETOBJECTLABELPROC$MH.invokeExact((Addressable)symbol, _identifier, _name, _bufSize, (java.lang.foreign.Addressable)_length, (java.lang.foreign.Addressable)_label);
+                constants$346.PFNGLGETOBJECTLABELPROC$MH.invokeExact((Addressable)symbol, _identifier, _name, _bufSize, (java.lang.foreign.Addressable)_length, (java.lang.foreign.Addressable)_label);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

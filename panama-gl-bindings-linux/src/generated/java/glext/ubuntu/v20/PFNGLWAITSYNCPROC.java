@@ -11,13 +11,13 @@ public interface PFNGLWAITSYNCPROC {
 
     void apply(java.lang.foreign.MemoryAddress sync, int flags, long timeout);
     static MemorySegment allocate(PFNGLWAITSYNCPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLWAITSYNCPROC.class, fi, constants$181.PFNGLWAITSYNCPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLWAITSYNCPROC.class, fi, constants$224.PFNGLWAITSYNCPROC$FUNC, session);
     }
     static PFNGLWAITSYNCPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (java.lang.foreign.MemoryAddress _sync, int _flags, long _timeout) -> {
             try {
-                constants$181.PFNGLWAITSYNCPROC$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)_sync, _flags, _timeout);
+                constants$224.PFNGLWAITSYNCPROC$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)_sync, _flags, _timeout);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

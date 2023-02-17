@@ -9,26 +9,28 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$132 {
 
-    static final FunctionDescriptor PFNGLVERTEXATTRIB1DPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_DOUBLE$LAYOUT
-    );
-    static final MethodHandle PFNGLVERTEXATTRIB1DPROC$MH = RuntimeHelper.downcallHandle(
-        constants$132.PFNGLVERTEXATTRIB1DPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLVERTEXATTRIB1DVPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLGETUNIFORMLOCATIONPROC$FUNC = FunctionDescriptor.of(Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLVERTEXATTRIB1DVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$132.PFNGLVERTEXATTRIB1DVPROC$FUNC
+    static final MethodHandle PFNGLGETUNIFORMLOCATIONPROC$MH = RuntimeHelper.downcallHandle(
+        constants$132.PFNGLGETUNIFORMLOCATIONPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLVERTEXATTRIB1FPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLGETUNIFORMFVPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLVERTEXATTRIB1FPROC$MH = RuntimeHelper.downcallHandle(
-        constants$132.PFNGLVERTEXATTRIB1FPROC$FUNC
+    static final MethodHandle PFNGLGETUNIFORMFVPROC$MH = RuntimeHelper.downcallHandle(
+        constants$132.PFNGLGETUNIFORMFVPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLGETUNIFORMIVPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle PFNGLGETUNIFORMIVPROC$MH = RuntimeHelper.downcallHandle(
+        constants$132.PFNGLGETUNIFORMIVPROC$FUNC
     );
 }
 

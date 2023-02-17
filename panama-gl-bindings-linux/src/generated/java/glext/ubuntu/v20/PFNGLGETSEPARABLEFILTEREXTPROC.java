@@ -11,13 +11,13 @@ public interface PFNGLGETSEPARABLEFILTEREXTPROC {
 
     void apply(int target, int format, int type, java.lang.foreign.MemoryAddress row, java.lang.foreign.MemoryAddress column, java.lang.foreign.MemoryAddress span);
     static MemorySegment allocate(PFNGLGETSEPARABLEFILTEREXTPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLGETSEPARABLEFILTEREXTPROC.class, fi, constants$523.PFNGLGETSEPARABLEFILTEREXTPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLGETSEPARABLEFILTEREXTPROC.class, fi, constants$737.PFNGLGETSEPARABLEFILTEREXTPROC$FUNC, session);
     }
     static PFNGLGETSEPARABLEFILTEREXTPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _target, int _format, int _type, java.lang.foreign.MemoryAddress _row, java.lang.foreign.MemoryAddress _column, java.lang.foreign.MemoryAddress _span) -> {
             try {
-                constants$523.PFNGLGETSEPARABLEFILTEREXTPROC$MH.invokeExact((Addressable)symbol, _target, _format, _type, (java.lang.foreign.Addressable)_row, (java.lang.foreign.Addressable)_column, (java.lang.foreign.Addressable)_span);
+                constants$737.PFNGLGETSEPARABLEFILTEREXTPROC$MH.invokeExact((Addressable)symbol, _target, _format, _type, (java.lang.foreign.Addressable)_row, (java.lang.foreign.Addressable)_column, (java.lang.foreign.Addressable)_span);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

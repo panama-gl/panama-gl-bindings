@@ -9,28 +9,34 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$387 {
 
-    static final FunctionDescriptor PFNGLVERTEXATTRIB2DARBPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLVERTEXARRAYATTRIBBINDINGPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_DOUBLE$LAYOUT,
-        Constants$root.C_DOUBLE$LAYOUT
-    );
-    static final MethodHandle PFNGLVERTEXATTRIB2DARBPROC$MH = RuntimeHelper.downcallHandle(
-        constants$387.PFNGLVERTEXATTRIB2DARBPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLVERTEXATTRIB2DVARBPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
+        Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLVERTEXATTRIB2DVARBPROC$MH = RuntimeHelper.downcallHandle(
-        constants$387.PFNGLVERTEXATTRIB2DVARBPROC$FUNC
+    static final MethodHandle PFNGLVERTEXARRAYATTRIBBINDINGPROC$MH = RuntimeHelper.downcallHandle(
+        constants$387.PFNGLVERTEXARRAYATTRIBBINDINGPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLVERTEXATTRIB2FARBPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLVERTEXARRAYATTRIBFORMATPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_CHAR$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLVERTEXATTRIB2FARBPROC$MH = RuntimeHelper.downcallHandle(
-        constants$387.PFNGLVERTEXATTRIB2FARBPROC$FUNC
+    static final MethodHandle PFNGLVERTEXARRAYATTRIBFORMATPROC$MH = RuntimeHelper.downcallHandle(
+        constants$387.PFNGLVERTEXARRAYATTRIBFORMATPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLVERTEXARRAYATTRIBIFORMATPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle PFNGLVERTEXARRAYATTRIBIFORMATPROC$MH = RuntimeHelper.downcallHandle(
+        constants$387.PFNGLVERTEXARRAYATTRIBIFORMATPROC$FUNC
     );
 }
 

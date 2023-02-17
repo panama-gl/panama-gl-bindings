@@ -11,13 +11,13 @@ public interface PFNGLGENFENCESAPPLEPROC {
 
     void apply(int n, java.lang.foreign.MemoryAddress fences);
     static MemorySegment allocate(PFNGLGENFENCESAPPLEPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLGENFENCESAPPLEPROC.class, fi, constants$476.PFNGLGENFENCESAPPLEPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLGENFENCESAPPLEPROC.class, fi, constants$668.PFNGLGENFENCESAPPLEPROC$FUNC, session);
     }
     static PFNGLGENFENCESAPPLEPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _n, java.lang.foreign.MemoryAddress _fences) -> {
             try {
-                constants$476.PFNGLGENFENCESAPPLEPROC$MH.invokeExact((Addressable)symbol, _n, (java.lang.foreign.Addressable)_fences);
+                constants$668.PFNGLGENFENCESAPPLEPROC$MH.invokeExact((Addressable)symbol, _n, (java.lang.foreign.Addressable)_fences);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

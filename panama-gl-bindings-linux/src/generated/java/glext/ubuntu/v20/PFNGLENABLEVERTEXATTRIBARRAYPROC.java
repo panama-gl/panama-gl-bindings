@@ -11,13 +11,13 @@ public interface PFNGLENABLEVERTEXATTRIBARRAYPROC {
 
     void apply(int index);
     static MemorySegment allocate(PFNGLENABLEVERTEXATTRIBARRAYPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLENABLEVERTEXATTRIBARRAYPROC.class, fi, constants$118.PFNGLENABLEVERTEXATTRIBARRAYPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLENABLEVERTEXATTRIBARRAYPROC.class, fi, constants$128.PFNGLENABLEVERTEXATTRIBARRAYPROC$FUNC, session);
     }
     static PFNGLENABLEVERTEXATTRIBARRAYPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _index) -> {
             try {
-                constants$118.PFNGLENABLEVERTEXATTRIBARRAYPROC$MH.invokeExact((Addressable)symbol, _index);
+                constants$128.PFNGLENABLEVERTEXATTRIBARRAYPROC$MH.invokeExact((Addressable)symbol, _index);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

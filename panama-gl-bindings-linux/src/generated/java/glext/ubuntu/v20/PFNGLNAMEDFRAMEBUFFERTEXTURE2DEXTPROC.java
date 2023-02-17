@@ -11,13 +11,13 @@ public interface PFNGLNAMEDFRAMEBUFFERTEXTURE2DEXTPROC {
 
     void apply(int framebuffer, int attachment, int textarget, int texture, int level);
     static MemorySegment allocate(PFNGLNAMEDFRAMEBUFFERTEXTURE2DEXTPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLNAMEDFRAMEBUFFERTEXTURE2DEXTPROC.class, fi, constants$596.PFNGLNAMEDFRAMEBUFFERTEXTURE2DEXTPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLNAMEDFRAMEBUFFERTEXTURE2DEXTPROC.class, fi, constants$817.PFNGLNAMEDFRAMEBUFFERTEXTURE2DEXTPROC$FUNC, session);
     }
     static PFNGLNAMEDFRAMEBUFFERTEXTURE2DEXTPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _framebuffer, int _attachment, int _textarget, int _texture, int _level) -> {
             try {
-                constants$596.PFNGLNAMEDFRAMEBUFFERTEXTURE2DEXTPROC$MH.invokeExact((Addressable)symbol, _framebuffer, _attachment, _textarget, _texture, _level);
+                constants$818.PFNGLNAMEDFRAMEBUFFERTEXTURE2DEXTPROC$MH.invokeExact((Addressable)symbol, _framebuffer, _attachment, _textarget, _texture, _level);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

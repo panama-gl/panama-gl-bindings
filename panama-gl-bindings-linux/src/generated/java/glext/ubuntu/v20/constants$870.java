@@ -9,29 +9,71 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$870 {
 
-    static final FunctionDescriptor PFNGLVERTEXATTRIBS4FVNVPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glGetPointeri_vEXT$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLVERTEXATTRIBS4FVNVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$870.PFNGLVERTEXATTRIBS4FVNVPROC$FUNC
+    static final MethodHandle glGetPointeri_vEXT$MH = RuntimeHelper.downcallHandle(
+        "glGetPointeri_vEXT",
+        constants$870.glGetPointeri_vEXT$FUNC
     );
-    static final FunctionDescriptor PFNGLVERTEXATTRIBS4SVNVPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glNamedProgramStringEXT$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLVERTEXATTRIBS4SVNVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$870.PFNGLVERTEXATTRIBS4SVNVPROC$FUNC
+    static final MethodHandle glNamedProgramStringEXT$MH = RuntimeHelper.downcallHandle(
+        "glNamedProgramStringEXT",
+        constants$870.glNamedProgramStringEXT$FUNC
     );
-    static final FunctionDescriptor PFNGLVERTEXATTRIBS4UBVNVPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glNamedProgramLocalParameter4dEXT$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_DOUBLE$LAYOUT,
+        Constants$root.C_DOUBLE$LAYOUT,
+        Constants$root.C_DOUBLE$LAYOUT,
+        Constants$root.C_DOUBLE$LAYOUT
+    );
+    static final MethodHandle glNamedProgramLocalParameter4dEXT$MH = RuntimeHelper.downcallHandle(
+        "glNamedProgramLocalParameter4dEXT",
+        constants$870.glNamedProgramLocalParameter4dEXT$FUNC
+    );
+    static final FunctionDescriptor glNamedProgramLocalParameter4dvEXT$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLVERTEXATTRIBS4UBVNVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$870.PFNGLVERTEXATTRIBS4UBVNVPROC$FUNC
+    static final MethodHandle glNamedProgramLocalParameter4dvEXT$MH = RuntimeHelper.downcallHandle(
+        "glNamedProgramLocalParameter4dvEXT",
+        constants$870.glNamedProgramLocalParameter4dvEXT$FUNC
+    );
+    static final FunctionDescriptor glNamedProgramLocalParameter4fEXT$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT
+    );
+    static final MethodHandle glNamedProgramLocalParameter4fEXT$MH = RuntimeHelper.downcallHandle(
+        "glNamedProgramLocalParameter4fEXT",
+        constants$870.glNamedProgramLocalParameter4fEXT$FUNC
+    );
+    static final FunctionDescriptor glNamedProgramLocalParameter4fvEXT$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glNamedProgramLocalParameter4fvEXT$MH = RuntimeHelper.downcallHandle(
+        "glNamedProgramLocalParameter4fvEXT",
+        constants$870.glNamedProgramLocalParameter4fvEXT$FUNC
     );
 }
 

@@ -11,13 +11,13 @@ public interface PFNGLPOLYGONOFFSETCLAMPPROC {
 
     void apply(float factor, float units, float clamp);
     static MemorySegment allocate(PFNGLPOLYGONOFFSETCLAMPPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLPOLYGONOFFSETCLAMPPROC.class, fi, constants$312.PFNGLPOLYGONOFFSETCLAMPPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLPOLYGONOFFSETCLAMPPROC.class, fi, constants$421.PFNGLPOLYGONOFFSETCLAMPPROC$FUNC, session);
     }
     static PFNGLPOLYGONOFFSETCLAMPPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (float _factor, float _units, float _clamp) -> {
             try {
-                constants$312.PFNGLPOLYGONOFFSETCLAMPPROC$MH.invokeExact((Addressable)symbol, _factor, _units, _clamp);
+                constants$421.PFNGLPOLYGONOFFSETCLAMPPROC$MH.invokeExact((Addressable)symbol, _factor, _units, _clamp);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

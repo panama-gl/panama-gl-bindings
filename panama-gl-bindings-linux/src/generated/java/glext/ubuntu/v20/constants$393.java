@@ -9,29 +9,29 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$393 {
 
-    static final FunctionDescriptor PFNGLVERTEXATTRIB4NUSVARBPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLGETGRAPHICSRESETSTATUSPROC$FUNC = FunctionDescriptor.of(Constants$root.C_INT$LAYOUT);
+    static final MethodHandle PFNGLGETGRAPHICSRESETSTATUSPROC$MH = RuntimeHelper.downcallHandle(
+        constants$393.PFNGLGETGRAPHICSRESETSTATUSPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLGETNCOMPRESSEDTEXIMAGEPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLVERTEXATTRIB4NUSVARBPROC$MH = RuntimeHelper.downcallHandle(
-        constants$393.PFNGLVERTEXATTRIB4NUSVARBPROC$FUNC
+    static final MethodHandle PFNGLGETNCOMPRESSEDTEXIMAGEPROC$MH = RuntimeHelper.downcallHandle(
+        constants$393.PFNGLGETNCOMPRESSEDTEXIMAGEPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLVERTEXATTRIB4BVARBPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLGETNTEXIMAGEPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLVERTEXATTRIB4BVARBPROC$MH = RuntimeHelper.downcallHandle(
-        constants$393.PFNGLVERTEXATTRIB4BVARBPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLVERTEXATTRIB4DARBPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_DOUBLE$LAYOUT,
-        Constants$root.C_DOUBLE$LAYOUT,
-        Constants$root.C_DOUBLE$LAYOUT,
-        Constants$root.C_DOUBLE$LAYOUT
-    );
-    static final MethodHandle PFNGLVERTEXATTRIB4DARBPROC$MH = RuntimeHelper.downcallHandle(
-        constants$393.PFNGLVERTEXATTRIB4DARBPROC$FUNC
+    static final MethodHandle PFNGLGETNTEXIMAGEPROC$MH = RuntimeHelper.downcallHandle(
+        constants$393.PFNGLGETNTEXIMAGEPROC$FUNC
     );
 }
 

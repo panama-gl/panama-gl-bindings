@@ -9,32 +9,29 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$193 {
 
-    static final FunctionDescriptor PFNGLVERTEXATTRIBP3UIVPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_CHAR$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle PFNGLVERTEXATTRIBP3UIVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$193.PFNGLVERTEXATTRIBP3UIVPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLVERTEXATTRIBP4UIPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_CHAR$LAYOUT,
+    static final FunctionDescriptor PFNGLISRENDERBUFFERPROC$FUNC = FunctionDescriptor.of(Constants$root.C_CHAR$LAYOUT,
         Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLVERTEXATTRIBP4UIPROC$MH = RuntimeHelper.downcallHandle(
-        constants$193.PFNGLVERTEXATTRIBP4UIPROC$FUNC
+    static final MethodHandle PFNGLISRENDERBUFFERPROC$MH = RuntimeHelper.downcallHandle(
+        constants$193.PFNGLISRENDERBUFFERPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLVERTEXATTRIBP4UIVPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLBINDRENDERBUFFERPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle PFNGLBINDRENDERBUFFERPROC$MH = RuntimeHelper.downcallHandle(
+        constants$193.PFNGLBINDRENDERBUFFERPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLDELETERENDERBUFFERSPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_CHAR$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLVERTEXATTRIBP4UIVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$193.PFNGLVERTEXATTRIBP4UIVPROC$FUNC
+    static final MethodHandle PFNGLDELETERENDERBUFFERSPROC$MH = RuntimeHelper.downcallHandle(
+        constants$193.PFNGLDELETERENDERBUFFERSPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLGENRENDERBUFFERSPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
 }
 

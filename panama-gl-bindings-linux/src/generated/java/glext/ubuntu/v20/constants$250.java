@@ -9,32 +9,46 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$250 {
 
-    static final FunctionDescriptor PFNGLGETACTIVEATOMICCOUNTERBUFFERIVPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLSECONDARYCOLORP3UIVPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle PFNGLSECONDARYCOLORP3UIVPROC$MH = RuntimeHelper.downcallHandle(
+        constants$250.PFNGLSECONDARYCOLORP3UIVPROC$FUNC
+    );
+    static final FunctionDescriptor glBindFragDataLocationIndexed$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLGETACTIVEATOMICCOUNTERBUFFERIVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$250.PFNGLGETACTIVEATOMICCOUNTERBUFFERIVPROC$FUNC
+    static final MethodHandle glBindFragDataLocationIndexed$MH = RuntimeHelper.downcallHandle(
+        "glBindFragDataLocationIndexed",
+        constants$250.glBindFragDataLocationIndexed$FUNC
     );
-    static final FunctionDescriptor PFNGLBINDIMAGETEXTUREPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glGetFragDataIndex$FUNC = FunctionDescriptor.of(Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_CHAR$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT
+        Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLBINDIMAGETEXTUREPROC$MH = RuntimeHelper.downcallHandle(
-        constants$250.PFNGLBINDIMAGETEXTUREPROC$FUNC
+    static final MethodHandle glGetFragDataIndex$MH = RuntimeHelper.downcallHandle(
+        "glGetFragDataIndex",
+        constants$250.glGetFragDataIndex$FUNC
     );
-    static final FunctionDescriptor PFNGLMEMORYBARRIERPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT
+    static final FunctionDescriptor glGenSamplers$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLMEMORYBARRIERPROC$MH = RuntimeHelper.downcallHandle(
-        constants$250.PFNGLMEMORYBARRIERPROC$FUNC
+    static final MethodHandle glGenSamplers$MH = RuntimeHelper.downcallHandle(
+        "glGenSamplers",
+        constants$250.glGenSamplers$FUNC
+    );
+    static final FunctionDescriptor glDeleteSamplers$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glDeleteSamplers$MH = RuntimeHelper.downcallHandle(
+        "glDeleteSamplers",
+        constants$250.glDeleteSamplers$FUNC
     );
 }
 

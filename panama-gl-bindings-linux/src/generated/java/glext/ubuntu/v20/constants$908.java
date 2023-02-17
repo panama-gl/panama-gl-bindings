@@ -9,32 +9,31 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$908 {
 
-    static final FunctionDescriptor PFNGLCOLORTABLEPARAMETERIVSGIPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLGETMINMAXEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_CHAR$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLCOLORTABLEPARAMETERIVSGIPROC$MH = RuntimeHelper.downcallHandle(
-        constants$908.PFNGLCOLORTABLEPARAMETERIVSGIPROC$FUNC
+    static final MethodHandle PFNGLGETMINMAXEXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$908.PFNGLGETMINMAXEXTPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLCOPYCOLORTABLESGIPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT
-    );
-    static final MethodHandle PFNGLCOPYCOLORTABLESGIPROC$MH = RuntimeHelper.downcallHandle(
-        constants$908.PFNGLCOPYCOLORTABLESGIPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLGETCOLORTABLESGIPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
+    static final FunctionDescriptor PFNGLGETMINMAXPARAMETERFVEXTPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLGETCOLORTABLESGIPROC$MH = RuntimeHelper.downcallHandle(
-        constants$908.PFNGLGETCOLORTABLESGIPROC$FUNC
+    static final MethodHandle PFNGLGETMINMAXPARAMETERFVEXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$908.PFNGLGETMINMAXPARAMETERFVEXTPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLGETMINMAXPARAMETERIVEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle PFNGLGETMINMAXPARAMETERIVEXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$908.PFNGLGETMINMAXPARAMETERIVEXTPROC$FUNC
     );
 }
 

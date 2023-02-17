@@ -11,13 +11,13 @@ public interface PFNGLMULTICASTVIEWPORTPOSITIONWSCALENVXPROC {
 
     void apply(int gpu, int index, float xcoeff, float ycoeff);
     static MemorySegment allocate(PFNGLMULTICASTVIEWPORTPOSITIONWSCALENVXPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLMULTICASTVIEWPORTPOSITIONWSCALENVXPROC.class, fi, constants$721.PFNGLMULTICASTVIEWPORTPOSITIONWSCALENVXPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLMULTICASTVIEWPORTPOSITIONWSCALENVXPROC.class, fi, constants$1035.PFNGLMULTICASTVIEWPORTPOSITIONWSCALENVXPROC$FUNC, session);
     }
     static PFNGLMULTICASTVIEWPORTPOSITIONWSCALENVXPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _gpu, int _index, float _xcoeff, float _ycoeff) -> {
             try {
-                constants$721.PFNGLMULTICASTVIEWPORTPOSITIONWSCALENVXPROC$MH.invokeExact((Addressable)symbol, _gpu, _index, _xcoeff, _ycoeff);
+                constants$1035.PFNGLMULTICASTVIEWPORTPOSITIONWSCALENVXPROC$MH.invokeExact((Addressable)symbol, _gpu, _index, _xcoeff, _ycoeff);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

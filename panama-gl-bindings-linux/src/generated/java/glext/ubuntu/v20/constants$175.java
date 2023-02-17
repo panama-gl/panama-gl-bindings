@@ -9,30 +9,27 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$175 {
 
-    static final FunctionDescriptor PFNGLTEXBUFFERPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
+    static final FunctionDescriptor PFNGLDISABLEIPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLTEXBUFFERPROC$MH = RuntimeHelper.downcallHandle(
-        constants$175.PFNGLTEXBUFFERPROC$FUNC
+    static final MethodHandle PFNGLDISABLEIPROC$MH = RuntimeHelper.downcallHandle(
+        constants$175.PFNGLDISABLEIPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLPRIMITIVERESTARTINDEXPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLISENABLEDIPROC$FUNC = FunctionDescriptor.of(Constants$root.C_CHAR$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLPRIMITIVERESTARTINDEXPROC$MH = RuntimeHelper.downcallHandle(
-        constants$175.PFNGLPRIMITIVERESTARTINDEXPROC$FUNC
+    static final MethodHandle PFNGLISENABLEDIPROC$MH = RuntimeHelper.downcallHandle(
+        constants$175.PFNGLISENABLEDIPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLCOPYBUFFERSUBDATAPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_LONG_LONG$LAYOUT,
-        Constants$root.C_LONG_LONG$LAYOUT,
-        Constants$root.C_LONG_LONG$LAYOUT
+    static final FunctionDescriptor PFNGLBEGINTRANSFORMFEEDBACKPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLCOPYBUFFERSUBDATAPROC$MH = RuntimeHelper.downcallHandle(
-        constants$175.PFNGLCOPYBUFFERSUBDATAPROC$FUNC
+    static final MethodHandle PFNGLBEGINTRANSFORMFEEDBACKPROC$MH = RuntimeHelper.downcallHandle(
+        constants$175.PFNGLBEGINTRANSFORMFEEDBACKPROC$FUNC
     );
+    static final FunctionDescriptor PFNGLENDTRANSFORMFEEDBACKPROC$FUNC = FunctionDescriptor.ofVoid();
 }
 
 

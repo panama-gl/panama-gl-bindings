@@ -9,35 +9,33 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$330 {
 
-    static final FunctionDescriptor PFNGLFRAMEBUFFERTEXTURELAYERARBPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLTEXSTORAGE3DPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT
-    );
-    static final MethodHandle PFNGLFRAMEBUFFERTEXTURELAYERARBPROC$MH = RuntimeHelper.downcallHandle(
-        constants$330.PFNGLFRAMEBUFFERTEXTURELAYERARBPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLFRAMEBUFFERTEXTUREFACEARBPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLFRAMEBUFFERTEXTUREFACEARBPROC$MH = RuntimeHelper.downcallHandle(
-        constants$330.PFNGLFRAMEBUFFERTEXTUREFACEARBPROC$FUNC
+    static final MethodHandle PFNGLTEXSTORAGE3DPROC$MH = RuntimeHelper.downcallHandle(
+        constants$330.PFNGLTEXSTORAGE3DPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLSPECIALIZESHADERARBPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLDRAWTRANSFORMFEEDBACKINSTANCEDPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
+        Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLSPECIALIZESHADERARBPROC$MH = RuntimeHelper.downcallHandle(
-        constants$330.PFNGLSPECIALIZESHADERARBPROC$FUNC
+    static final MethodHandle PFNGLDRAWTRANSFORMFEEDBACKINSTANCEDPROC$MH = RuntimeHelper.downcallHandle(
+        constants$330.PFNGLDRAWTRANSFORMFEEDBACKINSTANCEDPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLDRAWTRANSFORMFEEDBACKSTREAMINSTANCEDPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle PFNGLDRAWTRANSFORMFEEDBACKSTREAMINSTANCEDPROC$MH = RuntimeHelper.downcallHandle(
+        constants$330.PFNGLDRAWTRANSFORMFEEDBACKSTREAMINSTANCEDPROC$FUNC
     );
 }
 

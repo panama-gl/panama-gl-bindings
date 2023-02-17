@@ -9,28 +9,59 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$890 {
 
-    static final FunctionDescriptor PFNGLGETTEXFILTERFUNCSGISPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glFogCoorddEXT$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_DOUBLE$LAYOUT
+    );
+    static final MethodHandle glFogCoorddEXT$MH = RuntimeHelper.downcallHandle(
+        "glFogCoorddEXT",
+        constants$890.glFogCoorddEXT$FUNC
+    );
+    static final FunctionDescriptor glFogCoorddvEXT$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glFogCoorddvEXT$MH = RuntimeHelper.downcallHandle(
+        "glFogCoorddvEXT",
+        constants$890.glFogCoorddvEXT$FUNC
+    );
+    static final FunctionDescriptor glFogCoordPointerEXT$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLGETTEXFILTERFUNCSGISPROC$MH = RuntimeHelper.downcallHandle(
-        constants$890.PFNGLGETTEXFILTERFUNCSGISPROC$FUNC
+    static final MethodHandle glFogCoordPointerEXT$MH = RuntimeHelper.downcallHandle(
+        "glFogCoordPointerEXT",
+        constants$890.glFogCoordPointerEXT$FUNC
     );
-    static final FunctionDescriptor PFNGLTEXFILTERFUNCSGISPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLBLITFRAMEBUFFEREXTPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle PFNGLTEXFILTERFUNCSGISPROC$MH = RuntimeHelper.downcallHandle(
-        constants$890.PFNGLTEXFILTERFUNCSGISPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLASYNCMARKERSGIXPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLASYNCMARKERSGIXPROC$MH = RuntimeHelper.downcallHandle(
-        constants$890.PFNGLASYNCMARKERSGIXPROC$FUNC
+    static final MethodHandle PFNGLBLITFRAMEBUFFEREXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$890.PFNGLBLITFRAMEBUFFEREXTPROC$FUNC
+    );
+    static final FunctionDescriptor glBlitFramebufferEXT$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle glBlitFramebufferEXT$MH = RuntimeHelper.downcallHandle(
+        "glBlitFramebufferEXT",
+        constants$890.glBlitFramebufferEXT$FUNC
     );
 }
 

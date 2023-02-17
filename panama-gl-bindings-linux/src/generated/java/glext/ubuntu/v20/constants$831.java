@@ -9,31 +9,38 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$831 {
 
-    static final FunctionDescriptor PFNGLACTIVEVARYINGNVPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLCLEARNAMEDBUFFERSUBDATAEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLACTIVEVARYINGNVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$831.PFNGLACTIVEVARYINGNVPROC$FUNC
+    static final MethodHandle PFNGLCLEARNAMEDBUFFERSUBDATAEXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$831.PFNGLCLEARNAMEDBUFFERSUBDATAEXTPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLGETVARYINGLOCATIONNVPROC$FUNC = FunctionDescriptor.of(Constants$root.C_INT$LAYOUT,
+    static final FunctionDescriptor PFNGLNAMEDFRAMEBUFFERPARAMETERIEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle PFNGLNAMEDFRAMEBUFFERPARAMETERIEXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$831.PFNGLNAMEDFRAMEBUFFERPARAMETERIEXTPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLGETNAMEDFRAMEBUFFERPARAMETERIVEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLGETVARYINGLOCATIONNVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$831.PFNGLGETVARYINGLOCATIONNVPROC$FUNC
+    static final MethodHandle PFNGLGETNAMEDFRAMEBUFFERPARAMETERIVEXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$831.PFNGLGETNAMEDFRAMEBUFFERPARAMETERIVEXTPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLGETACTIVEVARYINGNVPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLPROGRAMUNIFORM1DEXTPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle PFNGLGETACTIVEVARYINGNVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$831.PFNGLGETACTIVEVARYINGNVPROC$FUNC
+        Constants$root.C_DOUBLE$LAYOUT
     );
 }
 

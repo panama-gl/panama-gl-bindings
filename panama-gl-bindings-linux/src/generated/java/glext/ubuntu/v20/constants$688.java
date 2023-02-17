@@ -9,26 +9,21 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$688 {
 
-    static final FunctionDescriptor PFNGLVARIANTFVEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLBEGINFRAGMENTSHADERATIPROC$FUNC = FunctionDescriptor.ofVoid();
+    static final MethodHandle PFNGLBEGINFRAGMENTSHADERATIPROC$MH = RuntimeHelper.downcallHandle(
+        constants$688.PFNGLBEGINFRAGMENTSHADERATIPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLENDFRAGMENTSHADERATIPROC$FUNC = FunctionDescriptor.ofVoid();
+    static final MethodHandle PFNGLENDFRAGMENTSHADERATIPROC$MH = RuntimeHelper.downcallHandle(
+        constants$688.PFNGLENDFRAGMENTSHADERATIPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLPASSTEXCOORDATIPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle PFNGLVARIANTFVEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$688.PFNGLVARIANTFVEXTPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLVARIANTDVEXTPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
+        Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLVARIANTDVEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$688.PFNGLVARIANTDVEXTPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLVARIANTUBVEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle PFNGLVARIANTUBVEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$688.PFNGLVARIANTUBVEXTPROC$FUNC
+    static final MethodHandle PFNGLPASSTEXCOORDATIPROC$MH = RuntimeHelper.downcallHandle(
+        constants$688.PFNGLPASSTEXCOORDATIPROC$FUNC
     );
 }
 

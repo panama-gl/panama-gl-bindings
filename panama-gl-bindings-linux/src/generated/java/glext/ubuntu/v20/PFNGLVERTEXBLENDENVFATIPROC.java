@@ -11,13 +11,13 @@ public interface PFNGLVERTEXBLENDENVFATIPROC {
 
     void apply(int pname, float param);
     static MemorySegment allocate(PFNGLVERTEXBLENDENVFATIPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLVERTEXBLENDENVFATIPROC.class, fi, constants$515.PFNGLVERTEXBLENDENVFATIPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLVERTEXBLENDENVFATIPROC.class, fi, constants$719.PFNGLVERTEXBLENDENVFATIPROC$FUNC, session);
     }
     static PFNGLVERTEXBLENDENVFATIPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _pname, float _param) -> {
             try {
-                constants$515.PFNGLVERTEXBLENDENVFATIPROC$MH.invokeExact((Addressable)symbol, _pname, _param);
+                constants$719.PFNGLVERTEXBLENDENVFATIPROC$MH.invokeExact((Addressable)symbol, _pname, _param);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

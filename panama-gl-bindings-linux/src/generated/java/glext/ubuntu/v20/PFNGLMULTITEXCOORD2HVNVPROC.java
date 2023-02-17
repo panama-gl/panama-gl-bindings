@@ -11,13 +11,13 @@ public interface PFNGLMULTITEXCOORD2HVNVPROC {
 
     void apply(int target, java.lang.foreign.MemoryAddress v);
     static MemorySegment allocate(PFNGLMULTITEXCOORD2HVNVPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLMULTITEXCOORD2HVNVPROC.class, fi, constants$771.PFNGLMULTITEXCOORD2HVNVPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLMULTITEXCOORD2HVNVPROC.class, fi, constants$1107.PFNGLMULTITEXCOORD2HVNVPROC$FUNC, session);
     }
     static PFNGLMULTITEXCOORD2HVNVPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _target, java.lang.foreign.MemoryAddress _v) -> {
             try {
-                constants$771.PFNGLMULTITEXCOORD2HVNVPROC$MH.invokeExact((Addressable)symbol, _target, (java.lang.foreign.Addressable)_v);
+                constants$1107.PFNGLMULTITEXCOORD2HVNVPROC$MH.invokeExact((Addressable)symbol, _target, (java.lang.foreign.Addressable)_v);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

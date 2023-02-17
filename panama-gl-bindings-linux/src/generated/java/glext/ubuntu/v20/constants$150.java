@@ -9,31 +9,26 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$150 {
 
-    static final FunctionDescriptor PFNGLGETTRANSFORMFEEDBACKVARYINGPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLVERTEXATTRIB4NUBVPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLGETTRANSFORMFEEDBACKVARYINGPROC$MH = RuntimeHelper.downcallHandle(
-        constants$150.PFNGLGETTRANSFORMFEEDBACKVARYINGPROC$FUNC
+    static final MethodHandle PFNGLVERTEXATTRIB4NUBVPROC$MH = RuntimeHelper.downcallHandle(
+        constants$150.PFNGLVERTEXATTRIB4NUBVPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLCLAMPCOLORPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLVERTEXATTRIB4NUIVPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT
+        Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLCLAMPCOLORPROC$MH = RuntimeHelper.downcallHandle(
-        constants$150.PFNGLCLAMPCOLORPROC$FUNC
+    static final MethodHandle PFNGLVERTEXATTRIB4NUIVPROC$MH = RuntimeHelper.downcallHandle(
+        constants$150.PFNGLVERTEXATTRIB4NUIVPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLBEGINCONDITIONALRENDERPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLVERTEXATTRIB4NUSVPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT
+        Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLBEGINCONDITIONALRENDERPROC$MH = RuntimeHelper.downcallHandle(
-        constants$150.PFNGLBEGINCONDITIONALRENDERPROC$FUNC
+    static final MethodHandle PFNGLVERTEXATTRIB4NUSVPROC$MH = RuntimeHelper.downcallHandle(
+        constants$150.PFNGLVERTEXATTRIB4NUSVPROC$FUNC
     );
 }
 

@@ -9,25 +9,59 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$628 {
 
-    static final FunctionDescriptor PFNGLDELETEFRAMEBUFFERSEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLORTHOFOESPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT
+    );
+    static final MethodHandle PFNGLORTHOFOESPROC$MH = RuntimeHelper.downcallHandle(
+        constants$628.PFNGLORTHOFOESPROC$FUNC
+    );
+    static final FunctionDescriptor glClearDepthfOES$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_FLOAT$LAYOUT
+    );
+    static final MethodHandle glClearDepthfOES$MH = RuntimeHelper.downcallHandle(
+        "glClearDepthfOES",
+        constants$628.glClearDepthfOES$FUNC
+    );
+    static final FunctionDescriptor glClipPlanefOES$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLDELETEFRAMEBUFFERSEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$628.PFNGLDELETEFRAMEBUFFERSEXTPROC$FUNC
+    static final MethodHandle glClipPlanefOES$MH = RuntimeHelper.downcallHandle(
+        "glClipPlanefOES",
+        constants$628.glClipPlanefOES$FUNC
     );
-    static final FunctionDescriptor PFNGLGENFRAMEBUFFERSEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glDepthRangefOES$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT
+    );
+    static final MethodHandle glDepthRangefOES$MH = RuntimeHelper.downcallHandle(
+        "glDepthRangefOES",
+        constants$628.glDepthRangefOES$FUNC
+    );
+    static final FunctionDescriptor glFrustumfOES$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT
+    );
+    static final MethodHandle glFrustumfOES$MH = RuntimeHelper.downcallHandle(
+        "glFrustumfOES",
+        constants$628.glFrustumfOES$FUNC
+    );
+    static final FunctionDescriptor glGetClipPlanefOES$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLGENFRAMEBUFFERSEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$628.PFNGLGENFRAMEBUFFERSEXTPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLCHECKFRAMEBUFFERSTATUSEXTPROC$FUNC = FunctionDescriptor.of(Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT
-    );
-    static final MethodHandle PFNGLCHECKFRAMEBUFFERSTATUSEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$628.PFNGLCHECKFRAMEBUFFERSTATUSEXTPROC$FUNC
+    static final MethodHandle glGetClipPlanefOES$MH = RuntimeHelper.downcallHandle(
+        "glGetClipPlanefOES",
+        constants$628.glGetClipPlanefOES$FUNC
     );
 }
 

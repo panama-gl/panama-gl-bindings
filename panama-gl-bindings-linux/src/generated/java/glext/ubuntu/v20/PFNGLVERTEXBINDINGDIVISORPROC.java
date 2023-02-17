@@ -11,13 +11,13 @@ public interface PFNGLVERTEXBINDINGDIVISORPROC {
 
     void apply(int bindingindex, int divisor);
     static MemorySegment allocate(PFNGLVERTEXBINDINGDIVISORPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLVERTEXBINDINGDIVISORPROC.class, fi, constants$263.PFNGLVERTEXBINDINGDIVISORPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLVERTEXBINDINGDIVISORPROC.class, fi, constants$344.PFNGLVERTEXBINDINGDIVISORPROC$FUNC, session);
     }
     static PFNGLVERTEXBINDINGDIVISORPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _bindingindex, int _divisor) -> {
             try {
-                constants$263.PFNGLVERTEXBINDINGDIVISORPROC$MH.invokeExact((Addressable)symbol, _bindingindex, _divisor);
+                constants$344.PFNGLVERTEXBINDINGDIVISORPROC$MH.invokeExact((Addressable)symbol, _bindingindex, _divisor);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

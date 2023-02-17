@@ -9,25 +9,59 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$412 {
 
-    static final FunctionDescriptor PFNGLVERTEX2BVOESPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glGetTextureLevelParameteriv$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLVERTEX2BVOESPROC$MH = RuntimeHelper.downcallHandle(
-        constants$412.PFNGLVERTEX2BVOESPROC$FUNC
+    static final MethodHandle glGetTextureLevelParameteriv$MH = RuntimeHelper.downcallHandle(
+        "glGetTextureLevelParameteriv",
+        constants$412.glGetTextureLevelParameteriv$FUNC
     );
-    static final FunctionDescriptor PFNGLVERTEX3BOESPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_CHAR$LAYOUT,
-        Constants$root.C_CHAR$LAYOUT,
-        Constants$root.C_CHAR$LAYOUT
-    );
-    static final MethodHandle PFNGLVERTEX3BOESPROC$MH = RuntimeHelper.downcallHandle(
-        constants$412.PFNGLVERTEX3BOESPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLVERTEX3BVOESPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glGetTextureParameterfv$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLVERTEX3BVOESPROC$MH = RuntimeHelper.downcallHandle(
-        constants$412.PFNGLVERTEX3BVOESPROC$FUNC
+    static final MethodHandle glGetTextureParameterfv$MH = RuntimeHelper.downcallHandle(
+        "glGetTextureParameterfv",
+        constants$412.glGetTextureParameterfv$FUNC
+    );
+    static final FunctionDescriptor glGetTextureParameterIiv$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glGetTextureParameterIiv$MH = RuntimeHelper.downcallHandle(
+        "glGetTextureParameterIiv",
+        constants$412.glGetTextureParameterIiv$FUNC
+    );
+    static final FunctionDescriptor glGetTextureParameterIuiv$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glGetTextureParameterIuiv$MH = RuntimeHelper.downcallHandle(
+        "glGetTextureParameterIuiv",
+        constants$412.glGetTextureParameterIuiv$FUNC
+    );
+    static final FunctionDescriptor glGetTextureParameteriv$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glGetTextureParameteriv$MH = RuntimeHelper.downcallHandle(
+        "glGetTextureParameteriv",
+        constants$412.glGetTextureParameteriv$FUNC
+    );
+    static final FunctionDescriptor glCreateVertexArrays$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glCreateVertexArrays$MH = RuntimeHelper.downcallHandle(
+        "glCreateVertexArrays",
+        constants$412.glCreateVertexArrays$FUNC
     );
 }
 

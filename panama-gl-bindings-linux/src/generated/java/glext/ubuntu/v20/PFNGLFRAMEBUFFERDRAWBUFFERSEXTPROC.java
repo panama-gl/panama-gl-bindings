@@ -11,13 +11,13 @@ public interface PFNGLFRAMEBUFFERDRAWBUFFERSEXTPROC {
 
     void apply(int framebuffer, int n, java.lang.foreign.MemoryAddress bufs);
     static MemorySegment allocate(PFNGLFRAMEBUFFERDRAWBUFFERSEXTPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLFRAMEBUFFERDRAWBUFFERSEXTPROC.class, fi, constants$598.PFNGLFRAMEBUFFERDRAWBUFFERSEXTPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLFRAMEBUFFERDRAWBUFFERSEXTPROC.class, fi, constants$820.PFNGLFRAMEBUFFERDRAWBUFFERSEXTPROC$FUNC, session);
     }
     static PFNGLFRAMEBUFFERDRAWBUFFERSEXTPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _framebuffer, int _n, java.lang.foreign.MemoryAddress _bufs) -> {
             try {
-                constants$598.PFNGLFRAMEBUFFERDRAWBUFFERSEXTPROC$MH.invokeExact((Addressable)symbol, _framebuffer, _n, (java.lang.foreign.Addressable)_bufs);
+                constants$820.PFNGLFRAMEBUFFERDRAWBUFFERSEXTPROC$MH.invokeExact((Addressable)symbol, _framebuffer, _n, (java.lang.foreign.Addressable)_bufs);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

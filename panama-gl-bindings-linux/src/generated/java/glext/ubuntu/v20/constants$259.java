@@ -9,37 +9,53 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$259 {
 
-    static final FunctionDescriptor PFNGLGETPROGRAMRESOURCENAMEPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glColorP3ui$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
+        Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLGETPROGRAMRESOURCENAMEPROC$MH = RuntimeHelper.downcallHandle(
-        constants$259.PFNGLGETPROGRAMRESOURCENAMEPROC$FUNC
+    static final MethodHandle glColorP3ui$MH = RuntimeHelper.downcallHandle(
+        "glColorP3ui",
+        constants$259.glColorP3ui$FUNC
     );
-    static final FunctionDescriptor PFNGLGETPROGRAMRESOURCEIVPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle PFNGLGETPROGRAMRESOURCEIVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$259.PFNGLGETPROGRAMRESOURCEIVPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLGETPROGRAMRESOURCELOCATIONPROC$FUNC = FunctionDescriptor.of(Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
+    static final FunctionDescriptor glColorP3uiv$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLGETPROGRAMRESOURCELOCATIONPROC$MH = RuntimeHelper.downcallHandle(
-        constants$259.PFNGLGETPROGRAMRESOURCELOCATIONPROC$FUNC
+    static final MethodHandle glColorP3uiv$MH = RuntimeHelper.downcallHandle(
+        "glColorP3uiv",
+        constants$259.glColorP3uiv$FUNC
+    );
+    static final FunctionDescriptor glColorP4ui$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle glColorP4ui$MH = RuntimeHelper.downcallHandle(
+        "glColorP4ui",
+        constants$259.glColorP4ui$FUNC
+    );
+    static final FunctionDescriptor glColorP4uiv$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glColorP4uiv$MH = RuntimeHelper.downcallHandle(
+        "glColorP4uiv",
+        constants$259.glColorP4uiv$FUNC
+    );
+    static final FunctionDescriptor glSecondaryColorP3ui$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle glSecondaryColorP3ui$MH = RuntimeHelper.downcallHandle(
+        "glSecondaryColorP3ui",
+        constants$259.glSecondaryColorP3ui$FUNC
+    );
+    static final FunctionDescriptor glSecondaryColorP3uiv$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glSecondaryColorP3uiv$MH = RuntimeHelper.downcallHandle(
+        "glSecondaryColorP3uiv",
+        constants$259.glSecondaryColorP3uiv$FUNC
     );
 }
 

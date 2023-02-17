@@ -11,13 +11,13 @@ public interface PFNGLRESIZEBUFFERSMESAPROC {
 
     void apply();
     static MemorySegment allocate(PFNGLRESIZEBUFFERSMESAPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLRESIZEBUFFERSMESAPROC.class, fi, constants$711.PFNGLRESIZEBUFFERSMESAPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLRESIZEBUFFERSMESAPROC.class, fi, constants$1021.PFNGLRESIZEBUFFERSMESAPROC$FUNC, session);
     }
     static PFNGLRESIZEBUFFERSMESAPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return () -> {
             try {
-                constants$711.PFNGLRESIZEBUFFERSMESAPROC$MH.invokeExact((Addressable)symbol);
+                constants$1021.PFNGLRESIZEBUFFERSMESAPROC$MH.invokeExact((Addressable)symbol);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

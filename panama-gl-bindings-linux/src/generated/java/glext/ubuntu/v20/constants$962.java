@@ -9,49 +9,31 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$962 {
 
-    static final FunctionDescriptor glutGetModifiers$FUNC = FunctionDescriptor.of(Constants$root.C_INT$LAYOUT);
-    static final MethodHandle glutGetModifiers$MH = RuntimeHelper.downcallHandle(
-        "glutGetModifiers",
-        constants$962.glutGetModifiers$FUNC
-    );
-    static final FunctionDescriptor glutLayerGet$FUNC = FunctionDescriptor.of(Constants$root.C_INT$LAYOUT,
+    static final FunctionDescriptor PFNGLTEXTURENORMALEXTPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle glutLayerGet$MH = RuntimeHelper.downcallHandle(
-        "glutLayerGet",
-        constants$962.glutLayerGet$FUNC
+    static final MethodHandle PFNGLTEXTURENORMALEXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$962.PFNGLTEXTURENORMALEXTPROC$FUNC
     );
-    static final FunctionDescriptor glutBitmapCharacter$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_POINTER$LAYOUT,
+    static final FunctionDescriptor glTextureNormalEXT$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle glutBitmapCharacter$MH = RuntimeHelper.downcallHandle(
-        "glutBitmapCharacter",
-        constants$962.glutBitmapCharacter$FUNC
+    static final MethodHandle glTextureNormalEXT$MH = RuntimeHelper.downcallHandle(
+        "glTextureNormalEXT",
+        constants$962.glTextureNormalEXT$FUNC
     );
-    static final FunctionDescriptor glutBitmapWidth$FUNC = FunctionDescriptor.of(Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_INT$LAYOUT
+    static final FunctionDescriptor PFNGLGETQUERYOBJECTI64VEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle glutBitmapWidth$MH = RuntimeHelper.downcallHandle(
-        "glutBitmapWidth",
-        constants$962.glutBitmapWidth$FUNC
+    static final MethodHandle PFNGLGETQUERYOBJECTI64VEXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$962.PFNGLGETQUERYOBJECTI64VEXTPROC$FUNC
     );
-    static final FunctionDescriptor glutStrokeCharacter$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_INT$LAYOUT
-    );
-    static final MethodHandle glutStrokeCharacter$MH = RuntimeHelper.downcallHandle(
-        "glutStrokeCharacter",
-        constants$962.glutStrokeCharacter$FUNC
-    );
-    static final FunctionDescriptor glutStrokeWidth$FUNC = FunctionDescriptor.of(Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_INT$LAYOUT
-    );
-    static final MethodHandle glutStrokeWidth$MH = RuntimeHelper.downcallHandle(
-        "glutStrokeWidth",
-        constants$962.glutStrokeWidth$FUNC
+    static final FunctionDescriptor PFNGLGETQUERYOBJECTUI64VEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
 }
 

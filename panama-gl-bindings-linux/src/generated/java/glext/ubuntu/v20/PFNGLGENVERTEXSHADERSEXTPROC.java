@@ -11,13 +11,13 @@ public interface PFNGLGENVERTEXSHADERSEXTPROC {
 
     int apply(int range);
     static MemorySegment allocate(PFNGLGENVERTEXSHADERSEXTPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLGENVERTEXSHADERSEXTPROC.class, fi, constants$683.PFNGLGENVERTEXSHADERSEXTPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLGENVERTEXSHADERSEXTPROC.class, fi, constants$977.PFNGLGENVERTEXSHADERSEXTPROC$FUNC, session);
     }
     static PFNGLGENVERTEXSHADERSEXTPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _range) -> {
             try {
-                return (int)constants$683.PFNGLGENVERTEXSHADERSEXTPROC$MH.invokeExact((Addressable)symbol, _range);
+                return (int)constants$977.PFNGLGENVERTEXSHADERSEXTPROC$MH.invokeExact((Addressable)symbol, _range);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

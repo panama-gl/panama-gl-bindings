@@ -11,13 +11,13 @@ public interface PFNGLTESTFENCENVPROC {
 
     byte apply(int fence);
     static MemorySegment allocate(PFNGLTESTFENCENVPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLTESTFENCENVPROC.class, fi, constants$748.PFNGLTESTFENCENVPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLTESTFENCENVPROC.class, fi, constants$1074.PFNGLTESTFENCENVPROC$FUNC, session);
     }
     static PFNGLTESTFENCENVPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _fence) -> {
             try {
-                return (byte)constants$748.PFNGLTESTFENCENVPROC$MH.invokeExact((Addressable)symbol, _fence);
+                return (byte)constants$1075.PFNGLTESTFENCENVPROC$MH.invokeExact((Addressable)symbol, _fence);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

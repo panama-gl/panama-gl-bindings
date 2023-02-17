@@ -11,13 +11,13 @@ public interface PFNGLELEMENTPOINTERATIPROC {
 
     void apply(int type, java.lang.foreign.MemoryAddress pointer);
     static MemorySegment allocate(PFNGLELEMENTPOINTERATIPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLELEMENTPOINTERATIPROC.class, fi, constants$486.PFNGLELEMENTPOINTERATIPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLELEMENTPOINTERATIPROC.class, fi, constants$683.PFNGLELEMENTPOINTERATIPROC$FUNC, session);
     }
     static PFNGLELEMENTPOINTERATIPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _type, java.lang.foreign.MemoryAddress _pointer) -> {
             try {
-                constants$486.PFNGLELEMENTPOINTERATIPROC$MH.invokeExact((Addressable)symbol, _type, (java.lang.foreign.Addressable)_pointer);
+                constants$683.PFNGLELEMENTPOINTERATIPROC$MH.invokeExact((Addressable)symbol, _type, (java.lang.foreign.Addressable)_pointer);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

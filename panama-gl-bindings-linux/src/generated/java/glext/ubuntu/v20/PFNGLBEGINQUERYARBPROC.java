@@ -11,13 +11,13 @@ public interface PFNGLBEGINQUERYARBPROC {
 
     void apply(int target, int id);
     static MemorySegment allocate(PFNGLBEGINQUERYARBPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLBEGINQUERYARBPROC.class, fi, constants$347.PFNGLBEGINQUERYARBPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLBEGINQUERYARBPROC.class, fi, constants$473.PFNGLBEGINQUERYARBPROC$FUNC, session);
     }
     static PFNGLBEGINQUERYARBPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _target, int _id) -> {
             try {
-                constants$347.PFNGLBEGINQUERYARBPROC$MH.invokeExact((Addressable)symbol, _target, _id);
+                constants$473.PFNGLBEGINQUERYARBPROC$MH.invokeExact((Addressable)symbol, _target, _id);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

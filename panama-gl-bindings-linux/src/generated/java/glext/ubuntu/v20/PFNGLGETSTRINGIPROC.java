@@ -11,13 +11,13 @@ public interface PFNGLGETSTRINGIPROC {
 
     java.lang.foreign.Addressable apply(int name, int index);
     static MemorySegment allocate(PFNGLGETSTRINGIPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLGETSTRINGIPROC.class, fi, constants$165.PFNGLGETSTRINGIPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLGETSTRINGIPROC.class, fi, constants$192.PFNGLGETSTRINGIPROC$FUNC, session);
     }
     static PFNGLGETSTRINGIPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _name, int _index) -> {
             try {
-                return (java.lang.foreign.Addressable)(java.lang.foreign.MemoryAddress)constants$165.PFNGLGETSTRINGIPROC$MH.invokeExact((Addressable)symbol, _name, _index);
+                return (java.lang.foreign.Addressable)(java.lang.foreign.MemoryAddress)constants$192.PFNGLGETSTRINGIPROC$MH.invokeExact((Addressable)symbol, _name, _index);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

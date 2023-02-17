@@ -11,13 +11,13 @@ public interface PFNGLSTATECAPTURENVPROC {
 
     void apply(int state, int mode);
     static MemorySegment allocate(PFNGLSTATECAPTURENVPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLSTATECAPTURENVPROC.class, fi, constants$733.PFNGLSTATECAPTURENVPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLSTATECAPTURENVPROC.class, fi, constants$1052.PFNGLSTATECAPTURENVPROC$FUNC, session);
     }
     static PFNGLSTATECAPTURENVPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _state, int _mode) -> {
             try {
-                constants$733.PFNGLSTATECAPTURENVPROC$MH.invokeExact((Addressable)symbol, _state, _mode);
+                constants$1052.PFNGLSTATECAPTURENVPROC$MH.invokeExact((Addressable)symbol, _state, _mode);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

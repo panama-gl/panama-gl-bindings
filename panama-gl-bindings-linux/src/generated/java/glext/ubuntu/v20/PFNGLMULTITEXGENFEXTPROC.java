@@ -11,13 +11,13 @@ public interface PFNGLMULTITEXGENFEXTPROC {
 
     void apply(int texunit, int coord, int pname, float param);
     static MemorySegment allocate(PFNGLMULTITEXGENFEXTPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLMULTITEXGENFEXTPROC.class, fi, constants$551.PFNGLMULTITEXGENFEXTPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLMULTITEXGENFEXTPROC.class, fi, constants$772.PFNGLMULTITEXGENFEXTPROC$FUNC, session);
     }
     static PFNGLMULTITEXGENFEXTPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _texunit, int _coord, int _pname, float _param) -> {
             try {
-                constants$551.PFNGLMULTITEXGENFEXTPROC$MH.invokeExact((Addressable)symbol, _texunit, _coord, _pname, _param);
+                constants$772.PFNGLMULTITEXGENFEXTPROC$MH.invokeExact((Addressable)symbol, _texunit, _coord, _pname, _param);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

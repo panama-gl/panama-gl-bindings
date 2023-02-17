@@ -11,13 +11,13 @@ public interface PFNGLVERTEXATTRIBLFORMATPROC {
 
     void apply(int attribindex, int size, int type, int relativeoffset);
     static MemorySegment allocate(PFNGLVERTEXATTRIBLFORMATPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLVERTEXATTRIBLFORMATPROC.class, fi, constants$263.PFNGLVERTEXATTRIBLFORMATPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLVERTEXATTRIBLFORMATPROC.class, fi, constants$343.PFNGLVERTEXATTRIBLFORMATPROC$FUNC, session);
     }
     static PFNGLVERTEXATTRIBLFORMATPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _attribindex, int _size, int _type, int _relativeoffset) -> {
             try {
-                constants$263.PFNGLVERTEXATTRIBLFORMATPROC$MH.invokeExact((Addressable)symbol, _attribindex, _size, _type, _relativeoffset);
+                constants$343.PFNGLVERTEXATTRIBLFORMATPROC$MH.invokeExact((Addressable)symbol, _attribindex, _size, _type, _relativeoffset);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

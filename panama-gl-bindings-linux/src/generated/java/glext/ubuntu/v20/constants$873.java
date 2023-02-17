@@ -9,31 +9,58 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$873 {
 
-    static final FunctionDescriptor PFNGLVERTEXATTRIBI3UIEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glNamedFramebufferRenderbufferEXT$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLVERTEXATTRIBI3UIEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$873.PFNGLVERTEXATTRIBI3UIEXTPROC$FUNC
+    static final MethodHandle glNamedFramebufferRenderbufferEXT$MH = RuntimeHelper.downcallHandle(
+        "glNamedFramebufferRenderbufferEXT",
+        constants$873.glNamedFramebufferRenderbufferEXT$FUNC
     );
-    static final FunctionDescriptor PFNGLVERTEXATTRIBI4UIEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glGetNamedFramebufferAttachmentParameterivEXT$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT
-    );
-    static final MethodHandle PFNGLVERTEXATTRIBI4UIEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$873.PFNGLVERTEXATTRIBI4UIEXTPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLVERTEXATTRIBI1IVEXTPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLVERTEXATTRIBI1IVEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$873.PFNGLVERTEXATTRIBI1IVEXTPROC$FUNC
+    static final MethodHandle glGetNamedFramebufferAttachmentParameterivEXT$MH = RuntimeHelper.downcallHandle(
+        "glGetNamedFramebufferAttachmentParameterivEXT",
+        constants$873.glGetNamedFramebufferAttachmentParameterivEXT$FUNC
+    );
+    static final FunctionDescriptor glGenerateTextureMipmapEXT$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle glGenerateTextureMipmapEXT$MH = RuntimeHelper.downcallHandle(
+        "glGenerateTextureMipmapEXT",
+        constants$873.glGenerateTextureMipmapEXT$FUNC
+    );
+    static final FunctionDescriptor glGenerateMultiTexMipmapEXT$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle glGenerateMultiTexMipmapEXT$MH = RuntimeHelper.downcallHandle(
+        "glGenerateMultiTexMipmapEXT",
+        constants$873.glGenerateMultiTexMipmapEXT$FUNC
+    );
+    static final FunctionDescriptor glFramebufferDrawBufferEXT$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle glFramebufferDrawBufferEXT$MH = RuntimeHelper.downcallHandle(
+        "glFramebufferDrawBufferEXT",
+        constants$873.glFramebufferDrawBufferEXT$FUNC
+    );
+    static final FunctionDescriptor glFramebufferDrawBuffersEXT$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glFramebufferDrawBuffersEXT$MH = RuntimeHelper.downcallHandle(
+        "glFramebufferDrawBuffersEXT",
+        constants$873.glFramebufferDrawBuffersEXT$FUNC
     );
 }
 

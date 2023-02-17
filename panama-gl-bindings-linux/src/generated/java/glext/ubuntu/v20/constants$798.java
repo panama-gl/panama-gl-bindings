@@ -9,41 +9,38 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$798 {
 
-    static final FunctionDescriptor PFNGLGETPATHMETRICSNVPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle PFNGLGETPATHMETRICSNVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$798.PFNGLGETPATHMETRICSNVPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLGETPATHMETRICRANGENVPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
+    static final FunctionDescriptor PFNGLPROGRAMUNIFORM1IVEXTPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLGETPATHMETRICRANGENVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$798.PFNGLGETPATHMETRICRANGENVPROC$FUNC
+    static final MethodHandle PFNGLPROGRAMUNIFORM1IVEXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$798.PFNGLPROGRAMUNIFORM1IVEXTPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLGETPATHSPACINGNVPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLPROGRAMUNIFORM2IVEXTPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLGETPATHSPACINGNVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$798.PFNGLGETPATHSPACINGNVPROC$FUNC
+    static final MethodHandle PFNGLPROGRAMUNIFORM2IVEXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$798.PFNGLPROGRAMUNIFORM2IVEXTPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLPROGRAMUNIFORM3IVEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle PFNGLPROGRAMUNIFORM3IVEXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$798.PFNGLPROGRAMUNIFORM3IVEXTPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLPROGRAMUNIFORM4IVEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
 }
 

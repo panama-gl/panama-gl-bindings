@@ -11,13 +11,13 @@ public interface PFNGLHINTPGIPROC {
 
     void apply(int target, int mode);
     static MemorySegment allocate(PFNGLHINTPGIPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLHINTPGIPROC.class, fi, constants$883.PFNGLHINTPGIPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLHINTPGIPROC.class, fi, constants$1278.PFNGLHINTPGIPROC$FUNC, session);
     }
     static PFNGLHINTPGIPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _target, int _mode) -> {
             try {
-                constants$883.PFNGLHINTPGIPROC$MH.invokeExact((Addressable)symbol, _target, _mode);
+                constants$1278.PFNGLHINTPGIPROC$MH.invokeExact((Addressable)symbol, _target, _mode);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

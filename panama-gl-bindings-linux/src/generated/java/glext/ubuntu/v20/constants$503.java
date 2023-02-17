@@ -9,27 +9,53 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$503 {
 
-    static final FunctionDescriptor PFNGLVERTEXSTREAM1DVATIPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLGETSHADERSOURCEARBPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLVERTEXSTREAM1DVATIPROC$MH = RuntimeHelper.downcallHandle(
-        constants$503.PFNGLVERTEXSTREAM1DVATIPROC$FUNC
+    static final MethodHandle PFNGLGETSHADERSOURCEARBPROC$MH = RuntimeHelper.downcallHandle(
+        constants$503.PFNGLGETSHADERSOURCEARBPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLVERTEXSTREAM2SATIPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glDeleteObjectARB$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle glDeleteObjectARB$MH = RuntimeHelper.downcallHandle(
+        "glDeleteObjectARB",
+        constants$503.glDeleteObjectARB$FUNC
+    );
+    static final FunctionDescriptor glGetHandleARB$FUNC = FunctionDescriptor.of(Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle glGetHandleARB$MH = RuntimeHelper.downcallHandle(
+        "glGetHandleARB",
+        constants$503.glGetHandleARB$FUNC
+    );
+    static final FunctionDescriptor glDetachObjectARB$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_SHORT$LAYOUT,
-        Constants$root.C_SHORT$LAYOUT
+        Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLVERTEXSTREAM2SATIPROC$MH = RuntimeHelper.downcallHandle(
-        constants$503.PFNGLVERTEXSTREAM2SATIPROC$FUNC
+    static final MethodHandle glDetachObjectARB$MH = RuntimeHelper.downcallHandle(
+        "glDetachObjectARB",
+        constants$503.glDetachObjectARB$FUNC
     );
-    static final FunctionDescriptor PFNGLVERTEXSTREAM2SVATIPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glCreateShaderObjectARB$FUNC = FunctionDescriptor.of(Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle glCreateShaderObjectARB$MH = RuntimeHelper.downcallHandle(
+        "glCreateShaderObjectARB",
+        constants$503.glCreateShaderObjectARB$FUNC
+    );
+    static final FunctionDescriptor glShaderSourceARB$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLVERTEXSTREAM2SVATIPROC$MH = RuntimeHelper.downcallHandle(
-        constants$503.PFNGLVERTEXSTREAM2SVATIPROC$FUNC
+    static final MethodHandle glShaderSourceARB$MH = RuntimeHelper.downcallHandle(
+        "glShaderSourceARB",
+        constants$503.glShaderSourceARB$FUNC
     );
 }
 

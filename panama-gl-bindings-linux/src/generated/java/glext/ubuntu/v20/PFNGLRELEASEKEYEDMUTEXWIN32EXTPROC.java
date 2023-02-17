@@ -11,13 +11,13 @@ public interface PFNGLRELEASEKEYEDMUTEXWIN32EXTPROC {
 
     byte apply(int memory, long key);
     static MemorySegment allocate(PFNGLRELEASEKEYEDMUTEXWIN32EXTPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLRELEASEKEYEDMUTEXWIN32EXTPROC.class, fi, constants$697.PFNGLRELEASEKEYEDMUTEXWIN32EXTPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLRELEASEKEYEDMUTEXWIN32EXTPROC.class, fi, constants$999.PFNGLRELEASEKEYEDMUTEXWIN32EXTPROC$FUNC, session);
     }
     static PFNGLRELEASEKEYEDMUTEXWIN32EXTPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _memory, long _key) -> {
             try {
-                return (byte)constants$697.PFNGLRELEASEKEYEDMUTEXWIN32EXTPROC$MH.invokeExact((Addressable)symbol, _memory, _key);
+                return (byte)constants$999.PFNGLRELEASEKEYEDMUTEXWIN32EXTPROC$MH.invokeExact((Addressable)symbol, _memory, _key);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

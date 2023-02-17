@@ -9,32 +9,68 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$351 {
 
-    static final FunctionDescriptor PFNGLGETNUNIFORMFVARBPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle PFNGLGETNUNIFORMFVARBPROC$MH = RuntimeHelper.downcallHandle(
-        constants$351.PFNGLGETNUNIFORMFVARBPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLGETNUNIFORMIVARBPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
+    static final FunctionDescriptor glGetProgramResourceLocation$FUNC = FunctionDescriptor.of(Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLGETNUNIFORMIVARBPROC$MH = RuntimeHelper.downcallHandle(
-        constants$351.PFNGLGETNUNIFORMIVARBPROC$FUNC
+    static final MethodHandle glGetProgramResourceLocation$MH = RuntimeHelper.downcallHandle(
+        "glGetProgramResourceLocation",
+        constants$351.glGetProgramResourceLocation$FUNC
     );
-    static final FunctionDescriptor PFNGLGETNUNIFORMUIVARBPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
+    static final FunctionDescriptor glGetProgramResourceLocationIndex$FUNC = FunctionDescriptor.of(Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLGETNUNIFORMUIVARBPROC$MH = RuntimeHelper.downcallHandle(
-        constants$351.PFNGLGETNUNIFORMUIVARBPROC$FUNC
+    static final MethodHandle glGetProgramResourceLocationIndex$MH = RuntimeHelper.downcallHandle(
+        "glGetProgramResourceLocationIndex",
+        constants$351.glGetProgramResourceLocationIndex$FUNC
+    );
+    static final FunctionDescriptor glShaderStorageBlockBinding$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle glShaderStorageBlockBinding$MH = RuntimeHelper.downcallHandle(
+        "glShaderStorageBlockBinding",
+        constants$351.glShaderStorageBlockBinding$FUNC
+    );
+    static final FunctionDescriptor glTexBufferRange$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT
+    );
+    static final MethodHandle glTexBufferRange$MH = RuntimeHelper.downcallHandle(
+        "glTexBufferRange",
+        constants$351.glTexBufferRange$FUNC
+    );
+    static final FunctionDescriptor glTexStorage2DMultisample$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_CHAR$LAYOUT
+    );
+    static final MethodHandle glTexStorage2DMultisample$MH = RuntimeHelper.downcallHandle(
+        "glTexStorage2DMultisample",
+        constants$351.glTexStorage2DMultisample$FUNC
+    );
+    static final FunctionDescriptor glTexStorage3DMultisample$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_CHAR$LAYOUT
+    );
+    static final MethodHandle glTexStorage3DMultisample$MH = RuntimeHelper.downcallHandle(
+        "glTexStorage3DMultisample",
+        constants$351.glTexStorage3DMultisample$FUNC
     );
 }
 

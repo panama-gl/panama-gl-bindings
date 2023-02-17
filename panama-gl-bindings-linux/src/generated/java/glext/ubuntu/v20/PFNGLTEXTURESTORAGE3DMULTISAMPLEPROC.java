@@ -11,13 +11,13 @@ public interface PFNGLTEXTURESTORAGE3DMULTISAMPLEPROC {
 
     void apply(int texture, int samples, int internalformat, int width, int height, int depth, byte fixedsamplelocations);
     static MemorySegment allocate(PFNGLTEXTURESTORAGE3DMULTISAMPLEPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLTEXTURESTORAGE3DMULTISAMPLEPROC.class, fi, constants$287.PFNGLTEXTURESTORAGE3DMULTISAMPLEPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLTEXTURESTORAGE3DMULTISAMPLEPROC.class, fi, constants$376.PFNGLTEXTURESTORAGE3DMULTISAMPLEPROC$FUNC, session);
     }
     static PFNGLTEXTURESTORAGE3DMULTISAMPLEPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _texture, int _samples, int _internalformat, int _width, int _height, int _depth, byte _fixedsamplelocations) -> {
             try {
-                constants$287.PFNGLTEXTURESTORAGE3DMULTISAMPLEPROC$MH.invokeExact((Addressable)symbol, _texture, _samples, _internalformat, _width, _height, _depth, _fixedsamplelocations);
+                constants$376.PFNGLTEXTURESTORAGE3DMULTISAMPLEPROC$MH.invokeExact((Addressable)symbol, _texture, _samples, _internalformat, _width, _height, _depth, _fixedsamplelocations);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

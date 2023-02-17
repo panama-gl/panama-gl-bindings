@@ -9,35 +9,25 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$743 {
 
-    static final FunctionDescriptor PFNGLMAPCONTROLPOINTSNVPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
+    static final FunctionDescriptor PFNGLTANGENT3SVEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle PFNGLTANGENT3SVEXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$743.PFNGLTANGENT3SVEXTPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLBINORMAL3BEXTPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_CHAR$LAYOUT,
+        Constants$root.C_CHAR$LAYOUT,
+        Constants$root.C_CHAR$LAYOUT
+    );
+    static final MethodHandle PFNGLBINORMAL3BEXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$743.PFNGLBINORMAL3BEXTPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLBINORMAL3BVEXTPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLMAPCONTROLPOINTSNVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$743.PFNGLMAPCONTROLPOINTSNVPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLMAPPARAMETERIVNVPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle PFNGLMAPPARAMETERIVNVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$743.PFNGLMAPPARAMETERIVNVPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLMAPPARAMETERFVNVPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle PFNGLMAPPARAMETERFVNVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$743.PFNGLMAPPARAMETERFVNVPROC$FUNC
+    static final MethodHandle PFNGLBINORMAL3BVEXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$743.PFNGLBINORMAL3BVEXTPROC$FUNC
     );
 }
 

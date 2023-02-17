@@ -9,32 +9,45 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$476 {
 
-    static final FunctionDescriptor PFNGLMULTIDRAWELEMENTARRAYAPPLEPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
+    static final FunctionDescriptor glEndQueryARB$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLMULTIDRAWELEMENTARRAYAPPLEPROC$MH = RuntimeHelper.downcallHandle(
-        constants$476.PFNGLMULTIDRAWELEMENTARRAYAPPLEPROC$FUNC
+    static final MethodHandle glEndQueryARB$MH = RuntimeHelper.downcallHandle(
+        "glEndQueryARB",
+        constants$476.glEndQueryARB$FUNC
     );
-    static final FunctionDescriptor PFNGLMULTIDRAWRANGEELEMENTARRAYAPPLEPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glGetQueryivARB$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_INT$LAYOUT
-    );
-    static final MethodHandle PFNGLMULTIDRAWRANGEELEMENTARRAYAPPLEPROC$MH = RuntimeHelper.downcallHandle(
-        constants$476.PFNGLMULTIDRAWRANGEELEMENTARRAYAPPLEPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLGENFENCESAPPLEPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLGENFENCESAPPLEPROC$MH = RuntimeHelper.downcallHandle(
-        constants$476.PFNGLGENFENCESAPPLEPROC$FUNC
+    static final MethodHandle glGetQueryivARB$MH = RuntimeHelper.downcallHandle(
+        "glGetQueryivARB",
+        constants$476.glGetQueryivARB$FUNC
+    );
+    static final FunctionDescriptor glGetQueryObjectivARB$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glGetQueryObjectivARB$MH = RuntimeHelper.downcallHandle(
+        "glGetQueryObjectivARB",
+        constants$476.glGetQueryObjectivARB$FUNC
+    );
+    static final FunctionDescriptor glGetQueryObjectuivARB$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glGetQueryObjectuivARB$MH = RuntimeHelper.downcallHandle(
+        "glGetQueryObjectuivARB",
+        constants$476.glGetQueryObjectuivARB$FUNC
+    );
+    static final FunctionDescriptor PFNGLMAXSHADERCOMPILERTHREADSARBPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle PFNGLMAXSHADERCOMPILERTHREADSARBPROC$MH = RuntimeHelper.downcallHandle(
+        constants$476.PFNGLMAXSHADERCOMPILERTHREADSARBPROC$FUNC
     );
 }
 

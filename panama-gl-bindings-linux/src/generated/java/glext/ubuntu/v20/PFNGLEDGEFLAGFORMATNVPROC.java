@@ -11,13 +11,13 @@ public interface PFNGLEDGEFLAGFORMATNVPROC {
 
     void apply(int stride);
     static MemorySegment allocate(PFNGLEDGEFLAGFORMATNVPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLEDGEFLAGFORMATNVPROC.class, fi, constants$847.PFNGLEDGEFLAGFORMATNVPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLEDGEFLAGFORMATNVPROC.class, fi, constants$1223.PFNGLEDGEFLAGFORMATNVPROC$FUNC, session);
     }
     static PFNGLEDGEFLAGFORMATNVPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _stride) -> {
             try {
-                constants$847.PFNGLEDGEFLAGFORMATNVPROC$MH.invokeExact((Addressable)symbol, _stride);
+                constants$1224.PFNGLEDGEFLAGFORMATNVPROC$MH.invokeExact((Addressable)symbol, _stride);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

@@ -11,13 +11,13 @@ public interface PFNGLGETTRANSFORMFEEDBACKIVPROC {
 
     void apply(int xfb, int pname, java.lang.foreign.MemoryAddress param);
     static MemorySegment allocate(PFNGLGETTRANSFORMFEEDBACKIVPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLGETTRANSFORMFEEDBACKIVPROC.class, fi, constants$271.PFNGLGETTRANSFORMFEEDBACKIVPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLGETTRANSFORMFEEDBACKIVPROC.class, fi, constants$360.PFNGLGETTRANSFORMFEEDBACKIVPROC$FUNC, session);
     }
     static PFNGLGETTRANSFORMFEEDBACKIVPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _xfb, int _pname, java.lang.foreign.MemoryAddress _param) -> {
             try {
-                constants$271.PFNGLGETTRANSFORMFEEDBACKIVPROC$MH.invokeExact((Addressable)symbol, _xfb, _pname, (java.lang.foreign.Addressable)_param);
+                constants$360.PFNGLGETTRANSFORMFEEDBACKIVPROC$MH.invokeExact((Addressable)symbol, _xfb, _pname, (java.lang.foreign.Addressable)_param);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

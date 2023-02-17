@@ -11,13 +11,13 @@ public interface PFNGLVALIDATEPROGRAMPIPELINEPROC {
 
     void apply(int pipeline);
     static MemorySegment allocate(PFNGLVALIDATEPROGRAMPIPELINEPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLVALIDATEPROGRAMPIPELINEPROC.class, fi, constants$241.PFNGLVALIDATEPROGRAMPIPELINEPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLVALIDATEPROGRAMPIPELINEPROC.class, fi, constants$305.PFNGLVALIDATEPROGRAMPIPELINEPROC$FUNC, session);
     }
     static PFNGLVALIDATEPROGRAMPIPELINEPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _pipeline) -> {
             try {
-                constants$241.PFNGLVALIDATEPROGRAMPIPELINEPROC$MH.invokeExact((Addressable)symbol, _pipeline);
+                constants$305.PFNGLVALIDATEPROGRAMPIPELINEPROC$MH.invokeExact((Addressable)symbol, _pipeline);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

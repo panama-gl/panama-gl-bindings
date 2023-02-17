@@ -9,32 +9,32 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$192 {
 
-    static final FunctionDescriptor PFNGLVERTEXATTRIBP2UIPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLCLEARBUFFERFVPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_CHAR$LAYOUT,
-        Constants$root.C_INT$LAYOUT
-    );
-    static final MethodHandle PFNGLVERTEXATTRIBP2UIPROC$MH = RuntimeHelper.downcallHandle(
-        constants$192.PFNGLVERTEXATTRIBP2UIPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLVERTEXATTRIBP2UIVPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_CHAR$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLVERTEXATTRIBP2UIVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$192.PFNGLVERTEXATTRIBP2UIVPROC$FUNC
+    static final MethodHandle PFNGLCLEARBUFFERFVPROC$MH = RuntimeHelper.downcallHandle(
+        constants$192.PFNGLCLEARBUFFERFVPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLVERTEXATTRIBP3UIPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLCLEARBUFFERFIPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_CHAR$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT,
         Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLVERTEXATTRIBP3UIPROC$MH = RuntimeHelper.downcallHandle(
-        constants$192.PFNGLVERTEXATTRIBP3UIPROC$FUNC
+    static final MethodHandle PFNGLCLEARBUFFERFIPROC$MH = RuntimeHelper.downcallHandle(
+        constants$192.PFNGLCLEARBUFFERFIPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLGETSTRINGIPROC$FUNC = FunctionDescriptor.of(Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle PFNGLGETSTRINGIPROC$MH = RuntimeHelper.downcallHandle(
+        constants$192.PFNGLGETSTRINGIPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLISRENDERBUFFERPROC$FUNC = FunctionDescriptor.of(Constants$root.C_CHAR$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
 }
 

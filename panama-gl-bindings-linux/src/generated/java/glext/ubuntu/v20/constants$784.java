@@ -9,23 +9,31 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$784 {
 
-    static final FunctionDescriptor PFNGLBEGINOCCLUSIONQUERYNVPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLENABLEINDEXEDEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLBEGINOCCLUSIONQUERYNVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$784.PFNGLBEGINOCCLUSIONQUERYNVPROC$FUNC
+    static final MethodHandle PFNGLENABLEINDEXEDEXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$784.PFNGLENABLEINDEXEDEXTPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLENDOCCLUSIONQUERYNVPROC$FUNC = FunctionDescriptor.ofVoid();
-    static final MethodHandle PFNGLENDOCCLUSIONQUERYNVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$784.PFNGLENDOCCLUSIONQUERYNVPROC$FUNC
+    static final FunctionDescriptor PFNGLDISABLEINDEXEDEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
-    static final FunctionDescriptor PFNGLGETOCCLUSIONQUERYIVNVPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final MethodHandle PFNGLDISABLEINDEXEDEXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$784.PFNGLDISABLEINDEXEDEXTPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLISENABLEDINDEXEDEXTPROC$FUNC = FunctionDescriptor.of(Constants$root.C_CHAR$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle PFNGLISENABLEDINDEXEDEXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$784.PFNGLISENABLEDINDEXEDEXTPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLGETINTEGERINDEXEDVEXTPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle PFNGLGETOCCLUSIONQUERYIVNVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$784.PFNGLGETOCCLUSIONQUERYIVNVPROC$FUNC
     );
 }
 

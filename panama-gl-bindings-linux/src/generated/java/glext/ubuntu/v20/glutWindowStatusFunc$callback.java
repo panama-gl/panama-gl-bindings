@@ -11,13 +11,13 @@ public interface glutWindowStatusFunc$callback {
 
     void apply(int _x0);
     static MemorySegment allocate(glutWindowStatusFunc$callback fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(glutWindowStatusFunc$callback.class, fi, constants$957.glutWindowStatusFunc$callback$FUNC, session);
+        return RuntimeHelper.upcallStub(glutWindowStatusFunc$callback.class, fi, constants$1375.glutWindowStatusFunc$callback$FUNC, session);
     }
     static glutWindowStatusFunc$callback ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int __x0) -> {
             try {
-                constants$957.glutWindowStatusFunc$callback$MH.invokeExact((Addressable)symbol, __x0);
+                constants$1375.glutWindowStatusFunc$callback$MH.invokeExact((Addressable)symbol, __x0);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

@@ -11,13 +11,13 @@ public interface PFNGLMAPVERTEXATTRIB2DAPPLEPROC {
 
     void apply(int index, int size, double u1, double u2, int ustride, int uorder, double v1, double v2, int vstride, int vorder, java.lang.foreign.MemoryAddress points);
     static MemorySegment allocate(PFNGLMAPVERTEXATTRIB2DAPPLEPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLMAPVERTEXATTRIB2DAPPLEPROC.class, fi, constants$485.PFNGLMAPVERTEXATTRIB2DAPPLEPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLMAPVERTEXATTRIB2DAPPLEPROC.class, fi, constants$681.PFNGLMAPVERTEXATTRIB2DAPPLEPROC$FUNC, session);
     }
     static PFNGLMAPVERTEXATTRIB2DAPPLEPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _index, int _size, double _u1, double _u2, int _ustride, int _uorder, double _v1, double _v2, int _vstride, int _vorder, java.lang.foreign.MemoryAddress _points) -> {
             try {
-                constants$485.PFNGLMAPVERTEXATTRIB2DAPPLEPROC$MH.invokeExact((Addressable)symbol, _index, _size, _u1, _u2, _ustride, _uorder, _v1, _v2, _vstride, _vorder, (java.lang.foreign.Addressable)_points);
+                constants$681.PFNGLMAPVERTEXATTRIB2DAPPLEPROC$MH.invokeExact((Addressable)symbol, _index, _size, _u1, _u2, _ustride, _uorder, _v1, _v2, _vstride, _vorder, (java.lang.foreign.Addressable)_points);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

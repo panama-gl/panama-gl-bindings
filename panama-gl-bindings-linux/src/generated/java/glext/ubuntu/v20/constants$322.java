@@ -9,34 +9,71 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$322 {
 
-    static final FunctionDescriptor PFNGLBLENDFUNCSEPARATEIARBPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glProgramUniformMatrix3x4fv$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT
+        Constants$root.C_CHAR$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLBLENDFUNCSEPARATEIARBPROC$MH = RuntimeHelper.downcallHandle(
-        constants$322.PFNGLBLENDFUNCSEPARATEIARBPROC$FUNC
+    static final MethodHandle glProgramUniformMatrix3x4fv$MH = RuntimeHelper.downcallHandle(
+        "glProgramUniformMatrix3x4fv",
+        constants$322.glProgramUniformMatrix3x4fv$FUNC
     );
-    static final FunctionDescriptor PFNGLDRAWARRAYSINSTANCEDARBPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glProgramUniformMatrix4x3fv$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT
+        Constants$root.C_CHAR$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLDRAWARRAYSINSTANCEDARBPROC$MH = RuntimeHelper.downcallHandle(
-        constants$322.PFNGLDRAWARRAYSINSTANCEDARBPROC$FUNC
+    static final MethodHandle glProgramUniformMatrix4x3fv$MH = RuntimeHelper.downcallHandle(
+        "glProgramUniformMatrix4x3fv",
+        constants$322.glProgramUniformMatrix4x3fv$FUNC
     );
-    static final FunctionDescriptor PFNGLDRAWELEMENTSINSTANCEDARBPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glProgramUniformMatrix2x3dv$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_INT$LAYOUT
+        Constants$root.C_CHAR$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLDRAWELEMENTSINSTANCEDARBPROC$MH = RuntimeHelper.downcallHandle(
-        constants$322.PFNGLDRAWELEMENTSINSTANCEDARBPROC$FUNC
+    static final MethodHandle glProgramUniformMatrix2x3dv$MH = RuntimeHelper.downcallHandle(
+        "glProgramUniformMatrix2x3dv",
+        constants$322.glProgramUniformMatrix2x3dv$FUNC
+    );
+    static final FunctionDescriptor glProgramUniformMatrix3x2dv$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_CHAR$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glProgramUniformMatrix3x2dv$MH = RuntimeHelper.downcallHandle(
+        "glProgramUniformMatrix3x2dv",
+        constants$322.glProgramUniformMatrix3x2dv$FUNC
+    );
+    static final FunctionDescriptor glProgramUniformMatrix2x4dv$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_CHAR$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glProgramUniformMatrix2x4dv$MH = RuntimeHelper.downcallHandle(
+        "glProgramUniformMatrix2x4dv",
+        constants$322.glProgramUniformMatrix2x4dv$FUNC
+    );
+    static final FunctionDescriptor glProgramUniformMatrix4x2dv$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_CHAR$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glProgramUniformMatrix4x2dv$MH = RuntimeHelper.downcallHandle(
+        "glProgramUniformMatrix4x2dv",
+        constants$322.glProgramUniformMatrix4x2dv$FUNC
     );
 }
 

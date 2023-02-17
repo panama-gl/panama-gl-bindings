@@ -9,35 +9,34 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$591 {
 
-    static final FunctionDescriptor PFNGLGETPOINTERI_VEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLGETHISTOGRAMPARAMETERXVOESPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLGETPOINTERI_VEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$591.PFNGLGETPOINTERI_VEXTPROC$FUNC
+    static final MethodHandle PFNGLGETHISTOGRAMPARAMETERXVOESPROC$MH = RuntimeHelper.downcallHandle(
+        constants$591.PFNGLGETHISTOGRAMPARAMETERXVOESPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLNAMEDPROGRAMSTRINGEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
+    static final FunctionDescriptor PFNGLGETLIGHTXOESPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLNAMEDPROGRAMSTRINGEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$591.PFNGLNAMEDPROGRAMSTRINGEXTPROC$FUNC
+    static final MethodHandle PFNGLGETLIGHTXOESPROC$MH = RuntimeHelper.downcallHandle(
+        constants$591.PFNGLGETLIGHTXOESPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLNAMEDPROGRAMLOCALPARAMETER4DEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLGETMAPXVOESPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_DOUBLE$LAYOUT,
-        Constants$root.C_DOUBLE$LAYOUT,
-        Constants$root.C_DOUBLE$LAYOUT,
-        Constants$root.C_DOUBLE$LAYOUT
+        Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLNAMEDPROGRAMLOCALPARAMETER4DEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$591.PFNGLNAMEDPROGRAMLOCALPARAMETER4DEXTPROC$FUNC
+    static final MethodHandle PFNGLGETMAPXVOESPROC$MH = RuntimeHelper.downcallHandle(
+        constants$591.PFNGLGETMAPXVOESPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLGETMATERIALXOESPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
 }
 

@@ -9,26 +9,42 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$836 {
 
-    static final FunctionDescriptor PFNGLVDPAUREGISTEROUTPUTSURFACENVPROC$FUNC = FunctionDescriptor.of(Constants$root.C_LONG_LONG$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
+    static final FunctionDescriptor PFNGLPROGRAMUNIFORMMATRIX2X4DVEXTPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_CHAR$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLVDPAUREGISTEROUTPUTSURFACENVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$836.PFNGLVDPAUREGISTEROUTPUTSURFACENVPROC$FUNC
+    static final MethodHandle PFNGLPROGRAMUNIFORMMATRIX2X4DVEXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$836.PFNGLPROGRAMUNIFORMMATRIX2X4DVEXTPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLVDPAUISSURFACENVPROC$FUNC = FunctionDescriptor.of(Constants$root.C_CHAR$LAYOUT,
-        Constants$root.C_LONG_LONG$LAYOUT
+    static final FunctionDescriptor PFNGLPROGRAMUNIFORMMATRIX3X2DVEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_CHAR$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLVDPAUISSURFACENVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$836.PFNGLVDPAUISSURFACENVPROC$FUNC
+    static final MethodHandle PFNGLPROGRAMUNIFORMMATRIX3X2DVEXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$836.PFNGLPROGRAMUNIFORMMATRIX3X2DVEXTPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLVDPAUUNREGISTERSURFACENVPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_LONG_LONG$LAYOUT
+    static final FunctionDescriptor PFNGLPROGRAMUNIFORMMATRIX3X4DVEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_CHAR$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLVDPAUUNREGISTERSURFACENVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$836.PFNGLVDPAUUNREGISTERSURFACENVPROC$FUNC
+    static final MethodHandle PFNGLPROGRAMUNIFORMMATRIX3X4DVEXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$836.PFNGLPROGRAMUNIFORMMATRIX3X4DVEXTPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLPROGRAMUNIFORMMATRIX4X2DVEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_CHAR$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
 }
 

@@ -9,32 +9,23 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$127 {
 
-    static final FunctionDescriptor PFNGLUNIFORM2IPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
+    static final FunctionDescriptor PFNGLCREATESHADERPROC$FUNC = FunctionDescriptor.of(Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLUNIFORM2IPROC$MH = RuntimeHelper.downcallHandle(
-        constants$127.PFNGLUNIFORM2IPROC$FUNC
+    static final MethodHandle PFNGLCREATESHADERPROC$MH = RuntimeHelper.downcallHandle(
+        constants$127.PFNGLCREATESHADERPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLUNIFORM3IPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
+    static final FunctionDescriptor PFNGLDELETEPROGRAMPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLUNIFORM3IPROC$MH = RuntimeHelper.downcallHandle(
-        constants$127.PFNGLUNIFORM3IPROC$FUNC
+    static final MethodHandle PFNGLDELETEPROGRAMPROC$MH = RuntimeHelper.downcallHandle(
+        constants$127.PFNGLDELETEPROGRAMPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLUNIFORM4IPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
+    static final FunctionDescriptor PFNGLDELETESHADERPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLUNIFORM4IPROC$MH = RuntimeHelper.downcallHandle(
-        constants$127.PFNGLUNIFORM4IPROC$FUNC
+    static final MethodHandle PFNGLDELETESHADERPROC$MH = RuntimeHelper.downcallHandle(
+        constants$127.PFNGLDELETESHADERPROC$FUNC
     );
 }
 

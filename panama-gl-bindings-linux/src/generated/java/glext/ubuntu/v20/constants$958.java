@@ -9,35 +9,61 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$958 {
 
-    static final FunctionDescriptor glutWindowStatusFunc$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glTexParameterIivEXT$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle glutWindowStatusFunc$MH = RuntimeHelper.downcallHandle(
-        "glutWindowStatusFunc",
-        constants$958.glutWindowStatusFunc$FUNC
+    static final MethodHandle glTexParameterIivEXT$MH = RuntimeHelper.downcallHandle(
+        "glTexParameterIivEXT",
+        constants$958.glTexParameterIivEXT$FUNC
     );
-    static final FunctionDescriptor glutSpaceballMotionFunc$callback$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glTexParameterIuivEXT$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glTexParameterIuivEXT$MH = RuntimeHelper.downcallHandle(
+        "glTexParameterIuivEXT",
+        constants$958.glTexParameterIuivEXT$FUNC
+    );
+    static final FunctionDescriptor glGetTexParameterIivEXT$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glGetTexParameterIivEXT$MH = RuntimeHelper.downcallHandle(
+        "glGetTexParameterIivEXT",
+        constants$958.glGetTexParameterIivEXT$FUNC
+    );
+    static final FunctionDescriptor glGetTexParameterIuivEXT$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glGetTexParameterIuivEXT$MH = RuntimeHelper.downcallHandle(
+        "glGetTexParameterIuivEXT",
+        constants$958.glGetTexParameterIuivEXT$FUNC
+    );
+    static final FunctionDescriptor glClearColorIiEXT$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle glutSpaceballMotionFunc$callback$MH = RuntimeHelper.downcallHandle(
-        constants$958.glutSpaceballMotionFunc$callback$FUNC
+    static final MethodHandle glClearColorIiEXT$MH = RuntimeHelper.downcallHandle(
+        "glClearColorIiEXT",
+        constants$958.glClearColorIiEXT$FUNC
     );
-    static final FunctionDescriptor glutSpaceballMotionFunc$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle glutSpaceballMotionFunc$MH = RuntimeHelper.downcallHandle(
-        "glutSpaceballMotionFunc",
-        constants$958.glutSpaceballMotionFunc$FUNC
-    );
-    static final FunctionDescriptor glutSpaceballRotateFunc$callback$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glClearColorIuiEXT$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle glutSpaceballRotateFunc$callback$MH = RuntimeHelper.downcallHandle(
-        constants$958.glutSpaceballRotateFunc$callback$FUNC
+    static final MethodHandle glClearColorIuiEXT$MH = RuntimeHelper.downcallHandle(
+        "glClearColorIuiEXT",
+        constants$958.glClearColorIuiEXT$FUNC
     );
 }
 

@@ -11,13 +11,13 @@ public interface PFNGLCHECKNAMEDFRAMEBUFFERSTATUSPROC {
 
     int apply(int framebuffer, int target);
     static MemorySegment allocate(PFNGLCHECKNAMEDFRAMEBUFFERSTATUSPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLCHECKNAMEDFRAMEBUFFERSTATUSPROC.class, fi, constants$282.PFNGLCHECKNAMEDFRAMEBUFFERSTATUSPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLCHECKNAMEDFRAMEBUFFERSTATUSPROC.class, fi, constants$371.PFNGLCHECKNAMEDFRAMEBUFFERSTATUSPROC$FUNC, session);
     }
     static PFNGLCHECKNAMEDFRAMEBUFFERSTATUSPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _framebuffer, int _target) -> {
             try {
-                return (int)constants$282.PFNGLCHECKNAMEDFRAMEBUFFERSTATUSPROC$MH.invokeExact((Addressable)symbol, _framebuffer, _target);
+                return (int)constants$371.PFNGLCHECKNAMEDFRAMEBUFFERSTATUSPROC$MH.invokeExact((Addressable)symbol, _framebuffer, _target);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

@@ -11,13 +11,13 @@ public interface PFNGLNAMEDFRAMEBUFFERSAMPLELOCATIONSFVARBPROC {
 
     void apply(int framebuffer, int start, int count, java.lang.foreign.MemoryAddress v);
     static MemorySegment allocate(PFNGLNAMEDFRAMEBUFFERSAMPLELOCATIONSFVARBPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLNAMEDFRAMEBUFFERSAMPLELOCATIONSFVARBPROC.class, fi, constants$356.PFNGLNAMEDFRAMEBUFFERSAMPLELOCATIONSFVARBPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLNAMEDFRAMEBUFFERSAMPLELOCATIONSFVARBPROC.class, fi, constants$488.PFNGLNAMEDFRAMEBUFFERSAMPLELOCATIONSFVARBPROC$FUNC, session);
     }
     static PFNGLNAMEDFRAMEBUFFERSAMPLELOCATIONSFVARBPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _framebuffer, int _start, int _count, java.lang.foreign.MemoryAddress _v) -> {
             try {
-                constants$356.PFNGLNAMEDFRAMEBUFFERSAMPLELOCATIONSFVARBPROC$MH.invokeExact((Addressable)symbol, _framebuffer, _start, _count, (java.lang.foreign.Addressable)_v);
+                constants$488.PFNGLNAMEDFRAMEBUFFERSAMPLELOCATIONSFVARBPROC$MH.invokeExact((Addressable)symbol, _framebuffer, _start, _count, (java.lang.foreign.Addressable)_v);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

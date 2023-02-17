@@ -11,13 +11,13 @@ public interface PFNGLDELETENAMESAMDPROC {
 
     void apply(int identifier, int num, java.lang.foreign.MemoryAddress names);
     static MemorySegment allocate(PFNGLDELETENAMESAMDPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLDELETENAMESAMDPROC.class, fi, constants$468.PFNGLDELETENAMESAMDPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLDELETENAMESAMDPROC.class, fi, constants$655.PFNGLDELETENAMESAMDPROC$FUNC, session);
     }
     static PFNGLDELETENAMESAMDPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _identifier, int _num, java.lang.foreign.MemoryAddress _names) -> {
             try {
-                constants$468.PFNGLDELETENAMESAMDPROC$MH.invokeExact((Addressable)symbol, _identifier, _num, (java.lang.foreign.Addressable)_names);
+                constants$656.PFNGLDELETENAMESAMDPROC$MH.invokeExact((Addressable)symbol, _identifier, _num, (java.lang.foreign.Addressable)_names);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

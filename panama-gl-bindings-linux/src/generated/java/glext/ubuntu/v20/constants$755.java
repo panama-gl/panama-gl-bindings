@@ -9,54 +9,47 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$755 {
 
-    static final FunctionDescriptor PFNGLMULTICASTCOPYIMAGESUBDATANVPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLGETOBJECTLABELEXTPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLMULTICASTCOPYIMAGESUBDATANVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$755.PFNGLMULTICASTCOPYIMAGESUBDATANVPROC$FUNC
+    static final MethodHandle PFNGLGETOBJECTLABELEXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$755.PFNGLGETOBJECTLABELEXTPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLMULTICASTBLITFRAMEBUFFERNVPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT
-    );
-    static final MethodHandle PFNGLMULTICASTBLITFRAMEBUFFERNVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$755.PFNGLMULTICASTBLITFRAMEBUFFERNVPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLMULTICASTFRAMEBUFFERSAMPLELOCATIONSFVNVPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
+    static final FunctionDescriptor glLabelObjectEXT$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLMULTICASTFRAMEBUFFERSAMPLELOCATIONSFVNVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$755.PFNGLMULTICASTFRAMEBUFFERSAMPLELOCATIONSFVNVPROC$FUNC
+    static final MethodHandle glLabelObjectEXT$MH = RuntimeHelper.downcallHandle(
+        "glLabelObjectEXT",
+        constants$755.glLabelObjectEXT$FUNC
+    );
+    static final FunctionDescriptor glGetObjectLabelEXT$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glGetObjectLabelEXT$MH = RuntimeHelper.downcallHandle(
+        "glGetObjectLabelEXT",
+        constants$755.glGetObjectLabelEXT$FUNC
+    );
+    static final FunctionDescriptor PFNGLINSERTEVENTMARKEREXTPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle PFNGLINSERTEVENTMARKEREXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$755.PFNGLINSERTEVENTMARKEREXTPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLPUSHGROUPMARKEREXTPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
 }
 

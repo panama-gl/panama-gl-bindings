@@ -9,27 +9,63 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$878 {
 
-    static final FunctionDescriptor PFNGLGETVERTEXATTRIBIIVEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glGetVertexArrayPointervEXT$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLGETVERTEXATTRIBIIVEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$878.PFNGLGETVERTEXATTRIBIIVEXTPROC$FUNC
+    static final MethodHandle glGetVertexArrayPointervEXT$MH = RuntimeHelper.downcallHandle(
+        "glGetVertexArrayPointervEXT",
+        constants$878.glGetVertexArrayPointervEXT$FUNC
     );
-    static final FunctionDescriptor PFNGLGETVERTEXATTRIBIUIVEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glGetVertexArrayIntegeri_vEXT$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLGETVERTEXATTRIBIUIVEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$878.PFNGLGETVERTEXATTRIBIUIVEXTPROC$FUNC
+    static final MethodHandle glGetVertexArrayIntegeri_vEXT$MH = RuntimeHelper.downcallHandle(
+        "glGetVertexArrayIntegeri_vEXT",
+        constants$878.glGetVertexArrayIntegeri_vEXT$FUNC
     );
-    static final FunctionDescriptor PFNGLBEGINVIDEOCAPTURENVPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glGetVertexArrayPointeri_vEXT$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glGetVertexArrayPointeri_vEXT$MH = RuntimeHelper.downcallHandle(
+        "glGetVertexArrayPointeri_vEXT",
+        constants$878.glGetVertexArrayPointeri_vEXT$FUNC
+    );
+    static final FunctionDescriptor glMapNamedBufferRangeEXT$FUNC = FunctionDescriptor.of(Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT,
         Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLBEGINVIDEOCAPTURENVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$878.PFNGLBEGINVIDEOCAPTURENVPROC$FUNC
+    static final MethodHandle glMapNamedBufferRangeEXT$MH = RuntimeHelper.downcallHandle(
+        "glMapNamedBufferRangeEXT",
+        constants$878.glMapNamedBufferRangeEXT$FUNC
+    );
+    static final FunctionDescriptor glFlushMappedNamedBufferRangeEXT$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT
+    );
+    static final MethodHandle glFlushMappedNamedBufferRangeEXT$MH = RuntimeHelper.downcallHandle(
+        "glFlushMappedNamedBufferRangeEXT",
+        constants$878.glFlushMappedNamedBufferRangeEXT$FUNC
+    );
+    static final FunctionDescriptor glNamedBufferStorageEXT$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle glNamedBufferStorageEXT$MH = RuntimeHelper.downcallHandle(
+        "glNamedBufferStorageEXT",
+        constants$878.glNamedBufferStorageEXT$FUNC
     );
 }
 

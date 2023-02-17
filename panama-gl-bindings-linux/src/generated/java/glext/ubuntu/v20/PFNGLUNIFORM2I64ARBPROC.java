@@ -11,13 +11,13 @@ public interface PFNGLUNIFORM2I64ARBPROC {
 
     void apply(int location, long x, long y);
     static MemorySegment allocate(PFNGLUNIFORM2I64ARBPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLUNIFORM2I64ARBPROC.class, fi, constants$331.PFNGLUNIFORM2I64ARBPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLUNIFORM2I64ARBPROC.class, fi, constants$450.PFNGLUNIFORM2I64ARBPROC$FUNC, session);
     }
     static PFNGLUNIFORM2I64ARBPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _location, long _x, long _y) -> {
             try {
-                constants$331.PFNGLUNIFORM2I64ARBPROC$MH.invokeExact((Addressable)symbol, _location, _x, _y);
+                constants$450.PFNGLUNIFORM2I64ARBPROC$MH.invokeExact((Addressable)symbol, _location, _x, _y);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

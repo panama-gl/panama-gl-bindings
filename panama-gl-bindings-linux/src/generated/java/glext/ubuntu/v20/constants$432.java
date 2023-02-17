@@ -9,28 +9,51 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$432 {
 
-    static final FunctionDescriptor PFNGLGETTEXGENXVOESPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle PFNGLGETTEXGENXVOESPROC$MH = RuntimeHelper.downcallHandle(
-        constants$432.PFNGLGETTEXGENXVOESPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLGETTEXLEVELPARAMETERXVOESPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLDISPATCHCOMPUTEGROUPSIZEARBPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle PFNGLGETTEXLEVELPARAMETERXVOESPROC$MH = RuntimeHelper.downcallHandle(
-        constants$432.PFNGLGETTEXLEVELPARAMETERXVOESPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLINDEXXOESPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLINDEXXOESPROC$MH = RuntimeHelper.downcallHandle(
-        constants$432.PFNGLINDEXXOESPROC$FUNC
+    static final MethodHandle PFNGLDISPATCHCOMPUTEGROUPSIZEARBPROC$MH = RuntimeHelper.downcallHandle(
+        constants$432.PFNGLDISPATCHCOMPUTEGROUPSIZEARBPROC$FUNC
+    );
+    static final FunctionDescriptor glDispatchComputeGroupSizeARB$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle glDispatchComputeGroupSizeARB$MH = RuntimeHelper.downcallHandle(
+        "glDispatchComputeGroupSizeARB",
+        constants$432.glDispatchComputeGroupSizeARB$FUNC
+    );
+    static final FunctionDescriptor GLDEBUGPROCARB$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle GLDEBUGPROCARB$MH = RuntimeHelper.downcallHandle(
+        constants$432.GLDEBUGPROCARB$FUNC
+    );
+    static final FunctionDescriptor PFNGLDEBUGMESSAGECONTROLARBPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_CHAR$LAYOUT
+    );
+    static final MethodHandle PFNGLDEBUGMESSAGECONTROLARBPROC$MH = RuntimeHelper.downcallHandle(
+        constants$432.PFNGLDEBUGMESSAGECONTROLARBPROC$FUNC
     );
 }
 

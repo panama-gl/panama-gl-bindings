@@ -11,13 +11,13 @@ public interface PFNGLSPECIALIZESHADERARBPROC {
 
     void apply(int shader, java.lang.foreign.MemoryAddress pEntryPoint, int numSpecializationConstants, java.lang.foreign.MemoryAddress pConstantIndex, java.lang.foreign.MemoryAddress pConstantValue);
     static MemorySegment allocate(PFNGLSPECIALIZESHADERARBPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLSPECIALIZESHADERARBPROC.class, fi, constants$330.PFNGLSPECIALIZESHADERARBPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLSPECIALIZESHADERARBPROC.class, fi, constants$449.PFNGLSPECIALIZESHADERARBPROC$FUNC, session);
     }
     static PFNGLSPECIALIZESHADERARBPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _shader, java.lang.foreign.MemoryAddress _pEntryPoint, int _numSpecializationConstants, java.lang.foreign.MemoryAddress _pConstantIndex, java.lang.foreign.MemoryAddress _pConstantValue) -> {
             try {
-                constants$330.PFNGLSPECIALIZESHADERARBPROC$MH.invokeExact((Addressable)symbol, _shader, (java.lang.foreign.Addressable)_pEntryPoint, _numSpecializationConstants, (java.lang.foreign.Addressable)_pConstantIndex, (java.lang.foreign.Addressable)_pConstantValue);
+                constants$449.PFNGLSPECIALIZESHADERARBPROC$MH.invokeExact((Addressable)symbol, _shader, (java.lang.foreign.Addressable)_pEntryPoint, _numSpecializationConstants, (java.lang.foreign.Addressable)_pConstantIndex, (java.lang.foreign.Addressable)_pConstantValue);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

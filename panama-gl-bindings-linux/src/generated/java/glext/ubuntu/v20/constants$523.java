@@ -9,32 +9,27 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$523 {
 
-    static final FunctionDescriptor PFNGLGETCONVOLUTIONPARAMETERFVEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLWEIGHTUIVARBPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle PFNGLWEIGHTUIVARBPROC$MH = RuntimeHelper.downcallHandle(
+        constants$523.PFNGLWEIGHTUIVARBPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLWEIGHTPOINTERARBPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLGETCONVOLUTIONPARAMETERFVEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$523.PFNGLGETCONVOLUTIONPARAMETERFVEXTPROC$FUNC
+    static final MethodHandle PFNGLWEIGHTPOINTERARBPROC$MH = RuntimeHelper.downcallHandle(
+        constants$523.PFNGLWEIGHTPOINTERARBPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLGETCONVOLUTIONPARAMETERIVEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
+    static final FunctionDescriptor PFNGLVERTEXBLENDARBPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLGETCONVOLUTIONPARAMETERIVEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$523.PFNGLGETCONVOLUTIONPARAMETERIVEXTPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLGETSEPARABLEFILTEREXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle PFNGLGETSEPARABLEFILTEREXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$523.PFNGLGETSEPARABLEFILTEREXTPROC$FUNC
+    static final MethodHandle PFNGLVERTEXBLENDARBPROC$MH = RuntimeHelper.downcallHandle(
+        constants$523.PFNGLVERTEXBLENDARBPROC$FUNC
     );
 }
 

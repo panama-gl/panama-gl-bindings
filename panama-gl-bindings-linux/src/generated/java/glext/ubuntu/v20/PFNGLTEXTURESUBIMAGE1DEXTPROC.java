@@ -11,13 +11,13 @@ public interface PFNGLTEXTURESUBIMAGE1DEXTPROC {
 
     void apply(int texture, int target, int level, int xoffset, int width, int format, int type, java.lang.foreign.MemoryAddress pixels);
     static MemorySegment allocate(PFNGLTEXTURESUBIMAGE1DEXTPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLTEXTURESUBIMAGE1DEXTPROC.class, fi, constants$543.PFNGLTEXTURESUBIMAGE1DEXTPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLTEXTURESUBIMAGE1DEXTPROC.class, fi, constants$765.PFNGLTEXTURESUBIMAGE1DEXTPROC$FUNC, session);
     }
     static PFNGLTEXTURESUBIMAGE1DEXTPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _texture, int _target, int _level, int _xoffset, int _width, int _format, int _type, java.lang.foreign.MemoryAddress _pixels) -> {
             try {
-                constants$543.PFNGLTEXTURESUBIMAGE1DEXTPROC$MH.invokeExact((Addressable)symbol, _texture, _target, _level, _xoffset, _width, _format, _type, (java.lang.foreign.Addressable)_pixels);
+                constants$765.PFNGLTEXTURESUBIMAGE1DEXTPROC$MH.invokeExact((Addressable)symbol, _texture, _target, _level, _xoffset, _width, _format, _type, (java.lang.foreign.Addressable)_pixels);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

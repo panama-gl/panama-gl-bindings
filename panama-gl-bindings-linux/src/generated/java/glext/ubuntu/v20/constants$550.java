@@ -9,32 +9,59 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$550 {
 
-    static final FunctionDescriptor PFNGLMULTITEXENVIVEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
+    static final FunctionDescriptor glVertexAttrib4dvARB$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLMULTITEXENVIVEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$550.PFNGLMULTITEXENVIVEXTPROC$FUNC
+    static final MethodHandle glVertexAttrib4dvARB$MH = RuntimeHelper.downcallHandle(
+        "glVertexAttrib4dvARB",
+        constants$550.glVertexAttrib4dvARB$FUNC
     );
-    static final FunctionDescriptor PFNGLMULTITEXGENDEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glVertexAttrib4fARB$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_DOUBLE$LAYOUT
+        Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT
     );
-    static final MethodHandle PFNGLMULTITEXGENDEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$550.PFNGLMULTITEXGENDEXTPROC$FUNC
+    static final MethodHandle glVertexAttrib4fARB$MH = RuntimeHelper.downcallHandle(
+        "glVertexAttrib4fARB",
+        constants$550.glVertexAttrib4fARB$FUNC
     );
-    static final FunctionDescriptor PFNGLMULTITEXGENDVEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
+    static final FunctionDescriptor glVertexAttrib4fvARB$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLMULTITEXGENDVEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$550.PFNGLMULTITEXGENDVEXTPROC$FUNC
+    static final MethodHandle glVertexAttrib4fvARB$MH = RuntimeHelper.downcallHandle(
+        "glVertexAttrib4fvARB",
+        constants$550.glVertexAttrib4fvARB$FUNC
+    );
+    static final FunctionDescriptor glVertexAttrib4ivARB$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glVertexAttrib4ivARB$MH = RuntimeHelper.downcallHandle(
+        "glVertexAttrib4ivARB",
+        constants$550.glVertexAttrib4ivARB$FUNC
+    );
+    static final FunctionDescriptor glVertexAttrib4sARB$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_SHORT$LAYOUT,
+        Constants$root.C_SHORT$LAYOUT,
+        Constants$root.C_SHORT$LAYOUT,
+        Constants$root.C_SHORT$LAYOUT
+    );
+    static final MethodHandle glVertexAttrib4sARB$MH = RuntimeHelper.downcallHandle(
+        "glVertexAttrib4sARB",
+        constants$550.glVertexAttrib4sARB$FUNC
+    );
+    static final FunctionDescriptor glVertexAttrib4svARB$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glVertexAttrib4svARB$MH = RuntimeHelper.downcallHandle(
+        "glVertexAttrib4svARB",
+        constants$550.glVertexAttrib4svARB$FUNC
     );
 }
 

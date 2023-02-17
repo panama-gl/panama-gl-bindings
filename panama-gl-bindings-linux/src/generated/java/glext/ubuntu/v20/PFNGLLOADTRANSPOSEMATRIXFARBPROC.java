@@ -11,13 +11,13 @@ public interface PFNGLLOADTRANSPOSEMATRIXFARBPROC {
 
     void apply(java.lang.foreign.MemoryAddress m);
     static MemorySegment allocate(PFNGLLOADTRANSPOSEMATRIXFARBPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLLOADTRANSPOSEMATRIXFARBPROC.class, fi, constants$376.PFNGLLOADTRANSPOSEMATRIXFARBPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLLOADTRANSPOSEMATRIXFARBPROC.class, fi, constants$518.PFNGLLOADTRANSPOSEMATRIXFARBPROC$FUNC, session);
     }
     static PFNGLLOADTRANSPOSEMATRIXFARBPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (java.lang.foreign.MemoryAddress _m) -> {
             try {
-                constants$376.PFNGLLOADTRANSPOSEMATRIXFARBPROC$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)_m);
+                constants$518.PFNGLLOADTRANSPOSEMATRIXFARBPROC$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)_m);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

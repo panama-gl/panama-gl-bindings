@@ -11,13 +11,13 @@ public interface PFNGLGETARRAYOBJECTFVATIPROC {
 
     void apply(int array, int pname, java.lang.foreign.MemoryAddress params);
     static MemorySegment allocate(PFNGLGETARRAYOBJECTFVATIPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLGETARRAYOBJECTFVATIPROC.class, fi, constants$498.PFNGLGETARRAYOBJECTFVATIPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLGETARRAYOBJECTFVATIPROC.class, fi, constants$699.PFNGLGETARRAYOBJECTFVATIPROC$FUNC, session);
     }
     static PFNGLGETARRAYOBJECTFVATIPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _array, int _pname, java.lang.foreign.MemoryAddress _params) -> {
             try {
-                constants$498.PFNGLGETARRAYOBJECTFVATIPROC$MH.invokeExact((Addressable)symbol, _array, _pname, (java.lang.foreign.Addressable)_params);
+                constants$699.PFNGLGETARRAYOBJECTFVATIPROC$MH.invokeExact((Addressable)symbol, _array, _pname, (java.lang.foreign.Addressable)_params);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

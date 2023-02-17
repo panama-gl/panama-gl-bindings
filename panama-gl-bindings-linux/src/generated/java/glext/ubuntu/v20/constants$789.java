@@ -9,43 +9,56 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$789 {
 
-    static final FunctionDescriptor PFNGLPATHGLYPHSNVPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT
-    );
-    static final MethodHandle PFNGLPATHGLYPHSNVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$789.PFNGLPATHGLYPHSNVPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLPATHGLYPHRANGENVPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
+    static final FunctionDescriptor PFNGLCOMPRESSEDMULTITEXSUBIMAGE3DEXTPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT
-    );
-    static final MethodHandle PFNGLPATHGLYPHRANGENVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$789.PFNGLPATHGLYPHRANGENVPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLWEIGHTPATHSNVPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLWEIGHTPATHSNVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$789.PFNGLWEIGHTPATHSNVPROC$FUNC
+    static final MethodHandle PFNGLCOMPRESSEDMULTITEXSUBIMAGE3DEXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$789.PFNGLCOMPRESSEDMULTITEXSUBIMAGE3DEXTPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLCOMPRESSEDMULTITEXSUBIMAGE2DEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle PFNGLCOMPRESSEDMULTITEXSUBIMAGE2DEXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$789.PFNGLCOMPRESSEDMULTITEXSUBIMAGE2DEXTPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLCOMPRESSEDMULTITEXSUBIMAGE1DEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle PFNGLCOMPRESSEDMULTITEXSUBIMAGE1DEXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$789.PFNGLCOMPRESSEDMULTITEXSUBIMAGE1DEXTPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLGETCOMPRESSEDMULTITEXIMAGEEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
 }
 

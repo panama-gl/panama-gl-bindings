@@ -9,26 +9,40 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$379 {
 
-    static final FunctionDescriptor PFNGLWEIGHTFVARBPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLCOPYTEXTURESUBIMAGE2DPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle PFNGLWEIGHTFVARBPROC$MH = RuntimeHelper.downcallHandle(
-        constants$379.PFNGLWEIGHTFVARBPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLWEIGHTDVARBPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle PFNGLWEIGHTDVARBPROC$MH = RuntimeHelper.downcallHandle(
-        constants$379.PFNGLWEIGHTDVARBPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLWEIGHTUBVARBPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLWEIGHTUBVARBPROC$MH = RuntimeHelper.downcallHandle(
-        constants$379.PFNGLWEIGHTUBVARBPROC$FUNC
+    static final MethodHandle PFNGLCOPYTEXTURESUBIMAGE2DPROC$MH = RuntimeHelper.downcallHandle(
+        constants$379.PFNGLCOPYTEXTURESUBIMAGE2DPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLCOPYTEXTURESUBIMAGE3DPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle PFNGLCOPYTEXTURESUBIMAGE3DPROC$MH = RuntimeHelper.downcallHandle(
+        constants$379.PFNGLCOPYTEXTURESUBIMAGE3DPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLTEXTUREPARAMETERFPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT
+    );
+    static final MethodHandle PFNGLTEXTUREPARAMETERFPROC$MH = RuntimeHelper.downcallHandle(
+        constants$379.PFNGLTEXTUREPARAMETERFPROC$FUNC
     );
 }
 

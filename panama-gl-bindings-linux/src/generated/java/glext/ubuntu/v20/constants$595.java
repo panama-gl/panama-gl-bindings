@@ -9,33 +9,33 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$595 {
 
-    static final FunctionDescriptor PFNGLNAMEDRENDERBUFFERSTORAGEMULTISAMPLEEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLMAPGRID1XOESPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle PFNGLMAPGRID1XOESPROC$MH = RuntimeHelper.downcallHandle(
+        constants$595.PFNGLMAPGRID1XOESPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLMAPGRID2XOESPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLNAMEDRENDERBUFFERSTORAGEMULTISAMPLEEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$595.PFNGLNAMEDRENDERBUFFERSTORAGEMULTISAMPLEEXTPROC$FUNC
+    static final MethodHandle PFNGLMAPGRID2XOESPROC$MH = RuntimeHelper.downcallHandle(
+        constants$595.PFNGLMAPGRID2XOESPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLNAMEDRENDERBUFFERSTORAGEMULTISAMPLECOVERAGEEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
+    static final FunctionDescriptor PFNGLMULTTRANSPOSEMATRIXXOESPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle PFNGLMULTTRANSPOSEMATRIXXOESPROC$MH = RuntimeHelper.downcallHandle(
+        constants$595.PFNGLMULTTRANSPOSEMATRIXXOESPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLMULTITEXCOORD1XOESPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT
-    );
-    static final MethodHandle PFNGLNAMEDRENDERBUFFERSTORAGEMULTISAMPLECOVERAGEEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$595.PFNGLNAMEDRENDERBUFFERSTORAGEMULTISAMPLECOVERAGEEXTPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLCHECKNAMEDFRAMEBUFFERSTATUSEXTPROC$FUNC = FunctionDescriptor.of(Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT
-    );
-    static final MethodHandle PFNGLCHECKNAMEDFRAMEBUFFERSTATUSEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$595.PFNGLCHECKNAMEDFRAMEBUFFERSTATUSEXTPROC$FUNC
     );
 }
 

@@ -11,13 +11,13 @@ public interface PFNGLGETMAPCONTROLPOINTSNVPROC {
 
     void apply(int target, int index, int type, int ustride, int vstride, byte packed, java.lang.foreign.MemoryAddress points);
     static MemorySegment allocate(PFNGLGETMAPCONTROLPOINTSNVPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLGETMAPCONTROLPOINTSNVPROC.class, fi, constants$744.PFNGLGETMAPCONTROLPOINTSNVPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLGETMAPCONTROLPOINTSNVPROC.class, fi, constants$1068.PFNGLGETMAPCONTROLPOINTSNVPROC$FUNC, session);
     }
     static PFNGLGETMAPCONTROLPOINTSNVPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _target, int _index, int _type, int _ustride, int _vstride, byte _packed, java.lang.foreign.MemoryAddress _points) -> {
             try {
-                constants$744.PFNGLGETMAPCONTROLPOINTSNVPROC$MH.invokeExact((Addressable)symbol, _target, _index, _type, _ustride, _vstride, _packed, (java.lang.foreign.Addressable)_points);
+                constants$1069.PFNGLGETMAPCONTROLPOINTSNVPROC$MH.invokeExact((Addressable)symbol, _target, _index, _type, _ustride, _vstride, _packed, (java.lang.foreign.Addressable)_points);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

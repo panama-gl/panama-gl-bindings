@@ -11,13 +11,13 @@ public interface PFNGLGETSHADERPRECISIONFORMATPROC {
 
     void apply(int shadertype, int precisiontype, java.lang.foreign.MemoryAddress range, java.lang.foreign.MemoryAddress precision);
     static MemorySegment allocate(PFNGLGETSHADERPRECISIONFORMATPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLGETSHADERPRECISIONFORMATPROC.class, fi, constants$220.PFNGLGETSHADERPRECISIONFORMATPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLGETSHADERPRECISIONFORMATPROC.class, fi, constants$283.PFNGLGETSHADERPRECISIONFORMATPROC$FUNC, session);
     }
     static PFNGLGETSHADERPRECISIONFORMATPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _shadertype, int _precisiontype, java.lang.foreign.MemoryAddress _range, java.lang.foreign.MemoryAddress _precision) -> {
             try {
-                constants$220.PFNGLGETSHADERPRECISIONFORMATPROC$MH.invokeExact((Addressable)symbol, _shadertype, _precisiontype, (java.lang.foreign.Addressable)_range, (java.lang.foreign.Addressable)_precision);
+                constants$283.PFNGLGETSHADERPRECISIONFORMATPROC$MH.invokeExact((Addressable)symbol, _shadertype, _precisiontype, (java.lang.foreign.Addressable)_range, (java.lang.foreign.Addressable)_precision);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

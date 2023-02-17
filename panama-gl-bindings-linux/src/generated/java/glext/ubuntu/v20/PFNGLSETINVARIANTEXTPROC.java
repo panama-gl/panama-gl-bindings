@@ -11,13 +11,13 @@ public interface PFNGLSETINVARIANTEXTPROC {
 
     void apply(int id, int type, java.lang.foreign.MemoryAddress addr);
     static MemorySegment allocate(PFNGLSETINVARIANTEXTPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLSETINVARIANTEXTPROC.class, fi, constants$686.PFNGLSETINVARIANTEXTPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLSETINVARIANTEXTPROC.class, fi, constants$980.PFNGLSETINVARIANTEXTPROC$FUNC, session);
     }
     static PFNGLSETINVARIANTEXTPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _id, int _type, java.lang.foreign.MemoryAddress _addr) -> {
             try {
-                constants$686.PFNGLSETINVARIANTEXTPROC$MH.invokeExact((Addressable)symbol, _id, _type, (java.lang.foreign.Addressable)_addr);
+                constants$981.PFNGLSETINVARIANTEXTPROC$MH.invokeExact((Addressable)symbol, _id, _type, (java.lang.foreign.Addressable)_addr);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

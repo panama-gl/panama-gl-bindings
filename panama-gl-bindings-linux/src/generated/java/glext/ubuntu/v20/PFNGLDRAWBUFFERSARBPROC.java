@@ -11,13 +11,13 @@ public interface PFNGLDRAWBUFFERSARBPROC {
 
     void apply(int n, java.lang.foreign.MemoryAddress bufs);
     static MemorySegment allocate(PFNGLDRAWBUFFERSARBPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLDRAWBUFFERSARBPROC.class, fi, constants$320.PFNGLDRAWBUFFERSARBPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLDRAWBUFFERSARBPROC.class, fi, constants$434.PFNGLDRAWBUFFERSARBPROC$FUNC, session);
     }
     static PFNGLDRAWBUFFERSARBPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _n, java.lang.foreign.MemoryAddress _bufs) -> {
             try {
-                constants$320.PFNGLDRAWBUFFERSARBPROC$MH.invokeExact((Addressable)symbol, _n, (java.lang.foreign.Addressable)_bufs);
+                constants$434.PFNGLDRAWBUFFERSARBPROC$MH.invokeExact((Addressable)symbol, _n, (java.lang.foreign.Addressable)_bufs);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

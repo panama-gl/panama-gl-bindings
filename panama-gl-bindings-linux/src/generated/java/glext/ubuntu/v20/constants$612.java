@@ -9,32 +9,59 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$612 {
 
-    static final FunctionDescriptor PFNGLPROGRAMUNIFORM2DVEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glMultMatrixxOES$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glMultMatrixxOES$MH = RuntimeHelper.downcallHandle(
+        "glMultMatrixxOES",
+        constants$612.glMultMatrixxOES$FUNC
+    );
+    static final FunctionDescriptor glMultiTexCoord4xOES$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle glMultiTexCoord4xOES$MH = RuntimeHelper.downcallHandle(
+        "glMultiTexCoord4xOES",
+        constants$612.glMultiTexCoord4xOES$FUNC
+    );
+    static final FunctionDescriptor glNormal3xOES$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle glNormal3xOES$MH = RuntimeHelper.downcallHandle(
+        "glNormal3xOES",
+        constants$612.glNormal3xOES$FUNC
+    );
+    static final FunctionDescriptor glOrthoxOES$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle glOrthoxOES$MH = RuntimeHelper.downcallHandle(
+        "glOrthoxOES",
+        constants$612.glOrthoxOES$FUNC
+    );
+    static final FunctionDescriptor glPointParameterxvOES$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLPROGRAMUNIFORM2DVEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$612.PFNGLPROGRAMUNIFORM2DVEXTPROC$FUNC
+    static final MethodHandle glPointParameterxvOES$MH = RuntimeHelper.downcallHandle(
+        "glPointParameterxvOES",
+        constants$612.glPointParameterxvOES$FUNC
     );
-    static final FunctionDescriptor PFNGLPROGRAMUNIFORM3DVEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
+    static final FunctionDescriptor glPointSizexOES$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLPROGRAMUNIFORM3DVEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$612.PFNGLPROGRAMUNIFORM3DVEXTPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLPROGRAMUNIFORM4DVEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle PFNGLPROGRAMUNIFORM4DVEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$612.PFNGLPROGRAMUNIFORM4DVEXTPROC$FUNC
+    static final MethodHandle glPointSizexOES$MH = RuntimeHelper.downcallHandle(
+        "glPointSizexOES",
+        constants$612.glPointSizexOES$FUNC
     );
 }
 

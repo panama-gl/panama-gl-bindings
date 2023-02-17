@@ -9,27 +9,26 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$135 {
 
-    static final FunctionDescriptor PFNGLVERTEXATTRIB2FVPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLLINKPROGRAMPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle PFNGLLINKPROGRAMPROC$MH = RuntimeHelper.downcallHandle(
+        constants$135.PFNGLLINKPROGRAMPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLSHADERSOURCEPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLVERTEXATTRIB2FVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$135.PFNGLVERTEXATTRIB2FVPROC$FUNC
+    static final MethodHandle PFNGLSHADERSOURCEPROC$MH = RuntimeHelper.downcallHandle(
+        constants$135.PFNGLSHADERSOURCEPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLVERTEXATTRIB2SPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_SHORT$LAYOUT,
-        Constants$root.C_SHORT$LAYOUT
+    static final FunctionDescriptor PFNGLUSEPROGRAMPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLVERTEXATTRIB2SPROC$MH = RuntimeHelper.downcallHandle(
-        constants$135.PFNGLVERTEXATTRIB2SPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLVERTEXATTRIB2SVPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle PFNGLVERTEXATTRIB2SVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$135.PFNGLVERTEXATTRIB2SVPROC$FUNC
+    static final MethodHandle PFNGLUSEPROGRAMPROC$MH = RuntimeHelper.downcallHandle(
+        constants$135.PFNGLUSEPROGRAMPROC$FUNC
     );
 }
 

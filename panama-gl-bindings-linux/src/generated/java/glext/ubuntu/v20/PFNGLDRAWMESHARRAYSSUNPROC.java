@@ -11,13 +11,13 @@ public interface PFNGLDRAWMESHARRAYSSUNPROC {
 
     void apply(int mode, int first, int count, int width);
     static MemorySegment allocate(PFNGLDRAWMESHARRAYSSUNPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLDRAWMESHARRAYSSUNPROC.class, fi, constants$912.PFNGLDRAWMESHARRAYSSUNPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLDRAWMESHARRAYSSUNPROC.class, fi, constants$1322.PFNGLDRAWMESHARRAYSSUNPROC$FUNC, session);
     }
     static PFNGLDRAWMESHARRAYSSUNPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _mode, int _first, int _count, int _width) -> {
             try {
-                constants$912.PFNGLDRAWMESHARRAYSSUNPROC$MH.invokeExact((Addressable)symbol, _mode, _first, _count, _width);
+                constants$1322.PFNGLDRAWMESHARRAYSSUNPROC$MH.invokeExact((Addressable)symbol, _mode, _first, _count, _width);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

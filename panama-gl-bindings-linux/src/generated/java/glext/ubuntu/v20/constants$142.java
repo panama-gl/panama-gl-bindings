@@ -9,29 +9,27 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$142 {
 
-    static final FunctionDescriptor PFNGLVERTEXATTRIB4IVPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLUNIFORMMATRIX4FVPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_CHAR$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLVERTEXATTRIB4IVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$142.PFNGLVERTEXATTRIB4IVPROC$FUNC
+    static final MethodHandle PFNGLUNIFORMMATRIX4FVPROC$MH = RuntimeHelper.downcallHandle(
+        constants$142.PFNGLUNIFORMMATRIX4FVPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLVERTEXATTRIB4SPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLVALIDATEPROGRAMPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle PFNGLVALIDATEPROGRAMPROC$MH = RuntimeHelper.downcallHandle(
+        constants$142.PFNGLVALIDATEPROGRAMPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLVERTEXATTRIB1DPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_SHORT$LAYOUT,
-        Constants$root.C_SHORT$LAYOUT,
-        Constants$root.C_SHORT$LAYOUT,
-        Constants$root.C_SHORT$LAYOUT
+        Constants$root.C_DOUBLE$LAYOUT
     );
-    static final MethodHandle PFNGLVERTEXATTRIB4SPROC$MH = RuntimeHelper.downcallHandle(
-        constants$142.PFNGLVERTEXATTRIB4SPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLVERTEXATTRIB4SVPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle PFNGLVERTEXATTRIB4SVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$142.PFNGLVERTEXATTRIB4SVPROC$FUNC
+    static final MethodHandle PFNGLVERTEXATTRIB1DPROC$MH = RuntimeHelper.downcallHandle(
+        constants$142.PFNGLVERTEXATTRIB1DPROC$FUNC
     );
 }
 

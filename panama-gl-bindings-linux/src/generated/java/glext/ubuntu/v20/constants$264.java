@@ -9,34 +9,29 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$264 {
 
-    static final FunctionDescriptor PFNGLDEBUGMESSAGECONTROLPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_CHAR$LAYOUT
-    );
-    static final MethodHandle PFNGLDEBUGMESSAGECONTROLPROC$MH = RuntimeHelper.downcallHandle(
-        constants$264.PFNGLDEBUGMESSAGECONTROLPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLDEBUGMESSAGEINSERTPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
+    static final FunctionDescriptor PFNGLUNIFORM2DVPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLDEBUGMESSAGEINSERTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$264.PFNGLDEBUGMESSAGEINSERTPROC$FUNC
+    static final MethodHandle PFNGLUNIFORM2DVPROC$MH = RuntimeHelper.downcallHandle(
+        constants$264.PFNGLUNIFORM2DVPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLDEBUGMESSAGECALLBACKPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_POINTER$LAYOUT,
+    static final FunctionDescriptor PFNGLUNIFORM3DVPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLDEBUGMESSAGECALLBACKPROC$MH = RuntimeHelper.downcallHandle(
-        constants$264.PFNGLDEBUGMESSAGECALLBACKPROC$FUNC
+    static final MethodHandle PFNGLUNIFORM3DVPROC$MH = RuntimeHelper.downcallHandle(
+        constants$264.PFNGLUNIFORM3DVPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLUNIFORM4DVPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle PFNGLUNIFORM4DVPROC$MH = RuntimeHelper.downcallHandle(
+        constants$264.PFNGLUNIFORM4DVPROC$FUNC
     );
 }
 

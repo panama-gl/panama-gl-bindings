@@ -11,13 +11,13 @@ public interface PFNGLMULTITEXCOORDP4UIVPROC {
 
     void apply(int texture, int type, java.lang.foreign.MemoryAddress coords);
     static MemorySegment allocate(PFNGLMULTITEXCOORDP4UIVPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLMULTITEXCOORDP4UIVPROC.class, fi, constants$201.PFNGLMULTITEXCOORDP4UIVPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLMULTITEXCOORDP4UIVPROC.class, fi, constants$247.PFNGLMULTITEXCOORDP4UIVPROC$FUNC, session);
     }
     static PFNGLMULTITEXCOORDP4UIVPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _texture, int _type, java.lang.foreign.MemoryAddress _coords) -> {
             try {
-                constants$201.PFNGLMULTITEXCOORDP4UIVPROC$MH.invokeExact((Addressable)symbol, _texture, _type, (java.lang.foreign.Addressable)_coords);
+                constants$247.PFNGLMULTITEXCOORDP4UIVPROC$MH.invokeExact((Addressable)symbol, _texture, _type, (java.lang.foreign.Addressable)_coords);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

@@ -9,35 +9,47 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$684 {
 
-    static final FunctionDescriptor PFNGLSHADEROP2EXTPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLDRAWELEMENTARRAYATIPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle PFNGLDRAWELEMENTARRAYATIPROC$MH = RuntimeHelper.downcallHandle(
+        constants$684.PFNGLDRAWELEMENTARRAYATIPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLDRAWRANGEELEMENTARRAYATIPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLSHADEROP2EXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$684.PFNGLSHADEROP2EXTPROC$FUNC
+    static final MethodHandle PFNGLDRAWRANGEELEMENTARRAYATIPROC$MH = RuntimeHelper.downcallHandle(
+        constants$684.PFNGLDRAWRANGEELEMENTARRAYATIPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLSHADEROP3EXTPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glElementPointerATI$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glElementPointerATI$MH = RuntimeHelper.downcallHandle(
+        "glElementPointerATI",
+        constants$684.glElementPointerATI$FUNC
+    );
+    static final FunctionDescriptor glDrawElementArrayATI$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle glDrawElementArrayATI$MH = RuntimeHelper.downcallHandle(
+        "glDrawElementArrayATI",
+        constants$684.glDrawElementArrayATI$FUNC
+    );
+    static final FunctionDescriptor glDrawRangeElementArrayATI$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLSHADEROP3EXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$684.PFNGLSHADEROP3EXTPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLSWIZZLEEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT
-    );
-    static final MethodHandle PFNGLSWIZZLEEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$684.PFNGLSWIZZLEEXTPROC$FUNC
+    static final MethodHandle glDrawRangeElementArrayATI$MH = RuntimeHelper.downcallHandle(
+        "glDrawRangeElementArrayATI",
+        constants$684.glDrawRangeElementArrayATI$FUNC
     );
 }
 

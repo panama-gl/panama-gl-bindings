@@ -9,26 +9,61 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$204 {
 
-    static final FunctionDescriptor PFNGLMINSAMPLESHADINGPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_FLOAT$LAYOUT
+    static final FunctionDescriptor glVertexAttribIPointer$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLMINSAMPLESHADINGPROC$MH = RuntimeHelper.downcallHandle(
-        constants$204.PFNGLMINSAMPLESHADINGPROC$FUNC
+    static final MethodHandle glVertexAttribIPointer$MH = RuntimeHelper.downcallHandle(
+        "glVertexAttribIPointer",
+        constants$204.glVertexAttribIPointer$FUNC
     );
-    static final FunctionDescriptor PFNGLBLENDEQUATIONIPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glGetVertexAttribIiv$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glGetVertexAttribIiv$MH = RuntimeHelper.downcallHandle(
+        "glGetVertexAttribIiv",
+        constants$204.glGetVertexAttribIiv$FUNC
+    );
+    static final FunctionDescriptor glGetVertexAttribIuiv$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glGetVertexAttribIuiv$MH = RuntimeHelper.downcallHandle(
+        "glGetVertexAttribIuiv",
+        constants$204.glGetVertexAttribIuiv$FUNC
+    );
+    static final FunctionDescriptor glVertexAttribI1i$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLBLENDEQUATIONIPROC$MH = RuntimeHelper.downcallHandle(
-        constants$204.PFNGLBLENDEQUATIONIPROC$FUNC
+    static final MethodHandle glVertexAttribI1i$MH = RuntimeHelper.downcallHandle(
+        "glVertexAttribI1i",
+        constants$204.glVertexAttribI1i$FUNC
     );
-    static final FunctionDescriptor PFNGLBLENDEQUATIONSEPARATEIPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glVertexAttribI2i$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLBLENDEQUATIONSEPARATEIPROC$MH = RuntimeHelper.downcallHandle(
-        constants$204.PFNGLBLENDEQUATIONSEPARATEIPROC$FUNC
+    static final MethodHandle glVertexAttribI2i$MH = RuntimeHelper.downcallHandle(
+        "glVertexAttribI2i",
+        constants$204.glVertexAttribI2i$FUNC
+    );
+    static final FunctionDescriptor glVertexAttribI3i$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle glVertexAttribI3i$MH = RuntimeHelper.downcallHandle(
+        "glVertexAttribI3i",
+        constants$204.glVertexAttribI3i$FUNC
     );
 }
 

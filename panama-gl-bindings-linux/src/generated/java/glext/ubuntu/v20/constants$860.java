@@ -9,28 +9,59 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$860 {
 
-    static final FunctionDescriptor PFNGLVERTEXATTRIB2DNVPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glUnmapNamedBufferEXT$FUNC = FunctionDescriptor.of(Constants$root.C_CHAR$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle glUnmapNamedBufferEXT$MH = RuntimeHelper.downcallHandle(
+        "glUnmapNamedBufferEXT",
+        constants$860.glUnmapNamedBufferEXT$FUNC
+    );
+    static final FunctionDescriptor glGetNamedBufferParameterivEXT$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_DOUBLE$LAYOUT,
-        Constants$root.C_DOUBLE$LAYOUT
-    );
-    static final MethodHandle PFNGLVERTEXATTRIB2DNVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$860.PFNGLVERTEXATTRIB2DNVPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLVERTEXATTRIB2DVNVPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLVERTEXATTRIB2DVNVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$860.PFNGLVERTEXATTRIB2DVNVPROC$FUNC
+    static final MethodHandle glGetNamedBufferParameterivEXT$MH = RuntimeHelper.downcallHandle(
+        "glGetNamedBufferParameterivEXT",
+        constants$860.glGetNamedBufferParameterivEXT$FUNC
     );
-    static final FunctionDescriptor PFNGLVERTEXATTRIB2FNVPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glGetNamedBufferPointervEXT$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glGetNamedBufferPointervEXT$MH = RuntimeHelper.downcallHandle(
+        "glGetNamedBufferPointervEXT",
+        constants$860.glGetNamedBufferPointervEXT$FUNC
+    );
+    static final FunctionDescriptor glGetNamedBufferSubDataEXT$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glGetNamedBufferSubDataEXT$MH = RuntimeHelper.downcallHandle(
+        "glGetNamedBufferSubDataEXT",
+        constants$860.glGetNamedBufferSubDataEXT$FUNC
+    );
+    static final FunctionDescriptor glProgramUniform1fEXT$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT
+    );
+    static final MethodHandle glProgramUniform1fEXT$MH = RuntimeHelper.downcallHandle(
+        "glProgramUniform1fEXT",
+        constants$860.glProgramUniform1fEXT$FUNC
+    );
+    static final FunctionDescriptor glProgramUniform2fEXT$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_FLOAT$LAYOUT,
         Constants$root.C_FLOAT$LAYOUT
     );
-    static final MethodHandle PFNGLVERTEXATTRIB2FNVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$860.PFNGLVERTEXATTRIB2FNVPROC$FUNC
+    static final MethodHandle glProgramUniform2fEXT$MH = RuntimeHelper.downcallHandle(
+        "glProgramUniform2fEXT",
+        constants$860.glProgramUniform2fEXT$FUNC
     );
 }
 

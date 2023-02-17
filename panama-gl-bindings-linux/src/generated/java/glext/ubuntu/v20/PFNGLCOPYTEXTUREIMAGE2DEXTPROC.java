@@ -11,13 +11,13 @@ public interface PFNGLCOPYTEXTUREIMAGE2DEXTPROC {
 
     void apply(int texture, int target, int level, int internalformat, int x, int y, int width, int height, int border);
     static MemorySegment allocate(PFNGLCOPYTEXTUREIMAGE2DEXTPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLCOPYTEXTUREIMAGE2DEXTPROC.class, fi, constants$544.PFNGLCOPYTEXTUREIMAGE2DEXTPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLCOPYTEXTUREIMAGE2DEXTPROC.class, fi, constants$766.PFNGLCOPYTEXTUREIMAGE2DEXTPROC$FUNC, session);
     }
     static PFNGLCOPYTEXTUREIMAGE2DEXTPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _texture, int _target, int _level, int _internalformat, int _x, int _y, int _width, int _height, int _border) -> {
             try {
-                constants$544.PFNGLCOPYTEXTUREIMAGE2DEXTPROC$MH.invokeExact((Addressable)symbol, _texture, _target, _level, _internalformat, _x, _y, _width, _height, _border);
+                constants$766.PFNGLCOPYTEXTUREIMAGE2DEXTPROC$MH.invokeExact((Addressable)symbol, _texture, _target, _level, _internalformat, _x, _y, _width, _height, _border);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

@@ -11,13 +11,13 @@ public interface PFNGLTBUFFERMASK3DFXPROC {
 
     void apply(int mask);
     static MemorySegment allocate(PFNGLTBUFFERMASK3DFXPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLTBUFFERMASK3DFXPROC.class, fi, constants$450.PFNGLTBUFFERMASK3DFXPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLTBUFFERMASK3DFXPROC.class, fi, constants$629.PFNGLTBUFFERMASK3DFXPROC$FUNC, session);
     }
     static PFNGLTBUFFERMASK3DFXPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _mask) -> {
             try {
-                constants$450.PFNGLTBUFFERMASK3DFXPROC$MH.invokeExact((Addressable)symbol, _mask);
+                constants$629.PFNGLTBUFFERMASK3DFXPROC$MH.invokeExact((Addressable)symbol, _mask);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

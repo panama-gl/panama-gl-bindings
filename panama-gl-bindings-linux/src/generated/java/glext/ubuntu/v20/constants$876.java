@@ -9,26 +9,78 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$876 {
 
-    static final FunctionDescriptor PFNGLVERTEXATTRIBI4UIVEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glVertexArrayNormalOffsetEXT$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle PFNGLVERTEXATTRIBI4UIVEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$876.PFNGLVERTEXATTRIBI4UIVEXTPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLVERTEXATTRIBI4BVEXTPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle PFNGLVERTEXATTRIBI4BVEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$876.PFNGLVERTEXATTRIBI4BVEXTPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLVERTEXATTRIBI4SVEXTPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT
     );
-    static final MethodHandle PFNGLVERTEXATTRIBI4SVEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$876.PFNGLVERTEXATTRIBI4SVEXTPROC$FUNC
+    static final MethodHandle glVertexArrayNormalOffsetEXT$MH = RuntimeHelper.downcallHandle(
+        "glVertexArrayNormalOffsetEXT",
+        constants$876.glVertexArrayNormalOffsetEXT$FUNC
+    );
+    static final FunctionDescriptor glVertexArrayTexCoordOffsetEXT$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT
+    );
+    static final MethodHandle glVertexArrayTexCoordOffsetEXT$MH = RuntimeHelper.downcallHandle(
+        "glVertexArrayTexCoordOffsetEXT",
+        constants$876.glVertexArrayTexCoordOffsetEXT$FUNC
+    );
+    static final FunctionDescriptor glVertexArrayMultiTexCoordOffsetEXT$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT
+    );
+    static final MethodHandle glVertexArrayMultiTexCoordOffsetEXT$MH = RuntimeHelper.downcallHandle(
+        "glVertexArrayMultiTexCoordOffsetEXT",
+        constants$876.glVertexArrayMultiTexCoordOffsetEXT$FUNC
+    );
+    static final FunctionDescriptor glVertexArrayFogCoordOffsetEXT$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT
+    );
+    static final MethodHandle glVertexArrayFogCoordOffsetEXT$MH = RuntimeHelper.downcallHandle(
+        "glVertexArrayFogCoordOffsetEXT",
+        constants$876.glVertexArrayFogCoordOffsetEXT$FUNC
+    );
+    static final FunctionDescriptor glVertexArraySecondaryColorOffsetEXT$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT
+    );
+    static final MethodHandle glVertexArraySecondaryColorOffsetEXT$MH = RuntimeHelper.downcallHandle(
+        "glVertexArraySecondaryColorOffsetEXT",
+        constants$876.glVertexArraySecondaryColorOffsetEXT$FUNC
+    );
+    static final FunctionDescriptor glVertexArrayVertexAttribOffsetEXT$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_CHAR$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT
+    );
+    static final MethodHandle glVertexArrayVertexAttribOffsetEXT$MH = RuntimeHelper.downcallHandle(
+        "glVertexArrayVertexAttribOffsetEXT",
+        constants$876.glVertexArrayVertexAttribOffsetEXT$FUNC
     );
 }
 

@@ -9,26 +9,38 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$797 {
 
-    static final FunctionDescriptor PFNGLGETPATHCOMMANDSNVPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLPROGRAMUNIFORM2FVEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLGETPATHCOMMANDSNVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$797.PFNGLGETPATHCOMMANDSNVPROC$FUNC
+    static final MethodHandle PFNGLPROGRAMUNIFORM2FVEXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$797.PFNGLPROGRAMUNIFORM2FVEXTPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLGETPATHCOORDSNVPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLPROGRAMUNIFORM3FVEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLGETPATHCOORDSNVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$797.PFNGLGETPATHCOORDSNVPROC$FUNC
+    static final MethodHandle PFNGLPROGRAMUNIFORM3FVEXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$797.PFNGLPROGRAMUNIFORM3FVEXTPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLGETPATHDASHARRAYNVPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLPROGRAMUNIFORM4FVEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLGETPATHDASHARRAYNVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$797.PFNGLGETPATHDASHARRAYNVPROC$FUNC
+    static final MethodHandle PFNGLPROGRAMUNIFORM4FVEXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$797.PFNGLPROGRAMUNIFORM4FVEXTPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLPROGRAMUNIFORM1IVEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
 }
 

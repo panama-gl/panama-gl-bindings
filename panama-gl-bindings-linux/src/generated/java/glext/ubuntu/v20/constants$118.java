@@ -9,35 +9,33 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$118 {
 
-    static final FunctionDescriptor PFNGLENABLEVERTEXATTRIBARRAYPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLGENBUFFERSPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle PFNGLGENBUFFERSPROC$MH = RuntimeHelper.downcallHandle(
+        constants$118.PFNGLGENBUFFERSPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLISBUFFERPROC$FUNC = FunctionDescriptor.of(Constants$root.C_CHAR$LAYOUT,
         Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLENABLEVERTEXATTRIBARRAYPROC$MH = RuntimeHelper.downcallHandle(
-        constants$118.PFNGLENABLEVERTEXATTRIBARRAYPROC$FUNC
+    static final MethodHandle PFNGLISBUFFERPROC$MH = RuntimeHelper.downcallHandle(
+        constants$118.PFNGLISBUFFERPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLGETACTIVEATTRIBPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLBUFFERDATAPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle PFNGLBUFFERDATAPROC$MH = RuntimeHelper.downcallHandle(
+        constants$118.PFNGLBUFFERDATAPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLBUFFERSUBDATAPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle PFNGLGETACTIVEATTRIBPROC$MH = RuntimeHelper.downcallHandle(
-        constants$118.PFNGLGETACTIVEATTRIBPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLGETACTIVEUNIFORMPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle PFNGLGETACTIVEUNIFORMPROC$MH = RuntimeHelper.downcallHandle(
-        constants$118.PFNGLGETACTIVEUNIFORMPROC$FUNC
     );
 }
 

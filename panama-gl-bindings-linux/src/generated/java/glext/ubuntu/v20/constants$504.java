@@ -9,28 +9,46 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$504 {
 
-    static final FunctionDescriptor PFNGLVERTEXSTREAM2IATIPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
+    static final FunctionDescriptor glCompileShaderARB$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle glCompileShaderARB$MH = RuntimeHelper.downcallHandle(
+        "glCompileShaderARB",
+        constants$504.glCompileShaderARB$FUNC
+    );
+    static final FunctionDescriptor glCreateProgramObjectARB$FUNC = FunctionDescriptor.of(Constants$root.C_INT$LAYOUT);
+    static final MethodHandle glCreateProgramObjectARB$MH = RuntimeHelper.downcallHandle(
+        "glCreateProgramObjectARB",
+        constants$504.glCreateProgramObjectARB$FUNC
+    );
+    static final FunctionDescriptor glAttachObjectARB$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLVERTEXSTREAM2IATIPROC$MH = RuntimeHelper.downcallHandle(
-        constants$504.PFNGLVERTEXSTREAM2IATIPROC$FUNC
+    static final MethodHandle glAttachObjectARB$MH = RuntimeHelper.downcallHandle(
+        "glAttachObjectARB",
+        constants$504.glAttachObjectARB$FUNC
     );
-    static final FunctionDescriptor PFNGLVERTEXSTREAM2IVATIPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
+    static final FunctionDescriptor glLinkProgramARB$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLVERTEXSTREAM2IVATIPROC$MH = RuntimeHelper.downcallHandle(
-        constants$504.PFNGLVERTEXSTREAM2IVATIPROC$FUNC
+    static final MethodHandle glLinkProgramARB$MH = RuntimeHelper.downcallHandle(
+        "glLinkProgramARB",
+        constants$504.glLinkProgramARB$FUNC
     );
-    static final FunctionDescriptor PFNGLVERTEXSTREAM2FATIPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT
+    static final FunctionDescriptor glUseProgramObjectARB$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLVERTEXSTREAM2FATIPROC$MH = RuntimeHelper.downcallHandle(
-        constants$504.PFNGLVERTEXSTREAM2FATIPROC$FUNC
+    static final MethodHandle glUseProgramObjectARB$MH = RuntimeHelper.downcallHandle(
+        "glUseProgramObjectARB",
+        constants$504.glUseProgramObjectARB$FUNC
+    );
+    static final FunctionDescriptor glValidateProgramARB$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle glValidateProgramARB$MH = RuntimeHelper.downcallHandle(
+        "glValidateProgramARB",
+        constants$504.glValidateProgramARB$FUNC
     );
 }
 

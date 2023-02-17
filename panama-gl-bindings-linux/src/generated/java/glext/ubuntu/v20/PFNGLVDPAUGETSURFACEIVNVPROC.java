@@ -11,13 +11,13 @@ public interface PFNGLVDPAUGETSURFACEIVNVPROC {
 
     void apply(long surface, int pname, int bufSize, java.lang.foreign.MemoryAddress length, java.lang.foreign.MemoryAddress values);
     static MemorySegment allocate(PFNGLVDPAUGETSURFACEIVNVPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLVDPAUGETSURFACEIVNVPROC.class, fi, constants$837.PFNGLVDPAUGETSURFACEIVNVPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLVDPAUGETSURFACEIVNVPROC.class, fi, constants$1207.PFNGLVDPAUGETSURFACEIVNVPROC$FUNC, session);
     }
     static PFNGLVDPAUGETSURFACEIVNVPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (long _surface, int _pname, int _bufSize, java.lang.foreign.MemoryAddress _length, java.lang.foreign.MemoryAddress _values) -> {
             try {
-                constants$837.PFNGLVDPAUGETSURFACEIVNVPROC$MH.invokeExact((Addressable)symbol, _surface, _pname, _bufSize, (java.lang.foreign.Addressable)_length, (java.lang.foreign.Addressable)_values);
+                constants$1208.PFNGLVDPAUGETSURFACEIVNVPROC$MH.invokeExact((Addressable)symbol, _surface, _pname, _bufSize, (java.lang.foreign.Addressable)_length, (java.lang.foreign.Addressable)_values);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

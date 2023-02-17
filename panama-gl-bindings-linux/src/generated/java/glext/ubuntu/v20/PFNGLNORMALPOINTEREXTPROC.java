@@ -11,13 +11,13 @@ public interface PFNGLNORMALPOINTEREXTPROC {
 
     void apply(int type, int stride, int count, java.lang.foreign.MemoryAddress pointer);
     static MemorySegment allocate(PFNGLNORMALPOINTEREXTPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLNORMALPOINTEREXTPROC.class, fi, constants$677.PFNGLNORMALPOINTEREXTPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLNORMALPOINTEREXTPROC.class, fi, constants$969.PFNGLNORMALPOINTEREXTPROC$FUNC, session);
     }
     static PFNGLNORMALPOINTEREXTPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _type, int _stride, int _count, java.lang.foreign.MemoryAddress _pointer) -> {
             try {
-                constants$677.PFNGLNORMALPOINTEREXTPROC$MH.invokeExact((Addressable)symbol, _type, _stride, _count, (java.lang.foreign.Addressable)_pointer);
+                constants$969.PFNGLNORMALPOINTEREXTPROC$MH.invokeExact((Addressable)symbol, _type, _stride, _count, (java.lang.foreign.Addressable)_pointer);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

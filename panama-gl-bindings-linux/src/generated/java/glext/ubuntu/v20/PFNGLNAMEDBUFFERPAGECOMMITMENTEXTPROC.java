@@ -11,13 +11,13 @@ public interface PFNGLNAMEDBUFFERPAGECOMMITMENTEXTPROC {
 
     void apply(int buffer, long offset, long size, byte commit);
     static MemorySegment allocate(PFNGLNAMEDBUFFERPAGECOMMITMENTEXTPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLNAMEDBUFFERPAGECOMMITMENTEXTPROC.class, fi, constants$373.PFNGLNAMEDBUFFERPAGECOMMITMENTEXTPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLNAMEDBUFFERPAGECOMMITMENTEXTPROC.class, fi, constants$513.PFNGLNAMEDBUFFERPAGECOMMITMENTEXTPROC$FUNC, session);
     }
     static PFNGLNAMEDBUFFERPAGECOMMITMENTEXTPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _buffer, long _offset, long _size, byte _commit) -> {
             try {
-                constants$373.PFNGLNAMEDBUFFERPAGECOMMITMENTEXTPROC$MH.invokeExact((Addressable)symbol, _buffer, _offset, _size, _commit);
+                constants$513.PFNGLNAMEDBUFFERPAGECOMMITMENTEXTPROC$MH.invokeExact((Addressable)symbol, _buffer, _offset, _size, _commit);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

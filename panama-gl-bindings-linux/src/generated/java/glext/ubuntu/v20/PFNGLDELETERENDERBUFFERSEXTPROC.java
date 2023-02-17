@@ -11,13 +11,13 @@ public interface PFNGLDELETERENDERBUFFERSEXTPROC {
 
     void apply(int n, java.lang.foreign.MemoryAddress renderbuffers);
     static MemorySegment allocate(PFNGLDELETERENDERBUFFERSEXTPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLDELETERENDERBUFFERSEXTPROC.class, fi, constants$626.PFNGLDELETERENDERBUFFERSEXTPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLDELETERENDERBUFFERSEXTPROC.class, fi, constants$892.PFNGLDELETERENDERBUFFERSEXTPROC$FUNC, session);
     }
     static PFNGLDELETERENDERBUFFERSEXTPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _n, java.lang.foreign.MemoryAddress _renderbuffers) -> {
             try {
-                constants$626.PFNGLDELETERENDERBUFFERSEXTPROC$MH.invokeExact((Addressable)symbol, _n, (java.lang.foreign.Addressable)_renderbuffers);
+                constants$892.PFNGLDELETERENDERBUFFERSEXTPROC$MH.invokeExact((Addressable)symbol, _n, (java.lang.foreign.Addressable)_renderbuffers);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

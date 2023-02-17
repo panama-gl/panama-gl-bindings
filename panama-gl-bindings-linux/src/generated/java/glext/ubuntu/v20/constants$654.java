@@ -9,26 +9,38 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$654 {
 
-    static final FunctionDescriptor PFNGLPROVOKINGVERTEXEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLVERTEXATTRIBPARAMETERIAMDPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLPROVOKINGVERTEXEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$654.PFNGLPROVOKINGVERTEXEXTPROC$FUNC
+    static final MethodHandle PFNGLVERTEXATTRIBPARAMETERIAMDPROC$MH = RuntimeHelper.downcallHandle(
+        constants$654.PFNGLVERTEXATTRIBPARAMETERIAMDPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLRASTERSAMPLESEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glVertexAttribParameteriAMD$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_CHAR$LAYOUT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLRASTERSAMPLESEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$654.PFNGLRASTERSAMPLESEXTPROC$FUNC
+    static final MethodHandle glVertexAttribParameteriAMD$MH = RuntimeHelper.downcallHandle(
+        "glVertexAttribParameteriAMD",
+        constants$654.glVertexAttribParameteriAMD$FUNC
     );
-    static final FunctionDescriptor PFNGLSECONDARYCOLOR3BEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_CHAR$LAYOUT,
-        Constants$root.C_CHAR$LAYOUT,
-        Constants$root.C_CHAR$LAYOUT
+    static final FunctionDescriptor PFNGLMULTIDRAWARRAYSINDIRECTAMDPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLSECONDARYCOLOR3BEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$654.PFNGLSECONDARYCOLOR3BEXTPROC$FUNC
+    static final MethodHandle PFNGLMULTIDRAWARRAYSINDIRECTAMDPROC$MH = RuntimeHelper.downcallHandle(
+        constants$654.PFNGLMULTIDRAWARRAYSINDIRECTAMDPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLMULTIDRAWELEMENTSINDIRECTAMDPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
 }
 

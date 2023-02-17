@@ -11,13 +11,13 @@ public interface PFNGLNORMALPOINTERVINTELPROC {
 
     void apply(int type, java.lang.foreign.MemoryAddress pointer);
     static MemorySegment allocate(PFNGLNORMALPOINTERVINTELPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLNORMALPOINTERVINTELPROC.class, fi, constants$706.PFNGLNORMALPOINTERVINTELPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLNORMALPOINTERVINTELPROC.class, fi, constants$1013.PFNGLNORMALPOINTERVINTELPROC$FUNC, session);
     }
     static PFNGLNORMALPOINTERVINTELPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _type, java.lang.foreign.MemoryAddress _pointer) -> {
             try {
-                constants$706.PFNGLNORMALPOINTERVINTELPROC$MH.invokeExact((Addressable)symbol, _type, (java.lang.foreign.Addressable)_pointer);
+                constants$1013.PFNGLNORMALPOINTERVINTELPROC$MH.invokeExact((Addressable)symbol, _type, (java.lang.foreign.Addressable)_pointer);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

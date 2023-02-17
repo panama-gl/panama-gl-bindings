@@ -9,30 +9,39 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$802 {
 
-    static final FunctionDescriptor PFNGLMATRIXMULTTRANSPOSE3X3FNVPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLPROGRAMUNIFORMMATRIX4X3FVEXTPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_CHAR$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLMATRIXMULTTRANSPOSE3X3FNVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$802.PFNGLMATRIXMULTTRANSPOSE3X3FNVPROC$FUNC
+    static final MethodHandle PFNGLPROGRAMUNIFORMMATRIX4X3FVEXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$802.PFNGLPROGRAMUNIFORMMATRIX4X3FVEXTPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLSTENCILTHENCOVERFILLPATHNVPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLTEXTUREBUFFEREXTPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLSTENCILTHENCOVERFILLPATHNVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$802.PFNGLSTENCILTHENCOVERFILLPATHNVPROC$FUNC
+    static final MethodHandle PFNGLTEXTUREBUFFEREXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$802.PFNGLTEXTUREBUFFEREXTPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLSTENCILTHENCOVERSTROKEPATHNVPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLMULTITEXBUFFEREXTPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLSTENCILTHENCOVERSTROKEPATHNVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$802.PFNGLSTENCILTHENCOVERSTROKEPATHNVPROC$FUNC
+    static final MethodHandle PFNGLMULTITEXBUFFEREXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$802.PFNGLMULTITEXBUFFEREXTPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLTEXTUREPARAMETERIIVEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
 }
 

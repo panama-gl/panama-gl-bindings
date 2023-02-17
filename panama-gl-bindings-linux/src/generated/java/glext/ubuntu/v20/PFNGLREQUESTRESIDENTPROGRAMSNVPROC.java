@@ -11,13 +11,13 @@ public interface PFNGLREQUESTRESIDENTPROGRAMSNVPROC {
 
     void apply(int n, java.lang.foreign.MemoryAddress programs);
     static MemorySegment allocate(PFNGLREQUESTRESIDENTPROGRAMSNVPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLREQUESTRESIDENTPROGRAMSNVPROC.class, fi, constants$857.PFNGLREQUESTRESIDENTPROGRAMSNVPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLREQUESTRESIDENTPROGRAMSNVPROC.class, fi, constants$1235.PFNGLREQUESTRESIDENTPROGRAMSNVPROC$FUNC, session);
     }
     static PFNGLREQUESTRESIDENTPROGRAMSNVPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _n, java.lang.foreign.MemoryAddress _programs) -> {
             try {
-                constants$857.PFNGLREQUESTRESIDENTPROGRAMSNVPROC$MH.invokeExact((Addressable)symbol, _n, (java.lang.foreign.Addressable)_programs);
+                constants$1235.PFNGLREQUESTRESIDENTPROGRAMSNVPROC$MH.invokeExact((Addressable)symbol, _n, (java.lang.foreign.Addressable)_programs);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

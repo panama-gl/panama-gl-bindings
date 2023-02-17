@@ -11,13 +11,13 @@ public interface PFNGLACTIVESTENCILFACEEXTPROC {
 
     void apply(int face);
     static MemorySegment allocate(PFNGLACTIVESTENCILFACEEXTPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLACTIVESTENCILFACEEXTPROC.class, fi, constants$666.PFNGLACTIVESTENCILFACEEXTPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLACTIVESTENCILFACEEXTPROC.class, fi, constants$952.PFNGLACTIVESTENCILFACEEXTPROC$FUNC, session);
     }
     static PFNGLACTIVESTENCILFACEEXTPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _face) -> {
             try {
-                constants$666.PFNGLACTIVESTENCILFACEEXTPROC$MH.invokeExact((Addressable)symbol, _face);
+                constants$952.PFNGLACTIVESTENCILFACEEXTPROC$MH.invokeExact((Addressable)symbol, _face);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

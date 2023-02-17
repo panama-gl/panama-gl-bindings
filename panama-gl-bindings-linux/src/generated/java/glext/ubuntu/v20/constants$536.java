@@ -9,26 +9,34 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$536 {
 
-    static final FunctionDescriptor PFNGLMATRIXLOADFEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLVERTEXATTRIB3FARBPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT
+    );
+    static final MethodHandle PFNGLVERTEXATTRIB3FARBPROC$MH = RuntimeHelper.downcallHandle(
+        constants$536.PFNGLVERTEXATTRIB3FARBPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLVERTEXATTRIB3FVARBPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLMATRIXLOADFEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$536.PFNGLMATRIXLOADFEXTPROC$FUNC
+    static final MethodHandle PFNGLVERTEXATTRIB3FVARBPROC$MH = RuntimeHelper.downcallHandle(
+        constants$536.PFNGLVERTEXATTRIB3FVARBPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLMATRIXLOADDEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLVERTEXATTRIB3SARBPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_SHORT$LAYOUT,
+        Constants$root.C_SHORT$LAYOUT,
+        Constants$root.C_SHORT$LAYOUT
+    );
+    static final MethodHandle PFNGLVERTEXATTRIB3SARBPROC$MH = RuntimeHelper.downcallHandle(
+        constants$536.PFNGLVERTEXATTRIB3SARBPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLVERTEXATTRIB3SVARBPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle PFNGLMATRIXLOADDEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$536.PFNGLMATRIXLOADDEXTPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLMATRIXMULTFEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle PFNGLMATRIXMULTFEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$536.PFNGLMATRIXMULTFEXTPROC$FUNC
     );
 }
 

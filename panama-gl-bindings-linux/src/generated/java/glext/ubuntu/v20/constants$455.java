@@ -9,34 +9,34 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$455 {
 
-    static final FunctionDescriptor PFNGLGETFRAMEBUFFERPARAMETERFVAMDPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
+    static final FunctionDescriptor PFNGLUNIFORM3UI64VARBPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLGETFRAMEBUFFERPARAMETERFVAMDPROC$MH = RuntimeHelper.downcallHandle(
-        constants$455.PFNGLGETFRAMEBUFFERPARAMETERFVAMDPROC$FUNC
+    static final MethodHandle PFNGLUNIFORM3UI64VARBPROC$MH = RuntimeHelper.downcallHandle(
+        constants$455.PFNGLUNIFORM3UI64VARBPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLGETNAMEDFRAMEBUFFERPARAMETERFVAMDPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
+    static final FunctionDescriptor PFNGLUNIFORM4UI64VARBPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLGETNAMEDFRAMEBUFFERPARAMETERFVAMDPROC$MH = RuntimeHelper.downcallHandle(
-        constants$455.PFNGLGETNAMEDFRAMEBUFFERPARAMETERFVAMDPROC$FUNC
+    static final MethodHandle PFNGLUNIFORM4UI64VARBPROC$MH = RuntimeHelper.downcallHandle(
+        constants$455.PFNGLUNIFORM4UI64VARBPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLUNIFORM1I64NVPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLGETUNIFORMI64VARBPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_LONG_LONG$LAYOUT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLUNIFORM1I64NVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$455.PFNGLUNIFORM1I64NVPROC$FUNC
+    static final MethodHandle PFNGLGETUNIFORMI64VARBPROC$MH = RuntimeHelper.downcallHandle(
+        constants$455.PFNGLGETUNIFORMI64VARBPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLGETUNIFORMUI64VARBPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
 }
 

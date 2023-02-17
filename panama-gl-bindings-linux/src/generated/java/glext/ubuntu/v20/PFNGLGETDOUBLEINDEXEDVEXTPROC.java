@@ -11,13 +11,13 @@ public interface PFNGLGETDOUBLEINDEXEDVEXTPROC {
 
     void apply(int target, int index, java.lang.foreign.MemoryAddress data);
     static MemorySegment allocate(PFNGLGETDOUBLEINDEXEDVEXTPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLGETDOUBLEINDEXEDVEXTPROC.class, fi, constants$561.PFNGLGETDOUBLEINDEXEDVEXTPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLGETDOUBLEINDEXEDVEXTPROC.class, fi, constants$783.PFNGLGETDOUBLEINDEXEDVEXTPROC$FUNC, session);
     }
     static PFNGLGETDOUBLEINDEXEDVEXTPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _target, int _index, java.lang.foreign.MemoryAddress _data) -> {
             try {
-                constants$561.PFNGLGETDOUBLEINDEXEDVEXTPROC$MH.invokeExact((Addressable)symbol, _target, _index, (java.lang.foreign.Addressable)_data);
+                constants$783.PFNGLGETDOUBLEINDEXEDVEXTPROC$MH.invokeExact((Addressable)symbol, _target, _index, (java.lang.foreign.Addressable)_data);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

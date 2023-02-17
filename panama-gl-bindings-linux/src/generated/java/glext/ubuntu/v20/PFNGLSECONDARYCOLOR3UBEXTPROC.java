@@ -11,13 +11,13 @@ public interface PFNGLSECONDARYCOLOR3UBEXTPROC {
 
     void apply(byte red, byte green, byte blue);
     static MemorySegment allocate(PFNGLSECONDARYCOLOR3UBEXTPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLSECONDARYCOLOR3UBEXTPROC.class, fi, constants$658.PFNGLSECONDARYCOLOR3UBEXTPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLSECONDARYCOLOR3UBEXTPROC.class, fi, constants$938.PFNGLSECONDARYCOLOR3UBEXTPROC$FUNC, session);
     }
     static PFNGLSECONDARYCOLOR3UBEXTPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (byte _red, byte _green, byte _blue) -> {
             try {
-                constants$658.PFNGLSECONDARYCOLOR3UBEXTPROC$MH.invokeExact((Addressable)symbol, _red, _green, _blue);
+                constants$939.PFNGLSECONDARYCOLOR3UBEXTPROC$MH.invokeExact((Addressable)symbol, _red, _green, _blue);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

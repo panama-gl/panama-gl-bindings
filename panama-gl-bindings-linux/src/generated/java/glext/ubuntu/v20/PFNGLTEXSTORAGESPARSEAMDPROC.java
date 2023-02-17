@@ -11,13 +11,13 @@ public interface PFNGLTEXSTORAGESPARSEAMDPROC {
 
     void apply(int target, int internalFormat, int width, int height, int depth, int layers, int flags);
     static MemorySegment allocate(PFNGLTEXSTORAGESPARSEAMDPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLTEXSTORAGESPARSEAMDPROC.class, fi, constants$473.PFNGLTEXSTORAGESPARSEAMDPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLTEXSTORAGESPARSEAMDPROC.class, fi, constants$663.PFNGLTEXSTORAGESPARSEAMDPROC$FUNC, session);
     }
     static PFNGLTEXSTORAGESPARSEAMDPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _target, int _internalFormat, int _width, int _height, int _depth, int _layers, int _flags) -> {
             try {
-                constants$473.PFNGLTEXSTORAGESPARSEAMDPROC$MH.invokeExact((Addressable)symbol, _target, _internalFormat, _width, _height, _depth, _layers, _flags);
+                constants$663.PFNGLTEXSTORAGESPARSEAMDPROC$MH.invokeExact((Addressable)symbol, _target, _internalFormat, _width, _height, _depth, _layers, _flags);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

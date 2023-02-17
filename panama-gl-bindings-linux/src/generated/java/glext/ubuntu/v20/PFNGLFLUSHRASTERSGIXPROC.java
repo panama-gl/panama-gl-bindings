@@ -11,13 +11,13 @@ public interface PFNGLFLUSHRASTERSGIXPROC {
 
     void apply();
     static MemorySegment allocate(PFNGLFLUSHRASTERSGIXPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLFLUSHRASTERSGIXPROC.class, fi, constants$892.PFNGLFLUSHRASTERSGIXPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLFLUSHRASTERSGIXPROC.class, fi, constants$1292.PFNGLFLUSHRASTERSGIXPROC$FUNC, session);
     }
     static PFNGLFLUSHRASTERSGIXPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return () -> {
             try {
-                constants$892.PFNGLFLUSHRASTERSGIXPROC$MH.invokeExact((Addressable)symbol);
+                constants$1292.PFNGLFLUSHRASTERSGIXPROC$MH.invokeExact((Addressable)symbol);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

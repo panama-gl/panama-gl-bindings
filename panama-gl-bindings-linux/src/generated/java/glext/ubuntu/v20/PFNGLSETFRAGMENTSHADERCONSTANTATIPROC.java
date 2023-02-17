@@ -11,13 +11,13 @@ public interface PFNGLSETFRAGMENTSHADERCONSTANTATIPROC {
 
     void apply(int dst, java.lang.foreign.MemoryAddress value);
     static MemorySegment allocate(PFNGLSETFRAGMENTSHADERCONSTANTATIPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLSETFRAGMENTSHADERCONSTANTATIPROC.class, fi, constants$493.PFNGLSETFRAGMENTSHADERCONSTANTATIPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLSETFRAGMENTSHADERCONSTANTATIPROC.class, fi, constants$691.PFNGLSETFRAGMENTSHADERCONSTANTATIPROC$FUNC, session);
     }
     static PFNGLSETFRAGMENTSHADERCONSTANTATIPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _dst, java.lang.foreign.MemoryAddress _value) -> {
             try {
-                constants$493.PFNGLSETFRAGMENTSHADERCONSTANTATIPROC$MH.invokeExact((Addressable)symbol, _dst, (java.lang.foreign.Addressable)_value);
+                constants$691.PFNGLSETFRAGMENTSHADERCONSTANTATIPROC$MH.invokeExact((Addressable)symbol, _dst, (java.lang.foreign.Addressable)_value);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

@@ -9,28 +9,29 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$152 {
 
-    static final FunctionDescriptor PFNGLGETVERTEXATTRIBIUIVPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLVERTEXATTRIB4FPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT
+    );
+    static final MethodHandle PFNGLVERTEXATTRIB4FPROC$MH = RuntimeHelper.downcallHandle(
+        constants$152.PFNGLVERTEXATTRIB4FPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLVERTEXATTRIB4FVPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLGETVERTEXATTRIBIUIVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$152.PFNGLGETVERTEXATTRIBIUIVPROC$FUNC
+    static final MethodHandle PFNGLVERTEXATTRIB4FVPROC$MH = RuntimeHelper.downcallHandle(
+        constants$152.PFNGLVERTEXATTRIB4FVPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLVERTEXATTRIBI1IPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLVERTEXATTRIB4IVPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT
+        Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLVERTEXATTRIBI1IPROC$MH = RuntimeHelper.downcallHandle(
-        constants$152.PFNGLVERTEXATTRIBI1IPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLVERTEXATTRIBI2IPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT
-    );
-    static final MethodHandle PFNGLVERTEXATTRIBI2IPROC$MH = RuntimeHelper.downcallHandle(
-        constants$152.PFNGLVERTEXATTRIBI2IPROC$FUNC
+    static final MethodHandle PFNGLVERTEXATTRIB4IVPROC$MH = RuntimeHelper.downcallHandle(
+        constants$152.PFNGLVERTEXATTRIB4IVPROC$FUNC
     );
 }
 

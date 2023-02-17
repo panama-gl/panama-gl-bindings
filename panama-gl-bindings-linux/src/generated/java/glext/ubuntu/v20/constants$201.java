@@ -9,27 +9,47 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$201 {
 
-    static final FunctionDescriptor PFNGLMULTITEXCOORDP4UIVPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
+    static final FunctionDescriptor PFNGLGENVERTEXARRAYSPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLMULTITEXCOORDP4UIVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$201.PFNGLMULTITEXCOORDP4UIVPROC$FUNC
+    static final MethodHandle PFNGLGENVERTEXARRAYSPROC$MH = RuntimeHelper.downcallHandle(
+        constants$201.PFNGLGENVERTEXARRAYSPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLNORMALP3UIPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
+    static final FunctionDescriptor PFNGLISVERTEXARRAYPROC$FUNC = FunctionDescriptor.of(Constants$root.C_CHAR$LAYOUT,
         Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLNORMALP3UIPROC$MH = RuntimeHelper.downcallHandle(
-        constants$201.PFNGLNORMALP3UIPROC$FUNC
+    static final MethodHandle PFNGLISVERTEXARRAYPROC$MH = RuntimeHelper.downcallHandle(
+        constants$201.PFNGLISVERTEXARRAYPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLNORMALP3UIVPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glColorMaski$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_CHAR$LAYOUT,
+        Constants$root.C_CHAR$LAYOUT,
+        Constants$root.C_CHAR$LAYOUT,
+        Constants$root.C_CHAR$LAYOUT
+    );
+    static final MethodHandle glColorMaski$MH = RuntimeHelper.downcallHandle(
+        "glColorMaski",
+        constants$201.glColorMaski$FUNC
+    );
+    static final FunctionDescriptor glGetBooleani_v$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLNORMALP3UIVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$201.PFNGLNORMALP3UIVPROC$FUNC
+    static final MethodHandle glGetBooleani_v$MH = RuntimeHelper.downcallHandle(
+        "glGetBooleani_v",
+        constants$201.glGetBooleani_v$FUNC
+    );
+    static final FunctionDescriptor glGetIntegeri_v$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glGetIntegeri_v$MH = RuntimeHelper.downcallHandle(
+        "glGetIntegeri_v",
+        constants$201.glGetIntegeri_v$FUNC
     );
 }
 

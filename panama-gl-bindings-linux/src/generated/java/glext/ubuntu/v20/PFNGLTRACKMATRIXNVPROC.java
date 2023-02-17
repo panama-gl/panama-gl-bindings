@@ -11,13 +11,13 @@ public interface PFNGLTRACKMATRIXNVPROC {
 
     void apply(int target, int address, int matrix, int transform);
     static MemorySegment allocate(PFNGLTRACKMATRIXNVPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLTRACKMATRIXNVPROC.class, fi, constants$857.PFNGLTRACKMATRIXNVPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLTRACKMATRIXNVPROC.class, fi, constants$1235.PFNGLTRACKMATRIXNVPROC$FUNC, session);
     }
     static PFNGLTRACKMATRIXNVPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _target, int _address, int _matrix, int _transform) -> {
             try {
-                constants$857.PFNGLTRACKMATRIXNVPROC$MH.invokeExact((Addressable)symbol, _target, _address, _matrix, _transform);
+                constants$1235.PFNGLTRACKMATRIXNVPROC$MH.invokeExact((Addressable)symbol, _target, _address, _matrix, _transform);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

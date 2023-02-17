@@ -9,31 +9,30 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$915 {
 
-    static final FunctionDescriptor PFNGLREPLACEMENTCODEPOINTERSUNPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLGETUNSIGNEDBYTEI_VEXTPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLREPLACEMENTCODEPOINTERSUNPROC$MH = RuntimeHelper.downcallHandle(
-        constants$915.PFNGLREPLACEMENTCODEPOINTERSUNPROC$FUNC
+    static final MethodHandle PFNGLGETUNSIGNEDBYTEI_VEXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$915.PFNGLGETUNSIGNEDBYTEI_VEXTPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLCOLOR4UBVERTEX2FSUNPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_CHAR$LAYOUT,
-        Constants$root.C_CHAR$LAYOUT,
-        Constants$root.C_CHAR$LAYOUT,
-        Constants$root.C_CHAR$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT
-    );
-    static final MethodHandle PFNGLCOLOR4UBVERTEX2FSUNPROC$MH = RuntimeHelper.downcallHandle(
-        constants$915.PFNGLCOLOR4UBVERTEX2FSUNPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLCOLOR4UBVERTEX2FVSUNPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_POINTER$LAYOUT,
+    static final FunctionDescriptor PFNGLDELETEMEMORYOBJECTSEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLCOLOR4UBVERTEX2FVSUNPROC$MH = RuntimeHelper.downcallHandle(
-        constants$915.PFNGLCOLOR4UBVERTEX2FVSUNPROC$FUNC
+    static final MethodHandle PFNGLDELETEMEMORYOBJECTSEXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$915.PFNGLDELETEMEMORYOBJECTSEXTPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLISMEMORYOBJECTEXTPROC$FUNC = FunctionDescriptor.of(Constants$root.C_CHAR$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle PFNGLISMEMORYOBJECTEXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$915.PFNGLISMEMORYOBJECTEXTPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLCREATEMEMORYOBJECTSEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
 }
 

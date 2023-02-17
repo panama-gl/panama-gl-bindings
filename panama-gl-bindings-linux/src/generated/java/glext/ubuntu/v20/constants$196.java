@@ -9,26 +9,35 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$196 {
 
-    static final FunctionDescriptor PFNGLTEXCOORDP1UIPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT
-    );
-    static final MethodHandle PFNGLTEXCOORDP1UIPROC$MH = RuntimeHelper.downcallHandle(
-        constants$196.PFNGLTEXCOORDP1UIPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLTEXCOORDP1UIVPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLGENFRAMEBUFFERSPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLTEXCOORDP1UIVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$196.PFNGLTEXCOORDP1UIVPROC$FUNC
+    static final MethodHandle PFNGLGENFRAMEBUFFERSPROC$MH = RuntimeHelper.downcallHandle(
+        constants$196.PFNGLGENFRAMEBUFFERSPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLTEXCOORDP2UIPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLCHECKFRAMEBUFFERSTATUSPROC$FUNC = FunctionDescriptor.of(Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle PFNGLCHECKFRAMEBUFFERSTATUSPROC$MH = RuntimeHelper.downcallHandle(
+        constants$196.PFNGLCHECKFRAMEBUFFERSTATUSPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLFRAMEBUFFERTEXTURE1DPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLTEXCOORDP2UIPROC$MH = RuntimeHelper.downcallHandle(
-        constants$196.PFNGLTEXCOORDP2UIPROC$FUNC
+    static final MethodHandle PFNGLFRAMEBUFFERTEXTURE1DPROC$MH = RuntimeHelper.downcallHandle(
+        constants$196.PFNGLFRAMEBUFFERTEXTURE1DPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLFRAMEBUFFERTEXTURE2DPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
 }
 

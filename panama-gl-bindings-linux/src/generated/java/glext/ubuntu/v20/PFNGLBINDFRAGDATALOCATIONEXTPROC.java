@@ -11,13 +11,13 @@ public interface PFNGLBINDFRAGDATALOCATIONEXTPROC {
 
     void apply(int program, int color, java.lang.foreign.MemoryAddress name);
     static MemorySegment allocate(PFNGLBINDFRAGDATALOCATIONEXTPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLBINDFRAGDATALOCATIONEXTPROC.class, fi, constants$632.PFNGLBINDFRAGDATALOCATIONEXTPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLBINDFRAGDATALOCATIONEXTPROC.class, fi, constants$901.PFNGLBINDFRAGDATALOCATIONEXTPROC$FUNC, session);
     }
     static PFNGLBINDFRAGDATALOCATIONEXTPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _program, int _color, java.lang.foreign.MemoryAddress _name) -> {
             try {
-                constants$632.PFNGLBINDFRAGDATALOCATIONEXTPROC$MH.invokeExact((Addressable)symbol, _program, _color, (java.lang.foreign.Addressable)_name);
+                constants$902.PFNGLBINDFRAGDATALOCATIONEXTPROC$MH.invokeExact((Addressable)symbol, _program, _color, (java.lang.foreign.Addressable)_name);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

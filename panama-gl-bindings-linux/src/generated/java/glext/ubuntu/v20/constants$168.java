@@ -9,26 +9,56 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$168 {
 
-    static final FunctionDescriptor PFNGLBINDFRAMEBUFFERPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT
-    );
-    static final MethodHandle PFNGLBINDFRAMEBUFFERPROC$MH = RuntimeHelper.downcallHandle(
-        constants$168.PFNGLBINDFRAMEBUFFERPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLDELETEFRAMEBUFFERSPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glVertexAttrib4Nubv$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLDELETEFRAMEBUFFERSPROC$MH = RuntimeHelper.downcallHandle(
-        constants$168.PFNGLDELETEFRAMEBUFFERSPROC$FUNC
+    static final MethodHandle glVertexAttrib4Nubv$MH = RuntimeHelper.downcallHandle(
+        "glVertexAttrib4Nubv",
+        constants$168.glVertexAttrib4Nubv$FUNC
     );
-    static final FunctionDescriptor PFNGLGENFRAMEBUFFERSPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glVertexAttrib4Nuiv$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLGENFRAMEBUFFERSPROC$MH = RuntimeHelper.downcallHandle(
-        constants$168.PFNGLGENFRAMEBUFFERSPROC$FUNC
+    static final MethodHandle glVertexAttrib4Nuiv$MH = RuntimeHelper.downcallHandle(
+        "glVertexAttrib4Nuiv",
+        constants$168.glVertexAttrib4Nuiv$FUNC
+    );
+    static final FunctionDescriptor glVertexAttrib4Nusv$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glVertexAttrib4Nusv$MH = RuntimeHelper.downcallHandle(
+        "glVertexAttrib4Nusv",
+        constants$168.glVertexAttrib4Nusv$FUNC
+    );
+    static final FunctionDescriptor glVertexAttrib4bv$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glVertexAttrib4bv$MH = RuntimeHelper.downcallHandle(
+        "glVertexAttrib4bv",
+        constants$168.glVertexAttrib4bv$FUNC
+    );
+    static final FunctionDescriptor glVertexAttrib4d$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_DOUBLE$LAYOUT,
+        Constants$root.C_DOUBLE$LAYOUT,
+        Constants$root.C_DOUBLE$LAYOUT,
+        Constants$root.C_DOUBLE$LAYOUT
+    );
+    static final MethodHandle glVertexAttrib4d$MH = RuntimeHelper.downcallHandle(
+        "glVertexAttrib4d",
+        constants$168.glVertexAttrib4d$FUNC
+    );
+    static final FunctionDescriptor glVertexAttrib4dv$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glVertexAttrib4dv$MH = RuntimeHelper.downcallHandle(
+        "glVertexAttrib4dv",
+        constants$168.glVertexAttrib4dv$FUNC
     );
 }
 

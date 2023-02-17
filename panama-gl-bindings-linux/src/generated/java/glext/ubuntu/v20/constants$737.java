@@ -9,24 +9,49 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$737 {
 
-    static final FunctionDescriptor PFNGLCOMPILECOMMANDLISTNVPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT
-    );
-    static final MethodHandle PFNGLCOMPILECOMMANDLISTNVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$737.PFNGLCOMPILECOMMANDLISTNVPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLCALLCOMMANDLISTNVPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT
-    );
-    static final MethodHandle PFNGLCALLCOMMANDLISTNVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$737.PFNGLCALLCOMMANDLISTNVPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLBEGINCONDITIONALRENDERNVPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLGETCONVOLUTIONPARAMETERIVEXTPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLBEGINCONDITIONALRENDERNVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$737.PFNGLBEGINCONDITIONALRENDERNVPROC$FUNC
+    static final MethodHandle PFNGLGETCONVOLUTIONPARAMETERIVEXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$737.PFNGLGETCONVOLUTIONPARAMETERIVEXTPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLGETSEPARABLEFILTEREXTPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle PFNGLGETSEPARABLEFILTEREXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$737.PFNGLGETSEPARABLEFILTEREXTPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLSEPARABLEFILTER2DEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle PFNGLSEPARABLEFILTER2DEXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$737.PFNGLSEPARABLEFILTER2DEXTPROC$FUNC
+    );
+    static final FunctionDescriptor glConvolutionFilter1DEXT$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glConvolutionFilter1DEXT$MH = RuntimeHelper.downcallHandle(
+        "glConvolutionFilter1DEXT",
+        constants$737.glConvolutionFilter1DEXT$FUNC
     );
 }
 

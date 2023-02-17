@@ -9,28 +9,34 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$660 {
 
-    static final FunctionDescriptor PFNGLSECONDARYCOLORPOINTEREXTPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLSELECTPERFMONITORCOUNTERSAMDPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
+        Constants$root.C_CHAR$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLSECONDARYCOLORPOINTEREXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$660.PFNGLSECONDARYCOLORPOINTEREXTPROC$FUNC
+    static final MethodHandle PFNGLSELECTPERFMONITORCOUNTERSAMDPROC$MH = RuntimeHelper.downcallHandle(
+        constants$660.PFNGLSELECTPERFMONITORCOUNTERSAMDPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLGENSEMAPHORESEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLBEGINPERFMONITORAMDPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle PFNGLBEGINPERFMONITORAMDPROC$MH = RuntimeHelper.downcallHandle(
+        constants$660.PFNGLBEGINPERFMONITORAMDPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLENDPERFMONITORAMDPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle PFNGLENDPERFMONITORAMDPROC$MH = RuntimeHelper.downcallHandle(
+        constants$660.PFNGLENDPERFMONITORAMDPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLGETPERFMONITORCOUNTERDATAAMDPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle PFNGLGENSEMAPHORESEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$660.PFNGLGENSEMAPHORESEXTPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLDELETESEMAPHORESEXTPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle PFNGLDELETESEMAPHORESEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$660.PFNGLDELETESEMAPHORESEXTPROC$FUNC
     );
 }
 

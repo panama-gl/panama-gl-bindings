@@ -9,47 +9,38 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$974 {
 
-    static final FunctionDescriptor initstate_r$FUNC = FunctionDescriptor.of(Constants$root.C_INT$LAYOUT,
+    static final FunctionDescriptor PFNGLVERTEXATTRIBL4DVEXTPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_LONG_LONG$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle initstate_r$MH = RuntimeHelper.downcallHandle(
-        "initstate_r",
-        constants$974.initstate_r$FUNC
+    static final MethodHandle PFNGLVERTEXATTRIBL4DVEXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$974.PFNGLVERTEXATTRIBL4DVEXTPROC$FUNC
     );
-    static final FunctionDescriptor setstate_r$FUNC = FunctionDescriptor.of(Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
+    static final FunctionDescriptor PFNGLVERTEXATTRIBLPOINTEREXTPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle setstate_r$MH = RuntimeHelper.downcallHandle(
-        "setstate_r",
-        constants$974.setstate_r$FUNC
+    static final MethodHandle PFNGLVERTEXATTRIBLPOINTEREXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$974.PFNGLVERTEXATTRIBLPOINTEREXTPROC$FUNC
     );
-    static final FunctionDescriptor rand$FUNC = FunctionDescriptor.of(Constants$root.C_INT$LAYOUT);
-    static final MethodHandle rand$MH = RuntimeHelper.downcallHandle(
-        "rand",
-        constants$974.rand$FUNC
-    );
-    static final FunctionDescriptor srand$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT
-    );
-    static final MethodHandle srand$MH = RuntimeHelper.downcallHandle(
-        "srand",
-        constants$974.srand$FUNC
-    );
-    static final FunctionDescriptor rand_r$FUNC = FunctionDescriptor.of(Constants$root.C_INT$LAYOUT,
+    static final FunctionDescriptor PFNGLGETVERTEXATTRIBLDVEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle rand_r$MH = RuntimeHelper.downcallHandle(
-        "rand_r",
-        constants$974.rand_r$FUNC
+    static final MethodHandle PFNGLGETVERTEXATTRIBLDVEXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$974.PFNGLGETVERTEXATTRIBLDVEXTPROC$FUNC
     );
-    static final FunctionDescriptor drand48$FUNC = FunctionDescriptor.of(Constants$root.C_DOUBLE$LAYOUT);
-    static final MethodHandle drand48$MH = RuntimeHelper.downcallHandle(
-        "drand48",
-        constants$974.drand48$FUNC
+    static final FunctionDescriptor glVertexAttribL1dEXT$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_DOUBLE$LAYOUT
+    );
+    static final MethodHandle glVertexAttribL1dEXT$MH = RuntimeHelper.downcallHandle(
+        "glVertexAttribL1dEXT",
+        constants$974.glVertexAttribL1dEXT$FUNC
     );
 }
 

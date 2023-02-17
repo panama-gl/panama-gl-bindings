@@ -11,13 +11,13 @@ public interface PFNGLREPLACEMENTCODEUISUNPROC {
 
     void apply(int code);
     static MemorySegment allocate(PFNGLREPLACEMENTCODEUISUNPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLREPLACEMENTCODEUISUNPROC.class, fi, constants$913.PFNGLREPLACEMENTCODEUISUNPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLREPLACEMENTCODEUISUNPROC.class, fi, constants$1322.PFNGLREPLACEMENTCODEUISUNPROC$FUNC, session);
     }
     static PFNGLREPLACEMENTCODEUISUNPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _code) -> {
             try {
-                constants$913.PFNGLREPLACEMENTCODEUISUNPROC$MH.invokeExact((Addressable)symbol, _code);
+                constants$1323.PFNGLREPLACEMENTCODEUISUNPROC$MH.invokeExact((Addressable)symbol, _code);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

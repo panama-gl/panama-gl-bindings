@@ -11,13 +11,13 @@ public interface PFNGLMAKENAMEDBUFFERNONRESIDENTNVPROC {
 
     void apply(int buffer);
     static MemorySegment allocate(PFNGLMAKENAMEDBUFFERNONRESIDENTNVPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLMAKENAMEDBUFFERNONRESIDENTNVPROC.class, fi, constants$821.PFNGLMAKENAMEDBUFFERNONRESIDENTNVPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLMAKENAMEDBUFFERNONRESIDENTNVPROC.class, fi, constants$1184.PFNGLMAKENAMEDBUFFERNONRESIDENTNVPROC$FUNC, session);
     }
     static PFNGLMAKENAMEDBUFFERNONRESIDENTNVPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _buffer) -> {
             try {
-                constants$821.PFNGLMAKENAMEDBUFFERNONRESIDENTNVPROC$MH.invokeExact((Addressable)symbol, _buffer);
+                constants$1184.PFNGLMAKENAMEDBUFFERNONRESIDENTNVPROC$MH.invokeExact((Addressable)symbol, _buffer);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

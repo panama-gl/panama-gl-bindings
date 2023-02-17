@@ -9,35 +9,55 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$750 {
 
-    static final FunctionDescriptor PFNGLPROGRAMNAMEDPARAMETER4FVNVPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glBinormal3iEXT$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle glBinormal3iEXT$MH = RuntimeHelper.downcallHandle(
+        "glBinormal3iEXT",
+        constants$750.glBinormal3iEXT$FUNC
+    );
+    static final FunctionDescriptor glBinormal3ivEXT$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLPROGRAMNAMEDPARAMETER4FVNVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$750.PFNGLPROGRAMNAMEDPARAMETER4FVNVPROC$FUNC
+    static final MethodHandle glBinormal3ivEXT$MH = RuntimeHelper.downcallHandle(
+        "glBinormal3ivEXT",
+        constants$750.glBinormal3ivEXT$FUNC
     );
-    static final FunctionDescriptor PFNGLPROGRAMNAMEDPARAMETER4DNVPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_DOUBLE$LAYOUT,
-        Constants$root.C_DOUBLE$LAYOUT,
-        Constants$root.C_DOUBLE$LAYOUT,
-        Constants$root.C_DOUBLE$LAYOUT
+    static final FunctionDescriptor glBinormal3sEXT$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_SHORT$LAYOUT,
+        Constants$root.C_SHORT$LAYOUT,
+        Constants$root.C_SHORT$LAYOUT
     );
-    static final MethodHandle PFNGLPROGRAMNAMEDPARAMETER4DNVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$750.PFNGLPROGRAMNAMEDPARAMETER4DNVPROC$FUNC
+    static final MethodHandle glBinormal3sEXT$MH = RuntimeHelper.downcallHandle(
+        "glBinormal3sEXT",
+        constants$750.glBinormal3sEXT$FUNC
     );
-    static final FunctionDescriptor PFNGLPROGRAMNAMEDPARAMETER4DVNVPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
+    static final FunctionDescriptor glBinormal3svEXT$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLPROGRAMNAMEDPARAMETER4DVNVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$750.PFNGLPROGRAMNAMEDPARAMETER4DVNVPROC$FUNC
+    static final MethodHandle glBinormal3svEXT$MH = RuntimeHelper.downcallHandle(
+        "glBinormal3svEXT",
+        constants$750.glBinormal3svEXT$FUNC
+    );
+    static final FunctionDescriptor glTangentPointerEXT$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glTangentPointerEXT$MH = RuntimeHelper.downcallHandle(
+        "glTangentPointerEXT",
+        constants$750.glTangentPointerEXT$FUNC
+    );
+    static final FunctionDescriptor glBinormalPointerEXT$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glBinormalPointerEXT$MH = RuntimeHelper.downcallHandle(
+        "glBinormalPointerEXT",
+        constants$750.glBinormalPointerEXT$FUNC
     );
 }
 

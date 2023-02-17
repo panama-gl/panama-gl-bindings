@@ -9,28 +9,61 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$323 {
 
-    static final FunctionDescriptor PFNGLPROGRAMSTRINGARBPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glProgramUniformMatrix3x4dv$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
+        Constants$root.C_CHAR$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLPROGRAMSTRINGARBPROC$MH = RuntimeHelper.downcallHandle(
-        constants$323.PFNGLPROGRAMSTRINGARBPROC$FUNC
+    static final MethodHandle glProgramUniformMatrix3x4dv$MH = RuntimeHelper.downcallHandle(
+        "glProgramUniformMatrix3x4dv",
+        constants$323.glProgramUniformMatrix3x4dv$FUNC
     );
-    static final FunctionDescriptor PFNGLBINDPROGRAMARBPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glProgramUniformMatrix4x3dv$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_CHAR$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glProgramUniformMatrix4x3dv$MH = RuntimeHelper.downcallHandle(
+        "glProgramUniformMatrix4x3dv",
+        constants$323.glProgramUniformMatrix4x3dv$FUNC
+    );
+    static final FunctionDescriptor glValidateProgramPipeline$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLBINDPROGRAMARBPROC$MH = RuntimeHelper.downcallHandle(
-        constants$323.PFNGLBINDPROGRAMARBPROC$FUNC
+    static final MethodHandle glValidateProgramPipeline$MH = RuntimeHelper.downcallHandle(
+        "glValidateProgramPipeline",
+        constants$323.glValidateProgramPipeline$FUNC
     );
-    static final FunctionDescriptor PFNGLDELETEPROGRAMSARBPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glGetProgramPipelineInfoLog$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLDELETEPROGRAMSARBPROC$MH = RuntimeHelper.downcallHandle(
-        constants$323.PFNGLDELETEPROGRAMSARBPROC$FUNC
+    static final MethodHandle glGetProgramPipelineInfoLog$MH = RuntimeHelper.downcallHandle(
+        "glGetProgramPipelineInfoLog",
+        constants$323.glGetProgramPipelineInfoLog$FUNC
+    );
+    static final FunctionDescriptor glVertexAttribL1d$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_DOUBLE$LAYOUT
+    );
+    static final MethodHandle glVertexAttribL1d$MH = RuntimeHelper.downcallHandle(
+        "glVertexAttribL1d",
+        constants$323.glVertexAttribL1d$FUNC
+    );
+    static final FunctionDescriptor glVertexAttribL2d$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_DOUBLE$LAYOUT,
+        Constants$root.C_DOUBLE$LAYOUT
+    );
+    static final MethodHandle glVertexAttribL2d$MH = RuntimeHelper.downcallHandle(
+        "glVertexAttribL2d",
+        constants$323.glVertexAttribL2d$FUNC
     );
 }
 

@@ -11,13 +11,13 @@ public interface PFNGLEGLIMAGETARGETTEXTURESTORAGEEXTPROC {
 
     void apply(int texture, java.lang.foreign.MemoryAddress image, java.lang.foreign.MemoryAddress attrib_list);
     static MemorySegment allocate(PFNGLEGLIMAGETARGETTEXTURESTORAGEEXTPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLEGLIMAGETARGETTEXTURESTORAGEEXTPROC.class, fi, constants$516.PFNGLEGLIMAGETARGETTEXTURESTORAGEEXTPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLEGLIMAGETARGETTEXTURESTORAGEEXTPROC.class, fi, constants$727.PFNGLEGLIMAGETARGETTEXTURESTORAGEEXTPROC$FUNC, session);
     }
     static PFNGLEGLIMAGETARGETTEXTURESTORAGEEXTPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _texture, java.lang.foreign.MemoryAddress _image, java.lang.foreign.MemoryAddress _attrib_list) -> {
             try {
-                constants$516.PFNGLEGLIMAGETARGETTEXTURESTORAGEEXTPROC$MH.invokeExact((Addressable)symbol, _texture, (java.lang.foreign.Addressable)_image, (java.lang.foreign.Addressable)_attrib_list);
+                constants$727.PFNGLEGLIMAGETARGETTEXTURESTORAGEEXTPROC$MH.invokeExact((Addressable)symbol, _texture, (java.lang.foreign.Addressable)_image, (java.lang.foreign.Addressable)_attrib_list);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

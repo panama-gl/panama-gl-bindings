@@ -9,35 +9,26 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$286 {
 
-    static final FunctionDescriptor PFNGLTEXTURESTORAGE1DPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
+    static final FunctionDescriptor PFNGLACTIVESHADERPROGRAMPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLTEXTURESTORAGE1DPROC$MH = RuntimeHelper.downcallHandle(
-        constants$286.PFNGLTEXTURESTORAGE1DPROC$FUNC
+    static final MethodHandle PFNGLACTIVESHADERPROGRAMPROC$MH = RuntimeHelper.downcallHandle(
+        constants$286.PFNGLACTIVESHADERPROGRAMPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLTEXTURESTORAGE2DPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLCREATESHADERPROGRAMVPROC$FUNC = FunctionDescriptor.of(Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle PFNGLCREATESHADERPROGRAMVPROC$MH = RuntimeHelper.downcallHandle(
+        constants$286.PFNGLCREATESHADERPROGRAMVPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLBINDPROGRAMPIPELINEPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLTEXTURESTORAGE2DPROC$MH = RuntimeHelper.downcallHandle(
-        constants$286.PFNGLTEXTURESTORAGE2DPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLTEXTURESTORAGE3DPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT
-    );
-    static final MethodHandle PFNGLTEXTURESTORAGE3DPROC$MH = RuntimeHelper.downcallHandle(
-        constants$286.PFNGLTEXTURESTORAGE3DPROC$FUNC
+    static final MethodHandle PFNGLBINDPROGRAMPIPELINEPROC$MH = RuntimeHelper.downcallHandle(
+        constants$286.PFNGLBINDPROGRAMPIPELINEPROC$FUNC
     );
 }
 

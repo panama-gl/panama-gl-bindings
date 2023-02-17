@@ -9,49 +9,43 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$933 {
 
-    static final FunctionDescriptor gluEndPolygon$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle gluEndPolygon$MH = RuntimeHelper.downcallHandle(
-        "gluEndPolygon",
-        constants$933.gluEndPolygon$FUNC
-    );
-    static final FunctionDescriptor gluEndSurface$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle gluEndSurface$MH = RuntimeHelper.downcallHandle(
-        "gluEndSurface",
-        constants$933.gluEndSurface$FUNC
-    );
-    static final FunctionDescriptor gluEndTrim$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle gluEndTrim$MH = RuntimeHelper.downcallHandle(
-        "gluEndTrim",
-        constants$933.gluEndTrim$FUNC
-    );
-    static final FunctionDescriptor gluErrorString$FUNC = FunctionDescriptor.of(Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_INT$LAYOUT
-    );
-    static final MethodHandle gluErrorString$MH = RuntimeHelper.downcallHandle(
-        "gluErrorString",
-        constants$933.gluErrorString$FUNC
-    );
-    static final FunctionDescriptor gluGetNurbsProperty$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_POINTER$LAYOUT,
+    static final FunctionDescriptor PFNGLPOINTPARAMETERFVEXTPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle gluGetNurbsProperty$MH = RuntimeHelper.downcallHandle(
-        "gluGetNurbsProperty",
-        constants$933.gluGetNurbsProperty$FUNC
+    static final MethodHandle PFNGLPOINTPARAMETERFVEXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$933.PFNGLPOINTPARAMETERFVEXTPROC$FUNC
     );
-    static final FunctionDescriptor gluGetString$FUNC = FunctionDescriptor.of(Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_INT$LAYOUT
+    static final FunctionDescriptor glPointParameterfEXT$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT
     );
-    static final MethodHandle gluGetString$MH = RuntimeHelper.downcallHandle(
-        "gluGetString",
-        constants$933.gluGetString$FUNC
+    static final MethodHandle glPointParameterfEXT$MH = RuntimeHelper.downcallHandle(
+        "glPointParameterfEXT",
+        constants$933.glPointParameterfEXT$FUNC
+    );
+    static final FunctionDescriptor glPointParameterfvEXT$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glPointParameterfvEXT$MH = RuntimeHelper.downcallHandle(
+        "glPointParameterfvEXT",
+        constants$933.glPointParameterfvEXT$FUNC
+    );
+    static final FunctionDescriptor PFNGLPOLYGONOFFSETEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT
+    );
+    static final MethodHandle PFNGLPOLYGONOFFSETEXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$933.PFNGLPOLYGONOFFSETEXTPROC$FUNC
+    );
+    static final FunctionDescriptor glPolygonOffsetEXT$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT
+    );
+    static final MethodHandle glPolygonOffsetEXT$MH = RuntimeHelper.downcallHandle(
+        "glPolygonOffsetEXT",
+        constants$933.glPolygonOffsetEXT$FUNC
     );
 }
 

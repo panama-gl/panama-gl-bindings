@@ -9,60 +9,31 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$935 {
 
-    static final FunctionDescriptor gluNextContour$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_INT$LAYOUT
-    );
-    static final MethodHandle gluNextContour$MH = RuntimeHelper.downcallHandle(
-        "gluNextContour",
-        constants$935.gluNextContour$FUNC
-    );
-    static final FunctionDescriptor gluNurbsCallback$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_POINTER$LAYOUT,
+    static final FunctionDescriptor PFNGLRASTERSAMPLESEXTPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
+        Constants$root.C_CHAR$LAYOUT
+    );
+    static final MethodHandle PFNGLRASTERSAMPLESEXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$935.PFNGLRASTERSAMPLESEXTPROC$FUNC
+    );
+    static final FunctionDescriptor glRasterSamplesEXT$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_CHAR$LAYOUT
+    );
+    static final MethodHandle glRasterSamplesEXT$MH = RuntimeHelper.downcallHandle(
+        "glRasterSamplesEXT",
+        constants$935.glRasterSamplesEXT$FUNC
+    );
+    static final FunctionDescriptor PFNGLSECONDARYCOLOR3BEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_CHAR$LAYOUT,
+        Constants$root.C_CHAR$LAYOUT,
+        Constants$root.C_CHAR$LAYOUT
+    );
+    static final MethodHandle PFNGLSECONDARYCOLOR3BEXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$935.PFNGLSECONDARYCOLOR3BEXTPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLSECONDARYCOLOR3BVEXTPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle gluNurbsCallback$MH = RuntimeHelper.downcallHandle(
-        "gluNurbsCallback",
-        constants$935.gluNurbsCallback$FUNC
-    );
-    static final FunctionDescriptor gluNurbsCallbackData$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle gluNurbsCallbackData$MH = RuntimeHelper.downcallHandle(
-        "gluNurbsCallbackData",
-        constants$935.gluNurbsCallbackData$FUNC
-    );
-    static final FunctionDescriptor gluNurbsCallbackDataEXT$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle gluNurbsCallbackDataEXT$MH = RuntimeHelper.downcallHandle(
-        "gluNurbsCallbackDataEXT",
-        constants$935.gluNurbsCallbackDataEXT$FUNC
-    );
-    static final FunctionDescriptor gluNurbsCurve$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT
-    );
-    static final MethodHandle gluNurbsCurve$MH = RuntimeHelper.downcallHandle(
-        "gluNurbsCurve",
-        constants$935.gluNurbsCurve$FUNC
-    );
-    static final FunctionDescriptor gluNurbsProperty$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT
-    );
-    static final MethodHandle gluNurbsProperty$MH = RuntimeHelper.downcallHandle(
-        "gluNurbsProperty",
-        constants$935.gluNurbsProperty$FUNC
     );
 }
 

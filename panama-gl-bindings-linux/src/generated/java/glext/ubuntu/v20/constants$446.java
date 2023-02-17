@@ -9,24 +9,62 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$446 {
 
-    static final FunctionDescriptor PFNGLVERTEX2XOESPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT
-    );
-    static final MethodHandle PFNGLVERTEX2XOESPROC$MH = RuntimeHelper.downcallHandle(
-        constants$446.PFNGLVERTEX2XOESPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLVERTEX2XVOESPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glProgramLocalParameter4dvARB$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLVERTEX2XVOESPROC$MH = RuntimeHelper.downcallHandle(
-        constants$446.PFNGLVERTEX2XVOESPROC$FUNC
+    static final MethodHandle glProgramLocalParameter4dvARB$MH = RuntimeHelper.downcallHandle(
+        "glProgramLocalParameter4dvARB",
+        constants$446.glProgramLocalParameter4dvARB$FUNC
     );
-    static final FunctionDescriptor PFNGLVERTEX3XOESPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glProgramLocalParameter4fARB$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT
     );
-    static final MethodHandle PFNGLVERTEX3XOESPROC$MH = RuntimeHelper.downcallHandle(
-        constants$446.PFNGLVERTEX3XOESPROC$FUNC
+    static final MethodHandle glProgramLocalParameter4fARB$MH = RuntimeHelper.downcallHandle(
+        "glProgramLocalParameter4fARB",
+        constants$446.glProgramLocalParameter4fARB$FUNC
+    );
+    static final FunctionDescriptor glProgramLocalParameter4fvARB$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glProgramLocalParameter4fvARB$MH = RuntimeHelper.downcallHandle(
+        "glProgramLocalParameter4fvARB",
+        constants$446.glProgramLocalParameter4fvARB$FUNC
+    );
+    static final FunctionDescriptor glGetProgramEnvParameterdvARB$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glGetProgramEnvParameterdvARB$MH = RuntimeHelper.downcallHandle(
+        "glGetProgramEnvParameterdvARB",
+        constants$446.glGetProgramEnvParameterdvARB$FUNC
+    );
+    static final FunctionDescriptor glGetProgramEnvParameterfvARB$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glGetProgramEnvParameterfvARB$MH = RuntimeHelper.downcallHandle(
+        "glGetProgramEnvParameterfvARB",
+        constants$446.glGetProgramEnvParameterfvARB$FUNC
+    );
+    static final FunctionDescriptor glGetProgramLocalParameterdvARB$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glGetProgramLocalParameterdvARB$MH = RuntimeHelper.downcallHandle(
+        "glGetProgramLocalParameterdvARB",
+        constants$446.glGetProgramLocalParameterdvARB$FUNC
     );
 }
 

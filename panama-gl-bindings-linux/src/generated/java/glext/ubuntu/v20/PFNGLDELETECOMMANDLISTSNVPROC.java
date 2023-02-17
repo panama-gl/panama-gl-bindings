@@ -11,13 +11,13 @@ public interface PFNGLDELETECOMMANDLISTSNVPROC {
 
     void apply(int n, java.lang.foreign.MemoryAddress lists);
     static MemorySegment allocate(PFNGLDELETECOMMANDLISTSNVPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLDELETECOMMANDLISTSNVPROC.class, fi, constants$735.PFNGLDELETECOMMANDLISTSNVPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLDELETECOMMANDLISTSNVPROC.class, fi, constants$1055.PFNGLDELETECOMMANDLISTSNVPROC$FUNC, session);
     }
     static PFNGLDELETECOMMANDLISTSNVPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _n, java.lang.foreign.MemoryAddress _lists) -> {
             try {
-                constants$735.PFNGLDELETECOMMANDLISTSNVPROC$MH.invokeExact((Addressable)symbol, _n, (java.lang.foreign.Addressable)_lists);
+                constants$1055.PFNGLDELETECOMMANDLISTSNVPROC$MH.invokeExact((Addressable)symbol, _n, (java.lang.foreign.Addressable)_lists);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

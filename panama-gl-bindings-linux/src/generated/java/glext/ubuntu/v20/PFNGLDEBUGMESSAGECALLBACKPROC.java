@@ -11,13 +11,13 @@ public interface PFNGLDEBUGMESSAGECALLBACKPROC {
 
     void apply(java.lang.foreign.MemoryAddress callback, java.lang.foreign.MemoryAddress userParam);
     static MemorySegment allocate(PFNGLDEBUGMESSAGECALLBACKPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLDEBUGMESSAGECALLBACKPROC.class, fi, constants$264.PFNGLDEBUGMESSAGECALLBACKPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLDEBUGMESSAGECALLBACKPROC.class, fi, constants$345.PFNGLDEBUGMESSAGECALLBACKPROC$FUNC, session);
     }
     static PFNGLDEBUGMESSAGECALLBACKPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (java.lang.foreign.MemoryAddress _callback, java.lang.foreign.MemoryAddress _userParam) -> {
             try {
-                constants$264.PFNGLDEBUGMESSAGECALLBACKPROC$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)_callback, (java.lang.foreign.Addressable)_userParam);
+                constants$345.PFNGLDEBUGMESSAGECALLBACKPROC$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)_callback, (java.lang.foreign.Addressable)_userParam);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

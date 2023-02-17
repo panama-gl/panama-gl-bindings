@@ -11,13 +11,13 @@ public interface PFNGLNAMEDRENDERBUFFERSTORAGEMULTISAMPLECOVERAGEEXTPROC {
 
     void apply(int renderbuffer, int coverageSamples, int colorSamples, int internalformat, int width, int height);
     static MemorySegment allocate(PFNGLNAMEDRENDERBUFFERSTORAGEMULTISAMPLECOVERAGEEXTPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLNAMEDRENDERBUFFERSTORAGEMULTISAMPLECOVERAGEEXTPROC.class, fi, constants$595.PFNGLNAMEDRENDERBUFFERSTORAGEMULTISAMPLECOVERAGEEXTPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLNAMEDRENDERBUFFERSTORAGEMULTISAMPLECOVERAGEEXTPROC.class, fi, constants$816.PFNGLNAMEDRENDERBUFFERSTORAGEMULTISAMPLECOVERAGEEXTPROC$FUNC, session);
     }
     static PFNGLNAMEDRENDERBUFFERSTORAGEMULTISAMPLECOVERAGEEXTPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _renderbuffer, int _coverageSamples, int _colorSamples, int _internalformat, int _width, int _height) -> {
             try {
-                constants$595.PFNGLNAMEDRENDERBUFFERSTORAGEMULTISAMPLECOVERAGEEXTPROC$MH.invokeExact((Addressable)symbol, _renderbuffer, _coverageSamples, _colorSamples, _internalformat, _width, _height);
+                constants$817.PFNGLNAMEDRENDERBUFFERSTORAGEMULTISAMPLECOVERAGEEXTPROC$MH.invokeExact((Addressable)symbol, _renderbuffer, _coverageSamples, _colorSamples, _internalformat, _width, _height);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

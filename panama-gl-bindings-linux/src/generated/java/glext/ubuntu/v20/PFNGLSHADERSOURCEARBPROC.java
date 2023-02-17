@@ -11,13 +11,13 @@ public interface PFNGLSHADERSOURCEARBPROC {
 
     void apply(int shaderObj, int count, java.lang.foreign.MemoryAddress string, java.lang.foreign.MemoryAddress length);
     static MemorySegment allocate(PFNGLSHADERSOURCEARBPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLSHADERSOURCEARBPROC.class, fi, constants$359.PFNGLSHADERSOURCEARBPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLSHADERSOURCEARBPROC.class, fi, constants$491.PFNGLSHADERSOURCEARBPROC$FUNC, session);
     }
     static PFNGLSHADERSOURCEARBPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _shaderObj, int _count, java.lang.foreign.MemoryAddress _string, java.lang.foreign.MemoryAddress _length) -> {
             try {
-                constants$359.PFNGLSHADERSOURCEARBPROC$MH.invokeExact((Addressable)symbol, _shaderObj, _count, (java.lang.foreign.Addressable)_string, (java.lang.foreign.Addressable)_length);
+                constants$491.PFNGLSHADERSOURCEARBPROC$MH.invokeExact((Addressable)symbol, _shaderObj, _count, (java.lang.foreign.Addressable)_string, (java.lang.foreign.Addressable)_length);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

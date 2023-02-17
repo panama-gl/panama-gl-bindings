@@ -9,22 +9,12 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$518 {
 
-    static final FunctionDescriptor PFNGLBLENDFUNCSEPARATEEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glCompressedTexSubImage3DARB$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT
-    );
-    static final MethodHandle PFNGLBLENDFUNCSEPARATEEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$518.PFNGLBLENDFUNCSEPARATEEXTPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLBLENDEQUATIONEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT
-    );
-    static final MethodHandle PFNGLBLENDEQUATIONEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$518.PFNGLBLENDEQUATIONEXTPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLCOLORSUBTABLEEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
@@ -32,8 +22,52 @@ class constants$518 {
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLCOLORSUBTABLEEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$518.PFNGLCOLORSUBTABLEEXTPROC$FUNC
+    static final MethodHandle glCompressedTexSubImage3DARB$MH = RuntimeHelper.downcallHandle(
+        "glCompressedTexSubImage3DARB",
+        constants$518.glCompressedTexSubImage3DARB$FUNC
+    );
+    static final FunctionDescriptor glCompressedTexSubImage2DARB$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glCompressedTexSubImage2DARB$MH = RuntimeHelper.downcallHandle(
+        "glCompressedTexSubImage2DARB",
+        constants$518.glCompressedTexSubImage2DARB$FUNC
+    );
+    static final FunctionDescriptor glCompressedTexSubImage1DARB$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glCompressedTexSubImage1DARB$MH = RuntimeHelper.downcallHandle(
+        "glCompressedTexSubImage1DARB",
+        constants$518.glCompressedTexSubImage1DARB$FUNC
+    );
+    static final FunctionDescriptor glGetCompressedTexImageARB$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glGetCompressedTexImageARB$MH = RuntimeHelper.downcallHandle(
+        "glGetCompressedTexImageARB",
+        constants$518.glGetCompressedTexImageARB$FUNC
+    );
+    static final FunctionDescriptor PFNGLLOADTRANSPOSEMATRIXFARBPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle PFNGLLOADTRANSPOSEMATRIXFARBPROC$MH = RuntimeHelper.downcallHandle(
+        constants$518.PFNGLLOADTRANSPOSEMATRIXFARBPROC$FUNC
     );
 }
 

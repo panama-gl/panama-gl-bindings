@@ -11,13 +11,13 @@ public interface PFNGLDELETEVERTEXARRAYSAPPLEPROC {
 
     void apply(int n, java.lang.foreign.MemoryAddress arrays);
     static MemorySegment allocate(PFNGLDELETEVERTEXARRAYSAPPLEPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLDELETEVERTEXARRAYSAPPLEPROC.class, fi, constants$482.PFNGLDELETEVERTEXARRAYSAPPLEPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLDELETEVERTEXARRAYSAPPLEPROC.class, fi, constants$676.PFNGLDELETEVERTEXARRAYSAPPLEPROC$FUNC, session);
     }
     static PFNGLDELETEVERTEXARRAYSAPPLEPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _n, java.lang.foreign.MemoryAddress _arrays) -> {
             try {
-                constants$482.PFNGLDELETEVERTEXARRAYSAPPLEPROC$MH.invokeExact((Addressable)symbol, _n, (java.lang.foreign.Addressable)_arrays);
+                constants$676.PFNGLDELETEVERTEXARRAYSAPPLEPROC$MH.invokeExact((Addressable)symbol, _n, (java.lang.foreign.Addressable)_arrays);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

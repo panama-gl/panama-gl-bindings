@@ -9,29 +9,64 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$407 {
 
-    static final FunctionDescriptor PFNGLMULTITEXCOORD2BOESPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glNamedRenderbufferStorageMultisample$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_CHAR$LAYOUT,
-        Constants$root.C_CHAR$LAYOUT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLMULTITEXCOORD2BOESPROC$MH = RuntimeHelper.downcallHandle(
-        constants$407.PFNGLMULTITEXCOORD2BOESPROC$FUNC
+    static final MethodHandle glNamedRenderbufferStorageMultisample$MH = RuntimeHelper.downcallHandle(
+        "glNamedRenderbufferStorageMultisample",
+        constants$407.glNamedRenderbufferStorageMultisample$FUNC
     );
-    static final FunctionDescriptor PFNGLMULTITEXCOORD2BVOESPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glGetNamedRenderbufferParameteriv$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLMULTITEXCOORD2BVOESPROC$MH = RuntimeHelper.downcallHandle(
-        constants$407.PFNGLMULTITEXCOORD2BVOESPROC$FUNC
+    static final MethodHandle glGetNamedRenderbufferParameteriv$MH = RuntimeHelper.downcallHandle(
+        "glGetNamedRenderbufferParameteriv",
+        constants$407.glGetNamedRenderbufferParameteriv$FUNC
     );
-    static final FunctionDescriptor PFNGLMULTITEXCOORD3BOESPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glCreateTextures$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_CHAR$LAYOUT,
-        Constants$root.C_CHAR$LAYOUT,
-        Constants$root.C_CHAR$LAYOUT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLMULTITEXCOORD3BOESPROC$MH = RuntimeHelper.downcallHandle(
-        constants$407.PFNGLMULTITEXCOORD3BOESPROC$FUNC
+    static final MethodHandle glCreateTextures$MH = RuntimeHelper.downcallHandle(
+        "glCreateTextures",
+        constants$407.glCreateTextures$FUNC
+    );
+    static final FunctionDescriptor glTextureBuffer$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle glTextureBuffer$MH = RuntimeHelper.downcallHandle(
+        "glTextureBuffer",
+        constants$407.glTextureBuffer$FUNC
+    );
+    static final FunctionDescriptor glTextureBufferRange$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT
+    );
+    static final MethodHandle glTextureBufferRange$MH = RuntimeHelper.downcallHandle(
+        "glTextureBufferRange",
+        constants$407.glTextureBufferRange$FUNC
+    );
+    static final FunctionDescriptor glTextureStorage1D$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle glTextureStorage1D$MH = RuntimeHelper.downcallHandle(
+        "glTextureStorage1D",
+        constants$407.glTextureStorage1D$FUNC
     );
 }
 

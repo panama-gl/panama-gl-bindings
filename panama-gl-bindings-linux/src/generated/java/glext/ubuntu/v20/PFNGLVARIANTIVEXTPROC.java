@@ -11,13 +11,13 @@ public interface PFNGLVARIANTIVEXTPROC {
 
     void apply(int id, java.lang.foreign.MemoryAddress addr);
     static MemorySegment allocate(PFNGLVARIANTIVEXTPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLVARIANTIVEXTPROC.class, fi, constants$687.PFNGLVARIANTIVEXTPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLVARIANTIVEXTPROC.class, fi, constants$982.PFNGLVARIANTIVEXTPROC$FUNC, session);
     }
     static PFNGLVARIANTIVEXTPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _id, java.lang.foreign.MemoryAddress _addr) -> {
             try {
-                constants$687.PFNGLVARIANTIVEXTPROC$MH.invokeExact((Addressable)symbol, _id, (java.lang.foreign.Addressable)_addr);
+                constants$982.PFNGLVARIANTIVEXTPROC$MH.invokeExact((Addressable)symbol, _id, (java.lang.foreign.Addressable)_addr);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

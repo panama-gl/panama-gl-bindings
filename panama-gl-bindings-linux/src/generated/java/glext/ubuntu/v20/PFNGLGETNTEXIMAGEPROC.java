@@ -11,13 +11,13 @@ public interface PFNGLGETNTEXIMAGEPROC {
 
     void apply(int target, int level, int format, int type, int bufSize, java.lang.foreign.MemoryAddress pixels);
     static MemorySegment allocate(PFNGLGETNTEXIMAGEPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLGETNTEXIMAGEPROC.class, fi, constants$304.PFNGLGETNTEXIMAGEPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLGETNTEXIMAGEPROC.class, fi, constants$393.PFNGLGETNTEXIMAGEPROC$FUNC, session);
     }
     static PFNGLGETNTEXIMAGEPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _target, int _level, int _format, int _type, int _bufSize, java.lang.foreign.MemoryAddress _pixels) -> {
             try {
-                constants$304.PFNGLGETNTEXIMAGEPROC$MH.invokeExact((Addressable)symbol, _target, _level, _format, _type, _bufSize, (java.lang.foreign.Addressable)_pixels);
+                constants$393.PFNGLGETNTEXIMAGEPROC$MH.invokeExact((Addressable)symbol, _target, _level, _format, _type, _bufSize, (java.lang.foreign.Addressable)_pixels);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

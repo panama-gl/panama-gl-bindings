@@ -9,50 +9,32 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$565 {
 
-    static final FunctionDescriptor PFNGLCOMPRESSEDTEXTURESUBIMAGE3DEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
+    static final FunctionDescriptor PFNGLMULTITEXCOORD3BVOESPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLCOMPRESSEDTEXTURESUBIMAGE3DEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$565.PFNGLCOMPRESSEDTEXTURESUBIMAGE3DEXTPROC$FUNC
+    static final MethodHandle PFNGLMULTITEXCOORD3BVOESPROC$MH = RuntimeHelper.downcallHandle(
+        constants$565.PFNGLMULTITEXCOORD3BVOESPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLCOMPRESSEDTEXTURESUBIMAGE2DEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLMULTITEXCOORD4BOESPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_CHAR$LAYOUT,
+        Constants$root.C_CHAR$LAYOUT,
+        Constants$root.C_CHAR$LAYOUT,
+        Constants$root.C_CHAR$LAYOUT
+    );
+    static final MethodHandle PFNGLMULTITEXCOORD4BOESPROC$MH = RuntimeHelper.downcallHandle(
+        constants$565.PFNGLMULTITEXCOORD4BOESPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLMULTITEXCOORD4BVOESPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLCOMPRESSEDTEXTURESUBIMAGE2DEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$565.PFNGLCOMPRESSEDTEXTURESUBIMAGE2DEXTPROC$FUNC
+    static final MethodHandle PFNGLMULTITEXCOORD4BVOESPROC$MH = RuntimeHelper.downcallHandle(
+        constants$565.PFNGLMULTITEXCOORD4BVOESPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLCOMPRESSEDTEXTURESUBIMAGE1DEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle PFNGLCOMPRESSEDTEXTURESUBIMAGE1DEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$565.PFNGLCOMPRESSEDTEXTURESUBIMAGE1DEXTPROC$FUNC
+    static final FunctionDescriptor PFNGLTEXCOORD1BOESPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_CHAR$LAYOUT
     );
 }
 

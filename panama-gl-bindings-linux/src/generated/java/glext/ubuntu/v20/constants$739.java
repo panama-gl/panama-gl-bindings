@@ -9,23 +9,7 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$739 {
 
-    static final FunctionDescriptor PFNGLCONSERVATIVERASTERPARAMETERINVPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT
-    );
-    static final MethodHandle PFNGLCONSERVATIVERASTERPARAMETERINVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$739.PFNGLCONSERVATIVERASTERPARAMETERINVPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLCOPYIMAGESUBDATANVPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
+    static final FunctionDescriptor glCopyConvolutionFilter2DEXT$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
@@ -33,15 +17,63 @@ class constants$739 {
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLCOPYIMAGESUBDATANVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$739.PFNGLCOPYIMAGESUBDATANVPROC$FUNC
+    static final MethodHandle glCopyConvolutionFilter2DEXT$MH = RuntimeHelper.downcallHandle(
+        "glCopyConvolutionFilter2DEXT",
+        constants$739.glCopyConvolutionFilter2DEXT$FUNC
     );
-    static final FunctionDescriptor PFNGLDEPTHRANGEDNVPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_DOUBLE$LAYOUT,
-        Constants$root.C_DOUBLE$LAYOUT
+    static final FunctionDescriptor glGetConvolutionFilterEXT$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLDEPTHRANGEDNVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$739.PFNGLDEPTHRANGEDNVPROC$FUNC
+    static final MethodHandle glGetConvolutionFilterEXT$MH = RuntimeHelper.downcallHandle(
+        "glGetConvolutionFilterEXT",
+        constants$739.glGetConvolutionFilterEXT$FUNC
+    );
+    static final FunctionDescriptor glGetConvolutionParameterfvEXT$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glGetConvolutionParameterfvEXT$MH = RuntimeHelper.downcallHandle(
+        "glGetConvolutionParameterfvEXT",
+        constants$739.glGetConvolutionParameterfvEXT$FUNC
+    );
+    static final FunctionDescriptor glGetConvolutionParameterivEXT$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glGetConvolutionParameterivEXT$MH = RuntimeHelper.downcallHandle(
+        "glGetConvolutionParameterivEXT",
+        constants$739.glGetConvolutionParameterivEXT$FUNC
+    );
+    static final FunctionDescriptor glGetSeparableFilterEXT$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glGetSeparableFilterEXT$MH = RuntimeHelper.downcallHandle(
+        "glGetSeparableFilterEXT",
+        constants$739.glGetSeparableFilterEXT$FUNC
+    );
+    static final FunctionDescriptor glSeparableFilter2DEXT$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glSeparableFilter2DEXT$MH = RuntimeHelper.downcallHandle(
+        "glSeparableFilter2DEXT",
+        constants$739.glSeparableFilter2DEXT$FUNC
     );
 }
 

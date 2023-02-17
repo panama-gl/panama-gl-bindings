@@ -11,13 +11,13 @@ public interface PFNGLLABELOBJECTEXTPROC {
 
     void apply(int type, int object, int length, java.lang.foreign.MemoryAddress label);
     static MemorySegment allocate(PFNGLLABELOBJECTEXTPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLLABELOBJECTEXTPROC.class, fi, constants$534.PFNGLLABELOBJECTEXTPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLLABELOBJECTEXTPROC.class, fi, constants$754.PFNGLLABELOBJECTEXTPROC$FUNC, session);
     }
     static PFNGLLABELOBJECTEXTPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _type, int _object, int _length, java.lang.foreign.MemoryAddress _label) -> {
             try {
-                constants$534.PFNGLLABELOBJECTEXTPROC$MH.invokeExact((Addressable)symbol, _type, _object, _length, (java.lang.foreign.Addressable)_label);
+                constants$754.PFNGLLABELOBJECTEXTPROC$MH.invokeExact((Addressable)symbol, _type, _object, _length, (java.lang.foreign.Addressable)_label);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

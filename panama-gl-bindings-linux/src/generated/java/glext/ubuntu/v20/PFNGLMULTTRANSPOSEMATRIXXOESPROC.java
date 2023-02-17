@@ -11,13 +11,13 @@ public interface PFNGLMULTTRANSPOSEMATRIXXOESPROC {
 
     void apply(java.lang.foreign.MemoryAddress m);
     static MemorySegment allocate(PFNGLMULTTRANSPOSEMATRIXXOESPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLMULTTRANSPOSEMATRIXXOESPROC.class, fi, constants$435.PFNGLMULTTRANSPOSEMATRIXXOESPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLMULTTRANSPOSEMATRIXXOESPROC.class, fi, constants$595.PFNGLMULTTRANSPOSEMATRIXXOESPROC$FUNC, session);
     }
     static PFNGLMULTTRANSPOSEMATRIXXOESPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (java.lang.foreign.MemoryAddress _m) -> {
             try {
-                constants$435.PFNGLMULTTRANSPOSEMATRIXXOESPROC$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)_m);
+                constants$595.PFNGLMULTTRANSPOSEMATRIXXOESPROC$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)_m);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

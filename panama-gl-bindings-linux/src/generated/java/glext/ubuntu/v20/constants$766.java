@@ -9,27 +9,55 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$766 {
 
-    static final FunctionDescriptor PFNGLNORMAL3HNVPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_SHORT$LAYOUT,
-        Constants$root.C_SHORT$LAYOUT,
-        Constants$root.C_SHORT$LAYOUT
+    static final FunctionDescriptor PFNGLCOPYTEXTUREIMAGE1DEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLNORMAL3HNVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$766.PFNGLNORMAL3HNVPROC$FUNC
+    static final MethodHandle PFNGLCOPYTEXTUREIMAGE1DEXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$766.PFNGLCOPYTEXTUREIMAGE1DEXTPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLNORMAL3HVNVPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_POINTER$LAYOUT
+    static final FunctionDescriptor PFNGLCOPYTEXTUREIMAGE2DEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLNORMAL3HVNVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$766.PFNGLNORMAL3HVNVPROC$FUNC
+    static final MethodHandle PFNGLCOPYTEXTUREIMAGE2DEXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$766.PFNGLCOPYTEXTUREIMAGE2DEXTPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLCOLOR3HNVPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_SHORT$LAYOUT,
-        Constants$root.C_SHORT$LAYOUT,
-        Constants$root.C_SHORT$LAYOUT
+    static final FunctionDescriptor PFNGLCOPYTEXTURESUBIMAGE1DEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLCOLOR3HNVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$766.PFNGLCOLOR3HNVPROC$FUNC
+    static final MethodHandle PFNGLCOPYTEXTURESUBIMAGE1DEXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$766.PFNGLCOPYTEXTURESUBIMAGE1DEXTPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLCOPYTEXTURESUBIMAGE2DEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
 }
 

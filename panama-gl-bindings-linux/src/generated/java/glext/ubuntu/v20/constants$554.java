@@ -9,32 +9,30 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$554 {
 
-    static final FunctionDescriptor PFNGLMULTITEXPARAMETERIEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT
-    );
-    static final MethodHandle PFNGLMULTITEXPARAMETERIEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$554.PFNGLMULTITEXPARAMETERIEXTPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLMULTITEXPARAMETERIVEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
+    static final FunctionDescriptor glGetAttribLocationARB$FUNC = FunctionDescriptor.of(Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLMULTITEXPARAMETERIVEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$554.PFNGLMULTITEXPARAMETERIVEXTPROC$FUNC
+    static final MethodHandle glGetAttribLocationARB$MH = RuntimeHelper.downcallHandle(
+        "glGetAttribLocationARB",
+        constants$554.glGetAttribLocationARB$FUNC
     );
-    static final FunctionDescriptor PFNGLMULTITEXPARAMETERFEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
+    static final FunctionDescriptor PFNGLWINDOWPOS2DARBPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_DOUBLE$LAYOUT,
+        Constants$root.C_DOUBLE$LAYOUT
+    );
+    static final MethodHandle PFNGLWINDOWPOS2DARBPROC$MH = RuntimeHelper.downcallHandle(
+        constants$554.PFNGLWINDOWPOS2DARBPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLWINDOWPOS2DVARBPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle PFNGLWINDOWPOS2DVARBPROC$MH = RuntimeHelper.downcallHandle(
+        constants$554.PFNGLWINDOWPOS2DVARBPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLWINDOWPOS2FARBPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_FLOAT$LAYOUT,
         Constants$root.C_FLOAT$LAYOUT
-    );
-    static final MethodHandle PFNGLMULTITEXPARAMETERFEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$554.PFNGLMULTITEXPARAMETERFEXTPROC$FUNC
     );
 }
 

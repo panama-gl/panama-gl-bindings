@@ -9,28 +9,42 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$824 {
 
-    static final FunctionDescriptor PFNGLBINDSHADINGRATEIMAGENVPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT
-    );
-    static final MethodHandle PFNGLBINDSHADINGRATEIMAGENVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$824.PFNGLBINDSHADINGRATEIMAGENVPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLGETSHADINGRATEIMAGEPALETTENVPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle PFNGLGETSHADINGRATEIMAGEPALETTENVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$824.PFNGLGETSHADINGRATEIMAGEPALETTENVPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLGETSHADINGRATESAMPLELOCATIONIVNVPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLVERTEXARRAYEDGEFLAGOFFSETEXTPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
+        Constants$root.C_LONG_LONG$LAYOUT
     );
-    static final MethodHandle PFNGLGETSHADINGRATESAMPLELOCATIONIVNVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$824.PFNGLGETSHADINGRATESAMPLELOCATIONIVNVPROC$FUNC
+    static final MethodHandle PFNGLVERTEXARRAYEDGEFLAGOFFSETEXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$824.PFNGLVERTEXARRAYEDGEFLAGOFFSETEXTPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLVERTEXARRAYINDEXOFFSETEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT
+    );
+    static final MethodHandle PFNGLVERTEXARRAYINDEXOFFSETEXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$824.PFNGLVERTEXARRAYINDEXOFFSETEXTPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLVERTEXARRAYNORMALOFFSETEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT
+    );
+    static final MethodHandle PFNGLVERTEXARRAYNORMALOFFSETEXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$824.PFNGLVERTEXARRAYNORMALOFFSETEXTPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLVERTEXARRAYTEXCOORDOFFSETEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT
     );
 }
 

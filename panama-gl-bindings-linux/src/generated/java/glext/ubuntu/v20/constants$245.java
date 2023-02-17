@@ -9,31 +9,29 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$245 {
 
-    static final FunctionDescriptor PFNGLGETVERTEXATTRIBLDVPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLMULTITEXCOORDP1UIPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle PFNGLMULTITEXCOORDP1UIPROC$MH = RuntimeHelper.downcallHandle(
+        constants$245.PFNGLMULTITEXCOORDP1UIPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLMULTITEXCOORDP1UIVPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLGETVERTEXATTRIBLDVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$245.PFNGLGETVERTEXATTRIBLDVPROC$FUNC
+    static final MethodHandle PFNGLMULTITEXCOORDP1UIVPROC$MH = RuntimeHelper.downcallHandle(
+        constants$245.PFNGLMULTITEXCOORDP1UIVPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLVIEWPORTARRAYVPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLMULTITEXCOORDP2UIPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
+        Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLVIEWPORTARRAYVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$245.PFNGLVIEWPORTARRAYVPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLVIEWPORTINDEXEDFPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT
-    );
-    static final MethodHandle PFNGLVIEWPORTINDEXEDFPROC$MH = RuntimeHelper.downcallHandle(
-        constants$245.PFNGLVIEWPORTINDEXEDFPROC$FUNC
+    static final MethodHandle PFNGLMULTITEXCOORDP2UIPROC$MH = RuntimeHelper.downcallHandle(
+        constants$245.PFNGLMULTITEXCOORDP2UIPROC$FUNC
     );
 }
 

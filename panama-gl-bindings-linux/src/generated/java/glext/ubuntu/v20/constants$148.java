@@ -9,22 +9,28 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$148 {
 
-    static final FunctionDescriptor PFNGLISENABLEDIPROC$FUNC = FunctionDescriptor.of(Constants$root.C_CHAR$LAYOUT,
+    static final FunctionDescriptor PFNGLVERTEXATTRIB3SPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT
+        Constants$root.C_SHORT$LAYOUT,
+        Constants$root.C_SHORT$LAYOUT,
+        Constants$root.C_SHORT$LAYOUT
     );
-    static final MethodHandle PFNGLISENABLEDIPROC$MH = RuntimeHelper.downcallHandle(
-        constants$148.PFNGLISENABLEDIPROC$FUNC
+    static final MethodHandle PFNGLVERTEXATTRIB3SPROC$MH = RuntimeHelper.downcallHandle(
+        constants$148.PFNGLVERTEXATTRIB3SPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLBEGINTRANSFORMFEEDBACKPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT
+    static final FunctionDescriptor PFNGLVERTEXATTRIB3SVPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLBEGINTRANSFORMFEEDBACKPROC$MH = RuntimeHelper.downcallHandle(
-        constants$148.PFNGLBEGINTRANSFORMFEEDBACKPROC$FUNC
+    static final MethodHandle PFNGLVERTEXATTRIB3SVPROC$MH = RuntimeHelper.downcallHandle(
+        constants$148.PFNGLVERTEXATTRIB3SVPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLENDTRANSFORMFEEDBACKPROC$FUNC = FunctionDescriptor.ofVoid();
-    static final MethodHandle PFNGLENDTRANSFORMFEEDBACKPROC$MH = RuntimeHelper.downcallHandle(
-        constants$148.PFNGLENDTRANSFORMFEEDBACKPROC$FUNC
+    static final FunctionDescriptor PFNGLVERTEXATTRIB4NBVPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle PFNGLVERTEXATTRIB4NBVPROC$MH = RuntimeHelper.downcallHandle(
+        constants$148.PFNGLVERTEXATTRIB4NBVPROC$FUNC
     );
 }
 

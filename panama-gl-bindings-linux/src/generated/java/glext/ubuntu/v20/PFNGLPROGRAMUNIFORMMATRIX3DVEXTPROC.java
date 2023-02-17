@@ -11,13 +11,13 @@ public interface PFNGLPROGRAMUNIFORMMATRIX3DVEXTPROC {
 
     void apply(int program, int location, int count, byte transpose, java.lang.foreign.MemoryAddress value);
     static MemorySegment allocate(PFNGLPROGRAMUNIFORMMATRIX3DVEXTPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLPROGRAMUNIFORMMATRIX3DVEXTPROC.class, fi, constants$613.PFNGLPROGRAMUNIFORMMATRIX3DVEXTPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLPROGRAMUNIFORMMATRIX3DVEXTPROC.class, fi, constants$834.PFNGLPROGRAMUNIFORMMATRIX3DVEXTPROC$FUNC, session);
     }
     static PFNGLPROGRAMUNIFORMMATRIX3DVEXTPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _program, int _location, int _count, byte _transpose, java.lang.foreign.MemoryAddress _value) -> {
             try {
-                constants$613.PFNGLPROGRAMUNIFORMMATRIX3DVEXTPROC$MH.invokeExact((Addressable)symbol, _program, _location, _count, _transpose, (java.lang.foreign.Addressable)_value);
+                constants$835.PFNGLPROGRAMUNIFORMMATRIX3DVEXTPROC$MH.invokeExact((Addressable)symbol, _program, _location, _count, _transpose, (java.lang.foreign.Addressable)_value);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

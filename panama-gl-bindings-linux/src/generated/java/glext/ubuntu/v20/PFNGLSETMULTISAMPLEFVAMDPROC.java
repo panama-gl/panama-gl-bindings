@@ -11,13 +11,13 @@ public interface PFNGLSETMULTISAMPLEFVAMDPROC {
 
     void apply(int pname, int index, java.lang.foreign.MemoryAddress val);
     static MemorySegment allocate(PFNGLSETMULTISAMPLEFVAMDPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLSETMULTISAMPLEFVAMDPROC.class, fi, constants$473.PFNGLSETMULTISAMPLEFVAMDPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLSETMULTISAMPLEFVAMDPROC.class, fi, constants$663.PFNGLSETMULTISAMPLEFVAMDPROC$FUNC, session);
     }
     static PFNGLSETMULTISAMPLEFVAMDPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _pname, int _index, java.lang.foreign.MemoryAddress _val) -> {
             try {
-                constants$473.PFNGLSETMULTISAMPLEFVAMDPROC$MH.invokeExact((Addressable)symbol, _pname, _index, (java.lang.foreign.Addressable)_val);
+                constants$663.PFNGLSETMULTISAMPLEFVAMDPROC$MH.invokeExact((Addressable)symbol, _pname, _index, (java.lang.foreign.Addressable)_val);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

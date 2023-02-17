@@ -11,13 +11,13 @@ public interface PFNGLCLIPCONTROLPROC {
 
     void apply(int origin, int depth);
     static MemorySegment allocate(PFNGLCLIPCONTROLPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLCLIPCONTROLPROC.class, fi, constants$270.PFNGLCLIPCONTROLPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLCLIPCONTROLPROC.class, fi, constants$359.PFNGLCLIPCONTROLPROC$FUNC, session);
     }
     static PFNGLCLIPCONTROLPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _origin, int _depth) -> {
             try {
-                constants$270.PFNGLCLIPCONTROLPROC$MH.invokeExact((Addressable)symbol, _origin, _depth);
+                constants$359.PFNGLCLIPCONTROLPROC$MH.invokeExact((Addressable)symbol, _origin, _depth);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

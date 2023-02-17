@@ -11,13 +11,13 @@ public interface PFNGLGETACTIVEATTRIBPROC {
 
     void apply(int program, int index, int bufSize, java.lang.foreign.MemoryAddress length, java.lang.foreign.MemoryAddress size, java.lang.foreign.MemoryAddress type, java.lang.foreign.MemoryAddress name);
     static MemorySegment allocate(PFNGLGETACTIVEATTRIBPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLGETACTIVEATTRIBPROC.class, fi, constants$118.PFNGLGETACTIVEATTRIBPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLGETACTIVEATTRIBPROC.class, fi, constants$129.PFNGLGETACTIVEATTRIBPROC$FUNC, session);
     }
     static PFNGLGETACTIVEATTRIBPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _program, int _index, int _bufSize, java.lang.foreign.MemoryAddress _length, java.lang.foreign.MemoryAddress _size, java.lang.foreign.MemoryAddress _type, java.lang.foreign.MemoryAddress _name) -> {
             try {
-                constants$118.PFNGLGETACTIVEATTRIBPROC$MH.invokeExact((Addressable)symbol, _program, _index, _bufSize, (java.lang.foreign.Addressable)_length, (java.lang.foreign.Addressable)_size, (java.lang.foreign.Addressable)_type, (java.lang.foreign.Addressable)_name);
+                constants$129.PFNGLGETACTIVEATTRIBPROC$MH.invokeExact((Addressable)symbol, _program, _index, _bufSize, (java.lang.foreign.Addressable)_length, (java.lang.foreign.Addressable)_size, (java.lang.foreign.Addressable)_type, (java.lang.foreign.Addressable)_name);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

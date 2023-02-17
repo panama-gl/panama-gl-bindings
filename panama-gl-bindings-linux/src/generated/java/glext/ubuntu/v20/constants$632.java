@@ -9,28 +9,30 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$632 {
 
-    static final FunctionDescriptor PFNGLGETUNIFORMUIVEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLBLENDFUNCINDEXEDAMDPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
+        Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLGETUNIFORMUIVEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$632.PFNGLGETUNIFORMUIVEXTPROC$FUNC
+    static final MethodHandle PFNGLBLENDFUNCINDEXEDAMDPROC$MH = RuntimeHelper.downcallHandle(
+        constants$632.PFNGLBLENDFUNCINDEXEDAMDPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLBINDFRAGDATALOCATIONEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLBLENDFUNCSEPARATEINDEXEDAMDPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle PFNGLBINDFRAGDATALOCATIONEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$632.PFNGLBINDFRAGDATALOCATIONEXTPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLGETFRAGDATALOCATIONEXTPROC$FUNC = FunctionDescriptor.of(Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLGETFRAGDATALOCATIONEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$632.PFNGLGETFRAGDATALOCATIONEXTPROC$FUNC
+    static final MethodHandle PFNGLBLENDFUNCSEPARATEINDEXEDAMDPROC$MH = RuntimeHelper.downcallHandle(
+        constants$632.PFNGLBLENDFUNCSEPARATEINDEXEDAMDPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLBLENDEQUATIONINDEXEDAMDPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle PFNGLBLENDEQUATIONINDEXEDAMDPROC$MH = RuntimeHelper.downcallHandle(
+        constants$632.PFNGLBLENDEQUATIONINDEXEDAMDPROC$FUNC
     );
 }
 

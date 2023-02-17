@@ -11,13 +11,13 @@ public interface PFNGLSAMPLEMASKEXTPROC {
 
     void apply(float value, byte invert);
     static MemorySegment allocate(PFNGLSAMPLEMASKEXTPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLSAMPLEMASKEXTPROC.class, fi, constants$648.PFNGLSAMPLEMASKEXTPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLSAMPLEMASKEXTPROC.class, fi, constants$926.PFNGLSAMPLEMASKEXTPROC$FUNC, session);
     }
     static PFNGLSAMPLEMASKEXTPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (float _value, byte _invert) -> {
             try {
-                constants$648.PFNGLSAMPLEMASKEXTPROC$MH.invokeExact((Addressable)symbol, _value, _invert);
+                constants$926.PFNGLSAMPLEMASKEXTPROC$MH.invokeExact((Addressable)symbol, _value, _invert);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

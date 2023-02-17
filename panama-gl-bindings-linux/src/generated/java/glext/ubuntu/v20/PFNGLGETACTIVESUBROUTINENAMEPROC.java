@@ -11,13 +11,13 @@ public interface PFNGLGETACTIVESUBROUTINENAMEPROC {
 
     void apply(int program, int shadertype, int index, int bufsize, java.lang.foreign.MemoryAddress length, java.lang.foreign.MemoryAddress name);
     static MemorySegment allocate(PFNGLGETACTIVESUBROUTINENAMEPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLGETACTIVESUBROUTINENAMEPROC.class, fi, constants$213.PFNGLGETACTIVESUBROUTINENAMEPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLGETACTIVESUBROUTINENAMEPROC.class, fi, constants$269.PFNGLGETACTIVESUBROUTINENAMEPROC$FUNC, session);
     }
     static PFNGLGETACTIVESUBROUTINENAMEPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _program, int _shadertype, int _index, int _bufsize, java.lang.foreign.MemoryAddress _length, java.lang.foreign.MemoryAddress _name) -> {
             try {
-                constants$213.PFNGLGETACTIVESUBROUTINENAMEPROC$MH.invokeExact((Addressable)symbol, _program, _shadertype, _index, _bufsize, (java.lang.foreign.Addressable)_length, (java.lang.foreign.Addressable)_name);
+                constants$269.PFNGLGETACTIVESUBROUTINENAMEPROC$MH.invokeExact((Addressable)symbol, _program, _shadertype, _index, _bufsize, (java.lang.foreign.Addressable)_length, (java.lang.foreign.Addressable)_name);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

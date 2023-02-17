@@ -9,28 +9,29 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$894 {
 
-    static final FunctionDescriptor PFNGLFRAGMENTLIGHTISGIXPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
+    static final FunctionDescriptor PFNGLBINDFRAMEBUFFEREXTPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLFRAGMENTLIGHTISGIXPROC$MH = RuntimeHelper.downcallHandle(
-        constants$894.PFNGLFRAGMENTLIGHTISGIXPROC$FUNC
+    static final MethodHandle PFNGLBINDFRAMEBUFFEREXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$894.PFNGLBINDFRAMEBUFFEREXTPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLFRAGMENTLIGHTIVSGIXPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
+    static final FunctionDescriptor PFNGLDELETEFRAMEBUFFERSEXTPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLFRAGMENTLIGHTIVSGIXPROC$MH = RuntimeHelper.downcallHandle(
-        constants$894.PFNGLFRAGMENTLIGHTIVSGIXPROC$FUNC
+    static final MethodHandle PFNGLDELETEFRAMEBUFFERSEXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$894.PFNGLDELETEFRAMEBUFFERSEXTPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLFRAGMENTLIGHTMODELFSGIXPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLGENFRAMEBUFFERSEXTPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT
+        Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLFRAGMENTLIGHTMODELFSGIXPROC$MH = RuntimeHelper.downcallHandle(
-        constants$894.PFNGLFRAGMENTLIGHTMODELFSGIXPROC$FUNC
+    static final MethodHandle PFNGLGENFRAMEBUFFERSEXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$894.PFNGLGENFRAMEBUFFERSEXTPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLCHECKFRAMEBUFFERSTATUSEXTPROC$FUNC = FunctionDescriptor.of(Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
 }
 

@@ -9,30 +9,41 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$799 {
 
-    static final FunctionDescriptor PFNGLISPOINTINFILLPATHNVPROC$FUNC = FunctionDescriptor.of(Constants$root.C_CHAR$LAYOUT,
+    static final FunctionDescriptor PFNGLPROGRAMUNIFORM4IVEXTPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT
-    );
-    static final MethodHandle PFNGLISPOINTINFILLPATHNVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$799.PFNGLISPOINTINFILLPATHNVPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLISPOINTINSTROKEPATHNVPROC$FUNC = FunctionDescriptor.of(Constants$root.C_CHAR$LAYOUT,
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT
+        Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLISPOINTINSTROKEPATHNVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$799.PFNGLISPOINTINSTROKEPATHNVPROC$FUNC
+    static final MethodHandle PFNGLPROGRAMUNIFORM4IVEXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$799.PFNGLPROGRAMUNIFORM4IVEXTPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLGETPATHLENGTHNVPROC$FUNC = FunctionDescriptor.of(Constants$root.C_FLOAT$LAYOUT,
+    static final FunctionDescriptor PFNGLPROGRAMUNIFORMMATRIX2FVEXTPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_CHAR$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLGETPATHLENGTHNVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$799.PFNGLGETPATHLENGTHNVPROC$FUNC
+    static final MethodHandle PFNGLPROGRAMUNIFORMMATRIX2FVEXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$799.PFNGLPROGRAMUNIFORMMATRIX2FVEXTPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLPROGRAMUNIFORMMATRIX3FVEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_CHAR$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle PFNGLPROGRAMUNIFORMMATRIX3FVEXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$799.PFNGLPROGRAMUNIFORMMATRIX3FVEXTPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLPROGRAMUNIFORMMATRIX4FVEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_CHAR$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
 }
 

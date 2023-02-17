@@ -11,13 +11,13 @@ public interface PFNGLPIXELTEXGENSGIXPROC {
 
     void apply(int mode);
     static MemorySegment allocate(PFNGLPIXELTEXGENSGIXPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLPIXELTEXGENSGIXPROC.class, fi, constants$903.PFNGLPIXELTEXGENSGIXPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLPIXELTEXGENSGIXPROC.class, fi, constants$1308.PFNGLPIXELTEXGENSGIXPROC$FUNC, session);
     }
     static PFNGLPIXELTEXGENSGIXPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _mode) -> {
             try {
-                constants$903.PFNGLPIXELTEXGENSGIXPROC$MH.invokeExact((Addressable)symbol, _mode);
+                constants$1309.PFNGLPIXELTEXGENSGIXPROC$MH.invokeExact((Addressable)symbol, _mode);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

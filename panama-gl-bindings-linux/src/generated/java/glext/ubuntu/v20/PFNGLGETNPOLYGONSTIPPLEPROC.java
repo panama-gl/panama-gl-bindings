@@ -11,13 +11,13 @@ public interface PFNGLGETNPOLYGONSTIPPLEPROC {
 
     void apply(int bufSize, java.lang.foreign.MemoryAddress pattern);
     static MemorySegment allocate(PFNGLGETNPOLYGONSTIPPLEPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLGETNPOLYGONSTIPPLEPROC.class, fi, constants$308.PFNGLGETNPOLYGONSTIPPLEPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLGETNPOLYGONSTIPPLEPROC.class, fi, constants$397.PFNGLGETNPOLYGONSTIPPLEPROC$FUNC, session);
     }
     static PFNGLGETNPOLYGONSTIPPLEPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _bufSize, java.lang.foreign.MemoryAddress _pattern) -> {
             try {
-                constants$308.PFNGLGETNPOLYGONSTIPPLEPROC$MH.invokeExact((Addressable)symbol, _bufSize, (java.lang.foreign.Addressable)_pattern);
+                constants$397.PFNGLGETNPOLYGONSTIPPLEPROC$MH.invokeExact((Addressable)symbol, _bufSize, (java.lang.foreign.Addressable)_pattern);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

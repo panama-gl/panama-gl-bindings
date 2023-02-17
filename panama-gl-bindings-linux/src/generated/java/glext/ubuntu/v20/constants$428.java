@@ -9,25 +9,53 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$428 {
 
-    static final FunctionDescriptor PFNGLCONVOLUTIONPARAMETERXVOESPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLGETVERTEXATTRIBLUI64VARBPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLCONVOLUTIONPARAMETERXVOESPROC$MH = RuntimeHelper.downcallHandle(
-        constants$428.PFNGLCONVOLUTIONPARAMETERXVOESPROC$FUNC
+    static final MethodHandle PFNGLGETVERTEXATTRIBLUI64VARBPROC$MH = RuntimeHelper.downcallHandle(
+        constants$428.PFNGLGETVERTEXATTRIBLUI64VARBPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLEVALCOORD1XOESPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glGetTextureHandleARB$FUNC = FunctionDescriptor.of(Constants$root.C_LONG_LONG$LAYOUT,
         Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLEVALCOORD1XOESPROC$MH = RuntimeHelper.downcallHandle(
-        constants$428.PFNGLEVALCOORD1XOESPROC$FUNC
+    static final MethodHandle glGetTextureHandleARB$MH = RuntimeHelper.downcallHandle(
+        "glGetTextureHandleARB",
+        constants$428.glGetTextureHandleARB$FUNC
     );
-    static final FunctionDescriptor PFNGLEVALCOORD1XVOESPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_POINTER$LAYOUT
+    static final FunctionDescriptor glGetTextureSamplerHandleARB$FUNC = FunctionDescriptor.of(Constants$root.C_LONG_LONG$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLEVALCOORD1XVOESPROC$MH = RuntimeHelper.downcallHandle(
-        constants$428.PFNGLEVALCOORD1XVOESPROC$FUNC
+    static final MethodHandle glGetTextureSamplerHandleARB$MH = RuntimeHelper.downcallHandle(
+        "glGetTextureSamplerHandleARB",
+        constants$428.glGetTextureSamplerHandleARB$FUNC
+    );
+    static final FunctionDescriptor glMakeTextureHandleResidentARB$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_LONG_LONG$LAYOUT
+    );
+    static final MethodHandle glMakeTextureHandleResidentARB$MH = RuntimeHelper.downcallHandle(
+        "glMakeTextureHandleResidentARB",
+        constants$428.glMakeTextureHandleResidentARB$FUNC
+    );
+    static final FunctionDescriptor glMakeTextureHandleNonResidentARB$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_LONG_LONG$LAYOUT
+    );
+    static final MethodHandle glMakeTextureHandleNonResidentARB$MH = RuntimeHelper.downcallHandle(
+        "glMakeTextureHandleNonResidentARB",
+        constants$428.glMakeTextureHandleNonResidentARB$FUNC
+    );
+    static final FunctionDescriptor glGetImageHandleARB$FUNC = FunctionDescriptor.of(Constants$root.C_LONG_LONG$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_CHAR$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle glGetImageHandleARB$MH = RuntimeHelper.downcallHandle(
+        "glGetImageHandleARB",
+        constants$428.glGetImageHandleARB$FUNC
     );
 }
 

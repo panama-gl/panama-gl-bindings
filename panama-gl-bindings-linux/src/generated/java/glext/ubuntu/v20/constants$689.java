@@ -9,28 +9,40 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$689 {
 
-    static final FunctionDescriptor PFNGLVARIANTUSVEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLSAMPLEMAPATIPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle PFNGLVARIANTUSVEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$689.PFNGLVARIANTUSVEXTPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLVARIANTUIVEXTPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
+        Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLVARIANTUIVEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$689.PFNGLVARIANTUIVEXTPROC$FUNC
+    static final MethodHandle PFNGLSAMPLEMAPATIPROC$MH = RuntimeHelper.downcallHandle(
+        constants$689.PFNGLSAMPLEMAPATIPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLVARIANTPOINTEREXTPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLCOLORFRAGMENTOP1ATIPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLVARIANTPOINTEREXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$689.PFNGLVARIANTPOINTEREXTPROC$FUNC
+    static final MethodHandle PFNGLCOLORFRAGMENTOP1ATIPROC$MH = RuntimeHelper.downcallHandle(
+        constants$689.PFNGLCOLORFRAGMENTOP1ATIPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLCOLORFRAGMENTOP2ATIPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle PFNGLCOLORFRAGMENTOP2ATIPROC$MH = RuntimeHelper.downcallHandle(
+        constants$689.PFNGLCOLORFRAGMENTOP2ATIPROC$FUNC
     );
 }
 

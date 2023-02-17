@@ -9,32 +9,27 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$305 {
 
-    static final FunctionDescriptor PFNGLGETNUNIFORMDVPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLVALIDATEPROGRAMPIPELINEPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle PFNGLVALIDATEPROGRAMPIPELINEPROC$MH = RuntimeHelper.downcallHandle(
+        constants$305.PFNGLVALIDATEPROGRAMPIPELINEPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLGETPROGRAMPIPELINEINFOLOGPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLGETNUNIFORMDVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$305.PFNGLGETNUNIFORMDVPROC$FUNC
+    static final MethodHandle PFNGLGETPROGRAMPIPELINEINFOLOGPROC$MH = RuntimeHelper.downcallHandle(
+        constants$305.PFNGLGETPROGRAMPIPELINEINFOLOGPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLGETNUNIFORMFVPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLVERTEXATTRIBL1DPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
+        Constants$root.C_DOUBLE$LAYOUT
     );
-    static final MethodHandle PFNGLGETNUNIFORMFVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$305.PFNGLGETNUNIFORMFVPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLGETNUNIFORMIVPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle PFNGLGETNUNIFORMIVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$305.PFNGLGETNUNIFORMIVPROC$FUNC
+    static final MethodHandle PFNGLVERTEXATTRIBL1DPROC$MH = RuntimeHelper.downcallHandle(
+        constants$305.PFNGLVERTEXATTRIBL1DPROC$FUNC
     );
 }
 

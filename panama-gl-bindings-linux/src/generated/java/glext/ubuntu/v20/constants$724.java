@@ -9,31 +9,61 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$724 {
 
-    static final FunctionDescriptor PFNGLSIGNALSEMAPHOREUI64NVXPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glVertexStream4ivATI$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLSIGNALSEMAPHOREUI64NVXPROC$MH = RuntimeHelper.downcallHandle(
-        constants$724.PFNGLSIGNALSEMAPHOREUI64NVXPROC$FUNC
+    static final MethodHandle glVertexStream4ivATI$MH = RuntimeHelper.downcallHandle(
+        "glVertexStream4ivATI",
+        constants$724.glVertexStream4ivATI$FUNC
     );
-    static final FunctionDescriptor PFNGLWAITSEMAPHOREUI64NVXPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glVertexStream4fATI$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT
+    );
+    static final MethodHandle glVertexStream4fATI$MH = RuntimeHelper.downcallHandle(
+        "glVertexStream4fATI",
+        constants$724.glVertexStream4fATI$FUNC
+    );
+    static final FunctionDescriptor glVertexStream4fvATI$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLWAITSEMAPHOREUI64NVXPROC$MH = RuntimeHelper.downcallHandle(
-        constants$724.PFNGLWAITSEMAPHOREUI64NVXPROC$FUNC
+    static final MethodHandle glVertexStream4fvATI$MH = RuntimeHelper.downcallHandle(
+        "glVertexStream4fvATI",
+        constants$724.glVertexStream4fvATI$FUNC
     );
-    static final FunctionDescriptor PFNGLCLIENTWAITSEMAPHOREUI64NVXPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glVertexStream4dATI$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_DOUBLE$LAYOUT,
+        Constants$root.C_DOUBLE$LAYOUT,
+        Constants$root.C_DOUBLE$LAYOUT,
+        Constants$root.C_DOUBLE$LAYOUT
+    );
+    static final MethodHandle glVertexStream4dATI$MH = RuntimeHelper.downcallHandle(
+        "glVertexStream4dATI",
+        constants$724.glVertexStream4dATI$FUNC
+    );
+    static final FunctionDescriptor glVertexStream4dvATI$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLCLIENTWAITSEMAPHOREUI64NVXPROC$MH = RuntimeHelper.downcallHandle(
-        constants$724.PFNGLCLIENTWAITSEMAPHOREUI64NVXPROC$FUNC
+    static final MethodHandle glVertexStream4dvATI$MH = RuntimeHelper.downcallHandle(
+        "glVertexStream4dvATI",
+        constants$724.glVertexStream4dvATI$FUNC
+    );
+    static final FunctionDescriptor glNormalStream3bATI$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_CHAR$LAYOUT,
+        Constants$root.C_CHAR$LAYOUT,
+        Constants$root.C_CHAR$LAYOUT
+    );
+    static final MethodHandle glNormalStream3bATI$MH = RuntimeHelper.downcallHandle(
+        "glNormalStream3bATI",
+        constants$724.glNormalStream3bATI$FUNC
     );
 }
 

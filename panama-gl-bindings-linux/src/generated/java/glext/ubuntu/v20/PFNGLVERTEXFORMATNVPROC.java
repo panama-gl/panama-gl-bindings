@@ -11,13 +11,13 @@ public interface PFNGLVERTEXFORMATNVPROC {
 
     void apply(int size, int type, int stride);
     static MemorySegment allocate(PFNGLVERTEXFORMATNVPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLVERTEXFORMATNVPROC.class, fi, constants$846.PFNGLVERTEXFORMATNVPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLVERTEXFORMATNVPROC.class, fi, constants$1222.PFNGLVERTEXFORMATNVPROC$FUNC, session);
     }
     static PFNGLVERTEXFORMATNVPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _size, int _type, int _stride) -> {
             try {
-                constants$846.PFNGLVERTEXFORMATNVPROC$MH.invokeExact((Addressable)symbol, _size, _type, _stride);
+                constants$1222.PFNGLVERTEXFORMATNVPROC$MH.invokeExact((Addressable)symbol, _size, _type, _stride);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

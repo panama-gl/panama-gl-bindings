@@ -9,25 +9,60 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$400 {
 
-    static final FunctionDescriptor PFNGLGETATTRIBLOCATIONARBPROC$FUNC = FunctionDescriptor.of(Constants$root.C_INT$LAYOUT,
+    static final FunctionDescriptor glClipControl$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle glClipControl$MH = RuntimeHelper.downcallHandle(
+        "glClipControl",
+        constants$400.glClipControl$FUNC
+    );
+    static final FunctionDescriptor glCreateTransformFeedbacks$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLGETATTRIBLOCATIONARBPROC$MH = RuntimeHelper.downcallHandle(
-        constants$400.PFNGLGETATTRIBLOCATIONARBPROC$FUNC
+    static final MethodHandle glCreateTransformFeedbacks$MH = RuntimeHelper.downcallHandle(
+        "glCreateTransformFeedbacks",
+        constants$400.glCreateTransformFeedbacks$FUNC
     );
-    static final FunctionDescriptor PFNGLWINDOWPOS2DARBPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_DOUBLE$LAYOUT,
-        Constants$root.C_DOUBLE$LAYOUT
+    static final FunctionDescriptor glTransformFeedbackBufferBase$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLWINDOWPOS2DARBPROC$MH = RuntimeHelper.downcallHandle(
-        constants$400.PFNGLWINDOWPOS2DARBPROC$FUNC
+    static final MethodHandle glTransformFeedbackBufferBase$MH = RuntimeHelper.downcallHandle(
+        "glTransformFeedbackBufferBase",
+        constants$400.glTransformFeedbackBufferBase$FUNC
     );
-    static final FunctionDescriptor PFNGLWINDOWPOS2DVARBPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glTransformFeedbackBufferRange$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT
+    );
+    static final MethodHandle glTransformFeedbackBufferRange$MH = RuntimeHelper.downcallHandle(
+        "glTransformFeedbackBufferRange",
+        constants$400.glTransformFeedbackBufferRange$FUNC
+    );
+    static final FunctionDescriptor glGetTransformFeedbackiv$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLWINDOWPOS2DVARBPROC$MH = RuntimeHelper.downcallHandle(
-        constants$400.PFNGLWINDOWPOS2DVARBPROC$FUNC
+    static final MethodHandle glGetTransformFeedbackiv$MH = RuntimeHelper.downcallHandle(
+        "glGetTransformFeedbackiv",
+        constants$400.glGetTransformFeedbackiv$FUNC
+    );
+    static final FunctionDescriptor glGetTransformFeedbacki_v$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glGetTransformFeedbacki_v$MH = RuntimeHelper.downcallHandle(
+        "glGetTransformFeedbacki_v",
+        constants$400.glGetTransformFeedbacki_v$FUNC
     );
 }
 

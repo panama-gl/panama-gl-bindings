@@ -9,27 +9,42 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$198 {
 
-    static final FunctionDescriptor PFNGLTEXCOORDP4UIPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLGETFRAMEBUFFERATTACHMENTPARAMETERIVPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT
-    );
-    static final MethodHandle PFNGLTEXCOORDP4UIPROC$MH = RuntimeHelper.downcallHandle(
-        constants$198.PFNGLTEXCOORDP4UIPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLTEXCOORDP4UIVPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLTEXCOORDP4UIVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$198.PFNGLTEXCOORDP4UIVPROC$FUNC
+    static final MethodHandle PFNGLGETFRAMEBUFFERATTACHMENTPARAMETERIVPROC$MH = RuntimeHelper.downcallHandle(
+        constants$198.PFNGLGETFRAMEBUFFERATTACHMENTPARAMETERIVPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLMULTITEXCOORDP1UIPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLGENERATEMIPMAPPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle PFNGLGENERATEMIPMAPPROC$MH = RuntimeHelper.downcallHandle(
+        constants$198.PFNGLGENERATEMIPMAPPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLBLITFRAMEBUFFERPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLMULTITEXCOORDP1UIPROC$MH = RuntimeHelper.downcallHandle(
-        constants$198.PFNGLMULTITEXCOORDP1UIPROC$FUNC
+    static final MethodHandle PFNGLBLITFRAMEBUFFERPROC$MH = RuntimeHelper.downcallHandle(
+        constants$198.PFNGLBLITFRAMEBUFFERPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLRENDERBUFFERSTORAGEMULTISAMPLEPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
 }
 

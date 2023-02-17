@@ -9,31 +9,25 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$676 {
 
-    static final FunctionDescriptor PFNGLCOLORPOINTEREXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle PFNGLCOLORPOINTEREXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$676.PFNGLCOLORPOINTEREXTPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLDRAWARRAYSEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
+    static final FunctionDescriptor PFNGLBINDVERTEXARRAYAPPLEPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLDRAWARRAYSEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$676.PFNGLDRAWARRAYSEXTPROC$FUNC
+    static final MethodHandle PFNGLBINDVERTEXARRAYAPPLEPROC$MH = RuntimeHelper.downcallHandle(
+        constants$676.PFNGLBINDVERTEXARRAYAPPLEPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLEDGEFLAGPOINTEREXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
+    static final FunctionDescriptor PFNGLDELETEVERTEXARRAYSAPPLEPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLEDGEFLAGPOINTEREXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$676.PFNGLEDGEFLAGPOINTEREXTPROC$FUNC
+    static final MethodHandle PFNGLDELETEVERTEXARRAYSAPPLEPROC$MH = RuntimeHelper.downcallHandle(
+        constants$676.PFNGLDELETEVERTEXARRAYSAPPLEPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLGENVERTEXARRAYSAPPLEPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle PFNGLGENVERTEXARRAYSAPPLEPROC$MH = RuntimeHelper.downcallHandle(
+        constants$676.PFNGLGENVERTEXARRAYSAPPLEPROC$FUNC
     );
 }
 

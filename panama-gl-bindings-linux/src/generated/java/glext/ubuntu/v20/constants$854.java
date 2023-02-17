@@ -9,28 +9,86 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$854 {
 
-    static final FunctionDescriptor PFNGLGETVERTEXATTRIBPOINTERVNVPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glGetMultiTexLevelParameterfvEXT$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLGETVERTEXATTRIBPOINTERVNVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$854.PFNGLGETVERTEXATTRIBPOINTERVNVPROC$FUNC
+    static final MethodHandle glGetMultiTexLevelParameterfvEXT$MH = RuntimeHelper.downcallHandle(
+        "glGetMultiTexLevelParameterfvEXT",
+        constants$854.glGetMultiTexLevelParameterfvEXT$FUNC
     );
-    static final FunctionDescriptor PFNGLISPROGRAMNVPROC$FUNC = FunctionDescriptor.of(Constants$root.C_CHAR$LAYOUT,
+    static final FunctionDescriptor glGetMultiTexLevelParameterivEXT$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glGetMultiTexLevelParameterivEXT$MH = RuntimeHelper.downcallHandle(
+        "glGetMultiTexLevelParameterivEXT",
+        constants$854.glGetMultiTexLevelParameterivEXT$FUNC
+    );
+    static final FunctionDescriptor glMultiTexImage3DEXT$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glMultiTexImage3DEXT$MH = RuntimeHelper.downcallHandle(
+        "glMultiTexImage3DEXT",
+        constants$854.glMultiTexImage3DEXT$FUNC
+    );
+    static final FunctionDescriptor glMultiTexSubImage3DEXT$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glMultiTexSubImage3DEXT$MH = RuntimeHelper.downcallHandle(
+        "glMultiTexSubImage3DEXT",
+        constants$854.glMultiTexSubImage3DEXT$FUNC
+    );
+    static final FunctionDescriptor glCopyMultiTexSubImage3DEXT$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLISPROGRAMNVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$854.PFNGLISPROGRAMNVPROC$FUNC
+    static final MethodHandle glCopyMultiTexSubImage3DEXT$MH = RuntimeHelper.downcallHandle(
+        "glCopyMultiTexSubImage3DEXT",
+        constants$854.glCopyMultiTexSubImage3DEXT$FUNC
     );
-    static final FunctionDescriptor PFNGLLOADPROGRAMNVPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glEnableClientStateIndexedEXT$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
+        Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLLOADPROGRAMNVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$854.PFNGLLOADPROGRAMNVPROC$FUNC
+    static final MethodHandle glEnableClientStateIndexedEXT$MH = RuntimeHelper.downcallHandle(
+        "glEnableClientStateIndexedEXT",
+        constants$854.glEnableClientStateIndexedEXT$FUNC
     );
 }
 

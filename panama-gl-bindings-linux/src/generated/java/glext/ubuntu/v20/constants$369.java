@@ -9,32 +9,32 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$369 {
 
-    static final FunctionDescriptor PFNGLGETUNIFORMLOCATIONARBPROC$FUNC = FunctionDescriptor.of(Constants$root.C_INT$LAYOUT,
+    static final FunctionDescriptor PFNGLNAMEDFRAMEBUFFERREADBUFFERPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
+        Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLGETUNIFORMLOCATIONARBPROC$MH = RuntimeHelper.downcallHandle(
-        constants$369.PFNGLGETUNIFORMLOCATIONARBPROC$FUNC
+    static final MethodHandle PFNGLNAMEDFRAMEBUFFERREADBUFFERPROC$MH = RuntimeHelper.downcallHandle(
+        constants$369.PFNGLNAMEDFRAMEBUFFERREADBUFFERPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLGETACTIVEUNIFORMARBPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle PFNGLGETACTIVEUNIFORMARBPROC$MH = RuntimeHelper.downcallHandle(
-        constants$369.PFNGLGETACTIVEUNIFORMARBPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLGETUNIFORMFVARBPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLINVALIDATENAMEDFRAMEBUFFERDATAPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLGETUNIFORMFVARBPROC$MH = RuntimeHelper.downcallHandle(
-        constants$369.PFNGLGETUNIFORMFVARBPROC$FUNC
+    static final MethodHandle PFNGLINVALIDATENAMEDFRAMEBUFFERDATAPROC$MH = RuntimeHelper.downcallHandle(
+        constants$369.PFNGLINVALIDATENAMEDFRAMEBUFFERDATAPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLINVALIDATENAMEDFRAMEBUFFERSUBDATAPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle PFNGLINVALIDATENAMEDFRAMEBUFFERSUBDATAPROC$MH = RuntimeHelper.downcallHandle(
+        constants$369.PFNGLINVALIDATENAMEDFRAMEBUFFERSUBDATAPROC$FUNC
     );
 }
 

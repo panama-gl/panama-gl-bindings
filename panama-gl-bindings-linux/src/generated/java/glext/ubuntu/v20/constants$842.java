@@ -9,29 +9,51 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$842 {
 
-    static final FunctionDescriptor PFNGLVERTEXATTRIBL1UI64NVPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLTEXTUREPAGECOMMITMENTEXTPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_LONG_LONG$LAYOUT
-    );
-    static final MethodHandle PFNGLVERTEXATTRIBL1UI64NVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$842.PFNGLVERTEXATTRIBL1UI64NVPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLVERTEXATTRIBL2UI64NVPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_LONG_LONG$LAYOUT,
-        Constants$root.C_LONG_LONG$LAYOUT
-    );
-    static final MethodHandle PFNGLVERTEXATTRIBL2UI64NVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$842.PFNGLVERTEXATTRIBL2UI64NVPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLVERTEXATTRIBL3UI64NVPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_LONG_LONG$LAYOUT,
-        Constants$root.C_LONG_LONG$LAYOUT,
-        Constants$root.C_LONG_LONG$LAYOUT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_CHAR$LAYOUT
     );
-    static final MethodHandle PFNGLVERTEXATTRIBL3UI64NVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$842.PFNGLVERTEXATTRIBL3UI64NVPROC$FUNC
+    static final MethodHandle PFNGLTEXTUREPAGECOMMITMENTEXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$842.PFNGLTEXTUREPAGECOMMITMENTEXTPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLVERTEXARRAYVERTEXATTRIBDIVISOREXTPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle PFNGLVERTEXARRAYVERTEXATTRIBDIVISOREXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$842.PFNGLVERTEXARRAYVERTEXATTRIBDIVISOREXTPROC$FUNC
+    );
+    static final FunctionDescriptor glMatrixLoadfEXT$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glMatrixLoadfEXT$MH = RuntimeHelper.downcallHandle(
+        "glMatrixLoadfEXT",
+        constants$842.glMatrixLoadfEXT$FUNC
+    );
+    static final FunctionDescriptor glMatrixLoaddEXT$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glMatrixLoaddEXT$MH = RuntimeHelper.downcallHandle(
+        "glMatrixLoaddEXT",
+        constants$842.glMatrixLoaddEXT$FUNC
+    );
+    static final FunctionDescriptor glMatrixMultfEXT$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glMatrixMultfEXT$MH = RuntimeHelper.downcallHandle(
+        "glMatrixMultfEXT",
+        constants$842.glMatrixMultfEXT$FUNC
     );
 }
 

@@ -9,28 +9,70 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$487 {
 
-    static final FunctionDescriptor PFNGLDRAWELEMENTARRAYATIPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glGetnPixelMapusvARB$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT
-    );
-    static final MethodHandle PFNGLDRAWELEMENTARRAYATIPROC$MH = RuntimeHelper.downcallHandle(
-        constants$487.PFNGLDRAWELEMENTARRAYATIPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLDRAWRANGEELEMENTARRAYATIPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT
-    );
-    static final MethodHandle PFNGLDRAWRANGEELEMENTARRAYATIPROC$MH = RuntimeHelper.downcallHandle(
-        constants$487.PFNGLDRAWRANGEELEMENTARRAYATIPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLTEXBUMPPARAMETERIVATIPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLTEXBUMPPARAMETERIVATIPROC$MH = RuntimeHelper.downcallHandle(
-        constants$487.PFNGLTEXBUMPPARAMETERIVATIPROC$FUNC
+    static final MethodHandle glGetnPixelMapusvARB$MH = RuntimeHelper.downcallHandle(
+        "glGetnPixelMapusvARB",
+        constants$487.glGetnPixelMapusvARB$FUNC
+    );
+    static final FunctionDescriptor glGetnPolygonStippleARB$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glGetnPolygonStippleARB$MH = RuntimeHelper.downcallHandle(
+        "glGetnPolygonStippleARB",
+        constants$487.glGetnPolygonStippleARB$FUNC
+    );
+    static final FunctionDescriptor glGetnColorTableARB$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glGetnColorTableARB$MH = RuntimeHelper.downcallHandle(
+        "glGetnColorTableARB",
+        constants$487.glGetnColorTableARB$FUNC
+    );
+    static final FunctionDescriptor glGetnConvolutionFilterARB$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glGetnConvolutionFilterARB$MH = RuntimeHelper.downcallHandle(
+        "glGetnConvolutionFilterARB",
+        constants$487.glGetnConvolutionFilterARB$FUNC
+    );
+    static final FunctionDescriptor glGetnSeparableFilterARB$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glGetnSeparableFilterARB$MH = RuntimeHelper.downcallHandle(
+        "glGetnSeparableFilterARB",
+        constants$487.glGetnSeparableFilterARB$FUNC
+    );
+    static final FunctionDescriptor glGetnHistogramARB$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_CHAR$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glGetnHistogramARB$MH = RuntimeHelper.downcallHandle(
+        "glGetnHistogramARB",
+        constants$487.glGetnHistogramARB$FUNC
     );
 }
 

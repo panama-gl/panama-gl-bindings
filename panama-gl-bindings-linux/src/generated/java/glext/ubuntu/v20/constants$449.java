@@ -9,30 +9,56 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$449 {
 
-    static final FunctionDescriptor PFNGLDEPTHRANGEFOESPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_FLOAT$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT
-    );
-    static final MethodHandle PFNGLDEPTHRANGEFOESPROC$MH = RuntimeHelper.downcallHandle(
-        constants$449.PFNGLDEPTHRANGEFOESPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLFRUSTUMFOESPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_FLOAT$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT
-    );
-    static final MethodHandle PFNGLFRUSTUMFOESPROC$MH = RuntimeHelper.downcallHandle(
-        constants$449.PFNGLFRUSTUMFOESPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLGETCLIPPLANEFOESPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glProgramParameteriARB$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle glProgramParameteriARB$MH = RuntimeHelper.downcallHandle(
+        "glProgramParameteriARB",
+        constants$449.glProgramParameteriARB$FUNC
+    );
+    static final FunctionDescriptor glFramebufferTextureARB$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle glFramebufferTextureARB$MH = RuntimeHelper.downcallHandle(
+        "glFramebufferTextureARB",
+        constants$449.glFramebufferTextureARB$FUNC
+    );
+    static final FunctionDescriptor glFramebufferTextureLayerARB$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle glFramebufferTextureLayerARB$MH = RuntimeHelper.downcallHandle(
+        "glFramebufferTextureLayerARB",
+        constants$449.glFramebufferTextureLayerARB$FUNC
+    );
+    static final FunctionDescriptor glFramebufferTextureFaceARB$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle glFramebufferTextureFaceARB$MH = RuntimeHelper.downcallHandle(
+        "glFramebufferTextureFaceARB",
+        constants$449.glFramebufferTextureFaceARB$FUNC
+    );
+    static final FunctionDescriptor PFNGLSPECIALIZESHADERARBPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLGETCLIPPLANEFOESPROC$MH = RuntimeHelper.downcallHandle(
-        constants$449.PFNGLGETCLIPPLANEFOESPROC$FUNC
+    static final MethodHandle PFNGLSPECIALIZESHADERARBPROC$MH = RuntimeHelper.downcallHandle(
+        constants$449.PFNGLSPECIALIZESHADERARBPROC$FUNC
     );
 }
 

@@ -9,23 +9,40 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$489 {
 
-    static final FunctionDescriptor PFNGLGENFRAGMENTSHADERSATIPROC$FUNC = FunctionDescriptor.of(Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT
+    static final FunctionDescriptor PFNGLEVALUATEDEPTHVALUESARBPROC$FUNC = FunctionDescriptor.ofVoid();
+    static final MethodHandle PFNGLEVALUATEDEPTHVALUESARBPROC$MH = RuntimeHelper.downcallHandle(
+        constants$489.PFNGLEVALUATEDEPTHVALUESARBPROC$FUNC
     );
-    static final MethodHandle PFNGLGENFRAGMENTSHADERSATIPROC$MH = RuntimeHelper.downcallHandle(
-        constants$489.PFNGLGENFRAGMENTSHADERSATIPROC$FUNC
+    static final FunctionDescriptor glFramebufferSampleLocationsfvARB$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
-    static final FunctionDescriptor PFNGLBINDFRAGMENTSHADERATIPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT
+    static final MethodHandle glFramebufferSampleLocationsfvARB$MH = RuntimeHelper.downcallHandle(
+        "glFramebufferSampleLocationsfvARB",
+        constants$489.glFramebufferSampleLocationsfvARB$FUNC
     );
-    static final MethodHandle PFNGLBINDFRAGMENTSHADERATIPROC$MH = RuntimeHelper.downcallHandle(
-        constants$489.PFNGLBINDFRAGMENTSHADERATIPROC$FUNC
+    static final FunctionDescriptor glNamedFramebufferSampleLocationsfvARB$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
-    static final FunctionDescriptor PFNGLDELETEFRAGMENTSHADERATIPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT
+    static final MethodHandle glNamedFramebufferSampleLocationsfvARB$MH = RuntimeHelper.downcallHandle(
+        "glNamedFramebufferSampleLocationsfvARB",
+        constants$489.glNamedFramebufferSampleLocationsfvARB$FUNC
     );
-    static final MethodHandle PFNGLDELETEFRAGMENTSHADERATIPROC$MH = RuntimeHelper.downcallHandle(
-        constants$489.PFNGLDELETEFRAGMENTSHADERATIPROC$FUNC
+    static final FunctionDescriptor glEvaluateDepthValuesARB$FUNC = FunctionDescriptor.ofVoid();
+    static final MethodHandle glEvaluateDepthValuesARB$MH = RuntimeHelper.downcallHandle(
+        "glEvaluateDepthValuesARB",
+        constants$489.glEvaluateDepthValuesARB$FUNC
+    );
+    static final FunctionDescriptor PFNGLMINSAMPLESHADINGARBPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_FLOAT$LAYOUT
+    );
+    static final MethodHandle PFNGLMINSAMPLESHADINGARBPROC$MH = RuntimeHelper.downcallHandle(
+        constants$489.PFNGLMINSAMPLESHADINGARBPROC$FUNC
     );
 }
 

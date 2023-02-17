@@ -9,25 +9,33 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$482 {
 
-    static final FunctionDescriptor PFNGLDELETEVERTEXARRAYSAPPLEPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLGETNPIXELMAPFVARBPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLDELETEVERTEXARRAYSAPPLEPROC$MH = RuntimeHelper.downcallHandle(
-        constants$482.PFNGLDELETEVERTEXARRAYSAPPLEPROC$FUNC
+    static final MethodHandle PFNGLGETNPIXELMAPFVARBPROC$MH = RuntimeHelper.downcallHandle(
+        constants$482.PFNGLGETNPIXELMAPFVARBPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLGENVERTEXARRAYSAPPLEPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLGETNPIXELMAPUIVARBPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLGENVERTEXARRAYSAPPLEPROC$MH = RuntimeHelper.downcallHandle(
-        constants$482.PFNGLGENVERTEXARRAYSAPPLEPROC$FUNC
+    static final MethodHandle PFNGLGETNPIXELMAPUIVARBPROC$MH = RuntimeHelper.downcallHandle(
+        constants$482.PFNGLGETNPIXELMAPUIVARBPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLISVERTEXARRAYAPPLEPROC$FUNC = FunctionDescriptor.of(Constants$root.C_CHAR$LAYOUT,
-        Constants$root.C_INT$LAYOUT
+    static final FunctionDescriptor PFNGLGETNPIXELMAPUSVARBPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLISVERTEXARRAYAPPLEPROC$MH = RuntimeHelper.downcallHandle(
-        constants$482.PFNGLISVERTEXARRAYAPPLEPROC$FUNC
+    static final MethodHandle PFNGLGETNPIXELMAPUSVARBPROC$MH = RuntimeHelper.downcallHandle(
+        constants$482.PFNGLGETNPIXELMAPUSVARBPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLGETNPOLYGONSTIPPLEARBPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
 }
 

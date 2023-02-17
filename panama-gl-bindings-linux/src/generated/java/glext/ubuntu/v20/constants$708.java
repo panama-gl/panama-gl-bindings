@@ -9,24 +9,32 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$708 {
 
-    static final FunctionDescriptor PFNGLCREATEPERFQUERYINTELPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLVERTEXSTREAM2IATIPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle PFNGLVERTEXSTREAM2IATIPROC$MH = RuntimeHelper.downcallHandle(
+        constants$708.PFNGLVERTEXSTREAM2IATIPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLVERTEXSTREAM2IVATIPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLCREATEPERFQUERYINTELPROC$MH = RuntimeHelper.downcallHandle(
-        constants$708.PFNGLCREATEPERFQUERYINTELPROC$FUNC
+    static final MethodHandle PFNGLVERTEXSTREAM2IVATIPROC$MH = RuntimeHelper.downcallHandle(
+        constants$708.PFNGLVERTEXSTREAM2IVATIPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLDELETEPERFQUERYINTELPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT
+    static final FunctionDescriptor PFNGLVERTEXSTREAM2FATIPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT
     );
-    static final MethodHandle PFNGLDELETEPERFQUERYINTELPROC$MH = RuntimeHelper.downcallHandle(
-        constants$708.PFNGLDELETEPERFQUERYINTELPROC$FUNC
+    static final MethodHandle PFNGLVERTEXSTREAM2FATIPROC$MH = RuntimeHelper.downcallHandle(
+        constants$708.PFNGLVERTEXSTREAM2FATIPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLENDPERFQUERYINTELPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT
-    );
-    static final MethodHandle PFNGLENDPERFQUERYINTELPROC$MH = RuntimeHelper.downcallHandle(
-        constants$708.PFNGLENDPERFQUERYINTELPROC$FUNC
+    static final FunctionDescriptor PFNGLVERTEXSTREAM2FVATIPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
 }
 

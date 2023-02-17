@@ -9,24 +9,48 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$690 {
 
-    static final FunctionDescriptor PFNGLENABLEVARIANTCLIENTSTATEEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT
-    );
-    static final MethodHandle PFNGLENABLEVARIANTCLIENTSTATEEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$690.PFNGLENABLEVARIANTCLIENTSTATEEXTPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLDISABLEVARIANTCLIENTSTATEEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT
-    );
-    static final MethodHandle PFNGLDISABLEVARIANTCLIENTSTATEEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$690.PFNGLDISABLEVARIANTCLIENTSTATEEXTPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLBINDLIGHTPARAMETEREXTPROC$FUNC = FunctionDescriptor.of(Constants$root.C_INT$LAYOUT,
+    static final FunctionDescriptor PFNGLCOLORFRAGMENTOP3ATIPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLBINDLIGHTPARAMETEREXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$690.PFNGLBINDLIGHTPARAMETEREXTPROC$FUNC
+    static final MethodHandle PFNGLCOLORFRAGMENTOP3ATIPROC$MH = RuntimeHelper.downcallHandle(
+        constants$690.PFNGLCOLORFRAGMENTOP3ATIPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLALPHAFRAGMENTOP1ATIPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle PFNGLALPHAFRAGMENTOP1ATIPROC$MH = RuntimeHelper.downcallHandle(
+        constants$690.PFNGLALPHAFRAGMENTOP1ATIPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLALPHAFRAGMENTOP2ATIPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle PFNGLALPHAFRAGMENTOP2ATIPROC$MH = RuntimeHelper.downcallHandle(
+        constants$690.PFNGLALPHAFRAGMENTOP2ATIPROC$FUNC
     );
 }
 

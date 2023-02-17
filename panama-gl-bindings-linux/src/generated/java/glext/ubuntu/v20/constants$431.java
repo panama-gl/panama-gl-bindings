@@ -9,29 +9,45 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$431 {
 
-    static final FunctionDescriptor PFNGLGETMAPXVOESPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
+    static final FunctionDescriptor PFNGLCREATESYNCFROMCLEVENTARBPROC$FUNC = FunctionDescriptor.of(Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLGETMAPXVOESPROC$MH = RuntimeHelper.downcallHandle(
-        constants$431.PFNGLGETMAPXVOESPROC$FUNC
+    static final MethodHandle PFNGLCREATESYNCFROMCLEVENTARBPROC$MH = RuntimeHelper.downcallHandle(
+        constants$431.PFNGLCREATESYNCFROMCLEVENTARBPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLGETMATERIALXOESPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
+    static final FunctionDescriptor glCreateSyncFromCLeventARB$FUNC = FunctionDescriptor.of(Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle glCreateSyncFromCLeventARB$MH = RuntimeHelper.downcallHandle(
+        "glCreateSyncFromCLeventARB",
+        constants$431.glCreateSyncFromCLeventARB$FUNC
+    );
+    static final FunctionDescriptor PFNGLCLAMPCOLORARBPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLGETMATERIALXOESPROC$MH = RuntimeHelper.downcallHandle(
-        constants$431.PFNGLGETMATERIALXOESPROC$FUNC
+    static final MethodHandle PFNGLCLAMPCOLORARBPROC$MH = RuntimeHelper.downcallHandle(
+        constants$431.PFNGLCLAMPCOLORARBPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLGETPIXELMAPXVPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glClampColorARB$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle glClampColorARB$MH = RuntimeHelper.downcallHandle(
+        "glClampColorARB",
+        constants$431.glClampColorARB$FUNC
+    );
+    static final FunctionDescriptor PFNGLDISPATCHCOMPUTEGROUPSIZEARBPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle PFNGLGETPIXELMAPXVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$431.PFNGLGETPIXELMAPXVPROC$FUNC
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
 }
 

@@ -11,13 +11,13 @@ public interface PFNGLDELETEFRAGMENTSHADERATIPROC {
 
     void apply(int id);
     static MemorySegment allocate(PFNGLDELETEFRAGMENTSHADERATIPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLDELETEFRAGMENTSHADERATIPROC.class, fi, constants$489.PFNGLDELETEFRAGMENTSHADERATIPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLDELETEFRAGMENTSHADERATIPROC.class, fi, constants$687.PFNGLDELETEFRAGMENTSHADERATIPROC$FUNC, session);
     }
     static PFNGLDELETEFRAGMENTSHADERATIPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _id) -> {
             try {
-                constants$489.PFNGLDELETEFRAGMENTSHADERATIPROC$MH.invokeExact((Addressable)symbol, _id);
+                constants$687.PFNGLDELETEFRAGMENTSHADERATIPROC$MH.invokeExact((Addressable)symbol, _id);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

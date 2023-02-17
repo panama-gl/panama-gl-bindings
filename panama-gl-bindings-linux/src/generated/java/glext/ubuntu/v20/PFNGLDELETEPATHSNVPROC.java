@@ -11,13 +11,13 @@ public interface PFNGLDELETEPATHSNVPROC {
 
     void apply(int path, int range);
     static MemorySegment allocate(PFNGLDELETEPATHSNVPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLDELETEPATHSNVPROC.class, fi, constants$786.PFNGLDELETEPATHSNVPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLDELETEPATHSNVPROC.class, fi, constants$1133.PFNGLDELETEPATHSNVPROC$FUNC, session);
     }
     static PFNGLDELETEPATHSNVPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _path, int _range) -> {
             try {
-                constants$786.PFNGLDELETEPATHSNVPROC$MH.invokeExact((Addressable)symbol, _path, _range);
+                constants$1133.PFNGLDELETEPATHSNVPROC$MH.invokeExact((Addressable)symbol, _path, _range);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

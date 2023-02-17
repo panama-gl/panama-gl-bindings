@@ -9,40 +9,34 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$644 {
 
-    static final FunctionDescriptor PFNGLTEXSTORAGEMEM3DMULTISAMPLEEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLPROGRAMUNIFORM4I64NVPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_CHAR$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_LONG_LONG$LAYOUT
-    );
-    static final MethodHandle PFNGLTEXSTORAGEMEM3DMULTISAMPLEEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$644.PFNGLTEXSTORAGEMEM3DMULTISAMPLEEXTPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLBUFFERSTORAGEMEMEXTPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_LONG_LONG$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT,
         Constants$root.C_LONG_LONG$LAYOUT
     );
-    static final MethodHandle PFNGLBUFFERSTORAGEMEMEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$644.PFNGLBUFFERSTORAGEMEMEXTPROC$FUNC
+    static final MethodHandle PFNGLPROGRAMUNIFORM4I64NVPROC$MH = RuntimeHelper.downcallHandle(
+        constants$644.PFNGLPROGRAMUNIFORM4I64NVPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLTEXTURESTORAGEMEM2DEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLPROGRAMUNIFORM1I64VNVPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_LONG_LONG$LAYOUT
+        Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLTEXTURESTORAGEMEM2DEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$644.PFNGLTEXTURESTORAGEMEM2DEXTPROC$FUNC
+    static final MethodHandle PFNGLPROGRAMUNIFORM1I64VNVPROC$MH = RuntimeHelper.downcallHandle(
+        constants$644.PFNGLPROGRAMUNIFORM1I64VNVPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLPROGRAMUNIFORM2I64VNVPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle PFNGLPROGRAMUNIFORM2I64VNVPROC$MH = RuntimeHelper.downcallHandle(
+        constants$644.PFNGLPROGRAMUNIFORM2I64VNVPROC$FUNC
     );
 }
 

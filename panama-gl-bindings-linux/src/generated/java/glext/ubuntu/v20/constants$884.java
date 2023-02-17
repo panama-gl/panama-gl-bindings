@@ -9,25 +9,71 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$884 {
 
-    static final FunctionDescriptor PFNGLGETDETAILTEXFUNCSGISPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glVertexArrayVertexAttribLFormatEXT$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle PFNGLGETDETAILTEXFUNCSGISPROC$MH = RuntimeHelper.downcallHandle(
-        constants$884.PFNGLGETDETAILTEXFUNCSGISPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLFOGFUNCSGISPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLFOGFUNCSGISPROC$MH = RuntimeHelper.downcallHandle(
-        constants$884.PFNGLFOGFUNCSGISPROC$FUNC
+    static final MethodHandle glVertexArrayVertexAttribLFormatEXT$MH = RuntimeHelper.downcallHandle(
+        "glVertexArrayVertexAttribLFormatEXT",
+        constants$884.glVertexArrayVertexAttribLFormatEXT$FUNC
     );
-    static final FunctionDescriptor PFNGLGETFOGFUNCSGISPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_POINTER$LAYOUT
+    static final FunctionDescriptor glVertexArrayVertexAttribBindingEXT$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLGETFOGFUNCSGISPROC$MH = RuntimeHelper.downcallHandle(
-        constants$884.PFNGLGETFOGFUNCSGISPROC$FUNC
+    static final MethodHandle glVertexArrayVertexAttribBindingEXT$MH = RuntimeHelper.downcallHandle(
+        "glVertexArrayVertexAttribBindingEXT",
+        constants$884.glVertexArrayVertexAttribBindingEXT$FUNC
+    );
+    static final FunctionDescriptor glVertexArrayVertexBindingDivisorEXT$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle glVertexArrayVertexBindingDivisorEXT$MH = RuntimeHelper.downcallHandle(
+        "glVertexArrayVertexBindingDivisorEXT",
+        constants$884.glVertexArrayVertexBindingDivisorEXT$FUNC
+    );
+    static final FunctionDescriptor glVertexArrayVertexAttribLOffsetEXT$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT
+    );
+    static final MethodHandle glVertexArrayVertexAttribLOffsetEXT$MH = RuntimeHelper.downcallHandle(
+        "glVertexArrayVertexAttribLOffsetEXT",
+        constants$884.glVertexArrayVertexAttribLOffsetEXT$FUNC
+    );
+    static final FunctionDescriptor glTexturePageCommitmentEXT$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_CHAR$LAYOUT
+    );
+    static final MethodHandle glTexturePageCommitmentEXT$MH = RuntimeHelper.downcallHandle(
+        "glTexturePageCommitmentEXT",
+        constants$884.glTexturePageCommitmentEXT$FUNC
+    );
+    static final FunctionDescriptor glVertexArrayVertexAttribDivisorEXT$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle glVertexArrayVertexAttribDivisorEXT$MH = RuntimeHelper.downcallHandle(
+        "glVertexArrayVertexAttribDivisorEXT",
+        constants$884.glVertexArrayVertexAttribDivisorEXT$FUNC
     );
 }
 

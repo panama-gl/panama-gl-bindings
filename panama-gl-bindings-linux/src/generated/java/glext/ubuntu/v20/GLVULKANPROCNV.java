@@ -11,13 +11,13 @@ public interface GLVULKANPROCNV {
 
     void apply();
     static MemorySegment allocate(GLVULKANPROCNV fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(GLVULKANPROCNV.class, fi, constants$741.GLVULKANPROCNV$FUNC, session);
+        return RuntimeHelper.upcallStub(GLVULKANPROCNV.class, fi, constants$1065.GLVULKANPROCNV$FUNC, session);
     }
     static GLVULKANPROCNV ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return () -> {
             try {
-                constants$741.GLVULKANPROCNV$MH.invokeExact((Addressable)symbol);
+                constants$1065.GLVULKANPROCNV$MH.invokeExact((Addressable)symbol);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

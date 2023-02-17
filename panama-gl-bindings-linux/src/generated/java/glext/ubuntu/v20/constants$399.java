@@ -9,33 +9,31 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$399 {
 
-    static final FunctionDescriptor PFNGLGETVERTEXATTRIBPOINTERVARBPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLGETNHISTOGRAMPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_CHAR$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLGETVERTEXATTRIBPOINTERVARBPROC$MH = RuntimeHelper.downcallHandle(
-        constants$399.PFNGLGETVERTEXATTRIBPOINTERVARBPROC$FUNC
+    static final MethodHandle PFNGLGETNHISTOGRAMPROC$MH = RuntimeHelper.downcallHandle(
+        constants$399.PFNGLGETNHISTOGRAMPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLBINDATTRIBLOCATIONARBPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLGETNMINMAXPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_CHAR$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLBINDATTRIBLOCATIONARBPROC$MH = RuntimeHelper.downcallHandle(
-        constants$399.PFNGLBINDATTRIBLOCATIONARBPROC$FUNC
+    static final MethodHandle PFNGLGETNMINMAXPROC$MH = RuntimeHelper.downcallHandle(
+        constants$399.PFNGLGETNMINMAXPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLGETACTIVEATTRIBARBPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle PFNGLGETACTIVEATTRIBARBPROC$MH = RuntimeHelper.downcallHandle(
-        constants$399.PFNGLGETACTIVEATTRIBARBPROC$FUNC
+    static final FunctionDescriptor PFNGLTEXTUREBARRIERPROC$FUNC = FunctionDescriptor.ofVoid();
+    static final MethodHandle PFNGLTEXTUREBARRIERPROC$MH = RuntimeHelper.downcallHandle(
+        constants$399.PFNGLTEXTUREBARRIERPROC$FUNC
     );
 }
 

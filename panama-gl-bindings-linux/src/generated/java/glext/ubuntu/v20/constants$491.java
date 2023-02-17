@@ -9,40 +9,30 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$491 {
 
-    static final FunctionDescriptor PFNGLSAMPLEMAPATIPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT
-    );
-    static final MethodHandle PFNGLSAMPLEMAPATIPROC$MH = RuntimeHelper.downcallHandle(
-        constants$491.PFNGLSAMPLEMAPATIPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLCOLORFRAGMENTOP1ATIPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
+    static final FunctionDescriptor PFNGLDETACHOBJECTARBPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLCOLORFRAGMENTOP1ATIPROC$MH = RuntimeHelper.downcallHandle(
-        constants$491.PFNGLCOLORFRAGMENTOP1ATIPROC$FUNC
+    static final MethodHandle PFNGLDETACHOBJECTARBPROC$MH = RuntimeHelper.downcallHandle(
+        constants$491.PFNGLDETACHOBJECTARBPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLCOLORFRAGMENTOP2ATIPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
+    static final FunctionDescriptor PFNGLCREATESHADEROBJECTARBPROC$FUNC = FunctionDescriptor.of(Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLCOLORFRAGMENTOP2ATIPROC$MH = RuntimeHelper.downcallHandle(
-        constants$491.PFNGLCOLORFRAGMENTOP2ATIPROC$FUNC
+    static final MethodHandle PFNGLCREATESHADEROBJECTARBPROC$MH = RuntimeHelper.downcallHandle(
+        constants$491.PFNGLCREATESHADEROBJECTARBPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLSHADERSOURCEARBPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle PFNGLSHADERSOURCEARBPROC$MH = RuntimeHelper.downcallHandle(
+        constants$491.PFNGLSHADERSOURCEARBPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLCOMPILESHADERARBPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT
     );
 }
 

@@ -9,27 +9,31 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$388 {
 
-    static final FunctionDescriptor PFNGLVERTEXATTRIB2FVARBPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLVERTEXARRAYATTRIBLFORMATPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle PFNGLVERTEXARRAYATTRIBLFORMATPROC$MH = RuntimeHelper.downcallHandle(
+        constants$388.PFNGLVERTEXARRAYATTRIBLFORMATPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLVERTEXARRAYBINDINGDIVISORPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle PFNGLVERTEXARRAYBINDINGDIVISORPROC$MH = RuntimeHelper.downcallHandle(
+        constants$388.PFNGLVERTEXARRAYBINDINGDIVISORPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLGETVERTEXARRAYIVPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLVERTEXATTRIB2FVARBPROC$MH = RuntimeHelper.downcallHandle(
-        constants$388.PFNGLVERTEXATTRIB2FVARBPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLVERTEXATTRIB2SARBPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_SHORT$LAYOUT,
-        Constants$root.C_SHORT$LAYOUT
-    );
-    static final MethodHandle PFNGLVERTEXATTRIB2SARBPROC$MH = RuntimeHelper.downcallHandle(
-        constants$388.PFNGLVERTEXATTRIB2SARBPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLVERTEXATTRIB2SVARBPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle PFNGLVERTEXATTRIB2SVARBPROC$MH = RuntimeHelper.downcallHandle(
-        constants$388.PFNGLVERTEXATTRIB2SVARBPROC$FUNC
+    static final MethodHandle PFNGLGETVERTEXARRAYIVPROC$MH = RuntimeHelper.downcallHandle(
+        constants$388.PFNGLGETVERTEXARRAYIVPROC$FUNC
     );
 }
 

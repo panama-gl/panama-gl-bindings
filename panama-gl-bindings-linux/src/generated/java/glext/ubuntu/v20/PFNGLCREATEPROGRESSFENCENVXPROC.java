@@ -11,13 +11,13 @@ public interface PFNGLCREATEPROGRESSFENCENVXPROC {
 
     int apply();
     static MemorySegment allocate(PFNGLCREATEPROGRESSFENCENVXPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLCREATEPROGRESSFENCENVXPROC.class, fi, constants$723.PFNGLCREATEPROGRESSFENCENVXPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLCREATEPROGRESSFENCENVXPROC.class, fi, constants$1039.PFNGLCREATEPROGRESSFENCENVXPROC$FUNC, session);
     }
     static PFNGLCREATEPROGRESSFENCENVXPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return () -> {
             try {
-                return (int)constants$723.PFNGLCREATEPROGRESSFENCENVXPROC$MH.invokeExact((Addressable)symbol);
+                return (int)constants$1039.PFNGLCREATEPROGRESSFENCENVXPROC$MH.invokeExact((Addressable)symbol);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

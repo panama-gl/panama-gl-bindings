@@ -9,26 +9,39 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$730 {
 
-    static final FunctionDescriptor PFNGLPROGRAMUNIFORMHANDLEUI64VNVPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLBLENDEQUATIONSEPARATEEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle PFNGLBLENDEQUATIONSEPARATEEXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$730.PFNGLBLENDEQUATIONSEPARATEEXTPROC$FUNC
+    );
+    static final FunctionDescriptor glBlendEquationSeparateEXT$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle glBlendEquationSeparateEXT$MH = RuntimeHelper.downcallHandle(
+        "glBlendEquationSeparateEXT",
+        constants$730.glBlendEquationSeparateEXT$FUNC
+    );
+    static final FunctionDescriptor PFNGLBLENDFUNCSEPARATEEXTPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
+        Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLPROGRAMUNIFORMHANDLEUI64VNVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$730.PFNGLPROGRAMUNIFORMHANDLEUI64VNVPROC$FUNC
+    static final MethodHandle PFNGLBLENDFUNCSEPARATEEXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$730.PFNGLBLENDFUNCSEPARATEEXTPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLISTEXTUREHANDLERESIDENTNVPROC$FUNC = FunctionDescriptor.of(Constants$root.C_CHAR$LAYOUT,
-        Constants$root.C_LONG_LONG$LAYOUT
+    static final FunctionDescriptor glBlendFuncSeparateEXT$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLISTEXTUREHANDLERESIDENTNVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$730.PFNGLISTEXTUREHANDLERESIDENTNVPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLISIMAGEHANDLERESIDENTNVPROC$FUNC = FunctionDescriptor.of(Constants$root.C_CHAR$LAYOUT,
-        Constants$root.C_LONG_LONG$LAYOUT
-    );
-    static final MethodHandle PFNGLISIMAGEHANDLERESIDENTNVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$730.PFNGLISIMAGEHANDLERESIDENTNVPROC$FUNC
+    static final MethodHandle glBlendFuncSeparateEXT$MH = RuntimeHelper.downcallHandle(
+        "glBlendFuncSeparateEXT",
+        constants$730.glBlendFuncSeparateEXT$FUNC
     );
 }
 

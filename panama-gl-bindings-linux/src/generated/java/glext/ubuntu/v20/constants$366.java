@@ -9,30 +9,29 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$366 {
 
-    static final FunctionDescriptor PFNGLUNIFORM3IVARBPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLGETNAMEDBUFFERPOINTERVPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLUNIFORM3IVARBPROC$MH = RuntimeHelper.downcallHandle(
-        constants$366.PFNGLUNIFORM3IVARBPROC$FUNC
+    static final MethodHandle PFNGLGETNAMEDBUFFERPOINTERVPROC$MH = RuntimeHelper.downcallHandle(
+        constants$366.PFNGLGETNAMEDBUFFERPOINTERVPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLUNIFORM4IVARBPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLGETNAMEDBUFFERSUBDATAPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle PFNGLGETNAMEDBUFFERSUBDATAPROC$MH = RuntimeHelper.downcallHandle(
+        constants$366.PFNGLGETNAMEDBUFFERSUBDATAPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLCREATEFRAMEBUFFERSPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLUNIFORM4IVARBPROC$MH = RuntimeHelper.downcallHandle(
-        constants$366.PFNGLUNIFORM4IVARBPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLUNIFORMMATRIX2FVARBPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_CHAR$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle PFNGLUNIFORMMATRIX2FVARBPROC$MH = RuntimeHelper.downcallHandle(
-        constants$366.PFNGLUNIFORMMATRIX2FVARBPROC$FUNC
+    static final MethodHandle PFNGLCREATEFRAMEBUFFERSPROC$MH = RuntimeHelper.downcallHandle(
+        constants$366.PFNGLCREATEFRAMEBUFFERSPROC$FUNC
     );
 }
 

@@ -9,39 +9,29 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$604 {
 
-    static final FunctionDescriptor PFNGLVERTEXARRAYFOGCOORDOFFSETEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLTEXCOORD2XOESPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_LONG_LONG$LAYOUT
+        Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLVERTEXARRAYFOGCOORDOFFSETEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$604.PFNGLVERTEXARRAYFOGCOORDOFFSETEXTPROC$FUNC
+    static final MethodHandle PFNGLTEXCOORD2XOESPROC$MH = RuntimeHelper.downcallHandle(
+        constants$604.PFNGLTEXCOORD2XOESPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLVERTEXARRAYSECONDARYCOLOROFFSETEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_LONG_LONG$LAYOUT
+    static final FunctionDescriptor PFNGLTEXCOORD2XVOESPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLVERTEXARRAYSECONDARYCOLOROFFSETEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$604.PFNGLVERTEXARRAYSECONDARYCOLOROFFSETEXTPROC$FUNC
+    static final MethodHandle PFNGLTEXCOORD2XVOESPROC$MH = RuntimeHelper.downcallHandle(
+        constants$604.PFNGLTEXCOORD2XVOESPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLVERTEXARRAYVERTEXATTRIBOFFSETEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLTEXCOORD3XOESPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_CHAR$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_LONG_LONG$LAYOUT
+        Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLVERTEXARRAYVERTEXATTRIBOFFSETEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$604.PFNGLVERTEXARRAYVERTEXATTRIBOFFSETEXTPROC$FUNC
+    static final MethodHandle PFNGLTEXCOORD3XOESPROC$MH = RuntimeHelper.downcallHandle(
+        constants$604.PFNGLTEXCOORD3XOESPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLTEXCOORD3XVOESPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_POINTER$LAYOUT
     );
 }
 

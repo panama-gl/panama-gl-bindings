@@ -11,13 +11,13 @@ public interface PFNGLSPECIALIZESHADERPROC {
 
     void apply(int shader, java.lang.foreign.MemoryAddress pEntryPoint, int numSpecializationConstants, java.lang.foreign.MemoryAddress pConstantIndex, java.lang.foreign.MemoryAddress pConstantValue);
     static MemorySegment allocate(PFNGLSPECIALIZESHADERPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLSPECIALIZESHADERPROC.class, fi, constants$311.PFNGLSPECIALIZESHADERPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLSPECIALIZESHADERPROC.class, fi, constants$420.PFNGLSPECIALIZESHADERPROC$FUNC, session);
     }
     static PFNGLSPECIALIZESHADERPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _shader, java.lang.foreign.MemoryAddress _pEntryPoint, int _numSpecializationConstants, java.lang.foreign.MemoryAddress _pConstantIndex, java.lang.foreign.MemoryAddress _pConstantValue) -> {
             try {
-                constants$311.PFNGLSPECIALIZESHADERPROC$MH.invokeExact((Addressable)symbol, _shader, (java.lang.foreign.Addressable)_pEntryPoint, _numSpecializationConstants, (java.lang.foreign.Addressable)_pConstantIndex, (java.lang.foreign.Addressable)_pConstantValue);
+                constants$420.PFNGLSPECIALIZESHADERPROC$MH.invokeExact((Addressable)symbol, _shader, (java.lang.foreign.Addressable)_pEntryPoint, _numSpecializationConstants, (java.lang.foreign.Addressable)_pConstantIndex, (java.lang.foreign.Addressable)_pConstantValue);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

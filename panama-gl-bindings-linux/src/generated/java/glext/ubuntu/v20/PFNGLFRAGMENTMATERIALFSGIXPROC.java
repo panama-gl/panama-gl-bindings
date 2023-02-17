@@ -11,13 +11,13 @@ public interface PFNGLFRAGMENTMATERIALFSGIXPROC {
 
     void apply(int face, int pname, float param);
     static MemorySegment allocate(PFNGLFRAGMENTMATERIALFSGIXPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLFRAGMENTMATERIALFSGIXPROC.class, fi, constants$896.PFNGLFRAGMENTMATERIALFSGIXPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLFRAGMENTMATERIALFSGIXPROC.class, fi, constants$1295.PFNGLFRAGMENTMATERIALFSGIXPROC$FUNC, session);
     }
     static PFNGLFRAGMENTMATERIALFSGIXPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _face, int _pname, float _param) -> {
             try {
-                constants$896.PFNGLFRAGMENTMATERIALFSGIXPROC$MH.invokeExact((Addressable)symbol, _face, _pname, _param);
+                constants$1296.PFNGLFRAGMENTMATERIALFSGIXPROC$MH.invokeExact((Addressable)symbol, _face, _pname, _param);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

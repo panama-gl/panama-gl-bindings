@@ -11,13 +11,13 @@ public interface PFNGLINTERPOLATEPATHSNVPROC {
 
     void apply(int resultPath, int pathA, int pathB, float weight);
     static MemorySegment allocate(PFNGLINTERPOLATEPATHSNVPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLINTERPOLATEPATHSNVPROC.class, fi, constants$790.PFNGLINTERPOLATEPATHSNVPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLINTERPOLATEPATHSNVPROC.class, fi, constants$1136.PFNGLINTERPOLATEPATHSNVPROC$FUNC, session);
     }
     static PFNGLINTERPOLATEPATHSNVPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _resultPath, int _pathA, int _pathB, float _weight) -> {
             try {
-                constants$790.PFNGLINTERPOLATEPATHSNVPROC$MH.invokeExact((Addressable)symbol, _resultPath, _pathA, _pathB, _weight);
+                constants$1137.PFNGLINTERPOLATEPATHSNVPROC$MH.invokeExact((Addressable)symbol, _resultPath, _pathA, _pathB, _weight);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

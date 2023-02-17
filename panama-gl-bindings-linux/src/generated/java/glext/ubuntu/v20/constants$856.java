@@ -9,31 +9,76 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$856 {
 
-    static final FunctionDescriptor PFNGLPROGRAMPARAMETER4FVNVPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glIsEnabledIndexedEXT$FUNC = FunctionDescriptor.of(Constants$root.C_CHAR$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle glIsEnabledIndexedEXT$MH = RuntimeHelper.downcallHandle(
+        "glIsEnabledIndexedEXT",
+        constants$856.glIsEnabledIndexedEXT$FUNC
+    );
+    static final FunctionDescriptor glGetIntegerIndexedvEXT$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLPROGRAMPARAMETER4FVNVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$856.PFNGLPROGRAMPARAMETER4FVNVPROC$FUNC
+    static final MethodHandle glGetIntegerIndexedvEXT$MH = RuntimeHelper.downcallHandle(
+        "glGetIntegerIndexedvEXT",
+        constants$856.glGetIntegerIndexedvEXT$FUNC
     );
-    static final FunctionDescriptor PFNGLPROGRAMPARAMETERS4DVNVPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glGetBooleanIndexedvEXT$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glGetBooleanIndexedvEXT$MH = RuntimeHelper.downcallHandle(
+        "glGetBooleanIndexedvEXT",
+        constants$856.glGetBooleanIndexedvEXT$FUNC
+    );
+    static final FunctionDescriptor glCompressedTextureImage3DEXT$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLPROGRAMPARAMETERS4DVNVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$856.PFNGLPROGRAMPARAMETERS4DVNVPROC$FUNC
+    static final MethodHandle glCompressedTextureImage3DEXT$MH = RuntimeHelper.downcallHandle(
+        "glCompressedTextureImage3DEXT",
+        constants$856.glCompressedTextureImage3DEXT$FUNC
     );
-    static final FunctionDescriptor PFNGLPROGRAMPARAMETERS4FVNVPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glCompressedTextureImage2DEXT$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLPROGRAMPARAMETERS4FVNVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$856.PFNGLPROGRAMPARAMETERS4FVNVPROC$FUNC
+    static final MethodHandle glCompressedTextureImage2DEXT$MH = RuntimeHelper.downcallHandle(
+        "glCompressedTextureImage2DEXT",
+        constants$856.glCompressedTextureImage2DEXT$FUNC
+    );
+    static final FunctionDescriptor glCompressedTextureImage1DEXT$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glCompressedTextureImage1DEXT$MH = RuntimeHelper.downcallHandle(
+        "glCompressedTextureImage1DEXT",
+        constants$856.glCompressedTextureImage1DEXT$FUNC
     );
 }
 

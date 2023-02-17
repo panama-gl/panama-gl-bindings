@@ -11,13 +11,13 @@ public interface PFNGLGETATTACHEDOBJECTSARBPROC {
 
     void apply(int containerObj, int maxCount, java.lang.foreign.MemoryAddress count, java.lang.foreign.MemoryAddress obj);
     static MemorySegment allocate(PFNGLGETATTACHEDOBJECTSARBPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLGETATTACHEDOBJECTSARBPROC.class, fi, constants$368.PFNGLGETATTACHEDOBJECTSARBPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLGETATTACHEDOBJECTSARBPROC.class, fi, constants$501.PFNGLGETATTACHEDOBJECTSARBPROC$FUNC, session);
     }
     static PFNGLGETATTACHEDOBJECTSARBPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _containerObj, int _maxCount, java.lang.foreign.MemoryAddress _count, java.lang.foreign.MemoryAddress _obj) -> {
             try {
-                constants$368.PFNGLGETATTACHEDOBJECTSARBPROC$MH.invokeExact((Addressable)symbol, _containerObj, _maxCount, (java.lang.foreign.Addressable)_count, (java.lang.foreign.Addressable)_obj);
+                constants$501.PFNGLGETATTACHEDOBJECTSARBPROC$MH.invokeExact((Addressable)symbol, _containerObj, _maxCount, (java.lang.foreign.Addressable)_count, (java.lang.foreign.Addressable)_obj);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

@@ -9,33 +9,69 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$954 {
 
-    static final FunctionDescriptor glutPassiveMotionFunc$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle glutPassiveMotionFunc$MH = RuntimeHelper.downcallHandle(
-        "glutPassiveMotionFunc",
-        constants$954.glutPassiveMotionFunc$FUNC
-    );
-    static final FunctionDescriptor glutEntryFunc$callback$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT
-    );
-    static final MethodHandle glutEntryFunc$callback$MH = RuntimeHelper.downcallHandle(
-        constants$954.glutEntryFunc$callback$FUNC
-    );
-    static final FunctionDescriptor glutEntryFunc$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle glutEntryFunc$MH = RuntimeHelper.downcallHandle(
-        "glutEntryFunc",
-        constants$954.glutEntryFunc$FUNC
-    );
-    static final FunctionDescriptor glutKeyboardUpFunc$callback$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_CHAR$LAYOUT,
+    static final FunctionDescriptor PFNGLTEXIMAGE3DEXTPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle glutKeyboardUpFunc$callback$MH = RuntimeHelper.downcallHandle(
-        constants$954.glutKeyboardUpFunc$callback$FUNC
+    static final MethodHandle PFNGLTEXIMAGE3DEXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$954.PFNGLTEXIMAGE3DEXTPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLTEXSUBIMAGE3DEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle PFNGLTEXSUBIMAGE3DEXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$954.PFNGLTEXSUBIMAGE3DEXTPROC$FUNC
+    );
+    static final FunctionDescriptor glTexImage3DEXT$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glTexImage3DEXT$MH = RuntimeHelper.downcallHandle(
+        "glTexImage3DEXT",
+        constants$954.glTexImage3DEXT$FUNC
+    );
+    static final FunctionDescriptor glTexSubImage3DEXT$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glTexSubImage3DEXT$MH = RuntimeHelper.downcallHandle(
+        "glTexSubImage3DEXT",
+        constants$954.glTexSubImage3DEXT$FUNC
     );
 }
 

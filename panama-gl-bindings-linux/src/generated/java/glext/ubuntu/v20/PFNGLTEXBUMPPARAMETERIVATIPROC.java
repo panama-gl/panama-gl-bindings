@@ -11,13 +11,13 @@ public interface PFNGLTEXBUMPPARAMETERIVATIPROC {
 
     void apply(int pname, java.lang.foreign.MemoryAddress param);
     static MemorySegment allocate(PFNGLTEXBUMPPARAMETERIVATIPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLTEXBUMPPARAMETERIVATIPROC.class, fi, constants$487.PFNGLTEXBUMPPARAMETERIVATIPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLTEXBUMPPARAMETERIVATIPROC.class, fi, constants$685.PFNGLTEXBUMPPARAMETERIVATIPROC$FUNC, session);
     }
     static PFNGLTEXBUMPPARAMETERIVATIPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _pname, java.lang.foreign.MemoryAddress _param) -> {
             try {
-                constants$487.PFNGLTEXBUMPPARAMETERIVATIPROC$MH.invokeExact((Addressable)symbol, _pname, (java.lang.foreign.Addressable)_param);
+                constants$685.PFNGLTEXBUMPPARAMETERIVATIPROC$MH.invokeExact((Addressable)symbol, _pname, (java.lang.foreign.Addressable)_param);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

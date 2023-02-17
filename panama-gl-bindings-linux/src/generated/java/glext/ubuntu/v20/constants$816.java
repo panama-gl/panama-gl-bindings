@@ -9,31 +9,40 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$816 {
 
-    static final FunctionDescriptor PFNGLGETCOMBINEROUTPUTPARAMETERFVNVPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLNAMEDRENDERBUFFERSTORAGEEXTPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle PFNGLNAMEDRENDERBUFFERSTORAGEEXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$816.PFNGLNAMEDRENDERBUFFERSTORAGEEXTPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLGETNAMEDRENDERBUFFERPARAMETERIVEXTPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLGETCOMBINEROUTPUTPARAMETERFVNVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$816.PFNGLGETCOMBINEROUTPUTPARAMETERFVNVPROC$FUNC
+    static final MethodHandle PFNGLGETNAMEDRENDERBUFFERPARAMETERIVEXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$816.PFNGLGETNAMEDRENDERBUFFERPARAMETERIVEXTPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLGETCOMBINEROUTPUTPARAMETERIVNVPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLNAMEDRENDERBUFFERSTORAGEMULTISAMPLEEXTPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLGETCOMBINEROUTPUTPARAMETERIVNVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$816.PFNGLGETCOMBINEROUTPUTPARAMETERIVNVPROC$FUNC
+    static final MethodHandle PFNGLNAMEDRENDERBUFFERSTORAGEMULTISAMPLEEXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$816.PFNGLNAMEDRENDERBUFFERSTORAGEMULTISAMPLEEXTPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLGETFINALCOMBINERINPUTPARAMETERFVNVPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLNAMEDRENDERBUFFERSTORAGEMULTISAMPLECOVERAGEEXTPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle PFNGLGETFINALCOMBINERINPUTPARAMETERFVNVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$816.PFNGLGETFINALCOMBINERINPUTPARAMETERFVNVPROC$FUNC
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
 }
 

@@ -9,28 +9,47 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$468 {
 
-    static final FunctionDescriptor PFNGLGENNAMESAMDPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glProgramUniform4ui64vARB$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle PFNGLGENNAMESAMDPROC$MH = RuntimeHelper.downcallHandle(
-        constants$468.PFNGLGENNAMESAMDPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLDELETENAMESAMDPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLDELETENAMESAMDPROC$MH = RuntimeHelper.downcallHandle(
-        constants$468.PFNGLDELETENAMESAMDPROC$FUNC
+    static final MethodHandle glProgramUniform4ui64vARB$MH = RuntimeHelper.downcallHandle(
+        "glProgramUniform4ui64vARB",
+        constants$468.glProgramUniform4ui64vARB$FUNC
     );
-    static final FunctionDescriptor PFNGLISNAMEAMDPROC$FUNC = FunctionDescriptor.of(Constants$root.C_CHAR$LAYOUT,
+    static final FunctionDescriptor PFNGLMULTIDRAWARRAYSINDIRECTCOUNTARBPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLISNAMEAMDPROC$MH = RuntimeHelper.downcallHandle(
-        constants$468.PFNGLISNAMEAMDPROC$FUNC
+    static final MethodHandle PFNGLMULTIDRAWARRAYSINDIRECTCOUNTARBPROC$MH = RuntimeHelper.downcallHandle(
+        constants$468.PFNGLMULTIDRAWARRAYSINDIRECTCOUNTARBPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLMULTIDRAWELEMENTSINDIRECTCOUNTARBPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle PFNGLMULTIDRAWELEMENTSINDIRECTCOUNTARBPROC$MH = RuntimeHelper.downcallHandle(
+        constants$468.PFNGLMULTIDRAWELEMENTSINDIRECTCOUNTARBPROC$FUNC
+    );
+    static final FunctionDescriptor glMultiDrawArraysIndirectCountARB$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle glMultiDrawArraysIndirectCountARB$MH = RuntimeHelper.downcallHandle(
+        "glMultiDrawArraysIndirectCountARB",
+        constants$468.glMultiDrawArraysIndirectCountARB$FUNC
     );
 }
 

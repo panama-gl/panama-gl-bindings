@@ -9,44 +9,38 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$803 {
 
-    static final FunctionDescriptor PFNGLSTENCILTHENCOVERFILLPATHINSTANCEDNVPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
+    static final FunctionDescriptor PFNGLTEXTUREPARAMETERIIVEXTPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLSTENCILTHENCOVERFILLPATHINSTANCEDNVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$803.PFNGLSTENCILTHENCOVERFILLPATHINSTANCEDNVPROC$FUNC
+    static final MethodHandle PFNGLTEXTUREPARAMETERIIVEXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$803.PFNGLTEXTUREPARAMETERIIVEXTPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLSTENCILTHENCOVERSTROKEPATHINSTANCEDNVPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
+    static final FunctionDescriptor PFNGLTEXTUREPARAMETERIUIVEXTPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLSTENCILTHENCOVERSTROKEPATHINSTANCEDNVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$803.PFNGLSTENCILTHENCOVERSTROKEPATHINSTANCEDNVPROC$FUNC
+    static final MethodHandle PFNGLTEXTUREPARAMETERIUIVEXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$803.PFNGLTEXTUREPARAMETERIUIVEXTPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLPATHGLYPHINDEXRANGENVPROC$FUNC = FunctionDescriptor.of(Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
+    static final FunctionDescriptor PFNGLGETTEXTUREPARAMETERIIVEXTPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLPATHGLYPHINDEXRANGENVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$803.PFNGLPATHGLYPHINDEXRANGENVPROC$FUNC
+    static final MethodHandle PFNGLGETTEXTUREPARAMETERIIVEXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$803.PFNGLGETTEXTUREPARAMETERIIVEXTPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLGETTEXTUREPARAMETERIUIVEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
 }
 

@@ -9,31 +9,29 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$340 {
 
-    static final FunctionDescriptor PFNGLPROGRAMUNIFORM4I64VARBPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
+    static final FunctionDescriptor PFNGLGETPROGRAMRESOURCELOCATIONPROC$FUNC = FunctionDescriptor.of(Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLPROGRAMUNIFORM4I64VARBPROC$MH = RuntimeHelper.downcallHandle(
-        constants$340.PFNGLPROGRAMUNIFORM4I64VARBPROC$FUNC
+    static final MethodHandle PFNGLGETPROGRAMRESOURCELOCATIONPROC$MH = RuntimeHelper.downcallHandle(
+        constants$340.PFNGLGETPROGRAMRESOURCELOCATIONPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLPROGRAMUNIFORM1UI64ARBPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLGETPROGRAMRESOURCELOCATIONINDEXPROC$FUNC = FunctionDescriptor.of(Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_LONG_LONG$LAYOUT
+        Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLPROGRAMUNIFORM1UI64ARBPROC$MH = RuntimeHelper.downcallHandle(
-        constants$340.PFNGLPROGRAMUNIFORM1UI64ARBPROC$FUNC
+    static final MethodHandle PFNGLGETPROGRAMRESOURCELOCATIONINDEXPROC$MH = RuntimeHelper.downcallHandle(
+        constants$340.PFNGLGETPROGRAMRESOURCELOCATIONINDEXPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLPROGRAMUNIFORM2UI64ARBPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLSHADERSTORAGEBLOCKBINDINGPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_LONG_LONG$LAYOUT,
-        Constants$root.C_LONG_LONG$LAYOUT
+        Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLPROGRAMUNIFORM2UI64ARBPROC$MH = RuntimeHelper.downcallHandle(
-        constants$340.PFNGLPROGRAMUNIFORM2UI64ARBPROC$FUNC
+    static final MethodHandle PFNGLSHADERSTORAGEBLOCKBINDINGPROC$MH = RuntimeHelper.downcallHandle(
+        constants$340.PFNGLSHADERSTORAGEBLOCKBINDINGPROC$FUNC
     );
 }
 

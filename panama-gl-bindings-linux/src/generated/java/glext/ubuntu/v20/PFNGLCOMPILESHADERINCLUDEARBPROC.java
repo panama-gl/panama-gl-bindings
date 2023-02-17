@@ -11,13 +11,13 @@ public interface PFNGLCOMPILESHADERINCLUDEARBPROC {
 
     void apply(int shader, int count, java.lang.foreign.MemoryAddress path, java.lang.foreign.MemoryAddress length);
     static MemorySegment allocate(PFNGLCOMPILESHADERINCLUDEARBPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLCOMPILESHADERINCLUDEARBPROC.class, fi, constants$371.PFNGLCOMPILESHADERINCLUDEARBPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLCOMPILESHADERINCLUDEARBPROC.class, fi, constants$510.PFNGLCOMPILESHADERINCLUDEARBPROC$FUNC, session);
     }
     static PFNGLCOMPILESHADERINCLUDEARBPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _shader, int _count, java.lang.foreign.MemoryAddress _path, java.lang.foreign.MemoryAddress _length) -> {
             try {
-                constants$371.PFNGLCOMPILESHADERINCLUDEARBPROC$MH.invokeExact((Addressable)symbol, _shader, _count, (java.lang.foreign.Addressable)_path, (java.lang.foreign.Addressable)_length);
+                constants$510.PFNGLCOMPILESHADERINCLUDEARBPROC$MH.invokeExact((Addressable)symbol, _shader, _count, (java.lang.foreign.Addressable)_path, (java.lang.foreign.Addressable)_length);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

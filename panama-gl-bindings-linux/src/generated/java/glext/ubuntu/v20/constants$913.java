@@ -9,23 +9,24 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$913 {
 
-    static final FunctionDescriptor PFNGLREPLACEMENTCODEUISUNPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLAPPLYTEXTUREEXTPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLREPLACEMENTCODEUISUNPROC$MH = RuntimeHelper.downcallHandle(
-        constants$913.PFNGLREPLACEMENTCODEUISUNPROC$FUNC
+    static final MethodHandle PFNGLAPPLYTEXTUREEXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$913.PFNGLAPPLYTEXTUREEXTPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLREPLACEMENTCODEUSSUNPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_SHORT$LAYOUT
+    static final FunctionDescriptor PFNGLTEXTURELIGHTEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLREPLACEMENTCODEUSSUNPROC$MH = RuntimeHelper.downcallHandle(
-        constants$913.PFNGLREPLACEMENTCODEUSSUNPROC$FUNC
+    static final MethodHandle PFNGLTEXTURELIGHTEXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$913.PFNGLTEXTURELIGHTEXTPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLREPLACEMENTCODEUBSUNPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_CHAR$LAYOUT
+    static final FunctionDescriptor PFNGLTEXTUREMATERIALEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLREPLACEMENTCODEUBSUNPROC$MH = RuntimeHelper.downcallHandle(
-        constants$913.PFNGLREPLACEMENTCODEUBSUNPROC$FUNC
+    static final MethodHandle PFNGLTEXTUREMATERIALEXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$913.PFNGLTEXTUREMATERIALEXTPROC$FUNC
     );
 }
 

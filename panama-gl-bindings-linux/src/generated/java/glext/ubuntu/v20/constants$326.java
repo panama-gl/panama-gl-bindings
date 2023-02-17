@@ -9,32 +9,60 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$326 {
 
-    static final FunctionDescriptor PFNGLPROGRAMLOCALPARAMETER4DVARBPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glScissorIndexed$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle glScissorIndexed$MH = RuntimeHelper.downcallHandle(
+        "glScissorIndexed",
+        constants$326.glScissorIndexed$FUNC
+    );
+    static final FunctionDescriptor glScissorIndexedv$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glScissorIndexedv$MH = RuntimeHelper.downcallHandle(
+        "glScissorIndexedv",
+        constants$326.glScissorIndexedv$FUNC
+    );
+    static final FunctionDescriptor glDepthRangeArrayv$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLPROGRAMLOCALPARAMETER4DVARBPROC$MH = RuntimeHelper.downcallHandle(
-        constants$326.PFNGLPROGRAMLOCALPARAMETER4DVARBPROC$FUNC
+    static final MethodHandle glDepthRangeArrayv$MH = RuntimeHelper.downcallHandle(
+        "glDepthRangeArrayv",
+        constants$326.glDepthRangeArrayv$FUNC
     );
-    static final FunctionDescriptor PFNGLPROGRAMLOCALPARAMETER4FARBPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glDepthRangeIndexed$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT
+        Constants$root.C_DOUBLE$LAYOUT,
+        Constants$root.C_DOUBLE$LAYOUT
     );
-    static final MethodHandle PFNGLPROGRAMLOCALPARAMETER4FARBPROC$MH = RuntimeHelper.downcallHandle(
-        constants$326.PFNGLPROGRAMLOCALPARAMETER4FARBPROC$FUNC
+    static final MethodHandle glDepthRangeIndexed$MH = RuntimeHelper.downcallHandle(
+        "glDepthRangeIndexed",
+        constants$326.glDepthRangeIndexed$FUNC
     );
-    static final FunctionDescriptor PFNGLPROGRAMLOCALPARAMETER4FVARBPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glGetFloati_v$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLPROGRAMLOCALPARAMETER4FVARBPROC$MH = RuntimeHelper.downcallHandle(
-        constants$326.PFNGLPROGRAMLOCALPARAMETER4FVARBPROC$FUNC
+    static final MethodHandle glGetFloati_v$MH = RuntimeHelper.downcallHandle(
+        "glGetFloati_v",
+        constants$326.glGetFloati_v$FUNC
+    );
+    static final FunctionDescriptor glGetDoublei_v$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glGetDoublei_v$MH = RuntimeHelper.downcallHandle(
+        "glGetDoublei_v",
+        constants$326.glGetDoublei_v$FUNC
     );
 }
 

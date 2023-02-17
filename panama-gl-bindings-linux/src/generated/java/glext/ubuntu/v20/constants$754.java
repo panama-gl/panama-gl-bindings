@@ -9,33 +9,44 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$754 {
 
-    static final FunctionDescriptor PFNGLRENDERGPUMASKNVPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT
-    );
-    static final MethodHandle PFNGLRENDERGPUMASKNVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$754.PFNGLRENDERGPUMASKNVPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLMULTICASTBUFFERSUBDATANVPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLCULLPARAMETERFVEXTPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_LONG_LONG$LAYOUT,
-        Constants$root.C_LONG_LONG$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLMULTICASTBUFFERSUBDATANVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$754.PFNGLMULTICASTBUFFERSUBDATANVPROC$FUNC
+    static final MethodHandle PFNGLCULLPARAMETERFVEXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$754.PFNGLCULLPARAMETERFVEXTPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLMULTICASTCOPYBUFFERSUBDATANVPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glCullParameterdvEXT$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_LONG_LONG$LAYOUT,
-        Constants$root.C_LONG_LONG$LAYOUT,
-        Constants$root.C_LONG_LONG$LAYOUT
+        Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLMULTICASTCOPYBUFFERSUBDATANVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$754.PFNGLMULTICASTCOPYBUFFERSUBDATANVPROC$FUNC
+    static final MethodHandle glCullParameterdvEXT$MH = RuntimeHelper.downcallHandle(
+        "glCullParameterdvEXT",
+        constants$754.glCullParameterdvEXT$FUNC
+    );
+    static final FunctionDescriptor glCullParameterfvEXT$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glCullParameterfvEXT$MH = RuntimeHelper.downcallHandle(
+        "glCullParameterfvEXT",
+        constants$754.glCullParameterfvEXT$FUNC
+    );
+    static final FunctionDescriptor PFNGLLABELOBJECTEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle PFNGLLABELOBJECTEXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$754.PFNGLLABELOBJECTEXTPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLGETOBJECTLABELEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
 }
 

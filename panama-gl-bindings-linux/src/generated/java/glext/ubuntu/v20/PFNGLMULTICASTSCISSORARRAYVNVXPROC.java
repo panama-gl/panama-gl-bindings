@@ -11,13 +11,13 @@ public interface PFNGLMULTICASTSCISSORARRAYVNVXPROC {
 
     void apply(int gpu, int first, int count, java.lang.foreign.MemoryAddress v);
     static MemorySegment allocate(PFNGLMULTICASTSCISSORARRAYVNVXPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLMULTICASTSCISSORARRAYVNVXPROC.class, fi, constants$721.PFNGLMULTICASTSCISSORARRAYVNVXPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLMULTICASTSCISSORARRAYVNVXPROC.class, fi, constants$1035.PFNGLMULTICASTSCISSORARRAYVNVXPROC$FUNC, session);
     }
     static PFNGLMULTICASTSCISSORARRAYVNVXPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _gpu, int _first, int _count, java.lang.foreign.MemoryAddress _v) -> {
             try {
-                constants$721.PFNGLMULTICASTSCISSORARRAYVNVXPROC$MH.invokeExact((Addressable)symbol, _gpu, _first, _count, (java.lang.foreign.Addressable)_v);
+                constants$1035.PFNGLMULTICASTSCISSORARRAYVNVXPROC$MH.invokeExact((Addressable)symbol, _gpu, _first, _count, (java.lang.foreign.Addressable)_v);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

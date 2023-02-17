@@ -11,13 +11,13 @@ public interface PFNGLCOMPRESSEDTEXSUBIMAGE2DARBPROC {
 
     void apply(int target, int level, int xoffset, int yoffset, int width, int height, int format, int imageSize, java.lang.foreign.MemoryAddress data);
     static MemorySegment allocate(PFNGLCOMPRESSEDTEXSUBIMAGE2DARBPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLCOMPRESSEDTEXSUBIMAGE2DARBPROC.class, fi, constants$375.PFNGLCOMPRESSEDTEXSUBIMAGE2DARBPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLCOMPRESSEDTEXSUBIMAGE2DARBPROC.class, fi, constants$516.PFNGLCOMPRESSEDTEXSUBIMAGE2DARBPROC$FUNC, session);
     }
     static PFNGLCOMPRESSEDTEXSUBIMAGE2DARBPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _target, int _level, int _xoffset, int _yoffset, int _width, int _height, int _format, int _imageSize, java.lang.foreign.MemoryAddress _data) -> {
             try {
-                constants$375.PFNGLCOMPRESSEDTEXSUBIMAGE2DARBPROC$MH.invokeExact((Addressable)symbol, _target, _level, _xoffset, _yoffset, _width, _height, _format, _imageSize, (java.lang.foreign.Addressable)_data);
+                constants$516.PFNGLCOMPRESSEDTEXSUBIMAGE2DARBPROC$MH.invokeExact((Addressable)symbol, _target, _level, _xoffset, _yoffset, _width, _height, _format, _imageSize, (java.lang.foreign.Addressable)_data);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

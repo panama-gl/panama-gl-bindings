@@ -9,31 +9,30 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$285 {
 
-    static final FunctionDescriptor PFNGLCREATETEXTURESPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLPROGRAMBINARYPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLCREATETEXTURESPROC$MH = RuntimeHelper.downcallHandle(
-        constants$285.PFNGLCREATETEXTURESPROC$FUNC
+    static final MethodHandle PFNGLPROGRAMBINARYPROC$MH = RuntimeHelper.downcallHandle(
+        constants$285.PFNGLPROGRAMBINARYPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLTEXTUREBUFFERPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLPROGRAMPARAMETERIPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLTEXTUREBUFFERPROC$MH = RuntimeHelper.downcallHandle(
-        constants$285.PFNGLTEXTUREBUFFERPROC$FUNC
+    static final MethodHandle PFNGLPROGRAMPARAMETERIPROC$MH = RuntimeHelper.downcallHandle(
+        constants$285.PFNGLPROGRAMPARAMETERIPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLTEXTUREBUFFERRANGEPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLUSEPROGRAMSTAGESPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_LONG_LONG$LAYOUT,
-        Constants$root.C_LONG_LONG$LAYOUT
+        Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLTEXTUREBUFFERRANGEPROC$MH = RuntimeHelper.downcallHandle(
-        constants$285.PFNGLTEXTUREBUFFERRANGEPROC$FUNC
+    static final MethodHandle PFNGLUSEPROGRAMSTAGESPROC$MH = RuntimeHelper.downcallHandle(
+        constants$285.PFNGLUSEPROGRAMSTAGESPROC$FUNC
     );
 }
 

@@ -9,29 +9,28 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$670 {
 
-    static final FunctionDescriptor PFNGLCLEARCOLORIUIEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
+    static final FunctionDescriptor PFNGLTESTFENCEAPPLEPROC$FUNC = FunctionDescriptor.of(Constants$root.C_CHAR$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle PFNGLTESTFENCEAPPLEPROC$MH = RuntimeHelper.downcallHandle(
+        constants$670.PFNGLTESTFENCEAPPLEPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLFINISHFENCEAPPLEPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle PFNGLFINISHFENCEAPPLEPROC$MH = RuntimeHelper.downcallHandle(
+        constants$670.PFNGLFINISHFENCEAPPLEPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLTESTOBJECTAPPLEPROC$FUNC = FunctionDescriptor.of(Constants$root.C_CHAR$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLCLEARCOLORIUIEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$670.PFNGLCLEARCOLORIUIEXTPROC$FUNC
+    static final MethodHandle PFNGLTESTOBJECTAPPLEPROC$MH = RuntimeHelper.downcallHandle(
+        constants$670.PFNGLTESTOBJECTAPPLEPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLARETEXTURESRESIDENTEXTPROC$FUNC = FunctionDescriptor.of(Constants$root.C_CHAR$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle PFNGLARETEXTURESRESIDENTEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$670.PFNGLARETEXTURESRESIDENTEXTPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLBINDTEXTUREEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLFINISHOBJECTAPPLEPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT
-    );
-    static final MethodHandle PFNGLBINDTEXTUREEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$670.PFNGLBINDTEXTUREEXTPROC$FUNC
     );
 }
 

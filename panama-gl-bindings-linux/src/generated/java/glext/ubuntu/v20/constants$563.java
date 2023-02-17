@@ -9,28 +9,31 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$563 {
 
-    static final FunctionDescriptor PFNGLISENABLEDINDEXEDEXTPROC$FUNC = FunctionDescriptor.of(Constants$root.C_CHAR$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
+    static final FunctionDescriptor glMaxShaderCompilerThreadsKHR$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLISENABLEDINDEXEDEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$563.PFNGLISENABLEDINDEXEDEXTPROC$FUNC
+    static final MethodHandle glMaxShaderCompilerThreadsKHR$MH = RuntimeHelper.downcallHandle(
+        "glMaxShaderCompilerThreadsKHR",
+        constants$563.glMaxShaderCompilerThreadsKHR$FUNC
     );
-    static final FunctionDescriptor PFNGLGETINTEGERINDEXEDVEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLMULTITEXCOORD1BOESPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
+        Constants$root.C_CHAR$LAYOUT
+    );
+    static final MethodHandle PFNGLMULTITEXCOORD1BOESPROC$MH = RuntimeHelper.downcallHandle(
+        constants$563.PFNGLMULTITEXCOORD1BOESPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLMULTITEXCOORD1BVOESPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLGETINTEGERINDEXEDVEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$563.PFNGLGETINTEGERINDEXEDVEXTPROC$FUNC
+    static final MethodHandle PFNGLMULTITEXCOORD1BVOESPROC$MH = RuntimeHelper.downcallHandle(
+        constants$563.PFNGLMULTITEXCOORD1BVOESPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLGETBOOLEANINDEXEDVEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLMULTITEXCOORD2BOESPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle PFNGLGETBOOLEANINDEXEDVEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$563.PFNGLGETBOOLEANINDEXEDVEXTPROC$FUNC
+        Constants$root.C_CHAR$LAYOUT,
+        Constants$root.C_CHAR$LAYOUT
     );
 }
 

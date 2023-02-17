@@ -9,29 +9,50 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$633 {
 
-    static final FunctionDescriptor PFNGLUNIFORM1UIEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT
-    );
-    static final MethodHandle PFNGLUNIFORM1UIEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$633.PFNGLUNIFORM1UIEXTPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLUNIFORM2UIEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLBLENDEQUATIONSEPARATEINDEXEDAMDPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLUNIFORM2UIEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$633.PFNGLUNIFORM2UIEXTPROC$FUNC
+    static final MethodHandle PFNGLBLENDEQUATIONSEPARATEINDEXEDAMDPROC$MH = RuntimeHelper.downcallHandle(
+        constants$633.PFNGLBLENDEQUATIONSEPARATEINDEXEDAMDPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLUNIFORM3UIEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glBlendFuncIndexedAMD$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle glBlendFuncIndexedAMD$MH = RuntimeHelper.downcallHandle(
+        "glBlendFuncIndexedAMD",
+        constants$633.glBlendFuncIndexedAMD$FUNC
+    );
+    static final FunctionDescriptor glBlendFuncSeparateIndexedAMD$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLUNIFORM3UIEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$633.PFNGLUNIFORM3UIEXTPROC$FUNC
+    static final MethodHandle glBlendFuncSeparateIndexedAMD$MH = RuntimeHelper.downcallHandle(
+        "glBlendFuncSeparateIndexedAMD",
+        constants$633.glBlendFuncSeparateIndexedAMD$FUNC
+    );
+    static final FunctionDescriptor glBlendEquationIndexedAMD$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle glBlendEquationIndexedAMD$MH = RuntimeHelper.downcallHandle(
+        "glBlendEquationIndexedAMD",
+        constants$633.glBlendEquationIndexedAMD$FUNC
+    );
+    static final FunctionDescriptor glBlendEquationSeparateIndexedAMD$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle glBlendEquationSeparateIndexedAMD$MH = RuntimeHelper.downcallHandle(
+        "glBlendEquationSeparateIndexedAMD",
+        constants$633.glBlendEquationSeparateIndexedAMD$FUNC
     );
 }
 

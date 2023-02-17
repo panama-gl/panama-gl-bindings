@@ -9,47 +9,32 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$543 {
 
-    static final FunctionDescriptor PFNGLTEXTUREIMAGE1DEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
+    static final FunctionDescriptor PFNGLVERTEXATTRIB4USVARBPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLTEXTUREIMAGE1DEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$543.PFNGLTEXTUREIMAGE1DEXTPROC$FUNC
+    static final MethodHandle PFNGLVERTEXATTRIB4USVARBPROC$MH = RuntimeHelper.downcallHandle(
+        constants$543.PFNGLVERTEXATTRIB4USVARBPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLTEXTUREIMAGE2DEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLVERTEXATTRIBPOINTERARBPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_CHAR$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLTEXTUREIMAGE2DEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$543.PFNGLTEXTUREIMAGE2DEXTPROC$FUNC
+    static final MethodHandle PFNGLVERTEXATTRIBPOINTERARBPROC$MH = RuntimeHelper.downcallHandle(
+        constants$543.PFNGLVERTEXATTRIBPOINTERARBPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLTEXTURESUBIMAGE1DEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
+    static final FunctionDescriptor PFNGLENABLEVERTEXATTRIBARRAYARBPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLTEXTURESUBIMAGE1DEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$543.PFNGLTEXTURESUBIMAGE1DEXTPROC$FUNC
+    static final MethodHandle PFNGLENABLEVERTEXATTRIBARRAYARBPROC$MH = RuntimeHelper.downcallHandle(
+        constants$543.PFNGLENABLEVERTEXATTRIBARRAYARBPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLDISABLEVERTEXATTRIBARRAYARBPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT
     );
 }
 

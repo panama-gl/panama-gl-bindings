@@ -11,13 +11,13 @@ public interface PFNGLGETPROGRAMBINARYPROC {
 
     void apply(int program, int bufSize, java.lang.foreign.MemoryAddress length, java.lang.foreign.MemoryAddress binaryFormat, java.lang.foreign.MemoryAddress binary);
     static MemorySegment allocate(PFNGLGETPROGRAMBINARYPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLGETPROGRAMBINARYPROC.class, fi, constants$221.PFNGLGETPROGRAMBINARYPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLGETPROGRAMBINARYPROC.class, fi, constants$284.PFNGLGETPROGRAMBINARYPROC$FUNC, session);
     }
     static PFNGLGETPROGRAMBINARYPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _program, int _bufSize, java.lang.foreign.MemoryAddress _length, java.lang.foreign.MemoryAddress _binaryFormat, java.lang.foreign.MemoryAddress _binary) -> {
             try {
-                constants$221.PFNGLGETPROGRAMBINARYPROC$MH.invokeExact((Addressable)symbol, _program, _bufSize, (java.lang.foreign.Addressable)_length, (java.lang.foreign.Addressable)_binaryFormat, (java.lang.foreign.Addressable)_binary);
+                constants$284.PFNGLGETPROGRAMBINARYPROC$MH.invokeExact((Addressable)symbol, _program, _bufSize, (java.lang.foreign.Addressable)_length, (java.lang.foreign.Addressable)_binaryFormat, (java.lang.foreign.Addressable)_binary);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

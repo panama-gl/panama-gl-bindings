@@ -9,35 +9,56 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$251 {
 
-    static final FunctionDescriptor PFNGLTEXSTORAGE1DPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glIsSampler$FUNC = FunctionDescriptor.of(Constants$root.C_CHAR$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle glIsSampler$MH = RuntimeHelper.downcallHandle(
+        "glIsSampler",
+        constants$251.glIsSampler$FUNC
+    );
+    static final FunctionDescriptor glBindSampler$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle glBindSampler$MH = RuntimeHelper.downcallHandle(
+        "glBindSampler",
+        constants$251.glBindSampler$FUNC
+    );
+    static final FunctionDescriptor glSamplerParameteri$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLTEXSTORAGE1DPROC$MH = RuntimeHelper.downcallHandle(
-        constants$251.PFNGLTEXSTORAGE1DPROC$FUNC
+    static final MethodHandle glSamplerParameteri$MH = RuntimeHelper.downcallHandle(
+        "glSamplerParameteri",
+        constants$251.glSamplerParameteri$FUNC
     );
-    static final FunctionDescriptor PFNGLTEXSTORAGE2DPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glSamplerParameteriv$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT
+        Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLTEXSTORAGE2DPROC$MH = RuntimeHelper.downcallHandle(
-        constants$251.PFNGLTEXSTORAGE2DPROC$FUNC
+    static final MethodHandle glSamplerParameteriv$MH = RuntimeHelper.downcallHandle(
+        "glSamplerParameteriv",
+        constants$251.glSamplerParameteriv$FUNC
     );
-    static final FunctionDescriptor PFNGLTEXSTORAGE3DPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glSamplerParameterf$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT
+        Constants$root.C_FLOAT$LAYOUT
     );
-    static final MethodHandle PFNGLTEXSTORAGE3DPROC$MH = RuntimeHelper.downcallHandle(
-        constants$251.PFNGLTEXSTORAGE3DPROC$FUNC
+    static final MethodHandle glSamplerParameterf$MH = RuntimeHelper.downcallHandle(
+        "glSamplerParameterf",
+        constants$251.glSamplerParameterf$FUNC
+    );
+    static final FunctionDescriptor glSamplerParameterfv$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glSamplerParameterfv$MH = RuntimeHelper.downcallHandle(
+        "glSamplerParameterfv",
+        constants$251.glSamplerParameterfv$FUNC
     );
 }
 

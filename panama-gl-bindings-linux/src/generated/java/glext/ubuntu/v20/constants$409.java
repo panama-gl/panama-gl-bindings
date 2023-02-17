@@ -9,24 +9,93 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$409 {
 
-    static final FunctionDescriptor PFNGLTEXCOORD1BOESPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_CHAR$LAYOUT
-    );
-    static final MethodHandle PFNGLTEXCOORD1BOESPROC$MH = RuntimeHelper.downcallHandle(
-        constants$409.PFNGLTEXCOORD1BOESPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLTEXCOORD1BVOESPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glTextureSubImage3D$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLTEXCOORD1BVOESPROC$MH = RuntimeHelper.downcallHandle(
-        constants$409.PFNGLTEXCOORD1BVOESPROC$FUNC
+    static final MethodHandle glTextureSubImage3D$MH = RuntimeHelper.downcallHandle(
+        "glTextureSubImage3D",
+        constants$409.glTextureSubImage3D$FUNC
     );
-    static final FunctionDescriptor PFNGLTEXCOORD2BOESPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_CHAR$LAYOUT,
-        Constants$root.C_CHAR$LAYOUT
+    static final FunctionDescriptor glCompressedTextureSubImage1D$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLTEXCOORD2BOESPROC$MH = RuntimeHelper.downcallHandle(
-        constants$409.PFNGLTEXCOORD2BOESPROC$FUNC
+    static final MethodHandle glCompressedTextureSubImage1D$MH = RuntimeHelper.downcallHandle(
+        "glCompressedTextureSubImage1D",
+        constants$409.glCompressedTextureSubImage1D$FUNC
+    );
+    static final FunctionDescriptor glCompressedTextureSubImage2D$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glCompressedTextureSubImage2D$MH = RuntimeHelper.downcallHandle(
+        "glCompressedTextureSubImage2D",
+        constants$409.glCompressedTextureSubImage2D$FUNC
+    );
+    static final FunctionDescriptor glCompressedTextureSubImage3D$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glCompressedTextureSubImage3D$MH = RuntimeHelper.downcallHandle(
+        "glCompressedTextureSubImage3D",
+        constants$409.glCompressedTextureSubImage3D$FUNC
+    );
+    static final FunctionDescriptor glCopyTextureSubImage1D$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle glCopyTextureSubImage1D$MH = RuntimeHelper.downcallHandle(
+        "glCopyTextureSubImage1D",
+        constants$409.glCopyTextureSubImage1D$FUNC
+    );
+    static final FunctionDescriptor glCopyTextureSubImage2D$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle glCopyTextureSubImage2D$MH = RuntimeHelper.downcallHandle(
+        "glCopyTextureSubImage2D",
+        constants$409.glCopyTextureSubImage2D$FUNC
     );
 }
 

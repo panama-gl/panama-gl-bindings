@@ -9,25 +9,28 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$909 {
 
-    static final FunctionDescriptor PFNGLGETCOLORTABLEPARAMETERFVSGIPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLHISTOGRAMEXTPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_CHAR$LAYOUT
     );
-    static final MethodHandle PFNGLGETCOLORTABLEPARAMETERFVSGIPROC$MH = RuntimeHelper.downcallHandle(
-        constants$909.PFNGLGETCOLORTABLEPARAMETERFVSGIPROC$FUNC
+    static final MethodHandle PFNGLHISTOGRAMEXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$909.PFNGLHISTOGRAMEXTPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLGETCOLORTABLEPARAMETERIVSGIPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLMINMAXEXTPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
+        Constants$root.C_CHAR$LAYOUT
     );
-    static final MethodHandle PFNGLGETCOLORTABLEPARAMETERIVSGIPROC$MH = RuntimeHelper.downcallHandle(
-        constants$909.PFNGLGETCOLORTABLEPARAMETERIVSGIPROC$FUNC
+    static final MethodHandle PFNGLMINMAXEXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$909.PFNGLMINMAXEXTPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLFINISHTEXTURESUNXPROC$FUNC = FunctionDescriptor.ofVoid();
-    static final MethodHandle PFNGLFINISHTEXTURESUNXPROC$MH = RuntimeHelper.downcallHandle(
-        constants$909.PFNGLFINISHTEXTURESUNXPROC$FUNC
+    static final FunctionDescriptor PFNGLRESETHISTOGRAMEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle PFNGLRESETHISTOGRAMEXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$909.PFNGLRESETHISTOGRAMEXTPROC$FUNC
     );
 }
 

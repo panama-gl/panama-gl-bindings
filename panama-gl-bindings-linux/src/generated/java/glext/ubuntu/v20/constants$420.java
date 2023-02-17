@@ -9,27 +9,42 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$420 {
 
-    static final FunctionDescriptor PFNGLMATERIALXOESPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glGetnMinmax$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
+        Constants$root.C_CHAR$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glGetnMinmax$MH = RuntimeHelper.downcallHandle(
+        "glGetnMinmax",
+        constants$420.glGetnMinmax$FUNC
+    );
+    static final FunctionDescriptor glTextureBarrier$FUNC = FunctionDescriptor.ofVoid();
+    static final MethodHandle glTextureBarrier$MH = RuntimeHelper.downcallHandle(
+        "glTextureBarrier",
+        constants$420.glTextureBarrier$FUNC
+    );
+    static final FunctionDescriptor PFNGLSPECIALIZESHADERPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle PFNGLSPECIALIZESHADERPROC$MH = RuntimeHelper.downcallHandle(
+        constants$420.PFNGLSPECIALIZESHADERPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLMULTIDRAWARRAYSINDIRECTCOUNTPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLMATERIALXOESPROC$MH = RuntimeHelper.downcallHandle(
-        constants$420.PFNGLMATERIALXOESPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLMATERIALXVOESPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle PFNGLMATERIALXVOESPROC$MH = RuntimeHelper.downcallHandle(
-        constants$420.PFNGLMATERIALXVOESPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLMULTMATRIXXOESPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle PFNGLMULTMATRIXXOESPROC$MH = RuntimeHelper.downcallHandle(
-        constants$420.PFNGLMULTMATRIXXOESPROC$FUNC
+    static final MethodHandle PFNGLMULTIDRAWARRAYSINDIRECTCOUNTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$420.PFNGLMULTIDRAWARRAYSINDIRECTCOUNTPROC$FUNC
     );
 }
 

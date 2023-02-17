@@ -11,13 +11,13 @@ public interface PFNGLBINDVIDEOCAPTURESTREAMTEXTURENVPROC {
 
     void apply(int video_capture_slot, int stream, int frame_region, int target, int texture);
     static MemorySegment allocate(PFNGLBINDVIDEOCAPTURESTREAMTEXTURENVPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLBINDVIDEOCAPTURESTREAMTEXTURENVPROC.class, fi, constants$879.PFNGLBINDVIDEOCAPTURESTREAMTEXTURENVPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLBINDVIDEOCAPTURESTREAMTEXTURENVPROC.class, fi, constants$1272.PFNGLBINDVIDEOCAPTURESTREAMTEXTURENVPROC$FUNC, session);
     }
     static PFNGLBINDVIDEOCAPTURESTREAMTEXTURENVPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _video_capture_slot, int _stream, int _frame_region, int _target, int _texture) -> {
             try {
-                constants$879.PFNGLBINDVIDEOCAPTURESTREAMTEXTURENVPROC$MH.invokeExact((Addressable)symbol, _video_capture_slot, _stream, _frame_region, _target, _texture);
+                constants$1272.PFNGLBINDVIDEOCAPTURESTREAMTEXTURENVPROC$MH.invokeExact((Addressable)symbol, _video_capture_slot, _stream, _frame_region, _target, _texture);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

@@ -7,7 +7,7 @@ import java.lang.invoke.VarHandle;
 import java.nio.ByteOrder;
 import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
-public class glext_h extends glext_h_6 {
+public class glext_h extends glext_h_9 {
 
     /* package-private */ glext_h() {}
     public static OfByte C_CHAR = Constants$root.C_CHAR$LAYOUT;

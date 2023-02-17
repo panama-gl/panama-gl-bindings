@@ -9,29 +9,93 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$693 {
 
-    static final FunctionDescriptor PFNGLGETVARIANTINTEGERVEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glColorFragmentOp2ATI$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle glColorFragmentOp2ATI$MH = RuntimeHelper.downcallHandle(
+        "glColorFragmentOp2ATI",
+        constants$693.glColorFragmentOp2ATI$FUNC
+    );
+    static final FunctionDescriptor glColorFragmentOp3ATI$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle glColorFragmentOp3ATI$MH = RuntimeHelper.downcallHandle(
+        "glColorFragmentOp3ATI",
+        constants$693.glColorFragmentOp3ATI$FUNC
+    );
+    static final FunctionDescriptor glAlphaFragmentOp1ATI$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle glAlphaFragmentOp1ATI$MH = RuntimeHelper.downcallHandle(
+        "glAlphaFragmentOp1ATI",
+        constants$693.glAlphaFragmentOp1ATI$FUNC
+    );
+    static final FunctionDescriptor glAlphaFragmentOp2ATI$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle glAlphaFragmentOp2ATI$MH = RuntimeHelper.downcallHandle(
+        "glAlphaFragmentOp2ATI",
+        constants$693.glAlphaFragmentOp2ATI$FUNC
+    );
+    static final FunctionDescriptor glAlphaFragmentOp3ATI$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle glAlphaFragmentOp3ATI$MH = RuntimeHelper.downcallHandle(
+        "glAlphaFragmentOp3ATI",
+        constants$693.glAlphaFragmentOp3ATI$FUNC
+    );
+    static final FunctionDescriptor glSetFragmentShaderConstantATI$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLGETVARIANTINTEGERVEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$693.PFNGLGETVARIANTINTEGERVEXTPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLGETVARIANTFLOATVEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle PFNGLGETVARIANTFLOATVEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$693.PFNGLGETVARIANTFLOATVEXTPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLGETVARIANTPOINTERVEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle PFNGLGETVARIANTPOINTERVEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$693.PFNGLGETVARIANTPOINTERVEXTPROC$FUNC
+    static final MethodHandle glSetFragmentShaderConstantATI$MH = RuntimeHelper.downcallHandle(
+        "glSetFragmentShaderConstantATI",
+        constants$693.glSetFragmentShaderConstantATI$FUNC
     );
 }
 

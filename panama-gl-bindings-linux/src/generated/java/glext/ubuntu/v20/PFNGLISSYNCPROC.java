@@ -11,13 +11,13 @@ public interface PFNGLISSYNCPROC {
 
     byte apply(java.lang.foreign.MemoryAddress sync);
     static MemorySegment allocate(PFNGLISSYNCPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLISSYNCPROC.class, fi, constants$180.PFNGLISSYNCPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLISSYNCPROC.class, fi, constants$223.PFNGLISSYNCPROC$FUNC, session);
     }
     static PFNGLISSYNCPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (java.lang.foreign.MemoryAddress _sync) -> {
             try {
-                return (byte)constants$180.PFNGLISSYNCPROC$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)_sync);
+                return (byte)constants$223.PFNGLISSYNCPROC$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)_sync);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

@@ -9,35 +9,32 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$578 {
 
-    static final FunctionDescriptor PFNGLPROGRAMUNIFORMMATRIX3FVEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLGETTEXENVXVOESPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_CHAR$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLPROGRAMUNIFORMMATRIX3FVEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$578.PFNGLPROGRAMUNIFORMMATRIX3FVEXTPROC$FUNC
+    static final MethodHandle PFNGLGETTEXENVXVOESPROC$MH = RuntimeHelper.downcallHandle(
+        constants$578.PFNGLGETTEXENVXVOESPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLPROGRAMUNIFORMMATRIX4FVEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLGETTEXPARAMETERXVOESPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_CHAR$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLPROGRAMUNIFORMMATRIX4FVEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$578.PFNGLPROGRAMUNIFORMMATRIX4FVEXTPROC$FUNC
+    static final MethodHandle PFNGLGETTEXPARAMETERXVOESPROC$MH = RuntimeHelper.downcallHandle(
+        constants$578.PFNGLGETTEXPARAMETERXVOESPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLPROGRAMUNIFORMMATRIX2X3FVEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLLIGHTMODELXOESPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle PFNGLLIGHTMODELXOESPROC$MH = RuntimeHelper.downcallHandle(
+        constants$578.PFNGLLIGHTMODELXOESPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLLIGHTMODELXVOESPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_CHAR$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle PFNGLPROGRAMUNIFORMMATRIX2X3FVEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$578.PFNGLPROGRAMUNIFORMMATRIX2X3FVEXTPROC$FUNC
     );
 }
 

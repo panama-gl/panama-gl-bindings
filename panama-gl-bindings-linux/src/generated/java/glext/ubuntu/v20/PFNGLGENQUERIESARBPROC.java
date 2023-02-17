@@ -11,13 +11,13 @@ public interface PFNGLGENQUERIESARBPROC {
 
     void apply(int n, java.lang.foreign.MemoryAddress ids);
     static MemorySegment allocate(PFNGLGENQUERIESARBPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLGENQUERIESARBPROC.class, fi, constants$346.PFNGLGENQUERIESARBPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLGENQUERIESARBPROC.class, fi, constants$472.PFNGLGENQUERIESARBPROC$FUNC, session);
     }
     static PFNGLGENQUERIESARBPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _n, java.lang.foreign.MemoryAddress _ids) -> {
             try {
-                constants$346.PFNGLGENQUERIESARBPROC$MH.invokeExact((Addressable)symbol, _n, (java.lang.foreign.Addressable)_ids);
+                constants$472.PFNGLGENQUERIESARBPROC$MH.invokeExact((Addressable)symbol, _n, (java.lang.foreign.Addressable)_ids);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

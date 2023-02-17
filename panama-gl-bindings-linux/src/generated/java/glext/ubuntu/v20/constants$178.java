@@ -9,35 +9,31 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$178 {
 
-    static final FunctionDescriptor PFNGLUNIFORMBLOCKBINDINGPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
+    static final FunctionDescriptor PFNGLBEGINCONDITIONALRENDERPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLUNIFORMBLOCKBINDINGPROC$MH = RuntimeHelper.downcallHandle(
-        constants$178.PFNGLUNIFORMBLOCKBINDINGPROC$FUNC
+    static final MethodHandle PFNGLBEGINCONDITIONALRENDERPROC$MH = RuntimeHelper.downcallHandle(
+        constants$178.PFNGLBEGINCONDITIONALRENDERPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLDRAWELEMENTSBASEVERTEXPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_INT$LAYOUT
+    static final FunctionDescriptor PFNGLENDCONDITIONALRENDERPROC$FUNC = FunctionDescriptor.ofVoid();
+    static final MethodHandle PFNGLENDCONDITIONALRENDERPROC$MH = RuntimeHelper.downcallHandle(
+        constants$178.PFNGLENDCONDITIONALRENDERPROC$FUNC
     );
-    static final MethodHandle PFNGLDRAWELEMENTSBASEVERTEXPROC$MH = RuntimeHelper.downcallHandle(
-        constants$178.PFNGLDRAWELEMENTSBASEVERTEXPROC$FUNC
+    static final FunctionDescriptor PFNGLVERTEXATTRIBIPOINTERPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
-    static final FunctionDescriptor PFNGLDRAWRANGEELEMENTSBASEVERTEXPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_INT$LAYOUT
+    static final MethodHandle PFNGLVERTEXATTRIBIPOINTERPROC$MH = RuntimeHelper.downcallHandle(
+        constants$178.PFNGLVERTEXATTRIBIPOINTERPROC$FUNC
     );
-    static final MethodHandle PFNGLDRAWRANGEELEMENTSBASEVERTEXPROC$MH = RuntimeHelper.downcallHandle(
-        constants$178.PFNGLDRAWRANGEELEMENTSBASEVERTEXPROC$FUNC
+    static final FunctionDescriptor PFNGLGETVERTEXATTRIBIIVPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
 }
 

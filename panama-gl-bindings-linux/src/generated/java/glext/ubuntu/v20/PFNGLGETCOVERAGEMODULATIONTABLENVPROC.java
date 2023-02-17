@@ -11,13 +11,13 @@ public interface PFNGLGETCOVERAGEMODULATIONTABLENVPROC {
 
     void apply(int bufsize, java.lang.foreign.MemoryAddress v);
     static MemorySegment allocate(PFNGLGETCOVERAGEMODULATIONTABLENVPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLGETCOVERAGEMODULATIONTABLENVPROC.class, fi, constants$752.PFNGLGETCOVERAGEMODULATIONTABLENVPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLGETCOVERAGEMODULATIONTABLENVPROC.class, fi, constants$1081.PFNGLGETCOVERAGEMODULATIONTABLENVPROC$FUNC, session);
     }
     static PFNGLGETCOVERAGEMODULATIONTABLENVPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _bufsize, java.lang.foreign.MemoryAddress _v) -> {
             try {
-                constants$752.PFNGLGETCOVERAGEMODULATIONTABLENVPROC$MH.invokeExact((Addressable)symbol, _bufsize, (java.lang.foreign.Addressable)_v);
+                constants$1081.PFNGLGETCOVERAGEMODULATIONTABLENVPROC$MH.invokeExact((Addressable)symbol, _bufsize, (java.lang.foreign.Addressable)_v);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

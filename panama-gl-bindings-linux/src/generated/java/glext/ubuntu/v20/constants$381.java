@@ -9,25 +9,27 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$381 {
 
-    static final FunctionDescriptor PFNGLVERTEXBLENDARBPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT
-    );
-    static final MethodHandle PFNGLVERTEXBLENDARBPROC$MH = RuntimeHelper.downcallHandle(
-        constants$381.PFNGLVERTEXBLENDARBPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLBINDBUFFERARBPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLTEXTUREPARAMETERIUIVPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT
-    );
-    static final MethodHandle PFNGLBINDBUFFERARBPROC$MH = RuntimeHelper.downcallHandle(
-        constants$381.PFNGLBINDBUFFERARBPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLDELETEBUFFERSARBPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLDELETEBUFFERSARBPROC$MH = RuntimeHelper.downcallHandle(
-        constants$381.PFNGLDELETEBUFFERSARBPROC$FUNC
+    static final MethodHandle PFNGLTEXTUREPARAMETERIUIVPROC$MH = RuntimeHelper.downcallHandle(
+        constants$381.PFNGLTEXTUREPARAMETERIUIVPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLTEXTUREPARAMETERIVPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle PFNGLTEXTUREPARAMETERIVPROC$MH = RuntimeHelper.downcallHandle(
+        constants$381.PFNGLTEXTUREPARAMETERIVPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLGENERATETEXTUREMIPMAPPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle PFNGLGENERATETEXTUREMIPMAPPROC$MH = RuntimeHelper.downcallHandle(
+        constants$381.PFNGLGENERATETEXTUREMIPMAPPROC$FUNC
     );
 }
 

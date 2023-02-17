@@ -9,26 +9,62 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$906 {
 
-    static final FunctionDescriptor PFNGLSPRITEPARAMETERFVSGIXPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glUniform3uiEXT$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle PFNGLSPRITEPARAMETERFVSGIXPROC$MH = RuntimeHelper.downcallHandle(
-        constants$906.PFNGLSPRITEPARAMETERFVSGIXPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLSPRITEPARAMETERISGIXPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLSPRITEPARAMETERISGIXPROC$MH = RuntimeHelper.downcallHandle(
-        constants$906.PFNGLSPRITEPARAMETERISGIXPROC$FUNC
+    static final MethodHandle glUniform3uiEXT$MH = RuntimeHelper.downcallHandle(
+        "glUniform3uiEXT",
+        constants$906.glUniform3uiEXT$FUNC
     );
-    static final FunctionDescriptor PFNGLSPRITEPARAMETERIVSGIXPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glUniform4uiEXT$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle glUniform4uiEXT$MH = RuntimeHelper.downcallHandle(
+        "glUniform4uiEXT",
+        constants$906.glUniform4uiEXT$FUNC
+    );
+    static final FunctionDescriptor glUniform1uivEXT$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLSPRITEPARAMETERIVSGIXPROC$MH = RuntimeHelper.downcallHandle(
-        constants$906.PFNGLSPRITEPARAMETERIVSGIXPROC$FUNC
+    static final MethodHandle glUniform1uivEXT$MH = RuntimeHelper.downcallHandle(
+        "glUniform1uivEXT",
+        constants$906.glUniform1uivEXT$FUNC
+    );
+    static final FunctionDescriptor glUniform2uivEXT$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glUniform2uivEXT$MH = RuntimeHelper.downcallHandle(
+        "glUniform2uivEXT",
+        constants$906.glUniform2uivEXT$FUNC
+    );
+    static final FunctionDescriptor glUniform3uivEXT$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glUniform3uivEXT$MH = RuntimeHelper.downcallHandle(
+        "glUniform3uivEXT",
+        constants$906.glUniform3uivEXT$FUNC
+    );
+    static final FunctionDescriptor glUniform4uivEXT$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glUniform4uivEXT$MH = RuntimeHelper.downcallHandle(
+        "glUniform4uivEXT",
+        constants$906.glUniform4uivEXT$FUNC
     );
 }
 

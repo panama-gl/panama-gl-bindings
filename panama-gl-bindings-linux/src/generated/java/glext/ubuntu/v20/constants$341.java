@@ -9,35 +9,38 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$341 {
 
-    static final FunctionDescriptor PFNGLPROGRAMUNIFORM3UI64ARBPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLTEXBUFFERRANGEPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_LONG_LONG$LAYOUT,
-        Constants$root.C_LONG_LONG$LAYOUT,
-        Constants$root.C_LONG_LONG$LAYOUT
-    );
-    static final MethodHandle PFNGLPROGRAMUNIFORM3UI64ARBPROC$MH = RuntimeHelper.downcallHandle(
-        constants$341.PFNGLPROGRAMUNIFORM3UI64ARBPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLPROGRAMUNIFORM4UI64ARBPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_LONG_LONG$LAYOUT,
-        Constants$root.C_LONG_LONG$LAYOUT,
         Constants$root.C_LONG_LONG$LAYOUT,
         Constants$root.C_LONG_LONG$LAYOUT
     );
-    static final MethodHandle PFNGLPROGRAMUNIFORM4UI64ARBPROC$MH = RuntimeHelper.downcallHandle(
-        constants$341.PFNGLPROGRAMUNIFORM4UI64ARBPROC$FUNC
+    static final MethodHandle PFNGLTEXBUFFERRANGEPROC$MH = RuntimeHelper.downcallHandle(
+        constants$341.PFNGLTEXBUFFERRANGEPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLPROGRAMUNIFORM1UI64VARBPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLTEXSTORAGE2DMULTISAMPLEPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_CHAR$LAYOUT
     );
-    static final MethodHandle PFNGLPROGRAMUNIFORM1UI64VARBPROC$MH = RuntimeHelper.downcallHandle(
-        constants$341.PFNGLPROGRAMUNIFORM1UI64VARBPROC$FUNC
+    static final MethodHandle PFNGLTEXSTORAGE2DMULTISAMPLEPROC$MH = RuntimeHelper.downcallHandle(
+        constants$341.PFNGLTEXSTORAGE2DMULTISAMPLEPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLTEXSTORAGE3DMULTISAMPLEPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_CHAR$LAYOUT
+    );
+    static final MethodHandle PFNGLTEXSTORAGE3DMULTISAMPLEPROC$MH = RuntimeHelper.downcallHandle(
+        constants$341.PFNGLTEXSTORAGE3DMULTISAMPLEPROC$FUNC
     );
 }
 

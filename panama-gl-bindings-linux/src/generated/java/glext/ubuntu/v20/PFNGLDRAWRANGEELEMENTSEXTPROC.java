@@ -11,13 +11,13 @@ public interface PFNGLDRAWRANGEELEMENTSEXTPROC {
 
     void apply(int mode, int start, int end, int count, int type, java.lang.foreign.MemoryAddress indices);
     static MemorySegment allocate(PFNGLDRAWRANGEELEMENTSEXTPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLDRAWRANGEELEMENTSEXTPROC.class, fi, constants$622.PFNGLDRAWRANGEELEMENTSEXTPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLDRAWRANGEELEMENTSEXTPROC.class, fi, constants$886.PFNGLDRAWRANGEELEMENTSEXTPROC$FUNC, session);
     }
     static PFNGLDRAWRANGEELEMENTSEXTPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _mode, int _start, int _end, int _count, int _type, java.lang.foreign.MemoryAddress _indices) -> {
             try {
-                constants$622.PFNGLDRAWRANGEELEMENTSEXTPROC$MH.invokeExact((Addressable)symbol, _mode, _start, _end, _count, _type, (java.lang.foreign.Addressable)_indices);
+                constants$886.PFNGLDRAWRANGEELEMENTSEXTPROC$MH.invokeExact((Addressable)symbol, _mode, _start, _end, _count, _type, (java.lang.foreign.Addressable)_indices);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

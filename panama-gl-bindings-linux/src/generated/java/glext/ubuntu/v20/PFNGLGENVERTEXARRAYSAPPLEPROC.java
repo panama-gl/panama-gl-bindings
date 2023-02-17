@@ -11,13 +11,13 @@ public interface PFNGLGENVERTEXARRAYSAPPLEPROC {
 
     void apply(int n, java.lang.foreign.MemoryAddress arrays);
     static MemorySegment allocate(PFNGLGENVERTEXARRAYSAPPLEPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLGENVERTEXARRAYSAPPLEPROC.class, fi, constants$482.PFNGLGENVERTEXARRAYSAPPLEPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLGENVERTEXARRAYSAPPLEPROC.class, fi, constants$676.PFNGLGENVERTEXARRAYSAPPLEPROC$FUNC, session);
     }
     static PFNGLGENVERTEXARRAYSAPPLEPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _n, java.lang.foreign.MemoryAddress _arrays) -> {
             try {
-                constants$482.PFNGLGENVERTEXARRAYSAPPLEPROC$MH.invokeExact((Addressable)symbol, _n, (java.lang.foreign.Addressable)_arrays);
+                constants$676.PFNGLGENVERTEXARRAYSAPPLEPROC$MH.invokeExact((Addressable)symbol, _n, (java.lang.foreign.Addressable)_arrays);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

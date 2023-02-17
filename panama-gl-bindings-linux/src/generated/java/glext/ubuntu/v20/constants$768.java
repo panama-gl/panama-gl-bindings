@@ -9,24 +9,47 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$768 {
 
-    static final FunctionDescriptor PFNGLTEXCOORD1HNVPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_SHORT$LAYOUT
-    );
-    static final MethodHandle PFNGLTEXCOORD1HNVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$768.PFNGLTEXCOORD1HNVPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLTEXCOORD1HVNVPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLGETTEXTUREPARAMETERIVEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLTEXCOORD1HVNVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$768.PFNGLTEXCOORD1HVNVPROC$FUNC
+    static final MethodHandle PFNGLGETTEXTUREPARAMETERIVEXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$768.PFNGLGETTEXTUREPARAMETERIVEXTPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLTEXCOORD2HNVPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_SHORT$LAYOUT,
-        Constants$root.C_SHORT$LAYOUT
+    static final FunctionDescriptor PFNGLGETTEXTURELEVELPARAMETERFVEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLTEXCOORD2HNVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$768.PFNGLTEXCOORD2HNVPROC$FUNC
+    static final MethodHandle PFNGLGETTEXTURELEVELPARAMETERFVEXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$768.PFNGLGETTEXTURELEVELPARAMETERFVEXTPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLGETTEXTURELEVELPARAMETERIVEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle PFNGLGETTEXTURELEVELPARAMETERIVEXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$768.PFNGLGETTEXTURELEVELPARAMETERIVEXTPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLTEXTUREIMAGE3DEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
 }
 

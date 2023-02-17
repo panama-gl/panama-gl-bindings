@@ -9,29 +9,38 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$129 {
 
-    static final FunctionDescriptor PFNGLUNIFORM4FVPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLGETACTIVEATTRIBPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLUNIFORM4FVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$129.PFNGLUNIFORM4FVPROC$FUNC
+    static final MethodHandle PFNGLGETACTIVEATTRIBPROC$MH = RuntimeHelper.downcallHandle(
+        constants$129.PFNGLGETACTIVEATTRIBPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLUNIFORM1IVPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLGETACTIVEUNIFORMPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLUNIFORM1IVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$129.PFNGLUNIFORM1IVPROC$FUNC
+    static final MethodHandle PFNGLGETACTIVEUNIFORMPROC$MH = RuntimeHelper.downcallHandle(
+        constants$129.PFNGLGETACTIVEUNIFORMPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLUNIFORM2IVPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLGETATTACHEDSHADERSPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLUNIFORM2IVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$129.PFNGLUNIFORM2IVPROC$FUNC
+    static final MethodHandle PFNGLGETATTACHEDSHADERSPROC$MH = RuntimeHelper.downcallHandle(
+        constants$129.PFNGLGETATTACHEDSHADERSPROC$FUNC
     );
 }
 

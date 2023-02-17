@@ -11,13 +11,13 @@ public interface PFNGLDISPATCHCOMPUTEINDIRECTPROC {
 
     void apply(long indirect);
     static MemorySegment allocate(PFNGLDISPATCHCOMPUTEINDIRECTPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLDISPATCHCOMPUTEINDIRECTPROC.class, fi, constants$254.PFNGLDISPATCHCOMPUTEINDIRECTPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLDISPATCHCOMPUTEINDIRECTPROC.class, fi, constants$334.PFNGLDISPATCHCOMPUTEINDIRECTPROC$FUNC, session);
     }
     static PFNGLDISPATCHCOMPUTEINDIRECTPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (long _indirect) -> {
             try {
-                constants$254.PFNGLDISPATCHCOMPUTEINDIRECTPROC$MH.invokeExact((Addressable)symbol, _indirect);
+                constants$334.PFNGLDISPATCHCOMPUTEINDIRECTPROC$MH.invokeExact((Addressable)symbol, _indirect);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

@@ -9,34 +9,36 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$454 {
 
-    static final FunctionDescriptor PFNGLNAMEDRENDERBUFFERSTORAGEMULTISAMPLEADVANCEDAMDPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLUNIFORM4UI64ARBPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT
+        Constants$root.C_LONG_LONG$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT
     );
-    static final MethodHandle PFNGLNAMEDRENDERBUFFERSTORAGEMULTISAMPLEADVANCEDAMDPROC$MH = RuntimeHelper.downcallHandle(
-        constants$454.PFNGLNAMEDRENDERBUFFERSTORAGEMULTISAMPLEADVANCEDAMDPROC$FUNC
+    static final MethodHandle PFNGLUNIFORM4UI64ARBPROC$MH = RuntimeHelper.downcallHandle(
+        constants$454.PFNGLUNIFORM4UI64ARBPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLFRAMEBUFFERSAMPLEPOSITIONSFVAMDPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
+    static final FunctionDescriptor PFNGLUNIFORM1UI64VARBPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLFRAMEBUFFERSAMPLEPOSITIONSFVAMDPROC$MH = RuntimeHelper.downcallHandle(
-        constants$454.PFNGLFRAMEBUFFERSAMPLEPOSITIONSFVAMDPROC$FUNC
+    static final MethodHandle PFNGLUNIFORM1UI64VARBPROC$MH = RuntimeHelper.downcallHandle(
+        constants$454.PFNGLUNIFORM1UI64VARBPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLNAMEDFRAMEBUFFERSAMPLEPOSITIONSFVAMDPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
+    static final FunctionDescriptor PFNGLUNIFORM2UI64VARBPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLNAMEDFRAMEBUFFERSAMPLEPOSITIONSFVAMDPROC$MH = RuntimeHelper.downcallHandle(
-        constants$454.PFNGLNAMEDFRAMEBUFFERSAMPLEPOSITIONSFVAMDPROC$FUNC
+    static final MethodHandle PFNGLUNIFORM2UI64VARBPROC$MH = RuntimeHelper.downcallHandle(
+        constants$454.PFNGLUNIFORM2UI64VARBPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLUNIFORM3UI64VARBPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
 }
 

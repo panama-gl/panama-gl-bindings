@@ -9,25 +9,33 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$783 {
 
-    static final FunctionDescriptor PFNGLGENOCCLUSIONQUERIESNVPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLGETFLOATINDEXEDVEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLGENOCCLUSIONQUERIESNVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$783.PFNGLGENOCCLUSIONQUERIESNVPROC$FUNC
+    static final MethodHandle PFNGLGETFLOATINDEXEDVEXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$783.PFNGLGETFLOATINDEXEDVEXTPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLDELETEOCCLUSIONQUERIESNVPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLGETDOUBLEINDEXEDVEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLDELETEOCCLUSIONQUERIESNVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$783.PFNGLDELETEOCCLUSIONQUERIESNVPROC$FUNC
+    static final MethodHandle PFNGLGETDOUBLEINDEXEDVEXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$783.PFNGLGETDOUBLEINDEXEDVEXTPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLISOCCLUSIONQUERYNVPROC$FUNC = FunctionDescriptor.of(Constants$root.C_CHAR$LAYOUT,
+    static final FunctionDescriptor PFNGLGETPOINTERINDEXEDVEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle PFNGLGETPOINTERINDEXEDVEXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$783.PFNGLGETPOINTERINDEXEDVEXTPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLENABLEINDEXEDEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT
-    );
-    static final MethodHandle PFNGLISOCCLUSIONQUERYNVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$783.PFNGLISOCCLUSIONQUERYNVPROC$FUNC
     );
 }
 

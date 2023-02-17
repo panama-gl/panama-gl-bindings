@@ -11,13 +11,13 @@ public interface PFNGLVERTEXSTREAM3SVATIPROC {
 
     void apply(int stream, java.lang.foreign.MemoryAddress coords);
     static MemorySegment allocate(PFNGLVERTEXSTREAM3SVATIPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLVERTEXSTREAM3SVATIPROC.class, fi, constants$506.PFNGLVERTEXSTREAM3SVATIPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLVERTEXSTREAM3SVATIPROC.class, fi, constants$710.PFNGLVERTEXSTREAM3SVATIPROC$FUNC, session);
     }
     static PFNGLVERTEXSTREAM3SVATIPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _stream, java.lang.foreign.MemoryAddress _coords) -> {
             try {
-                constants$506.PFNGLVERTEXSTREAM3SVATIPROC$MH.invokeExact((Addressable)symbol, _stream, (java.lang.foreign.Addressable)_coords);
+                constants$710.PFNGLVERTEXSTREAM3SVATIPROC$MH.invokeExact((Addressable)symbol, _stream, (java.lang.foreign.Addressable)_coords);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

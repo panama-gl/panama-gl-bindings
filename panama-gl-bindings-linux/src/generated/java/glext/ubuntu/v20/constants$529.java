@@ -9,27 +9,44 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$529 {
 
-    static final FunctionDescriptor PFNGLBINORMAL3FEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_FLOAT$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT
-    );
-    static final MethodHandle PFNGLBINORMAL3FEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$529.PFNGLBINORMAL3FEXTPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLBINORMAL3FVEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLGETBUFFERPOINTERVARBPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLBINORMAL3FVEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$529.PFNGLBINORMAL3FVEXTPROC$FUNC
+    static final MethodHandle PFNGLGETBUFFERPOINTERVARBPROC$MH = RuntimeHelper.downcallHandle(
+        constants$529.PFNGLGETBUFFERPOINTERVARBPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLBINORMAL3IEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
+    static final FunctionDescriptor glBindBufferARB$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLBINORMAL3IEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$529.PFNGLBINORMAL3IEXTPROC$FUNC
+    static final MethodHandle glBindBufferARB$MH = RuntimeHelper.downcallHandle(
+        "glBindBufferARB",
+        constants$529.glBindBufferARB$FUNC
+    );
+    static final FunctionDescriptor glDeleteBuffersARB$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glDeleteBuffersARB$MH = RuntimeHelper.downcallHandle(
+        "glDeleteBuffersARB",
+        constants$529.glDeleteBuffersARB$FUNC
+    );
+    static final FunctionDescriptor glGenBuffersARB$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glGenBuffersARB$MH = RuntimeHelper.downcallHandle(
+        "glGenBuffersARB",
+        constants$529.glGenBuffersARB$FUNC
+    );
+    static final FunctionDescriptor glIsBufferARB$FUNC = FunctionDescriptor.of(Constants$root.C_CHAR$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle glIsBufferARB$MH = RuntimeHelper.downcallHandle(
+        "glIsBufferARB",
+        constants$529.glIsBufferARB$FUNC
     );
 }
 

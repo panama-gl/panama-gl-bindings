@@ -9,32 +9,58 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$229 {
 
-    static final FunctionDescriptor PFNGLPROGRAMUNIFORM2DVPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glDeleteSync$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glDeleteSync$MH = RuntimeHelper.downcallHandle(
+        "glDeleteSync",
+        constants$229.glDeleteSync$FUNC
+    );
+    static final FunctionDescriptor glClientWaitSync$FUNC = FunctionDescriptor.of(Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
         Constants$root.C_INT$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT
+    );
+    static final MethodHandle glClientWaitSync$MH = RuntimeHelper.downcallHandle(
+        "glClientWaitSync",
+        constants$229.glClientWaitSync$FUNC
+    );
+    static final FunctionDescriptor glWaitSync$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT
+    );
+    static final MethodHandle glWaitSync$MH = RuntimeHelper.downcallHandle(
+        "glWaitSync",
+        constants$229.glWaitSync$FUNC
+    );
+    static final FunctionDescriptor glGetInteger64v$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glGetInteger64v$MH = RuntimeHelper.downcallHandle(
+        "glGetInteger64v",
+        constants$229.glGetInteger64v$FUNC
+    );
+    static final FunctionDescriptor glGetSynciv$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glGetSynciv$MH = RuntimeHelper.downcallHandle(
+        "glGetSynciv",
+        constants$229.glGetSynciv$FUNC
+    );
+    static final FunctionDescriptor glGetInteger64i_v$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLPROGRAMUNIFORM2DVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$229.PFNGLPROGRAMUNIFORM2DVPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLPROGRAMUNIFORM2UIPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT
-    );
-    static final MethodHandle PFNGLPROGRAMUNIFORM2UIPROC$MH = RuntimeHelper.downcallHandle(
-        constants$229.PFNGLPROGRAMUNIFORM2UIPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLPROGRAMUNIFORM2UIVPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle PFNGLPROGRAMUNIFORM2UIVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$229.PFNGLPROGRAMUNIFORM2UIVPROC$FUNC
+    static final MethodHandle glGetInteger64i_v$MH = RuntimeHelper.downcallHandle(
+        "glGetInteger64i_v",
+        constants$229.glGetInteger64i_v$FUNC
     );
 }
 

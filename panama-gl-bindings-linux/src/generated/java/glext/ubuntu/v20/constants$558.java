@@ -9,34 +9,30 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$558 {
 
-    static final FunctionDescriptor PFNGLGETMULTITEXIMAGEEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
+    static final FunctionDescriptor PFNGLWINDOWPOS3FVARBPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLGETMULTITEXIMAGEEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$558.PFNGLGETMULTITEXIMAGEEXTPROC$FUNC
+    static final MethodHandle PFNGLWINDOWPOS3FVARBPROC$MH = RuntimeHelper.downcallHandle(
+        constants$558.PFNGLWINDOWPOS3FVARBPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLGETMULTITEXPARAMETERFVEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLWINDOWPOS3IARBPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle PFNGLWINDOWPOS3IARBPROC$MH = RuntimeHelper.downcallHandle(
+        constants$558.PFNGLWINDOWPOS3IARBPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLWINDOWPOS3IVARBPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLGETMULTITEXPARAMETERFVEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$558.PFNGLGETMULTITEXPARAMETERFVEXTPROC$FUNC
+    static final MethodHandle PFNGLWINDOWPOS3IVARBPROC$MH = RuntimeHelper.downcallHandle(
+        constants$558.PFNGLWINDOWPOS3IVARBPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLGETMULTITEXPARAMETERIVEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle PFNGLGETMULTITEXPARAMETERIVEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$558.PFNGLGETMULTITEXPARAMETERIVEXTPROC$FUNC
+    static final FunctionDescriptor PFNGLWINDOWPOS3SARBPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_SHORT$LAYOUT,
+        Constants$root.C_SHORT$LAYOUT,
+        Constants$root.C_SHORT$LAYOUT
     );
 }
 

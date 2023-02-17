@@ -11,13 +11,13 @@ public interface PFNGLPNTRIANGLESIATIPROC {
 
     void apply(int pname, int param);
     static MemorySegment allocate(PFNGLPNTRIANGLESIATIPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLPNTRIANGLESIATIPROC.class, fi, constants$494.PFNGLPNTRIANGLESIATIPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLPNTRIANGLESIATIPROC.class, fi, constants$695.PFNGLPNTRIANGLESIATIPROC$FUNC, session);
     }
     static PFNGLPNTRIANGLESIATIPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _pname, int _param) -> {
             try {
-                constants$494.PFNGLPNTRIANGLESIATIPROC$MH.invokeExact((Addressable)symbol, _pname, _param);
+                constants$695.PFNGLPNTRIANGLESIATIPROC$MH.invokeExact((Addressable)symbol, _pname, _param);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

@@ -9,26 +9,85 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$858 {
 
-    static final FunctionDescriptor PFNGLVERTEXATTRIB1DNVPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glCompressedMultiTexImage1DEXT$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_DOUBLE$LAYOUT
-    );
-    static final MethodHandle PFNGLVERTEXATTRIB1DNVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$858.PFNGLVERTEXATTRIB1DNVPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLVERTEXATTRIB1DVNVPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLVERTEXATTRIB1DVNVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$858.PFNGLVERTEXATTRIB1DVNVPROC$FUNC
+    static final MethodHandle glCompressedMultiTexImage1DEXT$MH = RuntimeHelper.downcallHandle(
+        "glCompressedMultiTexImage1DEXT",
+        constants$858.glCompressedMultiTexImage1DEXT$FUNC
     );
-    static final FunctionDescriptor PFNGLVERTEXATTRIB1FNVPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glCompressedMultiTexSubImage3DEXT$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLVERTEXATTRIB1FNVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$858.PFNGLVERTEXATTRIB1FNVPROC$FUNC
+    static final MethodHandle glCompressedMultiTexSubImage3DEXT$MH = RuntimeHelper.downcallHandle(
+        "glCompressedMultiTexSubImage3DEXT",
+        constants$858.glCompressedMultiTexSubImage3DEXT$FUNC
+    );
+    static final FunctionDescriptor glCompressedMultiTexSubImage2DEXT$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glCompressedMultiTexSubImage2DEXT$MH = RuntimeHelper.downcallHandle(
+        "glCompressedMultiTexSubImage2DEXT",
+        constants$858.glCompressedMultiTexSubImage2DEXT$FUNC
+    );
+    static final FunctionDescriptor glCompressedMultiTexSubImage1DEXT$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glCompressedMultiTexSubImage1DEXT$MH = RuntimeHelper.downcallHandle(
+        "glCompressedMultiTexSubImage1DEXT",
+        constants$858.glCompressedMultiTexSubImage1DEXT$FUNC
+    );
+    static final FunctionDescriptor glGetCompressedMultiTexImageEXT$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glGetCompressedMultiTexImageEXT$MH = RuntimeHelper.downcallHandle(
+        "glGetCompressedMultiTexImageEXT",
+        constants$858.glGetCompressedMultiTexImageEXT$FUNC
+    );
+    static final FunctionDescriptor glMatrixLoadTransposefEXT$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glMatrixLoadTransposefEXT$MH = RuntimeHelper.downcallHandle(
+        "glMatrixLoadTransposefEXT",
+        constants$858.glMatrixLoadTransposefEXT$FUNC
     );
 }
 

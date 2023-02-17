@@ -9,29 +9,32 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$902 {
 
-    static final FunctionDescriptor PFNGLGETLISTPARAMETERIVSGIXPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLBINDFRAGDATALOCATIONEXTPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLGETLISTPARAMETERIVSGIXPROC$MH = RuntimeHelper.downcallHandle(
-        constants$902.PFNGLGETLISTPARAMETERIVSGIXPROC$FUNC
+    static final MethodHandle PFNGLBINDFRAGDATALOCATIONEXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$902.PFNGLBINDFRAGDATALOCATIONEXTPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLLISTPARAMETERFSGIXPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT
-    );
-    static final MethodHandle PFNGLLISTPARAMETERFSGIXPROC$MH = RuntimeHelper.downcallHandle(
-        constants$902.PFNGLLISTPARAMETERFSGIXPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLLISTPARAMETERFVSGIXPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
+    static final FunctionDescriptor PFNGLGETFRAGDATALOCATIONEXTPROC$FUNC = FunctionDescriptor.of(Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLLISTPARAMETERFVSGIXPROC$MH = RuntimeHelper.downcallHandle(
-        constants$902.PFNGLLISTPARAMETERFVSGIXPROC$FUNC
+    static final MethodHandle PFNGLGETFRAGDATALOCATIONEXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$902.PFNGLGETFRAGDATALOCATIONEXTPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLUNIFORM1UIEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle PFNGLUNIFORM1UIEXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$902.PFNGLUNIFORM1UIEXTPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLUNIFORM2UIEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
 }
 

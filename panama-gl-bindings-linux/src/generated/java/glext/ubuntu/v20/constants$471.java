@@ -9,29 +9,45 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$471 {
 
-    static final FunctionDescriptor PFNGLGENPERFMONITORSAMDPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLMATRIXINDEXPOINTERARBPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle PFNGLGENPERFMONITORSAMDPROC$MH = RuntimeHelper.downcallHandle(
-        constants$471.PFNGLGENPERFMONITORSAMDPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLDELETEPERFMONITORSAMDPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle PFNGLDELETEPERFMONITORSAMDPROC$MH = RuntimeHelper.downcallHandle(
-        constants$471.PFNGLDELETEPERFMONITORSAMDPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLSELECTPERFMONITORCOUNTERSAMDPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_CHAR$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLSELECTPERFMONITORCOUNTERSAMDPROC$MH = RuntimeHelper.downcallHandle(
-        constants$471.PFNGLSELECTPERFMONITORCOUNTERSAMDPROC$FUNC
+    static final MethodHandle PFNGLMATRIXINDEXPOINTERARBPROC$MH = RuntimeHelper.downcallHandle(
+        constants$471.PFNGLMATRIXINDEXPOINTERARBPROC$FUNC
+    );
+    static final FunctionDescriptor glCurrentPaletteMatrixARB$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle glCurrentPaletteMatrixARB$MH = RuntimeHelper.downcallHandle(
+        "glCurrentPaletteMatrixARB",
+        constants$471.glCurrentPaletteMatrixARB$FUNC
+    );
+    static final FunctionDescriptor glMatrixIndexubvARB$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glMatrixIndexubvARB$MH = RuntimeHelper.downcallHandle(
+        "glMatrixIndexubvARB",
+        constants$471.glMatrixIndexubvARB$FUNC
+    );
+    static final FunctionDescriptor glMatrixIndexusvARB$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glMatrixIndexusvARB$MH = RuntimeHelper.downcallHandle(
+        "glMatrixIndexusvARB",
+        constants$471.glMatrixIndexusvARB$FUNC
+    );
+    static final FunctionDescriptor glMatrixIndexuivARB$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glMatrixIndexuivARB$MH = RuntimeHelper.downcallHandle(
+        "glMatrixIndexuivARB",
+        constants$471.glMatrixIndexuivARB$FUNC
     );
 }
 

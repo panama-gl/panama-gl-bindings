@@ -11,13 +11,13 @@ public interface PFNGLSTENCILOPSEPARATEATIPROC {
 
     void apply(int face, int sfail, int dpfail, int dppass);
     static MemorySegment allocate(PFNGLSTENCILOPSEPARATEATIPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLSTENCILOPSEPARATEATIPROC.class, fi, constants$495.PFNGLSTENCILOPSEPARATEATIPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLSTENCILOPSEPARATEATIPROC.class, fi, constants$696.PFNGLSTENCILOPSEPARATEATIPROC$FUNC, session);
     }
     static PFNGLSTENCILOPSEPARATEATIPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _face, int _sfail, int _dpfail, int _dppass) -> {
             try {
-                constants$495.PFNGLSTENCILOPSEPARATEATIPROC$MH.invokeExact((Addressable)symbol, _face, _sfail, _dpfail, _dppass);
+                constants$696.PFNGLSTENCILOPSEPARATEATIPROC$MH.invokeExact((Addressable)symbol, _face, _sfail, _dpfail, _dppass);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

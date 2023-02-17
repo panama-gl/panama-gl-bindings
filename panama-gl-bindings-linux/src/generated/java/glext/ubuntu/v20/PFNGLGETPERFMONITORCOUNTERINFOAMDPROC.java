@@ -11,13 +11,13 @@ public interface PFNGLGETPERFMONITORCOUNTERINFOAMDPROC {
 
     void apply(int group, int counter, int pname, java.lang.foreign.MemoryAddress data);
     static MemorySegment allocate(PFNGLGETPERFMONITORCOUNTERINFOAMDPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLGETPERFMONITORCOUNTERINFOAMDPROC.class, fi, constants$470.PFNGLGETPERFMONITORCOUNTERINFOAMDPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLGETPERFMONITORCOUNTERINFOAMDPROC.class, fi, constants$658.PFNGLGETPERFMONITORCOUNTERINFOAMDPROC$FUNC, session);
     }
     static PFNGLGETPERFMONITORCOUNTERINFOAMDPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _group, int _counter, int _pname, java.lang.foreign.MemoryAddress _data) -> {
             try {
-                constants$470.PFNGLGETPERFMONITORCOUNTERINFOAMDPROC$MH.invokeExact((Addressable)symbol, _group, _counter, _pname, (java.lang.foreign.Addressable)_data);
+                constants$659.PFNGLGETPERFMONITORCOUNTERINFOAMDPROC$MH.invokeExact((Addressable)symbol, _group, _counter, _pname, (java.lang.foreign.Addressable)_data);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

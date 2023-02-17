@@ -9,30 +9,25 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$745 {
 
-    static final FunctionDescriptor PFNGLGETMAPATTRIBPARAMETERIVNVPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
+    static final FunctionDescriptor PFNGLBINORMAL3FVEXTPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLGETMAPATTRIBPARAMETERIVNVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$745.PFNGLGETMAPATTRIBPARAMETERIVNVPROC$FUNC
+    static final MethodHandle PFNGLBINORMAL3FVEXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$745.PFNGLBINORMAL3FVEXTPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLGETMAPATTRIBPARAMETERFVNVPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLBINORMAL3IEXTPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle PFNGLGETMAPATTRIBPARAMETERFVNVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$745.PFNGLGETMAPATTRIBPARAMETERFVNVPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLEVALMAPSNVPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLEVALMAPSNVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$745.PFNGLEVALMAPSNVPROC$FUNC
+    static final MethodHandle PFNGLBINORMAL3IEXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$745.PFNGLBINORMAL3IEXTPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLBINORMAL3IVEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle PFNGLBINORMAL3IVEXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$745.PFNGLBINORMAL3IVEXTPROC$FUNC
     );
 }
 

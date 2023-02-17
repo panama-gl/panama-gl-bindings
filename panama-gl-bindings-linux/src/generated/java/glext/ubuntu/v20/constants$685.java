@@ -9,32 +9,26 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$685 {
 
-    static final FunctionDescriptor PFNGLWRITEMASKEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLTEXBUMPPARAMETERIVATIPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT
+        Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLWRITEMASKEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$685.PFNGLWRITEMASKEXTPROC$FUNC
+    static final MethodHandle PFNGLTEXBUMPPARAMETERIVATIPROC$MH = RuntimeHelper.downcallHandle(
+        constants$685.PFNGLTEXBUMPPARAMETERIVATIPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLINSERTCOMPONENTEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLTEXBUMPPARAMETERFVATIPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT
+        Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLINSERTCOMPONENTEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$685.PFNGLINSERTCOMPONENTEXTPROC$FUNC
+    static final MethodHandle PFNGLTEXBUMPPARAMETERFVATIPROC$MH = RuntimeHelper.downcallHandle(
+        constants$685.PFNGLTEXBUMPPARAMETERFVATIPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLEXTRACTCOMPONENTEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLGETTEXBUMPPARAMETERIVATIPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT
+        Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLEXTRACTCOMPONENTEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$685.PFNGLEXTRACTCOMPONENTEXTPROC$FUNC
+    static final MethodHandle PFNGLGETTEXBUMPPARAMETERIVATIPROC$MH = RuntimeHelper.downcallHandle(
+        constants$685.PFNGLGETTEXBUMPPARAMETERIVATIPROC$FUNC
     );
 }
 

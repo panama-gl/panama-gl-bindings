@@ -9,30 +9,32 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$790 {
 
-    static final FunctionDescriptor PFNGLCOPYPATHNVPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT
-    );
-    static final MethodHandle PFNGLCOPYPATHNVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$790.PFNGLCOPYPATHNVPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLINTERPOLATEPATHSNVPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT
-    );
-    static final MethodHandle PFNGLINTERPOLATEPATHSNVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$790.PFNGLINTERPOLATEPATHSNVPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLTRANSFORMPATHNVPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLGETCOMPRESSEDMULTITEXIMAGEEXTPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLTRANSFORMPATHNVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$790.PFNGLTRANSFORMPATHNVPROC$FUNC
+    static final MethodHandle PFNGLGETCOMPRESSEDMULTITEXIMAGEEXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$790.PFNGLGETCOMPRESSEDMULTITEXIMAGEEXTPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLMATRIXLOADTRANSPOSEFEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle PFNGLMATRIXLOADTRANSPOSEFEXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$790.PFNGLMATRIXLOADTRANSPOSEFEXTPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLMATRIXLOADTRANSPOSEDEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle PFNGLMATRIXLOADTRANSPOSEDEXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$790.PFNGLMATRIXLOADTRANSPOSEDEXTPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLMATRIXMULTTRANSPOSEFEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
 }
 

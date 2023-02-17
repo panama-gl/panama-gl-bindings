@@ -11,13 +11,13 @@ public interface PFNGLPROGRAMLOCALPARAMETERSI4IVNVPROC {
 
     void apply(int target, int index, int count, java.lang.foreign.MemoryAddress params);
     static MemorySegment allocate(PFNGLPROGRAMLOCALPARAMETERSI4IVNVPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLPROGRAMLOCALPARAMETERSI4IVNVPROC.class, fi, constants$758.PFNGLPROGRAMLOCALPARAMETERSI4IVNVPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLPROGRAMLOCALPARAMETERSI4IVNVPROC.class, fi, constants$1091.PFNGLPROGRAMLOCALPARAMETERSI4IVNVPROC$FUNC, session);
     }
     static PFNGLPROGRAMLOCALPARAMETERSI4IVNVPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _target, int _index, int _count, java.lang.foreign.MemoryAddress _params) -> {
             try {
-                constants$758.PFNGLPROGRAMLOCALPARAMETERSI4IVNVPROC$MH.invokeExact((Addressable)symbol, _target, _index, _count, (java.lang.foreign.Addressable)_params);
+                constants$1091.PFNGLPROGRAMLOCALPARAMETERSI4IVNVPROC$MH.invokeExact((Addressable)symbol, _target, _index, _count, (java.lang.foreign.Addressable)_params);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

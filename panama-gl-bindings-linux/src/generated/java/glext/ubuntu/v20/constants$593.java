@@ -9,32 +9,29 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$593 {
 
-    static final FunctionDescriptor PFNGLGETNAMEDPROGRAMLOCALPARAMETERDVEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLGETTEXLEVELPARAMETERXVOESPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLGETNAMEDPROGRAMLOCALPARAMETERDVEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$593.PFNGLGETNAMEDPROGRAMLOCALPARAMETERDVEXTPROC$FUNC
+    static final MethodHandle PFNGLGETTEXLEVELPARAMETERXVOESPROC$MH = RuntimeHelper.downcallHandle(
+        constants$593.PFNGLGETTEXLEVELPARAMETERXVOESPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLGETNAMEDPROGRAMLOCALPARAMETERFVEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
+    static final FunctionDescriptor PFNGLINDEXXOESPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle PFNGLINDEXXOESPROC$MH = RuntimeHelper.downcallHandle(
+        constants$593.PFNGLINDEXXOESPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLINDEXXVOESPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLGETNAMEDPROGRAMLOCALPARAMETERFVEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$593.PFNGLGETNAMEDPROGRAMLOCALPARAMETERFVEXTPROC$FUNC
+    static final MethodHandle PFNGLINDEXXVOESPROC$MH = RuntimeHelper.downcallHandle(
+        constants$593.PFNGLINDEXXVOESPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLGETNAMEDPROGRAMIVEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
+    static final FunctionDescriptor PFNGLLOADTRANSPOSEMATRIXXOESPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle PFNGLGETNAMEDPROGRAMIVEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$593.PFNGLGETNAMEDPROGRAMIVEXTPROC$FUNC
     );
 }
 

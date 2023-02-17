@@ -9,27 +9,68 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$653 {
 
-    static final FunctionDescriptor PFNGLPOINTPARAMETERFVEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glProgramUniform3ui64NV$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT
+    );
+    static final MethodHandle glProgramUniform3ui64NV$MH = RuntimeHelper.downcallHandle(
+        "glProgramUniform3ui64NV",
+        constants$653.glProgramUniform3ui64NV$FUNC
+    );
+    static final FunctionDescriptor glProgramUniform4ui64NV$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT
+    );
+    static final MethodHandle glProgramUniform4ui64NV$MH = RuntimeHelper.downcallHandle(
+        "glProgramUniform4ui64NV",
+        constants$653.glProgramUniform4ui64NV$FUNC
+    );
+    static final FunctionDescriptor glProgramUniform1ui64vNV$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLPOINTPARAMETERFVEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$653.PFNGLPOINTPARAMETERFVEXTPROC$FUNC
+    static final MethodHandle glProgramUniform1ui64vNV$MH = RuntimeHelper.downcallHandle(
+        "glProgramUniform1ui64vNV",
+        constants$653.glProgramUniform1ui64vNV$FUNC
     );
-    static final FunctionDescriptor PFNGLPOLYGONOFFSETEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_FLOAT$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT
+    static final FunctionDescriptor glProgramUniform2ui64vNV$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLPOLYGONOFFSETEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$653.PFNGLPOLYGONOFFSETEXTPROC$FUNC
+    static final MethodHandle glProgramUniform2ui64vNV$MH = RuntimeHelper.downcallHandle(
+        "glProgramUniform2ui64vNV",
+        constants$653.glProgramUniform2ui64vNV$FUNC
     );
-    static final FunctionDescriptor PFNGLPOLYGONOFFSETCLAMPEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_FLOAT$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT
+    static final FunctionDescriptor glProgramUniform3ui64vNV$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLPOLYGONOFFSETCLAMPEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$653.PFNGLPOLYGONOFFSETCLAMPEXTPROC$FUNC
+    static final MethodHandle glProgramUniform3ui64vNV$MH = RuntimeHelper.downcallHandle(
+        "glProgramUniform3ui64vNV",
+        constants$653.glProgramUniform3ui64vNV$FUNC
+    );
+    static final FunctionDescriptor glProgramUniform4ui64vNV$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glProgramUniform4ui64vNV$MH = RuntimeHelper.downcallHandle(
+        "glProgramUniform4ui64vNV",
+        constants$653.glProgramUniform4ui64vNV$FUNC
     );
 }
 

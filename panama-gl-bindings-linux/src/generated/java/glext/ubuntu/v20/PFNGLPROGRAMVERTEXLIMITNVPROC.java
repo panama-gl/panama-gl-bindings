@@ -11,13 +11,13 @@ public interface PFNGLPROGRAMVERTEXLIMITNVPROC {
 
     void apply(int target, int limit);
     static MemorySegment allocate(PFNGLPROGRAMVERTEXLIMITNVPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLPROGRAMVERTEXLIMITNVPROC.class, fi, constants$753.PFNGLPROGRAMVERTEXLIMITNVPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLPROGRAMVERTEXLIMITNVPROC.class, fi, constants$1082.PFNGLPROGRAMVERTEXLIMITNVPROC$FUNC, session);
     }
     static PFNGLPROGRAMVERTEXLIMITNVPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _target, int _limit) -> {
             try {
-                constants$753.PFNGLPROGRAMVERTEXLIMITNVPROC$MH.invokeExact((Addressable)symbol, _target, _limit);
+                constants$1083.PFNGLPROGRAMVERTEXLIMITNVPROC$MH.invokeExact((Addressable)symbol, _target, _limit);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

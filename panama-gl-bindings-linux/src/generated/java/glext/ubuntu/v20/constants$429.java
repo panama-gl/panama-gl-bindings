@@ -9,26 +9,56 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$429 {
 
-    static final FunctionDescriptor PFNGLEVALCOORD2XOESPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
+    static final FunctionDescriptor glMakeImageHandleResidentARB$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_LONG_LONG$LAYOUT,
         Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLEVALCOORD2XOESPROC$MH = RuntimeHelper.downcallHandle(
-        constants$429.PFNGLEVALCOORD2XOESPROC$FUNC
+    static final MethodHandle glMakeImageHandleResidentARB$MH = RuntimeHelper.downcallHandle(
+        "glMakeImageHandleResidentARB",
+        constants$429.glMakeImageHandleResidentARB$FUNC
     );
-    static final FunctionDescriptor PFNGLEVALCOORD2XVOESPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_POINTER$LAYOUT
+    static final FunctionDescriptor glMakeImageHandleNonResidentARB$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_LONG_LONG$LAYOUT
     );
-    static final MethodHandle PFNGLEVALCOORD2XVOESPROC$MH = RuntimeHelper.downcallHandle(
-        constants$429.PFNGLEVALCOORD2XVOESPROC$FUNC
+    static final MethodHandle glMakeImageHandleNonResidentARB$MH = RuntimeHelper.downcallHandle(
+        "glMakeImageHandleNonResidentARB",
+        constants$429.glMakeImageHandleNonResidentARB$FUNC
     );
-    static final FunctionDescriptor PFNGLFEEDBACKBUFFERXOESPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glUniformHandleui64ARB$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT
+    );
+    static final MethodHandle glUniformHandleui64ARB$MH = RuntimeHelper.downcallHandle(
+        "glUniformHandleui64ARB",
+        constants$429.glUniformHandleui64ARB$FUNC
+    );
+    static final FunctionDescriptor glUniformHandleui64vARB$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLFEEDBACKBUFFERXOESPROC$MH = RuntimeHelper.downcallHandle(
-        constants$429.PFNGLFEEDBACKBUFFERXOESPROC$FUNC
+    static final MethodHandle glUniformHandleui64vARB$MH = RuntimeHelper.downcallHandle(
+        "glUniformHandleui64vARB",
+        constants$429.glUniformHandleui64vARB$FUNC
+    );
+    static final FunctionDescriptor glProgramUniformHandleui64ARB$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT
+    );
+    static final MethodHandle glProgramUniformHandleui64ARB$MH = RuntimeHelper.downcallHandle(
+        "glProgramUniformHandleui64ARB",
+        constants$429.glProgramUniformHandleui64ARB$FUNC
+    );
+    static final FunctionDescriptor glProgramUniformHandleui64vARB$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glProgramUniformHandleui64vARB$MH = RuntimeHelper.downcallHandle(
+        "glProgramUniformHandleui64vARB",
+        constants$429.glProgramUniformHandleui64vARB$FUNC
     );
 }
 

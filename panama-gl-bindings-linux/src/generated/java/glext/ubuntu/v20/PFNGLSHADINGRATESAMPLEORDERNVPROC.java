@@ -11,13 +11,13 @@ public interface PFNGLSHADINGRATESAMPLEORDERNVPROC {
 
     void apply(int order);
     static MemorySegment allocate(PFNGLSHADINGRATESAMPLEORDERNVPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLSHADINGRATESAMPLEORDERNVPROC.class, fi, constants$825.PFNGLSHADINGRATESAMPLEORDERNVPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLSHADINGRATESAMPLEORDERNVPROC.class, fi, constants$1191.PFNGLSHADINGRATESAMPLEORDERNVPROC$FUNC, session);
     }
     static PFNGLSHADINGRATESAMPLEORDERNVPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _order) -> {
             try {
-                constants$825.PFNGLSHADINGRATESAMPLEORDERNVPROC$MH.invokeExact((Addressable)symbol, _order);
+                constants$1191.PFNGLSHADINGRATESAMPLEORDERNVPROC$MH.invokeExact((Addressable)symbol, _order);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

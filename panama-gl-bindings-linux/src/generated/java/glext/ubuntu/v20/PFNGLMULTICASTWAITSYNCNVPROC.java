@@ -11,13 +11,13 @@ public interface PFNGLMULTICASTWAITSYNCNVPROC {
 
     void apply(int signalGpu, int waitGpuMask);
     static MemorySegment allocate(PFNGLMULTICASTWAITSYNCNVPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLMULTICASTWAITSYNCNVPROC.class, fi, constants$756.PFNGLMULTICASTWAITSYNCNVPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLMULTICASTWAITSYNCNVPROC.class, fi, constants$1086.PFNGLMULTICASTWAITSYNCNVPROC$FUNC, session);
     }
     static PFNGLMULTICASTWAITSYNCNVPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _signalGpu, int _waitGpuMask) -> {
             try {
-                constants$756.PFNGLMULTICASTWAITSYNCNVPROC$MH.invokeExact((Addressable)symbol, _signalGpu, _waitGpuMask);
+                constants$1086.PFNGLMULTICASTWAITSYNCNVPROC$MH.invokeExact((Addressable)symbol, _signalGpu, _waitGpuMask);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

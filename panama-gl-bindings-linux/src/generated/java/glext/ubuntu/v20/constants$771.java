@@ -9,27 +9,38 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$771 {
 
-    static final FunctionDescriptor PFNGLMULTITEXCOORD1HVNVPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLMULTITEXENVFVEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLMULTITEXCOORD1HVNVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$771.PFNGLMULTITEXCOORD1HVNVPROC$FUNC
+    static final MethodHandle PFNGLMULTITEXENVFVEXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$771.PFNGLMULTITEXENVFVEXTPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLMULTITEXCOORD2HNVPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLMULTITEXENVIEXTPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_SHORT$LAYOUT,
-        Constants$root.C_SHORT$LAYOUT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLMULTITEXCOORD2HNVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$771.PFNGLMULTITEXCOORD2HNVPROC$FUNC
+    static final MethodHandle PFNGLMULTITEXENVIEXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$771.PFNGLMULTITEXENVIEXTPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLMULTITEXCOORD2HVNVPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLMULTITEXENVIVEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLMULTITEXCOORD2HVNVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$771.PFNGLMULTITEXCOORD2HVNVPROC$FUNC
+    static final MethodHandle PFNGLMULTITEXENVIVEXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$771.PFNGLMULTITEXENVIVEXTPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLMULTITEXGENDEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_DOUBLE$LAYOUT
     );
 }
 

@@ -11,13 +11,13 @@ public interface PFNGLDISABLEVERTEXARRAYEXTPROC {
 
     void apply(int vaobj, int array);
     static MemorySegment allocate(PFNGLDISABLEVERTEXARRAYEXTPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLDISABLEVERTEXARRAYEXTPROC.class, fi, constants$605.PFNGLDISABLEVERTEXARRAYEXTPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLDISABLEVERTEXARRAYEXTPROC.class, fi, constants$827.PFNGLDISABLEVERTEXARRAYEXTPROC$FUNC, session);
     }
     static PFNGLDISABLEVERTEXARRAYEXTPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _vaobj, int _array) -> {
             try {
-                constants$605.PFNGLDISABLEVERTEXARRAYEXTPROC$MH.invokeExact((Addressable)symbol, _vaobj, _array);
+                constants$827.PFNGLDISABLEVERTEXARRAYEXTPROC$MH.invokeExact((Addressable)symbol, _vaobj, _array);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

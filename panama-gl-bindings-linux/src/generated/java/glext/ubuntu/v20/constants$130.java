@@ -9,30 +9,29 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$130 {
 
-    static final FunctionDescriptor PFNGLUNIFORM3IVPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLGETATTRIBLOCATIONPROC$FUNC = FunctionDescriptor.of(Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle PFNGLGETATTRIBLOCATIONPROC$MH = RuntimeHelper.downcallHandle(
+        constants$130.PFNGLGETATTRIBLOCATIONPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLGETPROGRAMIVPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLUNIFORM3IVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$130.PFNGLUNIFORM3IVPROC$FUNC
+    static final MethodHandle PFNGLGETPROGRAMIVPROC$MH = RuntimeHelper.downcallHandle(
+        constants$130.PFNGLGETPROGRAMIVPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLUNIFORM4IVPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLGETPROGRAMINFOLOGPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLUNIFORM4IVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$130.PFNGLUNIFORM4IVPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLUNIFORMMATRIX2FVPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_CHAR$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle PFNGLUNIFORMMATRIX2FVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$130.PFNGLUNIFORMMATRIX2FVPROC$FUNC
+    static final MethodHandle PFNGLGETPROGRAMINFOLOGPROC$MH = RuntimeHelper.downcallHandle(
+        constants$130.PFNGLGETPROGRAMINFOLOGPROC$FUNC
     );
 }
 

@@ -11,13 +11,13 @@ public interface PFNGLSAMPLERPARAMETERIIVPROC {
 
     void apply(int sampler, int pname, java.lang.foreign.MemoryAddress param);
     static MemorySegment allocate(PFNGLSAMPLERPARAMETERIIVPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLSAMPLERPARAMETERIIVPROC.class, fi, constants$188.PFNGLSAMPLERPARAMETERIIVPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLSAMPLERPARAMETERIIVPROC.class, fi, constants$234.PFNGLSAMPLERPARAMETERIIVPROC$FUNC, session);
     }
     static PFNGLSAMPLERPARAMETERIIVPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _sampler, int _pname, java.lang.foreign.MemoryAddress _param) -> {
             try {
-                constants$188.PFNGLSAMPLERPARAMETERIIVPROC$MH.invokeExact((Addressable)symbol, _sampler, _pname, (java.lang.foreign.Addressable)_param);
+                constants$234.PFNGLSAMPLERPARAMETERIIVPROC$MH.invokeExact((Addressable)symbol, _sampler, _pname, (java.lang.foreign.Addressable)_param);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

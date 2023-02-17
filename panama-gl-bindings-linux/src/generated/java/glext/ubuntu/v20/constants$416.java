@@ -9,30 +9,71 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$416 {
 
-    static final FunctionDescriptor PFNGLFOGXVOESPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glGetQueryBufferObjectui64v$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT
     );
-    static final MethodHandle PFNGLFOGXVOESPROC$MH = RuntimeHelper.downcallHandle(
-        constants$416.PFNGLFOGXVOESPROC$FUNC
+    static final MethodHandle glGetQueryBufferObjectui64v$MH = RuntimeHelper.downcallHandle(
+        "glGetQueryBufferObjectui64v",
+        constants$416.glGetQueryBufferObjectui64v$FUNC
     );
-    static final FunctionDescriptor PFNGLFRUSTUMXOESPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glGetQueryBufferObjectuiv$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT
+    );
+    static final MethodHandle glGetQueryBufferObjectuiv$MH = RuntimeHelper.downcallHandle(
+        "glGetQueryBufferObjectuiv",
+        constants$416.glGetQueryBufferObjectuiv$FUNC
+    );
+    static final FunctionDescriptor glMemoryBarrierByRegion$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLFRUSTUMXOESPROC$MH = RuntimeHelper.downcallHandle(
-        constants$416.PFNGLFRUSTUMXOESPROC$FUNC
+    static final MethodHandle glMemoryBarrierByRegion$MH = RuntimeHelper.downcallHandle(
+        "glMemoryBarrierByRegion",
+        constants$416.glMemoryBarrierByRegion$FUNC
     );
-    static final FunctionDescriptor PFNGLGETCLIPPLANEXOESPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glGetTextureSubImage$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLGETCLIPPLANEXOESPROC$MH = RuntimeHelper.downcallHandle(
-        constants$416.PFNGLGETCLIPPLANEXOESPROC$FUNC
+    static final MethodHandle glGetTextureSubImage$MH = RuntimeHelper.downcallHandle(
+        "glGetTextureSubImage",
+        constants$416.glGetTextureSubImage$FUNC
+    );
+    static final FunctionDescriptor glGetCompressedTextureSubImage$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glGetCompressedTextureSubImage$MH = RuntimeHelper.downcallHandle(
+        "glGetCompressedTextureSubImage",
+        constants$416.glGetCompressedTextureSubImage$FUNC
+    );
+    static final FunctionDescriptor glGetGraphicsResetStatus$FUNC = FunctionDescriptor.of(Constants$root.C_INT$LAYOUT);
+    static final MethodHandle glGetGraphicsResetStatus$MH = RuntimeHelper.downcallHandle(
+        "glGetGraphicsResetStatus",
+        constants$416.glGetGraphicsResetStatus$FUNC
     );
 }
 

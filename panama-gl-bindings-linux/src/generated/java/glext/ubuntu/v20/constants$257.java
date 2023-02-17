@@ -9,34 +9,57 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$257 {
 
-    static final FunctionDescriptor PFNGLINVALIDATEFRAMEBUFFERPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glTexCoordP4ui$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle glTexCoordP4ui$MH = RuntimeHelper.downcallHandle(
+        "glTexCoordP4ui",
+        constants$257.glTexCoordP4ui$FUNC
+    );
+    static final FunctionDescriptor glTexCoordP4uiv$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glTexCoordP4uiv$MH = RuntimeHelper.downcallHandle(
+        "glTexCoordP4uiv",
+        constants$257.glTexCoordP4uiv$FUNC
+    );
+    static final FunctionDescriptor glMultiTexCoordP1ui$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle glMultiTexCoordP1ui$MH = RuntimeHelper.downcallHandle(
+        "glMultiTexCoordP1ui",
+        constants$257.glMultiTexCoordP1ui$FUNC
+    );
+    static final FunctionDescriptor glMultiTexCoordP1uiv$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLINVALIDATEFRAMEBUFFERPROC$MH = RuntimeHelper.downcallHandle(
-        constants$257.PFNGLINVALIDATEFRAMEBUFFERPROC$FUNC
+    static final MethodHandle glMultiTexCoordP1uiv$MH = RuntimeHelper.downcallHandle(
+        "glMultiTexCoordP1uiv",
+        constants$257.glMultiTexCoordP1uiv$FUNC
     );
-    static final FunctionDescriptor PFNGLINVALIDATESUBFRAMEBUFFERPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
+    static final FunctionDescriptor glMultiTexCoordP2ui$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLINVALIDATESUBFRAMEBUFFERPROC$MH = RuntimeHelper.downcallHandle(
-        constants$257.PFNGLINVALIDATESUBFRAMEBUFFERPROC$FUNC
+    static final MethodHandle glMultiTexCoordP2ui$MH = RuntimeHelper.downcallHandle(
+        "glMultiTexCoordP2ui",
+        constants$257.glMultiTexCoordP2ui$FUNC
     );
-    static final FunctionDescriptor PFNGLMULTIDRAWARRAYSINDIRECTPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glMultiTexCoordP2uiv$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT
+        Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLMULTIDRAWARRAYSINDIRECTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$257.PFNGLMULTIDRAWARRAYSINDIRECTPROC$FUNC
+    static final MethodHandle glMultiTexCoordP2uiv$MH = RuntimeHelper.downcallHandle(
+        "glMultiTexCoordP2uiv",
+        constants$257.glMultiTexCoordP2uiv$FUNC
     );
 }
 

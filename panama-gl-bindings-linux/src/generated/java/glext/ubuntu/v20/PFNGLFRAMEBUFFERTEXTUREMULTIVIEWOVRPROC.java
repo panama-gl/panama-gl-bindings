@@ -11,13 +11,13 @@ public interface PFNGLFRAMEBUFFERTEXTUREMULTIVIEWOVRPROC {
 
     void apply(int target, int attachment, int texture, int level, int baseViewIndex, int numViews);
     static MemorySegment allocate(PFNGLFRAMEBUFFERTEXTUREMULTIVIEWOVRPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLFRAMEBUFFERTEXTUREMULTIVIEWOVRPROC.class, fi, constants$883.PFNGLFRAMEBUFFERTEXTUREMULTIVIEWOVRPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLFRAMEBUFFERTEXTUREMULTIVIEWOVRPROC.class, fi, constants$1277.PFNGLFRAMEBUFFERTEXTUREMULTIVIEWOVRPROC$FUNC, session);
     }
     static PFNGLFRAMEBUFFERTEXTUREMULTIVIEWOVRPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _target, int _attachment, int _texture, int _level, int _baseViewIndex, int _numViews) -> {
             try {
-                constants$883.PFNGLFRAMEBUFFERTEXTUREMULTIVIEWOVRPROC$MH.invokeExact((Addressable)symbol, _target, _attachment, _texture, _level, _baseViewIndex, _numViews);
+                constants$1278.PFNGLFRAMEBUFFERTEXTUREMULTIVIEWOVRPROC$MH.invokeExact((Addressable)symbol, _target, _attachment, _texture, _level, _baseViewIndex, _numViews);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

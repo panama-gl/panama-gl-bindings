@@ -11,13 +11,13 @@ public interface PFNGLDELETEVERTEXSHADEREXTPROC {
 
     void apply(int id);
     static MemorySegment allocate(PFNGLDELETEVERTEXSHADEREXTPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLDELETEVERTEXSHADEREXTPROC.class, fi, constants$683.PFNGLDELETEVERTEXSHADEREXTPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLDELETEVERTEXSHADEREXTPROC.class, fi, constants$977.PFNGLDELETEVERTEXSHADEREXTPROC$FUNC, session);
     }
     static PFNGLDELETEVERTEXSHADEREXTPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _id) -> {
             try {
-                constants$683.PFNGLDELETEVERTEXSHADEREXTPROC$MH.invokeExact((Addressable)symbol, _id);
+                constants$978.PFNGLDELETEVERTEXSHADEREXTPROC$MH.invokeExact((Addressable)symbol, _id);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

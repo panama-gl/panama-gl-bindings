@@ -11,13 +11,13 @@ public interface PFNGLGETPATHMETRICSNVPROC {
 
     void apply(int metricQueryMask, int numPaths, int pathNameType, java.lang.foreign.MemoryAddress paths, int pathBase, int stride, java.lang.foreign.MemoryAddress metrics);
     static MemorySegment allocate(PFNGLGETPATHMETRICSNVPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLGETPATHMETRICSNVPROC.class, fi, constants$798.PFNGLGETPATHMETRICSNVPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLGETPATHMETRICSNVPROC.class, fi, constants$1144.PFNGLGETPATHMETRICSNVPROC$FUNC, session);
     }
     static PFNGLGETPATHMETRICSNVPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _metricQueryMask, int _numPaths, int _pathNameType, java.lang.foreign.MemoryAddress _paths, int _pathBase, int _stride, java.lang.foreign.MemoryAddress _metrics) -> {
             try {
-                constants$798.PFNGLGETPATHMETRICSNVPROC$MH.invokeExact((Addressable)symbol, _metricQueryMask, _numPaths, _pathNameType, (java.lang.foreign.Addressable)_paths, _pathBase, _stride, (java.lang.foreign.Addressable)_metrics);
+                constants$1144.PFNGLGETPATHMETRICSNVPROC$MH.invokeExact((Addressable)symbol, _metricQueryMask, _numPaths, _pathNameType, (java.lang.foreign.Addressable)_paths, _pathBase, _stride, (java.lang.foreign.Addressable)_metrics);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

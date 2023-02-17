@@ -11,13 +11,13 @@ public interface PFNGLGETPROGRAMRESOURCEIVPROC {
 
     void apply(int program, int programInterface, int index, int propCount, java.lang.foreign.MemoryAddress props, int bufSize, java.lang.foreign.MemoryAddress length, java.lang.foreign.MemoryAddress params);
     static MemorySegment allocate(PFNGLGETPROGRAMRESOURCEIVPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLGETPROGRAMRESOURCEIVPROC.class, fi, constants$259.PFNGLGETPROGRAMRESOURCEIVPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLGETPROGRAMRESOURCEIVPROC.class, fi, constants$339.PFNGLGETPROGRAMRESOURCEIVPROC$FUNC, session);
     }
     static PFNGLGETPROGRAMRESOURCEIVPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _program, int _programInterface, int _index, int _propCount, java.lang.foreign.MemoryAddress _props, int _bufSize, java.lang.foreign.MemoryAddress _length, java.lang.foreign.MemoryAddress _params) -> {
             try {
-                constants$259.PFNGLGETPROGRAMRESOURCEIVPROC$MH.invokeExact((Addressable)symbol, _program, _programInterface, _index, _propCount, (java.lang.foreign.Addressable)_props, _bufSize, (java.lang.foreign.Addressable)_length, (java.lang.foreign.Addressable)_params);
+                constants$339.PFNGLGETPROGRAMRESOURCEIVPROC$MH.invokeExact((Addressable)symbol, _program, _programInterface, _index, _propCount, (java.lang.foreign.Addressable)_props, _bufSize, (java.lang.foreign.Addressable)_length, (java.lang.foreign.Addressable)_params);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

@@ -11,13 +11,13 @@ public interface PFNGLOBJECTUNPURGEABLEAPPLEPROC {
 
     int apply(int objectType, int name, int option);
     static MemorySegment allocate(PFNGLOBJECTUNPURGEABLEAPPLEPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLOBJECTUNPURGEABLEAPPLEPROC.class, fi, constants$480.PFNGLOBJECTUNPURGEABLEAPPLEPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLOBJECTUNPURGEABLEAPPLEPROC.class, fi, constants$673.PFNGLOBJECTUNPURGEABLEAPPLEPROC$FUNC, session);
     }
     static PFNGLOBJECTUNPURGEABLEAPPLEPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _objectType, int _name, int _option) -> {
             try {
-                return (int)constants$480.PFNGLOBJECTUNPURGEABLEAPPLEPROC$MH.invokeExact((Addressable)symbol, _objectType, _name, _option);
+                return (int)constants$674.PFNGLOBJECTUNPURGEABLEAPPLEPROC$MH.invokeExact((Addressable)symbol, _objectType, _name, _option);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

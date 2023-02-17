@@ -9,36 +9,32 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$306 {
 
-    static final FunctionDescriptor PFNGLGETNUNIFORMUIVPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLVERTEXATTRIBL2DPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
+        Constants$root.C_DOUBLE$LAYOUT,
+        Constants$root.C_DOUBLE$LAYOUT
     );
-    static final MethodHandle PFNGLGETNUNIFORMUIVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$306.PFNGLGETNUNIFORMUIVPROC$FUNC
+    static final MethodHandle PFNGLVERTEXATTRIBL2DPROC$MH = RuntimeHelper.downcallHandle(
+        constants$306.PFNGLVERTEXATTRIBL2DPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLREADNPIXELSPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLVERTEXATTRIBL3DPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
+        Constants$root.C_DOUBLE$LAYOUT,
+        Constants$root.C_DOUBLE$LAYOUT,
+        Constants$root.C_DOUBLE$LAYOUT
     );
-    static final MethodHandle PFNGLREADNPIXELSPROC$MH = RuntimeHelper.downcallHandle(
-        constants$306.PFNGLREADNPIXELSPROC$FUNC
+    static final MethodHandle PFNGLVERTEXATTRIBL3DPROC$MH = RuntimeHelper.downcallHandle(
+        constants$306.PFNGLVERTEXATTRIBL3DPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLGETNMAPDVPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLVERTEXATTRIBL4DPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
+        Constants$root.C_DOUBLE$LAYOUT,
+        Constants$root.C_DOUBLE$LAYOUT,
+        Constants$root.C_DOUBLE$LAYOUT,
+        Constants$root.C_DOUBLE$LAYOUT
     );
-    static final MethodHandle PFNGLGETNMAPDVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$306.PFNGLGETNMAPDVPROC$FUNC
+    static final MethodHandle PFNGLVERTEXATTRIBL4DPROC$MH = RuntimeHelper.downcallHandle(
+        constants$306.PFNGLVERTEXATTRIBL4DPROC$FUNC
     );
 }
 

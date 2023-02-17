@@ -11,13 +11,13 @@ public interface PFNGLMULTITEXRENDERBUFFEREXTPROC {
 
     void apply(int texunit, int target, int renderbuffer);
     static MemorySegment allocate(PFNGLMULTITEXRENDERBUFFEREXTPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLMULTITEXRENDERBUFFEREXTPROC.class, fi, constants$601.PFNGLMULTITEXRENDERBUFFEREXTPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLMULTITEXRENDERBUFFEREXTPROC.class, fi, constants$822.PFNGLMULTITEXRENDERBUFFEREXTPROC$FUNC, session);
     }
     static PFNGLMULTITEXRENDERBUFFEREXTPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _texunit, int _target, int _renderbuffer) -> {
             try {
-                constants$601.PFNGLMULTITEXRENDERBUFFEREXTPROC$MH.invokeExact((Addressable)symbol, _texunit, _target, _renderbuffer);
+                constants$823.PFNGLMULTITEXRENDERBUFFEREXTPROC$MH.invokeExact((Addressable)symbol, _texunit, _target, _renderbuffer);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

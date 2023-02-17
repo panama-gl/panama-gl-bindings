@@ -11,13 +11,13 @@ public interface PFNGLPROGRAMUNIFORM4DEXTPROC {
 
     void apply(int program, int location, double x, double y, double z, double w);
     static MemorySegment allocate(PFNGLPROGRAMUNIFORM4DEXTPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLPROGRAMUNIFORM4DEXTPROC.class, fi, constants$611.PFNGLPROGRAMUNIFORM4DEXTPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLPROGRAMUNIFORM4DEXTPROC.class, fi, constants$832.PFNGLPROGRAMUNIFORM4DEXTPROC$FUNC, session);
     }
     static PFNGLPROGRAMUNIFORM4DEXTPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _program, int _location, double _x, double _y, double _z, double _w) -> {
             try {
-                constants$611.PFNGLPROGRAMUNIFORM4DEXTPROC$MH.invokeExact((Addressable)symbol, _program, _location, _x, _y, _z, _w);
+                constants$833.PFNGLPROGRAMUNIFORM4DEXTPROC$MH.invokeExact((Addressable)symbol, _program, _location, _x, _y, _z, _w);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

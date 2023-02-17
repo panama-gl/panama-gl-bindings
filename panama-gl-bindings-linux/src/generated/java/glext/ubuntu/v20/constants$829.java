@@ -9,27 +9,37 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$829 {
 
-    static final FunctionDescriptor PFNGLENDTRANSFORMFEEDBACKNVPROC$FUNC = FunctionDescriptor.ofVoid();
-    static final MethodHandle PFNGLENDTRANSFORMFEEDBACKNVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$829.PFNGLENDTRANSFORMFEEDBACKNVPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLTRANSFORMFEEDBACKATTRIBSNVPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLGETVERTEXARRAYINTEGERI_VEXTPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle PFNGLGETVERTEXARRAYINTEGERI_VEXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$829.PFNGLGETVERTEXARRAYINTEGERI_VEXTPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLGETVERTEXARRAYPOINTERI_VEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle PFNGLGETVERTEXARRAYPOINTERI_VEXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$829.PFNGLGETVERTEXARRAYPOINTERI_VEXTPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLMAPNAMEDBUFFERRANGEEXTPROC$FUNC = FunctionDescriptor.of(Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT,
         Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLTRANSFORMFEEDBACKATTRIBSNVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$829.PFNGLTRANSFORMFEEDBACKATTRIBSNVPROC$FUNC
+    static final MethodHandle PFNGLMAPNAMEDBUFFERRANGEEXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$829.PFNGLMAPNAMEDBUFFERRANGEEXTPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLBINDBUFFERRANGENVPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
+    static final FunctionDescriptor PFNGLFLUSHMAPPEDNAMEDBUFFERRANGEEXTPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_LONG_LONG$LAYOUT,
         Constants$root.C_LONG_LONG$LAYOUT
-    );
-    static final MethodHandle PFNGLBINDBUFFERRANGENVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$829.PFNGLBINDBUFFERRANGENVPROC$FUNC
     );
 }
 

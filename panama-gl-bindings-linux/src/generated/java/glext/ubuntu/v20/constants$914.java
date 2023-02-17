@@ -9,23 +9,39 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$914 {
 
-    static final FunctionDescriptor PFNGLREPLACEMENTCODEUIVSUNPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glApplyTextureEXT$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle glApplyTextureEXT$MH = RuntimeHelper.downcallHandle(
+        "glApplyTextureEXT",
+        constants$914.glApplyTextureEXT$FUNC
+    );
+    static final FunctionDescriptor glTextureLightEXT$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle glTextureLightEXT$MH = RuntimeHelper.downcallHandle(
+        "glTextureLightEXT",
+        constants$914.glTextureLightEXT$FUNC
+    );
+    static final FunctionDescriptor glTextureMaterialEXT$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle glTextureMaterialEXT$MH = RuntimeHelper.downcallHandle(
+        "glTextureMaterialEXT",
+        constants$914.glTextureMaterialEXT$FUNC
+    );
+    static final FunctionDescriptor PFNGLGETUNSIGNEDBYTEVEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLREPLACEMENTCODEUIVSUNPROC$MH = RuntimeHelper.downcallHandle(
-        constants$914.PFNGLREPLACEMENTCODEUIVSUNPROC$FUNC
+    static final MethodHandle PFNGLGETUNSIGNEDBYTEVEXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$914.PFNGLGETUNSIGNEDBYTEVEXTPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLREPLACEMENTCODEUSVSUNPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLGETUNSIGNEDBYTEI_VEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle PFNGLREPLACEMENTCODEUSVSUNPROC$MH = RuntimeHelper.downcallHandle(
-        constants$914.PFNGLREPLACEMENTCODEUSVSUNPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLREPLACEMENTCODEUBVSUNPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle PFNGLREPLACEMENTCODEUBVSUNPROC$MH = RuntimeHelper.downcallHandle(
-        constants$914.PFNGLREPLACEMENTCODEUBVSUNPROC$FUNC
     );
 }
 

@@ -11,13 +11,13 @@ public interface PFNGLREPLACEMENTCODEUICOLOR4UBVERTEX3FVSUNPROC {
 
     void apply(java.lang.foreign.MemoryAddress rc, java.lang.foreign.MemoryAddress c, java.lang.foreign.MemoryAddress v);
     static MemorySegment allocate(PFNGLREPLACEMENTCODEUICOLOR4UBVERTEX3FVSUNPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLREPLACEMENTCODEUICOLOR4UBVERTEX3FVSUNPROC.class, fi, constants$924.PFNGLREPLACEMENTCODEUICOLOR4UBVERTEX3FVSUNPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLREPLACEMENTCODEUICOLOR4UBVERTEX3FVSUNPROC.class, fi, constants$1335.PFNGLREPLACEMENTCODEUICOLOR4UBVERTEX3FVSUNPROC$FUNC, session);
     }
     static PFNGLREPLACEMENTCODEUICOLOR4UBVERTEX3FVSUNPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (java.lang.foreign.MemoryAddress _rc, java.lang.foreign.MemoryAddress _c, java.lang.foreign.MemoryAddress _v) -> {
             try {
-                constants$924.PFNGLREPLACEMENTCODEUICOLOR4UBVERTEX3FVSUNPROC$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)_rc, (java.lang.foreign.Addressable)_c, (java.lang.foreign.Addressable)_v);
+                constants$1335.PFNGLREPLACEMENTCODEUICOLOR4UBVERTEX3FVSUNPROC$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)_rc, (java.lang.foreign.Addressable)_c, (java.lang.foreign.Addressable)_v);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

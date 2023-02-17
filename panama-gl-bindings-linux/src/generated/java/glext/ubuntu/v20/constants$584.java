@@ -9,32 +9,34 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$584 {
 
-    static final FunctionDescriptor PFNGLPROGRAMUNIFORM1UIEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLSCALEXOESPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLPROGRAMUNIFORM1UIEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$584.PFNGLPROGRAMUNIFORM1UIEXTPROC$FUNC
+    static final MethodHandle PFNGLSCALEXOESPROC$MH = RuntimeHelper.downcallHandle(
+        constants$584.PFNGLSCALEXOESPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLPROGRAMUNIFORM2UIEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
+    static final FunctionDescriptor PFNGLTEXENVXOESPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLPROGRAMUNIFORM2UIEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$584.PFNGLPROGRAMUNIFORM2UIEXTPROC$FUNC
+    static final MethodHandle PFNGLTEXENVXOESPROC$MH = RuntimeHelper.downcallHandle(
+        constants$584.PFNGLTEXENVXOESPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLPROGRAMUNIFORM3UIEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLTEXENVXVOESPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle PFNGLTEXENVXVOESPROC$MH = RuntimeHelper.downcallHandle(
+        constants$584.PFNGLTEXENVXVOESPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLTEXPARAMETERXOESPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT
-    );
-    static final MethodHandle PFNGLPROGRAMUNIFORM3UIEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$584.PFNGLPROGRAMUNIFORM3UIEXTPROC$FUNC
     );
 }
 

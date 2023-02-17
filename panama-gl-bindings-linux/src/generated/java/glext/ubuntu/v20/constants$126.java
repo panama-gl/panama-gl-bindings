@@ -9,31 +9,23 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$126 {
 
-    static final FunctionDescriptor PFNGLUNIFORM3FPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLBINDATTRIBLOCATIONPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT
-    );
-    static final MethodHandle PFNGLUNIFORM3FPROC$MH = RuntimeHelper.downcallHandle(
-        constants$126.PFNGLUNIFORM3FPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLUNIFORM4FPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT
+        Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLUNIFORM4FPROC$MH = RuntimeHelper.downcallHandle(
-        constants$126.PFNGLUNIFORM4FPROC$FUNC
+    static final MethodHandle PFNGLBINDATTRIBLOCATIONPROC$MH = RuntimeHelper.downcallHandle(
+        constants$126.PFNGLBINDATTRIBLOCATIONPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLUNIFORM1IPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
+    static final FunctionDescriptor PFNGLCOMPILESHADERPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLUNIFORM1IPROC$MH = RuntimeHelper.downcallHandle(
-        constants$126.PFNGLUNIFORM1IPROC$FUNC
+    static final MethodHandle PFNGLCOMPILESHADERPROC$MH = RuntimeHelper.downcallHandle(
+        constants$126.PFNGLCOMPILESHADERPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLCREATEPROGRAMPROC$FUNC = FunctionDescriptor.of(Constants$root.C_INT$LAYOUT);
+    static final MethodHandle PFNGLCREATEPROGRAMPROC$MH = RuntimeHelper.downcallHandle(
+        constants$126.PFNGLCREATEPROGRAMPROC$FUNC
     );
 }
 

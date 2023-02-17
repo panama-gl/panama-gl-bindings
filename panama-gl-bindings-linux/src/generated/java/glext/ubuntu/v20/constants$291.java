@@ -9,29 +9,32 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$291 {
 
-    static final FunctionDescriptor PFNGLTEXTUREPARAMETERFVPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLPROGRAMUNIFORM2IPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle PFNGLTEXTUREPARAMETERFVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$291.PFNGLTEXTUREPARAMETERFVPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLTEXTUREPARAMETERIPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLTEXTUREPARAMETERIPROC$MH = RuntimeHelper.downcallHandle(
-        constants$291.PFNGLTEXTUREPARAMETERIPROC$FUNC
+    static final MethodHandle PFNGLPROGRAMUNIFORM2IPROC$MH = RuntimeHelper.downcallHandle(
+        constants$291.PFNGLPROGRAMUNIFORM2IPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLTEXTUREPARAMETERIIVPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLPROGRAMUNIFORM2IVPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLTEXTUREPARAMETERIIVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$291.PFNGLTEXTUREPARAMETERIIVPROC$FUNC
+    static final MethodHandle PFNGLPROGRAMUNIFORM2IVPROC$MH = RuntimeHelper.downcallHandle(
+        constants$291.PFNGLPROGRAMUNIFORM2IVPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLPROGRAMUNIFORM2FPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT
+    );
+    static final MethodHandle PFNGLPROGRAMUNIFORM2FPROC$MH = RuntimeHelper.downcallHandle(
+        constants$291.PFNGLPROGRAMUNIFORM2FPROC$FUNC
     );
 }
 

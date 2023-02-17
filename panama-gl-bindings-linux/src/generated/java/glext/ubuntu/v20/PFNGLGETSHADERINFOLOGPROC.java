@@ -11,13 +11,13 @@ public interface PFNGLGETSHADERINFOLOGPROC {
 
     void apply(int shader, int bufSize, java.lang.foreign.MemoryAddress length, java.lang.foreign.MemoryAddress infoLog);
     static MemorySegment allocate(PFNGLGETSHADERINFOLOGPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLGETSHADERINFOLOGPROC.class, fi, constants$120.PFNGLGETSHADERINFOLOGPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLGETSHADERINFOLOGPROC.class, fi, constants$131.PFNGLGETSHADERINFOLOGPROC$FUNC, session);
     }
     static PFNGLGETSHADERINFOLOGPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _shader, int _bufSize, java.lang.foreign.MemoryAddress _length, java.lang.foreign.MemoryAddress _infoLog) -> {
             try {
-                constants$120.PFNGLGETSHADERINFOLOGPROC$MH.invokeExact((Addressable)symbol, _shader, _bufSize, (java.lang.foreign.Addressable)_length, (java.lang.foreign.Addressable)_infoLog);
+                constants$131.PFNGLGETSHADERINFOLOGPROC$MH.invokeExact((Addressable)symbol, _shader, _bufSize, (java.lang.foreign.Addressable)_length, (java.lang.foreign.Addressable)_infoLog);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

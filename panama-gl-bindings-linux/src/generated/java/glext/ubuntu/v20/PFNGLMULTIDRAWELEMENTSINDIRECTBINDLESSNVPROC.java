@@ -11,13 +11,13 @@ public interface PFNGLMULTIDRAWELEMENTSINDIRECTBINDLESSNVPROC {
 
     void apply(int mode, int type, java.lang.foreign.MemoryAddress indirect, int drawCount, int stride, int vertexBufferCount);
     static MemorySegment allocate(PFNGLMULTIDRAWELEMENTSINDIRECTBINDLESSNVPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLMULTIDRAWELEMENTSINDIRECTBINDLESSNVPROC.class, fi, constants$725.PFNGLMULTIDRAWELEMENTSINDIRECTBINDLESSNVPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLMULTIDRAWELEMENTSINDIRECTBINDLESSNVPROC.class, fi, constants$1041.PFNGLMULTIDRAWELEMENTSINDIRECTBINDLESSNVPROC$FUNC, session);
     }
     static PFNGLMULTIDRAWELEMENTSINDIRECTBINDLESSNVPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _mode, int _type, java.lang.foreign.MemoryAddress _indirect, int _drawCount, int _stride, int _vertexBufferCount) -> {
             try {
-                constants$725.PFNGLMULTIDRAWELEMENTSINDIRECTBINDLESSNVPROC$MH.invokeExact((Addressable)symbol, _mode, _type, (java.lang.foreign.Addressable)_indirect, _drawCount, _stride, _vertexBufferCount);
+                constants$1042.PFNGLMULTIDRAWELEMENTSINDIRECTBINDLESSNVPROC$MH.invokeExact((Addressable)symbol, _mode, _type, (java.lang.foreign.Addressable)_indirect, _drawCount, _stride, _vertexBufferCount);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

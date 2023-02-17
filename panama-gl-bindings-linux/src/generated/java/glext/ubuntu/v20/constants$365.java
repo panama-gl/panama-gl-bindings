@@ -9,29 +9,29 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$365 {
 
-    static final FunctionDescriptor PFNGLUNIFORM4FVARBPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLFLUSHMAPPEDNAMEDBUFFERRANGEPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT
+    );
+    static final MethodHandle PFNGLFLUSHMAPPEDNAMEDBUFFERRANGEPROC$MH = RuntimeHelper.downcallHandle(
+        constants$365.PFNGLFLUSHMAPPEDNAMEDBUFFERRANGEPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLGETNAMEDBUFFERPARAMETERIVPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLUNIFORM4FVARBPROC$MH = RuntimeHelper.downcallHandle(
-        constants$365.PFNGLUNIFORM4FVARBPROC$FUNC
+    static final MethodHandle PFNGLGETNAMEDBUFFERPARAMETERIVPROC$MH = RuntimeHelper.downcallHandle(
+        constants$365.PFNGLGETNAMEDBUFFERPARAMETERIVPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLUNIFORM1IVARBPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLGETNAMEDBUFFERPARAMETERI64VPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLUNIFORM1IVARBPROC$MH = RuntimeHelper.downcallHandle(
-        constants$365.PFNGLUNIFORM1IVARBPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLUNIFORM2IVARBPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle PFNGLUNIFORM2IVARBPROC$MH = RuntimeHelper.downcallHandle(
-        constants$365.PFNGLUNIFORM2IVARBPROC$FUNC
+    static final MethodHandle PFNGLGETNAMEDBUFFERPARAMETERI64VPROC$MH = RuntimeHelper.downcallHandle(
+        constants$365.PFNGLGETNAMEDBUFFERPARAMETERI64VPROC$FUNC
     );
 }
 

@@ -9,34 +9,53 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$573 {
 
-    static final FunctionDescriptor PFNGLPROGRAMUNIFORM3FEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT
+    static final FunctionDescriptor glTexCoord4bvOES$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLPROGRAMUNIFORM3FEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$573.PFNGLPROGRAMUNIFORM3FEXTPROC$FUNC
+    static final MethodHandle glTexCoord4bvOES$MH = RuntimeHelper.downcallHandle(
+        "glTexCoord4bvOES",
+        constants$573.glTexCoord4bvOES$FUNC
     );
-    static final FunctionDescriptor PFNGLPROGRAMUNIFORM4FEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT
+    static final FunctionDescriptor glVertex2bOES$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_CHAR$LAYOUT,
+        Constants$root.C_CHAR$LAYOUT
     );
-    static final MethodHandle PFNGLPROGRAMUNIFORM4FEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$573.PFNGLPROGRAMUNIFORM4FEXTPROC$FUNC
+    static final MethodHandle glVertex2bOES$MH = RuntimeHelper.downcallHandle(
+        "glVertex2bOES",
+        constants$573.glVertex2bOES$FUNC
     );
-    static final FunctionDescriptor PFNGLPROGRAMUNIFORM1IEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT
+    static final FunctionDescriptor glVertex2bvOES$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLPROGRAMUNIFORM1IEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$573.PFNGLPROGRAMUNIFORM1IEXTPROC$FUNC
+    static final MethodHandle glVertex2bvOES$MH = RuntimeHelper.downcallHandle(
+        "glVertex2bvOES",
+        constants$573.glVertex2bvOES$FUNC
+    );
+    static final FunctionDescriptor glVertex3bOES$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_CHAR$LAYOUT,
+        Constants$root.C_CHAR$LAYOUT,
+        Constants$root.C_CHAR$LAYOUT
+    );
+    static final MethodHandle glVertex3bOES$MH = RuntimeHelper.downcallHandle(
+        "glVertex3bOES",
+        constants$573.glVertex3bOES$FUNC
+    );
+    static final FunctionDescriptor glVertex3bvOES$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glVertex3bvOES$MH = RuntimeHelper.downcallHandle(
+        "glVertex3bvOES",
+        constants$573.glVertex3bvOES$FUNC
+    );
+    static final FunctionDescriptor glVertex4bOES$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_CHAR$LAYOUT,
+        Constants$root.C_CHAR$LAYOUT,
+        Constants$root.C_CHAR$LAYOUT,
+        Constants$root.C_CHAR$LAYOUT
+    );
+    static final MethodHandle glVertex4bOES$MH = RuntimeHelper.downcallHandle(
+        "glVertex4bOES",
+        constants$573.glVertex4bOES$FUNC
     );
 }
 

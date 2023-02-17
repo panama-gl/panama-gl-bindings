@@ -9,25 +9,56 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$422 {
 
-    static final FunctionDescriptor PFNGLPOINTPARAMETERXVOESPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glMultiDrawElementsIndirectCount$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle PFNGLPOINTPARAMETERXVOESPROC$MH = RuntimeHelper.downcallHandle(
-        constants$422.PFNGLPOINTPARAMETERXVOESPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLPOINTSIZEXOESPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT
-    );
-    static final MethodHandle PFNGLPOINTSIZEXOESPROC$MH = RuntimeHelper.downcallHandle(
-        constants$422.PFNGLPOINTSIZEXOESPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLPOLYGONOFFSETXOESPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLPOLYGONOFFSETXOESPROC$MH = RuntimeHelper.downcallHandle(
-        constants$422.PFNGLPOLYGONOFFSETXOESPROC$FUNC
+    static final MethodHandle glMultiDrawElementsIndirectCount$MH = RuntimeHelper.downcallHandle(
+        "glMultiDrawElementsIndirectCount",
+        constants$422.glMultiDrawElementsIndirectCount$FUNC
+    );
+    static final FunctionDescriptor glPolygonOffsetClamp$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT
+    );
+    static final MethodHandle glPolygonOffsetClamp$MH = RuntimeHelper.downcallHandle(
+        "glPolygonOffsetClamp",
+        constants$422.glPolygonOffsetClamp$FUNC
+    );
+    static final FunctionDescriptor PFNGLPRIMITIVEBOUNDINGBOXARBPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT
+    );
+    static final MethodHandle PFNGLPRIMITIVEBOUNDINGBOXARBPROC$MH = RuntimeHelper.downcallHandle(
+        constants$422.PFNGLPRIMITIVEBOUNDINGBOXARBPROC$FUNC
+    );
+    static final FunctionDescriptor glPrimitiveBoundingBoxARB$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT
+    );
+    static final MethodHandle glPrimitiveBoundingBoxARB$MH = RuntimeHelper.downcallHandle(
+        "glPrimitiveBoundingBoxARB",
+        constants$422.glPrimitiveBoundingBoxARB$FUNC
+    );
+    static final FunctionDescriptor PFNGLGETTEXTUREHANDLEARBPROC$FUNC = FunctionDescriptor.of(Constants$root.C_LONG_LONG$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
 }
 

@@ -11,13 +11,13 @@ public interface PFNGLGETPATHLENGTHNVPROC {
 
     float apply(int path, int startSegment, int numSegments);
     static MemorySegment allocate(PFNGLGETPATHLENGTHNVPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLGETPATHLENGTHNVPROC.class, fi, constants$799.PFNGLGETPATHLENGTHNVPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLGETPATHLENGTHNVPROC.class, fi, constants$1146.PFNGLGETPATHLENGTHNVPROC$FUNC, session);
     }
     static PFNGLGETPATHLENGTHNVPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _path, int _startSegment, int _numSegments) -> {
             try {
-                return (float)constants$799.PFNGLGETPATHLENGTHNVPROC$MH.invokeExact((Addressable)symbol, _path, _startSegment, _numSegments);
+                return (float)constants$1146.PFNGLGETPATHLENGTHNVPROC$MH.invokeExact((Addressable)symbol, _path, _startSegment, _numSegments);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

@@ -9,32 +9,30 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$154 {
 
-    static final FunctionDescriptor PFNGLVERTEXATTRIBI2UIPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLVERTEXATTRIB4UIVPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT
+        Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLVERTEXATTRIBI2UIPROC$MH = RuntimeHelper.downcallHandle(
-        constants$154.PFNGLVERTEXATTRIBI2UIPROC$FUNC
+    static final MethodHandle PFNGLVERTEXATTRIB4UIVPROC$MH = RuntimeHelper.downcallHandle(
+        constants$154.PFNGLVERTEXATTRIB4UIVPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLVERTEXATTRIBI3UIPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLVERTEXATTRIB4USVPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT
+        Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLVERTEXATTRIBI3UIPROC$MH = RuntimeHelper.downcallHandle(
-        constants$154.PFNGLVERTEXATTRIBI3UIPROC$FUNC
+    static final MethodHandle PFNGLVERTEXATTRIB4USVPROC$MH = RuntimeHelper.downcallHandle(
+        constants$154.PFNGLVERTEXATTRIB4USVPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLVERTEXATTRIBI4UIPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLVERTEXATTRIBPOINTERPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
+        Constants$root.C_CHAR$LAYOUT,
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT
+        Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLVERTEXATTRIBI4UIPROC$MH = RuntimeHelper.downcallHandle(
-        constants$154.PFNGLVERTEXATTRIBI4UIPROC$FUNC
+    static final MethodHandle PFNGLVERTEXATTRIBPOINTERPROC$MH = RuntimeHelper.downcallHandle(
+        constants$154.PFNGLVERTEXATTRIBPOINTERPROC$FUNC
     );
 }
 

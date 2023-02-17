@@ -11,13 +11,13 @@ public interface PFNGLFOGCOORDFEXTPROC {
 
     void apply(float coord);
     static MemorySegment allocate(PFNGLFOGCOORDFEXTPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLFOGCOORDFEXTPROC.class, fi, constants$623.PFNGLFOGCOORDFEXTPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLFOGCOORDFEXTPROC.class, fi, constants$888.PFNGLFOGCOORDFEXTPROC$FUNC, session);
     }
     static PFNGLFOGCOORDFEXTPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (float _coord) -> {
             try {
-                constants$623.PFNGLFOGCOORDFEXTPROC$MH.invokeExact((Addressable)symbol, _coord);
+                constants$888.PFNGLFOGCOORDFEXTPROC$MH.invokeExact((Addressable)symbol, _coord);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

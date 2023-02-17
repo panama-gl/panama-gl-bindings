@@ -9,29 +9,30 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$270 {
 
-    static final FunctionDescriptor PFNGLBINDVERTEXBUFFERSPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLUNIFORMSUBROUTINESUIVPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle PFNGLBINDVERTEXBUFFERSPROC$MH = RuntimeHelper.downcallHandle(
-        constants$270.PFNGLBINDVERTEXBUFFERSPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLCLIPCONTROLPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT
-    );
-    static final MethodHandle PFNGLCLIPCONTROLPROC$MH = RuntimeHelper.downcallHandle(
-        constants$270.PFNGLCLIPCONTROLPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLCREATETRANSFORMFEEDBACKSPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLCREATETRANSFORMFEEDBACKSPROC$MH = RuntimeHelper.downcallHandle(
-        constants$270.PFNGLCREATETRANSFORMFEEDBACKSPROC$FUNC
+    static final MethodHandle PFNGLUNIFORMSUBROUTINESUIVPROC$MH = RuntimeHelper.downcallHandle(
+        constants$270.PFNGLUNIFORMSUBROUTINESUIVPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLGETUNIFORMSUBROUTINEUIVPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle PFNGLGETUNIFORMSUBROUTINEUIVPROC$MH = RuntimeHelper.downcallHandle(
+        constants$270.PFNGLGETUNIFORMSUBROUTINEUIVPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLGETPROGRAMSTAGEIVPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle PFNGLGETPROGRAMSTAGEIVPROC$MH = RuntimeHelper.downcallHandle(
+        constants$270.PFNGLGETPROGRAMSTAGEIVPROC$FUNC
     );
 }
 

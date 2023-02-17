@@ -11,13 +11,13 @@ public interface PFNGLVERTEXARRAYELEMENTBUFFERPROC {
 
     void apply(int vaobj, int buffer);
     static MemorySegment allocate(PFNGLVERTEXARRAYELEMENTBUFFERPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLVERTEXARRAYELEMENTBUFFERPROC.class, fi, constants$297.PFNGLVERTEXARRAYELEMENTBUFFERPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLVERTEXARRAYELEMENTBUFFERPROC.class, fi, constants$386.PFNGLVERTEXARRAYELEMENTBUFFERPROC$FUNC, session);
     }
     static PFNGLVERTEXARRAYELEMENTBUFFERPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _vaobj, int _buffer) -> {
             try {
-                constants$297.PFNGLVERTEXARRAYELEMENTBUFFERPROC$MH.invokeExact((Addressable)symbol, _vaobj, _buffer);
+                constants$386.PFNGLVERTEXARRAYELEMENTBUFFERPROC$MH.invokeExact((Addressable)symbol, _vaobj, _buffer);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

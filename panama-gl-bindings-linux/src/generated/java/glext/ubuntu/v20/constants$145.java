@@ -9,32 +9,27 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$145 {
 
-    static final FunctionDescriptor PFNGLUNIFORMMATRIX2X4FVPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLVERTEXATTRIB2DVPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_CHAR$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLUNIFORMMATRIX2X4FVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$145.PFNGLUNIFORMMATRIX2X4FVPROC$FUNC
+    static final MethodHandle PFNGLVERTEXATTRIB2DVPROC$MH = RuntimeHelper.downcallHandle(
+        constants$145.PFNGLVERTEXATTRIB2DVPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLUNIFORMMATRIX4X2FVPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLVERTEXATTRIB2FPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT
+    );
+    static final MethodHandle PFNGLVERTEXATTRIB2FPROC$MH = RuntimeHelper.downcallHandle(
+        constants$145.PFNGLVERTEXATTRIB2FPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLVERTEXATTRIB2FVPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_CHAR$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLUNIFORMMATRIX4X2FVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$145.PFNGLUNIFORMMATRIX4X2FVPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLUNIFORMMATRIX3X4FVPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_CHAR$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle PFNGLUNIFORMMATRIX3X4FVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$145.PFNGLUNIFORMMATRIX3X4FVPROC$FUNC
+    static final MethodHandle PFNGLVERTEXATTRIB2FVPROC$MH = RuntimeHelper.downcallHandle(
+        constants$145.PFNGLVERTEXATTRIB2FVPROC$FUNC
     );
 }
 

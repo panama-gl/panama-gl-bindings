@@ -11,13 +11,13 @@ public interface PFNGLMULTICASTBARRIERNVPROC {
 
     void apply();
     static MemorySegment allocate(PFNGLMULTICASTBARRIERNVPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLMULTICASTBARRIERNVPROC.class, fi, constants$756.PFNGLMULTICASTBARRIERNVPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLMULTICASTBARRIERNVPROC.class, fi, constants$1086.PFNGLMULTICASTBARRIERNVPROC$FUNC, session);
     }
     static PFNGLMULTICASTBARRIERNVPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return () -> {
             try {
-                constants$756.PFNGLMULTICASTBARRIERNVPROC$MH.invokeExact((Addressable)symbol);
+                constants$1086.PFNGLMULTICASTBARRIERNVPROC$MH.invokeExact((Addressable)symbol);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

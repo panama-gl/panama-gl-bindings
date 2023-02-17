@@ -9,29 +9,36 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$540 {
 
-    static final FunctionDescriptor PFNGLMATRIXORTHOEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLVERTEXATTRIB4DARBPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_DOUBLE$LAYOUT,
-        Constants$root.C_DOUBLE$LAYOUT,
         Constants$root.C_DOUBLE$LAYOUT,
         Constants$root.C_DOUBLE$LAYOUT,
         Constants$root.C_DOUBLE$LAYOUT,
         Constants$root.C_DOUBLE$LAYOUT
     );
-    static final MethodHandle PFNGLMATRIXORTHOEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$540.PFNGLMATRIXORTHOEXTPROC$FUNC
+    static final MethodHandle PFNGLVERTEXATTRIB4DARBPROC$MH = RuntimeHelper.downcallHandle(
+        constants$540.PFNGLVERTEXATTRIB4DARBPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLMATRIXPOPEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT
+    static final FunctionDescriptor PFNGLVERTEXATTRIB4DVARBPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLMATRIXPOPEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$540.PFNGLMATRIXPOPEXTPROC$FUNC
+    static final MethodHandle PFNGLVERTEXATTRIB4DVARBPROC$MH = RuntimeHelper.downcallHandle(
+        constants$540.PFNGLVERTEXATTRIB4DVARBPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLMATRIXPUSHEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT
+    static final FunctionDescriptor PFNGLVERTEXATTRIB4FARBPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT
     );
-    static final MethodHandle PFNGLMATRIXPUSHEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$540.PFNGLMATRIXPUSHEXTPROC$FUNC
+    static final MethodHandle PFNGLVERTEXATTRIB4FARBPROC$MH = RuntimeHelper.downcallHandle(
+        constants$540.PFNGLVERTEXATTRIB4FARBPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLVERTEXATTRIB4FVARBPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
 }
 

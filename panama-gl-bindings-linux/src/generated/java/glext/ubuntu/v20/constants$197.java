@@ -9,26 +9,41 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$197 {
 
-    static final FunctionDescriptor PFNGLTEXCOORDP2UIVPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLFRAMEBUFFERTEXTURE2DPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle PFNGLTEXCOORDP2UIVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$197.PFNGLTEXCOORDP2UIVPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLTEXCOORDP3UIPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLTEXCOORDP3UIPROC$MH = RuntimeHelper.downcallHandle(
-        constants$197.PFNGLTEXCOORDP3UIPROC$FUNC
+    static final MethodHandle PFNGLFRAMEBUFFERTEXTURE2DPROC$MH = RuntimeHelper.downcallHandle(
+        constants$197.PFNGLFRAMEBUFFERTEXTURE2DPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLTEXCOORDP3UIVPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLFRAMEBUFFERTEXTURE3DPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle PFNGLFRAMEBUFFERTEXTURE3DPROC$MH = RuntimeHelper.downcallHandle(
+        constants$197.PFNGLFRAMEBUFFERTEXTURE3DPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLFRAMEBUFFERRENDERBUFFERPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle PFNGLFRAMEBUFFERRENDERBUFFERPROC$MH = RuntimeHelper.downcallHandle(
+        constants$197.PFNGLFRAMEBUFFERRENDERBUFFERPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLGETFRAMEBUFFERATTACHMENTPARAMETERIVPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle PFNGLTEXCOORDP3UIVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$197.PFNGLTEXCOORDP3UIVPROC$FUNC
     );
 }
 

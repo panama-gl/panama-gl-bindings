@@ -11,13 +11,13 @@ public interface PFNGLCLIENTATTRIBDEFAULTEXTPROC {
 
     void apply(int mask);
     static MemorySegment allocate(PFNGLCLIENTATTRIBDEFAULTEXTPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLCLIENTATTRIBDEFAULTEXTPROC.class, fi, constants$541.PFNGLCLIENTATTRIBDEFAULTEXTPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLCLIENTATTRIBDEFAULTEXTPROC.class, fi, constants$762.PFNGLCLIENTATTRIBDEFAULTEXTPROC$FUNC, session);
     }
     static PFNGLCLIENTATTRIBDEFAULTEXTPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _mask) -> {
             try {
-                constants$541.PFNGLCLIENTATTRIBDEFAULTEXTPROC$MH.invokeExact((Addressable)symbol, _mask);
+                constants$762.PFNGLCLIENTATTRIBDEFAULTEXTPROC$MH.invokeExact((Addressable)symbol, _mask);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

@@ -11,13 +11,13 @@ public interface PFNGLDISABLEIPROC {
 
     void apply(int target, int index);
     static MemorySegment allocate(PFNGLDISABLEIPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLDISABLEIPROC.class, fi, constants$147.PFNGLDISABLEIPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLDISABLEIPROC.class, fi, constants$174.PFNGLDISABLEIPROC$FUNC, session);
     }
     static PFNGLDISABLEIPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _target, int _index) -> {
             try {
-                constants$147.PFNGLDISABLEIPROC$MH.invokeExact((Addressable)symbol, _target, _index);
+                constants$175.PFNGLDISABLEIPROC$MH.invokeExact((Addressable)symbol, _target, _index);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

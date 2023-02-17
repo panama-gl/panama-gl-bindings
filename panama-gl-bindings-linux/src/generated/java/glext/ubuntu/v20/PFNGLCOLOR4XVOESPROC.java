@@ -11,13 +11,13 @@ public interface PFNGLCOLOR4XVOESPROC {
 
     void apply(java.lang.foreign.MemoryAddress components);
     static MemorySegment allocate(PFNGLCOLOR4XVOESPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLCOLOR4XVOESPROC.class, fi, constants$427.PFNGLCOLOR4XVOESPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLCOLOR4XVOESPROC.class, fi, constants$587.PFNGLCOLOR4XVOESPROC$FUNC, session);
     }
     static PFNGLCOLOR4XVOESPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (java.lang.foreign.MemoryAddress _components) -> {
             try {
-                constants$427.PFNGLCOLOR4XVOESPROC$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)_components);
+                constants$588.PFNGLCOLOR4XVOESPROC$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)_components);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

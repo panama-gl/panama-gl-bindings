@@ -9,25 +9,37 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$756 {
 
-    static final FunctionDescriptor PFNGLMULTICASTBARRIERNVPROC$FUNC = FunctionDescriptor.ofVoid();
-    static final MethodHandle PFNGLMULTICASTBARRIERNVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$756.PFNGLMULTICASTBARRIERNVPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLMULTICASTWAITSYNCNVPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT
-    );
-    static final MethodHandle PFNGLMULTICASTWAITSYNCNVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$756.PFNGLMULTICASTWAITSYNCNVPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLMULTICASTGETQUERYOBJECTIVNVPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
+    static final FunctionDescriptor PFNGLPUSHGROUPMARKEREXTPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLMULTICASTGETQUERYOBJECTIVNVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$756.PFNGLMULTICASTGETQUERYOBJECTIVNVPROC$FUNC
+    static final MethodHandle PFNGLPUSHGROUPMARKEREXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$756.PFNGLPUSHGROUPMARKEREXTPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLPOPGROUPMARKEREXTPROC$FUNC = FunctionDescriptor.ofVoid();
+    static final MethodHandle PFNGLPOPGROUPMARKEREXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$756.PFNGLPOPGROUPMARKEREXTPROC$FUNC
+    );
+    static final FunctionDescriptor glInsertEventMarkerEXT$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glInsertEventMarkerEXT$MH = RuntimeHelper.downcallHandle(
+        "glInsertEventMarkerEXT",
+        constants$756.glInsertEventMarkerEXT$FUNC
+    );
+    static final FunctionDescriptor glPushGroupMarkerEXT$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glPushGroupMarkerEXT$MH = RuntimeHelper.downcallHandle(
+        "glPushGroupMarkerEXT",
+        constants$756.glPushGroupMarkerEXT$FUNC
+    );
+    static final FunctionDescriptor glPopGroupMarkerEXT$FUNC = FunctionDescriptor.ofVoid();
+    static final MethodHandle glPopGroupMarkerEXT$MH = RuntimeHelper.downcallHandle(
+        "glPopGroupMarkerEXT",
+        constants$756.glPopGroupMarkerEXT$FUNC
     );
 }
 

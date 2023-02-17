@@ -9,34 +9,27 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$740 {
 
-    static final FunctionDescriptor PFNGLCLEARDEPTHDNVPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_DOUBLE$LAYOUT
+    static final FunctionDescriptor PFNGLTANGENT3BEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_CHAR$LAYOUT,
+        Constants$root.C_CHAR$LAYOUT,
+        Constants$root.C_CHAR$LAYOUT
     );
-    static final MethodHandle PFNGLCLEARDEPTHDNVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$740.PFNGLCLEARDEPTHDNVPROC$FUNC
+    static final MethodHandle PFNGLTANGENT3BEXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$740.PFNGLTANGENT3BEXTPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLDEPTHBOUNDSDNVPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLTANGENT3BVEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle PFNGLTANGENT3BVEXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$740.PFNGLTANGENT3BVEXTPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLTANGENT3DEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_DOUBLE$LAYOUT,
         Constants$root.C_DOUBLE$LAYOUT,
         Constants$root.C_DOUBLE$LAYOUT
     );
-    static final MethodHandle PFNGLDEPTHBOUNDSDNVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$740.PFNGLDEPTHBOUNDSDNVPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLDRAWTEXTURENVPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT
-    );
-    static final MethodHandle PFNGLDRAWTEXTURENVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$740.PFNGLDRAWTEXTURENVPROC$FUNC
+    static final MethodHandle PFNGLTANGENT3DEXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$740.PFNGLTANGENT3DEXTPROC$FUNC
     );
 }
 

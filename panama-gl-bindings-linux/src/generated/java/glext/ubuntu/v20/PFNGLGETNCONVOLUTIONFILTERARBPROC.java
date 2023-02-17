@@ -11,13 +11,13 @@ public interface PFNGLGETNCONVOLUTIONFILTERARBPROC {
 
     void apply(int target, int format, int type, int bufSize, java.lang.foreign.MemoryAddress image);
     static MemorySegment allocate(PFNGLGETNCONVOLUTIONFILTERARBPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLGETNCONVOLUTIONFILTERARBPROC.class, fi, constants$355.PFNGLGETNCONVOLUTIONFILTERARBPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLGETNCONVOLUTIONFILTERARBPROC.class, fi, constants$483.PFNGLGETNCONVOLUTIONFILTERARBPROC$FUNC, session);
     }
     static PFNGLGETNCONVOLUTIONFILTERARBPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _target, int _format, int _type, int _bufSize, java.lang.foreign.MemoryAddress _image) -> {
             try {
-                constants$355.PFNGLGETNCONVOLUTIONFILTERARBPROC$MH.invokeExact((Addressable)symbol, _target, _format, _type, _bufSize, (java.lang.foreign.Addressable)_image);
+                constants$483.PFNGLGETNCONVOLUTIONFILTERARBPROC$MH.invokeExact((Addressable)symbol, _target, _format, _type, _bufSize, (java.lang.foreign.Addressable)_image);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

@@ -9,33 +9,73 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$882 {
 
-    static final FunctionDescriptor PFNGLVIDEOCAPTURESTREAMPARAMETERFVNVPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glProgramUniformMatrix3x4dvEXT$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
+        Constants$root.C_CHAR$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLVIDEOCAPTURESTREAMPARAMETERFVNVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$882.PFNGLVIDEOCAPTURESTREAMPARAMETERFVNVPROC$FUNC
+    static final MethodHandle glProgramUniformMatrix3x4dvEXT$MH = RuntimeHelper.downcallHandle(
+        "glProgramUniformMatrix3x4dvEXT",
+        constants$882.glProgramUniformMatrix3x4dvEXT$FUNC
     );
-    static final FunctionDescriptor PFNGLVIDEOCAPTURESTREAMPARAMETERDVNVPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glProgramUniformMatrix4x2dvEXT$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
+        Constants$root.C_CHAR$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLVIDEOCAPTURESTREAMPARAMETERDVNVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$882.PFNGLVIDEOCAPTURESTREAMPARAMETERDVNVPROC$FUNC
+    static final MethodHandle glProgramUniformMatrix4x2dvEXT$MH = RuntimeHelper.downcallHandle(
+        "glProgramUniformMatrix4x2dvEXT",
+        constants$882.glProgramUniformMatrix4x2dvEXT$FUNC
     );
-    static final FunctionDescriptor PFNGLVIEWPORTSWIZZLENVPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glProgramUniformMatrix4x3dvEXT$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_CHAR$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glProgramUniformMatrix4x3dvEXT$MH = RuntimeHelper.downcallHandle(
+        "glProgramUniformMatrix4x3dvEXT",
+        constants$882.glProgramUniformMatrix4x3dvEXT$FUNC
+    );
+    static final FunctionDescriptor glTextureBufferRangeEXT$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT
+    );
+    static final MethodHandle glTextureBufferRangeEXT$MH = RuntimeHelper.downcallHandle(
+        "glTextureBufferRangeEXT",
+        constants$882.glTextureBufferRangeEXT$FUNC
+    );
+    static final FunctionDescriptor glTextureStorage1DEXT$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLVIEWPORTSWIZZLENVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$882.PFNGLVIEWPORTSWIZZLENVPROC$FUNC
+    static final MethodHandle glTextureStorage1DEXT$MH = RuntimeHelper.downcallHandle(
+        "glTextureStorage1DEXT",
+        constants$882.glTextureStorage1DEXT$FUNC
+    );
+    static final FunctionDescriptor glTextureStorage2DEXT$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle glTextureStorage2DEXT$MH = RuntimeHelper.downcallHandle(
+        "glTextureStorage2DEXT",
+        constants$882.glTextureStorage2DEXT$FUNC
     );
 }
 

@@ -9,46 +9,29 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$968 {
 
-    static final FunctionDescriptor glutGetColor$FUNC = FunctionDescriptor.of(Constants$root.C_FLOAT$LAYOUT,
+    static final FunctionDescriptor PFNGLEDGEFLAGPOINTEREXTPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT
-    );
-    static final MethodHandle glutGetColor$MH = RuntimeHelper.downcallHandle(
-        "glutGetColor",
-        constants$968.glutGetColor$FUNC
-    );
-    static final FunctionDescriptor glutCopyColormap$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT
-    );
-    static final MethodHandle glutCopyColormap$MH = RuntimeHelper.downcallHandle(
-        "glutCopyColormap",
-        constants$968.glutCopyColormap$FUNC
-    );
-    static final FunctionDescriptor glutIgnoreKeyRepeat$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT
-    );
-    static final MethodHandle glutIgnoreKeyRepeat$MH = RuntimeHelper.downcallHandle(
-        "glutIgnoreKeyRepeat",
-        constants$968.glutIgnoreKeyRepeat$FUNC
-    );
-    static final FunctionDescriptor glutSetKeyRepeat$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT
-    );
-    static final MethodHandle glutSetKeyRepeat$MH = RuntimeHelper.downcallHandle(
-        "glutSetKeyRepeat",
-        constants$968.glutSetKeyRepeat$FUNC
-    );
-    static final FunctionDescriptor glutForceJoystickFunc$FUNC = FunctionDescriptor.ofVoid();
-    static final MethodHandle glutForceJoystickFunc$MH = RuntimeHelper.downcallHandle(
-        "glutForceJoystickFunc",
-        constants$968.glutForceJoystickFunc$FUNC
-    );
-    static final FunctionDescriptor glutExtensionSupported$FUNC = FunctionDescriptor.of(Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle glutExtensionSupported$MH = RuntimeHelper.downcallHandle(
-        "glutExtensionSupported",
-        constants$968.glutExtensionSupported$FUNC
+    static final MethodHandle PFNGLEDGEFLAGPOINTEREXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$968.PFNGLEDGEFLAGPOINTEREXTPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLGETPOINTERVEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle PFNGLGETPOINTERVEXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$968.PFNGLGETPOINTERVEXTPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLINDEXPOINTEREXTPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle PFNGLINDEXPOINTEREXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$968.PFNGLINDEXPOINTEREXTPROC$FUNC
     );
 }
 

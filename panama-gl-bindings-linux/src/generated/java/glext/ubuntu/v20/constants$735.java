@@ -9,29 +9,39 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$735 {
 
-    static final FunctionDescriptor PFNGLDRAWCOMMANDSSTATESADDRESSNVPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
+    static final FunctionDescriptor PFNGLCONVOLUTIONPARAMETERIEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLDRAWCOMMANDSSTATESADDRESSNVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$735.PFNGLDRAWCOMMANDSSTATESADDRESSNVPROC$FUNC
+    static final MethodHandle PFNGLCONVOLUTIONPARAMETERIEXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$735.PFNGLCONVOLUTIONPARAMETERIEXTPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLCREATECOMMANDLISTSNVPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLCONVOLUTIONPARAMETERIVEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLCREATECOMMANDLISTSNVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$735.PFNGLCREATECOMMANDLISTSNVPROC$FUNC
+    static final MethodHandle PFNGLCONVOLUTIONPARAMETERIVEXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$735.PFNGLCONVOLUTIONPARAMETERIVEXTPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLDELETECOMMANDLISTSNVPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLCOPYCONVOLUTIONFILTER1DEXTPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLDELETECOMMANDLISTSNVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$735.PFNGLDELETECOMMANDLISTSNVPROC$FUNC
+    static final MethodHandle PFNGLCOPYCONVOLUTIONFILTER1DEXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$735.PFNGLCOPYCONVOLUTIONFILTER1DEXTPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLCOPYCONVOLUTIONFILTER2DEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
 }
 

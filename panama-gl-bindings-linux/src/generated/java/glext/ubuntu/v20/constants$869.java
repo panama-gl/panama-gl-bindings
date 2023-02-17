@@ -9,29 +9,59 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$869 {
 
-    static final FunctionDescriptor PFNGLVERTEXATTRIBS3FVNVPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glGetNamedProgramLocalParameterIivEXT$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle PFNGLVERTEXATTRIBS3FVNVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$869.PFNGLVERTEXATTRIBS3FVNVPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLVERTEXATTRIBS3SVNVPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLVERTEXATTRIBS3SVNVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$869.PFNGLVERTEXATTRIBS3SVNVPROC$FUNC
+    static final MethodHandle glGetNamedProgramLocalParameterIivEXT$MH = RuntimeHelper.downcallHandle(
+        "glGetNamedProgramLocalParameterIivEXT",
+        constants$869.glGetNamedProgramLocalParameterIivEXT$FUNC
     );
-    static final FunctionDescriptor PFNGLVERTEXATTRIBS4DVNVPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glGetNamedProgramLocalParameterIuivEXT$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLVERTEXATTRIBS4DVNVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$869.PFNGLVERTEXATTRIBS4DVNVPROC$FUNC
+    static final MethodHandle glGetNamedProgramLocalParameterIuivEXT$MH = RuntimeHelper.downcallHandle(
+        "glGetNamedProgramLocalParameterIuivEXT",
+        constants$869.glGetNamedProgramLocalParameterIuivEXT$FUNC
+    );
+    static final FunctionDescriptor glEnableClientStateiEXT$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle glEnableClientStateiEXT$MH = RuntimeHelper.downcallHandle(
+        "glEnableClientStateiEXT",
+        constants$869.glEnableClientStateiEXT$FUNC
+    );
+    static final FunctionDescriptor glDisableClientStateiEXT$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle glDisableClientStateiEXT$MH = RuntimeHelper.downcallHandle(
+        "glDisableClientStateiEXT",
+        constants$869.glDisableClientStateiEXT$FUNC
+    );
+    static final FunctionDescriptor glGetFloati_vEXT$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glGetFloati_vEXT$MH = RuntimeHelper.downcallHandle(
+        "glGetFloati_vEXT",
+        constants$869.glGetFloati_vEXT$FUNC
+    );
+    static final FunctionDescriptor glGetDoublei_vEXT$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glGetDoublei_vEXT$MH = RuntimeHelper.downcallHandle(
+        "glGetDoublei_vEXT",
+        constants$869.glGetDoublei_vEXT$FUNC
     );
 }
 

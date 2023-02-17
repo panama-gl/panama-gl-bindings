@@ -11,13 +11,13 @@ public interface PFNGLCOLORP4UIPROC {
 
     void apply(int type, int color);
     static MemorySegment allocate(PFNGLCOLORP4UIPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLCOLORP4UIPROC.class, fi, constants$202.PFNGLCOLORP4UIPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLCOLORP4UIPROC.class, fi, constants$249.PFNGLCOLORP4UIPROC$FUNC, session);
     }
     static PFNGLCOLORP4UIPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _type, int _color) -> {
             try {
-                constants$202.PFNGLCOLORP4UIPROC$MH.invokeExact((Addressable)symbol, _type, _color);
+                constants$249.PFNGLCOLORP4UIPROC$MH.invokeExact((Addressable)symbol, _type, _color);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

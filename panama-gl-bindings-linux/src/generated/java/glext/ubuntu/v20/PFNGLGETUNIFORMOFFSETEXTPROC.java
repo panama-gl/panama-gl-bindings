@@ -11,13 +11,13 @@ public interface PFNGLGETUNIFORMOFFSETEXTPROC {
 
     long apply(int program, int location);
     static MemorySegment allocate(PFNGLGETUNIFORMOFFSETEXTPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLGETUNIFORMOFFSETEXTPROC.class, fi, constants$517.PFNGLGETUNIFORMOFFSETEXTPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLGETUNIFORMOFFSETEXTPROC.class, fi, constants$728.PFNGLGETUNIFORMOFFSETEXTPROC$FUNC, session);
     }
     static PFNGLGETUNIFORMOFFSETEXTPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _program, int _location) -> {
             try {
-                return (long)constants$517.PFNGLGETUNIFORMOFFSETEXTPROC$MH.invokeExact((Addressable)symbol, _program, _location);
+                return (long)constants$728.PFNGLGETUNIFORMOFFSETEXTPROC$MH.invokeExact((Addressable)symbol, _program, _location);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

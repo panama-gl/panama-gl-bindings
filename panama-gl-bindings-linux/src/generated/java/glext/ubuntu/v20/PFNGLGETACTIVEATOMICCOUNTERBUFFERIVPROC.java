@@ -11,13 +11,13 @@ public interface PFNGLGETACTIVEATOMICCOUNTERBUFFERIVPROC {
 
     void apply(int program, int bufferIndex, int pname, java.lang.foreign.MemoryAddress params);
     static MemorySegment allocate(PFNGLGETACTIVEATOMICCOUNTERBUFFERIVPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLGETACTIVEATOMICCOUNTERBUFFERIVPROC.class, fi, constants$250.PFNGLGETACTIVEATOMICCOUNTERBUFFERIVPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLGETACTIVEATOMICCOUNTERBUFFERIVPROC.class, fi, constants$328.PFNGLGETACTIVEATOMICCOUNTERBUFFERIVPROC$FUNC, session);
     }
     static PFNGLGETACTIVEATOMICCOUNTERBUFFERIVPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _program, int _bufferIndex, int _pname, java.lang.foreign.MemoryAddress _params) -> {
             try {
-                constants$250.PFNGLGETACTIVEATOMICCOUNTERBUFFERIVPROC$MH.invokeExact((Addressable)symbol, _program, _bufferIndex, _pname, (java.lang.foreign.Addressable)_params);
+                constants$328.PFNGLGETACTIVEATOMICCOUNTERBUFFERIVPROC$MH.invokeExact((Addressable)symbol, _program, _bufferIndex, _pname, (java.lang.foreign.Addressable)_params);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

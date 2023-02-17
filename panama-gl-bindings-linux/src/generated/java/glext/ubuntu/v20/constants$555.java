@@ -9,43 +9,28 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$555 {
 
-    static final FunctionDescriptor PFNGLMULTITEXPARAMETERFVEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
+    static final FunctionDescriptor PFNGLWINDOWPOS2FARBPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT
+    );
+    static final MethodHandle PFNGLWINDOWPOS2FARBPROC$MH = RuntimeHelper.downcallHandle(
+        constants$555.PFNGLWINDOWPOS2FARBPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLWINDOWPOS2FVARBPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLMULTITEXPARAMETERFVEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$555.PFNGLMULTITEXPARAMETERFVEXTPROC$FUNC
+    static final MethodHandle PFNGLWINDOWPOS2FVARBPROC$MH = RuntimeHelper.downcallHandle(
+        constants$555.PFNGLWINDOWPOS2FVARBPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLMULTITEXIMAGE1DEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLWINDOWPOS2IARBPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle PFNGLWINDOWPOS2IARBPROC$MH = RuntimeHelper.downcallHandle(
+        constants$555.PFNGLWINDOWPOS2IARBPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLWINDOWPOS2IVARBPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle PFNGLMULTITEXIMAGE1DEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$555.PFNGLMULTITEXIMAGE1DEXTPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLMULTITEXIMAGE2DEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle PFNGLMULTITEXIMAGE2DEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$555.PFNGLMULTITEXIMAGE2DEXTPROC$FUNC
     );
 }
 

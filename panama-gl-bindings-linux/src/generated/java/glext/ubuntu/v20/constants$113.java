@@ -9,27 +9,53 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$113 {
 
-    static final FunctionDescriptor PFNGLGETBUFFERPOINTERVPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
+    static final FunctionDescriptor glWindowPos2sv$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLGETBUFFERPOINTERVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$113.PFNGLGETBUFFERPOINTERVPROC$FUNC
+    static final MethodHandle glWindowPos2sv$MH = RuntimeHelper.downcallHandle(
+        "glWindowPos2sv",
+        constants$113.glWindowPos2sv$FUNC
     );
-    static final FunctionDescriptor PFNGLBLENDEQUATIONSEPARATEPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glWindowPos3d$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_DOUBLE$LAYOUT,
+        Constants$root.C_DOUBLE$LAYOUT,
+        Constants$root.C_DOUBLE$LAYOUT
+    );
+    static final MethodHandle glWindowPos3d$MH = RuntimeHelper.downcallHandle(
+        "glWindowPos3d",
+        constants$113.glWindowPos3d$FUNC
+    );
+    static final FunctionDescriptor glWindowPos3dv$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glWindowPos3dv$MH = RuntimeHelper.downcallHandle(
+        "glWindowPos3dv",
+        constants$113.glWindowPos3dv$FUNC
+    );
+    static final FunctionDescriptor glWindowPos3f$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT
+    );
+    static final MethodHandle glWindowPos3f$MH = RuntimeHelper.downcallHandle(
+        "glWindowPos3f",
+        constants$113.glWindowPos3f$FUNC
+    );
+    static final FunctionDescriptor glWindowPos3fv$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glWindowPos3fv$MH = RuntimeHelper.downcallHandle(
+        "glWindowPos3fv",
+        constants$113.glWindowPos3fv$FUNC
+    );
+    static final FunctionDescriptor glWindowPos3i$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLBLENDEQUATIONSEPARATEPROC$MH = RuntimeHelper.downcallHandle(
-        constants$113.PFNGLBLENDEQUATIONSEPARATEPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLDRAWBUFFERSPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle PFNGLDRAWBUFFERSPROC$MH = RuntimeHelper.downcallHandle(
-        constants$113.PFNGLDRAWBUFFERSPROC$FUNC
+    static final MethodHandle glWindowPos3i$MH = RuntimeHelper.downcallHandle(
+        "glWindowPos3i",
+        constants$113.glWindowPos3i$FUNC
     );
 }
 

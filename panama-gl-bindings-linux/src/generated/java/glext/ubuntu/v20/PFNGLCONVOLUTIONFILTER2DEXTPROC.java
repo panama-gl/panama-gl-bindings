@@ -11,13 +11,13 @@ public interface PFNGLCONVOLUTIONFILTER2DEXTPROC {
 
     void apply(int target, int internalformat, int width, int height, int format, int type, java.lang.foreign.MemoryAddress image);
     static MemorySegment allocate(PFNGLCONVOLUTIONFILTER2DEXTPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLCONVOLUTIONFILTER2DEXTPROC.class, fi, constants$520.PFNGLCONVOLUTIONFILTER2DEXTPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLCONVOLUTIONFILTER2DEXTPROC.class, fi, constants$733.PFNGLCONVOLUTIONFILTER2DEXTPROC$FUNC, session);
     }
     static PFNGLCONVOLUTIONFILTER2DEXTPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _target, int _internalformat, int _width, int _height, int _format, int _type, java.lang.foreign.MemoryAddress _image) -> {
             try {
-                constants$520.PFNGLCONVOLUTIONFILTER2DEXTPROC$MH.invokeExact((Addressable)symbol, _target, _internalformat, _width, _height, _format, _type, (java.lang.foreign.Addressable)_image);
+                constants$734.PFNGLCONVOLUTIONFILTER2DEXTPROC$MH.invokeExact((Addressable)symbol, _target, _internalformat, _width, _height, _format, _type, (java.lang.foreign.Addressable)_image);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

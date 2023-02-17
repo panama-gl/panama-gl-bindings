@@ -11,13 +11,13 @@ public interface PFNGLTEXSTORAGE2DMULTISAMPLEPROC {
 
     void apply(int target, int samples, int internalformat, int width, int height, byte fixedsamplelocations);
     static MemorySegment allocate(PFNGLTEXSTORAGE2DMULTISAMPLEPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLTEXSTORAGE2DMULTISAMPLEPROC.class, fi, constants$261.PFNGLTEXSTORAGE2DMULTISAMPLEPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLTEXSTORAGE2DMULTISAMPLEPROC.class, fi, constants$341.PFNGLTEXSTORAGE2DMULTISAMPLEPROC$FUNC, session);
     }
     static PFNGLTEXSTORAGE2DMULTISAMPLEPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _target, int _samples, int _internalformat, int _width, int _height, byte _fixedsamplelocations) -> {
             try {
-                constants$261.PFNGLTEXSTORAGE2DMULTISAMPLEPROC$MH.invokeExact((Addressable)symbol, _target, _samples, _internalformat, _width, _height, _fixedsamplelocations);
+                constants$341.PFNGLTEXSTORAGE2DMULTISAMPLEPROC$MH.invokeExact((Addressable)symbol, _target, _samples, _internalformat, _width, _height, _fixedsamplelocations);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

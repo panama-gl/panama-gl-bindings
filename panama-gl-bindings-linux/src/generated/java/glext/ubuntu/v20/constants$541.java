@@ -9,26 +9,33 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$541 {
 
-    static final FunctionDescriptor PFNGLCLIENTATTRIBDEFAULTEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT
-    );
-    static final MethodHandle PFNGLCLIENTATTRIBDEFAULTEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$541.PFNGLCLIENTATTRIBDEFAULTEXTPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLPUSHCLIENTATTRIBDEFAULTEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT
-    );
-    static final MethodHandle PFNGLPUSHCLIENTATTRIBDEFAULTEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$541.PFNGLPUSHCLIENTATTRIBDEFAULTEXTPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLTEXTUREPARAMETERFEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLVERTEXATTRIB4FVARBPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT
+        Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLTEXTUREPARAMETERFEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$541.PFNGLTEXTUREPARAMETERFEXTPROC$FUNC
+    static final MethodHandle PFNGLVERTEXATTRIB4FVARBPROC$MH = RuntimeHelper.downcallHandle(
+        constants$541.PFNGLVERTEXATTRIB4FVARBPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLVERTEXATTRIB4IVARBPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle PFNGLVERTEXATTRIB4IVARBPROC$MH = RuntimeHelper.downcallHandle(
+        constants$541.PFNGLVERTEXATTRIB4IVARBPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLVERTEXATTRIB4SARBPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_SHORT$LAYOUT,
+        Constants$root.C_SHORT$LAYOUT,
+        Constants$root.C_SHORT$LAYOUT,
+        Constants$root.C_SHORT$LAYOUT
+    );
+    static final MethodHandle PFNGLVERTEXATTRIB4SARBPROC$MH = RuntimeHelper.downcallHandle(
+        constants$541.PFNGLVERTEXATTRIB4SARBPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLVERTEXATTRIB4SVARBPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
 }
 

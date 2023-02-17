@@ -9,27 +9,66 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$661 {
 
-    static final FunctionDescriptor PFNGLISSEMAPHOREEXTPROC$FUNC = FunctionDescriptor.of(Constants$root.C_CHAR$LAYOUT,
-        Constants$root.C_INT$LAYOUT
+    static final FunctionDescriptor PFNGLGETPERFMONITORCOUNTERDATAAMDPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLISSEMAPHOREEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$661.PFNGLISSEMAPHOREEXTPROC$FUNC
+    static final MethodHandle PFNGLGETPERFMONITORCOUNTERDATAAMDPROC$MH = RuntimeHelper.downcallHandle(
+        constants$661.PFNGLGETPERFMONITORCOUNTERDATAAMDPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLSEMAPHOREPARAMETERUI64VEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glGetPerfMonitorGroupsAMD$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glGetPerfMonitorGroupsAMD$MH = RuntimeHelper.downcallHandle(
+        "glGetPerfMonitorGroupsAMD",
+        constants$661.glGetPerfMonitorGroupsAMD$FUNC
+    );
+    static final FunctionDescriptor glGetPerfMonitorCountersAMD$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glGetPerfMonitorCountersAMD$MH = RuntimeHelper.downcallHandle(
+        "glGetPerfMonitorCountersAMD",
+        constants$661.glGetPerfMonitorCountersAMD$FUNC
+    );
+    static final FunctionDescriptor glGetPerfMonitorGroupStringAMD$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glGetPerfMonitorGroupStringAMD$MH = RuntimeHelper.downcallHandle(
+        "glGetPerfMonitorGroupStringAMD",
+        constants$661.glGetPerfMonitorGroupStringAMD$FUNC
+    );
+    static final FunctionDescriptor glGetPerfMonitorCounterStringAMD$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glGetPerfMonitorCounterStringAMD$MH = RuntimeHelper.downcallHandle(
+        "glGetPerfMonitorCounterStringAMD",
+        constants$661.glGetPerfMonitorCounterStringAMD$FUNC
+    );
+    static final FunctionDescriptor glGetPerfMonitorCounterInfoAMD$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLSEMAPHOREPARAMETERUI64VEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$661.PFNGLSEMAPHOREPARAMETERUI64VEXTPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLGETSEMAPHOREPARAMETERUI64VEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle PFNGLGETSEMAPHOREPARAMETERUI64VEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$661.PFNGLGETSEMAPHOREPARAMETERUI64VEXTPROC$FUNC
+    static final MethodHandle glGetPerfMonitorCounterInfoAMD$MH = RuntimeHelper.downcallHandle(
+        "glGetPerfMonitorCounterInfoAMD",
+        constants$661.glGetPerfMonitorCounterInfoAMD$FUNC
     );
 }
 

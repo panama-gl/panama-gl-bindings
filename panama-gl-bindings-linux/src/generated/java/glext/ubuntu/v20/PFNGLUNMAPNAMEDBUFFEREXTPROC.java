@@ -11,13 +11,13 @@ public interface PFNGLUNMAPNAMEDBUFFEREXTPROC {
 
     byte apply(int buffer);
     static MemorySegment allocate(PFNGLUNMAPNAMEDBUFFEREXTPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLUNMAPNAMEDBUFFEREXTPROC.class, fi, constants$571.PFNGLUNMAPNAMEDBUFFEREXTPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLUNMAPNAMEDBUFFEREXTPROC.class, fi, constants$792.PFNGLUNMAPNAMEDBUFFEREXTPROC$FUNC, session);
     }
     static PFNGLUNMAPNAMEDBUFFEREXTPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _buffer) -> {
             try {
-                return (byte)constants$571.PFNGLUNMAPNAMEDBUFFEREXTPROC$MH.invokeExact((Addressable)symbol, _buffer);
+                return (byte)constants$792.PFNGLUNMAPNAMEDBUFFEREXTPROC$MH.invokeExact((Addressable)symbol, _buffer);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

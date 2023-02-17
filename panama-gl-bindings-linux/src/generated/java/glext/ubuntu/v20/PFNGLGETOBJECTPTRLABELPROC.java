@@ -11,13 +11,13 @@ public interface PFNGLGETOBJECTPTRLABELPROC {
 
     void apply(java.lang.foreign.MemoryAddress ptr, int bufSize, java.lang.foreign.MemoryAddress length, java.lang.foreign.MemoryAddress label);
     static MemorySegment allocate(PFNGLGETOBJECTPTRLABELPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLGETOBJECTPTRLABELPROC.class, fi, constants$267.PFNGLGETOBJECTPTRLABELPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLGETOBJECTPTRLABELPROC.class, fi, constants$347.PFNGLGETOBJECTPTRLABELPROC$FUNC, session);
     }
     static PFNGLGETOBJECTPTRLABELPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (java.lang.foreign.MemoryAddress _ptr, int _bufSize, java.lang.foreign.MemoryAddress _length, java.lang.foreign.MemoryAddress _label) -> {
             try {
-                constants$267.PFNGLGETOBJECTPTRLABELPROC$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)_ptr, _bufSize, (java.lang.foreign.Addressable)_length, (java.lang.foreign.Addressable)_label);
+                constants$347.PFNGLGETOBJECTPTRLABELPROC$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)_ptr, _bufSize, (java.lang.foreign.Addressable)_length, (java.lang.foreign.Addressable)_label);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

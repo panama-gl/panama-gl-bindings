@@ -11,13 +11,13 @@ public interface PFNGLGETOCCLUSIONQUERYUIVNVPROC {
 
     void apply(int id, int pname, java.lang.foreign.MemoryAddress params);
     static MemorySegment allocate(PFNGLGETOCCLUSIONQUERYUIVNVPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLGETOCCLUSIONQUERYUIVNVPROC.class, fi, constants$785.PFNGLGETOCCLUSIONQUERYUIVNVPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLGETOCCLUSIONQUERYUIVNVPROC.class, fi, constants$1129.PFNGLGETOCCLUSIONQUERYUIVNVPROC$FUNC, session);
     }
     static PFNGLGETOCCLUSIONQUERYUIVNVPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _id, int _pname, java.lang.foreign.MemoryAddress _params) -> {
             try {
-                constants$785.PFNGLGETOCCLUSIONQUERYUIVNVPROC$MH.invokeExact((Addressable)symbol, _id, _pname, (java.lang.foreign.Addressable)_params);
+                constants$1130.PFNGLGETOCCLUSIONQUERYUIVNVPROC$MH.invokeExact((Addressable)symbol, _id, _pname, (java.lang.foreign.Addressable)_params);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

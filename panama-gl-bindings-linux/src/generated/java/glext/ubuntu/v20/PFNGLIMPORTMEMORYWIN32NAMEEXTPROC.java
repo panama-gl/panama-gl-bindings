@@ -11,13 +11,13 @@ public interface PFNGLIMPORTMEMORYWIN32NAMEEXTPROC {
 
     void apply(int memory, long size, int handleType, java.lang.foreign.MemoryAddress name);
     static MemorySegment allocate(PFNGLIMPORTMEMORYWIN32NAMEEXTPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLIMPORTMEMORYWIN32NAMEEXTPROC.class, fi, constants$647.PFNGLIMPORTMEMORYWIN32NAMEEXTPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLIMPORTMEMORYWIN32NAMEEXTPROC.class, fi, constants$924.PFNGLIMPORTMEMORYWIN32NAMEEXTPROC$FUNC, session);
     }
     static PFNGLIMPORTMEMORYWIN32NAMEEXTPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _memory, long _size, int _handleType, java.lang.foreign.MemoryAddress _name) -> {
             try {
-                constants$647.PFNGLIMPORTMEMORYWIN32NAMEEXTPROC$MH.invokeExact((Addressable)symbol, _memory, _size, _handleType, (java.lang.foreign.Addressable)_name);
+                constants$925.PFNGLIMPORTMEMORYWIN32NAMEEXTPROC$MH.invokeExact((Addressable)symbol, _memory, _size, _handleType, (java.lang.foreign.Addressable)_name);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

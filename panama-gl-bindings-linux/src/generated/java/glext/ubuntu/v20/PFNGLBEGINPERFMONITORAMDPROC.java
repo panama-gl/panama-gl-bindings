@@ -11,13 +11,13 @@ public interface PFNGLBEGINPERFMONITORAMDPROC {
 
     void apply(int monitor);
     static MemorySegment allocate(PFNGLBEGINPERFMONITORAMDPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLBEGINPERFMONITORAMDPROC.class, fi, constants$472.PFNGLBEGINPERFMONITORAMDPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLBEGINPERFMONITORAMDPROC.class, fi, constants$660.PFNGLBEGINPERFMONITORAMDPROC$FUNC, session);
     }
     static PFNGLBEGINPERFMONITORAMDPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _monitor) -> {
             try {
-                constants$472.PFNGLBEGINPERFMONITORAMDPROC$MH.invokeExact((Addressable)symbol, _monitor);
+                constants$660.PFNGLBEGINPERFMONITORAMDPROC$MH.invokeExact((Addressable)symbol, _monitor);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

@@ -11,13 +11,13 @@ public interface PFNGLGETPROGRAMPIPELINEIVPROC {
 
     void apply(int pipeline, int pname, java.lang.foreign.MemoryAddress params);
     static MemorySegment allocate(PFNGLGETPROGRAMPIPELINEIVPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLGETPROGRAMPIPELINEIVPROC.class, fi, constants$224.PFNGLGETPROGRAMPIPELINEIVPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLGETPROGRAMPIPELINEIVPROC.class, fi, constants$288.PFNGLGETPROGRAMPIPELINEIVPROC$FUNC, session);
     }
     static PFNGLGETPROGRAMPIPELINEIVPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _pipeline, int _pname, java.lang.foreign.MemoryAddress _params) -> {
             try {
-                constants$224.PFNGLGETPROGRAMPIPELINEIVPROC$MH.invokeExact((Addressable)symbol, _pipeline, _pname, (java.lang.foreign.Addressable)_params);
+                constants$288.PFNGLGETPROGRAMPIPELINEIVPROC$MH.invokeExact((Addressable)symbol, _pipeline, _pname, (java.lang.foreign.Addressable)_params);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

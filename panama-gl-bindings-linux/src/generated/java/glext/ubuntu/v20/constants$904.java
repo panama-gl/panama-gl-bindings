@@ -9,49 +9,34 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$904 {
 
-    static final FunctionDescriptor PFNGLDEFORMATIONMAP3DSGIXPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_DOUBLE$LAYOUT,
-        Constants$root.C_DOUBLE$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_DOUBLE$LAYOUT,
-        Constants$root.C_DOUBLE$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_DOUBLE$LAYOUT,
-        Constants$root.C_DOUBLE$LAYOUT,
+    static final FunctionDescriptor PFNGLUNIFORM1UIVEXTPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLDEFORMATIONMAP3DSGIXPROC$MH = RuntimeHelper.downcallHandle(
-        constants$904.PFNGLDEFORMATIONMAP3DSGIXPROC$FUNC
+    static final MethodHandle PFNGLUNIFORM1UIVEXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$904.PFNGLUNIFORM1UIVEXTPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLDEFORMATIONMAP3FSGIXPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT,
+    static final FunctionDescriptor PFNGLUNIFORM2UIVEXTPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLDEFORMATIONMAP3FSGIXPROC$MH = RuntimeHelper.downcallHandle(
-        constants$904.PFNGLDEFORMATIONMAP3FSGIXPROC$FUNC
+    static final MethodHandle PFNGLUNIFORM2UIVEXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$904.PFNGLUNIFORM2UIVEXTPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLDEFORMSGIXPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT
+    static final FunctionDescriptor PFNGLUNIFORM3UIVEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLDEFORMSGIXPROC$MH = RuntimeHelper.downcallHandle(
-        constants$904.PFNGLDEFORMSGIXPROC$FUNC
+    static final MethodHandle PFNGLUNIFORM3UIVEXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$904.PFNGLUNIFORM3UIVEXTPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLUNIFORM4UIVEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
 }
 

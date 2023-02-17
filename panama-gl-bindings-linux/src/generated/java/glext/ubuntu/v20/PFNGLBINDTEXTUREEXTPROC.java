@@ -11,13 +11,13 @@ public interface PFNGLBINDTEXTUREEXTPROC {
 
     void apply(int target, int texture);
     static MemorySegment allocate(PFNGLBINDTEXTUREEXTPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLBINDTEXTUREEXTPROC.class, fi, constants$670.PFNGLBINDTEXTUREEXTPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLBINDTEXTUREEXTPROC.class, fi, constants$959.PFNGLBINDTEXTUREEXTPROC$FUNC, session);
     }
     static PFNGLBINDTEXTUREEXTPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _target, int _texture) -> {
             try {
-                constants$670.PFNGLBINDTEXTUREEXTPROC$MH.invokeExact((Addressable)symbol, _target, _texture);
+                constants$959.PFNGLBINDTEXTUREEXTPROC$MH.invokeExact((Addressable)symbol, _target, _texture);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

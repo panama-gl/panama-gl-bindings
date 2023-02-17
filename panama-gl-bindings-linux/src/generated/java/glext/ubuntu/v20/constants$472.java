@@ -9,27 +9,37 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$472 {
 
-    static final FunctionDescriptor PFNGLBEGINPERFMONITORAMDPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT
-    );
-    static final MethodHandle PFNGLBEGINPERFMONITORAMDPROC$MH = RuntimeHelper.downcallHandle(
-        constants$472.PFNGLBEGINPERFMONITORAMDPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLENDPERFMONITORAMDPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT
-    );
-    static final MethodHandle PFNGLENDPERFMONITORAMDPROC$MH = RuntimeHelper.downcallHandle(
-        constants$472.PFNGLENDPERFMONITORAMDPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLGETPERFMONITORCOUNTERDATAAMDPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glMatrixIndexPointerARB$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLGETPERFMONITORCOUNTERDATAAMDPROC$MH = RuntimeHelper.downcallHandle(
-        constants$472.PFNGLGETPERFMONITORCOUNTERDATAAMDPROC$FUNC
+    static final MethodHandle glMatrixIndexPointerARB$MH = RuntimeHelper.downcallHandle(
+        "glMatrixIndexPointerARB",
+        constants$472.glMatrixIndexPointerARB$FUNC
+    );
+    static final FunctionDescriptor PFNGLSAMPLECOVERAGEARBPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_CHAR$LAYOUT
+    );
+    static final MethodHandle PFNGLSAMPLECOVERAGEARBPROC$MH = RuntimeHelper.downcallHandle(
+        constants$472.PFNGLSAMPLECOVERAGEARBPROC$FUNC
+    );
+    static final FunctionDescriptor glSampleCoverageARB$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_CHAR$LAYOUT
+    );
+    static final MethodHandle glSampleCoverageARB$MH = RuntimeHelper.downcallHandle(
+        "glSampleCoverageARB",
+        constants$472.glSampleCoverageARB$FUNC
+    );
+    static final FunctionDescriptor PFNGLGENQUERIESARBPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle PFNGLGENQUERIESARBPROC$MH = RuntimeHelper.downcallHandle(
+        constants$472.PFNGLGENQUERIESARBPROC$FUNC
     );
 }
 

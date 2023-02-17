@@ -9,31 +9,42 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$594 {
 
-    static final FunctionDescriptor PFNGLGETNAMEDPROGRAMSTRINGEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
+    static final FunctionDescriptor PFNGLLOADTRANSPOSEMATRIXXOESPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLGETNAMEDPROGRAMSTRINGEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$594.PFNGLGETNAMEDPROGRAMSTRINGEXTPROC$FUNC
+    static final MethodHandle PFNGLLOADTRANSPOSEMATRIXXOESPROC$MH = RuntimeHelper.downcallHandle(
+        constants$594.PFNGLLOADTRANSPOSEMATRIXXOESPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLNAMEDRENDERBUFFERSTORAGEEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLMAP1XOESPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLNAMEDRENDERBUFFERSTORAGEEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$594.PFNGLNAMEDRENDERBUFFERSTORAGEEXTPROC$FUNC
+    static final MethodHandle PFNGLMAP1XOESPROC$MH = RuntimeHelper.downcallHandle(
+        constants$594.PFNGLMAP1XOESPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLGETNAMEDRENDERBUFFERPARAMETERIVEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLMAP2XOESPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLGETNAMEDRENDERBUFFERPARAMETERIVEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$594.PFNGLGETNAMEDRENDERBUFFERPARAMETERIVEXTPROC$FUNC
+    static final MethodHandle PFNGLMAP2XOESPROC$MH = RuntimeHelper.downcallHandle(
+        constants$594.PFNGLMAP2XOESPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLMAPGRID1XOESPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
 }
 

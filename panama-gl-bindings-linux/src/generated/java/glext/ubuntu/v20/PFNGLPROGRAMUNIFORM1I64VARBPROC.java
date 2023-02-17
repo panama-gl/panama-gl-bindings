@@ -11,13 +11,13 @@ public interface PFNGLPROGRAMUNIFORM1I64VARBPROC {
 
     void apply(int program, int location, int count, java.lang.foreign.MemoryAddress value);
     static MemorySegment allocate(PFNGLPROGRAMUNIFORM1I64VARBPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLPROGRAMUNIFORM1I64VARBPROC.class, fi, constants$339.PFNGLPROGRAMUNIFORM1I64VARBPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLPROGRAMUNIFORM1I64VARBPROC.class, fi, constants$458.PFNGLPROGRAMUNIFORM1I64VARBPROC$FUNC, session);
     }
     static PFNGLPROGRAMUNIFORM1I64VARBPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _program, int _location, int _count, java.lang.foreign.MemoryAddress _value) -> {
             try {
-                constants$339.PFNGLPROGRAMUNIFORM1I64VARBPROC$MH.invokeExact((Addressable)symbol, _program, _location, _count, (java.lang.foreign.Addressable)_value);
+                constants$458.PFNGLPROGRAMUNIFORM1I64VARBPROC$MH.invokeExact((Addressable)symbol, _program, _location, _count, (java.lang.foreign.Addressable)_value);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

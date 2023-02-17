@@ -11,13 +11,13 @@ public interface PFNGLFLUSHMAPPEDBUFFERRANGEAPPLEPROC {
 
     void apply(int target, long offset, long size);
     static MemorySegment allocate(PFNGLFLUSHMAPPEDBUFFERRANGEAPPLEPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLFLUSHMAPPEDBUFFERRANGEAPPLEPROC.class, fi, constants$479.PFNGLFLUSHMAPPEDBUFFERRANGEAPPLEPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLFLUSHMAPPEDBUFFERRANGEAPPLEPROC.class, fi, constants$672.PFNGLFLUSHMAPPEDBUFFERRANGEAPPLEPROC$FUNC, session);
     }
     static PFNGLFLUSHMAPPEDBUFFERRANGEAPPLEPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _target, long _offset, long _size) -> {
             try {
-                constants$479.PFNGLFLUSHMAPPEDBUFFERRANGEAPPLEPROC$MH.invokeExact((Addressable)symbol, _target, _offset, _size);
+                constants$673.PFNGLFLUSHMAPPEDBUFFERRANGEAPPLEPROC$MH.invokeExact((Addressable)symbol, _target, _offset, _size);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

@@ -9,26 +9,45 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$484 {
 
-    static final FunctionDescriptor PFNGLENABLEVERTEXATTRIBAPPLEPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLGETNSEPARABLEFILTERARBPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT
-    );
-    static final MethodHandle PFNGLENABLEVERTEXATTRIBAPPLEPROC$MH = RuntimeHelper.downcallHandle(
-        constants$484.PFNGLENABLEVERTEXATTRIBAPPLEPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLDISABLEVERTEXATTRIBAPPLEPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT
-    );
-    static final MethodHandle PFNGLDISABLEVERTEXATTRIBAPPLEPROC$MH = RuntimeHelper.downcallHandle(
-        constants$484.PFNGLDISABLEVERTEXATTRIBAPPLEPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLISVERTEXATTRIBENABLEDAPPLEPROC$FUNC = FunctionDescriptor.of(Constants$root.C_CHAR$LAYOUT,
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLISVERTEXATTRIBENABLEDAPPLEPROC$MH = RuntimeHelper.downcallHandle(
-        constants$484.PFNGLISVERTEXATTRIBENABLEDAPPLEPROC$FUNC
+    static final MethodHandle PFNGLGETNSEPARABLEFILTERARBPROC$MH = RuntimeHelper.downcallHandle(
+        constants$484.PFNGLGETNSEPARABLEFILTERARBPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLGETNHISTOGRAMARBPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_CHAR$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle PFNGLGETNHISTOGRAMARBPROC$MH = RuntimeHelper.downcallHandle(
+        constants$484.PFNGLGETNHISTOGRAMARBPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLGETNMINMAXARBPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_CHAR$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle PFNGLGETNMINMAXARBPROC$MH = RuntimeHelper.downcallHandle(
+        constants$484.PFNGLGETNMINMAXARBPROC$FUNC
+    );
+    static final FunctionDescriptor glGetGraphicsResetStatusARB$FUNC = FunctionDescriptor.of(Constants$root.C_INT$LAYOUT);
+    static final MethodHandle glGetGraphicsResetStatusARB$MH = RuntimeHelper.downcallHandle(
+        "glGetGraphicsResetStatusARB",
+        constants$484.glGetGraphicsResetStatusARB$FUNC
     );
 }
 

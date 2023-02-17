@@ -9,27 +9,52 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$514 {
 
-    static final FunctionDescriptor PFNGLNORMALSTREAM3DATIPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glNamedBufferPageCommitmentARB$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_DOUBLE$LAYOUT,
-        Constants$root.C_DOUBLE$LAYOUT,
-        Constants$root.C_DOUBLE$LAYOUT
+        Constants$root.C_LONG_LONG$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT,
+        Constants$root.C_CHAR$LAYOUT
     );
-    static final MethodHandle PFNGLNORMALSTREAM3DATIPROC$MH = RuntimeHelper.downcallHandle(
-        constants$514.PFNGLNORMALSTREAM3DATIPROC$FUNC
+    static final MethodHandle glNamedBufferPageCommitmentARB$MH = RuntimeHelper.downcallHandle(
+        "glNamedBufferPageCommitmentARB",
+        constants$514.glNamedBufferPageCommitmentARB$FUNC
     );
-    static final FunctionDescriptor PFNGLNORMALSTREAM3DVATIPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLTEXPAGECOMMITMENTARBPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_CHAR$LAYOUT
     );
-    static final MethodHandle PFNGLNORMALSTREAM3DVATIPROC$MH = RuntimeHelper.downcallHandle(
-        constants$514.PFNGLNORMALSTREAM3DVATIPROC$FUNC
+    static final MethodHandle PFNGLTEXPAGECOMMITMENTARBPROC$MH = RuntimeHelper.downcallHandle(
+        constants$514.PFNGLTEXPAGECOMMITMENTARBPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLCLIENTACTIVEVERTEXSTREAMATIPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glTexPageCommitmentARB$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_CHAR$LAYOUT
+    );
+    static final MethodHandle glTexPageCommitmentARB$MH = RuntimeHelper.downcallHandle(
+        "glTexPageCommitmentARB",
+        constants$514.glTexPageCommitmentARB$FUNC
+    );
+    static final FunctionDescriptor PFNGLTEXBUFFERARBPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLCLIENTACTIVEVERTEXSTREAMATIPROC$MH = RuntimeHelper.downcallHandle(
-        constants$514.PFNGLCLIENTACTIVEVERTEXSTREAMATIPROC$FUNC
+    static final MethodHandle PFNGLTEXBUFFERARBPROC$MH = RuntimeHelper.downcallHandle(
+        constants$514.PFNGLTEXBUFFERARBPROC$FUNC
     );
 }
 

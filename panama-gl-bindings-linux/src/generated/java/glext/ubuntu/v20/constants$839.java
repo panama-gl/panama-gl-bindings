@@ -9,27 +9,48 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$839 {
 
-    static final FunctionDescriptor PFNGLVERTEXARRAYRANGENVPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLTEXTURESTORAGE2DMULTISAMPLEEXTPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle PFNGLVERTEXARRAYRANGENVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$839.PFNGLVERTEXARRAYRANGENVPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLVERTEXATTRIBL1I64NVPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_LONG_LONG$LAYOUT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_CHAR$LAYOUT
     );
-    static final MethodHandle PFNGLVERTEXATTRIBL1I64NVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$839.PFNGLVERTEXATTRIBL1I64NVPROC$FUNC
+    static final MethodHandle PFNGLTEXTURESTORAGE2DMULTISAMPLEEXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$839.PFNGLTEXTURESTORAGE2DMULTISAMPLEEXTPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLVERTEXATTRIBL2I64NVPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLTEXTURESTORAGE3DMULTISAMPLEEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_CHAR$LAYOUT
+    );
+    static final MethodHandle PFNGLTEXTURESTORAGE3DMULTISAMPLEEXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$839.PFNGLTEXTURESTORAGE3DMULTISAMPLEEXTPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLVERTEXARRAYBINDVERTEXBUFFEREXTPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_LONG_LONG$LAYOUT,
-        Constants$root.C_LONG_LONG$LAYOUT
+        Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLVERTEXATTRIBL2I64NVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$839.PFNGLVERTEXATTRIBL2I64NVPROC$FUNC
+    static final MethodHandle PFNGLVERTEXARRAYBINDVERTEXBUFFEREXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$839.PFNGLVERTEXARRAYBINDVERTEXBUFFEREXTPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLVERTEXARRAYVERTEXATTRIBFORMATEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_CHAR$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
 }
 

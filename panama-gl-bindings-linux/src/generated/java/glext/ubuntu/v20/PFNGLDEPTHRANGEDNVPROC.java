@@ -11,13 +11,13 @@ public interface PFNGLDEPTHRANGEDNVPROC {
 
     void apply(double zNear, double zFar);
     static MemorySegment allocate(PFNGLDEPTHRANGEDNVPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLDEPTHRANGEDNVPROC.class, fi, constants$739.PFNGLDEPTHRANGEDNVPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLDEPTHRANGEDNVPROC.class, fi, constants$1063.PFNGLDEPTHRANGEDNVPROC$FUNC, session);
     }
     static PFNGLDEPTHRANGEDNVPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (double _zNear, double _zFar) -> {
             try {
-                constants$739.PFNGLDEPTHRANGEDNVPROC$MH.invokeExact((Addressable)symbol, _zNear, _zFar);
+                constants$1063.PFNGLDEPTHRANGEDNVPROC$MH.invokeExact((Addressable)symbol, _zNear, _zFar);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

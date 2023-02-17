@@ -11,13 +11,13 @@ public interface PFNGLMATRIXLOADIDENTITYEXTPROC {
 
     void apply(int mode);
     static MemorySegment allocate(PFNGLMATRIXLOADIDENTITYEXTPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLMATRIXLOADIDENTITYEXTPROC.class, fi, constants$537.PFNGLMATRIXLOADIDENTITYEXTPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLMATRIXLOADIDENTITYEXTPROC.class, fi, constants$758.PFNGLMATRIXLOADIDENTITYEXTPROC$FUNC, session);
     }
     static PFNGLMATRIXLOADIDENTITYEXTPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _mode) -> {
             try {
-                constants$537.PFNGLMATRIXLOADIDENTITYEXTPROC$MH.invokeExact((Addressable)symbol, _mode);
+                constants$759.PFNGLMATRIXLOADIDENTITYEXTPROC$MH.invokeExact((Addressable)symbol, _mode);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

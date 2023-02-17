@@ -9,28 +9,53 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$561 {
 
-    static final FunctionDescriptor PFNGLDISABLECLIENTSTATEINDEXEDEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glWindowPos3dvARB$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glWindowPos3dvARB$MH = RuntimeHelper.downcallHandle(
+        "glWindowPos3dvARB",
+        constants$561.glWindowPos3dvARB$FUNC
+    );
+    static final FunctionDescriptor glWindowPos3fARB$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT
+    );
+    static final MethodHandle glWindowPos3fARB$MH = RuntimeHelper.downcallHandle(
+        "glWindowPos3fARB",
+        constants$561.glWindowPos3fARB$FUNC
+    );
+    static final FunctionDescriptor glWindowPos3fvARB$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glWindowPos3fvARB$MH = RuntimeHelper.downcallHandle(
+        "glWindowPos3fvARB",
+        constants$561.glWindowPos3fvARB$FUNC
+    );
+    static final FunctionDescriptor glWindowPos3iARB$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLDISABLECLIENTSTATEINDEXEDEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$561.PFNGLDISABLECLIENTSTATEINDEXEDEXTPROC$FUNC
+    static final MethodHandle glWindowPos3iARB$MH = RuntimeHelper.downcallHandle(
+        "glWindowPos3iARB",
+        constants$561.glWindowPos3iARB$FUNC
     );
-    static final FunctionDescriptor PFNGLGETFLOATINDEXEDVEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
+    static final FunctionDescriptor glWindowPos3ivARB$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLGETFLOATINDEXEDVEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$561.PFNGLGETFLOATINDEXEDVEXTPROC$FUNC
+    static final MethodHandle glWindowPos3ivARB$MH = RuntimeHelper.downcallHandle(
+        "glWindowPos3ivARB",
+        constants$561.glWindowPos3ivARB$FUNC
     );
-    static final FunctionDescriptor PFNGLGETDOUBLEINDEXEDVEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
+    static final FunctionDescriptor glWindowPos3sARB$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_SHORT$LAYOUT,
+        Constants$root.C_SHORT$LAYOUT,
+        Constants$root.C_SHORT$LAYOUT
     );
-    static final MethodHandle PFNGLGETDOUBLEINDEXEDVEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$561.PFNGLGETDOUBLEINDEXEDVEXTPROC$FUNC
+    static final MethodHandle glWindowPos3sARB$MH = RuntimeHelper.downcallHandle(
+        "glWindowPos3sARB",
+        constants$561.glWindowPos3sARB$FUNC
     );
 }
 

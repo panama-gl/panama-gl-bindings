@@ -11,13 +11,13 @@ public interface PFNGLLISTPARAMETERISGIXPROC {
 
     void apply(int list, int pname, int param);
     static MemorySegment allocate(PFNGLLISTPARAMETERISGIXPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLLISTPARAMETERISGIXPROC.class, fi, constants$903.PFNGLLISTPARAMETERISGIXPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLLISTPARAMETERISGIXPROC.class, fi, constants$1307.PFNGLLISTPARAMETERISGIXPROC$FUNC, session);
     }
     static PFNGLLISTPARAMETERISGIXPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _list, int _pname, int _param) -> {
             try {
-                constants$903.PFNGLLISTPARAMETERISGIXPROC$MH.invokeExact((Addressable)symbol, _list, _pname, _param);
+                constants$1307.PFNGLLISTPARAMETERISGIXPROC$MH.invokeExact((Addressable)symbol, _list, _pname, _param);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

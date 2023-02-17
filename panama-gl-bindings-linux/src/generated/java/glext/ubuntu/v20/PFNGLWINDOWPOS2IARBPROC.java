@@ -11,13 +11,13 @@ public interface PFNGLWINDOWPOS2IARBPROC {
 
     void apply(int x, int y);
     static MemorySegment allocate(PFNGLWINDOWPOS2IARBPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLWINDOWPOS2IARBPROC.class, fi, constants$401.PFNGLWINDOWPOS2IARBPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLWINDOWPOS2IARBPROC.class, fi, constants$555.PFNGLWINDOWPOS2IARBPROC$FUNC, session);
     }
     static PFNGLWINDOWPOS2IARBPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _x, int _y) -> {
             try {
-                constants$401.PFNGLWINDOWPOS2IARBPROC$MH.invokeExact((Addressable)symbol, _x, _y);
+                constants$555.PFNGLWINDOWPOS2IARBPROC$MH.invokeExact((Addressable)symbol, _x, _y);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

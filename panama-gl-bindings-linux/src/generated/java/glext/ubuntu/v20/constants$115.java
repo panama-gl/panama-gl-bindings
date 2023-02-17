@@ -9,26 +9,28 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$115 {
 
-    static final FunctionDescriptor PFNGLATTACHSHADERPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT
-    );
-    static final MethodHandle PFNGLATTACHSHADERPROC$MH = RuntimeHelper.downcallHandle(
-        constants$115.PFNGLATTACHSHADERPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLBINDATTRIBLOCATIONPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
+    static final FunctionDescriptor PFNGLDELETEQUERIESPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLBINDATTRIBLOCATIONPROC$MH = RuntimeHelper.downcallHandle(
-        constants$115.PFNGLBINDATTRIBLOCATIONPROC$FUNC
+    static final MethodHandle PFNGLDELETEQUERIESPROC$MH = RuntimeHelper.downcallHandle(
+        constants$115.PFNGLDELETEQUERIESPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLCOMPILESHADERPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLISQUERYPROC$FUNC = FunctionDescriptor.of(Constants$root.C_CHAR$LAYOUT,
         Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLCOMPILESHADERPROC$MH = RuntimeHelper.downcallHandle(
-        constants$115.PFNGLCOMPILESHADERPROC$FUNC
+    static final MethodHandle PFNGLISQUERYPROC$MH = RuntimeHelper.downcallHandle(
+        constants$115.PFNGLISQUERYPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLBEGINQUERYPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle PFNGLBEGINQUERYPROC$MH = RuntimeHelper.downcallHandle(
+        constants$115.PFNGLBEGINQUERYPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLENDQUERYPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT
     );
 }
 

@@ -9,30 +9,29 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$136 {
 
-    static final FunctionDescriptor PFNGLVERTEXATTRIB3DPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLUNIFORM1FPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_DOUBLE$LAYOUT,
-        Constants$root.C_DOUBLE$LAYOUT,
-        Constants$root.C_DOUBLE$LAYOUT
+        Constants$root.C_FLOAT$LAYOUT
     );
-    static final MethodHandle PFNGLVERTEXATTRIB3DPROC$MH = RuntimeHelper.downcallHandle(
-        constants$136.PFNGLVERTEXATTRIB3DPROC$FUNC
+    static final MethodHandle PFNGLUNIFORM1FPROC$MH = RuntimeHelper.downcallHandle(
+        constants$136.PFNGLUNIFORM1FPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLVERTEXATTRIB3DVPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLUNIFORM2FPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
+        Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT
     );
-    static final MethodHandle PFNGLVERTEXATTRIB3DVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$136.PFNGLVERTEXATTRIB3DVPROC$FUNC
+    static final MethodHandle PFNGLUNIFORM2FPROC$MH = RuntimeHelper.downcallHandle(
+        constants$136.PFNGLUNIFORM2FPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLVERTEXATTRIB3FPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLUNIFORM3FPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_FLOAT$LAYOUT,
         Constants$root.C_FLOAT$LAYOUT,
         Constants$root.C_FLOAT$LAYOUT
     );
-    static final MethodHandle PFNGLVERTEXATTRIB3FPROC$MH = RuntimeHelper.downcallHandle(
-        constants$136.PFNGLVERTEXATTRIB3FPROC$FUNC
+    static final MethodHandle PFNGLUNIFORM3FPROC$MH = RuntimeHelper.downcallHandle(
+        constants$136.PFNGLUNIFORM3FPROC$FUNC
     );
 }
 

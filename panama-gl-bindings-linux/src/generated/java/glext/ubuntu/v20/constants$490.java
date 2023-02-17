@@ -9,21 +9,28 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$490 {
 
-    static final FunctionDescriptor PFNGLBEGINFRAGMENTSHADERATIPROC$FUNC = FunctionDescriptor.ofVoid();
-    static final MethodHandle PFNGLBEGINFRAGMENTSHADERATIPROC$MH = RuntimeHelper.downcallHandle(
-        constants$490.PFNGLBEGINFRAGMENTSHADERATIPROC$FUNC
+    static final FunctionDescriptor glMinSampleShadingARB$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_FLOAT$LAYOUT
     );
-    static final FunctionDescriptor PFNGLENDFRAGMENTSHADERATIPROC$FUNC = FunctionDescriptor.ofVoid();
-    static final MethodHandle PFNGLENDFRAGMENTSHADERATIPROC$MH = RuntimeHelper.downcallHandle(
-        constants$490.PFNGLENDFRAGMENTSHADERATIPROC$FUNC
+    static final MethodHandle glMinSampleShadingARB$MH = RuntimeHelper.downcallHandle(
+        "glMinSampleShadingARB",
+        constants$490.glMinSampleShadingARB$FUNC
     );
-    static final FunctionDescriptor PFNGLPASSTEXCOORDATIPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
+    static final FunctionDescriptor PFNGLDELETEOBJECTARBPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLPASSTEXCOORDATIPROC$MH = RuntimeHelper.downcallHandle(
-        constants$490.PFNGLPASSTEXCOORDATIPROC$FUNC
+    static final MethodHandle PFNGLDELETEOBJECTARBPROC$MH = RuntimeHelper.downcallHandle(
+        constants$490.PFNGLDELETEOBJECTARBPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLGETHANDLEARBPROC$FUNC = FunctionDescriptor.of(Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle PFNGLGETHANDLEARBPROC$MH = RuntimeHelper.downcallHandle(
+        constants$490.PFNGLGETHANDLEARBPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLDETACHOBJECTARBPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
 }
 

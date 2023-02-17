@@ -9,32 +9,68 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$467 {
 
-    static final FunctionDescriptor PFNGLVERTEXATTRIBPARAMETERIAMDPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glProgramUniform2ui64ARB$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT
+        Constants$root.C_LONG_LONG$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT
     );
-    static final MethodHandle PFNGLVERTEXATTRIBPARAMETERIAMDPROC$MH = RuntimeHelper.downcallHandle(
-        constants$467.PFNGLVERTEXATTRIBPARAMETERIAMDPROC$FUNC
+    static final MethodHandle glProgramUniform2ui64ARB$MH = RuntimeHelper.downcallHandle(
+        "glProgramUniform2ui64ARB",
+        constants$467.glProgramUniform2ui64ARB$FUNC
     );
-    static final FunctionDescriptor PFNGLMULTIDRAWARRAYSINDIRECTAMDPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glProgramUniform3ui64ARB$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT
+        Constants$root.C_LONG_LONG$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT
     );
-    static final MethodHandle PFNGLMULTIDRAWARRAYSINDIRECTAMDPROC$MH = RuntimeHelper.downcallHandle(
-        constants$467.PFNGLMULTIDRAWARRAYSINDIRECTAMDPROC$FUNC
+    static final MethodHandle glProgramUniform3ui64ARB$MH = RuntimeHelper.downcallHandle(
+        "glProgramUniform3ui64ARB",
+        constants$467.glProgramUniform3ui64ARB$FUNC
     );
-    static final FunctionDescriptor PFNGLMULTIDRAWELEMENTSINDIRECTAMDPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glProgramUniform4ui64ARB$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT
+        Constants$root.C_LONG_LONG$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT
     );
-    static final MethodHandle PFNGLMULTIDRAWELEMENTSINDIRECTAMDPROC$MH = RuntimeHelper.downcallHandle(
-        constants$467.PFNGLMULTIDRAWELEMENTSINDIRECTAMDPROC$FUNC
+    static final MethodHandle glProgramUniform4ui64ARB$MH = RuntimeHelper.downcallHandle(
+        "glProgramUniform4ui64ARB",
+        constants$467.glProgramUniform4ui64ARB$FUNC
+    );
+    static final FunctionDescriptor glProgramUniform1ui64vARB$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glProgramUniform1ui64vARB$MH = RuntimeHelper.downcallHandle(
+        "glProgramUniform1ui64vARB",
+        constants$467.glProgramUniform1ui64vARB$FUNC
+    );
+    static final FunctionDescriptor glProgramUniform2ui64vARB$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glProgramUniform2ui64vARB$MH = RuntimeHelper.downcallHandle(
+        "glProgramUniform2ui64vARB",
+        constants$467.glProgramUniform2ui64vARB$FUNC
+    );
+    static final FunctionDescriptor glProgramUniform3ui64vARB$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glProgramUniform3ui64vARB$MH = RuntimeHelper.downcallHandle(
+        "glProgramUniform3ui64vARB",
+        constants$467.glProgramUniform3ui64vARB$FUNC
     );
 }
 

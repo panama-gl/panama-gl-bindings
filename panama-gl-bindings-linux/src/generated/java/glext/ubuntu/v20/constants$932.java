@@ -9,56 +9,43 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$932 {
 
-    static final FunctionDescriptor gluCylinder$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_DOUBLE$LAYOUT,
-        Constants$root.C_DOUBLE$LAYOUT,
-        Constants$root.C_DOUBLE$LAYOUT,
+    static final FunctionDescriptor glPixelTransformParameterfvEXT$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT
-    );
-    static final MethodHandle gluCylinder$MH = RuntimeHelper.downcallHandle(
-        "gluCylinder",
-        constants$932.gluCylinder$FUNC
-    );
-    static final FunctionDescriptor gluDeleteNurbsRenderer$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle gluDeleteNurbsRenderer$MH = RuntimeHelper.downcallHandle(
-        "gluDeleteNurbsRenderer",
-        constants$932.gluDeleteNurbsRenderer$FUNC
-    );
-    static final FunctionDescriptor gluDeleteQuadric$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle gluDeleteQuadric$MH = RuntimeHelper.downcallHandle(
-        "gluDeleteQuadric",
-        constants$932.gluDeleteQuadric$FUNC
-    );
-    static final FunctionDescriptor gluDeleteTess$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle gluDeleteTess$MH = RuntimeHelper.downcallHandle(
-        "gluDeleteTess",
-        constants$932.gluDeleteTess$FUNC
-    );
-    static final FunctionDescriptor gluDisk$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_DOUBLE$LAYOUT,
-        Constants$root.C_DOUBLE$LAYOUT,
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT
-    );
-    static final MethodHandle gluDisk$MH = RuntimeHelper.downcallHandle(
-        "gluDisk",
-        constants$932.gluDisk$FUNC
-    );
-    static final FunctionDescriptor gluEndCurve$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle gluEndCurve$MH = RuntimeHelper.downcallHandle(
-        "gluEndCurve",
-        constants$932.gluEndCurve$FUNC
+    static final MethodHandle glPixelTransformParameterfvEXT$MH = RuntimeHelper.downcallHandle(
+        "glPixelTransformParameterfvEXT",
+        constants$932.glPixelTransformParameterfvEXT$FUNC
+    );
+    static final FunctionDescriptor glGetPixelTransformParameterivEXT$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glGetPixelTransformParameterivEXT$MH = RuntimeHelper.downcallHandle(
+        "glGetPixelTransformParameterivEXT",
+        constants$932.glGetPixelTransformParameterivEXT$FUNC
+    );
+    static final FunctionDescriptor glGetPixelTransformParameterfvEXT$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glGetPixelTransformParameterfvEXT$MH = RuntimeHelper.downcallHandle(
+        "glGetPixelTransformParameterfvEXT",
+        constants$932.glGetPixelTransformParameterfvEXT$FUNC
+    );
+    static final FunctionDescriptor PFNGLPOINTPARAMETERFEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT
+    );
+    static final MethodHandle PFNGLPOINTPARAMETERFEXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$932.PFNGLPOINTPARAMETERFEXTPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLPOINTPARAMETERFVEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
 }
 

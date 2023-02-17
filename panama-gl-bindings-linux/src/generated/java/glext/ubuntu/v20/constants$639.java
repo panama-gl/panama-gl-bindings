@@ -9,25 +9,28 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$639 {
 
-    static final FunctionDescriptor PFNGLINDEXFUNCEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLUNIFORM3I64VNVPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT
-    );
-    static final MethodHandle PFNGLINDEXFUNCEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$639.PFNGLINDEXFUNCEXTPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLINDEXMATERIALEXTPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT
+        Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLINDEXMATERIALEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$639.PFNGLINDEXMATERIALEXTPROC$FUNC
+    static final MethodHandle PFNGLUNIFORM3I64VNVPROC$MH = RuntimeHelper.downcallHandle(
+        constants$639.PFNGLUNIFORM3I64VNVPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLAPPLYTEXTUREEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT
+    static final FunctionDescriptor PFNGLUNIFORM4I64VNVPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLAPPLYTEXTUREEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$639.PFNGLAPPLYTEXTUREEXTPROC$FUNC
+    static final MethodHandle PFNGLUNIFORM4I64VNVPROC$MH = RuntimeHelper.downcallHandle(
+        constants$639.PFNGLUNIFORM4I64VNVPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLUNIFORM1UI64NVPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT
+    );
+    static final MethodHandle PFNGLUNIFORM1UI64NVPROC$MH = RuntimeHelper.downcallHandle(
+        constants$639.PFNGLUNIFORM1UI64NVPROC$FUNC
     );
 }
 

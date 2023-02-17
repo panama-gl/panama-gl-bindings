@@ -9,32 +9,37 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$339 {
 
-    static final FunctionDescriptor PFNGLPROGRAMUNIFORM1I64VARBPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle PFNGLPROGRAMUNIFORM1I64VARBPROC$MH = RuntimeHelper.downcallHandle(
-        constants$339.PFNGLPROGRAMUNIFORM1I64VARBPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLPROGRAMUNIFORM2I64VARBPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
+    static final FunctionDescriptor PFNGLGETPROGRAMRESOURCEINDEXPROC$FUNC = FunctionDescriptor.of(Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLPROGRAMUNIFORM2I64VARBPROC$MH = RuntimeHelper.downcallHandle(
-        constants$339.PFNGLPROGRAMUNIFORM2I64VARBPROC$FUNC
+    static final MethodHandle PFNGLGETPROGRAMRESOURCEINDEXPROC$MH = RuntimeHelper.downcallHandle(
+        constants$339.PFNGLGETPROGRAMRESOURCEINDEXPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLPROGRAMUNIFORM3I64VARBPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLGETPROGRAMRESOURCENAMEPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLPROGRAMUNIFORM3I64VARBPROC$MH = RuntimeHelper.downcallHandle(
-        constants$339.PFNGLPROGRAMUNIFORM3I64VARBPROC$FUNC
+    static final MethodHandle PFNGLGETPROGRAMRESOURCENAMEPROC$MH = RuntimeHelper.downcallHandle(
+        constants$339.PFNGLGETPROGRAMRESOURCENAMEPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLGETPROGRAMRESOURCEIVPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle PFNGLGETPROGRAMRESOURCEIVPROC$MH = RuntimeHelper.downcallHandle(
+        constants$339.PFNGLGETPROGRAMRESOURCEIVPROC$FUNC
     );
 }
 

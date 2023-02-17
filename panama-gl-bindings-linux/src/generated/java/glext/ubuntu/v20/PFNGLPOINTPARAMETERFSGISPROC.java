@@ -11,13 +11,13 @@ public interface PFNGLPOINTPARAMETERFSGISPROC {
 
     void apply(int pname, float param);
     static MemorySegment allocate(PFNGLPOINTPARAMETERFSGISPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLPOINTPARAMETERFSGISPROC.class, fi, constants$887.PFNGLPOINTPARAMETERFSGISPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLPOINTPARAMETERFSGISPROC.class, fi, constants$1284.PFNGLPOINTPARAMETERFSGISPROC$FUNC, session);
     }
     static PFNGLPOINTPARAMETERFSGISPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _pname, float _param) -> {
             try {
-                constants$887.PFNGLPOINTPARAMETERFSGISPROC$MH.invokeExact((Addressable)symbol, _pname, _param);
+                constants$1285.PFNGLPOINTPARAMETERFSGISPROC$MH.invokeExact((Addressable)symbol, _pname, _param);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

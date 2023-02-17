@@ -11,13 +11,13 @@ public interface PFNGLGETPIXELTRANSFORMPARAMETERFVEXTPROC {
 
     void apply(int target, int pname, java.lang.foreign.MemoryAddress params);
     static MemorySegment allocate(PFNGLGETPIXELTRANSFORMPARAMETERFVEXTPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLGETPIXELTRANSFORMPARAMETERFVEXTPROC.class, fi, constants$652.PFNGLGETPIXELTRANSFORMPARAMETERFVEXTPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLGETPIXELTRANSFORMPARAMETERFVEXTPROC.class, fi, constants$931.PFNGLGETPIXELTRANSFORMPARAMETERFVEXTPROC$FUNC, session);
     }
     static PFNGLGETPIXELTRANSFORMPARAMETERFVEXTPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _target, int _pname, java.lang.foreign.MemoryAddress _params) -> {
             try {
-                constants$652.PFNGLGETPIXELTRANSFORMPARAMETERFVEXTPROC$MH.invokeExact((Addressable)symbol, _target, _pname, (java.lang.foreign.Addressable)_params);
+                constants$931.PFNGLGETPIXELTRANSFORMPARAMETERFVEXTPROC$MH.invokeExact((Addressable)symbol, _target, _pname, (java.lang.foreign.Addressable)_params);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

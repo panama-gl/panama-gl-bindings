@@ -11,13 +11,13 @@ public interface PFNGLDELETETEXTURESEXTPROC {
 
     void apply(int n, java.lang.foreign.MemoryAddress textures);
     static MemorySegment allocate(PFNGLDELETETEXTURESEXTPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLDELETETEXTURESEXTPROC.class, fi, constants$671.PFNGLDELETETEXTURESEXTPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLDELETETEXTURESEXTPROC.class, fi, constants$959.PFNGLDELETETEXTURESEXTPROC$FUNC, session);
     }
     static PFNGLDELETETEXTURESEXTPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _n, java.lang.foreign.MemoryAddress _textures) -> {
             try {
-                constants$671.PFNGLDELETETEXTURESEXTPROC$MH.invokeExact((Addressable)symbol, _n, (java.lang.foreign.Addressable)_textures);
+                constants$959.PFNGLDELETETEXTURESEXTPROC$MH.invokeExact((Addressable)symbol, _n, (java.lang.foreign.Addressable)_textures);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

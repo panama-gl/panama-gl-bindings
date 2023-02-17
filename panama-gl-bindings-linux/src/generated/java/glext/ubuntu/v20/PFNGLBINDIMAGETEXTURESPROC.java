@@ -11,13 +11,13 @@ public interface PFNGLBINDIMAGETEXTURESPROC {
 
     void apply(int first, int count, java.lang.foreign.MemoryAddress textures);
     static MemorySegment allocate(PFNGLBINDIMAGETEXTURESPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLBINDIMAGETEXTURESPROC.class, fi, constants$269.PFNGLBINDIMAGETEXTURESPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLBINDIMAGETEXTURESPROC.class, fi, constants$357.PFNGLBINDIMAGETEXTURESPROC$FUNC, session);
     }
     static PFNGLBINDIMAGETEXTURESPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _first, int _count, java.lang.foreign.MemoryAddress _textures) -> {
             try {
-                constants$269.PFNGLBINDIMAGETEXTURESPROC$MH.invokeExact((Addressable)symbol, _first, _count, (java.lang.foreign.Addressable)_textures);
+                constants$357.PFNGLBINDIMAGETEXTURESPROC$MH.invokeExact((Addressable)symbol, _first, _count, (java.lang.foreign.Addressable)_textures);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

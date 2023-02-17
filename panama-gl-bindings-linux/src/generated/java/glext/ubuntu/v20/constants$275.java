@@ -9,27 +9,47 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$275 {
 
-    static final FunctionDescriptor PFNGLMAPNAMEDBUFFERPROC$FUNC = FunctionDescriptor.of(Constants$root.C_POINTER$LAYOUT,
+    static final FunctionDescriptor PFNGLGETQUERYINDEXEDIVPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle PFNGLGETQUERYINDEXEDIVPROC$MH = RuntimeHelper.downcallHandle(
+        constants$275.PFNGLGETQUERYINDEXEDIVPROC$FUNC
+    );
+    static final FunctionDescriptor glMinSampleShading$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_FLOAT$LAYOUT
+    );
+    static final MethodHandle glMinSampleShading$MH = RuntimeHelper.downcallHandle(
+        "glMinSampleShading",
+        constants$275.glMinSampleShading$FUNC
+    );
+    static final FunctionDescriptor glBlendEquationi$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLMAPNAMEDBUFFERPROC$MH = RuntimeHelper.downcallHandle(
-        constants$275.PFNGLMAPNAMEDBUFFERPROC$FUNC
+    static final MethodHandle glBlendEquationi$MH = RuntimeHelper.downcallHandle(
+        "glBlendEquationi",
+        constants$275.glBlendEquationi$FUNC
     );
-    static final FunctionDescriptor PFNGLMAPNAMEDBUFFERRANGEPROC$FUNC = FunctionDescriptor.of(Constants$root.C_POINTER$LAYOUT,
+    static final FunctionDescriptor glBlendEquationSeparatei$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_LONG_LONG$LAYOUT,
-        Constants$root.C_LONG_LONG$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLMAPNAMEDBUFFERRANGEPROC$MH = RuntimeHelper.downcallHandle(
-        constants$275.PFNGLMAPNAMEDBUFFERRANGEPROC$FUNC
+    static final MethodHandle glBlendEquationSeparatei$MH = RuntimeHelper.downcallHandle(
+        "glBlendEquationSeparatei",
+        constants$275.glBlendEquationSeparatei$FUNC
     );
-    static final FunctionDescriptor PFNGLUNMAPNAMEDBUFFERPROC$FUNC = FunctionDescriptor.of(Constants$root.C_CHAR$LAYOUT,
+    static final FunctionDescriptor glBlendFunci$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLUNMAPNAMEDBUFFERPROC$MH = RuntimeHelper.downcallHandle(
-        constants$275.PFNGLUNMAPNAMEDBUFFERPROC$FUNC
+    static final MethodHandle glBlendFunci$MH = RuntimeHelper.downcallHandle(
+        "glBlendFunci",
+        constants$275.glBlendFunci$FUNC
     );
 }
 

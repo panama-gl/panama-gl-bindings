@@ -9,59 +9,30 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$984 {
 
-    static final FunctionDescriptor abs$FUNC = FunctionDescriptor.of(Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT
-    );
-    static final MethodHandle abs$MH = RuntimeHelper.downcallHandle(
-        "abs",
-        constants$984.abs$FUNC
-    );
-    static final FunctionDescriptor labs$FUNC = FunctionDescriptor.of(Constants$root.C_LONG_LONG$LAYOUT,
-        Constants$root.C_LONG_LONG$LAYOUT
-    );
-    static final MethodHandle labs$MH = RuntimeHelper.downcallHandle(
-        "labs",
-        constants$984.labs$FUNC
-    );
-    static final FunctionDescriptor llabs$FUNC = FunctionDescriptor.of(Constants$root.C_LONG_LONG$LAYOUT,
-        Constants$root.C_LONG_LONG$LAYOUT
-    );
-    static final MethodHandle llabs$MH = RuntimeHelper.downcallHandle(
-        "llabs",
-        constants$984.llabs$FUNC
-    );
-    static final FunctionDescriptor div$FUNC = FunctionDescriptor.of(MemoryLayout.structLayout(
-        Constants$root.C_INT$LAYOUT.withName("quot"),
-        Constants$root.C_INT$LAYOUT.withName("rem")
-    ),
+    static final FunctionDescriptor PFNGLVARIANTUIVEXTPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle PFNGLVARIANTUIVEXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$984.PFNGLVARIANTUIVEXTPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLVARIANTPOINTEREXTPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle PFNGLVARIANTPOINTEREXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$984.PFNGLVARIANTPOINTEREXTPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLENABLEVARIANTCLIENTSTATEEXTPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle div$MH = RuntimeHelper.downcallHandle(
-        "div",
-        constants$984.div$FUNC
+    static final MethodHandle PFNGLENABLEVARIANTCLIENTSTATEEXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$984.PFNGLENABLEVARIANTCLIENTSTATEEXTPROC$FUNC
     );
-    static final FunctionDescriptor ldiv$FUNC = FunctionDescriptor.of(MemoryLayout.structLayout(
-        Constants$root.C_LONG_LONG$LAYOUT.withName("quot"),
-        Constants$root.C_LONG_LONG$LAYOUT.withName("rem")
-    ),
-        Constants$root.C_LONG_LONG$LAYOUT,
-        Constants$root.C_LONG_LONG$LAYOUT
-    );
-    static final MethodHandle ldiv$MH = RuntimeHelper.downcallHandle(
-        "ldiv",
-        constants$984.ldiv$FUNC
-    );
-    static final FunctionDescriptor lldiv$FUNC = FunctionDescriptor.of(MemoryLayout.structLayout(
-        Constants$root.C_LONG_LONG$LAYOUT.withName("quot"),
-        Constants$root.C_LONG_LONG$LAYOUT.withName("rem")
-    ),
-        Constants$root.C_LONG_LONG$LAYOUT,
-        Constants$root.C_LONG_LONG$LAYOUT
-    );
-    static final MethodHandle lldiv$MH = RuntimeHelper.downcallHandle(
-        "lldiv",
-        constants$984.lldiv$FUNC
+    static final FunctionDescriptor PFNGLDISABLEVARIANTCLIENTSTATEEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT
     );
 }
 

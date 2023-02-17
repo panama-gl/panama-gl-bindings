@@ -9,24 +9,33 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$811 {
 
-    static final FunctionDescriptor PFNGLPRIMITIVERESTARTNVPROC$FUNC = FunctionDescriptor.ofVoid();
-    static final MethodHandle PFNGLPRIMITIVERESTARTNVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$811.PFNGLPRIMITIVERESTARTNVPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLPRIMITIVERESTARTINDEXNVPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT
-    );
-    static final MethodHandle PFNGLPRIMITIVERESTARTINDEXNVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$811.PFNGLPRIMITIVERESTARTINDEXNVPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLQUERYRESOURCENVPROC$FUNC = FunctionDescriptor.of(Constants$root.C_INT$LAYOUT,
+    static final FunctionDescriptor PFNGLGETNAMEDPROGRAMLOCALPARAMETERIUIVEXTPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLQUERYRESOURCENVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$811.PFNGLQUERYRESOURCENVPROC$FUNC
+    static final MethodHandle PFNGLGETNAMEDPROGRAMLOCALPARAMETERIUIVEXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$811.PFNGLGETNAMEDPROGRAMLOCALPARAMETERIUIVEXTPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLENABLECLIENTSTATEIEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle PFNGLENABLECLIENTSTATEIEXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$811.PFNGLENABLECLIENTSTATEIEXTPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLDISABLECLIENTSTATEIEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle PFNGLDISABLECLIENTSTATEIEXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$811.PFNGLDISABLECLIENTSTATEIEXTPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLGETFLOATI_VEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
 }
 

@@ -11,13 +11,13 @@ public interface PFNGLCLAMPCOLORARBPROC {
 
     void apply(int target, int clamp);
     static MemorySegment allocate(PFNGLCLAMPCOLORARBPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLCLAMPCOLORARBPROC.class, fi, constants$318.PFNGLCLAMPCOLORARBPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLCLAMPCOLORARBPROC.class, fi, constants$431.PFNGLCLAMPCOLORARBPROC$FUNC, session);
     }
     static PFNGLCLAMPCOLORARBPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _target, int _clamp) -> {
             try {
-                constants$318.PFNGLCLAMPCOLORARBPROC$MH.invokeExact((Addressable)symbol, _target, _clamp);
+                constants$431.PFNGLCLAMPCOLORARBPROC$MH.invokeExact((Addressable)symbol, _target, _clamp);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

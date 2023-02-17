@@ -11,13 +11,13 @@ public interface PFNGLCOLORMASKINDEXEDEXTPROC {
 
     void apply(int index, byte r, byte g, byte b, byte a);
     static MemorySegment allocate(PFNGLCOLORMASKINDEXEDEXTPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLCOLORMASKINDEXEDEXTPROC.class, fi, constants$621.PFNGLCOLORMASKINDEXEDEXTPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLCOLORMASKINDEXEDEXTPROC.class, fi, constants$885.PFNGLCOLORMASKINDEXEDEXTPROC$FUNC, session);
     }
     static PFNGLCOLORMASKINDEXEDEXTPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _index, byte _r, byte _g, byte _b, byte _a) -> {
             try {
-                constants$621.PFNGLCOLORMASKINDEXEDEXTPROC$MH.invokeExact((Addressable)symbol, _index, _r, _g, _b, _a);
+                constants$885.PFNGLCOLORMASKINDEXEDEXTPROC$MH.invokeExact((Addressable)symbol, _index, _r, _g, _b, _a);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

@@ -9,23 +9,47 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$377 {
 
-    static final FunctionDescriptor PFNGLLOADTRANSPOSEMATRIXDARBPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLTEXTURESUBIMAGE2DPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLLOADTRANSPOSEMATRIXDARBPROC$MH = RuntimeHelper.downcallHandle(
-        constants$377.PFNGLLOADTRANSPOSEMATRIXDARBPROC$FUNC
+    static final MethodHandle PFNGLTEXTURESUBIMAGE2DPROC$MH = RuntimeHelper.downcallHandle(
+        constants$377.PFNGLTEXTURESUBIMAGE2DPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLMULTTRANSPOSEMATRIXFARBPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLTEXTURESUBIMAGE3DPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLMULTTRANSPOSEMATRIXFARBPROC$MH = RuntimeHelper.downcallHandle(
-        constants$377.PFNGLMULTTRANSPOSEMATRIXFARBPROC$FUNC
+    static final MethodHandle PFNGLTEXTURESUBIMAGE3DPROC$MH = RuntimeHelper.downcallHandle(
+        constants$377.PFNGLTEXTURESUBIMAGE3DPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLMULTTRANSPOSEMATRIXDARBPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLCOMPRESSEDTEXTURESUBIMAGE1DPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLMULTTRANSPOSEMATRIXDARBPROC$MH = RuntimeHelper.downcallHandle(
-        constants$377.PFNGLMULTTRANSPOSEMATRIXDARBPROC$FUNC
+    static final MethodHandle PFNGLCOMPRESSEDTEXTURESUBIMAGE1DPROC$MH = RuntimeHelper.downcallHandle(
+        constants$377.PFNGLCOMPRESSEDTEXTURESUBIMAGE1DPROC$FUNC
     );
 }
 

@@ -9,25 +9,47 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$447 {
 
-    static final FunctionDescriptor PFNGLVERTEX3XVOESPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glGetProgramLocalParameterfvARB$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLVERTEX3XVOESPROC$MH = RuntimeHelper.downcallHandle(
-        constants$447.PFNGLVERTEX3XVOESPROC$FUNC
+    static final MethodHandle glGetProgramLocalParameterfvARB$MH = RuntimeHelper.downcallHandle(
+        "glGetProgramLocalParameterfvARB",
+        constants$447.glGetProgramLocalParameterfvARB$FUNC
     );
-    static final FunctionDescriptor PFNGLVERTEX4XOESPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glGetProgramivARB$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glGetProgramivARB$MH = RuntimeHelper.downcallHandle(
+        "glGetProgramivARB",
+        constants$447.glGetProgramivARB$FUNC
+    );
+    static final FunctionDescriptor glGetProgramStringARB$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glGetProgramStringARB$MH = RuntimeHelper.downcallHandle(
+        "glGetProgramStringARB",
+        constants$447.glGetProgramStringARB$FUNC
+    );
+    static final FunctionDescriptor glIsProgramARB$FUNC = FunctionDescriptor.of(Constants$root.C_CHAR$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle glIsProgramARB$MH = RuntimeHelper.downcallHandle(
+        "glIsProgramARB",
+        constants$447.glIsProgramARB$FUNC
+    );
+    static final FunctionDescriptor PFNGLPROGRAMPARAMETERIARBPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLVERTEX4XOESPROC$MH = RuntimeHelper.downcallHandle(
-        constants$447.PFNGLVERTEX4XOESPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLVERTEX4XVOESPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle PFNGLVERTEX4XVOESPROC$MH = RuntimeHelper.downcallHandle(
-        constants$447.PFNGLVERTEX4XVOESPROC$FUNC
+    static final MethodHandle PFNGLPROGRAMPARAMETERIARBPROC$MH = RuntimeHelper.downcallHandle(
+        constants$447.PFNGLPROGRAMPARAMETERIARBPROC$FUNC
     );
 }
 

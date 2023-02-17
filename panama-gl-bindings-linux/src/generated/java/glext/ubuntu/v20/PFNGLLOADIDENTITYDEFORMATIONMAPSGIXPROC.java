@@ -11,13 +11,13 @@ public interface PFNGLLOADIDENTITYDEFORMATIONMAPSGIXPROC {
 
     void apply(int mask);
     static MemorySegment allocate(PFNGLLOADIDENTITYDEFORMATIONMAPSGIXPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLLOADIDENTITYDEFORMATIONMAPSGIXPROC.class, fi, constants$905.PFNGLLOADIDENTITYDEFORMATIONMAPSGIXPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLLOADIDENTITYDEFORMATIONMAPSGIXPROC.class, fi, constants$1310.PFNGLLOADIDENTITYDEFORMATIONMAPSGIXPROC$FUNC, session);
     }
     static PFNGLLOADIDENTITYDEFORMATIONMAPSGIXPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _mask) -> {
             try {
-                constants$905.PFNGLLOADIDENTITYDEFORMATIONMAPSGIXPROC$MH.invokeExact((Addressable)symbol, _mask);
+                constants$1310.PFNGLLOADIDENTITYDEFORMATIONMAPSGIXPROC$MH.invokeExact((Addressable)symbol, _mask);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

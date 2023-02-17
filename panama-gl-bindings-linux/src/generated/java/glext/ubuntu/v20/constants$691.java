@@ -9,27 +9,43 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$691 {
 
-    static final FunctionDescriptor PFNGLBINDMATERIALPARAMETEREXTPROC$FUNC = FunctionDescriptor.of(Constants$root.C_INT$LAYOUT,
+    static final FunctionDescriptor PFNGLALPHAFRAGMENTOP3ATIPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLBINDMATERIALPARAMETEREXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$691.PFNGLBINDMATERIALPARAMETEREXTPROC$FUNC
+    static final MethodHandle PFNGLALPHAFRAGMENTOP3ATIPROC$MH = RuntimeHelper.downcallHandle(
+        constants$691.PFNGLALPHAFRAGMENTOP3ATIPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLBINDTEXGENPARAMETEREXTPROC$FUNC = FunctionDescriptor.of(Constants$root.C_INT$LAYOUT,
+    static final FunctionDescriptor PFNGLSETFRAGMENTSHADERCONSTANTATIPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle PFNGLSETFRAGMENTSHADERCONSTANTATIPROC$MH = RuntimeHelper.downcallHandle(
+        constants$691.PFNGLSETFRAGMENTSHADERCONSTANTATIPROC$FUNC
+    );
+    static final FunctionDescriptor glGenFragmentShadersATI$FUNC = FunctionDescriptor.of(Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLBINDTEXGENPARAMETEREXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$691.PFNGLBINDTEXGENPARAMETEREXTPROC$FUNC
+    static final MethodHandle glGenFragmentShadersATI$MH = RuntimeHelper.downcallHandle(
+        "glGenFragmentShadersATI",
+        constants$691.glGenFragmentShadersATI$FUNC
     );
-    static final FunctionDescriptor PFNGLBINDTEXTUREUNITPARAMETEREXTPROC$FUNC = FunctionDescriptor.of(Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
+    static final FunctionDescriptor glBindFragmentShaderATI$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLBINDTEXTUREUNITPARAMETEREXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$691.PFNGLBINDTEXTUREUNITPARAMETEREXTPROC$FUNC
+    static final MethodHandle glBindFragmentShaderATI$MH = RuntimeHelper.downcallHandle(
+        "glBindFragmentShaderATI",
+        constants$691.glBindFragmentShaderATI$FUNC
     );
 }
 

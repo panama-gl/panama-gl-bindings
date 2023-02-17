@@ -9,25 +9,39 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$821 {
 
-    static final FunctionDescriptor PFNGLMAKENAMEDBUFFERNONRESIDENTNVPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT
-    );
-    static final MethodHandle PFNGLMAKENAMEDBUFFERNONRESIDENTNVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$821.PFNGLMAKENAMEDBUFFERNONRESIDENTNVPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLISNAMEDBUFFERRESIDENTNVPROC$FUNC = FunctionDescriptor.of(Constants$root.C_CHAR$LAYOUT,
-        Constants$root.C_INT$LAYOUT
-    );
-    static final MethodHandle PFNGLISNAMEDBUFFERRESIDENTNVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$821.PFNGLISNAMEDBUFFERRESIDENTNVPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLGETBUFFERPARAMETERUI64VNVPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLGETFRAMEBUFFERPARAMETERIVEXTPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLGETBUFFERPARAMETERUI64VNVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$821.PFNGLGETBUFFERPARAMETERUI64VNVPROC$FUNC
+    static final MethodHandle PFNGLGETFRAMEBUFFERPARAMETERIVEXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$821.PFNGLGETFRAMEBUFFERPARAMETERIVEXTPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLNAMEDCOPYBUFFERSUBDATAEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT
+    );
+    static final MethodHandle PFNGLNAMEDCOPYBUFFERSUBDATAEXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$821.PFNGLNAMEDCOPYBUFFERSUBDATAEXTPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLNAMEDFRAMEBUFFERTEXTUREEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle PFNGLNAMEDFRAMEBUFFERTEXTUREEXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$821.PFNGLNAMEDFRAMEBUFFERTEXTUREEXTPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLNAMEDFRAMEBUFFERTEXTURELAYEREXTPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
 }
 

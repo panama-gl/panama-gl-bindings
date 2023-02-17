@@ -11,13 +11,13 @@ public interface PFNGLVDPAUINITNVPROC {
 
     void apply(java.lang.foreign.MemoryAddress vdpDevice, java.lang.foreign.MemoryAddress getProcAddress);
     static MemorySegment allocate(PFNGLVDPAUINITNVPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLVDPAUINITNVPROC.class, fi, constants$835.PFNGLVDPAUINITNVPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLVDPAUINITNVPROC.class, fi, constants$1205.PFNGLVDPAUINITNVPROC$FUNC, session);
     }
     static PFNGLVDPAUINITNVPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (java.lang.foreign.MemoryAddress _vdpDevice, java.lang.foreign.MemoryAddress _getProcAddress) -> {
             try {
-                constants$835.PFNGLVDPAUINITNVPROC$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)_vdpDevice, (java.lang.foreign.Addressable)_getProcAddress);
+                constants$1206.PFNGLVDPAUINITNVPROC$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)_vdpDevice, (java.lang.foreign.Addressable)_getProcAddress);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

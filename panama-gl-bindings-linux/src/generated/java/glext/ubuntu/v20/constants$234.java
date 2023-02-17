@@ -9,36 +9,29 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$234 {
 
-    static final FunctionDescriptor PFNGLPROGRAMUNIFORM4DPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_DOUBLE$LAYOUT,
-        Constants$root.C_DOUBLE$LAYOUT,
-        Constants$root.C_DOUBLE$LAYOUT,
-        Constants$root.C_DOUBLE$LAYOUT
-    );
-    static final MethodHandle PFNGLPROGRAMUNIFORM4DPROC$MH = RuntimeHelper.downcallHandle(
-        constants$234.PFNGLPROGRAMUNIFORM4DPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLPROGRAMUNIFORM4DVPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
+    static final FunctionDescriptor PFNGLSAMPLERPARAMETERFVPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLPROGRAMUNIFORM4DVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$234.PFNGLPROGRAMUNIFORM4DVPROC$FUNC
+    static final MethodHandle PFNGLSAMPLERPARAMETERFVPROC$MH = RuntimeHelper.downcallHandle(
+        constants$234.PFNGLSAMPLERPARAMETERFVPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLPROGRAMUNIFORM4UIPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLSAMPLERPARAMETERIIVPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT
+        Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLPROGRAMUNIFORM4UIPROC$MH = RuntimeHelper.downcallHandle(
-        constants$234.PFNGLPROGRAMUNIFORM4UIPROC$FUNC
+    static final MethodHandle PFNGLSAMPLERPARAMETERIIVPROC$MH = RuntimeHelper.downcallHandle(
+        constants$234.PFNGLSAMPLERPARAMETERIIVPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLSAMPLERPARAMETERIUIVPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle PFNGLSAMPLERPARAMETERIUIVPROC$MH = RuntimeHelper.downcallHandle(
+        constants$234.PFNGLSAMPLERPARAMETERIUIVPROC$FUNC
     );
 }
 

@@ -9,30 +9,70 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$872 {
 
-    static final FunctionDescriptor PFNGLVERTEXATTRIBI4IEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glNamedRenderbufferStorageMultisampleEXT$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLVERTEXATTRIBI4IEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$872.PFNGLVERTEXATTRIBI4IEXTPROC$FUNC
+    static final MethodHandle glNamedRenderbufferStorageMultisampleEXT$MH = RuntimeHelper.downcallHandle(
+        "glNamedRenderbufferStorageMultisampleEXT",
+        constants$872.glNamedRenderbufferStorageMultisampleEXT$FUNC
     );
-    static final FunctionDescriptor PFNGLVERTEXATTRIBI1UIEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glNamedRenderbufferStorageMultisampleCoverageEXT$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLVERTEXATTRIBI1UIEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$872.PFNGLVERTEXATTRIBI1UIEXTPROC$FUNC
+    static final MethodHandle glNamedRenderbufferStorageMultisampleCoverageEXT$MH = RuntimeHelper.downcallHandle(
+        "glNamedRenderbufferStorageMultisampleCoverageEXT",
+        constants$872.glNamedRenderbufferStorageMultisampleCoverageEXT$FUNC
     );
-    static final FunctionDescriptor PFNGLVERTEXATTRIBI2UIEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glCheckNamedFramebufferStatusEXT$FUNC = FunctionDescriptor.of(Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle glCheckNamedFramebufferStatusEXT$MH = RuntimeHelper.downcallHandle(
+        "glCheckNamedFramebufferStatusEXT",
+        constants$872.glCheckNamedFramebufferStatusEXT$FUNC
+    );
+    static final FunctionDescriptor glNamedFramebufferTexture1DEXT$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLVERTEXATTRIBI2UIEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$872.PFNGLVERTEXATTRIBI2UIEXTPROC$FUNC
+    static final MethodHandle glNamedFramebufferTexture1DEXT$MH = RuntimeHelper.downcallHandle(
+        "glNamedFramebufferTexture1DEXT",
+        constants$872.glNamedFramebufferTexture1DEXT$FUNC
+    );
+    static final FunctionDescriptor glNamedFramebufferTexture2DEXT$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle glNamedFramebufferTexture2DEXT$MH = RuntimeHelper.downcallHandle(
+        "glNamedFramebufferTexture2DEXT",
+        constants$872.glNamedFramebufferTexture2DEXT$FUNC
+    );
+    static final FunctionDescriptor glNamedFramebufferTexture3DEXT$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle glNamedFramebufferTexture3DEXT$MH = RuntimeHelper.downcallHandle(
+        "glNamedFramebufferTexture3DEXT",
+        constants$872.glNamedFramebufferTexture3DEXT$FUNC
     );
 }
 

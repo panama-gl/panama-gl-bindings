@@ -11,13 +11,13 @@ public interface PFNGLBINDBUFFERSBASEPROC {
 
     void apply(int target, int first, int count, java.lang.foreign.MemoryAddress buffers);
     static MemorySegment allocate(PFNGLBINDBUFFERSBASEPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLBINDBUFFERSBASEPROC.class, fi, constants$268.PFNGLBINDBUFFERSBASEPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLBINDBUFFERSBASEPROC.class, fi, constants$355.PFNGLBINDBUFFERSBASEPROC$FUNC, session);
     }
     static PFNGLBINDBUFFERSBASEPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _target, int _first, int _count, java.lang.foreign.MemoryAddress _buffers) -> {
             try {
-                constants$268.PFNGLBINDBUFFERSBASEPROC$MH.invokeExact((Addressable)symbol, _target, _first, _count, (java.lang.foreign.Addressable)_buffers);
+                constants$356.PFNGLBINDBUFFERSBASEPROC$MH.invokeExact((Addressable)symbol, _target, _first, _count, (java.lang.foreign.Addressable)_buffers);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

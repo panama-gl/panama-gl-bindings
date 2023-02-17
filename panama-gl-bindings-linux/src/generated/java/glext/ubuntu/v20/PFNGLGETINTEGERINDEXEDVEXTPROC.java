@@ -11,13 +11,13 @@ public interface PFNGLGETINTEGERINDEXEDVEXTPROC {
 
     void apply(int target, int index, java.lang.foreign.MemoryAddress data);
     static MemorySegment allocate(PFNGLGETINTEGERINDEXEDVEXTPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLGETINTEGERINDEXEDVEXTPROC.class, fi, constants$563.PFNGLGETINTEGERINDEXEDVEXTPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLGETINTEGERINDEXEDVEXTPROC.class, fi, constants$784.PFNGLGETINTEGERINDEXEDVEXTPROC$FUNC, session);
     }
     static PFNGLGETINTEGERINDEXEDVEXTPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _target, int _index, java.lang.foreign.MemoryAddress _data) -> {
             try {
-                constants$563.PFNGLGETINTEGERINDEXEDVEXTPROC$MH.invokeExact((Addressable)symbol, _target, _index, (java.lang.foreign.Addressable)_data);
+                constants$785.PFNGLGETINTEGERINDEXEDVEXTPROC$MH.invokeExact((Addressable)symbol, _target, _index, (java.lang.foreign.Addressable)_data);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

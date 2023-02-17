@@ -9,31 +9,31 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$426 {
 
-    static final FunctionDescriptor PFNGLBLENDCOLORXOESPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLPROGRAMUNIFORMHANDLEUI64ARBPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT
+        Constants$root.C_LONG_LONG$LAYOUT
     );
-    static final MethodHandle PFNGLBLENDCOLORXOESPROC$MH = RuntimeHelper.downcallHandle(
-        constants$426.PFNGLBLENDCOLORXOESPROC$FUNC
+    static final MethodHandle PFNGLPROGRAMUNIFORMHANDLEUI64ARBPROC$MH = RuntimeHelper.downcallHandle(
+        constants$426.PFNGLPROGRAMUNIFORMHANDLEUI64ARBPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLCLEARACCUMXOESPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLPROGRAMUNIFORMHANDLEUI64VARBPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT
+        Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLCLEARACCUMXOESPROC$MH = RuntimeHelper.downcallHandle(
-        constants$426.PFNGLCLEARACCUMXOESPROC$FUNC
+    static final MethodHandle PFNGLPROGRAMUNIFORMHANDLEUI64VARBPROC$MH = RuntimeHelper.downcallHandle(
+        constants$426.PFNGLPROGRAMUNIFORMHANDLEUI64VARBPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLCOLOR3XOESPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT
+    static final FunctionDescriptor PFNGLISTEXTUREHANDLERESIDENTARBPROC$FUNC = FunctionDescriptor.of(Constants$root.C_CHAR$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT
     );
-    static final MethodHandle PFNGLCOLOR3XOESPROC$MH = RuntimeHelper.downcallHandle(
-        constants$426.PFNGLCOLOR3XOESPROC$FUNC
+    static final MethodHandle PFNGLISTEXTUREHANDLERESIDENTARBPROC$MH = RuntimeHelper.downcallHandle(
+        constants$426.PFNGLISTEXTUREHANDLERESIDENTARBPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLISIMAGEHANDLERESIDENTARBPROC$FUNC = FunctionDescriptor.of(Constants$root.C_CHAR$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT
     );
 }
 

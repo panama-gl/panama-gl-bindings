@@ -9,34 +9,34 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$710 {
 
-    static final FunctionDescriptor PFNGLGETPERFQUERYDATAINTELPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLVERTEXSTREAM3SATIPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
+        Constants$root.C_SHORT$LAYOUT,
+        Constants$root.C_SHORT$LAYOUT,
+        Constants$root.C_SHORT$LAYOUT
+    );
+    static final MethodHandle PFNGLVERTEXSTREAM3SATIPROC$MH = RuntimeHelper.downcallHandle(
+        constants$710.PFNGLVERTEXSTREAM3SATIPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLVERTEXSTREAM3SVATIPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLGETPERFQUERYDATAINTELPROC$MH = RuntimeHelper.downcallHandle(
-        constants$710.PFNGLGETPERFQUERYDATAINTELPROC$FUNC
+    static final MethodHandle PFNGLVERTEXSTREAM3SVATIPROC$MH = RuntimeHelper.downcallHandle(
+        constants$710.PFNGLVERTEXSTREAM3SVATIPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLGETPERFQUERYIDBYNAMEINTELPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle PFNGLGETPERFQUERYIDBYNAMEINTELPROC$MH = RuntimeHelper.downcallHandle(
-        constants$710.PFNGLGETPERFQUERYIDBYNAMEINTELPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLGETPERFQUERYINFOINTELPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLVERTEXSTREAM3IATIPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLGETPERFQUERYINFOINTELPROC$MH = RuntimeHelper.downcallHandle(
-        constants$710.PFNGLGETPERFQUERYINFOINTELPROC$FUNC
+    static final MethodHandle PFNGLVERTEXSTREAM3IATIPROC$MH = RuntimeHelper.downcallHandle(
+        constants$710.PFNGLVERTEXSTREAM3IATIPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLVERTEXSTREAM3IVATIPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
 }
 

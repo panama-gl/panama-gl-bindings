@@ -9,25 +9,60 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$404 {
 
-    static final FunctionDescriptor PFNGLWINDOWPOS3FVARBPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle PFNGLWINDOWPOS3FVARBPROC$MH = RuntimeHelper.downcallHandle(
-        constants$404.PFNGLWINDOWPOS3FVARBPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLWINDOWPOS3IARBPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glNamedFramebufferParameteri$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLWINDOWPOS3IARBPROC$MH = RuntimeHelper.downcallHandle(
-        constants$404.PFNGLWINDOWPOS3IARBPROC$FUNC
+    static final MethodHandle glNamedFramebufferParameteri$MH = RuntimeHelper.downcallHandle(
+        "glNamedFramebufferParameteri",
+        constants$404.glNamedFramebufferParameteri$FUNC
     );
-    static final FunctionDescriptor PFNGLWINDOWPOS3IVARBPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glNamedFramebufferTexture$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle glNamedFramebufferTexture$MH = RuntimeHelper.downcallHandle(
+        "glNamedFramebufferTexture",
+        constants$404.glNamedFramebufferTexture$FUNC
+    );
+    static final FunctionDescriptor glNamedFramebufferTextureLayer$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle glNamedFramebufferTextureLayer$MH = RuntimeHelper.downcallHandle(
+        "glNamedFramebufferTextureLayer",
+        constants$404.glNamedFramebufferTextureLayer$FUNC
+    );
+    static final FunctionDescriptor glNamedFramebufferDrawBuffer$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle glNamedFramebufferDrawBuffer$MH = RuntimeHelper.downcallHandle(
+        "glNamedFramebufferDrawBuffer",
+        constants$404.glNamedFramebufferDrawBuffer$FUNC
+    );
+    static final FunctionDescriptor glNamedFramebufferDrawBuffers$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLWINDOWPOS3IVARBPROC$MH = RuntimeHelper.downcallHandle(
-        constants$404.PFNGLWINDOWPOS3IVARBPROC$FUNC
+    static final MethodHandle glNamedFramebufferDrawBuffers$MH = RuntimeHelper.downcallHandle(
+        "glNamedFramebufferDrawBuffers",
+        constants$404.glNamedFramebufferDrawBuffers$FUNC
+    );
+    static final FunctionDescriptor glNamedFramebufferReadBuffer$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle glNamedFramebufferReadBuffer$MH = RuntimeHelper.downcallHandle(
+        "glNamedFramebufferReadBuffer",
+        constants$404.glNamedFramebufferReadBuffer$FUNC
     );
 }
 

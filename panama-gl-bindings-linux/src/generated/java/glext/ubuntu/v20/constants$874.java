@@ -9,26 +9,65 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$874 {
 
-    static final FunctionDescriptor PFNGLVERTEXATTRIBI2IVEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glFramebufferReadBufferEXT$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle glFramebufferReadBufferEXT$MH = RuntimeHelper.downcallHandle(
+        "glFramebufferReadBufferEXT",
+        constants$874.glFramebufferReadBufferEXT$FUNC
+    );
+    static final FunctionDescriptor glGetFramebufferParameterivEXT$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLVERTEXATTRIBI2IVEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$874.PFNGLVERTEXATTRIBI2IVEXTPROC$FUNC
+    static final MethodHandle glGetFramebufferParameterivEXT$MH = RuntimeHelper.downcallHandle(
+        "glGetFramebufferParameterivEXT",
+        constants$874.glGetFramebufferParameterivEXT$FUNC
     );
-    static final FunctionDescriptor PFNGLVERTEXATTRIBI3IVEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glNamedCopyBufferSubDataEXT$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle PFNGLVERTEXATTRIBI3IVEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$874.PFNGLVERTEXATTRIBI3IVEXTPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLVERTEXATTRIBI4IVEXTPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
+        Constants$root.C_LONG_LONG$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT
     );
-    static final MethodHandle PFNGLVERTEXATTRIBI4IVEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$874.PFNGLVERTEXATTRIBI4IVEXTPROC$FUNC
+    static final MethodHandle glNamedCopyBufferSubDataEXT$MH = RuntimeHelper.downcallHandle(
+        "glNamedCopyBufferSubDataEXT",
+        constants$874.glNamedCopyBufferSubDataEXT$FUNC
+    );
+    static final FunctionDescriptor glNamedFramebufferTextureEXT$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle glNamedFramebufferTextureEXT$MH = RuntimeHelper.downcallHandle(
+        "glNamedFramebufferTextureEXT",
+        constants$874.glNamedFramebufferTextureEXT$FUNC
+    );
+    static final FunctionDescriptor glNamedFramebufferTextureLayerEXT$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle glNamedFramebufferTextureLayerEXT$MH = RuntimeHelper.downcallHandle(
+        "glNamedFramebufferTextureLayerEXT",
+        constants$874.glNamedFramebufferTextureLayerEXT$FUNC
+    );
+    static final FunctionDescriptor glNamedFramebufferTextureFaceEXT$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle glNamedFramebufferTextureFaceEXT$MH = RuntimeHelper.downcallHandle(
+        "glNamedFramebufferTextureFaceEXT",
+        constants$874.glNamedFramebufferTextureFaceEXT$FUNC
     );
 }
 

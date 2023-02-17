@@ -11,13 +11,13 @@ public interface PFNGLWEIGHTUIVARBPROC {
 
     void apply(int size, java.lang.foreign.MemoryAddress weights);
     static MemorySegment allocate(PFNGLWEIGHTUIVARBPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLWEIGHTUIVARBPROC.class, fi, constants$380.PFNGLWEIGHTUIVARBPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLWEIGHTUIVARBPROC.class, fi, constants$523.PFNGLWEIGHTUIVARBPROC$FUNC, session);
     }
     static PFNGLWEIGHTUIVARBPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _size, java.lang.foreign.MemoryAddress _weights) -> {
             try {
-                constants$380.PFNGLWEIGHTUIVARBPROC$MH.invokeExact((Addressable)symbol, _size, (java.lang.foreign.Addressable)_weights);
+                constants$523.PFNGLWEIGHTUIVARBPROC$MH.invokeExact((Addressable)symbol, _size, (java.lang.foreign.Addressable)_weights);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

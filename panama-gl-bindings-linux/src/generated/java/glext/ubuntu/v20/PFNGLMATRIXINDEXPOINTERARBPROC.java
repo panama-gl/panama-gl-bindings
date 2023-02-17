@@ -11,13 +11,13 @@ public interface PFNGLMATRIXINDEXPOINTERARBPROC {
 
     void apply(int size, int type, int stride, java.lang.foreign.MemoryAddress pointer);
     static MemorySegment allocate(PFNGLMATRIXINDEXPOINTERARBPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLMATRIXINDEXPOINTERARBPROC.class, fi, constants$345.PFNGLMATRIXINDEXPOINTERARBPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLMATRIXINDEXPOINTERARBPROC.class, fi, constants$471.PFNGLMATRIXINDEXPOINTERARBPROC$FUNC, session);
     }
     static PFNGLMATRIXINDEXPOINTERARBPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _size, int _type, int _stride, java.lang.foreign.MemoryAddress _pointer) -> {
             try {
-                constants$345.PFNGLMATRIXINDEXPOINTERARBPROC$MH.invokeExact((Addressable)symbol, _size, _type, _stride, (java.lang.foreign.Addressable)_pointer);
+                constants$471.PFNGLMATRIXINDEXPOINTERARBPROC$MH.invokeExact((Addressable)symbol, _size, _type, _stride, (java.lang.foreign.Addressable)_pointer);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

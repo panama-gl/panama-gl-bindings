@@ -9,26 +9,39 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$501 {
 
-    static final FunctionDescriptor PFNGLVERTEXSTREAM1SVATIPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLGETINFOLOGARBPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle PFNGLGETINFOLOGARBPROC$MH = RuntimeHelper.downcallHandle(
+        constants$501.PFNGLGETINFOLOGARBPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLGETATTACHEDOBJECTSARBPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle PFNGLGETATTACHEDOBJECTSARBPROC$MH = RuntimeHelper.downcallHandle(
+        constants$501.PFNGLGETATTACHEDOBJECTSARBPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLGETUNIFORMLOCATIONARBPROC$FUNC = FunctionDescriptor.of(Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLVERTEXSTREAM1SVATIPROC$MH = RuntimeHelper.downcallHandle(
-        constants$501.PFNGLVERTEXSTREAM1SVATIPROC$FUNC
+    static final MethodHandle PFNGLGETUNIFORMLOCATIONARBPROC$MH = RuntimeHelper.downcallHandle(
+        constants$501.PFNGLGETUNIFORMLOCATIONARBPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLVERTEXSTREAM1IATIPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLGETACTIVEUNIFORMARBPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT
-    );
-    static final MethodHandle PFNGLVERTEXSTREAM1IATIPROC$MH = RuntimeHelper.downcallHandle(
-        constants$501.PFNGLVERTEXSTREAM1IATIPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLVERTEXSTREAM1IVATIPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle PFNGLVERTEXSTREAM1IVATIPROC$MH = RuntimeHelper.downcallHandle(
-        constants$501.PFNGLVERTEXSTREAM1IVATIPROC$FUNC
     );
 }
 

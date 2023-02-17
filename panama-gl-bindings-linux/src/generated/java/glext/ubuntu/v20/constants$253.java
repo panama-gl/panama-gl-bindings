@@ -9,35 +9,59 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$253 {
 
-    static final FunctionDescriptor PFNGLCLEARBUFFERDATAPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle PFNGLCLEARBUFFERDATAPROC$MH = RuntimeHelper.downcallHandle(
-        constants$253.PFNGLCLEARBUFFERDATAPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLCLEARBUFFERSUBDATAPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_LONG_LONG$LAYOUT,
-        Constants$root.C_LONG_LONG$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle PFNGLCLEARBUFFERSUBDATAPROC$MH = RuntimeHelper.downcallHandle(
-        constants$253.PFNGLCLEARBUFFERSUBDATAPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLDISPATCHCOMPUTEPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
+    static final FunctionDescriptor glQueryCounter$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLDISPATCHCOMPUTEPROC$MH = RuntimeHelper.downcallHandle(
-        constants$253.PFNGLDISPATCHCOMPUTEPROC$FUNC
+    static final MethodHandle glQueryCounter$MH = RuntimeHelper.downcallHandle(
+        "glQueryCounter",
+        constants$253.glQueryCounter$FUNC
+    );
+    static final FunctionDescriptor glGetQueryObjecti64v$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glGetQueryObjecti64v$MH = RuntimeHelper.downcallHandle(
+        "glGetQueryObjecti64v",
+        constants$253.glGetQueryObjecti64v$FUNC
+    );
+    static final FunctionDescriptor glGetQueryObjectui64v$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glGetQueryObjectui64v$MH = RuntimeHelper.downcallHandle(
+        "glGetQueryObjectui64v",
+        constants$253.glGetQueryObjectui64v$FUNC
+    );
+    static final FunctionDescriptor glVertexAttribDivisor$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle glVertexAttribDivisor$MH = RuntimeHelper.downcallHandle(
+        "glVertexAttribDivisor",
+        constants$253.glVertexAttribDivisor$FUNC
+    );
+    static final FunctionDescriptor glVertexAttribP1ui$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_CHAR$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle glVertexAttribP1ui$MH = RuntimeHelper.downcallHandle(
+        "glVertexAttribP1ui",
+        constants$253.glVertexAttribP1ui$FUNC
+    );
+    static final FunctionDescriptor glVertexAttribP1uiv$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_CHAR$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glVertexAttribP1uiv$MH = RuntimeHelper.downcallHandle(
+        "glVertexAttribP1uiv",
+        constants$253.glVertexAttribP1uiv$FUNC
     );
 }
 

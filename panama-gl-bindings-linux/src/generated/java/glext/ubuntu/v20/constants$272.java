@@ -9,30 +9,25 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$272 {
 
-    static final FunctionDescriptor PFNGLGETTRANSFORMFEEDBACKI_VPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
+    static final FunctionDescriptor PFNGLDELETETRANSFORMFEEDBACKSPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLGETTRANSFORMFEEDBACKI_VPROC$MH = RuntimeHelper.downcallHandle(
-        constants$272.PFNGLGETTRANSFORMFEEDBACKI_VPROC$FUNC
+    static final MethodHandle PFNGLDELETETRANSFORMFEEDBACKSPROC$MH = RuntimeHelper.downcallHandle(
+        constants$272.PFNGLDELETETRANSFORMFEEDBACKSPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLGETTRANSFORMFEEDBACKI64_VPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
+    static final FunctionDescriptor PFNGLGENTRANSFORMFEEDBACKSPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLGETTRANSFORMFEEDBACKI64_VPROC$MH = RuntimeHelper.downcallHandle(
-        constants$272.PFNGLGETTRANSFORMFEEDBACKI64_VPROC$FUNC
+    static final MethodHandle PFNGLGENTRANSFORMFEEDBACKSPROC$MH = RuntimeHelper.downcallHandle(
+        constants$272.PFNGLGENTRANSFORMFEEDBACKSPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLCREATEBUFFERSPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
+    static final FunctionDescriptor PFNGLISTRANSFORMFEEDBACKPROC$FUNC = FunctionDescriptor.of(Constants$root.C_CHAR$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLCREATEBUFFERSPROC$MH = RuntimeHelper.downcallHandle(
-        constants$272.PFNGLCREATEBUFFERSPROC$FUNC
+    static final MethodHandle PFNGLISTRANSFORMFEEDBACKPROC$MH = RuntimeHelper.downcallHandle(
+        constants$272.PFNGLISTRANSFORMFEEDBACKPROC$FUNC
     );
 }
 

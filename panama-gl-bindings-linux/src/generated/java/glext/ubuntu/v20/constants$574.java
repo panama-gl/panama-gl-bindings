@@ -9,35 +9,31 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$574 {
 
-    static final FunctionDescriptor PFNGLPROGRAMUNIFORM2IEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glVertex4bvOES$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glVertex4bvOES$MH = RuntimeHelper.downcallHandle(
+        "glVertex4bvOES",
+        constants$574.glVertex4bvOES$FUNC
+    );
+    static final FunctionDescriptor PFNGLALPHAFUNCXOESPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle PFNGLALPHAFUNCXOESPROC$MH = RuntimeHelper.downcallHandle(
+        constants$574.PFNGLALPHAFUNCXOESPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLCLEARCOLORXOESPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLPROGRAMUNIFORM2IEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$574.PFNGLPROGRAMUNIFORM2IEXTPROC$FUNC
+    static final MethodHandle PFNGLCLEARCOLORXOESPROC$MH = RuntimeHelper.downcallHandle(
+        constants$574.PFNGLCLEARCOLORXOESPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLPROGRAMUNIFORM3IEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
+    static final FunctionDescriptor PFNGLCLEARDEPTHXOESPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT
-    );
-    static final MethodHandle PFNGLPROGRAMUNIFORM3IEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$574.PFNGLPROGRAMUNIFORM3IEXTPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLPROGRAMUNIFORM4IEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT
-    );
-    static final MethodHandle PFNGLPROGRAMUNIFORM4IEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$574.PFNGLPROGRAMUNIFORM4IEXTPROC$FUNC
     );
 }
 

@@ -9,28 +9,34 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$190 {
 
-    static final FunctionDescriptor PFNGLQUERYCOUNTERPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT
-    );
-    static final MethodHandle PFNGLQUERYCOUNTERPROC$MH = RuntimeHelper.downcallHandle(
-        constants$190.PFNGLQUERYCOUNTERPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLGETQUERYOBJECTI64VPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLTEXPARAMETERIIVPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLGETQUERYOBJECTI64VPROC$MH = RuntimeHelper.downcallHandle(
-        constants$190.PFNGLGETQUERYOBJECTI64VPROC$FUNC
+    static final MethodHandle PFNGLTEXPARAMETERIIVPROC$MH = RuntimeHelper.downcallHandle(
+        constants$190.PFNGLTEXPARAMETERIIVPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLGETQUERYOBJECTUI64VPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLTEXPARAMETERIUIVPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLGETQUERYOBJECTUI64VPROC$MH = RuntimeHelper.downcallHandle(
-        constants$190.PFNGLGETQUERYOBJECTUI64VPROC$FUNC
+    static final MethodHandle PFNGLTEXPARAMETERIUIVPROC$MH = RuntimeHelper.downcallHandle(
+        constants$190.PFNGLTEXPARAMETERIUIVPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLGETTEXPARAMETERIIVPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle PFNGLGETTEXPARAMETERIIVPROC$MH = RuntimeHelper.downcallHandle(
+        constants$190.PFNGLGETTEXPARAMETERIIVPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLGETTEXPARAMETERIUIVPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
 }
 

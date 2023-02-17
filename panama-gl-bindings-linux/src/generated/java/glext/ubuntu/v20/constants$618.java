@@ -9,36 +9,63 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$618 {
 
-    static final FunctionDescriptor PFNGLVERTEXARRAYBINDVERTEXBUFFEREXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_LONG_LONG$LAYOUT,
+    static final FunctionDescriptor glIndexxOES$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLVERTEXARRAYBINDVERTEXBUFFEREXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$618.PFNGLVERTEXARRAYBINDVERTEXBUFFEREXTPROC$FUNC
+    static final MethodHandle glIndexxOES$MH = RuntimeHelper.downcallHandle(
+        "glIndexxOES",
+        constants$618.glIndexxOES$FUNC
     );
-    static final FunctionDescriptor PFNGLVERTEXARRAYVERTEXATTRIBFORMATEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glIndexxvOES$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glIndexxvOES$MH = RuntimeHelper.downcallHandle(
+        "glIndexxvOES",
+        constants$618.glIndexxvOES$FUNC
+    );
+    static final FunctionDescriptor glLoadTransposeMatrixxOES$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glLoadTransposeMatrixxOES$MH = RuntimeHelper.downcallHandle(
+        "glLoadTransposeMatrixxOES",
+        constants$618.glLoadTransposeMatrixxOES$FUNC
+    );
+    static final FunctionDescriptor glMap1xOES$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_CHAR$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLVERTEXARRAYVERTEXATTRIBFORMATEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$618.PFNGLVERTEXARRAYVERTEXATTRIBFORMATEXTPROC$FUNC
+    static final MethodHandle glMap1xOES$MH = RuntimeHelper.downcallHandle(
+        "glMap1xOES",
+        constants$618.glMap1xOES$FUNC
     );
-    static final FunctionDescriptor PFNGLVERTEXARRAYVERTEXATTRIBIFORMATEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glMap2xOES$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLVERTEXARRAYVERTEXATTRIBIFORMATEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$618.PFNGLVERTEXARRAYVERTEXATTRIBIFORMATEXTPROC$FUNC
+    static final MethodHandle glMap2xOES$MH = RuntimeHelper.downcallHandle(
+        "glMap2xOES",
+        constants$618.glMap2xOES$FUNC
+    );
+    static final FunctionDescriptor glMapGrid1xOES$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle glMapGrid1xOES$MH = RuntimeHelper.downcallHandle(
+        "glMapGrid1xOES",
+        constants$618.glMapGrid1xOES$FUNC
     );
 }
 

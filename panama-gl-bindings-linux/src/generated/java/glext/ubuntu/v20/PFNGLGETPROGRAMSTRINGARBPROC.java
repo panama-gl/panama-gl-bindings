@@ -11,13 +11,13 @@ public interface PFNGLGETPROGRAMSTRINGARBPROC {
 
     void apply(int target, int pname, java.lang.foreign.MemoryAddress string);
     static MemorySegment allocate(PFNGLGETPROGRAMSTRINGARBPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLGETPROGRAMSTRINGARBPROC.class, fi, constants$328.PFNGLGETPROGRAMSTRINGARBPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLGETPROGRAMSTRINGARBPROC.class, fi, constants$443.PFNGLGETPROGRAMSTRINGARBPROC$FUNC, session);
     }
     static PFNGLGETPROGRAMSTRINGARBPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _target, int _pname, java.lang.foreign.MemoryAddress _string) -> {
             try {
-                constants$328.PFNGLGETPROGRAMSTRINGARBPROC$MH.invokeExact((Addressable)symbol, _target, _pname, (java.lang.foreign.Addressable)_string);
+                constants$444.PFNGLGETPROGRAMSTRINGARBPROC$MH.invokeExact((Addressable)symbol, _target, _pname, (java.lang.foreign.Addressable)_string);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

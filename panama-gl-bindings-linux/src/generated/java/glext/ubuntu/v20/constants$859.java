@@ -9,26 +9,57 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$859 {
 
-    static final FunctionDescriptor PFNGLVERTEXATTRIB1FVNVPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glMatrixLoadTransposedEXT$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLVERTEXATTRIB1FVNVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$859.PFNGLVERTEXATTRIB1FVNVPROC$FUNC
+    static final MethodHandle glMatrixLoadTransposedEXT$MH = RuntimeHelper.downcallHandle(
+        "glMatrixLoadTransposedEXT",
+        constants$859.glMatrixLoadTransposedEXT$FUNC
     );
-    static final FunctionDescriptor PFNGLVERTEXATTRIB1SNVPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_SHORT$LAYOUT
-    );
-    static final MethodHandle PFNGLVERTEXATTRIB1SNVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$859.PFNGLVERTEXATTRIB1SNVPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLVERTEXATTRIB1SVNVPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glMatrixMultTransposefEXT$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLVERTEXATTRIB1SVNVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$859.PFNGLVERTEXATTRIB1SVNVPROC$FUNC
+    static final MethodHandle glMatrixMultTransposefEXT$MH = RuntimeHelper.downcallHandle(
+        "glMatrixMultTransposefEXT",
+        constants$859.glMatrixMultTransposefEXT$FUNC
+    );
+    static final FunctionDescriptor glMatrixMultTransposedEXT$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glMatrixMultTransposedEXT$MH = RuntimeHelper.downcallHandle(
+        "glMatrixMultTransposedEXT",
+        constants$859.glMatrixMultTransposedEXT$FUNC
+    );
+    static final FunctionDescriptor glNamedBufferDataEXT$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle glNamedBufferDataEXT$MH = RuntimeHelper.downcallHandle(
+        "glNamedBufferDataEXT",
+        constants$859.glNamedBufferDataEXT$FUNC
+    );
+    static final FunctionDescriptor glNamedBufferSubDataEXT$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glNamedBufferSubDataEXT$MH = RuntimeHelper.downcallHandle(
+        "glNamedBufferSubDataEXT",
+        constants$859.glNamedBufferSubDataEXT$FUNC
+    );
+    static final FunctionDescriptor glMapNamedBufferEXT$FUNC = FunctionDescriptor.of(Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle glMapNamedBufferEXT$MH = RuntimeHelper.downcallHandle(
+        "glMapNamedBufferEXT",
+        constants$859.glMapNamedBufferEXT$FUNC
     );
 }
 

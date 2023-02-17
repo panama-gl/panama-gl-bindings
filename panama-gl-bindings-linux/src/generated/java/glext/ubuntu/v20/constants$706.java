@@ -9,30 +9,30 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$706 {
 
-    static final FunctionDescriptor PFNGLMAPTEXTURE2DINTELPROC$FUNC = FunctionDescriptor.of(Constants$root.C_POINTER$LAYOUT,
+    static final FunctionDescriptor PFNGLVERTEXSTREAM1FATIPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
+        Constants$root.C_FLOAT$LAYOUT
     );
-    static final MethodHandle PFNGLMAPTEXTURE2DINTELPROC$MH = RuntimeHelper.downcallHandle(
-        constants$706.PFNGLMAPTEXTURE2DINTELPROC$FUNC
+    static final MethodHandle PFNGLVERTEXSTREAM1FATIPROC$MH = RuntimeHelper.downcallHandle(
+        constants$706.PFNGLVERTEXSTREAM1FATIPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLVERTEXPOINTERVINTELPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
+    static final FunctionDescriptor PFNGLVERTEXSTREAM1FVATIPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLVERTEXPOINTERVINTELPROC$MH = RuntimeHelper.downcallHandle(
-        constants$706.PFNGLVERTEXPOINTERVINTELPROC$FUNC
+    static final MethodHandle PFNGLVERTEXSTREAM1FVATIPROC$MH = RuntimeHelper.downcallHandle(
+        constants$706.PFNGLVERTEXSTREAM1FVATIPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLNORMALPOINTERVINTELPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLVERTEXSTREAM1DATIPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_DOUBLE$LAYOUT
+    );
+    static final MethodHandle PFNGLVERTEXSTREAM1DATIPROC$MH = RuntimeHelper.downcallHandle(
+        constants$706.PFNGLVERTEXSTREAM1DATIPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLVERTEXSTREAM1DVATIPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle PFNGLNORMALPOINTERVINTELPROC$MH = RuntimeHelper.downcallHandle(
-        constants$706.PFNGLNORMALPOINTERVINTELPROC$FUNC
     );
 }
 

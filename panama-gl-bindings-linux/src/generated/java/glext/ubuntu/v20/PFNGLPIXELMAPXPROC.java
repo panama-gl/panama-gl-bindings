@@ -11,13 +11,13 @@ public interface PFNGLPIXELMAPXPROC {
 
     void apply(int map, int size, java.lang.foreign.MemoryAddress values);
     static MemorySegment allocate(PFNGLPIXELMAPXPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLPIXELMAPXPROC.class, fi, constants$438.PFNGLPIXELMAPXPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLPIXELMAPXPROC.class, fi, constants$598.PFNGLPIXELMAPXPROC$FUNC, session);
     }
     static PFNGLPIXELMAPXPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _map, int _size, java.lang.foreign.MemoryAddress _values) -> {
             try {
-                constants$438.PFNGLPIXELMAPXPROC$MH.invokeExact((Addressable)symbol, _map, _size, (java.lang.foreign.Addressable)_values);
+                constants$599.PFNGLPIXELMAPXPROC$MH.invokeExact((Addressable)symbol, _map, _size, (java.lang.foreign.Addressable)_values);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

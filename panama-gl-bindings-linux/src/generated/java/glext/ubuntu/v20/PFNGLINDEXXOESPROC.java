@@ -11,13 +11,13 @@ public interface PFNGLINDEXXOESPROC {
 
     void apply(int component);
     static MemorySegment allocate(PFNGLINDEXXOESPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLINDEXXOESPROC.class, fi, constants$432.PFNGLINDEXXOESPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLINDEXXOESPROC.class, fi, constants$593.PFNGLINDEXXOESPROC$FUNC, session);
     }
     static PFNGLINDEXXOESPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _component) -> {
             try {
-                constants$432.PFNGLINDEXXOESPROC$MH.invokeExact((Addressable)symbol, _component);
+                constants$593.PFNGLINDEXXOESPROC$MH.invokeExact((Addressable)symbol, _component);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

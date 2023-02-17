@@ -9,29 +9,60 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$276 {
 
-    static final FunctionDescriptor PFNGLFLUSHMAPPEDNAMEDBUFFERRANGEPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glBlendFuncSeparatei$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_LONG_LONG$LAYOUT,
-        Constants$root.C_LONG_LONG$LAYOUT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLFLUSHMAPPEDNAMEDBUFFERRANGEPROC$MH = RuntimeHelper.downcallHandle(
-        constants$276.PFNGLFLUSHMAPPEDNAMEDBUFFERRANGEPROC$FUNC
+    static final MethodHandle glBlendFuncSeparatei$MH = RuntimeHelper.downcallHandle(
+        "glBlendFuncSeparatei",
+        constants$276.glBlendFuncSeparatei$FUNC
     );
-    static final FunctionDescriptor PFNGLGETNAMEDBUFFERPARAMETERIVPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glDrawArraysIndirect$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glDrawArraysIndirect$MH = RuntimeHelper.downcallHandle(
+        "glDrawArraysIndirect",
+        constants$276.glDrawArraysIndirect$FUNC
+    );
+    static final FunctionDescriptor glDrawElementsIndirect$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLGETNAMEDBUFFERPARAMETERIVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$276.PFNGLGETNAMEDBUFFERPARAMETERIVPROC$FUNC
+    static final MethodHandle glDrawElementsIndirect$MH = RuntimeHelper.downcallHandle(
+        "glDrawElementsIndirect",
+        constants$276.glDrawElementsIndirect$FUNC
     );
-    static final FunctionDescriptor PFNGLGETNAMEDBUFFERPARAMETERI64VPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glUniform1d$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
+        Constants$root.C_DOUBLE$LAYOUT
     );
-    static final MethodHandle PFNGLGETNAMEDBUFFERPARAMETERI64VPROC$MH = RuntimeHelper.downcallHandle(
-        constants$276.PFNGLGETNAMEDBUFFERPARAMETERI64VPROC$FUNC
+    static final MethodHandle glUniform1d$MH = RuntimeHelper.downcallHandle(
+        "glUniform1d",
+        constants$276.glUniform1d$FUNC
+    );
+    static final FunctionDescriptor glUniform2d$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_DOUBLE$LAYOUT,
+        Constants$root.C_DOUBLE$LAYOUT
+    );
+    static final MethodHandle glUniform2d$MH = RuntimeHelper.downcallHandle(
+        "glUniform2d",
+        constants$276.glUniform2d$FUNC
+    );
+    static final FunctionDescriptor glUniform3d$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_DOUBLE$LAYOUT,
+        Constants$root.C_DOUBLE$LAYOUT,
+        Constants$root.C_DOUBLE$LAYOUT
+    );
+    static final MethodHandle glUniform3d$MH = RuntimeHelper.downcallHandle(
+        "glUniform3d",
+        constants$276.glUniform3d$FUNC
     );
 }
 

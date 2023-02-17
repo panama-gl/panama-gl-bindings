@@ -9,29 +9,36 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$395 {
 
-    static final FunctionDescriptor PFNGLVERTEXATTRIB4IVARBPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLGETNUNIFORMUIVPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLVERTEXATTRIB4IVARBPROC$MH = RuntimeHelper.downcallHandle(
-        constants$395.PFNGLVERTEXATTRIB4IVARBPROC$FUNC
+    static final MethodHandle PFNGLGETNUNIFORMUIVPROC$MH = RuntimeHelper.downcallHandle(
+        constants$395.PFNGLGETNUNIFORMUIVPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLVERTEXATTRIB4SARBPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLREADNPIXELSPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_SHORT$LAYOUT,
-        Constants$root.C_SHORT$LAYOUT,
-        Constants$root.C_SHORT$LAYOUT,
-        Constants$root.C_SHORT$LAYOUT
-    );
-    static final MethodHandle PFNGLVERTEXATTRIB4SARBPROC$MH = RuntimeHelper.downcallHandle(
-        constants$395.PFNGLVERTEXATTRIB4SARBPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLVERTEXATTRIB4SVARBPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLVERTEXATTRIB4SVARBPROC$MH = RuntimeHelper.downcallHandle(
-        constants$395.PFNGLVERTEXATTRIB4SVARBPROC$FUNC
+    static final MethodHandle PFNGLREADNPIXELSPROC$MH = RuntimeHelper.downcallHandle(
+        constants$395.PFNGLREADNPIXELSPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLGETNMAPDVPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle PFNGLGETNMAPDVPROC$MH = RuntimeHelper.downcallHandle(
+        constants$395.PFNGLGETNMAPDVPROC$FUNC
     );
 }
 

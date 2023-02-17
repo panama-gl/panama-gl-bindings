@@ -11,13 +11,13 @@ public interface PFNGLCOLORTABLEPARAMETERFVSGIPROC {
 
     void apply(int target, int pname, java.lang.foreign.MemoryAddress params);
     static MemorySegment allocate(PFNGLCOLORTABLEPARAMETERFVSGIPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLCOLORTABLEPARAMETERFVSGIPROC.class, fi, constants$907.PFNGLCOLORTABLEPARAMETERFVSGIPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLCOLORTABLEPARAMETERFVSGIPROC.class, fi, constants$1314.PFNGLCOLORTABLEPARAMETERFVSGIPROC$FUNC, session);
     }
     static PFNGLCOLORTABLEPARAMETERFVSGIPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _target, int _pname, java.lang.foreign.MemoryAddress _params) -> {
             try {
-                constants$907.PFNGLCOLORTABLEPARAMETERFVSGIPROC$MH.invokeExact((Addressable)symbol, _target, _pname, (java.lang.foreign.Addressable)_params);
+                constants$1314.PFNGLCOLORTABLEPARAMETERFVSGIPROC$MH.invokeExact((Addressable)symbol, _target, _pname, (java.lang.foreign.Addressable)_params);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

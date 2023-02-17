@@ -11,13 +11,13 @@ public interface PFNGLSTENCILOPVALUEAMDPROC {
 
     void apply(int face, int value);
     static MemorySegment allocate(PFNGLSTENCILOPVALUEAMDPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLSTENCILOPVALUEAMDPROC.class, fi, constants$474.PFNGLSTENCILOPVALUEAMDPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLSTENCILOPVALUEAMDPROC.class, fi, constants$664.PFNGLSTENCILOPVALUEAMDPROC$FUNC, session);
     }
     static PFNGLSTENCILOPVALUEAMDPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _face, int _value) -> {
             try {
-                constants$474.PFNGLSTENCILOPVALUEAMDPROC$MH.invokeExact((Addressable)symbol, _face, _value);
+                constants$664.PFNGLSTENCILOPVALUEAMDPROC$MH.invokeExact((Addressable)symbol, _face, _value);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

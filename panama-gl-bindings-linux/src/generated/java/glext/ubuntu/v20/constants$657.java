@@ -9,25 +9,39 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$657 {
 
-    static final FunctionDescriptor PFNGLSECONDARYCOLOR3IVEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLQUERYOBJECTPARAMETERUIAMDPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle PFNGLQUERYOBJECTPARAMETERUIAMDPROC$MH = RuntimeHelper.downcallHandle(
+        constants$657.PFNGLQUERYOBJECTPARAMETERUIAMDPROC$FUNC
+    );
+    static final FunctionDescriptor glQueryObjectParameteruiAMD$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle glQueryObjectParameteruiAMD$MH = RuntimeHelper.downcallHandle(
+        "glQueryObjectParameteruiAMD",
+        constants$657.glQueryObjectParameteruiAMD$FUNC
+    );
+    static final FunctionDescriptor PFNGLGETPERFMONITORGROUPSAMDPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLSECONDARYCOLOR3IVEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$657.PFNGLSECONDARYCOLOR3IVEXTPROC$FUNC
+    static final MethodHandle PFNGLGETPERFMONITORGROUPSAMDPROC$MH = RuntimeHelper.downcallHandle(
+        constants$657.PFNGLGETPERFMONITORGROUPSAMDPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLSECONDARYCOLOR3SEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_SHORT$LAYOUT,
-        Constants$root.C_SHORT$LAYOUT,
-        Constants$root.C_SHORT$LAYOUT
-    );
-    static final MethodHandle PFNGLSECONDARYCOLOR3SEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$657.PFNGLSECONDARYCOLOR3SEXTPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLSECONDARYCOLOR3SVEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLGETPERFMONITORCOUNTERSAMDPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle PFNGLSECONDARYCOLOR3SVEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$657.PFNGLSECONDARYCOLOR3SVEXTPROC$FUNC
     );
 }
 

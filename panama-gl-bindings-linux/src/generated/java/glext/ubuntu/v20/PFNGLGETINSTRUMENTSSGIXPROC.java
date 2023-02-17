@@ -11,13 +11,13 @@ public interface PFNGLGETINSTRUMENTSSGIXPROC {
 
     int apply();
     static MemorySegment allocate(PFNGLGETINSTRUMENTSSGIXPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLGETINSTRUMENTSSGIXPROC.class, fi, constants$899.PFNGLGETINSTRUMENTSSGIXPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLGETINSTRUMENTSSGIXPROC.class, fi, constants$1302.PFNGLGETINSTRUMENTSSGIXPROC$FUNC, session);
     }
     static PFNGLGETINSTRUMENTSSGIXPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return () -> {
             try {
-                return (int)constants$899.PFNGLGETINSTRUMENTSSGIXPROC$MH.invokeExact((Addressable)symbol);
+                return (int)constants$1303.PFNGLGETINSTRUMENTSSGIXPROC$MH.invokeExact((Addressable)symbol);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

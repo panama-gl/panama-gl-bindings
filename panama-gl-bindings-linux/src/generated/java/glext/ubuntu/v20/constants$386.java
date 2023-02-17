@@ -9,26 +9,33 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$386 {
 
-    static final FunctionDescriptor PFNGLVERTEXATTRIB1FVARBPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLVERTEXARRAYELEMENTBUFFERPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle PFNGLVERTEXARRAYELEMENTBUFFERPROC$MH = RuntimeHelper.downcallHandle(
+        constants$386.PFNGLVERTEXARRAYELEMENTBUFFERPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLVERTEXARRAYVERTEXBUFFERPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle PFNGLVERTEXARRAYVERTEXBUFFERPROC$MH = RuntimeHelper.downcallHandle(
+        constants$386.PFNGLVERTEXARRAYVERTEXBUFFERPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLVERTEXARRAYVERTEXBUFFERSPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLVERTEXATTRIB1FVARBPROC$MH = RuntimeHelper.downcallHandle(
-        constants$386.PFNGLVERTEXATTRIB1FVARBPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLVERTEXATTRIB1SARBPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_SHORT$LAYOUT
-    );
-    static final MethodHandle PFNGLVERTEXATTRIB1SARBPROC$MH = RuntimeHelper.downcallHandle(
-        constants$386.PFNGLVERTEXATTRIB1SARBPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLVERTEXATTRIB1SVARBPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle PFNGLVERTEXATTRIB1SVARBPROC$MH = RuntimeHelper.downcallHandle(
-        constants$386.PFNGLVERTEXATTRIB1SVARBPROC$FUNC
+    static final MethodHandle PFNGLVERTEXARRAYVERTEXBUFFERSPROC$MH = RuntimeHelper.downcallHandle(
+        constants$386.PFNGLVERTEXARRAYVERTEXBUFFERSPROC$FUNC
     );
 }
 

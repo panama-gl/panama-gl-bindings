@@ -9,35 +9,25 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$944 {
 
-    static final FunctionDescriptor glutShowWindow$FUNC = FunctionDescriptor.ofVoid();
-    static final MethodHandle glutShowWindow$MH = RuntimeHelper.downcallHandle(
-        "glutShowWindow",
-        constants$944.glutShowWindow$FUNC
+    static final FunctionDescriptor PFNGLGENSEMAPHORESEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
-    static final FunctionDescriptor glutHideWindow$FUNC = FunctionDescriptor.ofVoid();
-    static final MethodHandle glutHideWindow$MH = RuntimeHelper.downcallHandle(
-        "glutHideWindow",
-        constants$944.glutHideWindow$FUNC
+    static final MethodHandle PFNGLGENSEMAPHORESEXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$944.PFNGLGENSEMAPHORESEXTPROC$FUNC
     );
-    static final FunctionDescriptor glutIconifyWindow$FUNC = FunctionDescriptor.ofVoid();
-    static final MethodHandle glutIconifyWindow$MH = RuntimeHelper.downcallHandle(
-        "glutIconifyWindow",
-        constants$944.glutIconifyWindow$FUNC
+    static final FunctionDescriptor PFNGLDELETESEMAPHORESEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
-    static final FunctionDescriptor glutPushWindow$FUNC = FunctionDescriptor.ofVoid();
-    static final MethodHandle glutPushWindow$MH = RuntimeHelper.downcallHandle(
-        "glutPushWindow",
-        constants$944.glutPushWindow$FUNC
+    static final MethodHandle PFNGLDELETESEMAPHORESEXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$944.PFNGLDELETESEMAPHORESEXTPROC$FUNC
     );
-    static final FunctionDescriptor glutPopWindow$FUNC = FunctionDescriptor.ofVoid();
-    static final MethodHandle glutPopWindow$MH = RuntimeHelper.downcallHandle(
-        "glutPopWindow",
-        constants$944.glutPopWindow$FUNC
+    static final FunctionDescriptor PFNGLISSEMAPHOREEXTPROC$FUNC = FunctionDescriptor.of(Constants$root.C_CHAR$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
-    static final FunctionDescriptor glutFullScreen$FUNC = FunctionDescriptor.ofVoid();
-    static final MethodHandle glutFullScreen$MH = RuntimeHelper.downcallHandle(
-        "glutFullScreen",
-        constants$944.glutFullScreen$FUNC
+    static final MethodHandle PFNGLISSEMAPHOREEXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$944.PFNGLISSEMAPHOREEXTPROC$FUNC
     );
 }
 

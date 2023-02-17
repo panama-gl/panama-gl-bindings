@@ -11,13 +11,13 @@ public interface PFNGLBUFFERADDRESSRANGENVPROC {
 
     void apply(int pname, int index, long address, long length);
     static MemorySegment allocate(PFNGLBUFFERADDRESSRANGENVPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLBUFFERADDRESSRANGENVPROC.class, fi, constants$845.PFNGLBUFFERADDRESSRANGENVPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLBUFFERADDRESSRANGENVPROC.class, fi, constants$1221.PFNGLBUFFERADDRESSRANGENVPROC$FUNC, session);
     }
     static PFNGLBUFFERADDRESSRANGENVPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _pname, int _index, long _address, long _length) -> {
             try {
-                constants$845.PFNGLBUFFERADDRESSRANGENVPROC$MH.invokeExact((Addressable)symbol, _pname, _index, _address, _length);
+                constants$1222.PFNGLBUFFERADDRESSRANGENVPROC$MH.invokeExact((Addressable)symbol, _pname, _index, _address, _length);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

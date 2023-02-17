@@ -9,29 +9,31 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$718 {
 
-    static final FunctionDescriptor PFNGLWINDOWPOS4FMESAPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_FLOAT$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT
+    static final FunctionDescriptor PFNGLNORMALSTREAM3DATIPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_DOUBLE$LAYOUT,
+        Constants$root.C_DOUBLE$LAYOUT,
+        Constants$root.C_DOUBLE$LAYOUT
     );
-    static final MethodHandle PFNGLWINDOWPOS4FMESAPROC$MH = RuntimeHelper.downcallHandle(
-        constants$718.PFNGLWINDOWPOS4FMESAPROC$FUNC
+    static final MethodHandle PFNGLNORMALSTREAM3DATIPROC$MH = RuntimeHelper.downcallHandle(
+        constants$718.PFNGLNORMALSTREAM3DATIPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLWINDOWPOS4FVMESAPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLNORMALSTREAM3DVATIPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLWINDOWPOS4FVMESAPROC$MH = RuntimeHelper.downcallHandle(
-        constants$718.PFNGLWINDOWPOS4FVMESAPROC$FUNC
+    static final MethodHandle PFNGLNORMALSTREAM3DVATIPROC$MH = RuntimeHelper.downcallHandle(
+        constants$718.PFNGLNORMALSTREAM3DVATIPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLWINDOWPOS4IMESAPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
+    static final FunctionDescriptor PFNGLCLIENTACTIVEVERTEXSTREAMATIPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLWINDOWPOS4IMESAPROC$MH = RuntimeHelper.downcallHandle(
-        constants$718.PFNGLWINDOWPOS4IMESAPROC$FUNC
+    static final MethodHandle PFNGLCLIENTACTIVEVERTEXSTREAMATIPROC$MH = RuntimeHelper.downcallHandle(
+        constants$718.PFNGLCLIENTACTIVEVERTEXSTREAMATIPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLVERTEXBLENDENVIATIPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
 }
 

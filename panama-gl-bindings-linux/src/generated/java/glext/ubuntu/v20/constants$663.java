@@ -9,28 +9,44 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$663 {
 
-    static final FunctionDescriptor PFNGLIMPORTSEMAPHOREWIN32HANDLEEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLSETMULTISAMPLEFVAMDPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLIMPORTSEMAPHOREWIN32HANDLEEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$663.PFNGLIMPORTSEMAPHOREWIN32HANDLEEXTPROC$FUNC
+    static final MethodHandle PFNGLSETMULTISAMPLEFVAMDPROC$MH = RuntimeHelper.downcallHandle(
+        constants$663.PFNGLSETMULTISAMPLEFVAMDPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLIMPORTSEMAPHOREWIN32NAMEEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glSetMultisamplefvAMD$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLIMPORTSEMAPHOREWIN32NAMEEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$663.PFNGLIMPORTSEMAPHOREWIN32NAMEEXTPROC$FUNC
+    static final MethodHandle glSetMultisamplefvAMD$MH = RuntimeHelper.downcallHandle(
+        "glSetMultisamplefvAMD",
+        constants$663.glSetMultisamplefvAMD$FUNC
     );
-    static final FunctionDescriptor PFNGLUSESHADERPROGRAMEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLTEXSTORAGESPARSEAMDPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLUSESHADERPROGRAMEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$663.PFNGLUSESHADERPROGRAMEXTPROC$FUNC
+    static final MethodHandle PFNGLTEXSTORAGESPARSEAMDPROC$MH = RuntimeHelper.downcallHandle(
+        constants$663.PFNGLTEXSTORAGESPARSEAMDPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLTEXTURESTORAGESPARSEAMDPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
 }
 

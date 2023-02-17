@@ -9,24 +9,38 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$478 {
 
-    static final FunctionDescriptor PFNGLTESTFENCEAPPLEPROC$FUNC = FunctionDescriptor.of(Constants$root.C_CHAR$LAYOUT,
-        Constants$root.C_INT$LAYOUT
-    );
-    static final MethodHandle PFNGLTESTFENCEAPPLEPROC$MH = RuntimeHelper.downcallHandle(
-        constants$478.PFNGLTESTFENCEAPPLEPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLFINISHFENCEAPPLEPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT
-    );
-    static final MethodHandle PFNGLFINISHFENCEAPPLEPROC$MH = RuntimeHelper.downcallHandle(
-        constants$478.PFNGLFINISHFENCEAPPLEPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLTESTOBJECTAPPLEPROC$FUNC = FunctionDescriptor.of(Constants$root.C_CHAR$LAYOUT,
+    static final FunctionDescriptor glPointParameterfvARB$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT
+        Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLTESTOBJECTAPPLEPROC$MH = RuntimeHelper.downcallHandle(
-        constants$478.PFNGLTESTOBJECTAPPLEPROC$FUNC
+    static final MethodHandle glPointParameterfvARB$MH = RuntimeHelper.downcallHandle(
+        "glPointParameterfvARB",
+        constants$478.glPointParameterfvARB$FUNC
+    );
+    static final FunctionDescriptor PFNGLGETGRAPHICSRESETSTATUSARBPROC$FUNC = FunctionDescriptor.of(Constants$root.C_INT$LAYOUT);
+    static final MethodHandle PFNGLGETGRAPHICSRESETSTATUSARBPROC$MH = RuntimeHelper.downcallHandle(
+        constants$478.PFNGLGETGRAPHICSRESETSTATUSARBPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLGETNTEXIMAGEARBPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle PFNGLGETNTEXIMAGEARBPROC$MH = RuntimeHelper.downcallHandle(
+        constants$478.PFNGLGETNTEXIMAGEARBPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLREADNPIXELSARBPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
 }
 

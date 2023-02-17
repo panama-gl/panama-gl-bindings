@@ -9,28 +9,36 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$181 {
 
-    static final FunctionDescriptor PFNGLCLIENTWAITSYNCPROC$FUNC = FunctionDescriptor.of(Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
+    static final FunctionDescriptor PFNGLVERTEXATTRIBI1UIPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_LONG_LONG$LAYOUT
+        Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLCLIENTWAITSYNCPROC$MH = RuntimeHelper.downcallHandle(
-        constants$181.PFNGLCLIENTWAITSYNCPROC$FUNC
+    static final MethodHandle PFNGLVERTEXATTRIBI1UIPROC$MH = RuntimeHelper.downcallHandle(
+        constants$181.PFNGLVERTEXATTRIBI1UIPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLWAITSYNCPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_POINTER$LAYOUT,
+    static final FunctionDescriptor PFNGLVERTEXATTRIBI2UIPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_LONG_LONG$LAYOUT
-    );
-    static final MethodHandle PFNGLWAITSYNCPROC$MH = RuntimeHelper.downcallHandle(
-        constants$181.PFNGLWAITSYNCPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLGETINTEGER64VPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
+        Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLGETINTEGER64VPROC$MH = RuntimeHelper.downcallHandle(
-        constants$181.PFNGLGETINTEGER64VPROC$FUNC
+    static final MethodHandle PFNGLVERTEXATTRIBI2UIPROC$MH = RuntimeHelper.downcallHandle(
+        constants$181.PFNGLVERTEXATTRIBI2UIPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLVERTEXATTRIBI3UIPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle PFNGLVERTEXATTRIBI3UIPROC$MH = RuntimeHelper.downcallHandle(
+        constants$181.PFNGLVERTEXATTRIBI3UIPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLVERTEXATTRIBI4UIPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
 }
 

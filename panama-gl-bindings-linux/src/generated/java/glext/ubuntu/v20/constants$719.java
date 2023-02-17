@@ -9,26 +9,43 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$719 {
 
-    static final FunctionDescriptor PFNGLWINDOWPOS4IVMESAPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_POINTER$LAYOUT
+    static final FunctionDescriptor PFNGLVERTEXBLENDENVIATIPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLWINDOWPOS4IVMESAPROC$MH = RuntimeHelper.downcallHandle(
-        constants$719.PFNGLWINDOWPOS4IVMESAPROC$FUNC
+    static final MethodHandle PFNGLVERTEXBLENDENVIATIPROC$MH = RuntimeHelper.downcallHandle(
+        constants$719.PFNGLVERTEXBLENDENVIATIPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLWINDOWPOS4SMESAPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_SHORT$LAYOUT,
-        Constants$root.C_SHORT$LAYOUT,
-        Constants$root.C_SHORT$LAYOUT,
+    static final FunctionDescriptor PFNGLVERTEXBLENDENVFATIPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT
+    );
+    static final MethodHandle PFNGLVERTEXBLENDENVFATIPROC$MH = RuntimeHelper.downcallHandle(
+        constants$719.PFNGLVERTEXBLENDENVFATIPROC$FUNC
+    );
+    static final FunctionDescriptor glVertexStream1sATI$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_SHORT$LAYOUT
     );
-    static final MethodHandle PFNGLWINDOWPOS4SMESAPROC$MH = RuntimeHelper.downcallHandle(
-        constants$719.PFNGLWINDOWPOS4SMESAPROC$FUNC
+    static final MethodHandle glVertexStream1sATI$MH = RuntimeHelper.downcallHandle(
+        "glVertexStream1sATI",
+        constants$719.glVertexStream1sATI$FUNC
     );
-    static final FunctionDescriptor PFNGLWINDOWPOS4SVMESAPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glVertexStream1svATI$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLWINDOWPOS4SVMESAPROC$MH = RuntimeHelper.downcallHandle(
-        constants$719.PFNGLWINDOWPOS4SVMESAPROC$FUNC
+    static final MethodHandle glVertexStream1svATI$MH = RuntimeHelper.downcallHandle(
+        "glVertexStream1svATI",
+        constants$719.glVertexStream1svATI$FUNC
+    );
+    static final FunctionDescriptor glVertexStream1iATI$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle glVertexStream1iATI$MH = RuntimeHelper.downcallHandle(
+        "glVertexStream1iATI",
+        constants$719.glVertexStream1iATI$FUNC
     );
 }
 

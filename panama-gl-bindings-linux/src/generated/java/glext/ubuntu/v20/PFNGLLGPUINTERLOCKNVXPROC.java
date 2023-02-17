@@ -11,13 +11,13 @@ public interface PFNGLLGPUINTERLOCKNVXPROC {
 
     void apply();
     static MemorySegment allocate(PFNGLLGPUINTERLOCKNVXPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLLGPUINTERLOCKNVXPROC.class, fi, constants$723.PFNGLLGPUINTERLOCKNVXPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLLGPUINTERLOCKNVXPROC.class, fi, constants$1038.PFNGLLGPUINTERLOCKNVXPROC$FUNC, session);
     }
     static PFNGLLGPUINTERLOCKNVXPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return () -> {
             try {
-                constants$723.PFNGLLGPUINTERLOCKNVXPROC$MH.invokeExact((Addressable)symbol);
+                constants$1038.PFNGLLGPUINTERLOCKNVXPROC$MH.invokeExact((Addressable)symbol);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

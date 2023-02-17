@@ -11,13 +11,13 @@ public interface PFNGLGETVKPROCADDRNVPROC {
 
     java.lang.foreign.Addressable apply(java.lang.foreign.MemoryAddress name);
     static MemorySegment allocate(PFNGLGETVKPROCADDRNVPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLGETVKPROCADDRNVPROC.class, fi, constants$741.PFNGLGETVKPROCADDRNVPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLGETVKPROCADDRNVPROC.class, fi, constants$1065.PFNGLGETVKPROCADDRNVPROC$FUNC, session);
     }
     static PFNGLGETVKPROCADDRNVPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (java.lang.foreign.MemoryAddress _name) -> {
             try {
-                return (java.lang.foreign.Addressable)(java.lang.foreign.MemoryAddress)constants$741.PFNGLGETVKPROCADDRNVPROC$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)_name);
+                return (java.lang.foreign.Addressable)(java.lang.foreign.MemoryAddress)constants$1065.PFNGLGETVKPROCADDRNVPROC$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)_name);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

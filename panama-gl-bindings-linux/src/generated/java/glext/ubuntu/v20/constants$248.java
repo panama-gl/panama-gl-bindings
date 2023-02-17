@@ -9,31 +9,26 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$248 {
 
-    static final FunctionDescriptor PFNGLGETFLOATI_VPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle PFNGLGETFLOATI_VPROC$MH = RuntimeHelper.downcallHandle(
-        constants$248.PFNGLGETFLOATI_VPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLGETDOUBLEI_VPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
+    static final FunctionDescriptor PFNGLNORMALP3UIVPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLGETDOUBLEI_VPROC$MH = RuntimeHelper.downcallHandle(
-        constants$248.PFNGLGETDOUBLEI_VPROC$FUNC
+    static final MethodHandle PFNGLNORMALP3UIVPROC$MH = RuntimeHelper.downcallHandle(
+        constants$248.PFNGLNORMALP3UIVPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLDRAWARRAYSINSTANCEDBASEINSTANCEPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
+    static final FunctionDescriptor PFNGLCOLORP3UIPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLDRAWARRAYSINSTANCEDBASEINSTANCEPROC$MH = RuntimeHelper.downcallHandle(
-        constants$248.PFNGLDRAWARRAYSINSTANCEDBASEINSTANCEPROC$FUNC
+    static final MethodHandle PFNGLCOLORP3UIPROC$MH = RuntimeHelper.downcallHandle(
+        constants$248.PFNGLCOLORP3UIPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLCOLORP3UIVPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle PFNGLCOLORP3UIVPROC$MH = RuntimeHelper.downcallHandle(
+        constants$248.PFNGLCOLORP3UIVPROC$FUNC
     );
 }
 

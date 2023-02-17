@@ -9,26 +9,31 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$569 {
 
-    static final FunctionDescriptor PFNGLMATRIXLOADTRANSPOSEDEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
+    static final FunctionDescriptor PFNGLVERTEX2BVOESPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLMATRIXLOADTRANSPOSEDEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$569.PFNGLMATRIXLOADTRANSPOSEDEXTPROC$FUNC
+    static final MethodHandle PFNGLVERTEX2BVOESPROC$MH = RuntimeHelper.downcallHandle(
+        constants$569.PFNGLVERTEX2BVOESPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLMATRIXMULTTRANSPOSEFEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
+    static final FunctionDescriptor PFNGLVERTEX3BOESPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_CHAR$LAYOUT,
+        Constants$root.C_CHAR$LAYOUT,
+        Constants$root.C_CHAR$LAYOUT
+    );
+    static final MethodHandle PFNGLVERTEX3BOESPROC$MH = RuntimeHelper.downcallHandle(
+        constants$569.PFNGLVERTEX3BOESPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLVERTEX3BVOESPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLMATRIXMULTTRANSPOSEFEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$569.PFNGLMATRIXMULTTRANSPOSEFEXTPROC$FUNC
+    static final MethodHandle PFNGLVERTEX3BVOESPROC$MH = RuntimeHelper.downcallHandle(
+        constants$569.PFNGLVERTEX3BVOESPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLMATRIXMULTTRANSPOSEDEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle PFNGLMATRIXMULTTRANSPOSEDEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$569.PFNGLMATRIXMULTTRANSPOSEDEXTPROC$FUNC
+    static final FunctionDescriptor PFNGLVERTEX4BOESPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_CHAR$LAYOUT,
+        Constants$root.C_CHAR$LAYOUT,
+        Constants$root.C_CHAR$LAYOUT,
+        Constants$root.C_CHAR$LAYOUT
     );
 }
 

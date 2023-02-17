@@ -11,13 +11,13 @@ public interface PFNGLSCISSORINDEXEDVPROC {
 
     void apply(int index, java.lang.foreign.MemoryAddress v);
     static MemorySegment allocate(PFNGLSCISSORINDEXEDVPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLSCISSORINDEXEDVPROC.class, fi, constants$247.PFNGLSCISSORINDEXEDVPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLSCISSORINDEXEDVPROC.class, fi, constants$310.PFNGLSCISSORINDEXEDVPROC$FUNC, session);
     }
     static PFNGLSCISSORINDEXEDVPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _index, java.lang.foreign.MemoryAddress _v) -> {
             try {
-                constants$247.PFNGLSCISSORINDEXEDVPROC$MH.invokeExact((Addressable)symbol, _index, (java.lang.foreign.Addressable)_v);
+                constants$310.PFNGLSCISSORINDEXEDVPROC$MH.invokeExact((Addressable)symbol, _index, (java.lang.foreign.Addressable)_v);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

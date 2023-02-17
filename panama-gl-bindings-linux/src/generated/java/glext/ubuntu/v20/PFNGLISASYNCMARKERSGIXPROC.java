@@ -11,13 +11,13 @@ public interface PFNGLISASYNCMARKERSGIXPROC {
 
     byte apply(int marker);
     static MemorySegment allocate(PFNGLISASYNCMARKERSGIXPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLISASYNCMARKERSGIXPROC.class, fi, constants$892.PFNGLISASYNCMARKERSGIXPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLISASYNCMARKERSGIXPROC.class, fi, constants$1291.PFNGLISASYNCMARKERSGIXPROC$FUNC, session);
     }
     static PFNGLISASYNCMARKERSGIXPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _marker) -> {
             try {
-                return (byte)constants$892.PFNGLISASYNCMARKERSGIXPROC$MH.invokeExact((Addressable)symbol, _marker);
+                return (byte)constants$1291.PFNGLISASYNCMARKERSGIXPROC$MH.invokeExact((Addressable)symbol, _marker);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

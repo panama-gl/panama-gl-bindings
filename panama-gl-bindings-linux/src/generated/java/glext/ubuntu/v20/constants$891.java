@@ -9,23 +9,36 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$891 {
 
-    static final FunctionDescriptor PFNGLFINISHASYNCSGIXPROC$FUNC = FunctionDescriptor.of(Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle PFNGLFINISHASYNCSGIXPROC$MH = RuntimeHelper.downcallHandle(
-        constants$891.PFNGLFINISHASYNCSGIXPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLPOLLASYNCSGIXPROC$FUNC = FunctionDescriptor.of(Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle PFNGLPOLLASYNCSGIXPROC$MH = RuntimeHelper.downcallHandle(
-        constants$891.PFNGLPOLLASYNCSGIXPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLGENASYNCMARKERSSGIXPROC$FUNC = FunctionDescriptor.of(Constants$root.C_INT$LAYOUT,
+    static final FunctionDescriptor PFNGLRENDERBUFFERSTORAGEMULTISAMPLEEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLGENASYNCMARKERSSGIXPROC$MH = RuntimeHelper.downcallHandle(
-        constants$891.PFNGLGENASYNCMARKERSSGIXPROC$FUNC
+    static final MethodHandle PFNGLRENDERBUFFERSTORAGEMULTISAMPLEEXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$891.PFNGLRENDERBUFFERSTORAGEMULTISAMPLEEXTPROC$FUNC
+    );
+    static final FunctionDescriptor glRenderbufferStorageMultisampleEXT$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle glRenderbufferStorageMultisampleEXT$MH = RuntimeHelper.downcallHandle(
+        "glRenderbufferStorageMultisampleEXT",
+        constants$891.glRenderbufferStorageMultisampleEXT$FUNC
+    );
+    static final FunctionDescriptor PFNGLISRENDERBUFFEREXTPROC$FUNC = FunctionDescriptor.of(Constants$root.C_CHAR$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle PFNGLISRENDERBUFFEREXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$891.PFNGLISRENDERBUFFEREXTPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLBINDRENDERBUFFEREXTPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
 }
 

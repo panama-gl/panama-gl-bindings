@@ -9,31 +9,33 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$294 {
 
-    static final FunctionDescriptor PFNGLGETTEXTURELEVELPARAMETERFVPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLPROGRAMUNIFORM3IVPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLGETTEXTURELEVELPARAMETERFVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$294.PFNGLGETTEXTURELEVELPARAMETERFVPROC$FUNC
+    static final MethodHandle PFNGLPROGRAMUNIFORM3IVPROC$MH = RuntimeHelper.downcallHandle(
+        constants$294.PFNGLPROGRAMUNIFORM3IVPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLGETTEXTURELEVELPARAMETERIVPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLPROGRAMUNIFORM3FPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT
+    );
+    static final MethodHandle PFNGLPROGRAMUNIFORM3FPROC$MH = RuntimeHelper.downcallHandle(
+        constants$294.PFNGLPROGRAMUNIFORM3FPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLPROGRAMUNIFORM3FVPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLGETTEXTURELEVELPARAMETERIVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$294.PFNGLGETTEXTURELEVELPARAMETERIVPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLGETTEXTUREPARAMETERFVPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle PFNGLGETTEXTUREPARAMETERFVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$294.PFNGLGETTEXTUREPARAMETERFVPROC$FUNC
+    static final MethodHandle PFNGLPROGRAMUNIFORM3FVPROC$MH = RuntimeHelper.downcallHandle(
+        constants$294.PFNGLPROGRAMUNIFORM3FVPROC$FUNC
     );
 }
 

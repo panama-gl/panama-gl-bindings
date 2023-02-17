@@ -9,29 +9,52 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$897 {
 
-    static final FunctionDescriptor PFNGLFRAGMENTMATERIALIVSGIXPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLGENERATEMIPMAPEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle PFNGLGENERATEMIPMAPEXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$897.PFNGLGENERATEMIPMAPEXTPROC$FUNC
+    );
+    static final FunctionDescriptor glIsRenderbufferEXT$FUNC = FunctionDescriptor.of(Constants$root.C_CHAR$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle glIsRenderbufferEXT$MH = RuntimeHelper.downcallHandle(
+        "glIsRenderbufferEXT",
+        constants$897.glIsRenderbufferEXT$FUNC
+    );
+    static final FunctionDescriptor glBindRenderbufferEXT$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle glBindRenderbufferEXT$MH = RuntimeHelper.downcallHandle(
+        "glBindRenderbufferEXT",
+        constants$897.glBindRenderbufferEXT$FUNC
+    );
+    static final FunctionDescriptor glDeleteRenderbuffersEXT$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLFRAGMENTMATERIALIVSGIXPROC$MH = RuntimeHelper.downcallHandle(
-        constants$897.PFNGLFRAGMENTMATERIALIVSGIXPROC$FUNC
+    static final MethodHandle glDeleteRenderbuffersEXT$MH = RuntimeHelper.downcallHandle(
+        "glDeleteRenderbuffersEXT",
+        constants$897.glDeleteRenderbuffersEXT$FUNC
     );
-    static final FunctionDescriptor PFNGLGETFRAGMENTLIGHTFVSGIXPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle PFNGLGETFRAGMENTLIGHTFVSGIXPROC$MH = RuntimeHelper.downcallHandle(
-        constants$897.PFNGLGETFRAGMENTLIGHTFVSGIXPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLGETFRAGMENTLIGHTIVSGIXPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
+    static final FunctionDescriptor glGenRenderbuffersEXT$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLGETFRAGMENTLIGHTIVSGIXPROC$MH = RuntimeHelper.downcallHandle(
-        constants$897.PFNGLGETFRAGMENTLIGHTIVSGIXPROC$FUNC
+    static final MethodHandle glGenRenderbuffersEXT$MH = RuntimeHelper.downcallHandle(
+        "glGenRenderbuffersEXT",
+        constants$897.glGenRenderbuffersEXT$FUNC
+    );
+    static final FunctionDescriptor glRenderbufferStorageEXT$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle glRenderbufferStorageEXT$MH = RuntimeHelper.downcallHandle(
+        "glRenderbufferStorageEXT",
+        constants$897.glRenderbufferStorageEXT$FUNC
     );
 }
 

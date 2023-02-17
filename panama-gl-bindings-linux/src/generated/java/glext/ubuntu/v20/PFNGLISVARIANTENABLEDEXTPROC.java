@@ -11,13 +11,13 @@ public interface PFNGLISVARIANTENABLEDEXTPROC {
 
     byte apply(int id, int cap);
     static MemorySegment allocate(PFNGLISVARIANTENABLEDEXTPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLISVARIANTENABLEDEXTPROC.class, fi, constants$692.PFNGLISVARIANTENABLEDEXTPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLISVARIANTENABLEDEXTPROC.class, fi, constants$986.PFNGLISVARIANTENABLEDEXTPROC$FUNC, session);
     }
     static PFNGLISVARIANTENABLEDEXTPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _id, int _cap) -> {
             try {
-                return (byte)constants$692.PFNGLISVARIANTENABLEDEXTPROC$MH.invokeExact((Addressable)symbol, _id, _cap);
+                return (byte)constants$987.PFNGLISVARIANTENABLEDEXTPROC$MH.invokeExact((Addressable)symbol, _id, _cap);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

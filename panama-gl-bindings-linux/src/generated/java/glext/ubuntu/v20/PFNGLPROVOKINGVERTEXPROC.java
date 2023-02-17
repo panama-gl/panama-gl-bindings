@@ -11,13 +11,13 @@ public interface PFNGLPROVOKINGVERTEXPROC {
 
     void apply(int mode);
     static MemorySegment allocate(PFNGLPROVOKINGVERTEXPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLPROVOKINGVERTEXPROC.class, fi, constants$179.PFNGLPROVOKINGVERTEXPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLPROVOKINGVERTEXPROC.class, fi, constants$222.PFNGLPROVOKINGVERTEXPROC$FUNC, session);
     }
     static PFNGLPROVOKINGVERTEXPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _mode) -> {
             try {
-                constants$179.PFNGLPROVOKINGVERTEXPROC$MH.invokeExact((Addressable)symbol, _mode);
+                constants$223.PFNGLPROVOKINGVERTEXPROC$MH.invokeExact((Addressable)symbol, _mode);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

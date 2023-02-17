@@ -11,13 +11,13 @@ public interface PFNGLBLENDFUNCSEPARATEEXTPROC {
 
     void apply(int sfactorRGB, int dfactorRGB, int sfactorAlpha, int dfactorAlpha);
     static MemorySegment allocate(PFNGLBLENDFUNCSEPARATEEXTPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLBLENDFUNCSEPARATEEXTPROC.class, fi, constants$518.PFNGLBLENDFUNCSEPARATEEXTPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLBLENDFUNCSEPARATEEXTPROC.class, fi, constants$730.PFNGLBLENDFUNCSEPARATEEXTPROC$FUNC, session);
     }
     static PFNGLBLENDFUNCSEPARATEEXTPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _sfactorRGB, int _dfactorRGB, int _sfactorAlpha, int _dfactorAlpha) -> {
             try {
-                constants$518.PFNGLBLENDFUNCSEPARATEEXTPROC$MH.invokeExact((Addressable)symbol, _sfactorRGB, _dfactorRGB, _sfactorAlpha, _dfactorAlpha);
+                constants$730.PFNGLBLENDFUNCSEPARATEEXTPROC$MH.invokeExact((Addressable)symbol, _sfactorRGB, _dfactorRGB, _sfactorAlpha, _dfactorAlpha);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

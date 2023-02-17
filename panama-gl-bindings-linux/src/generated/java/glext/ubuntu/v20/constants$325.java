@@ -9,35 +9,62 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$325 {
 
-    static final FunctionDescriptor PFNGLPROGRAMENVPARAMETER4FARBPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glVertexAttribLPointer$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glVertexAttribLPointer$MH = RuntimeHelper.downcallHandle(
+        "glVertexAttribLPointer",
+        constants$325.glVertexAttribLPointer$FUNC
+    );
+    static final FunctionDescriptor glGetVertexAttribLdv$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glGetVertexAttribLdv$MH = RuntimeHelper.downcallHandle(
+        "glGetVertexAttribLdv",
+        constants$325.glGetVertexAttribLdv$FUNC
+    );
+    static final FunctionDescriptor glViewportArrayv$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glViewportArrayv$MH = RuntimeHelper.downcallHandle(
+        "glViewportArrayv",
+        constants$325.glViewportArrayv$FUNC
+    );
+    static final FunctionDescriptor glViewportIndexedf$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_FLOAT$LAYOUT,
         Constants$root.C_FLOAT$LAYOUT,
         Constants$root.C_FLOAT$LAYOUT,
         Constants$root.C_FLOAT$LAYOUT
     );
-    static final MethodHandle PFNGLPROGRAMENVPARAMETER4FARBPROC$MH = RuntimeHelper.downcallHandle(
-        constants$325.PFNGLPROGRAMENVPARAMETER4FARBPROC$FUNC
+    static final MethodHandle glViewportIndexedf$MH = RuntimeHelper.downcallHandle(
+        "glViewportIndexedf",
+        constants$325.glViewportIndexedf$FUNC
     );
-    static final FunctionDescriptor PFNGLPROGRAMENVPARAMETER4FVARBPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glViewportIndexedfv$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glViewportIndexedfv$MH = RuntimeHelper.downcallHandle(
+        "glViewportIndexedfv",
+        constants$325.glViewportIndexedfv$FUNC
+    );
+    static final FunctionDescriptor glScissorArrayv$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLPROGRAMENVPARAMETER4FVARBPROC$MH = RuntimeHelper.downcallHandle(
-        constants$325.PFNGLPROGRAMENVPARAMETER4FVARBPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLPROGRAMLOCALPARAMETER4DARBPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_DOUBLE$LAYOUT,
-        Constants$root.C_DOUBLE$LAYOUT,
-        Constants$root.C_DOUBLE$LAYOUT,
-        Constants$root.C_DOUBLE$LAYOUT
-    );
-    static final MethodHandle PFNGLPROGRAMLOCALPARAMETER4DARBPROC$MH = RuntimeHelper.downcallHandle(
-        constants$325.PFNGLPROGRAMLOCALPARAMETER4DARBPROC$FUNC
+    static final MethodHandle glScissorArrayv$MH = RuntimeHelper.downcallHandle(
+        "glScissorArrayv",
+        constants$325.glScissorArrayv$FUNC
     );
 }
 

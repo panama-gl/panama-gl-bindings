@@ -9,32 +9,49 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$281 {
 
-    static final FunctionDescriptor PFNGLCLEARNAMEDFRAMEBUFFERIVPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
+    static final FunctionDescriptor glPatchParameterfv$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLCLEARNAMEDFRAMEBUFFERIVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$281.PFNGLCLEARNAMEDFRAMEBUFFERIVPROC$FUNC
+    static final MethodHandle glPatchParameterfv$MH = RuntimeHelper.downcallHandle(
+        "glPatchParameterfv",
+        constants$281.glPatchParameterfv$FUNC
     );
-    static final FunctionDescriptor PFNGLCLEARNAMEDFRAMEBUFFERUIVPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glBindTransformFeedback$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle glBindTransformFeedback$MH = RuntimeHelper.downcallHandle(
+        "glBindTransformFeedback",
+        constants$281.glBindTransformFeedback$FUNC
+    );
+    static final FunctionDescriptor glDeleteTransformFeedbacks$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLCLEARNAMEDFRAMEBUFFERUIVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$281.PFNGLCLEARNAMEDFRAMEBUFFERUIVPROC$FUNC
+    static final MethodHandle glDeleteTransformFeedbacks$MH = RuntimeHelper.downcallHandle(
+        "glDeleteTransformFeedbacks",
+        constants$281.glDeleteTransformFeedbacks$FUNC
     );
-    static final FunctionDescriptor PFNGLCLEARNAMEDFRAMEBUFFERFVPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
+    static final FunctionDescriptor glGenTransformFeedbacks$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLCLEARNAMEDFRAMEBUFFERFVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$281.PFNGLCLEARNAMEDFRAMEBUFFERFVPROC$FUNC
+    static final MethodHandle glGenTransformFeedbacks$MH = RuntimeHelper.downcallHandle(
+        "glGenTransformFeedbacks",
+        constants$281.glGenTransformFeedbacks$FUNC
+    );
+    static final FunctionDescriptor glIsTransformFeedback$FUNC = FunctionDescriptor.of(Constants$root.C_CHAR$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle glIsTransformFeedback$MH = RuntimeHelper.downcallHandle(
+        "glIsTransformFeedback",
+        constants$281.glIsTransformFeedback$FUNC
+    );
+    static final FunctionDescriptor glPauseTransformFeedback$FUNC = FunctionDescriptor.ofVoid();
+    static final MethodHandle glPauseTransformFeedback$MH = RuntimeHelper.downcallHandle(
+        "glPauseTransformFeedback",
+        constants$281.glPauseTransformFeedback$FUNC
     );
 }
 

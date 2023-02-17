@@ -9,39 +9,46 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$355 {
 
-    static final FunctionDescriptor PFNGLGETNCONVOLUTIONFILTERARBPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLBUFFERSTORAGEPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle PFNGLGETNCONVOLUTIONFILTERARBPROC$MH = RuntimeHelper.downcallHandle(
-        constants$355.PFNGLGETNCONVOLUTIONFILTERARBPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLGETNSEPARABLEFILTERARBPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT,
         Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
+        Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLGETNSEPARABLEFILTERARBPROC$MH = RuntimeHelper.downcallHandle(
-        constants$355.PFNGLGETNSEPARABLEFILTERARBPROC$FUNC
+    static final MethodHandle PFNGLBUFFERSTORAGEPROC$MH = RuntimeHelper.downcallHandle(
+        constants$355.PFNGLBUFFERSTORAGEPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLGETNHISTOGRAMARBPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLCLEARTEXIMAGEPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_CHAR$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLGETNHISTOGRAMARBPROC$MH = RuntimeHelper.downcallHandle(
-        constants$355.PFNGLGETNHISTOGRAMARBPROC$FUNC
+    static final MethodHandle PFNGLCLEARTEXIMAGEPROC$MH = RuntimeHelper.downcallHandle(
+        constants$355.PFNGLCLEARTEXIMAGEPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLCLEARTEXSUBIMAGEPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle PFNGLCLEARTEXSUBIMAGEPROC$MH = RuntimeHelper.downcallHandle(
+        constants$355.PFNGLCLEARTEXSUBIMAGEPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLBINDBUFFERSBASEPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
 }
 

@@ -9,39 +9,54 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$282 {
 
-    static final FunctionDescriptor PFNGLCLEARNAMEDFRAMEBUFFERFIPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glResumeTransformFeedback$FUNC = FunctionDescriptor.ofVoid();
+    static final MethodHandle glResumeTransformFeedback$MH = RuntimeHelper.downcallHandle(
+        "glResumeTransformFeedback",
+        constants$282.glResumeTransformFeedback$FUNC
+    );
+    static final FunctionDescriptor glDrawTransformFeedback$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT,
         Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLCLEARNAMEDFRAMEBUFFERFIPROC$MH = RuntimeHelper.downcallHandle(
-        constants$282.PFNGLCLEARNAMEDFRAMEBUFFERFIPROC$FUNC
+    static final MethodHandle glDrawTransformFeedback$MH = RuntimeHelper.downcallHandle(
+        "glDrawTransformFeedback",
+        constants$282.glDrawTransformFeedback$FUNC
     );
-    static final FunctionDescriptor PFNGLBLITNAMEDFRAMEBUFFERPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
+    static final FunctionDescriptor glDrawTransformFeedbackStream$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLBLITNAMEDFRAMEBUFFERPROC$MH = RuntimeHelper.downcallHandle(
-        constants$282.PFNGLBLITNAMEDFRAMEBUFFERPROC$FUNC
+    static final MethodHandle glDrawTransformFeedbackStream$MH = RuntimeHelper.downcallHandle(
+        "glDrawTransformFeedbackStream",
+        constants$282.glDrawTransformFeedbackStream$FUNC
     );
-    static final FunctionDescriptor PFNGLCHECKNAMEDFRAMEBUFFERSTATUSPROC$FUNC = FunctionDescriptor.of(Constants$root.C_INT$LAYOUT,
+    static final FunctionDescriptor glBeginQueryIndexed$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLCHECKNAMEDFRAMEBUFFERSTATUSPROC$MH = RuntimeHelper.downcallHandle(
-        constants$282.PFNGLCHECKNAMEDFRAMEBUFFERSTATUSPROC$FUNC
+    static final MethodHandle glBeginQueryIndexed$MH = RuntimeHelper.downcallHandle(
+        "glBeginQueryIndexed",
+        constants$282.glBeginQueryIndexed$FUNC
+    );
+    static final FunctionDescriptor glEndQueryIndexed$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle glEndQueryIndexed$MH = RuntimeHelper.downcallHandle(
+        "glEndQueryIndexed",
+        constants$282.glEndQueryIndexed$FUNC
+    );
+    static final FunctionDescriptor glGetQueryIndexediv$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glGetQueryIndexediv$MH = RuntimeHelper.downcallHandle(
+        "glGetQueryIndexediv",
+        constants$282.glGetQueryIndexediv$FUNC
     );
 }
 

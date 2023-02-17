@@ -9,21 +9,54 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$720 {
 
-    static final FunctionDescriptor PFNGLBEGINCONDITIONALRENDERNVXPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT
+    static final FunctionDescriptor glVertexStream1ivATI$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLBEGINCONDITIONALRENDERNVXPROC$MH = RuntimeHelper.downcallHandle(
-        constants$720.PFNGLBEGINCONDITIONALRENDERNVXPROC$FUNC
+    static final MethodHandle glVertexStream1ivATI$MH = RuntimeHelper.downcallHandle(
+        "glVertexStream1ivATI",
+        constants$720.glVertexStream1ivATI$FUNC
     );
-    static final FunctionDescriptor PFNGLENDCONDITIONALRENDERNVXPROC$FUNC = FunctionDescriptor.ofVoid();
-    static final MethodHandle PFNGLENDCONDITIONALRENDERNVXPROC$MH = RuntimeHelper.downcallHandle(
-        constants$720.PFNGLENDCONDITIONALRENDERNVXPROC$FUNC
+    static final FunctionDescriptor glVertexStream1fATI$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT
     );
-    static final FunctionDescriptor PFNGLUPLOADGPUMASKNVXPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT
+    static final MethodHandle glVertexStream1fATI$MH = RuntimeHelper.downcallHandle(
+        "glVertexStream1fATI",
+        constants$720.glVertexStream1fATI$FUNC
     );
-    static final MethodHandle PFNGLUPLOADGPUMASKNVXPROC$MH = RuntimeHelper.downcallHandle(
-        constants$720.PFNGLUPLOADGPUMASKNVXPROC$FUNC
+    static final FunctionDescriptor glVertexStream1fvATI$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glVertexStream1fvATI$MH = RuntimeHelper.downcallHandle(
+        "glVertexStream1fvATI",
+        constants$720.glVertexStream1fvATI$FUNC
+    );
+    static final FunctionDescriptor glVertexStream1dATI$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_DOUBLE$LAYOUT
+    );
+    static final MethodHandle glVertexStream1dATI$MH = RuntimeHelper.downcallHandle(
+        "glVertexStream1dATI",
+        constants$720.glVertexStream1dATI$FUNC
+    );
+    static final FunctionDescriptor glVertexStream1dvATI$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glVertexStream1dvATI$MH = RuntimeHelper.downcallHandle(
+        "glVertexStream1dvATI",
+        constants$720.glVertexStream1dvATI$FUNC
+    );
+    static final FunctionDescriptor glVertexStream2sATI$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_SHORT$LAYOUT,
+        Constants$root.C_SHORT$LAYOUT
+    );
+    static final MethodHandle glVertexStream2sATI$MH = RuntimeHelper.downcallHandle(
+        "glVertexStream2sATI",
+        constants$720.glVertexStream2sATI$FUNC
     );
 }
 

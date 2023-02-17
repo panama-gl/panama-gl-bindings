@@ -9,27 +9,41 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$818 {
 
-    static final FunctionDescriptor PFNGLFRAMEBUFFERSAMPLELOCATIONSFVNVPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLNAMEDFRAMEBUFFERTEXTURE2DEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle PFNGLNAMEDFRAMEBUFFERTEXTURE2DEXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$818.PFNGLNAMEDFRAMEBUFFERTEXTURE2DEXTPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLNAMEDFRAMEBUFFERTEXTURE3DEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle PFNGLNAMEDFRAMEBUFFERTEXTURE3DEXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$818.PFNGLNAMEDFRAMEBUFFERTEXTURE3DEXTPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLNAMEDFRAMEBUFFERRENDERBUFFEREXTPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle PFNGLNAMEDFRAMEBUFFERRENDERBUFFEREXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$818.PFNGLNAMEDFRAMEBUFFERRENDERBUFFEREXTPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLGETNAMEDFRAMEBUFFERATTACHMENTPARAMETERIVEXTPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle PFNGLFRAMEBUFFERSAMPLELOCATIONSFVNVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$818.PFNGLFRAMEBUFFERSAMPLELOCATIONSFVNVPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLNAMEDFRAMEBUFFERSAMPLELOCATIONSFVNVPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle PFNGLNAMEDFRAMEBUFFERSAMPLELOCATIONSFVNVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$818.PFNGLNAMEDFRAMEBUFFERSAMPLELOCATIONSFVNVPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLRESOLVEDEPTHVALUESNVPROC$FUNC = FunctionDescriptor.ofVoid();
-    static final MethodHandle PFNGLRESOLVEDEPTHVALUESNVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$818.PFNGLRESOLVEDEPTHVALUESNVPROC$FUNC
     );
 }
 

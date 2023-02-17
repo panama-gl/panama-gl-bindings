@@ -9,37 +9,66 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$213 {
 
-    static final FunctionDescriptor PFNGLGETACTIVESUBROUTINEUNIFORMIVPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glFramebufferTexture1D$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle glFramebufferTexture1D$MH = RuntimeHelper.downcallHandle(
+        "glFramebufferTexture1D",
+        constants$213.glFramebufferTexture1D$FUNC
+    );
+    static final FunctionDescriptor glFramebufferTexture2D$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle glFramebufferTexture2D$MH = RuntimeHelper.downcallHandle(
+        "glFramebufferTexture2D",
+        constants$213.glFramebufferTexture2D$FUNC
+    );
+    static final FunctionDescriptor glFramebufferTexture3D$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle glFramebufferTexture3D$MH = RuntimeHelper.downcallHandle(
+        "glFramebufferTexture3D",
+        constants$213.glFramebufferTexture3D$FUNC
+    );
+    static final FunctionDescriptor glFramebufferRenderbuffer$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle glFramebufferRenderbuffer$MH = RuntimeHelper.downcallHandle(
+        "glFramebufferRenderbuffer",
+        constants$213.glFramebufferRenderbuffer$FUNC
+    );
+    static final FunctionDescriptor glGetFramebufferAttachmentParameteriv$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLGETACTIVESUBROUTINEUNIFORMIVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$213.PFNGLGETACTIVESUBROUTINEUNIFORMIVPROC$FUNC
+    static final MethodHandle glGetFramebufferAttachmentParameteriv$MH = RuntimeHelper.downcallHandle(
+        "glGetFramebufferAttachmentParameteriv",
+        constants$213.glGetFramebufferAttachmentParameteriv$FUNC
     );
-    static final FunctionDescriptor PFNGLGETACTIVESUBROUTINEUNIFORMNAMEPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
+    static final FunctionDescriptor glGenerateMipmap$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLGETACTIVESUBROUTINEUNIFORMNAMEPROC$MH = RuntimeHelper.downcallHandle(
-        constants$213.PFNGLGETACTIVESUBROUTINEUNIFORMNAMEPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLGETACTIVESUBROUTINENAMEPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle PFNGLGETACTIVESUBROUTINENAMEPROC$MH = RuntimeHelper.downcallHandle(
-        constants$213.PFNGLGETACTIVESUBROUTINENAMEPROC$FUNC
+    static final MethodHandle glGenerateMipmap$MH = RuntimeHelper.downcallHandle(
+        "glGenerateMipmap",
+        constants$213.glGenerateMipmap$FUNC
     );
 }
 

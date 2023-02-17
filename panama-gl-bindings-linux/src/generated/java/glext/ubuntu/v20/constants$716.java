@@ -9,27 +9,34 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$716 {
 
-    static final FunctionDescriptor PFNGLWINDOWPOS3IMESAPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLNORMALSTREAM3SATIPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT
-    );
-    static final MethodHandle PFNGLWINDOWPOS3IMESAPROC$MH = RuntimeHelper.downcallHandle(
-        constants$716.PFNGLWINDOWPOS3IMESAPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLWINDOWPOS3IVMESAPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle PFNGLWINDOWPOS3IVMESAPROC$MH = RuntimeHelper.downcallHandle(
-        constants$716.PFNGLWINDOWPOS3IVMESAPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLWINDOWPOS3SMESAPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_SHORT$LAYOUT,
         Constants$root.C_SHORT$LAYOUT,
         Constants$root.C_SHORT$LAYOUT
     );
-    static final MethodHandle PFNGLWINDOWPOS3SMESAPROC$MH = RuntimeHelper.downcallHandle(
-        constants$716.PFNGLWINDOWPOS3SMESAPROC$FUNC
+    static final MethodHandle PFNGLNORMALSTREAM3SATIPROC$MH = RuntimeHelper.downcallHandle(
+        constants$716.PFNGLNORMALSTREAM3SATIPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLNORMALSTREAM3SVATIPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle PFNGLNORMALSTREAM3SVATIPROC$MH = RuntimeHelper.downcallHandle(
+        constants$716.PFNGLNORMALSTREAM3SVATIPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLNORMALSTREAM3IATIPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle PFNGLNORMALSTREAM3IATIPROC$MH = RuntimeHelper.downcallHandle(
+        constants$716.PFNGLNORMALSTREAM3IATIPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLNORMALSTREAM3IVATIPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
 }
 

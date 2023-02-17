@@ -9,31 +9,30 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$310 {
 
-    static final FunctionDescriptor PFNGLGETNHISTOGRAMPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_CHAR$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
+    static final FunctionDescriptor PFNGLSCISSORARRAYVPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLGETNHISTOGRAMPROC$MH = RuntimeHelper.downcallHandle(
-        constants$310.PFNGLGETNHISTOGRAMPROC$FUNC
+    static final MethodHandle PFNGLSCISSORARRAYVPROC$MH = RuntimeHelper.downcallHandle(
+        constants$310.PFNGLSCISSORARRAYVPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLGETNMINMAXPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_CHAR$LAYOUT,
+    static final FunctionDescriptor PFNGLSCISSORINDEXEDPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle PFNGLSCISSORINDEXEDPROC$MH = RuntimeHelper.downcallHandle(
+        constants$310.PFNGLSCISSORINDEXEDPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLSCISSORINDEXEDVPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLGETNMINMAXPROC$MH = RuntimeHelper.downcallHandle(
-        constants$310.PFNGLGETNMINMAXPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLTEXTUREBARRIERPROC$FUNC = FunctionDescriptor.ofVoid();
-    static final MethodHandle PFNGLTEXTUREBARRIERPROC$MH = RuntimeHelper.downcallHandle(
-        constants$310.PFNGLTEXTUREBARRIERPROC$FUNC
+    static final MethodHandle PFNGLSCISSORINDEXEDVPROC$MH = RuntimeHelper.downcallHandle(
+        constants$310.PFNGLSCISSORINDEXEDVPROC$FUNC
     );
 }
 

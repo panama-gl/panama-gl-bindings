@@ -9,35 +9,26 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$522 {
 
-    static final FunctionDescriptor PFNGLCOPYCONVOLUTIONFILTER1DEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT
-    );
-    static final MethodHandle PFNGLCOPYCONVOLUTIONFILTER1DEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$522.PFNGLCOPYCONVOLUTIONFILTER1DEXTPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLCOPYCONVOLUTIONFILTER2DEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT
-    );
-    static final MethodHandle PFNGLCOPYCONVOLUTIONFILTER2DEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$522.PFNGLCOPYCONVOLUTIONFILTER2DEXTPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLGETCONVOLUTIONFILTEREXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
+    static final FunctionDescriptor PFNGLWEIGHTDVARBPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLGETCONVOLUTIONFILTEREXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$522.PFNGLGETCONVOLUTIONFILTEREXTPROC$FUNC
+    static final MethodHandle PFNGLWEIGHTDVARBPROC$MH = RuntimeHelper.downcallHandle(
+        constants$522.PFNGLWEIGHTDVARBPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLWEIGHTUBVARBPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle PFNGLWEIGHTUBVARBPROC$MH = RuntimeHelper.downcallHandle(
+        constants$522.PFNGLWEIGHTUBVARBPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLWEIGHTUSVARBPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle PFNGLWEIGHTUSVARBPROC$MH = RuntimeHelper.downcallHandle(
+        constants$522.PFNGLWEIGHTUSVARBPROC$FUNC
     );
 }
 

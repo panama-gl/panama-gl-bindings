@@ -11,13 +11,13 @@ public interface PFNGLGETPROGRAMSTAGEIVPROC {
 
     void apply(int program, int shadertype, int pname, java.lang.foreign.MemoryAddress values);
     static MemorySegment allocate(PFNGLGETPROGRAMSTAGEIVPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLGETPROGRAMSTAGEIVPROC.class, fi, constants$214.PFNGLGETPROGRAMSTAGEIVPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLGETPROGRAMSTAGEIVPROC.class, fi, constants$270.PFNGLGETPROGRAMSTAGEIVPROC$FUNC, session);
     }
     static PFNGLGETPROGRAMSTAGEIVPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _program, int _shadertype, int _pname, java.lang.foreign.MemoryAddress _values) -> {
             try {
-                constants$214.PFNGLGETPROGRAMSTAGEIVPROC$MH.invokeExact((Addressable)symbol, _program, _shadertype, _pname, (java.lang.foreign.Addressable)_values);
+                constants$270.PFNGLGETPROGRAMSTAGEIVPROC$MH.invokeExact((Addressable)symbol, _program, _shadertype, _pname, (java.lang.foreign.Addressable)_values);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

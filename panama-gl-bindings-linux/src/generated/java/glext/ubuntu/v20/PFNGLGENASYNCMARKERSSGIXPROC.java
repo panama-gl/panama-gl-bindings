@@ -11,13 +11,13 @@ public interface PFNGLGENASYNCMARKERSSGIXPROC {
 
     int apply(int range);
     static MemorySegment allocate(PFNGLGENASYNCMARKERSSGIXPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLGENASYNCMARKERSSGIXPROC.class, fi, constants$891.PFNGLGENASYNCMARKERSSGIXPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLGENASYNCMARKERSSGIXPROC.class, fi, constants$1290.PFNGLGENASYNCMARKERSSGIXPROC$FUNC, session);
     }
     static PFNGLGENASYNCMARKERSSGIXPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _range) -> {
             try {
-                return (int)constants$891.PFNGLGENASYNCMARKERSSGIXPROC$MH.invokeExact((Addressable)symbol, _range);
+                return (int)constants$1290.PFNGLGENASYNCMARKERSSGIXPROC$MH.invokeExact((Addressable)symbol, _range);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

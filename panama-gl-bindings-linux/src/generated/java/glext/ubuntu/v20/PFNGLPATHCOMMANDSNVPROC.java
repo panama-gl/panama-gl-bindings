@@ -11,13 +11,13 @@ public interface PFNGLPATHCOMMANDSNVPROC {
 
     void apply(int path, int numCommands, java.lang.foreign.MemoryAddress commands, int numCoords, int coordType, java.lang.foreign.MemoryAddress coords);
     static MemorySegment allocate(PFNGLPATHCOMMANDSNVPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLPATHCOMMANDSNVPROC.class, fi, constants$787.PFNGLPATHCOMMANDSNVPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLPATHCOMMANDSNVPROC.class, fi, constants$1133.PFNGLPATHCOMMANDSNVPROC$FUNC, session);
     }
     static PFNGLPATHCOMMANDSNVPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _path, int _numCommands, java.lang.foreign.MemoryAddress _commands, int _numCoords, int _coordType, java.lang.foreign.MemoryAddress _coords) -> {
             try {
-                constants$787.PFNGLPATHCOMMANDSNVPROC$MH.invokeExact((Addressable)symbol, _path, _numCommands, (java.lang.foreign.Addressable)_commands, _numCoords, _coordType, (java.lang.foreign.Addressable)_coords);
+                constants$1134.PFNGLPATHCOMMANDSNVPROC$MH.invokeExact((Addressable)symbol, _path, _numCommands, (java.lang.foreign.Addressable)_commands, _numCoords, _coordType, (java.lang.foreign.Addressable)_coords);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

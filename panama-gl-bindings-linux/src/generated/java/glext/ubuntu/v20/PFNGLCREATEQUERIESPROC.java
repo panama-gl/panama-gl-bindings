@@ -11,13 +11,13 @@ public interface PFNGLCREATEQUERIESPROC {
 
     void apply(int target, int n, java.lang.foreign.MemoryAddress ids);
     static MemorySegment allocate(PFNGLCREATEQUERIESPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLCREATEQUERIESPROC.class, fi, constants$301.PFNGLCREATEQUERIESPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLCREATEQUERIESPROC.class, fi, constants$390.PFNGLCREATEQUERIESPROC$FUNC, session);
     }
     static PFNGLCREATEQUERIESPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _target, int _n, java.lang.foreign.MemoryAddress _ids) -> {
             try {
-                constants$301.PFNGLCREATEQUERIESPROC$MH.invokeExact((Addressable)symbol, _target, _n, (java.lang.foreign.Addressable)_ids);
+                constants$390.PFNGLCREATEQUERIESPROC$MH.invokeExact((Addressable)symbol, _target, _n, (java.lang.foreign.Addressable)_ids);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

@@ -11,13 +11,13 @@ public interface PFNGLUNLOCKARRAYSEXTPROC {
 
     void apply();
     static MemorySegment allocate(PFNGLUNLOCKARRAYSEXTPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLUNLOCKARRAYSEXTPROC.class, fi, constants$519.PFNGLUNLOCKARRAYSEXTPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLUNLOCKARRAYSEXTPROC.class, fi, constants$732.PFNGLUNLOCKARRAYSEXTPROC$FUNC, session);
     }
     static PFNGLUNLOCKARRAYSEXTPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return () -> {
             try {
-                constants$519.PFNGLUNLOCKARRAYSEXTPROC$MH.invokeExact((Addressable)symbol);
+                constants$733.PFNGLUNLOCKARRAYSEXTPROC$MH.invokeExact((Addressable)symbol);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

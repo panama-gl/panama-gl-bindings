@@ -11,13 +11,13 @@ public interface PFNGLGETCOMPRESSEDTEXTURESUBIMAGEPROC {
 
     void apply(int texture, int level, int xoffset, int yoffset, int zoffset, int width, int height, int depth, int bufSize, java.lang.foreign.MemoryAddress pixels);
     static MemorySegment allocate(PFNGLGETCOMPRESSEDTEXTURESUBIMAGEPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLGETCOMPRESSEDTEXTURESUBIMAGEPROC.class, fi, constants$303.PFNGLGETCOMPRESSEDTEXTURESUBIMAGEPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLGETCOMPRESSEDTEXTURESUBIMAGEPROC.class, fi, constants$392.PFNGLGETCOMPRESSEDTEXTURESUBIMAGEPROC$FUNC, session);
     }
     static PFNGLGETCOMPRESSEDTEXTURESUBIMAGEPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _texture, int _level, int _xoffset, int _yoffset, int _zoffset, int _width, int _height, int _depth, int _bufSize, java.lang.foreign.MemoryAddress _pixels) -> {
             try {
-                constants$303.PFNGLGETCOMPRESSEDTEXTURESUBIMAGEPROC$MH.invokeExact((Addressable)symbol, _texture, _level, _xoffset, _yoffset, _zoffset, _width, _height, _depth, _bufSize, (java.lang.foreign.Addressable)_pixels);
+                constants$392.PFNGLGETCOMPRESSEDTEXTURESUBIMAGEPROC$MH.invokeExact((Addressable)symbol, _texture, _level, _xoffset, _yoffset, _zoffset, _width, _height, _depth, _bufSize, (java.lang.foreign.Addressable)_pixels);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

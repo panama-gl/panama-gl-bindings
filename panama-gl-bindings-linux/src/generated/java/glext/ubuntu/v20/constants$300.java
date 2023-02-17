@@ -9,30 +9,35 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$300 {
 
-    static final FunctionDescriptor PFNGLGETVERTEXARRAYINDEXEDIVPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLPROGRAMUNIFORMMATRIX2DVPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
+        Constants$root.C_CHAR$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLGETVERTEXARRAYINDEXEDIVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$300.PFNGLGETVERTEXARRAYINDEXEDIVPROC$FUNC
+    static final MethodHandle PFNGLPROGRAMUNIFORMMATRIX2DVPROC$MH = RuntimeHelper.downcallHandle(
+        constants$300.PFNGLPROGRAMUNIFORMMATRIX2DVPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLGETVERTEXARRAYINDEXED64IVPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLPROGRAMUNIFORMMATRIX3DVPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
+        Constants$root.C_CHAR$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLGETVERTEXARRAYINDEXED64IVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$300.PFNGLGETVERTEXARRAYINDEXED64IVPROC$FUNC
+    static final MethodHandle PFNGLPROGRAMUNIFORMMATRIX3DVPROC$MH = RuntimeHelper.downcallHandle(
+        constants$300.PFNGLPROGRAMUNIFORMMATRIX3DVPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLCREATESAMPLERSPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLPROGRAMUNIFORMMATRIX4DVPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_CHAR$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLCREATESAMPLERSPROC$MH = RuntimeHelper.downcallHandle(
-        constants$300.PFNGLCREATESAMPLERSPROC$FUNC
+    static final MethodHandle PFNGLPROGRAMUNIFORMMATRIX4DVPROC$MH = RuntimeHelper.downcallHandle(
+        constants$300.PFNGLPROGRAMUNIFORMMATRIX4DVPROC$FUNC
     );
 }
 

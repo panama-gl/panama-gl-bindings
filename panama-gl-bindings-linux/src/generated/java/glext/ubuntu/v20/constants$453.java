@@ -9,31 +9,36 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$453 {
 
-    static final FunctionDescriptor PFNGLBLENDEQUATIONINDEXEDAMDPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLUNIFORM1UI64ARBPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT
+        Constants$root.C_LONG_LONG$LAYOUT
     );
-    static final MethodHandle PFNGLBLENDEQUATIONINDEXEDAMDPROC$MH = RuntimeHelper.downcallHandle(
-        constants$453.PFNGLBLENDEQUATIONINDEXEDAMDPROC$FUNC
+    static final MethodHandle PFNGLUNIFORM1UI64ARBPROC$MH = RuntimeHelper.downcallHandle(
+        constants$453.PFNGLUNIFORM1UI64ARBPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLBLENDEQUATIONSEPARATEINDEXEDAMDPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLUNIFORM2UI64ARBPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT
+        Constants$root.C_LONG_LONG$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT
     );
-    static final MethodHandle PFNGLBLENDEQUATIONSEPARATEINDEXEDAMDPROC$MH = RuntimeHelper.downcallHandle(
-        constants$453.PFNGLBLENDEQUATIONSEPARATEINDEXEDAMDPROC$FUNC
+    static final MethodHandle PFNGLUNIFORM2UI64ARBPROC$MH = RuntimeHelper.downcallHandle(
+        constants$453.PFNGLUNIFORM2UI64ARBPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLRENDERBUFFERSTORAGEMULTISAMPLEADVANCEDAMDPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLUNIFORM3UI64ARBPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT
+        Constants$root.C_LONG_LONG$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT
     );
-    static final MethodHandle PFNGLRENDERBUFFERSTORAGEMULTISAMPLEADVANCEDAMDPROC$MH = RuntimeHelper.downcallHandle(
-        constants$453.PFNGLRENDERBUFFERSTORAGEMULTISAMPLEADVANCEDAMDPROC$FUNC
+    static final MethodHandle PFNGLUNIFORM3UI64ARBPROC$MH = RuntimeHelper.downcallHandle(
+        constants$453.PFNGLUNIFORM3UI64ARBPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLUNIFORM4UI64ARBPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT
     );
 }
 

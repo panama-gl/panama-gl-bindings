@@ -11,13 +11,13 @@ public interface PFNGLBLENDFUNCSEPARATEINDEXEDAMDPROC {
 
     void apply(int buf, int srcRGB, int dstRGB, int srcAlpha, int dstAlpha);
     static MemorySegment allocate(PFNGLBLENDFUNCSEPARATEINDEXEDAMDPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLBLENDFUNCSEPARATEINDEXEDAMDPROC.class, fi, constants$452.PFNGLBLENDFUNCSEPARATEINDEXEDAMDPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLBLENDFUNCSEPARATEINDEXEDAMDPROC.class, fi, constants$632.PFNGLBLENDFUNCSEPARATEINDEXEDAMDPROC$FUNC, session);
     }
     static PFNGLBLENDFUNCSEPARATEINDEXEDAMDPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _buf, int _srcRGB, int _dstRGB, int _srcAlpha, int _dstAlpha) -> {
             try {
-                constants$452.PFNGLBLENDFUNCSEPARATEINDEXEDAMDPROC$MH.invokeExact((Addressable)symbol, _buf, _srcRGB, _dstRGB, _srcAlpha, _dstAlpha);
+                constants$632.PFNGLBLENDFUNCSEPARATEINDEXEDAMDPROC$MH.invokeExact((Addressable)symbol, _buf, _srcRGB, _dstRGB, _srcAlpha, _dstAlpha);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

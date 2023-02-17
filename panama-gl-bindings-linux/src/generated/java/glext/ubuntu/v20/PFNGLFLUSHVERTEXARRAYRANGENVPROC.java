@@ -11,13 +11,13 @@ public interface PFNGLFLUSHVERTEXARRAYRANGENVPROC {
 
     void apply();
     static MemorySegment allocate(PFNGLFLUSHVERTEXARRAYRANGENVPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLFLUSHVERTEXARRAYRANGENVPROC.class, fi, constants$838.PFNGLFLUSHVERTEXARRAYRANGENVPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLFLUSHVERTEXARRAYRANGENVPROC.class, fi, constants$1211.PFNGLFLUSHVERTEXARRAYRANGENVPROC$FUNC, session);
     }
     static PFNGLFLUSHVERTEXARRAYRANGENVPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return () -> {
             try {
-                constants$838.PFNGLFLUSHVERTEXARRAYRANGENVPROC$MH.invokeExact((Addressable)symbol);
+                constants$1211.PFNGLFLUSHVERTEXARRAYRANGENVPROC$MH.invokeExact((Addressable)symbol);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

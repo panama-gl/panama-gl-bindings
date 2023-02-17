@@ -11,13 +11,13 @@ public interface PFNGLTRANSFORMFEEDBACKVARYINGSNVPROC {
 
     void apply(int program, int count, java.lang.foreign.MemoryAddress locations, int bufferMode);
     static MemorySegment allocate(PFNGLTRANSFORMFEEDBACKVARYINGSNVPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLTRANSFORMFEEDBACKVARYINGSNVPROC.class, fi, constants$830.PFNGLTRANSFORMFEEDBACKVARYINGSNVPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLTRANSFORMFEEDBACKVARYINGSNVPROC.class, fi, constants$1198.PFNGLTRANSFORMFEEDBACKVARYINGSNVPROC$FUNC, session);
     }
     static PFNGLTRANSFORMFEEDBACKVARYINGSNVPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _program, int _count, java.lang.foreign.MemoryAddress _locations, int _bufferMode) -> {
             try {
-                constants$830.PFNGLTRANSFORMFEEDBACKVARYINGSNVPROC$MH.invokeExact((Addressable)symbol, _program, _count, (java.lang.foreign.Addressable)_locations, _bufferMode);
+                constants$1198.PFNGLTRANSFORMFEEDBACKVARYINGSNVPROC$MH.invokeExact((Addressable)symbol, _program, _count, (java.lang.foreign.Addressable)_locations, _bufferMode);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

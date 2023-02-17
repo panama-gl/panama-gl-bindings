@@ -11,13 +11,13 @@ public interface PFNGLGETSUBROUTINEUNIFORMLOCATIONPROC {
 
     int apply(int program, int shadertype, java.lang.foreign.MemoryAddress name);
     static MemorySegment allocate(PFNGLGETSUBROUTINEUNIFORMLOCATIONPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLGETSUBROUTINEUNIFORMLOCATIONPROC.class, fi, constants$212.PFNGLGETSUBROUTINEUNIFORMLOCATIONPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLGETSUBROUTINEUNIFORMLOCATIONPROC.class, fi, constants$268.PFNGLGETSUBROUTINEUNIFORMLOCATIONPROC$FUNC, session);
     }
     static PFNGLGETSUBROUTINEUNIFORMLOCATIONPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _program, int _shadertype, java.lang.foreign.MemoryAddress _name) -> {
             try {
-                return (int)constants$212.PFNGLGETSUBROUTINEUNIFORMLOCATIONPROC$MH.invokeExact((Addressable)symbol, _program, _shadertype, (java.lang.foreign.Addressable)_name);
+                return (int)constants$268.PFNGLGETSUBROUTINEUNIFORMLOCATIONPROC$MH.invokeExact((Addressable)symbol, _program, _shadertype, (java.lang.foreign.Addressable)_name);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

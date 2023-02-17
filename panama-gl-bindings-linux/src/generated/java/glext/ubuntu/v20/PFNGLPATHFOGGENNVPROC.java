@@ -11,13 +11,13 @@ public interface PFNGLPATHFOGGENNVPROC {
 
     void apply(int genMode);
     static MemorySegment allocate(PFNGLPATHFOGGENNVPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLPATHFOGGENNVPROC.class, fi, constants$806.PFNGLPATHFOGGENNVPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLPATHFOGGENNVPROC.class, fi, constants$1152.PFNGLPATHFOGGENNVPROC$FUNC, session);
     }
     static PFNGLPATHFOGGENNVPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _genMode) -> {
             try {
-                constants$806.PFNGLPATHFOGGENNVPROC$MH.invokeExact((Addressable)symbol, _genMode);
+                constants$1152.PFNGLPATHFOGGENNVPROC$MH.invokeExact((Addressable)symbol, _genMode);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

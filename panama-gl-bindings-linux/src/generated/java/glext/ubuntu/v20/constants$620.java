@@ -9,39 +9,54 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$620 {
 
-    static final FunctionDescriptor PFNGLVERTEXARRAYVERTEXATTRIBLOFFSETEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glMultiTexCoord3xOES$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_LONG_LONG$LAYOUT
-    );
-    static final MethodHandle PFNGLVERTEXARRAYVERTEXATTRIBLOFFSETEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$620.PFNGLVERTEXARRAYVERTEXATTRIBLOFFSETEXTPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLTEXTUREPAGECOMMITMENTEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_CHAR$LAYOUT
-    );
-    static final MethodHandle PFNGLTEXTUREPAGECOMMITMENTEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$620.PFNGLTEXTUREPAGECOMMITMENTEXTPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLVERTEXARRAYVERTEXATTRIBDIVISOREXTPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLVERTEXARRAYVERTEXATTRIBDIVISOREXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$620.PFNGLVERTEXARRAYVERTEXATTRIBDIVISOREXTPROC$FUNC
+    static final MethodHandle glMultiTexCoord3xOES$MH = RuntimeHelper.downcallHandle(
+        "glMultiTexCoord3xOES",
+        constants$620.glMultiTexCoord3xOES$FUNC
+    );
+    static final FunctionDescriptor glMultiTexCoord3xvOES$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glMultiTexCoord3xvOES$MH = RuntimeHelper.downcallHandle(
+        "glMultiTexCoord3xvOES",
+        constants$620.glMultiTexCoord3xvOES$FUNC
+    );
+    static final FunctionDescriptor glMultiTexCoord4xvOES$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glMultiTexCoord4xvOES$MH = RuntimeHelper.downcallHandle(
+        "glMultiTexCoord4xvOES",
+        constants$620.glMultiTexCoord4xvOES$FUNC
+    );
+    static final FunctionDescriptor glNormal3xvOES$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glNormal3xvOES$MH = RuntimeHelper.downcallHandle(
+        "glNormal3xvOES",
+        constants$620.glNormal3xvOES$FUNC
+    );
+    static final FunctionDescriptor glPassThroughxOES$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle glPassThroughxOES$MH = RuntimeHelper.downcallHandle(
+        "glPassThroughxOES",
+        constants$620.glPassThroughxOES$FUNC
+    );
+    static final FunctionDescriptor glPixelMapx$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glPixelMapx$MH = RuntimeHelper.downcallHandle(
+        "glPixelMapx",
+        constants$620.glPixelMapx$FUNC
     );
 }
 

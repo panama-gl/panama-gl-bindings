@@ -9,20 +9,41 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$217 {
 
-    static final FunctionDescriptor PFNGLPAUSETRANSFORMFEEDBACKPROC$FUNC = FunctionDescriptor.ofVoid();
-    static final MethodHandle PFNGLPAUSETRANSFORMFEEDBACKPROC$MH = RuntimeHelper.downcallHandle(
-        constants$217.PFNGLPAUSETRANSFORMFEEDBACKPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLRESUMETRANSFORMFEEDBACKPROC$FUNC = FunctionDescriptor.ofVoid();
-    static final MethodHandle PFNGLRESUMETRANSFORMFEEDBACKPROC$MH = RuntimeHelper.downcallHandle(
-        constants$217.PFNGLRESUMETRANSFORMFEEDBACKPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLDRAWTRANSFORMFEEDBACKPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLCOPYBUFFERSUBDATAPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT
     );
-    static final MethodHandle PFNGLDRAWTRANSFORMFEEDBACKPROC$MH = RuntimeHelper.downcallHandle(
-        constants$217.PFNGLDRAWTRANSFORMFEEDBACKPROC$FUNC
+    static final MethodHandle PFNGLCOPYBUFFERSUBDATAPROC$MH = RuntimeHelper.downcallHandle(
+        constants$217.PFNGLCOPYBUFFERSUBDATAPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLGETUNIFORMINDICESPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle PFNGLGETUNIFORMINDICESPROC$MH = RuntimeHelper.downcallHandle(
+        constants$217.PFNGLGETUNIFORMINDICESPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLGETACTIVEUNIFORMSIVPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle PFNGLGETACTIVEUNIFORMSIVPROC$MH = RuntimeHelper.downcallHandle(
+        constants$217.PFNGLGETACTIVEUNIFORMSIVPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLGETACTIVEUNIFORMNAMEPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
 }
 

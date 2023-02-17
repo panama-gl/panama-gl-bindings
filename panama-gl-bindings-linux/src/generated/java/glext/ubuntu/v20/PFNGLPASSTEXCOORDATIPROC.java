@@ -11,13 +11,13 @@ public interface PFNGLPASSTEXCOORDATIPROC {
 
     void apply(int dst, int coord, int swizzle);
     static MemorySegment allocate(PFNGLPASSTEXCOORDATIPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLPASSTEXCOORDATIPROC.class, fi, constants$490.PFNGLPASSTEXCOORDATIPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLPASSTEXCOORDATIPROC.class, fi, constants$688.PFNGLPASSTEXCOORDATIPROC$FUNC, session);
     }
     static PFNGLPASSTEXCOORDATIPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _dst, int _coord, int _swizzle) -> {
             try {
-                constants$490.PFNGLPASSTEXCOORDATIPROC$MH.invokeExact((Addressable)symbol, _dst, _coord, _swizzle);
+                constants$688.PFNGLPASSTEXCOORDATIPROC$MH.invokeExact((Addressable)symbol, _dst, _coord, _swizzle);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

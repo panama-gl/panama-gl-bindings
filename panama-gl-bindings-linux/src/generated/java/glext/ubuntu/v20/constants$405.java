@@ -9,23 +9,68 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$405 {
 
-    static final FunctionDescriptor PFNGLWINDOWPOS3SARBPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_SHORT$LAYOUT,
-        Constants$root.C_SHORT$LAYOUT,
-        Constants$root.C_SHORT$LAYOUT
-    );
-    static final MethodHandle PFNGLWINDOWPOS3SARBPROC$MH = RuntimeHelper.downcallHandle(
-        constants$405.PFNGLWINDOWPOS3SARBPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLWINDOWPOS3SVARBPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glInvalidateNamedFramebufferData$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLWINDOWPOS3SVARBPROC$MH = RuntimeHelper.downcallHandle(
-        constants$405.PFNGLWINDOWPOS3SVARBPROC$FUNC
+    static final MethodHandle glInvalidateNamedFramebufferData$MH = RuntimeHelper.downcallHandle(
+        "glInvalidateNamedFramebufferData",
+        constants$405.glInvalidateNamedFramebufferData$FUNC
     );
-    static final FunctionDescriptor PFNGLBLENDBARRIERKHRPROC$FUNC = FunctionDescriptor.ofVoid();
-    static final MethodHandle PFNGLBLENDBARRIERKHRPROC$MH = RuntimeHelper.downcallHandle(
-        constants$405.PFNGLBLENDBARRIERKHRPROC$FUNC
+    static final FunctionDescriptor glInvalidateNamedFramebufferSubData$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle glInvalidateNamedFramebufferSubData$MH = RuntimeHelper.downcallHandle(
+        "glInvalidateNamedFramebufferSubData",
+        constants$405.glInvalidateNamedFramebufferSubData$FUNC
+    );
+    static final FunctionDescriptor glClearNamedFramebufferiv$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glClearNamedFramebufferiv$MH = RuntimeHelper.downcallHandle(
+        "glClearNamedFramebufferiv",
+        constants$405.glClearNamedFramebufferiv$FUNC
+    );
+    static final FunctionDescriptor glClearNamedFramebufferuiv$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glClearNamedFramebufferuiv$MH = RuntimeHelper.downcallHandle(
+        "glClearNamedFramebufferuiv",
+        constants$405.glClearNamedFramebufferuiv$FUNC
+    );
+    static final FunctionDescriptor glClearNamedFramebufferfv$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glClearNamedFramebufferfv$MH = RuntimeHelper.downcallHandle(
+        "glClearNamedFramebufferfv",
+        constants$405.glClearNamedFramebufferfv$FUNC
+    );
+    static final FunctionDescriptor glClearNamedFramebufferfi$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle glClearNamedFramebufferfi$MH = RuntimeHelper.downcallHandle(
+        "glClearNamedFramebufferfi",
+        constants$405.glClearNamedFramebufferfi$FUNC
     );
 }
 

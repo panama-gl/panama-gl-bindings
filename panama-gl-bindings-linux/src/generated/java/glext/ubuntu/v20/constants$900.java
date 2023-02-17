@@ -9,24 +9,37 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$900 {
 
-    static final FunctionDescriptor PFNGLINSTRUMENTSBUFFERSGIXPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLPROGRAMPARAMETERIEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle PFNGLPROGRAMPARAMETERIEXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$900.PFNGLPROGRAMPARAMETERIEXTPROC$FUNC
+    );
+    static final FunctionDescriptor glProgramParameteriEXT$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle glProgramParameteriEXT$MH = RuntimeHelper.downcallHandle(
+        "glProgramParameteriEXT",
+        constants$900.glProgramParameteriEXT$FUNC
+    );
+    static final FunctionDescriptor PFNGLPROGRAMENVPARAMETERS4FVEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLINSTRUMENTSBUFFERSGIXPROC$MH = RuntimeHelper.downcallHandle(
-        constants$900.PFNGLINSTRUMENTSBUFFERSGIXPROC$FUNC
+    static final MethodHandle PFNGLPROGRAMENVPARAMETERS4FVEXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$900.PFNGLPROGRAMENVPARAMETERS4FVEXTPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLPOLLINSTRUMENTSSGIXPROC$FUNC = FunctionDescriptor.of(Constants$root.C_INT$LAYOUT,
+    static final FunctionDescriptor PFNGLPROGRAMLOCALPARAMETERS4FVEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle PFNGLPOLLINSTRUMENTSSGIXPROC$MH = RuntimeHelper.downcallHandle(
-        constants$900.PFNGLPOLLINSTRUMENTSSGIXPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLREADINSTRUMENTSSGIXPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT
-    );
-    static final MethodHandle PFNGLREADINSTRUMENTSSGIXPROC$MH = RuntimeHelper.downcallHandle(
-        constants$900.PFNGLREADINSTRUMENTSSGIXPROC$FUNC
     );
 }
 

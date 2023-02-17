@@ -9,36 +9,43 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$955 {
 
-    static final FunctionDescriptor glutKeyboardUpFunc$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle glutKeyboardUpFunc$MH = RuntimeHelper.downcallHandle(
-        "glutKeyboardUpFunc",
-        constants$955.glutKeyboardUpFunc$FUNC
-    );
-    static final FunctionDescriptor glutSpecialUpFunc$callback$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLFRAMEBUFFERTEXTURELAYEREXTPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT
-    );
-    static final MethodHandle glutSpecialUpFunc$callback$MH = RuntimeHelper.downcallHandle(
-        constants$955.glutSpecialUpFunc$callback$FUNC
-    );
-    static final FunctionDescriptor glutSpecialUpFunc$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle glutSpecialUpFunc$MH = RuntimeHelper.downcallHandle(
-        "glutSpecialUpFunc",
-        constants$955.glutSpecialUpFunc$FUNC
-    );
-    static final FunctionDescriptor glutJoystickFunc$callback$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle glutJoystickFunc$callback$MH = RuntimeHelper.downcallHandle(
-        constants$955.glutJoystickFunc$callback$FUNC
+    static final MethodHandle PFNGLFRAMEBUFFERTEXTURELAYEREXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$955.PFNGLFRAMEBUFFERTEXTURELAYEREXTPROC$FUNC
+    );
+    static final FunctionDescriptor glFramebufferTextureLayerEXT$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle glFramebufferTextureLayerEXT$MH = RuntimeHelper.downcallHandle(
+        "glFramebufferTextureLayerEXT",
+        constants$955.glFramebufferTextureLayerEXT$FUNC
+    );
+    static final FunctionDescriptor PFNGLTEXBUFFEREXTPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle PFNGLTEXBUFFEREXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$955.PFNGLTEXBUFFEREXTPROC$FUNC
+    );
+    static final FunctionDescriptor glTexBufferEXT$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle glTexBufferEXT$MH = RuntimeHelper.downcallHandle(
+        "glTexBufferEXT",
+        constants$955.glTexBufferEXT$FUNC
     );
 }
 

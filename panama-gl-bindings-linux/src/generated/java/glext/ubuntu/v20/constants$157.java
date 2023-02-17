@@ -9,26 +9,63 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$157 {
 
-    static final FunctionDescriptor PFNGLVERTEXATTRIBI3UIVPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glDetachShader$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle glDetachShader$MH = RuntimeHelper.downcallHandle(
+        "glDetachShader",
+        constants$157.glDetachShader$FUNC
+    );
+    static final FunctionDescriptor glDisableVertexAttribArray$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle glDisableVertexAttribArray$MH = RuntimeHelper.downcallHandle(
+        "glDisableVertexAttribArray",
+        constants$157.glDisableVertexAttribArray$FUNC
+    );
+    static final FunctionDescriptor glEnableVertexAttribArray$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle glEnableVertexAttribArray$MH = RuntimeHelper.downcallHandle(
+        "glEnableVertexAttribArray",
+        constants$157.glEnableVertexAttribArray$FUNC
+    );
+    static final FunctionDescriptor glGetActiveAttrib$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLVERTEXATTRIBI3UIVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$157.PFNGLVERTEXATTRIBI3UIVPROC$FUNC
+    static final MethodHandle glGetActiveAttrib$MH = RuntimeHelper.downcallHandle(
+        "glGetActiveAttrib",
+        constants$157.glGetActiveAttrib$FUNC
     );
-    static final FunctionDescriptor PFNGLVERTEXATTRIBI4UIVPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glGetActiveUniform$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLVERTEXATTRIBI4UIVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$157.PFNGLVERTEXATTRIBI4UIVPROC$FUNC
+    static final MethodHandle glGetActiveUniform$MH = RuntimeHelper.downcallHandle(
+        "glGetActiveUniform",
+        constants$157.glGetActiveUniform$FUNC
     );
-    static final FunctionDescriptor PFNGLVERTEXATTRIBI4BVPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glGetAttachedShaders$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLVERTEXATTRIBI4BVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$157.PFNGLVERTEXATTRIBI4BVPROC$FUNC
+    static final MethodHandle glGetAttachedShaders$MH = RuntimeHelper.downcallHandle(
+        "glGetAttachedShaders",
+        constants$157.glGetAttachedShaders$FUNC
     );
 }
 

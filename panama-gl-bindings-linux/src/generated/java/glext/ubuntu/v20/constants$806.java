@@ -9,27 +9,41 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$806 {
 
-    static final FunctionDescriptor PFNGLPATHFOGGENNVPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLPROGRAMUNIFORM2UIEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLPATHFOGGENNVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$806.PFNGLPATHFOGGENNVPROC$FUNC
+    static final MethodHandle PFNGLPROGRAMUNIFORM2UIEXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$806.PFNGLPROGRAMUNIFORM2UIEXTPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLGETPATHCOLORGENIVNVPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLPROGRAMUNIFORM3UIEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle PFNGLPROGRAMUNIFORM3UIEXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$806.PFNGLPROGRAMUNIFORM3UIEXTPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLPROGRAMUNIFORM4UIEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle PFNGLPROGRAMUNIFORM4UIEXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$806.PFNGLPROGRAMUNIFORM4UIEXTPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLPROGRAMUNIFORM1UIVEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle PFNGLGETPATHCOLORGENIVNVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$806.PFNGLGETPATHCOLORGENIVNVPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLGETPATHCOLORGENFVNVPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle PFNGLGETPATHCOLORGENFVNVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$806.PFNGLGETPATHCOLORGENFVNVPROC$FUNC
     );
 }
 

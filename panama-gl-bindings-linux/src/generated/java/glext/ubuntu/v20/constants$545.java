@@ -9,42 +9,45 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$545 {
 
-    static final FunctionDescriptor PFNGLCOPYTEXTURESUBIMAGE1DEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT
-    );
-    static final MethodHandle PFNGLCOPYTEXTURESUBIMAGE1DEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$545.PFNGLCOPYTEXTURESUBIMAGE1DEXTPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLCOPYTEXTURESUBIMAGE2DEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT
-    );
-    static final MethodHandle PFNGLCOPYTEXTURESUBIMAGE2DEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$545.PFNGLCOPYTEXTURESUBIMAGE2DEXTPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLGETTEXTUREIMAGEEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
+    static final FunctionDescriptor PFNGLGETVERTEXATTRIBIVARBPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLGETTEXTUREIMAGEEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$545.PFNGLGETTEXTUREIMAGEEXTPROC$FUNC
+    static final MethodHandle PFNGLGETVERTEXATTRIBIVARBPROC$MH = RuntimeHelper.downcallHandle(
+        constants$545.PFNGLGETVERTEXATTRIBIVARBPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLGETVERTEXATTRIBPOINTERVARBPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle PFNGLGETVERTEXATTRIBPOINTERVARBPROC$MH = RuntimeHelper.downcallHandle(
+        constants$545.PFNGLGETVERTEXATTRIBPOINTERVARBPROC$FUNC
+    );
+    static final FunctionDescriptor glVertexAttrib1dARB$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_DOUBLE$LAYOUT
+    );
+    static final MethodHandle glVertexAttrib1dARB$MH = RuntimeHelper.downcallHandle(
+        "glVertexAttrib1dARB",
+        constants$545.glVertexAttrib1dARB$FUNC
+    );
+    static final FunctionDescriptor glVertexAttrib1dvARB$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glVertexAttrib1dvARB$MH = RuntimeHelper.downcallHandle(
+        "glVertexAttrib1dvARB",
+        constants$545.glVertexAttrib1dvARB$FUNC
+    );
+    static final FunctionDescriptor glVertexAttrib1fARB$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT
+    );
+    static final MethodHandle glVertexAttrib1fARB$MH = RuntimeHelper.downcallHandle(
+        "glVertexAttrib1fARB",
+        constants$545.glVertexAttrib1fARB$FUNC
     );
 }
 

@@ -11,13 +11,13 @@ public interface PFNGLCLEARNAMEDBUFFERDATAEXTPROC {
 
     void apply(int buffer, int internalformat, int format, int type, java.lang.foreign.MemoryAddress data);
     static MemorySegment allocate(PFNGLCLEARNAMEDBUFFERDATAEXTPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLCLEARNAMEDBUFFERDATAEXTPROC.class, fi, constants$609.PFNGLCLEARNAMEDBUFFERDATAEXTPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLCLEARNAMEDBUFFERDATAEXTPROC.class, fi, constants$830.PFNGLCLEARNAMEDBUFFERDATAEXTPROC$FUNC, session);
     }
     static PFNGLCLEARNAMEDBUFFERDATAEXTPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _buffer, int _internalformat, int _format, int _type, java.lang.foreign.MemoryAddress _data) -> {
             try {
-                constants$609.PFNGLCLEARNAMEDBUFFERDATAEXTPROC$MH.invokeExact((Addressable)symbol, _buffer, _internalformat, _format, _type, (java.lang.foreign.Addressable)_data);
+                constants$830.PFNGLCLEARNAMEDBUFFERDATAEXTPROC$MH.invokeExact((Addressable)symbol, _buffer, _internalformat, _format, _type, (java.lang.foreign.Addressable)_data);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

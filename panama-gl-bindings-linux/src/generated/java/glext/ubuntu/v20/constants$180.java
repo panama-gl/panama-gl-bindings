@@ -9,24 +9,36 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$180 {
 
-    static final FunctionDescriptor PFNGLFENCESYNCPROC$FUNC = FunctionDescriptor.of(Constants$root.C_POINTER$LAYOUT,
+    static final FunctionDescriptor PFNGLVERTEXATTRIBI2IPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLFENCESYNCPROC$MH = RuntimeHelper.downcallHandle(
-        constants$180.PFNGLFENCESYNCPROC$FUNC
+    static final MethodHandle PFNGLVERTEXATTRIBI2IPROC$MH = RuntimeHelper.downcallHandle(
+        constants$180.PFNGLVERTEXATTRIBI2IPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLISSYNCPROC$FUNC = FunctionDescriptor.of(Constants$root.C_CHAR$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
+    static final FunctionDescriptor PFNGLVERTEXATTRIBI3IPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLISSYNCPROC$MH = RuntimeHelper.downcallHandle(
-        constants$180.PFNGLISSYNCPROC$FUNC
+    static final MethodHandle PFNGLVERTEXATTRIBI3IPROC$MH = RuntimeHelper.downcallHandle(
+        constants$180.PFNGLVERTEXATTRIBI3IPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLDELETESYNCPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_POINTER$LAYOUT
+    static final FunctionDescriptor PFNGLVERTEXATTRIBI4IPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLDELETESYNCPROC$MH = RuntimeHelper.downcallHandle(
-        constants$180.PFNGLDELETESYNCPROC$FUNC
+    static final MethodHandle PFNGLVERTEXATTRIBI4IPROC$MH = RuntimeHelper.downcallHandle(
+        constants$180.PFNGLVERTEXATTRIBI4IPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLVERTEXATTRIBI1UIPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
 }
 

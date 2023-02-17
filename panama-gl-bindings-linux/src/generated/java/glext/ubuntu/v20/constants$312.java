@@ -9,32 +9,47 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$312 {
 
-    static final FunctionDescriptor PFNGLPOLYGONOFFSETCLAMPPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_FLOAT$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT
+    static final FunctionDescriptor PFNGLGETDOUBLEI_VPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLPOLYGONOFFSETCLAMPPROC$MH = RuntimeHelper.downcallHandle(
-        constants$312.PFNGLPOLYGONOFFSETCLAMPPROC$FUNC
+    static final MethodHandle PFNGLGETDOUBLEI_VPROC$MH = RuntimeHelper.downcallHandle(
+        constants$312.PFNGLGETDOUBLEI_VPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLPRIMITIVEBOUNDINGBOXARBPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_FLOAT$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT
+    static final FunctionDescriptor glReleaseShaderCompiler$FUNC = FunctionDescriptor.ofVoid();
+    static final MethodHandle glReleaseShaderCompiler$MH = RuntimeHelper.downcallHandle(
+        "glReleaseShaderCompiler",
+        constants$312.glReleaseShaderCompiler$FUNC
     );
-    static final MethodHandle PFNGLPRIMITIVEBOUNDINGBOXARBPROC$MH = RuntimeHelper.downcallHandle(
-        constants$312.PFNGLPRIMITIVEBOUNDINGBOXARBPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLGETTEXTUREHANDLEARBPROC$FUNC = FunctionDescriptor.of(Constants$root.C_LONG_LONG$LAYOUT,
+    static final FunctionDescriptor glShaderBinary$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
         Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLGETTEXTUREHANDLEARBPROC$MH = RuntimeHelper.downcallHandle(
-        constants$312.PFNGLGETTEXTUREHANDLEARBPROC$FUNC
+    static final MethodHandle glShaderBinary$MH = RuntimeHelper.downcallHandle(
+        "glShaderBinary",
+        constants$312.glShaderBinary$FUNC
+    );
+    static final FunctionDescriptor glGetShaderPrecisionFormat$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glGetShaderPrecisionFormat$MH = RuntimeHelper.downcallHandle(
+        "glGetShaderPrecisionFormat",
+        constants$312.glGetShaderPrecisionFormat$FUNC
+    );
+    static final FunctionDescriptor glDepthRangef$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT
+    );
+    static final MethodHandle glDepthRangef$MH = RuntimeHelper.downcallHandle(
+        "glDepthRangef",
+        constants$312.glDepthRangef$FUNC
     );
 }
 

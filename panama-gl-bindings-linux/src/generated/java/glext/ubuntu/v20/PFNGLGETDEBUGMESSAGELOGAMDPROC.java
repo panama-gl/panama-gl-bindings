@@ -11,13 +11,13 @@ public interface PFNGLGETDEBUGMESSAGELOGAMDPROC {
 
     int apply(int count, int bufsize, java.lang.foreign.MemoryAddress categories, java.lang.foreign.MemoryAddress severities, java.lang.foreign.MemoryAddress ids, java.lang.foreign.MemoryAddress lengths, java.lang.foreign.MemoryAddress message);
     static MemorySegment allocate(PFNGLGETDEBUGMESSAGELOGAMDPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLGETDEBUGMESSAGELOGAMDPROC.class, fi, constants$452.PFNGLGETDEBUGMESSAGELOGAMDPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLGETDEBUGMESSAGELOGAMDPROC.class, fi, constants$631.PFNGLGETDEBUGMESSAGELOGAMDPROC$FUNC, session);
     }
     static PFNGLGETDEBUGMESSAGELOGAMDPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _count, int _bufsize, java.lang.foreign.MemoryAddress _categories, java.lang.foreign.MemoryAddress _severities, java.lang.foreign.MemoryAddress _ids, java.lang.foreign.MemoryAddress _lengths, java.lang.foreign.MemoryAddress _message) -> {
             try {
-                return (int)constants$452.PFNGLGETDEBUGMESSAGELOGAMDPROC$MH.invokeExact((Addressable)symbol, _count, _bufsize, (java.lang.foreign.Addressable)_categories, (java.lang.foreign.Addressable)_severities, (java.lang.foreign.Addressable)_ids, (java.lang.foreign.Addressable)_lengths, (java.lang.foreign.Addressable)_message);
+                return (int)constants$631.PFNGLGETDEBUGMESSAGELOGAMDPROC$MH.invokeExact((Addressable)symbol, _count, _bufsize, (java.lang.foreign.Addressable)_categories, (java.lang.foreign.Addressable)_severities, (java.lang.foreign.Addressable)_ids, (java.lang.foreign.Addressable)_lengths, (java.lang.foreign.Addressable)_message);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

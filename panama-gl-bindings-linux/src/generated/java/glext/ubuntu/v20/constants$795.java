@@ -9,31 +9,40 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$795 {
 
-    static final FunctionDescriptor PFNGLCOVERFILLPATHNVPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLPROGRAMUNIFORM4FEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT
+    );
+    static final MethodHandle PFNGLPROGRAMUNIFORM4FEXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$795.PFNGLPROGRAMUNIFORM4FEXTPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLPROGRAMUNIFORM1IEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLCOVERFILLPATHNVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$795.PFNGLCOVERFILLPATHNVPROC$FUNC
+    static final MethodHandle PFNGLPROGRAMUNIFORM1IEXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$795.PFNGLPROGRAMUNIFORM1IEXTPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLCOVERSTROKEPATHNVPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLPROGRAMUNIFORM2IEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLCOVERSTROKEPATHNVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$795.PFNGLCOVERSTROKEPATHNVPROC$FUNC
+    static final MethodHandle PFNGLPROGRAMUNIFORM2IEXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$795.PFNGLPROGRAMUNIFORM2IEXTPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLCOVERFILLPATHINSTANCEDNVPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
+    static final FunctionDescriptor PFNGLPROGRAMUNIFORM3IEXTPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle PFNGLCOVERFILLPATHINSTANCEDNVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$795.PFNGLCOVERFILLPATHINSTANCEDNVPROC$FUNC
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
 }
 

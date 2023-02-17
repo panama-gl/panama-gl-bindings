@@ -9,34 +9,46 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$421 {
 
-    static final FunctionDescriptor PFNGLMULTITEXCOORD4XOESPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLMULTIDRAWELEMENTSINDIRECTCOUNTPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT
-    );
-    static final MethodHandle PFNGLMULTITEXCOORD4XOESPROC$MH = RuntimeHelper.downcallHandle(
-        constants$421.PFNGLMULTITEXCOORD4XOESPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLNORMAL3XOESPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLNORMAL3XOESPROC$MH = RuntimeHelper.downcallHandle(
-        constants$421.PFNGLNORMAL3XOESPROC$FUNC
+    static final MethodHandle PFNGLMULTIDRAWELEMENTSINDIRECTCOUNTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$421.PFNGLMULTIDRAWELEMENTSINDIRECTCOUNTPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLORTHOXOESPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLPOLYGONOFFSETCLAMPPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT
+    );
+    static final MethodHandle PFNGLPOLYGONOFFSETCLAMPPROC$MH = RuntimeHelper.downcallHandle(
+        constants$421.PFNGLPOLYGONOFFSETCLAMPPROC$FUNC
+    );
+    static final FunctionDescriptor glSpecializeShader$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
         Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glSpecializeShader$MH = RuntimeHelper.downcallHandle(
+        "glSpecializeShader",
+        constants$421.glSpecializeShader$FUNC
+    );
+    static final FunctionDescriptor glMultiDrawArraysIndirectCount$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLORTHOXOESPROC$MH = RuntimeHelper.downcallHandle(
-        constants$421.PFNGLORTHOXOESPROC$FUNC
+    static final MethodHandle glMultiDrawArraysIndirectCount$MH = RuntimeHelper.downcallHandle(
+        "glMultiDrawArraysIndirectCount",
+        constants$421.glMultiDrawArraysIndirectCount$FUNC
     );
 }
 

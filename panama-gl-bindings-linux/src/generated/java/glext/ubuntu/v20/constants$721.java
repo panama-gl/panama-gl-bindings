@@ -9,32 +9,56 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$721 {
 
-    static final FunctionDescriptor PFNGLMULTICASTVIEWPORTARRAYVNVXPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
+    static final FunctionDescriptor glVertexStream2svATI$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLMULTICASTVIEWPORTARRAYVNVXPROC$MH = RuntimeHelper.downcallHandle(
-        constants$721.PFNGLMULTICASTVIEWPORTARRAYVNVXPROC$FUNC
+    static final MethodHandle glVertexStream2svATI$MH = RuntimeHelper.downcallHandle(
+        "glVertexStream2svATI",
+        constants$721.glVertexStream2svATI$FUNC
     );
-    static final FunctionDescriptor PFNGLMULTICASTVIEWPORTPOSITIONWSCALENVXPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glVertexStream2iATI$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle glVertexStream2iATI$MH = RuntimeHelper.downcallHandle(
+        "glVertexStream2iATI",
+        constants$721.glVertexStream2iATI$FUNC
+    );
+    static final FunctionDescriptor glVertexStream2ivATI$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glVertexStream2ivATI$MH = RuntimeHelper.downcallHandle(
+        "glVertexStream2ivATI",
+        constants$721.glVertexStream2ivATI$FUNC
+    );
+    static final FunctionDescriptor glVertexStream2fATI$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_FLOAT$LAYOUT,
         Constants$root.C_FLOAT$LAYOUT
     );
-    static final MethodHandle PFNGLMULTICASTVIEWPORTPOSITIONWSCALENVXPROC$MH = RuntimeHelper.downcallHandle(
-        constants$721.PFNGLMULTICASTVIEWPORTPOSITIONWSCALENVXPROC$FUNC
+    static final MethodHandle glVertexStream2fATI$MH = RuntimeHelper.downcallHandle(
+        "glVertexStream2fATI",
+        constants$721.glVertexStream2fATI$FUNC
     );
-    static final FunctionDescriptor PFNGLMULTICASTSCISSORARRAYVNVXPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
+    static final FunctionDescriptor glVertexStream2fvATI$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLMULTICASTSCISSORARRAYVNVXPROC$MH = RuntimeHelper.downcallHandle(
-        constants$721.PFNGLMULTICASTSCISSORARRAYVNVXPROC$FUNC
+    static final MethodHandle glVertexStream2fvATI$MH = RuntimeHelper.downcallHandle(
+        "glVertexStream2fvATI",
+        constants$721.glVertexStream2fvATI$FUNC
+    );
+    static final FunctionDescriptor glVertexStream2dATI$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_DOUBLE$LAYOUT,
+        Constants$root.C_DOUBLE$LAYOUT
+    );
+    static final MethodHandle glVertexStream2dATI$MH = RuntimeHelper.downcallHandle(
+        "glVertexStream2dATI",
+        constants$721.glVertexStream2dATI$FUNC
     );
 }
 

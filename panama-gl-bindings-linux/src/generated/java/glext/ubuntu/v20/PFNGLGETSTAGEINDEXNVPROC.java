@@ -11,13 +11,13 @@ public interface PFNGLGETSTAGEINDEXNVPROC {
 
     short apply(int shadertype);
     static MemorySegment allocate(PFNGLGETSTAGEINDEXNVPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLGETSTAGEINDEXNVPROC.class, fi, constants$733.PFNGLGETSTAGEINDEXNVPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLGETSTAGEINDEXNVPROC.class, fi, constants$1053.PFNGLGETSTAGEINDEXNVPROC$FUNC, session);
     }
     static PFNGLGETSTAGEINDEXNVPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _shadertype) -> {
             try {
-                return (short)constants$733.PFNGLGETSTAGEINDEXNVPROC$MH.invokeExact((Addressable)symbol, _shadertype);
+                return (short)constants$1053.PFNGLGETSTAGEINDEXNVPROC$MH.invokeExact((Addressable)symbol, _shadertype);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

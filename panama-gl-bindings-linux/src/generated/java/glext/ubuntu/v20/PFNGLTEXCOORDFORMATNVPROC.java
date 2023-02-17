@@ -11,13 +11,13 @@ public interface PFNGLTEXCOORDFORMATNVPROC {
 
     void apply(int size, int type, int stride);
     static MemorySegment allocate(PFNGLTEXCOORDFORMATNVPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLTEXCOORDFORMATNVPROC.class, fi, constants$847.PFNGLTEXCOORDFORMATNVPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLTEXCOORDFORMATNVPROC.class, fi, constants$1223.PFNGLTEXCOORDFORMATNVPROC$FUNC, session);
     }
     static PFNGLTEXCOORDFORMATNVPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _size, int _type, int _stride) -> {
             try {
-                constants$847.PFNGLTEXCOORDFORMATNVPROC$MH.invokeExact((Addressable)symbol, _size, _type, _stride);
+                constants$1223.PFNGLTEXCOORDFORMATNVPROC$MH.invokeExact((Addressable)symbol, _size, _type, _stride);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

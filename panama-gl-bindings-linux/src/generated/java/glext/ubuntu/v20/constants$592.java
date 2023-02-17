@@ -9,35 +9,35 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$592 {
 
-    static final FunctionDescriptor PFNGLNAMEDPROGRAMLOCALPARAMETER4DVEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLGETMATERIALXOESPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle PFNGLGETMATERIALXOESPROC$MH = RuntimeHelper.downcallHandle(
+        constants$592.PFNGLGETMATERIALXOESPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLGETPIXELMAPXVPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLNAMEDPROGRAMLOCALPARAMETER4DVEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$592.PFNGLNAMEDPROGRAMLOCALPARAMETER4DVEXTPROC$FUNC
+    static final MethodHandle PFNGLGETPIXELMAPXVPROC$MH = RuntimeHelper.downcallHandle(
+        constants$592.PFNGLGETPIXELMAPXVPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLNAMEDPROGRAMLOCALPARAMETER4FEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT
-    );
-    static final MethodHandle PFNGLNAMEDPROGRAMLOCALPARAMETER4FEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$592.PFNGLNAMEDPROGRAMLOCALPARAMETER4FEXTPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLNAMEDPROGRAMLOCALPARAMETER4FVEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
+    static final FunctionDescriptor PFNGLGETTEXGENXVOESPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLNAMEDPROGRAMLOCALPARAMETER4FVEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$592.PFNGLNAMEDPROGRAMLOCALPARAMETER4FVEXTPROC$FUNC
+    static final MethodHandle PFNGLGETTEXGENXVOESPROC$MH = RuntimeHelper.downcallHandle(
+        constants$592.PFNGLGETTEXGENXVOESPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLGETTEXLEVELPARAMETERXVOESPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
 }
 

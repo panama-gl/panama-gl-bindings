@@ -9,33 +9,41 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$796 {
 
-    static final FunctionDescriptor PFNGLCOVERSTROKEPATHINSTANCEDNVPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLPROGRAMUNIFORM3IEXTPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle PFNGLPROGRAMUNIFORM3IEXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$796.PFNGLPROGRAMUNIFORM3IEXTPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLPROGRAMUNIFORM4IEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle PFNGLPROGRAMUNIFORM4IEXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$796.PFNGLPROGRAMUNIFORM4IEXTPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLPROGRAMUNIFORM1FVEXTPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLCOVERSTROKEPATHINSTANCEDNVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$796.PFNGLCOVERSTROKEPATHINSTANCEDNVPROC$FUNC
+    static final MethodHandle PFNGLPROGRAMUNIFORM1FVEXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$796.PFNGLPROGRAMUNIFORM1FVEXTPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLGETPATHPARAMETERIVNVPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLPROGRAMUNIFORM2FVEXTPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle PFNGLGETPATHPARAMETERIVNVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$796.PFNGLGETPATHPARAMETERIVNVPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLGETPATHPARAMETERFVNVPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle PFNGLGETPATHPARAMETERFVNVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$796.PFNGLGETPATHPARAMETERFVNVPROC$FUNC
     );
 }
 

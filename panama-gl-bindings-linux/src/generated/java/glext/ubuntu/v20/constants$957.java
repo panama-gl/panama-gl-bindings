@@ -9,29 +9,31 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$957 {
 
-    static final FunctionDescriptor glutMenuStatusFunc$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLGETTEXPARAMETERIUIVEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle glutMenuStatusFunc$MH = RuntimeHelper.downcallHandle(
-        "glutMenuStatusFunc",
-        constants$957.glutMenuStatusFunc$FUNC
+    static final MethodHandle PFNGLGETTEXPARAMETERIUIVEXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$957.PFNGLGETTEXPARAMETERIUIVEXTPROC$FUNC
     );
-    static final FunctionDescriptor glutOverlayDisplayFunc$callback$FUNC = FunctionDescriptor.ofVoid();
-    static final MethodHandle glutOverlayDisplayFunc$callback$MH = RuntimeHelper.downcallHandle(
-        constants$957.glutOverlayDisplayFunc$callback$FUNC
-    );
-    static final FunctionDescriptor glutOverlayDisplayFunc$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle glutOverlayDisplayFunc$MH = RuntimeHelper.downcallHandle(
-        "glutOverlayDisplayFunc",
-        constants$957.glutOverlayDisplayFunc$FUNC
-    );
-    static final FunctionDescriptor glutWindowStatusFunc$callback$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLCLEARCOLORIIEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle glutWindowStatusFunc$callback$MH = RuntimeHelper.downcallHandle(
-        constants$957.glutWindowStatusFunc$callback$FUNC
+    static final MethodHandle PFNGLCLEARCOLORIIEXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$957.PFNGLCLEARCOLORIIEXTPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLCLEARCOLORIUIEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle PFNGLCLEARCOLORIUIEXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$957.PFNGLCLEARCOLORIUIEXTPROC$FUNC
     );
 }
 

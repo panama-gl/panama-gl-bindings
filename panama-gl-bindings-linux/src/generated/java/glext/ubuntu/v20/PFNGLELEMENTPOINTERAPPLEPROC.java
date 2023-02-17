@@ -11,13 +11,13 @@ public interface PFNGLELEMENTPOINTERAPPLEPROC {
 
     void apply(int type, java.lang.foreign.MemoryAddress pointer);
     static MemorySegment allocate(PFNGLELEMENTPOINTERAPPLEPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLELEMENTPOINTERAPPLEPROC.class, fi, constants$475.PFNGLELEMENTPOINTERAPPLEPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLELEMENTPOINTERAPPLEPROC.class, fi, constants$666.PFNGLELEMENTPOINTERAPPLEPROC$FUNC, session);
     }
     static PFNGLELEMENTPOINTERAPPLEPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _type, java.lang.foreign.MemoryAddress _pointer) -> {
             try {
-                constants$475.PFNGLELEMENTPOINTERAPPLEPROC$MH.invokeExact((Addressable)symbol, _type, (java.lang.foreign.Addressable)_pointer);
+                constants$666.PFNGLELEMENTPOINTERAPPLEPROC$MH.invokeExact((Addressable)symbol, _type, (java.lang.foreign.Addressable)_pointer);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

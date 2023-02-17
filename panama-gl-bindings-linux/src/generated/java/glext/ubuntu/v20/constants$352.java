@@ -9,32 +9,68 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$352 {
 
-    static final FunctionDescriptor PFNGLGETNUNIFORMDVARBPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glTextureView$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLGETNUNIFORMDVARBPROC$MH = RuntimeHelper.downcallHandle(
-        constants$352.PFNGLGETNUNIFORMDVARBPROC$FUNC
+    static final MethodHandle glTextureView$MH = RuntimeHelper.downcallHandle(
+        "glTextureView",
+        constants$352.glTextureView$FUNC
     );
-    static final FunctionDescriptor PFNGLGETNMAPDVARBPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glBindVertexBuffer$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
+        Constants$root.C_LONG_LONG$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLGETNMAPDVARBPROC$MH = RuntimeHelper.downcallHandle(
-        constants$352.PFNGLGETNMAPDVARBPROC$FUNC
+    static final MethodHandle glBindVertexBuffer$MH = RuntimeHelper.downcallHandle(
+        "glBindVertexBuffer",
+        constants$352.glBindVertexBuffer$FUNC
     );
-    static final FunctionDescriptor PFNGLGETNMAPFVARBPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glVertexAttribFormat$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
+        Constants$root.C_CHAR$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLGETNMAPFVARBPROC$MH = RuntimeHelper.downcallHandle(
-        constants$352.PFNGLGETNMAPFVARBPROC$FUNC
+    static final MethodHandle glVertexAttribFormat$MH = RuntimeHelper.downcallHandle(
+        "glVertexAttribFormat",
+        constants$352.glVertexAttribFormat$FUNC
+    );
+    static final FunctionDescriptor glVertexAttribIFormat$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle glVertexAttribIFormat$MH = RuntimeHelper.downcallHandle(
+        "glVertexAttribIFormat",
+        constants$352.glVertexAttribIFormat$FUNC
+    );
+    static final FunctionDescriptor glVertexAttribLFormat$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle glVertexAttribLFormat$MH = RuntimeHelper.downcallHandle(
+        "glVertexAttribLFormat",
+        constants$352.glVertexAttribLFormat$FUNC
+    );
+    static final FunctionDescriptor glVertexAttribBinding$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle glVertexAttribBinding$MH = RuntimeHelper.downcallHandle(
+        "glVertexAttribBinding",
+        constants$352.glVertexAttribBinding$FUNC
     );
 }
 

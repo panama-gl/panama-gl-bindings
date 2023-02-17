@@ -11,13 +11,13 @@ public interface PFNGLENDFRAGMENTSHADERATIPROC {
 
     void apply();
     static MemorySegment allocate(PFNGLENDFRAGMENTSHADERATIPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLENDFRAGMENTSHADERATIPROC.class, fi, constants$490.PFNGLENDFRAGMENTSHADERATIPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLENDFRAGMENTSHADERATIPROC.class, fi, constants$688.PFNGLENDFRAGMENTSHADERATIPROC$FUNC, session);
     }
     static PFNGLENDFRAGMENTSHADERATIPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return () -> {
             try {
-                constants$490.PFNGLENDFRAGMENTSHADERATIPROC$MH.invokeExact((Addressable)symbol);
+                constants$688.PFNGLENDFRAGMENTSHADERATIPROC$MH.invokeExact((Addressable)symbol);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

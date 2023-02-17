@@ -11,13 +11,13 @@ public interface PFNGLWINDOWPOS3DVARBPROC {
 
     void apply(java.lang.foreign.MemoryAddress v);
     static MemorySegment allocate(PFNGLWINDOWPOS3DVARBPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLWINDOWPOS3DVARBPROC.class, fi, constants$403.PFNGLWINDOWPOS3DVARBPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLWINDOWPOS3DVARBPROC.class, fi, constants$557.PFNGLWINDOWPOS3DVARBPROC$FUNC, session);
     }
     static PFNGLWINDOWPOS3DVARBPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (java.lang.foreign.MemoryAddress _v) -> {
             try {
-                constants$403.PFNGLWINDOWPOS3DVARBPROC$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)_v);
+                constants$557.PFNGLWINDOWPOS3DVARBPROC$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)_v);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

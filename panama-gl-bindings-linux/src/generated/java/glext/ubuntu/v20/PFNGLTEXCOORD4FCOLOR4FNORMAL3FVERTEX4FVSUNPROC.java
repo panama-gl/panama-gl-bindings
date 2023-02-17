@@ -11,13 +11,13 @@ public interface PFNGLTEXCOORD4FCOLOR4FNORMAL3FVERTEX4FVSUNPROC {
 
     void apply(java.lang.foreign.MemoryAddress tc, java.lang.foreign.MemoryAddress c, java.lang.foreign.MemoryAddress n, java.lang.foreign.MemoryAddress v);
     static MemorySegment allocate(PFNGLTEXCOORD4FCOLOR4FNORMAL3FVERTEX4FVSUNPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLTEXCOORD4FCOLOR4FNORMAL3FVERTEX4FVSUNPROC.class, fi, constants$923.PFNGLTEXCOORD4FCOLOR4FNORMAL3FVERTEX4FVSUNPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLTEXCOORD4FCOLOR4FNORMAL3FVERTEX4FVSUNPROC.class, fi, constants$1334.PFNGLTEXCOORD4FCOLOR4FNORMAL3FVERTEX4FVSUNPROC$FUNC, session);
     }
     static PFNGLTEXCOORD4FCOLOR4FNORMAL3FVERTEX4FVSUNPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (java.lang.foreign.MemoryAddress _tc, java.lang.foreign.MemoryAddress _c, java.lang.foreign.MemoryAddress _n, java.lang.foreign.MemoryAddress _v) -> {
             try {
-                constants$923.PFNGLTEXCOORD4FCOLOR4FNORMAL3FVERTEX4FVSUNPROC$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)_tc, (java.lang.foreign.Addressable)_c, (java.lang.foreign.Addressable)_n, (java.lang.foreign.Addressable)_v);
+                constants$1334.PFNGLTEXCOORD4FCOLOR4FNORMAL3FVERTEX4FVSUNPROC$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)_tc, (java.lang.foreign.Addressable)_c, (java.lang.foreign.Addressable)_n, (java.lang.foreign.Addressable)_v);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

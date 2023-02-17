@@ -9,31 +9,34 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$498 {
 
-    static final FunctionDescriptor PFNGLGETARRAYOBJECTFVATIPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLUNIFORM1IVARBPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLGETARRAYOBJECTFVATIPROC$MH = RuntimeHelper.downcallHandle(
-        constants$498.PFNGLGETARRAYOBJECTFVATIPROC$FUNC
+    static final MethodHandle PFNGLUNIFORM1IVARBPROC$MH = RuntimeHelper.downcallHandle(
+        constants$498.PFNGLUNIFORM1IVARBPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLGETARRAYOBJECTIVATIPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLUNIFORM2IVARBPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLGETARRAYOBJECTIVATIPROC$MH = RuntimeHelper.downcallHandle(
-        constants$498.PFNGLGETARRAYOBJECTIVATIPROC$FUNC
+    static final MethodHandle PFNGLUNIFORM2IVARBPROC$MH = RuntimeHelper.downcallHandle(
+        constants$498.PFNGLUNIFORM2IVARBPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLVARIANTARRAYOBJECTATIPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLUNIFORM3IVARBPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT
+        Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLVARIANTARRAYOBJECTATIPROC$MH = RuntimeHelper.downcallHandle(
-        constants$498.PFNGLVARIANTARRAYOBJECTATIPROC$FUNC
+    static final MethodHandle PFNGLUNIFORM3IVARBPROC$MH = RuntimeHelper.downcallHandle(
+        constants$498.PFNGLUNIFORM3IVARBPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLUNIFORM4IVARBPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
 }
 

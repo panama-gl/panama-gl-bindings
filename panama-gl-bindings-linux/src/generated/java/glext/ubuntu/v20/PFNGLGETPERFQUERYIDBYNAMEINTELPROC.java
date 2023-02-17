@@ -11,13 +11,13 @@ public interface PFNGLGETPERFQUERYIDBYNAMEINTELPROC {
 
     void apply(java.lang.foreign.MemoryAddress queryName, java.lang.foreign.MemoryAddress queryId);
     static MemorySegment allocate(PFNGLGETPERFQUERYIDBYNAMEINTELPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLGETPERFQUERYIDBYNAMEINTELPROC.class, fi, constants$710.PFNGLGETPERFQUERYIDBYNAMEINTELPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLGETPERFQUERYIDBYNAMEINTELPROC.class, fi, constants$1017.PFNGLGETPERFQUERYIDBYNAMEINTELPROC$FUNC, session);
     }
     static PFNGLGETPERFQUERYIDBYNAMEINTELPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (java.lang.foreign.MemoryAddress _queryName, java.lang.foreign.MemoryAddress _queryId) -> {
             try {
-                constants$710.PFNGLGETPERFQUERYIDBYNAMEINTELPROC$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)_queryName, (java.lang.foreign.Addressable)_queryId);
+                constants$1017.PFNGLGETPERFQUERYIDBYNAMEINTELPROC$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)_queryName, (java.lang.foreign.Addressable)_queryId);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

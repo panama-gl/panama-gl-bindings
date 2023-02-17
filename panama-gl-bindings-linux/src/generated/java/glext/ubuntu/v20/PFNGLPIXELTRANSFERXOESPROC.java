@@ -11,13 +11,13 @@ public interface PFNGLPIXELTRANSFERXOESPROC {
 
     void apply(int pname, int param);
     static MemorySegment allocate(PFNGLPIXELTRANSFERXOESPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLPIXELTRANSFERXOESPROC.class, fi, constants$439.PFNGLPIXELTRANSFERXOESPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLPIXELTRANSFERXOESPROC.class, fi, constants$599.PFNGLPIXELTRANSFERXOESPROC$FUNC, session);
     }
     static PFNGLPIXELTRANSFERXOESPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _pname, int _param) -> {
             try {
-                constants$439.PFNGLPIXELTRANSFERXOESPROC$MH.invokeExact((Addressable)symbol, _pname, _param);
+                constants$599.PFNGLPIXELTRANSFERXOESPROC$MH.invokeExact((Addressable)symbol, _pname, _param);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

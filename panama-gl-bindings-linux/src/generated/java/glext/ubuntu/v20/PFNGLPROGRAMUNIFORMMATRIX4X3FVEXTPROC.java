@@ -11,13 +11,13 @@ public interface PFNGLPROGRAMUNIFORMMATRIX4X3FVEXTPROC {
 
     void apply(int program, int location, int count, byte transpose, java.lang.foreign.MemoryAddress value);
     static MemorySegment allocate(PFNGLPROGRAMUNIFORMMATRIX4X3FVEXTPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLPROGRAMUNIFORMMATRIX4X3FVEXTPROC.class, fi, constants$580.PFNGLPROGRAMUNIFORMMATRIX4X3FVEXTPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLPROGRAMUNIFORMMATRIX4X3FVEXTPROC.class, fi, constants$801.PFNGLPROGRAMUNIFORMMATRIX4X3FVEXTPROC$FUNC, session);
     }
     static PFNGLPROGRAMUNIFORMMATRIX4X3FVEXTPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _program, int _location, int _count, byte _transpose, java.lang.foreign.MemoryAddress _value) -> {
             try {
-                constants$580.PFNGLPROGRAMUNIFORMMATRIX4X3FVEXTPROC$MH.invokeExact((Addressable)symbol, _program, _location, _count, _transpose, (java.lang.foreign.Addressable)_value);
+                constants$802.PFNGLPROGRAMUNIFORMMATRIX4X3FVEXTPROC$MH.invokeExact((Addressable)symbol, _program, _location, _count, _transpose, (java.lang.foreign.Addressable)_value);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

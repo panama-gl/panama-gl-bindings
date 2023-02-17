@@ -11,13 +11,13 @@ public interface PFNGLPATCHPARAMETERIPROC {
 
     void apply(int pname, int value);
     static MemorySegment allocate(PFNGLPATCHPARAMETERIPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLPATCHPARAMETERIPROC.class, fi, constants$215.PFNGLPATCHPARAMETERIPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLPATCHPARAMETERIPROC.class, fi, constants$271.PFNGLPATCHPARAMETERIPROC$FUNC, session);
     }
     static PFNGLPATCHPARAMETERIPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _pname, int _value) -> {
             try {
-                constants$215.PFNGLPATCHPARAMETERIPROC$MH.invokeExact((Addressable)symbol, _pname, _value);
+                constants$271.PFNGLPATCHPARAMETERIPROC$MH.invokeExact((Addressable)symbol, _pname, _value);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

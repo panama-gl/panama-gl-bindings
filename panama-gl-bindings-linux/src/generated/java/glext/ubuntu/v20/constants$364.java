@@ -9,29 +9,27 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$364 {
 
-    static final FunctionDescriptor PFNGLUNIFORM1FVARBPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLMAPNAMEDBUFFERPROC$FUNC = FunctionDescriptor.of(Constants$root.C_POINTER$LAYOUT,
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
+        Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLUNIFORM1FVARBPROC$MH = RuntimeHelper.downcallHandle(
-        constants$364.PFNGLUNIFORM1FVARBPROC$FUNC
+    static final MethodHandle PFNGLMAPNAMEDBUFFERPROC$MH = RuntimeHelper.downcallHandle(
+        constants$364.PFNGLMAPNAMEDBUFFERPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLUNIFORM2FVARBPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLMAPNAMEDBUFFERRANGEPROC$FUNC = FunctionDescriptor.of(Constants$root.C_POINTER$LAYOUT,
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
+        Constants$root.C_LONG_LONG$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLUNIFORM2FVARBPROC$MH = RuntimeHelper.downcallHandle(
-        constants$364.PFNGLUNIFORM2FVARBPROC$FUNC
+    static final MethodHandle PFNGLMAPNAMEDBUFFERRANGEPROC$MH = RuntimeHelper.downcallHandle(
+        constants$364.PFNGLMAPNAMEDBUFFERRANGEPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLUNIFORM3FVARBPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
+    static final FunctionDescriptor PFNGLUNMAPNAMEDBUFFERPROC$FUNC = FunctionDescriptor.of(Constants$root.C_CHAR$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLUNIFORM3FVARBPROC$MH = RuntimeHelper.downcallHandle(
-        constants$364.PFNGLUNIFORM3FVARBPROC$FUNC
+    static final MethodHandle PFNGLUNMAPNAMEDBUFFERPROC$MH = RuntimeHelper.downcallHandle(
+        constants$364.PFNGLUNMAPNAMEDBUFFERPROC$FUNC
     );
 }
 

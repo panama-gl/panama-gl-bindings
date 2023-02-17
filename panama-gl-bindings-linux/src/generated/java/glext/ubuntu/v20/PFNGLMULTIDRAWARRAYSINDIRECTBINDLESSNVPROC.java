@@ -11,13 +11,13 @@ public interface PFNGLMULTIDRAWARRAYSINDIRECTBINDLESSNVPROC {
 
     void apply(int mode, java.lang.foreign.MemoryAddress indirect, int drawCount, int stride, int vertexBufferCount);
     static MemorySegment allocate(PFNGLMULTIDRAWARRAYSINDIRECTBINDLESSNVPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLMULTIDRAWARRAYSINDIRECTBINDLESSNVPROC.class, fi, constants$725.PFNGLMULTIDRAWARRAYSINDIRECTBINDLESSNVPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLMULTIDRAWARRAYSINDIRECTBINDLESSNVPROC.class, fi, constants$1041.PFNGLMULTIDRAWARRAYSINDIRECTBINDLESSNVPROC$FUNC, session);
     }
     static PFNGLMULTIDRAWARRAYSINDIRECTBINDLESSNVPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _mode, java.lang.foreign.MemoryAddress _indirect, int _drawCount, int _stride, int _vertexBufferCount) -> {
             try {
-                constants$725.PFNGLMULTIDRAWARRAYSINDIRECTBINDLESSNVPROC$MH.invokeExact((Addressable)symbol, _mode, (java.lang.foreign.Addressable)_indirect, _drawCount, _stride, _vertexBufferCount);
+                constants$1041.PFNGLMULTIDRAWARRAYSINDIRECTBINDLESSNVPROC$MH.invokeExact((Addressable)symbol, _mode, (java.lang.foreign.Addressable)_indirect, _drawCount, _stride, _vertexBufferCount);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

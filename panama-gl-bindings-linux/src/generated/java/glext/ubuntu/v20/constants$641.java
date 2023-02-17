@@ -9,26 +9,29 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$641 {
 
-    static final FunctionDescriptor PFNGLGETUNSIGNEDBYTEI_VEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLUNIFORM1UI64VNVPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLGETUNSIGNEDBYTEI_VEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$641.PFNGLGETUNSIGNEDBYTEI_VEXTPROC$FUNC
+    static final MethodHandle PFNGLUNIFORM1UI64VNVPROC$MH = RuntimeHelper.downcallHandle(
+        constants$641.PFNGLUNIFORM1UI64VNVPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLDELETEMEMORYOBJECTSEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLUNIFORM2UI64VNVPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLDELETEMEMORYOBJECTSEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$641.PFNGLDELETEMEMORYOBJECTSEXTPROC$FUNC
+    static final MethodHandle PFNGLUNIFORM2UI64VNVPROC$MH = RuntimeHelper.downcallHandle(
+        constants$641.PFNGLUNIFORM2UI64VNVPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLISMEMORYOBJECTEXTPROC$FUNC = FunctionDescriptor.of(Constants$root.C_CHAR$LAYOUT,
-        Constants$root.C_INT$LAYOUT
+    static final FunctionDescriptor PFNGLUNIFORM3UI64VNVPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLISMEMORYOBJECTEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$641.PFNGLISMEMORYOBJECTEXTPROC$FUNC
+    static final MethodHandle PFNGLUNIFORM3UI64VNVPROC$MH = RuntimeHelper.downcallHandle(
+        constants$641.PFNGLUNIFORM3UI64VNVPROC$FUNC
     );
 }
 

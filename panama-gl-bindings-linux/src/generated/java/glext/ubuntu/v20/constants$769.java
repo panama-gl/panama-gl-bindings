@@ -9,25 +9,58 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$769 {
 
-    static final FunctionDescriptor PFNGLTEXCOORD2HVNVPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLTEXTUREIMAGE3DEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLTEXCOORD2HVNVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$769.PFNGLTEXCOORD2HVNVPROC$FUNC
+    static final MethodHandle PFNGLTEXTUREIMAGE3DEXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$769.PFNGLTEXTUREIMAGE3DEXTPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLTEXCOORD3HNVPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_SHORT$LAYOUT,
-        Constants$root.C_SHORT$LAYOUT,
-        Constants$root.C_SHORT$LAYOUT
-    );
-    static final MethodHandle PFNGLTEXCOORD3HNVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$769.PFNGLTEXCOORD3HNVPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLTEXCOORD3HVNVPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLTEXTURESUBIMAGE3DEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLTEXCOORD3HVNVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$769.PFNGLTEXCOORD3HVNVPROC$FUNC
+    static final MethodHandle PFNGLTEXTURESUBIMAGE3DEXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$769.PFNGLTEXTURESUBIMAGE3DEXTPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLCOPYTEXTURESUBIMAGE3DEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle PFNGLCOPYTEXTURESUBIMAGE3DEXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$769.PFNGLCOPYTEXTURESUBIMAGE3DEXTPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLBINDMULTITEXTUREEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
 }
 

@@ -11,13 +11,13 @@ public interface PFNGLVERTEXARRAYATTRIBFORMATPROC {
 
     void apply(int vaobj, int attribindex, int size, int type, byte normalized, int relativeoffset);
     static MemorySegment allocate(PFNGLVERTEXARRAYATTRIBFORMATPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLVERTEXARRAYATTRIBFORMATPROC.class, fi, constants$298.PFNGLVERTEXARRAYATTRIBFORMATPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLVERTEXARRAYATTRIBFORMATPROC.class, fi, constants$387.PFNGLVERTEXARRAYATTRIBFORMATPROC$FUNC, session);
     }
     static PFNGLVERTEXARRAYATTRIBFORMATPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _vaobj, int _attribindex, int _size, int _type, byte _normalized, int _relativeoffset) -> {
             try {
-                constants$298.PFNGLVERTEXARRAYATTRIBFORMATPROC$MH.invokeExact((Addressable)symbol, _vaobj, _attribindex, _size, _type, _normalized, _relativeoffset);
+                constants$387.PFNGLVERTEXARRAYATTRIBFORMATPROC$MH.invokeExact((Addressable)symbol, _vaobj, _attribindex, _size, _type, _normalized, _relativeoffset);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

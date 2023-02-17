@@ -11,13 +11,13 @@ public interface PFNGLREFERENCEPLANESGIXPROC {
 
     void apply(java.lang.foreign.MemoryAddress equation);
     static MemorySegment allocate(PFNGLREFERENCEPLANESGIXPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLREFERENCEPLANESGIXPROC.class, fi, constants$905.PFNGLREFERENCEPLANESGIXPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLREFERENCEPLANESGIXPROC.class, fi, constants$1311.PFNGLREFERENCEPLANESGIXPROC$FUNC, session);
     }
     static PFNGLREFERENCEPLANESGIXPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (java.lang.foreign.MemoryAddress _equation) -> {
             try {
-                constants$905.PFNGLREFERENCEPLANESGIXPROC$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)_equation);
+                constants$1311.PFNGLREFERENCEPLANESGIXPROC$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)_equation);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

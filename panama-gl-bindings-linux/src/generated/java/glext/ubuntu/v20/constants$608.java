@@ -9,31 +9,44 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$608 {
 
-    static final FunctionDescriptor PFNGLMAPNAMEDBUFFERRANGEEXTPROC$FUNC = FunctionDescriptor.of(Constants$root.C_POINTER$LAYOUT,
+    static final FunctionDescriptor PFNGLVERTEX4XOESPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_LONG_LONG$LAYOUT,
-        Constants$root.C_LONG_LONG$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLMAPNAMEDBUFFERRANGEEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$608.PFNGLMAPNAMEDBUFFERRANGEEXTPROC$FUNC
+    static final MethodHandle PFNGLVERTEX4XOESPROC$MH = RuntimeHelper.downcallHandle(
+        constants$608.PFNGLVERTEX4XOESPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLFLUSHMAPPEDNAMEDBUFFERRANGEEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLVERTEX4XVOESPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle PFNGLVERTEX4XVOESPROC$MH = RuntimeHelper.downcallHandle(
+        constants$608.PFNGLVERTEX4XVOESPROC$FUNC
+    );
+    static final FunctionDescriptor glAlphaFuncxOES$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_LONG_LONG$LAYOUT,
-        Constants$root.C_LONG_LONG$LAYOUT
-    );
-    static final MethodHandle PFNGLFLUSHMAPPEDNAMEDBUFFERRANGEEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$608.PFNGLFLUSHMAPPEDNAMEDBUFFERRANGEEXTPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLNAMEDBUFFERSTORAGEEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_LONG_LONG$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
         Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLNAMEDBUFFERSTORAGEEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$608.PFNGLNAMEDBUFFERSTORAGEEXTPROC$FUNC
+    static final MethodHandle glAlphaFuncxOES$MH = RuntimeHelper.downcallHandle(
+        "glAlphaFuncxOES",
+        constants$608.glAlphaFuncxOES$FUNC
+    );
+    static final FunctionDescriptor glClearColorxOES$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle glClearColorxOES$MH = RuntimeHelper.downcallHandle(
+        "glClearColorxOES",
+        constants$608.glClearColorxOES$FUNC
+    );
+    static final FunctionDescriptor glClearDepthxOES$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle glClearDepthxOES$MH = RuntimeHelper.downcallHandle(
+        "glClearDepthxOES",
+        constants$608.glClearDepthxOES$FUNC
     );
 }
 

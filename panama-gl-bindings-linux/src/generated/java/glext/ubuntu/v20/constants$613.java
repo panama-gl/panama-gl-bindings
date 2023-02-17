@@ -9,35 +9,59 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$613 {
 
-    static final FunctionDescriptor PFNGLPROGRAMUNIFORMMATRIX2DVEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glPolygonOffsetxOES$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle glPolygonOffsetxOES$MH = RuntimeHelper.downcallHandle(
+        "glPolygonOffsetxOES",
+        constants$613.glPolygonOffsetxOES$FUNC
+    );
+    static final FunctionDescriptor glRotatexOES$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_CHAR$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle glRotatexOES$MH = RuntimeHelper.downcallHandle(
+        "glRotatexOES",
+        constants$613.glRotatexOES$FUNC
+    );
+    static final FunctionDescriptor glScalexOES$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle glScalexOES$MH = RuntimeHelper.downcallHandle(
+        "glScalexOES",
+        constants$613.glScalexOES$FUNC
+    );
+    static final FunctionDescriptor glTexEnvxOES$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle glTexEnvxOES$MH = RuntimeHelper.downcallHandle(
+        "glTexEnvxOES",
+        constants$613.glTexEnvxOES$FUNC
+    );
+    static final FunctionDescriptor glTexEnvxvOES$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLPROGRAMUNIFORMMATRIX2DVEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$613.PFNGLPROGRAMUNIFORMMATRIX2DVEXTPROC$FUNC
+    static final MethodHandle glTexEnvxvOES$MH = RuntimeHelper.downcallHandle(
+        "glTexEnvxvOES",
+        constants$613.glTexEnvxvOES$FUNC
     );
-    static final FunctionDescriptor PFNGLPROGRAMUNIFORMMATRIX3DVEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glTexParameterxOES$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_CHAR$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
+        Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLPROGRAMUNIFORMMATRIX3DVEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$613.PFNGLPROGRAMUNIFORMMATRIX3DVEXTPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLPROGRAMUNIFORMMATRIX4DVEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_CHAR$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle PFNGLPROGRAMUNIFORMMATRIX4DVEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$613.PFNGLPROGRAMUNIFORMMATRIX4DVEXTPROC$FUNC
+    static final MethodHandle glTexParameterxOES$MH = RuntimeHelper.downcallHandle(
+        "glTexParameterxOES",
+        constants$613.glTexParameterxOES$FUNC
     );
 }
 

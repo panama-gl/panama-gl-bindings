@@ -11,13 +11,13 @@ public interface PFNGLEVALMAPSNVPROC {
 
     void apply(int target, int mode);
     static MemorySegment allocate(PFNGLEVALMAPSNVPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLEVALMAPSNVPROC.class, fi, constants$745.PFNGLEVALMAPSNVPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLEVALMAPSNVPROC.class, fi, constants$1070.PFNGLEVALMAPSNVPROC$FUNC, session);
     }
     static PFNGLEVALMAPSNVPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _target, int _mode) -> {
             try {
-                constants$745.PFNGLEVALMAPSNVPROC$MH.invokeExact((Addressable)symbol, _target, _mode);
+                constants$1070.PFNGLEVALMAPSNVPROC$MH.invokeExact((Addressable)symbol, _target, _mode);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

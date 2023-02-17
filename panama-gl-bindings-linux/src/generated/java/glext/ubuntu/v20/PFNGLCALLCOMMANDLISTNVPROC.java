@@ -11,13 +11,13 @@ public interface PFNGLCALLCOMMANDLISTNVPROC {
 
     void apply(int list);
     static MemorySegment allocate(PFNGLCALLCOMMANDLISTNVPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLCALLCOMMANDLISTNVPROC.class, fi, constants$737.PFNGLCALLCOMMANDLISTNVPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLCALLCOMMANDLISTNVPROC.class, fi, constants$1056.PFNGLCALLCOMMANDLISTNVPROC$FUNC, session);
     }
     static PFNGLCALLCOMMANDLISTNVPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _list) -> {
             try {
-                constants$737.PFNGLCALLCOMMANDLISTNVPROC$MH.invokeExact((Addressable)symbol, _list);
+                constants$1057.PFNGLCALLCOMMANDLISTNVPROC$MH.invokeExact((Addressable)symbol, _list);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

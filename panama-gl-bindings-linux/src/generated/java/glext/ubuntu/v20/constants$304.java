@@ -9,29 +9,35 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$304 {
 
-    static final FunctionDescriptor PFNGLGETGRAPHICSRESETSTATUSPROC$FUNC = FunctionDescriptor.of(Constants$root.C_INT$LAYOUT);
-    static final MethodHandle PFNGLGETGRAPHICSRESETSTATUSPROC$MH = RuntimeHelper.downcallHandle(
-        constants$304.PFNGLGETGRAPHICSRESETSTATUSPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLGETNCOMPRESSEDTEXIMAGEPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLPROGRAMUNIFORMMATRIX4X2DVPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
+        Constants$root.C_CHAR$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLGETNCOMPRESSEDTEXIMAGEPROC$MH = RuntimeHelper.downcallHandle(
-        constants$304.PFNGLGETNCOMPRESSEDTEXIMAGEPROC$FUNC
+    static final MethodHandle PFNGLPROGRAMUNIFORMMATRIX4X2DVPROC$MH = RuntimeHelper.downcallHandle(
+        constants$304.PFNGLPROGRAMUNIFORMMATRIX4X2DVPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLGETNTEXIMAGEPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLPROGRAMUNIFORMMATRIX3X4DVPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_CHAR$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLGETNTEXIMAGEPROC$MH = RuntimeHelper.downcallHandle(
-        constants$304.PFNGLGETNTEXIMAGEPROC$FUNC
+    static final MethodHandle PFNGLPROGRAMUNIFORMMATRIX3X4DVPROC$MH = RuntimeHelper.downcallHandle(
+        constants$304.PFNGLPROGRAMUNIFORMMATRIX3X4DVPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLPROGRAMUNIFORMMATRIX4X3DVPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_CHAR$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle PFNGLPROGRAMUNIFORMMATRIX4X3DVPROC$MH = RuntimeHelper.downcallHandle(
+        constants$304.PFNGLPROGRAMUNIFORMMATRIX4X3DVPROC$FUNC
     );
 }
 

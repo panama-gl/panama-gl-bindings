@@ -9,37 +9,28 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$274 {
 
-    static final FunctionDescriptor PFNGLCOPYNAMEDBUFFERSUBDATAPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLDRAWTRANSFORMFEEDBACKSTREAMPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_LONG_LONG$LAYOUT,
-        Constants$root.C_LONG_LONG$LAYOUT,
-        Constants$root.C_LONG_LONG$LAYOUT
+        Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLCOPYNAMEDBUFFERSUBDATAPROC$MH = RuntimeHelper.downcallHandle(
-        constants$274.PFNGLCOPYNAMEDBUFFERSUBDATAPROC$FUNC
+    static final MethodHandle PFNGLDRAWTRANSFORMFEEDBACKSTREAMPROC$MH = RuntimeHelper.downcallHandle(
+        constants$274.PFNGLDRAWTRANSFORMFEEDBACKSTREAMPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLCLEARNAMEDBUFFERDATAPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLBEGINQUERYINDEXEDPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
+        Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLCLEARNAMEDBUFFERDATAPROC$MH = RuntimeHelper.downcallHandle(
-        constants$274.PFNGLCLEARNAMEDBUFFERDATAPROC$FUNC
+    static final MethodHandle PFNGLBEGINQUERYINDEXEDPROC$MH = RuntimeHelper.downcallHandle(
+        constants$274.PFNGLBEGINQUERYINDEXEDPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLCLEARNAMEDBUFFERSUBDATAPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLENDQUERYINDEXEDPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_LONG_LONG$LAYOUT,
-        Constants$root.C_LONG_LONG$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
+        Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLCLEARNAMEDBUFFERSUBDATAPROC$MH = RuntimeHelper.downcallHandle(
-        constants$274.PFNGLCLEARNAMEDBUFFERSUBDATAPROC$FUNC
+    static final MethodHandle PFNGLENDQUERYINDEXEDPROC$MH = RuntimeHelper.downcallHandle(
+        constants$274.PFNGLENDQUERYINDEXEDPROC$FUNC
     );
 }
 

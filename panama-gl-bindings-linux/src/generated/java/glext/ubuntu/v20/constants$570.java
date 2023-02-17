@@ -9,30 +9,45 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$570 {
 
-    static final FunctionDescriptor PFNGLNAMEDBUFFERDATAEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_LONG_LONG$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_INT$LAYOUT
+    static final FunctionDescriptor PFNGLVERTEX4BOESPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_CHAR$LAYOUT,
+        Constants$root.C_CHAR$LAYOUT,
+        Constants$root.C_CHAR$LAYOUT,
+        Constants$root.C_CHAR$LAYOUT
     );
-    static final MethodHandle PFNGLNAMEDBUFFERDATAEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$570.PFNGLNAMEDBUFFERDATAEXTPROC$FUNC
+    static final MethodHandle PFNGLVERTEX4BOESPROC$MH = RuntimeHelper.downcallHandle(
+        constants$570.PFNGLVERTEX4BOESPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLNAMEDBUFFERSUBDATAEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_LONG_LONG$LAYOUT,
-        Constants$root.C_LONG_LONG$LAYOUT,
+    static final FunctionDescriptor PFNGLVERTEX4BVOESPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLNAMEDBUFFERSUBDATAEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$570.PFNGLNAMEDBUFFERSUBDATAEXTPROC$FUNC
+    static final MethodHandle PFNGLVERTEX4BVOESPROC$MH = RuntimeHelper.downcallHandle(
+        constants$570.PFNGLVERTEX4BVOESPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLMAPNAMEDBUFFEREXTPROC$FUNC = FunctionDescriptor.of(Constants$root.C_POINTER$LAYOUT,
+    static final FunctionDescriptor glMultiTexCoord1bOES$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT
+        Constants$root.C_CHAR$LAYOUT
     );
-    static final MethodHandle PFNGLMAPNAMEDBUFFEREXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$570.PFNGLMAPNAMEDBUFFEREXTPROC$FUNC
+    static final MethodHandle glMultiTexCoord1bOES$MH = RuntimeHelper.downcallHandle(
+        "glMultiTexCoord1bOES",
+        constants$570.glMultiTexCoord1bOES$FUNC
+    );
+    static final FunctionDescriptor glMultiTexCoord1bvOES$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glMultiTexCoord1bvOES$MH = RuntimeHelper.downcallHandle(
+        "glMultiTexCoord1bvOES",
+        constants$570.glMultiTexCoord1bvOES$FUNC
+    );
+    static final FunctionDescriptor glMultiTexCoord2bOES$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_CHAR$LAYOUT,
+        Constants$root.C_CHAR$LAYOUT
+    );
+    static final MethodHandle glMultiTexCoord2bOES$MH = RuntimeHelper.downcallHandle(
+        "glMultiTexCoord2bOES",
+        constants$570.glMultiTexCoord2bOES$FUNC
     );
 }
 

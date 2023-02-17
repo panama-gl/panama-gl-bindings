@@ -9,37 +9,55 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$947 {
 
-    static final FunctionDescriptor glutCreateMenu$callback$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT
-    );
-    static final MethodHandle glutCreateMenu$callback$MH = RuntimeHelper.downcallHandle(
-        constants$947.glutCreateMenu$callback$FUNC
-    );
-    static final FunctionDescriptor glutCreateMenu$FUNC = FunctionDescriptor.of(Constants$root.C_INT$LAYOUT,
+    static final FunctionDescriptor glGetSemaphoreParameterui64vEXT$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle glutCreateMenu$MH = RuntimeHelper.downcallHandle(
-        "glutCreateMenu",
-        constants$947.glutCreateMenu$FUNC
+    static final MethodHandle glGetSemaphoreParameterui64vEXT$MH = RuntimeHelper.downcallHandle(
+        "glGetSemaphoreParameterui64vEXT",
+        constants$947.glGetSemaphoreParameterui64vEXT$FUNC
     );
-    static final FunctionDescriptor glutDestroyMenu$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glWaitSemaphoreEXT$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glWaitSemaphoreEXT$MH = RuntimeHelper.downcallHandle(
+        "glWaitSemaphoreEXT",
+        constants$947.glWaitSemaphoreEXT$FUNC
+    );
+    static final FunctionDescriptor glSignalSemaphoreEXT$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glSignalSemaphoreEXT$MH = RuntimeHelper.downcallHandle(
+        "glSignalSemaphoreEXT",
+        constants$947.glSignalSemaphoreEXT$FUNC
+    );
+    static final FunctionDescriptor PFNGLIMPORTSEMAPHOREFDEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle glutDestroyMenu$MH = RuntimeHelper.downcallHandle(
-        "glutDestroyMenu",
-        constants$947.glutDestroyMenu$FUNC
+    static final MethodHandle PFNGLIMPORTSEMAPHOREFDEXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$947.PFNGLIMPORTSEMAPHOREFDEXTPROC$FUNC
     );
-    static final FunctionDescriptor glutGetMenu$FUNC = FunctionDescriptor.of(Constants$root.C_INT$LAYOUT);
-    static final MethodHandle glutGetMenu$MH = RuntimeHelper.downcallHandle(
-        "glutGetMenu",
-        constants$947.glutGetMenu$FUNC
-    );
-    static final FunctionDescriptor glutSetMenu$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glImportSemaphoreFdEXT$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle glutSetMenu$MH = RuntimeHelper.downcallHandle(
-        "glutSetMenu",
-        constants$947.glutSetMenu$FUNC
+    static final MethodHandle glImportSemaphoreFdEXT$MH = RuntimeHelper.downcallHandle(
+        "glImportSemaphoreFdEXT",
+        constants$947.glImportSemaphoreFdEXT$FUNC
     );
 }
 

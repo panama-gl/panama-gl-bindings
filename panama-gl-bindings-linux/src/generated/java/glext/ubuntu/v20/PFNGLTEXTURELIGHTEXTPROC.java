@@ -11,13 +11,13 @@ public interface PFNGLTEXTURELIGHTEXTPROC {
 
     void apply(int pname);
     static MemorySegment allocate(PFNGLTEXTURELIGHTEXTPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLTEXTURELIGHTEXTPROC.class, fi, constants$640.PFNGLTEXTURELIGHTEXTPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLTEXTURELIGHTEXTPROC.class, fi, constants$913.PFNGLTEXTURELIGHTEXTPROC$FUNC, session);
     }
     static PFNGLTEXTURELIGHTEXTPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _pname) -> {
             try {
-                constants$640.PFNGLTEXTURELIGHTEXTPROC$MH.invokeExact((Addressable)symbol, _pname);
+                constants$913.PFNGLTEXTURELIGHTEXTPROC$MH.invokeExact((Addressable)symbol, _pname);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

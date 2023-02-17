@@ -11,13 +11,13 @@ public interface PFNGLFRAMEBUFFERTEXTUREFACEEXTPROC {
 
     void apply(int target, int attachment, int texture, int level, int face);
     static MemorySegment allocate(PFNGLFRAMEBUFFERTEXTUREFACEEXTPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLFRAMEBUFFERTEXTUREFACEEXTPROC.class, fi, constants$753.PFNGLFRAMEBUFFERTEXTUREFACEEXTPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLFRAMEBUFFERTEXTUREFACEEXTPROC.class, fi, constants$1083.PFNGLFRAMEBUFFERTEXTUREFACEEXTPROC$FUNC, session);
     }
     static PFNGLFRAMEBUFFERTEXTUREFACEEXTPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _target, int _attachment, int _texture, int _level, int _face) -> {
             try {
-                constants$753.PFNGLFRAMEBUFFERTEXTUREFACEEXTPROC$MH.invokeExact((Addressable)symbol, _target, _attachment, _texture, _level, _face);
+                constants$1083.PFNGLFRAMEBUFFERTEXTUREFACEEXTPROC$MH.invokeExact((Addressable)symbol, _target, _attachment, _texture, _level, _face);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

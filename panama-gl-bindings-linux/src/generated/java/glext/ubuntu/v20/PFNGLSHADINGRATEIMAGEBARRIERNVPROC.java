@@ -11,13 +11,13 @@ public interface PFNGLSHADINGRATEIMAGEBARRIERNVPROC {
 
     void apply(byte synchronize);
     static MemorySegment allocate(PFNGLSHADINGRATEIMAGEBARRIERNVPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLSHADINGRATEIMAGEBARRIERNVPROC.class, fi, constants$825.PFNGLSHADINGRATEIMAGEBARRIERNVPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLSHADINGRATEIMAGEBARRIERNVPROC.class, fi, constants$1190.PFNGLSHADINGRATEIMAGEBARRIERNVPROC$FUNC, session);
     }
     static PFNGLSHADINGRATEIMAGEBARRIERNVPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (byte _synchronize) -> {
             try {
-                constants$825.PFNGLSHADINGRATEIMAGEBARRIERNVPROC$MH.invokeExact((Addressable)symbol, _synchronize);
+                constants$1190.PFNGLSHADINGRATEIMAGEBARRIERNVPROC$MH.invokeExact((Addressable)symbol, _synchronize);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

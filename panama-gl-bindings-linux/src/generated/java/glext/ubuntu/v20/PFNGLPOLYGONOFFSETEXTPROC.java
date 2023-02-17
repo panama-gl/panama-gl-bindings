@@ -11,13 +11,13 @@ public interface PFNGLPOLYGONOFFSETEXTPROC {
 
     void apply(float factor, float bias);
     static MemorySegment allocate(PFNGLPOLYGONOFFSETEXTPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLPOLYGONOFFSETEXTPROC.class, fi, constants$653.PFNGLPOLYGONOFFSETEXTPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLPOLYGONOFFSETEXTPROC.class, fi, constants$933.PFNGLPOLYGONOFFSETEXTPROC$FUNC, session);
     }
     static PFNGLPOLYGONOFFSETEXTPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (float _factor, float _bias) -> {
             try {
-                constants$653.PFNGLPOLYGONOFFSETEXTPROC$MH.invokeExact((Addressable)symbol, _factor, _bias);
+                constants$933.PFNGLPOLYGONOFFSETEXTPROC$MH.invokeExact((Addressable)symbol, _factor, _bias);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

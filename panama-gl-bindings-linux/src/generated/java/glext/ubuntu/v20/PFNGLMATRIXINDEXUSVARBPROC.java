@@ -11,13 +11,13 @@ public interface PFNGLMATRIXINDEXUSVARBPROC {
 
     void apply(int size, java.lang.foreign.MemoryAddress indices);
     static MemorySegment allocate(PFNGLMATRIXINDEXUSVARBPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLMATRIXINDEXUSVARBPROC.class, fi, constants$344.PFNGLMATRIXINDEXUSVARBPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLMATRIXINDEXUSVARBPROC.class, fi, constants$470.PFNGLMATRIXINDEXUSVARBPROC$FUNC, session);
     }
     static PFNGLMATRIXINDEXUSVARBPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _size, java.lang.foreign.MemoryAddress _indices) -> {
             try {
-                constants$344.PFNGLMATRIXINDEXUSVARBPROC$MH.invokeExact((Addressable)symbol, _size, (java.lang.foreign.Addressable)_indices);
+                constants$470.PFNGLMATRIXINDEXUSVARBPROC$MH.invokeExact((Addressable)symbol, _size, (java.lang.foreign.Addressable)_indices);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

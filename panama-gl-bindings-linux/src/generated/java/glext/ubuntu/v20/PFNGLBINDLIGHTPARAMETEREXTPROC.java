@@ -11,13 +11,13 @@ public interface PFNGLBINDLIGHTPARAMETEREXTPROC {
 
     int apply(int light, int value);
     static MemorySegment allocate(PFNGLBINDLIGHTPARAMETEREXTPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLBINDLIGHTPARAMETEREXTPROC.class, fi, constants$690.PFNGLBINDLIGHTPARAMETEREXTPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLBINDLIGHTPARAMETEREXTPROC.class, fi, constants$985.PFNGLBINDLIGHTPARAMETEREXTPROC$FUNC, session);
     }
     static PFNGLBINDLIGHTPARAMETEREXTPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _light, int _value) -> {
             try {
-                return (int)constants$690.PFNGLBINDLIGHTPARAMETEREXTPROC$MH.invokeExact((Addressable)symbol, _light, _value);
+                return (int)constants$985.PFNGLBINDLIGHTPARAMETEREXTPROC$MH.invokeExact((Addressable)symbol, _light, _value);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

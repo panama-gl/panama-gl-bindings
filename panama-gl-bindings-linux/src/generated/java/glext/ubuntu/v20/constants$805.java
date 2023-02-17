@@ -9,36 +9,37 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$805 {
 
-    static final FunctionDescriptor PFNGLGETPROGRAMRESOURCEFVNVPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle PFNGLGETPROGRAMRESOURCEFVNVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$805.PFNGLGETPROGRAMRESOURCEFVNVPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLPATHCOLORGENNVPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLGETMULTITEXPARAMETERIIVEXTPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLPATHCOLORGENNVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$805.PFNGLPATHCOLORGENNVPROC$FUNC
+    static final MethodHandle PFNGLGETMULTITEXPARAMETERIIVEXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$805.PFNGLGETMULTITEXPARAMETERIIVEXTPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLPATHTEXGENNVPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLGETMULTITEXPARAMETERIUIVEXTPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLPATHTEXGENNVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$805.PFNGLPATHTEXGENNVPROC$FUNC
+    static final MethodHandle PFNGLGETMULTITEXPARAMETERIUIVEXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$805.PFNGLGETMULTITEXPARAMETERIUIVEXTPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLPROGRAMUNIFORM1UIEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle PFNGLPROGRAMUNIFORM1UIEXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$805.PFNGLPROGRAMUNIFORM1UIEXTPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLPROGRAMUNIFORM2UIEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
 }
 

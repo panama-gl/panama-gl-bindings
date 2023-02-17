@@ -9,29 +9,62 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$162 {
 
-    static final FunctionDescriptor PFNGLUNIFORM3UIVPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glUniform3i$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle glUniform3i$MH = RuntimeHelper.downcallHandle(
+        "glUniform3i",
+        constants$162.glUniform3i$FUNC
+    );
+    static final FunctionDescriptor glUniform4i$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle glUniform4i$MH = RuntimeHelper.downcallHandle(
+        "glUniform4i",
+        constants$162.glUniform4i$FUNC
+    );
+    static final FunctionDescriptor glUniform1fv$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLUNIFORM3UIVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$162.PFNGLUNIFORM3UIVPROC$FUNC
+    static final MethodHandle glUniform1fv$MH = RuntimeHelper.downcallHandle(
+        "glUniform1fv",
+        constants$162.glUniform1fv$FUNC
     );
-    static final FunctionDescriptor PFNGLUNIFORM4UIVPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glUniform2fv$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLUNIFORM4UIVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$162.PFNGLUNIFORM4UIVPROC$FUNC
+    static final MethodHandle glUniform2fv$MH = RuntimeHelper.downcallHandle(
+        "glUniform2fv",
+        constants$162.glUniform2fv$FUNC
     );
-    static final FunctionDescriptor PFNGLTEXPARAMETERIIVPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glUniform3fv$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLTEXPARAMETERIIVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$162.PFNGLTEXPARAMETERIIVPROC$FUNC
+    static final MethodHandle glUniform3fv$MH = RuntimeHelper.downcallHandle(
+        "glUniform3fv",
+        constants$162.glUniform3fv$FUNC
+    );
+    static final FunctionDescriptor glUniform4fv$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glUniform4fv$MH = RuntimeHelper.downcallHandle(
+        "glUniform4fv",
+        constants$162.glUniform4fv$FUNC
     );
 }
 

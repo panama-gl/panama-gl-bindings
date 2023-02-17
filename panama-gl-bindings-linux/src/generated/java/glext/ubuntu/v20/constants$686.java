@@ -9,30 +9,44 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$686 {
 
-    static final FunctionDescriptor PFNGLGENSYMBOLSEXTPROC$FUNC = FunctionDescriptor.of(Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT
-    );
-    static final MethodHandle PFNGLGENSYMBOLSEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$686.PFNGLGENSYMBOLSEXTPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLSETINVARIANTEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
+    static final FunctionDescriptor PFNGLGETTEXBUMPPARAMETERFVATIPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLSETINVARIANTEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$686.PFNGLSETINVARIANTEXTPROC$FUNC
+    static final MethodHandle PFNGLGETTEXBUMPPARAMETERFVATIPROC$MH = RuntimeHelper.downcallHandle(
+        constants$686.PFNGLGETTEXBUMPPARAMETERFVATIPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLSETLOCALCONSTANTEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
+    static final FunctionDescriptor glTexBumpParameterivATI$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLSETLOCALCONSTANTEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$686.PFNGLSETLOCALCONSTANTEXTPROC$FUNC
+    static final MethodHandle glTexBumpParameterivATI$MH = RuntimeHelper.downcallHandle(
+        "glTexBumpParameterivATI",
+        constants$686.glTexBumpParameterivATI$FUNC
+    );
+    static final FunctionDescriptor glTexBumpParameterfvATI$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glTexBumpParameterfvATI$MH = RuntimeHelper.downcallHandle(
+        "glTexBumpParameterfvATI",
+        constants$686.glTexBumpParameterfvATI$FUNC
+    );
+    static final FunctionDescriptor glGetTexBumpParameterivATI$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glGetTexBumpParameterivATI$MH = RuntimeHelper.downcallHandle(
+        "glGetTexBumpParameterivATI",
+        constants$686.glGetTexBumpParameterivATI$FUNC
+    );
+    static final FunctionDescriptor glGetTexBumpParameterfvATI$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glGetTexBumpParameterfvATI$MH = RuntimeHelper.downcallHandle(
+        "glGetTexBumpParameterfvATI",
+        constants$686.glGetTexBumpParameterfvATI$FUNC
     );
 }
 

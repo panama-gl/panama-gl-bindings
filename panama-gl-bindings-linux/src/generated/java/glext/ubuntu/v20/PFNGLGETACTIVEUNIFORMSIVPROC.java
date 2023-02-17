@@ -11,13 +11,13 @@ public interface PFNGLGETACTIVEUNIFORMSIVPROC {
 
     void apply(int program, int uniformCount, java.lang.foreign.MemoryAddress uniformIndices, int pname, java.lang.foreign.MemoryAddress params);
     static MemorySegment allocate(PFNGLGETACTIVEUNIFORMSIVPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLGETACTIVEUNIFORMSIVPROC.class, fi, constants$176.PFNGLGETACTIVEUNIFORMSIVPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLGETACTIVEUNIFORMSIVPROC.class, fi, constants$217.PFNGLGETACTIVEUNIFORMSIVPROC$FUNC, session);
     }
     static PFNGLGETACTIVEUNIFORMSIVPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _program, int _uniformCount, java.lang.foreign.MemoryAddress _uniformIndices, int _pname, java.lang.foreign.MemoryAddress _params) -> {
             try {
-                constants$176.PFNGLGETACTIVEUNIFORMSIVPROC$MH.invokeExact((Addressable)symbol, _program, _uniformCount, (java.lang.foreign.Addressable)_uniformIndices, _pname, (java.lang.foreign.Addressable)_params);
+                constants$217.PFNGLGETACTIVEUNIFORMSIVPROC$MH.invokeExact((Addressable)symbol, _program, _uniformCount, (java.lang.foreign.Addressable)_uniformIndices, _pname, (java.lang.foreign.Addressable)_params);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

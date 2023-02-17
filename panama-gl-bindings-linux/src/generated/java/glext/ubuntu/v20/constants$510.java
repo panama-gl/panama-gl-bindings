@@ -9,32 +9,28 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$510 {
 
-    static final FunctionDescriptor PFNGLVERTEXSTREAM4FATIPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT
-    );
-    static final MethodHandle PFNGLVERTEXSTREAM4FATIPROC$MH = RuntimeHelper.downcallHandle(
-        constants$510.PFNGLVERTEXSTREAM4FATIPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLVERTEXSTREAM4FVATIPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLDELETENAMEDSTRINGARBPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLVERTEXSTREAM4FVATIPROC$MH = RuntimeHelper.downcallHandle(
-        constants$510.PFNGLVERTEXSTREAM4FVATIPROC$FUNC
+    static final MethodHandle PFNGLDELETENAMEDSTRINGARBPROC$MH = RuntimeHelper.downcallHandle(
+        constants$510.PFNGLDELETENAMEDSTRINGARBPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLVERTEXSTREAM4DATIPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLCOMPILESHADERINCLUDEARBPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_DOUBLE$LAYOUT,
-        Constants$root.C_DOUBLE$LAYOUT,
-        Constants$root.C_DOUBLE$LAYOUT,
-        Constants$root.C_DOUBLE$LAYOUT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLVERTEXSTREAM4DATIPROC$MH = RuntimeHelper.downcallHandle(
-        constants$510.PFNGLVERTEXSTREAM4DATIPROC$FUNC
+    static final MethodHandle PFNGLCOMPILESHADERINCLUDEARBPROC$MH = RuntimeHelper.downcallHandle(
+        constants$510.PFNGLCOMPILESHADERINCLUDEARBPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLISNAMEDSTRINGARBPROC$FUNC = FunctionDescriptor.of(Constants$root.C_CHAR$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle PFNGLISNAMEDSTRINGARBPROC$MH = RuntimeHelper.downcallHandle(
+        constants$510.PFNGLISNAMEDSTRINGARBPROC$FUNC
     );
 }
 

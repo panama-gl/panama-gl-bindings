@@ -11,13 +11,13 @@ public interface PFNGLFRAMEBUFFERPARAMETERIMESAPROC {
 
     void apply(int target, int pname, int param);
     static MemorySegment allocate(PFNGLFRAMEBUFFERPARAMETERIMESAPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLFRAMEBUFFERPARAMETERIMESAPROC.class, fi, constants$711.PFNGLFRAMEBUFFERPARAMETERIMESAPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLFRAMEBUFFERPARAMETERIMESAPROC.class, fi, constants$1020.PFNGLFRAMEBUFFERPARAMETERIMESAPROC$FUNC, session);
     }
     static PFNGLFRAMEBUFFERPARAMETERIMESAPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _target, int _pname, int _param) -> {
             try {
-                constants$711.PFNGLFRAMEBUFFERPARAMETERIMESAPROC$MH.invokeExact((Addressable)symbol, _target, _pname, _param);
+                constants$1020.PFNGLFRAMEBUFFERPARAMETERIMESAPROC$MH.invokeExact((Addressable)symbol, _target, _pname, _param);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

@@ -9,30 +9,57 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$681 {
 
-    static final FunctionDescriptor PFNGLVERTEXATTRIBL4DVEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle PFNGLVERTEXATTRIBL4DVEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$681.PFNGLVERTEXATTRIBL4DVEXTPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLVERTEXATTRIBLPOINTEREXTPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLMAPVERTEXATTRIB1FAPPLEPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLVERTEXATTRIBLPOINTEREXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$681.PFNGLVERTEXATTRIBLPOINTEREXTPROC$FUNC
+    static final MethodHandle PFNGLMAPVERTEXATTRIB1FAPPLEPROC$MH = RuntimeHelper.downcallHandle(
+        constants$681.PFNGLMAPVERTEXATTRIB1FAPPLEPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLGETVERTEXATTRIBLDVEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLMAPVERTEXATTRIB2DAPPLEPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_DOUBLE$LAYOUT,
+        Constants$root.C_DOUBLE$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_DOUBLE$LAYOUT,
+        Constants$root.C_DOUBLE$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLGETVERTEXATTRIBLDVEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$681.PFNGLGETVERTEXATTRIBLDVEXTPROC$FUNC
+    static final MethodHandle PFNGLMAPVERTEXATTRIB2DAPPLEPROC$MH = RuntimeHelper.downcallHandle(
+        constants$681.PFNGLMAPVERTEXATTRIB2DAPPLEPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLMAPVERTEXATTRIB2FAPPLEPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle PFNGLMAPVERTEXATTRIB2FAPPLEPROC$MH = RuntimeHelper.downcallHandle(
+        constants$681.PFNGLMAPVERTEXATTRIB2FAPPLEPROC$FUNC
+    );
+    static final FunctionDescriptor glEnableVertexAttribAPPLE$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle glEnableVertexAttribAPPLE$MH = RuntimeHelper.downcallHandle(
+        "glEnableVertexAttribAPPLE",
+        constants$681.glEnableVertexAttribAPPLE$FUNC
     );
 }
 

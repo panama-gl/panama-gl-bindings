@@ -11,13 +11,13 @@ public interface PFNGLFRAMEZOOMSGIXPROC {
 
     void apply(int factor);
     static MemorySegment allocate(PFNGLFRAMEZOOMSGIXPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLFRAMEZOOMSGIXPROC.class, fi, constants$899.PFNGLFRAMEZOOMSGIXPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLFRAMEZOOMSGIXPROC.class, fi, constants$1301.PFNGLFRAMEZOOMSGIXPROC$FUNC, session);
     }
     static PFNGLFRAMEZOOMSGIXPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _factor) -> {
             try {
-                constants$899.PFNGLFRAMEZOOMSGIXPROC$MH.invokeExact((Addressable)symbol, _factor);
+                constants$1302.PFNGLFRAMEZOOMSGIXPROC$MH.invokeExact((Addressable)symbol, _factor);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

@@ -9,30 +9,34 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$191 {
 
-    static final FunctionDescriptor PFNGLVERTEXATTRIBDIVISORPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT
-    );
-    static final MethodHandle PFNGLVERTEXATTRIBDIVISORPROC$MH = RuntimeHelper.downcallHandle(
-        constants$191.PFNGLVERTEXATTRIBDIVISORPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLVERTEXATTRIBP1UIPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLGETTEXPARAMETERIUIVPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_CHAR$LAYOUT,
-        Constants$root.C_INT$LAYOUT
-    );
-    static final MethodHandle PFNGLVERTEXATTRIBP1UIPROC$MH = RuntimeHelper.downcallHandle(
-        constants$191.PFNGLVERTEXATTRIBP1UIPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLVERTEXATTRIBP1UIVPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_CHAR$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLVERTEXATTRIBP1UIVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$191.PFNGLVERTEXATTRIBP1UIVPROC$FUNC
+    static final MethodHandle PFNGLGETTEXPARAMETERIUIVPROC$MH = RuntimeHelper.downcallHandle(
+        constants$191.PFNGLGETTEXPARAMETERIUIVPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLCLEARBUFFERIVPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle PFNGLCLEARBUFFERIVPROC$MH = RuntimeHelper.downcallHandle(
+        constants$191.PFNGLCLEARBUFFERIVPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLCLEARBUFFERUIVPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle PFNGLCLEARBUFFERUIVPROC$MH = RuntimeHelper.downcallHandle(
+        constants$191.PFNGLCLEARBUFFERUIVPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLCLEARBUFFERFVPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
 }
 

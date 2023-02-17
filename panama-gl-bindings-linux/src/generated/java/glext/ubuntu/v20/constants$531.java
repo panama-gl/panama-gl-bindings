@@ -9,33 +9,32 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$531 {
 
-    static final FunctionDescriptor PFNGLTANGENTPOINTEREXTPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glGetBufferPointervARB$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLTANGENTPOINTEREXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$531.PFNGLTANGENTPOINTEREXTPROC$FUNC
+    static final MethodHandle glGetBufferPointervARB$MH = RuntimeHelper.downcallHandle(
+        "glGetBufferPointervARB",
+        constants$531.glGetBufferPointervARB$FUNC
     );
-    static final FunctionDescriptor PFNGLBINORMALPOINTEREXTPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLVERTEXATTRIB1DARBPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
+        Constants$root.C_DOUBLE$LAYOUT
+    );
+    static final MethodHandle PFNGLVERTEXATTRIB1DARBPROC$MH = RuntimeHelper.downcallHandle(
+        constants$531.PFNGLVERTEXATTRIB1DARBPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLVERTEXATTRIB1DVARBPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLBINORMALPOINTEREXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$531.PFNGLBINORMALPOINTEREXTPROC$FUNC
+    static final MethodHandle PFNGLVERTEXATTRIB1DVARBPROC$MH = RuntimeHelper.downcallHandle(
+        constants$531.PFNGLVERTEXATTRIB1DVARBPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLCOPYTEXIMAGE1DEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLVERTEXATTRIB1FARBPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT
-    );
-    static final MethodHandle PFNGLCOPYTEXIMAGE1DEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$531.PFNGLCOPYTEXIMAGE1DEXTPROC$FUNC
+        Constants$root.C_FLOAT$LAYOUT
     );
 }
 

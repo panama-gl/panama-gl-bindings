@@ -11,13 +11,13 @@ public interface PFNGLBINDIMAGETEXTUREEXTPROC {
 
     void apply(int index, int texture, int level, byte layered, int layer, int access, int format);
     static MemorySegment allocate(PFNGLBINDIMAGETEXTUREEXTPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLBINDIMAGETEXTUREEXTPROC.class, fi, constants$665.PFNGLBINDIMAGETEXTUREEXTPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLBINDIMAGETEXTUREEXTPROC.class, fi, constants$951.PFNGLBINDIMAGETEXTUREEXTPROC$FUNC, session);
     }
     static PFNGLBINDIMAGETEXTUREEXTPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _index, int _texture, int _level, byte _layered, int _layer, int _access, int _format) -> {
             try {
-                constants$665.PFNGLBINDIMAGETEXTUREEXTPROC$MH.invokeExact((Addressable)symbol, _index, _texture, _level, _layered, _layer, _access, _format);
+                constants$951.PFNGLBINDIMAGETEXTUREEXTPROC$MH.invokeExact((Addressable)symbol, _index, _texture, _level, _layered, _layer, _access, _format);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

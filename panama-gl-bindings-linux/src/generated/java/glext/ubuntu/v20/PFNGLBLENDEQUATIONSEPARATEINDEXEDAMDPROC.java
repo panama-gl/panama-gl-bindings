@@ -11,13 +11,13 @@ public interface PFNGLBLENDEQUATIONSEPARATEINDEXEDAMDPROC {
 
     void apply(int buf, int modeRGB, int modeAlpha);
     static MemorySegment allocate(PFNGLBLENDEQUATIONSEPARATEINDEXEDAMDPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLBLENDEQUATIONSEPARATEINDEXEDAMDPROC.class, fi, constants$453.PFNGLBLENDEQUATIONSEPARATEINDEXEDAMDPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLBLENDEQUATIONSEPARATEINDEXEDAMDPROC.class, fi, constants$633.PFNGLBLENDEQUATIONSEPARATEINDEXEDAMDPROC$FUNC, session);
     }
     static PFNGLBLENDEQUATIONSEPARATEINDEXEDAMDPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _buf, int _modeRGB, int _modeAlpha) -> {
             try {
-                constants$453.PFNGLBLENDEQUATIONSEPARATEINDEXEDAMDPROC$MH.invokeExact((Addressable)symbol, _buf, _modeRGB, _modeAlpha);
+                constants$633.PFNGLBLENDEQUATIONSEPARATEINDEXEDAMDPROC$MH.invokeExact((Addressable)symbol, _buf, _modeRGB, _modeAlpha);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

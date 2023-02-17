@@ -9,31 +9,34 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$635 {
 
-    static final FunctionDescriptor PFNGLUNIFORM3UIVEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLFRAMEBUFFERSAMPLEPOSITIONSFVAMDPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle PFNGLUNIFORM3UIVEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$635.PFNGLUNIFORM3UIVEXTPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLUNIFORM4UIVEXTPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLUNIFORM4UIVEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$635.PFNGLUNIFORM4UIVEXTPROC$FUNC
+    static final MethodHandle PFNGLFRAMEBUFFERSAMPLEPOSITIONSFVAMDPROC$MH = RuntimeHelper.downcallHandle(
+        constants$635.PFNGLFRAMEBUFFERSAMPLEPOSITIONSFVAMDPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLGETHISTOGRAMEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLNAMEDFRAMEBUFFERSAMPLEPOSITIONSFVAMDPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_CHAR$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLGETHISTOGRAMEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$635.PFNGLGETHISTOGRAMEXTPROC$FUNC
+    static final MethodHandle PFNGLNAMEDFRAMEBUFFERSAMPLEPOSITIONSFVAMDPROC$MH = RuntimeHelper.downcallHandle(
+        constants$635.PFNGLNAMEDFRAMEBUFFERSAMPLEPOSITIONSFVAMDPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLGETFRAMEBUFFERPARAMETERFVAMDPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle PFNGLGETFRAMEBUFFERPARAMETERFVAMDPROC$MH = RuntimeHelper.downcallHandle(
+        constants$635.PFNGLGETFRAMEBUFFERPARAMETERFVAMDPROC$FUNC
     );
 }
 

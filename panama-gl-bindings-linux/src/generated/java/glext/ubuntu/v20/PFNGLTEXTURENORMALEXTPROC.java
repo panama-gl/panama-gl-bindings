@@ -11,13 +11,13 @@ public interface PFNGLTEXTURENORMALEXTPROC {
 
     void apply(int mode);
     static MemorySegment allocate(PFNGLTEXTURENORMALEXTPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLTEXTURENORMALEXTPROC.class, fi, constants$672.PFNGLTEXTURENORMALEXTPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLTEXTURENORMALEXTPROC.class, fi, constants$962.PFNGLTEXTURENORMALEXTPROC$FUNC, session);
     }
     static PFNGLTEXTURENORMALEXTPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _mode) -> {
             try {
-                constants$672.PFNGLTEXTURENORMALEXTPROC$MH.invokeExact((Addressable)symbol, _mode);
+                constants$962.PFNGLTEXTURENORMALEXTPROC$MH.invokeExact((Addressable)symbol, _mode);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

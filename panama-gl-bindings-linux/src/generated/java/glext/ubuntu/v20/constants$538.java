@@ -9,33 +9,33 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$538 {
 
-    static final FunctionDescriptor PFNGLMATRIXROTATEDEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLVERTEXATTRIB4NSVARBPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_DOUBLE$LAYOUT,
-        Constants$root.C_DOUBLE$LAYOUT,
-        Constants$root.C_DOUBLE$LAYOUT,
-        Constants$root.C_DOUBLE$LAYOUT
+        Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLMATRIXROTATEDEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$538.PFNGLMATRIXROTATEDEXTPROC$FUNC
+    static final MethodHandle PFNGLVERTEXATTRIB4NSVARBPROC$MH = RuntimeHelper.downcallHandle(
+        constants$538.PFNGLVERTEXATTRIB4NSVARBPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLMATRIXSCALEFEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLVERTEXATTRIB4NUBARBPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT
+        Constants$root.C_CHAR$LAYOUT,
+        Constants$root.C_CHAR$LAYOUT,
+        Constants$root.C_CHAR$LAYOUT,
+        Constants$root.C_CHAR$LAYOUT
     );
-    static final MethodHandle PFNGLMATRIXSCALEFEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$538.PFNGLMATRIXSCALEFEXTPROC$FUNC
+    static final MethodHandle PFNGLVERTEXATTRIB4NUBARBPROC$MH = RuntimeHelper.downcallHandle(
+        constants$538.PFNGLVERTEXATTRIB4NUBARBPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLMATRIXSCALEDEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLVERTEXATTRIB4NUBVARBPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_DOUBLE$LAYOUT,
-        Constants$root.C_DOUBLE$LAYOUT,
-        Constants$root.C_DOUBLE$LAYOUT
+        Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLMATRIXSCALEDEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$538.PFNGLMATRIXSCALEDEXTPROC$FUNC
+    static final MethodHandle PFNGLVERTEXATTRIB4NUBVARBPROC$MH = RuntimeHelper.downcallHandle(
+        constants$538.PFNGLVERTEXATTRIB4NUBVARBPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLVERTEXATTRIB4NUIVARBPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
 }
 

@@ -9,24 +9,73 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$358 {
 
-    static final FunctionDescriptor PFNGLGETHANDLEARBPROC$FUNC = FunctionDescriptor.of(Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT
-    );
-    static final MethodHandle PFNGLGETHANDLEARBPROC$MH = RuntimeHelper.downcallHandle(
-        constants$358.PFNGLGETHANDLEARBPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLDETACHOBJECTARBPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glClearTexImage$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLDETACHOBJECTARBPROC$MH = RuntimeHelper.downcallHandle(
-        constants$358.PFNGLDETACHOBJECTARBPROC$FUNC
+    static final MethodHandle glClearTexImage$MH = RuntimeHelper.downcallHandle(
+        "glClearTexImage",
+        constants$358.glClearTexImage$FUNC
     );
-    static final FunctionDescriptor PFNGLCREATESHADEROBJECTARBPROC$FUNC = FunctionDescriptor.of(Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT
+    static final FunctionDescriptor glClearTexSubImage$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLCREATESHADEROBJECTARBPROC$MH = RuntimeHelper.downcallHandle(
-        constants$358.PFNGLCREATESHADEROBJECTARBPROC$FUNC
+    static final MethodHandle glClearTexSubImage$MH = RuntimeHelper.downcallHandle(
+        "glClearTexSubImage",
+        constants$358.glClearTexSubImage$FUNC
+    );
+    static final FunctionDescriptor glBindBuffersBase$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glBindBuffersBase$MH = RuntimeHelper.downcallHandle(
+        "glBindBuffersBase",
+        constants$358.glBindBuffersBase$FUNC
+    );
+    static final FunctionDescriptor glBindBuffersRange$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glBindBuffersRange$MH = RuntimeHelper.downcallHandle(
+        "glBindBuffersRange",
+        constants$358.glBindBuffersRange$FUNC
+    );
+    static final FunctionDescriptor glBindTextures$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glBindTextures$MH = RuntimeHelper.downcallHandle(
+        "glBindTextures",
+        constants$358.glBindTextures$FUNC
+    );
+    static final FunctionDescriptor glBindSamplers$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glBindSamplers$MH = RuntimeHelper.downcallHandle(
+        "glBindSamplers",
+        constants$358.glBindSamplers$FUNC
     );
 }
 

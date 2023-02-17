@@ -11,13 +11,13 @@ public interface PFNGLMULTIMODEDRAWARRAYSIBMPROC {
 
     void apply(java.lang.foreign.MemoryAddress mode, java.lang.foreign.MemoryAddress first, java.lang.foreign.MemoryAddress count, int primcount, int modestride);
     static MemorySegment allocate(PFNGLMULTIMODEDRAWARRAYSIBMPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLMULTIMODEDRAWARRAYSIBMPROC.class, fi, constants$701.PFNGLMULTIMODEDRAWARRAYSIBMPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLMULTIMODEDRAWARRAYSIBMPROC.class, fi, constants$1005.PFNGLMULTIMODEDRAWARRAYSIBMPROC$FUNC, session);
     }
     static PFNGLMULTIMODEDRAWARRAYSIBMPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (java.lang.foreign.MemoryAddress _mode, java.lang.foreign.MemoryAddress _first, java.lang.foreign.MemoryAddress _count, int _primcount, int _modestride) -> {
             try {
-                constants$701.PFNGLMULTIMODEDRAWARRAYSIBMPROC$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)_mode, (java.lang.foreign.Addressable)_first, (java.lang.foreign.Addressable)_count, _primcount, _modestride);
+                constants$1005.PFNGLMULTIMODEDRAWARRAYSIBMPROC$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)_mode, (java.lang.foreign.Addressable)_first, (java.lang.foreign.Addressable)_count, _primcount, _modestride);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

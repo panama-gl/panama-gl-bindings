@@ -9,26 +9,28 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$124 {
 
-    static final FunctionDescriptor PFNGLISSHADERPROC$FUNC = FunctionDescriptor.of(Constants$root.C_CHAR$LAYOUT,
+    static final FunctionDescriptor PFNGLBLENDEQUATIONSEPARATEPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLISSHADERPROC$MH = RuntimeHelper.downcallHandle(
-        constants$124.PFNGLISSHADERPROC$FUNC
+    static final MethodHandle PFNGLBLENDEQUATIONSEPARATEPROC$MH = RuntimeHelper.downcallHandle(
+        constants$124.PFNGLBLENDEQUATIONSEPARATEPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLLINKPROGRAMPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT
-    );
-    static final MethodHandle PFNGLLINKPROGRAMPROC$MH = RuntimeHelper.downcallHandle(
-        constants$124.PFNGLLINKPROGRAMPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLSHADERSOURCEPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLDRAWBUFFERSPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLSHADERSOURCEPROC$MH = RuntimeHelper.downcallHandle(
-        constants$124.PFNGLSHADERSOURCEPROC$FUNC
+    static final MethodHandle PFNGLDRAWBUFFERSPROC$MH = RuntimeHelper.downcallHandle(
+        constants$124.PFNGLDRAWBUFFERSPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLSTENCILOPSEPARATEPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle PFNGLSTENCILOPSEPARATEPROC$MH = RuntimeHelper.downcallHandle(
+        constants$124.PFNGLSTENCILOPSEPARATEPROC$FUNC
     );
 }
 

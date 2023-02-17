@@ -9,31 +9,26 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$271 {
 
-    static final FunctionDescriptor PFNGLTRANSFORMFEEDBACKBUFFERBASEPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
+    static final FunctionDescriptor PFNGLPATCHPARAMETERIPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLTRANSFORMFEEDBACKBUFFERBASEPROC$MH = RuntimeHelper.downcallHandle(
-        constants$271.PFNGLTRANSFORMFEEDBACKBUFFERBASEPROC$FUNC
+    static final MethodHandle PFNGLPATCHPARAMETERIPROC$MH = RuntimeHelper.downcallHandle(
+        constants$271.PFNGLPATCHPARAMETERIPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLTRANSFORMFEEDBACKBUFFERRANGEPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_LONG_LONG$LAYOUT,
-        Constants$root.C_LONG_LONG$LAYOUT
-    );
-    static final MethodHandle PFNGLTRANSFORMFEEDBACKBUFFERRANGEPROC$MH = RuntimeHelper.downcallHandle(
-        constants$271.PFNGLTRANSFORMFEEDBACKBUFFERRANGEPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLGETTRANSFORMFEEDBACKIVPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
+    static final FunctionDescriptor PFNGLPATCHPARAMETERFVPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLGETTRANSFORMFEEDBACKIVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$271.PFNGLGETTRANSFORMFEEDBACKIVPROC$FUNC
+    static final MethodHandle PFNGLPATCHPARAMETERFVPROC$MH = RuntimeHelper.downcallHandle(
+        constants$271.PFNGLPATCHPARAMETERFVPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLBINDTRANSFORMFEEDBACKPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle PFNGLBINDTRANSFORMFEEDBACKPROC$MH = RuntimeHelper.downcallHandle(
+        constants$271.PFNGLBINDTRANSFORMFEEDBACKPROC$FUNC
     );
 }
 

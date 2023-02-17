@@ -9,28 +9,95 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$846 {
 
-    static final FunctionDescriptor PFNGLVERTEXFORMATNVPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glTextureImage1DEXT$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glTextureImage1DEXT$MH = RuntimeHelper.downcallHandle(
+        "glTextureImage1DEXT",
+        constants$846.glTextureImage1DEXT$FUNC
+    );
+    static final FunctionDescriptor glTextureImage2DEXT$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glTextureImage2DEXT$MH = RuntimeHelper.downcallHandle(
+        "glTextureImage2DEXT",
+        constants$846.glTextureImage2DEXT$FUNC
+    );
+    static final FunctionDescriptor glTextureSubImage1DEXT$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glTextureSubImage1DEXT$MH = RuntimeHelper.downcallHandle(
+        "glTextureSubImage1DEXT",
+        constants$846.glTextureSubImage1DEXT$FUNC
+    );
+    static final FunctionDescriptor glTextureSubImage2DEXT$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glTextureSubImage2DEXT$MH = RuntimeHelper.downcallHandle(
+        "glTextureSubImage2DEXT",
+        constants$846.glTextureSubImage2DEXT$FUNC
+    );
+    static final FunctionDescriptor glCopyTextureImage1DEXT$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLVERTEXFORMATNVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$846.PFNGLVERTEXFORMATNVPROC$FUNC
+    static final MethodHandle glCopyTextureImage1DEXT$MH = RuntimeHelper.downcallHandle(
+        "glCopyTextureImage1DEXT",
+        constants$846.glCopyTextureImage1DEXT$FUNC
     );
-    static final FunctionDescriptor PFNGLNORMALFORMATNVPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glCopyTextureImage2DEXT$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLNORMALFORMATNVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$846.PFNGLNORMALFORMATNVPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLCOLORFORMATNVPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT
-    );
-    static final MethodHandle PFNGLCOLORFORMATNVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$846.PFNGLCOLORFORMATNVPROC$FUNC
+    static final MethodHandle glCopyTextureImage2DEXT$MH = RuntimeHelper.downcallHandle(
+        "glCopyTextureImage2DEXT",
+        constants$846.glCopyTextureImage2DEXT$FUNC
     );
 }
 

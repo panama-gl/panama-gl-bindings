@@ -9,31 +9,56 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$619 {
 
-    static final FunctionDescriptor PFNGLVERTEXARRAYVERTEXATTRIBLFORMATEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glMapGrid2xOES$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLVERTEXARRAYVERTEXATTRIBLFORMATEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$619.PFNGLVERTEXARRAYVERTEXATTRIBLFORMATEXTPROC$FUNC
+    static final MethodHandle glMapGrid2xOES$MH = RuntimeHelper.downcallHandle(
+        "glMapGrid2xOES",
+        constants$619.glMapGrid2xOES$FUNC
     );
-    static final FunctionDescriptor PFNGLVERTEXARRAYVERTEXATTRIBBINDINGEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glMultTransposeMatrixxOES$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glMultTransposeMatrixxOES$MH = RuntimeHelper.downcallHandle(
+        "glMultTransposeMatrixxOES",
+        constants$619.glMultTransposeMatrixxOES$FUNC
+    );
+    static final FunctionDescriptor glMultiTexCoord1xOES$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle glMultiTexCoord1xOES$MH = RuntimeHelper.downcallHandle(
+        "glMultiTexCoord1xOES",
+        constants$619.glMultiTexCoord1xOES$FUNC
+    );
+    static final FunctionDescriptor glMultiTexCoord1xvOES$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glMultiTexCoord1xvOES$MH = RuntimeHelper.downcallHandle(
+        "glMultiTexCoord1xvOES",
+        constants$619.glMultiTexCoord1xvOES$FUNC
+    );
+    static final FunctionDescriptor glMultiTexCoord2xOES$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLVERTEXARRAYVERTEXATTRIBBINDINGEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$619.PFNGLVERTEXARRAYVERTEXATTRIBBINDINGEXTPROC$FUNC
+    static final MethodHandle glMultiTexCoord2xOES$MH = RuntimeHelper.downcallHandle(
+        "glMultiTexCoord2xOES",
+        constants$619.glMultiTexCoord2xOES$FUNC
     );
-    static final FunctionDescriptor PFNGLVERTEXARRAYVERTEXBINDINGDIVISOREXTPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glMultiTexCoord2xvOES$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT
+        Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLVERTEXARRAYVERTEXBINDINGDIVISOREXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$619.PFNGLVERTEXARRAYVERTEXBINDINGDIVISOREXTPROC$FUNC
+    static final MethodHandle glMultiTexCoord2xvOES$MH = RuntimeHelper.downcallHandle(
+        "glMultiTexCoord2xvOES",
+        constants$619.glMultiTexCoord2xvOES$FUNC
     );
 }
 

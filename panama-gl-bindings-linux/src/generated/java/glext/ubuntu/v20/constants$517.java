@@ -9,28 +9,67 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$517 {
 
-    static final FunctionDescriptor PFNGLGETUNIFORMOFFSETEXTPROC$FUNC = FunctionDescriptor.of(Constants$root.C_LONG_LONG$LAYOUT,
+    static final FunctionDescriptor PFNGLCOMPRESSEDTEXSUBIMAGE1DARBPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT
-    );
-    static final MethodHandle PFNGLGETUNIFORMOFFSETEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$517.PFNGLGETUNIFORMOFFSETEXTPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLBLENDCOLOREXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_FLOAT$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT
-    );
-    static final MethodHandle PFNGLBLENDCOLOREXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$517.PFNGLBLENDCOLOREXTPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLBLENDEQUATIONSEPARATEEXTPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLBLENDEQUATIONSEPARATEEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$517.PFNGLBLENDEQUATIONSEPARATEEXTPROC$FUNC
+    static final MethodHandle PFNGLCOMPRESSEDTEXSUBIMAGE1DARBPROC$MH = RuntimeHelper.downcallHandle(
+        constants$517.PFNGLCOMPRESSEDTEXSUBIMAGE1DARBPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLGETCOMPRESSEDTEXIMAGEARBPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle PFNGLGETCOMPRESSEDTEXIMAGEARBPROC$MH = RuntimeHelper.downcallHandle(
+        constants$517.PFNGLGETCOMPRESSEDTEXIMAGEARBPROC$FUNC
+    );
+    static final FunctionDescriptor glCompressedTexImage3DARB$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glCompressedTexImage3DARB$MH = RuntimeHelper.downcallHandle(
+        "glCompressedTexImage3DARB",
+        constants$517.glCompressedTexImage3DARB$FUNC
+    );
+    static final FunctionDescriptor glCompressedTexImage2DARB$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glCompressedTexImage2DARB$MH = RuntimeHelper.downcallHandle(
+        "glCompressedTexImage2DARB",
+        constants$517.glCompressedTexImage2DARB$FUNC
+    );
+    static final FunctionDescriptor glCompressedTexImage1DARB$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glCompressedTexImage1DARB$MH = RuntimeHelper.downcallHandle(
+        "glCompressedTexImage1DARB",
+        constants$517.glCompressedTexImage1DARB$FUNC
     );
 }
 

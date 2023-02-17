@@ -11,13 +11,13 @@ public interface PFNGLEVALUATEDEPTHVALUESARBPROC {
 
     void apply();
     static MemorySegment allocate(PFNGLEVALUATEDEPTHVALUESARBPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLEVALUATEDEPTHVALUESARBPROC.class, fi, constants$357.PFNGLEVALUATEDEPTHVALUESARBPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLEVALUATEDEPTHVALUESARBPROC.class, fi, constants$488.PFNGLEVALUATEDEPTHVALUESARBPROC$FUNC, session);
     }
     static PFNGLEVALUATEDEPTHVALUESARBPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return () -> {
             try {
-                constants$357.PFNGLEVALUATEDEPTHVALUESARBPROC$MH.invokeExact((Addressable)symbol);
+                constants$489.PFNGLEVALUATEDEPTHVALUESARBPROC$MH.invokeExact((Addressable)symbol);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

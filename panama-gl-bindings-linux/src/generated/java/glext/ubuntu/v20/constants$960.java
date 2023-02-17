@@ -9,33 +9,26 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$960 {
 
-    static final FunctionDescriptor glutButtonBoxFunc$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLGENTEXTURESEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle glutButtonBoxFunc$MH = RuntimeHelper.downcallHandle(
-        "glutButtonBoxFunc",
-        constants$960.glutButtonBoxFunc$FUNC
+    static final MethodHandle PFNGLGENTEXTURESEXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$960.PFNGLGENTEXTURESEXTPROC$FUNC
     );
-    static final FunctionDescriptor glutDialsFunc$callback$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
+    static final FunctionDescriptor PFNGLISTEXTUREEXTPROC$FUNC = FunctionDescriptor.of(Constants$root.C_CHAR$LAYOUT,
         Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle glutDialsFunc$callback$MH = RuntimeHelper.downcallHandle(
-        constants$960.glutDialsFunc$callback$FUNC
+    static final MethodHandle PFNGLISTEXTUREEXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$960.PFNGLISTEXTUREEXTPROC$FUNC
     );
-    static final FunctionDescriptor glutDialsFunc$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLPRIORITIZETEXTURESEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle glutDialsFunc$MH = RuntimeHelper.downcallHandle(
-        "glutDialsFunc",
-        constants$960.glutDialsFunc$FUNC
-    );
-    static final FunctionDescriptor glutTabletMotionFunc$callback$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT
-    );
-    static final MethodHandle glutTabletMotionFunc$callback$MH = RuntimeHelper.downcallHandle(
-        constants$960.glutTabletMotionFunc$callback$FUNC
+    static final MethodHandle PFNGLPRIORITIZETEXTURESEXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$960.PFNGLPRIORITIZETEXTURESEXTPROC$FUNC
     );
 }
 

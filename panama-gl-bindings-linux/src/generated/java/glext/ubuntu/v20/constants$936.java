@@ -9,81 +9,30 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$936 {
 
-    static final FunctionDescriptor gluNurbsSurface$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT
-    );
-    static final MethodHandle gluNurbsSurface$MH = RuntimeHelper.downcallHandle(
-        "gluNurbsSurface",
-        constants$936.gluNurbsSurface$FUNC
-    );
-    static final FunctionDescriptor gluOrtho2D$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_DOUBLE$LAYOUT,
-        Constants$root.C_DOUBLE$LAYOUT,
-        Constants$root.C_DOUBLE$LAYOUT,
-        Constants$root.C_DOUBLE$LAYOUT
-    );
-    static final MethodHandle gluOrtho2D$MH = RuntimeHelper.downcallHandle(
-        "gluOrtho2D",
-        constants$936.gluOrtho2D$FUNC
-    );
-    static final FunctionDescriptor gluPartialDisk$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_DOUBLE$LAYOUT,
-        Constants$root.C_DOUBLE$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_DOUBLE$LAYOUT,
-        Constants$root.C_DOUBLE$LAYOUT
-    );
-    static final MethodHandle gluPartialDisk$MH = RuntimeHelper.downcallHandle(
-        "gluPartialDisk",
-        constants$936.gluPartialDisk$FUNC
-    );
-    static final FunctionDescriptor gluPerspective$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_DOUBLE$LAYOUT,
-        Constants$root.C_DOUBLE$LAYOUT,
-        Constants$root.C_DOUBLE$LAYOUT,
-        Constants$root.C_DOUBLE$LAYOUT
-    );
-    static final MethodHandle gluPerspective$MH = RuntimeHelper.downcallHandle(
-        "gluPerspective",
-        constants$936.gluPerspective$FUNC
-    );
-    static final FunctionDescriptor gluPickMatrix$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_DOUBLE$LAYOUT,
-        Constants$root.C_DOUBLE$LAYOUT,
-        Constants$root.C_DOUBLE$LAYOUT,
-        Constants$root.C_DOUBLE$LAYOUT,
+    static final FunctionDescriptor PFNGLSECONDARYCOLOR3BVEXTPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle gluPickMatrix$MH = RuntimeHelper.downcallHandle(
-        "gluPickMatrix",
-        constants$936.gluPickMatrix$FUNC
+    static final MethodHandle PFNGLSECONDARYCOLOR3BVEXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$936.PFNGLSECONDARYCOLOR3BVEXTPROC$FUNC
     );
-    static final FunctionDescriptor gluProject$FUNC = FunctionDescriptor.of(Constants$root.C_INT$LAYOUT,
+    static final FunctionDescriptor PFNGLSECONDARYCOLOR3DEXTPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_DOUBLE$LAYOUT,
         Constants$root.C_DOUBLE$LAYOUT,
-        Constants$root.C_DOUBLE$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_DOUBLE$LAYOUT
+    );
+    static final MethodHandle PFNGLSECONDARYCOLOR3DEXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$936.PFNGLSECONDARYCOLOR3DEXTPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLSECONDARYCOLOR3DVEXTPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle gluProject$MH = RuntimeHelper.downcallHandle(
-        "gluProject",
-        constants$936.gluProject$FUNC
+    static final MethodHandle PFNGLSECONDARYCOLOR3DVEXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$936.PFNGLSECONDARYCOLOR3DVEXTPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLSECONDARYCOLOR3FEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT
     );
 }
 

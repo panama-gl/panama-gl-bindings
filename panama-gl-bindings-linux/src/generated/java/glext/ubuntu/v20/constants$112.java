@@ -9,26 +9,50 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$112 {
 
-    static final FunctionDescriptor PFNGLMAPBUFFERPROC$FUNC = FunctionDescriptor.of(Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT
-    );
-    static final MethodHandle PFNGLMAPBUFFERPROC$MH = RuntimeHelper.downcallHandle(
-        constants$112.PFNGLMAPBUFFERPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLUNMAPBUFFERPROC$FUNC = FunctionDescriptor.of(Constants$root.C_CHAR$LAYOUT,
-        Constants$root.C_INT$LAYOUT
-    );
-    static final MethodHandle PFNGLUNMAPBUFFERPROC$MH = RuntimeHelper.downcallHandle(
-        constants$112.PFNGLUNMAPBUFFERPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLGETBUFFERPARAMETERIVPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
+    static final FunctionDescriptor glWindowPos2dv$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLGETBUFFERPARAMETERIVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$112.PFNGLGETBUFFERPARAMETERIVPROC$FUNC
+    static final MethodHandle glWindowPos2dv$MH = RuntimeHelper.downcallHandle(
+        "glWindowPos2dv",
+        constants$112.glWindowPos2dv$FUNC
+    );
+    static final FunctionDescriptor glWindowPos2f$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT
+    );
+    static final MethodHandle glWindowPos2f$MH = RuntimeHelper.downcallHandle(
+        "glWindowPos2f",
+        constants$112.glWindowPos2f$FUNC
+    );
+    static final FunctionDescriptor glWindowPos2fv$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glWindowPos2fv$MH = RuntimeHelper.downcallHandle(
+        "glWindowPos2fv",
+        constants$112.glWindowPos2fv$FUNC
+    );
+    static final FunctionDescriptor glWindowPos2i$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle glWindowPos2i$MH = RuntimeHelper.downcallHandle(
+        "glWindowPos2i",
+        constants$112.glWindowPos2i$FUNC
+    );
+    static final FunctionDescriptor glWindowPos2iv$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glWindowPos2iv$MH = RuntimeHelper.downcallHandle(
+        "glWindowPos2iv",
+        constants$112.glWindowPos2iv$FUNC
+    );
+    static final FunctionDescriptor glWindowPos2s$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_SHORT$LAYOUT,
+        Constants$root.C_SHORT$LAYOUT
+    );
+    static final MethodHandle glWindowPos2s$MH = RuntimeHelper.downcallHandle(
+        "glWindowPos2s",
+        constants$112.glWindowPos2s$FUNC
     );
 }
 

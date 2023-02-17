@@ -9,33 +9,29 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$758 {
 
-    static final FunctionDescriptor PFNGLPROGRAMLOCALPARAMETERI4INVPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLMATRIXLOADDEXTPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle PFNGLMATRIXLOADDEXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$758.PFNGLMATRIXLOADDEXTPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLMATRIXMULTFEXTPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle PFNGLMATRIXMULTFEXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$758.PFNGLMATRIXMULTFEXTPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLMATRIXMULTDEXTPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle PFNGLMATRIXMULTDEXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$758.PFNGLMATRIXMULTDEXTPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLMATRIXLOADIDENTITYEXTPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT
-    );
-    static final MethodHandle PFNGLPROGRAMLOCALPARAMETERI4INVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$758.PFNGLPROGRAMLOCALPARAMETERI4INVPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLPROGRAMLOCALPARAMETERI4IVNVPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle PFNGLPROGRAMLOCALPARAMETERI4IVNVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$758.PFNGLPROGRAMLOCALPARAMETERI4IVNVPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLPROGRAMLOCALPARAMETERSI4IVNVPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle PFNGLPROGRAMLOCALPARAMETERSI4IVNVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$758.PFNGLPROGRAMLOCALPARAMETERSI4IVNVPROC$FUNC
     );
 }
 

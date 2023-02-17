@@ -11,13 +11,13 @@ public interface PFNGLGETPERFMONITORCOUNTERDATAAMDPROC {
 
     void apply(int monitor, int pname, int dataSize, java.lang.foreign.MemoryAddress data, java.lang.foreign.MemoryAddress bytesWritten);
     static MemorySegment allocate(PFNGLGETPERFMONITORCOUNTERDATAAMDPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLGETPERFMONITORCOUNTERDATAAMDPROC.class, fi, constants$472.PFNGLGETPERFMONITORCOUNTERDATAAMDPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLGETPERFMONITORCOUNTERDATAAMDPROC.class, fi, constants$660.PFNGLGETPERFMONITORCOUNTERDATAAMDPROC$FUNC, session);
     }
     static PFNGLGETPERFMONITORCOUNTERDATAAMDPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _monitor, int _pname, int _dataSize, java.lang.foreign.MemoryAddress _data, java.lang.foreign.MemoryAddress _bytesWritten) -> {
             try {
-                constants$472.PFNGLGETPERFMONITORCOUNTERDATAAMDPROC$MH.invokeExact((Addressable)symbol, _monitor, _pname, _dataSize, (java.lang.foreign.Addressable)_data, (java.lang.foreign.Addressable)_bytesWritten);
+                constants$661.PFNGLGETPERFMONITORCOUNTERDATAAMDPROC$MH.invokeExact((Addressable)symbol, _monitor, _pname, _dataSize, (java.lang.foreign.Addressable)_data, (java.lang.foreign.Addressable)_bytesWritten);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

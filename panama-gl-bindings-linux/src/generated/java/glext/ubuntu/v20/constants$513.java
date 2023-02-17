@@ -9,28 +9,43 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$513 {
 
-    static final FunctionDescriptor PFNGLNORMALSTREAM3IVATIPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLNAMEDBUFFERPAGECOMMITMENTEXTPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
+        Constants$root.C_LONG_LONG$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT,
+        Constants$root.C_CHAR$LAYOUT
     );
-    static final MethodHandle PFNGLNORMALSTREAM3IVATIPROC$MH = RuntimeHelper.downcallHandle(
-        constants$513.PFNGLNORMALSTREAM3IVATIPROC$FUNC
+    static final MethodHandle PFNGLNAMEDBUFFERPAGECOMMITMENTEXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$513.PFNGLNAMEDBUFFERPAGECOMMITMENTEXTPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLNORMALSTREAM3FATIPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLNAMEDBUFFERPAGECOMMITMENTARBPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT
+        Constants$root.C_LONG_LONG$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT,
+        Constants$root.C_CHAR$LAYOUT
     );
-    static final MethodHandle PFNGLNORMALSTREAM3FATIPROC$MH = RuntimeHelper.downcallHandle(
-        constants$513.PFNGLNORMALSTREAM3FATIPROC$FUNC
+    static final MethodHandle PFNGLNAMEDBUFFERPAGECOMMITMENTARBPROC$MH = RuntimeHelper.downcallHandle(
+        constants$513.PFNGLNAMEDBUFFERPAGECOMMITMENTARBPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLNORMALSTREAM3FVATIPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glBufferPageCommitmentARB$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
+        Constants$root.C_LONG_LONG$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT,
+        Constants$root.C_CHAR$LAYOUT
     );
-    static final MethodHandle PFNGLNORMALSTREAM3FVATIPROC$MH = RuntimeHelper.downcallHandle(
-        constants$513.PFNGLNORMALSTREAM3FVATIPROC$FUNC
+    static final MethodHandle glBufferPageCommitmentARB$MH = RuntimeHelper.downcallHandle(
+        "glBufferPageCommitmentARB",
+        constants$513.glBufferPageCommitmentARB$FUNC
+    );
+    static final FunctionDescriptor glNamedBufferPageCommitmentEXT$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT,
+        Constants$root.C_CHAR$LAYOUT
+    );
+    static final MethodHandle glNamedBufferPageCommitmentEXT$MH = RuntimeHelper.downcallHandle(
+        "glNamedBufferPageCommitmentEXT",
+        constants$513.glNamedBufferPageCommitmentEXT$FUNC
     );
 }
 

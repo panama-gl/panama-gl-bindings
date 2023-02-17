@@ -9,34 +9,54 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$726 {
 
-    static final FunctionDescriptor PFNGLMULTIDRAWARRAYSINDIRECTBINDLESSCOUNTNVPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glNormalStream3fvATI$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glNormalStream3fvATI$MH = RuntimeHelper.downcallHandle(
+        "glNormalStream3fvATI",
+        constants$726.glNormalStream3fvATI$FUNC
+    );
+    static final FunctionDescriptor glNormalStream3dATI$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
+        Constants$root.C_DOUBLE$LAYOUT,
+        Constants$root.C_DOUBLE$LAYOUT,
+        Constants$root.C_DOUBLE$LAYOUT
+    );
+    static final MethodHandle glNormalStream3dATI$MH = RuntimeHelper.downcallHandle(
+        "glNormalStream3dATI",
+        constants$726.glNormalStream3dATI$FUNC
+    );
+    static final FunctionDescriptor glNormalStream3dvATI$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glNormalStream3dvATI$MH = RuntimeHelper.downcallHandle(
+        "glNormalStream3dvATI",
+        constants$726.glNormalStream3dvATI$FUNC
+    );
+    static final FunctionDescriptor glClientActiveVertexStreamATI$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle glClientActiveVertexStreamATI$MH = RuntimeHelper.downcallHandle(
+        "glClientActiveVertexStreamATI",
+        constants$726.glClientActiveVertexStreamATI$FUNC
+    );
+    static final FunctionDescriptor glVertexBlendEnviATI$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLMULTIDRAWARRAYSINDIRECTBINDLESSCOUNTNVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$726.PFNGLMULTIDRAWARRAYSINDIRECTBINDLESSCOUNTNVPROC$FUNC
+    static final MethodHandle glVertexBlendEnviATI$MH = RuntimeHelper.downcallHandle(
+        "glVertexBlendEnviATI",
+        constants$726.glVertexBlendEnviATI$FUNC
     );
-    static final FunctionDescriptor PFNGLMULTIDRAWELEMENTSINDIRECTBINDLESSCOUNTNVPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glVertexBlendEnvfATI$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT
+        Constants$root.C_FLOAT$LAYOUT
     );
-    static final MethodHandle PFNGLMULTIDRAWELEMENTSINDIRECTBINDLESSCOUNTNVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$726.PFNGLMULTIDRAWELEMENTSINDIRECTBINDLESSCOUNTNVPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLGETTEXTUREHANDLENVPROC$FUNC = FunctionDescriptor.of(Constants$root.C_LONG_LONG$LAYOUT,
-        Constants$root.C_INT$LAYOUT
-    );
-    static final MethodHandle PFNGLGETTEXTUREHANDLENVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$726.PFNGLGETTEXTUREHANDLENVPROC$FUNC
+    static final MethodHandle glVertexBlendEnvfATI$MH = RuntimeHelper.downcallHandle(
+        "glVertexBlendEnvfATI",
+        constants$726.glVertexBlendEnvfATI$FUNC
     );
 }
 

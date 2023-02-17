@@ -9,26 +9,61 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$158 {
 
-    static final FunctionDescriptor PFNGLVERTEXATTRIBI4SVPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glGetAttribLocation$FUNC = FunctionDescriptor.of(Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLVERTEXATTRIBI4SVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$158.PFNGLVERTEXATTRIBI4SVPROC$FUNC
+    static final MethodHandle glGetAttribLocation$MH = RuntimeHelper.downcallHandle(
+        "glGetAttribLocation",
+        constants$158.glGetAttribLocation$FUNC
     );
-    static final FunctionDescriptor PFNGLVERTEXATTRIBI4UBVPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glGetProgramiv$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLVERTEXATTRIBI4UBVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$158.PFNGLVERTEXATTRIBI4UBVPROC$FUNC
+    static final MethodHandle glGetProgramiv$MH = RuntimeHelper.downcallHandle(
+        "glGetProgramiv",
+        constants$158.glGetProgramiv$FUNC
     );
-    static final FunctionDescriptor PFNGLVERTEXATTRIBI4USVPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glGetProgramInfoLog$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glGetProgramInfoLog$MH = RuntimeHelper.downcallHandle(
+        "glGetProgramInfoLog",
+        constants$158.glGetProgramInfoLog$FUNC
+    );
+    static final FunctionDescriptor glGetShaderiv$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLVERTEXATTRIBI4USVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$158.PFNGLVERTEXATTRIBI4USVPROC$FUNC
+    static final MethodHandle glGetShaderiv$MH = RuntimeHelper.downcallHandle(
+        "glGetShaderiv",
+        constants$158.glGetShaderiv$FUNC
+    );
+    static final FunctionDescriptor glGetShaderInfoLog$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glGetShaderInfoLog$MH = RuntimeHelper.downcallHandle(
+        "glGetShaderInfoLog",
+        constants$158.glGetShaderInfoLog$FUNC
+    );
+    static final FunctionDescriptor glGetShaderSource$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glGetShaderSource$MH = RuntimeHelper.downcallHandle(
+        "glGetShaderSource",
+        constants$158.glGetShaderSource$FUNC
     );
 }
 

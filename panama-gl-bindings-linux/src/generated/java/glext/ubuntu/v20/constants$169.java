@@ -9,31 +9,59 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$169 {
 
-    static final FunctionDescriptor PFNGLCHECKFRAMEBUFFERSTATUSPROC$FUNC = FunctionDescriptor.of(Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT
+    static final FunctionDescriptor glVertexAttrib4f$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT
     );
-    static final MethodHandle PFNGLCHECKFRAMEBUFFERSTATUSPROC$MH = RuntimeHelper.downcallHandle(
-        constants$169.PFNGLCHECKFRAMEBUFFERSTATUSPROC$FUNC
+    static final MethodHandle glVertexAttrib4f$MH = RuntimeHelper.downcallHandle(
+        "glVertexAttrib4f",
+        constants$169.glVertexAttrib4f$FUNC
     );
-    static final FunctionDescriptor PFNGLFRAMEBUFFERTEXTURE1DPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glVertexAttrib4fv$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT
+        Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLFRAMEBUFFERTEXTURE1DPROC$MH = RuntimeHelper.downcallHandle(
-        constants$169.PFNGLFRAMEBUFFERTEXTURE1DPROC$FUNC
+    static final MethodHandle glVertexAttrib4fv$MH = RuntimeHelper.downcallHandle(
+        "glVertexAttrib4fv",
+        constants$169.glVertexAttrib4fv$FUNC
     );
-    static final FunctionDescriptor PFNGLFRAMEBUFFERTEXTURE2DPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glVertexAttrib4iv$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT
+        Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLFRAMEBUFFERTEXTURE2DPROC$MH = RuntimeHelper.downcallHandle(
-        constants$169.PFNGLFRAMEBUFFERTEXTURE2DPROC$FUNC
+    static final MethodHandle glVertexAttrib4iv$MH = RuntimeHelper.downcallHandle(
+        "glVertexAttrib4iv",
+        constants$169.glVertexAttrib4iv$FUNC
+    );
+    static final FunctionDescriptor glVertexAttrib4s$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_SHORT$LAYOUT,
+        Constants$root.C_SHORT$LAYOUT,
+        Constants$root.C_SHORT$LAYOUT,
+        Constants$root.C_SHORT$LAYOUT
+    );
+    static final MethodHandle glVertexAttrib4s$MH = RuntimeHelper.downcallHandle(
+        "glVertexAttrib4s",
+        constants$169.glVertexAttrib4s$FUNC
+    );
+    static final FunctionDescriptor glVertexAttrib4sv$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glVertexAttrib4sv$MH = RuntimeHelper.downcallHandle(
+        "glVertexAttrib4sv",
+        constants$169.glVertexAttrib4sv$FUNC
+    );
+    static final FunctionDescriptor glVertexAttrib4ubv$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glVertexAttrib4ubv$MH = RuntimeHelper.downcallHandle(
+        "glVertexAttrib4ubv",
+        constants$169.glVertexAttrib4ubv$FUNC
     );
 }
 

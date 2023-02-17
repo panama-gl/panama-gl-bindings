@@ -11,13 +11,13 @@ public interface PFNGLCREATESHADERPROGRAMEXTPROC {
 
     int apply(int type, java.lang.foreign.MemoryAddress string);
     static MemorySegment allocate(PFNGLCREATESHADERPROGRAMEXTPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLCREATESHADERPROGRAMEXTPROC.class, fi, constants$664.PFNGLCREATESHADERPROGRAMEXTPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLCREATESHADERPROGRAMEXTPROC.class, fi, constants$949.PFNGLCREATESHADERPROGRAMEXTPROC$FUNC, session);
     }
     static PFNGLCREATESHADERPROGRAMEXTPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _type, java.lang.foreign.MemoryAddress _string) -> {
             try {
-                return (int)constants$664.PFNGLCREATESHADERPROGRAMEXTPROC$MH.invokeExact((Addressable)symbol, _type, (java.lang.foreign.Addressable)_string);
+                return (int)constants$949.PFNGLCREATESHADERPROGRAMEXTPROC$MH.invokeExact((Addressable)symbol, _type, (java.lang.foreign.Addressable)_string);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

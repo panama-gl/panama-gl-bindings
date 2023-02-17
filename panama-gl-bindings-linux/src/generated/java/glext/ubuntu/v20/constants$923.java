@@ -9,30 +9,82 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$923 {
 
-    static final FunctionDescriptor PFNGLTEXCOORD4FCOLOR4FNORMAL3FVERTEX4FVSUNPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle PFNGLTEXCOORD4FCOLOR4FNORMAL3FVERTEX4FVSUNPROC$MH = RuntimeHelper.downcallHandle(
-        constants$923.PFNGLTEXCOORD4FCOLOR4FNORMAL3FVERTEX4FVSUNPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLREPLACEMENTCODEUIVERTEX3FSUNPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glTextureStorageMem2DMultisampleEXT$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_CHAR$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT
     );
-    static final MethodHandle PFNGLREPLACEMENTCODEUIVERTEX3FSUNPROC$MH = RuntimeHelper.downcallHandle(
-        constants$923.PFNGLREPLACEMENTCODEUIVERTEX3FSUNPROC$FUNC
+    static final MethodHandle glTextureStorageMem2DMultisampleEXT$MH = RuntimeHelper.downcallHandle(
+        "glTextureStorageMem2DMultisampleEXT",
+        constants$923.glTextureStorageMem2DMultisampleEXT$FUNC
     );
-    static final FunctionDescriptor PFNGLREPLACEMENTCODEUIVERTEX3FVSUNPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
+    static final FunctionDescriptor glTextureStorageMem3DEXT$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT
     );
-    static final MethodHandle PFNGLREPLACEMENTCODEUIVERTEX3FVSUNPROC$MH = RuntimeHelper.downcallHandle(
-        constants$923.PFNGLREPLACEMENTCODEUIVERTEX3FVSUNPROC$FUNC
+    static final MethodHandle glTextureStorageMem3DEXT$MH = RuntimeHelper.downcallHandle(
+        "glTextureStorageMem3DEXT",
+        constants$923.glTextureStorageMem3DEXT$FUNC
+    );
+    static final FunctionDescriptor glTextureStorageMem3DMultisampleEXT$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_CHAR$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT
+    );
+    static final MethodHandle glTextureStorageMem3DMultisampleEXT$MH = RuntimeHelper.downcallHandle(
+        "glTextureStorageMem3DMultisampleEXT",
+        constants$923.glTextureStorageMem3DMultisampleEXT$FUNC
+    );
+    static final FunctionDescriptor glNamedBufferStorageMemEXT$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT
+    );
+    static final MethodHandle glNamedBufferStorageMemEXT$MH = RuntimeHelper.downcallHandle(
+        "glNamedBufferStorageMemEXT",
+        constants$923.glNamedBufferStorageMemEXT$FUNC
+    );
+    static final FunctionDescriptor glTexStorageMem1DEXT$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT
+    );
+    static final MethodHandle glTexStorageMem1DEXT$MH = RuntimeHelper.downcallHandle(
+        "glTexStorageMem1DEXT",
+        constants$923.glTexStorageMem1DEXT$FUNC
+    );
+    static final FunctionDescriptor glTextureStorageMem1DEXT$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT
+    );
+    static final MethodHandle glTextureStorageMem1DEXT$MH = RuntimeHelper.downcallHandle(
+        "glTextureStorageMem1DEXT",
+        constants$923.glTextureStorageMem1DEXT$FUNC
     );
 }
 

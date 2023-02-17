@@ -9,27 +9,63 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$220 {
 
-    static final FunctionDescriptor PFNGLGETSHADERPRECISIONFORMATPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glPrimitiveRestartIndex$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle glPrimitiveRestartIndex$MH = RuntimeHelper.downcallHandle(
+        "glPrimitiveRestartIndex",
+        constants$220.glPrimitiveRestartIndex$FUNC
+    );
+    static final FunctionDescriptor glCopyBufferSubData$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT
+    );
+    static final MethodHandle glCopyBufferSubData$MH = RuntimeHelper.downcallHandle(
+        "glCopyBufferSubData",
+        constants$220.glCopyBufferSubData$FUNC
+    );
+    static final FunctionDescriptor glGetUniformIndices$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLGETSHADERPRECISIONFORMATPROC$MH = RuntimeHelper.downcallHandle(
-        constants$220.PFNGLGETSHADERPRECISIONFORMATPROC$FUNC
+    static final MethodHandle glGetUniformIndices$MH = RuntimeHelper.downcallHandle(
+        "glGetUniformIndices",
+        constants$220.glGetUniformIndices$FUNC
     );
-    static final FunctionDescriptor PFNGLDEPTHRANGEFPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_FLOAT$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT
+    static final FunctionDescriptor glGetActiveUniformsiv$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLDEPTHRANGEFPROC$MH = RuntimeHelper.downcallHandle(
-        constants$220.PFNGLDEPTHRANGEFPROC$FUNC
+    static final MethodHandle glGetActiveUniformsiv$MH = RuntimeHelper.downcallHandle(
+        "glGetActiveUniformsiv",
+        constants$220.glGetActiveUniformsiv$FUNC
     );
-    static final FunctionDescriptor PFNGLCLEARDEPTHFPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_FLOAT$LAYOUT
+    static final FunctionDescriptor glGetActiveUniformName$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLCLEARDEPTHFPROC$MH = RuntimeHelper.downcallHandle(
-        constants$220.PFNGLCLEARDEPTHFPROC$FUNC
+    static final MethodHandle glGetActiveUniformName$MH = RuntimeHelper.downcallHandle(
+        "glGetActiveUniformName",
+        constants$220.glGetActiveUniformName$FUNC
+    );
+    static final FunctionDescriptor glGetUniformBlockIndex$FUNC = FunctionDescriptor.of(Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glGetUniformBlockIndex$MH = RuntimeHelper.downcallHandle(
+        "glGetUniformBlockIndex",
+        constants$220.glGetUniformBlockIndex$FUNC
     );
 }
 

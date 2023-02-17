@@ -11,13 +11,13 @@ public interface PFNGLDRAWELEMENTARRAYAPPLEPROC {
 
     void apply(int mode, int first, int count);
     static MemorySegment allocate(PFNGLDRAWELEMENTARRAYAPPLEPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLDRAWELEMENTARRAYAPPLEPROC.class, fi, constants$475.PFNGLDRAWELEMENTARRAYAPPLEPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLDRAWELEMENTARRAYAPPLEPROC.class, fi, constants$666.PFNGLDRAWELEMENTARRAYAPPLEPROC$FUNC, session);
     }
     static PFNGLDRAWELEMENTARRAYAPPLEPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _mode, int _first, int _count) -> {
             try {
-                constants$475.PFNGLDRAWELEMENTARRAYAPPLEPROC$MH.invokeExact((Addressable)symbol, _mode, _first, _count);
+                constants$666.PFNGLDRAWELEMENTARRAYAPPLEPROC$MH.invokeExact((Addressable)symbol, _mode, _first, _count);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

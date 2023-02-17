@@ -11,13 +11,13 @@ public interface PFNGLARRAYELEMENTEXTPROC {
 
     void apply(int i);
     static MemorySegment allocate(PFNGLARRAYELEMENTEXTPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLARRAYELEMENTEXTPROC.class, fi, constants$675.PFNGLARRAYELEMENTEXTPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLARRAYELEMENTEXTPROC.class, fi, constants$967.PFNGLARRAYELEMENTEXTPROC$FUNC, session);
     }
     static PFNGLARRAYELEMENTEXTPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _i) -> {
             try {
-                constants$675.PFNGLARRAYELEMENTEXTPROC$MH.invokeExact((Addressable)symbol, _i);
+                constants$967.PFNGLARRAYELEMENTEXTPROC$MH.invokeExact((Addressable)symbol, _i);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

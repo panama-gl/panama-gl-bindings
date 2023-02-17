@@ -9,42 +9,30 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$532 {
 
-    static final FunctionDescriptor PFNGLCOPYTEXIMAGE2DEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLVERTEXATTRIB1FARBPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT
+        Constants$root.C_FLOAT$LAYOUT
     );
-    static final MethodHandle PFNGLCOPYTEXIMAGE2DEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$532.PFNGLCOPYTEXIMAGE2DEXTPROC$FUNC
+    static final MethodHandle PFNGLVERTEXATTRIB1FARBPROC$MH = RuntimeHelper.downcallHandle(
+        constants$532.PFNGLVERTEXATTRIB1FARBPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLCOPYTEXSUBIMAGE1DEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLVERTEXATTRIB1FVARBPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT
+        Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLCOPYTEXSUBIMAGE1DEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$532.PFNGLCOPYTEXSUBIMAGE1DEXTPROC$FUNC
+    static final MethodHandle PFNGLVERTEXATTRIB1FVARBPROC$MH = RuntimeHelper.downcallHandle(
+        constants$532.PFNGLVERTEXATTRIB1FVARBPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLCOPYTEXSUBIMAGE2DEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLVERTEXATTRIB1SARBPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT
+        Constants$root.C_SHORT$LAYOUT
     );
-    static final MethodHandle PFNGLCOPYTEXSUBIMAGE2DEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$532.PFNGLCOPYTEXSUBIMAGE2DEXTPROC$FUNC
+    static final MethodHandle PFNGLVERTEXATTRIB1SARBPROC$MH = RuntimeHelper.downcallHandle(
+        constants$532.PFNGLVERTEXATTRIB1SARBPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLVERTEXATTRIB1SVARBPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
 }
 

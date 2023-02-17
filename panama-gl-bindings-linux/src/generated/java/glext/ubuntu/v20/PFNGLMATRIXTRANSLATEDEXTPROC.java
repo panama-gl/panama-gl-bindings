@@ -11,13 +11,13 @@ public interface PFNGLMATRIXTRANSLATEDEXTPROC {
 
     void apply(int mode, double x, double y, double z);
     static MemorySegment allocate(PFNGLMATRIXTRANSLATEDEXTPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLMATRIXTRANSLATEDEXTPROC.class, fi, constants$539.PFNGLMATRIXTRANSLATEDEXTPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLMATRIXTRANSLATEDEXTPROC.class, fi, constants$760.PFNGLMATRIXTRANSLATEDEXTPROC$FUNC, session);
     }
     static PFNGLMATRIXTRANSLATEDEXTPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _mode, double _x, double _y, double _z) -> {
             try {
-                constants$539.PFNGLMATRIXTRANSLATEDEXTPROC$MH.invokeExact((Addressable)symbol, _mode, _x, _y, _z);
+                constants$761.PFNGLMATRIXTRANSLATEDEXTPROC$MH.invokeExact((Addressable)symbol, _mode, _x, _y, _z);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

@@ -11,13 +11,13 @@ public interface PFNGLGETCLIPPLANEXOESPROC {
 
     void apply(int plane, java.lang.foreign.MemoryAddress equation);
     static MemorySegment allocate(PFNGLGETCLIPPLANEXOESPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLGETCLIPPLANEXOESPROC.class, fi, constants$416.PFNGLGETCLIPPLANEXOESPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLGETCLIPPLANEXOESPROC.class, fi, constants$577.PFNGLGETCLIPPLANEXOESPROC$FUNC, session);
     }
     static PFNGLGETCLIPPLANEXOESPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _plane, java.lang.foreign.MemoryAddress _equation) -> {
             try {
-                constants$416.PFNGLGETCLIPPLANEXOESPROC$MH.invokeExact((Addressable)symbol, _plane, (java.lang.foreign.Addressable)_equation);
+                constants$577.PFNGLGETCLIPPLANEXOESPROC$MH.invokeExact((Addressable)symbol, _plane, (java.lang.foreign.Addressable)_equation);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

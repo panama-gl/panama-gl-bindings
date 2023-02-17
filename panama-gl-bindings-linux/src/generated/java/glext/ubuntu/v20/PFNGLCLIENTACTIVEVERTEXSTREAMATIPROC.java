@@ -11,13 +11,13 @@ public interface PFNGLCLIENTACTIVEVERTEXSTREAMATIPROC {
 
     void apply(int stream);
     static MemorySegment allocate(PFNGLCLIENTACTIVEVERTEXSTREAMATIPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLCLIENTACTIVEVERTEXSTREAMATIPROC.class, fi, constants$514.PFNGLCLIENTACTIVEVERTEXSTREAMATIPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLCLIENTACTIVEVERTEXSTREAMATIPROC.class, fi, constants$718.PFNGLCLIENTACTIVEVERTEXSTREAMATIPROC$FUNC, session);
     }
     static PFNGLCLIENTACTIVEVERTEXSTREAMATIPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _stream) -> {
             try {
-                constants$514.PFNGLCLIENTACTIVEVERTEXSTREAMATIPROC$MH.invokeExact((Addressable)symbol, _stream);
+                constants$718.PFNGLCLIENTACTIVEVERTEXSTREAMATIPROC$MH.invokeExact((Addressable)symbol, _stream);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

@@ -11,13 +11,13 @@ public interface PFNGLBEGINQUERYPROC {
 
     void apply(int target, int id);
     static MemorySegment allocate(PFNGLBEGINQUERYPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLBEGINQUERYPROC.class, fi, constants$108.PFNGLBEGINQUERYPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLBEGINQUERYPROC.class, fi, constants$115.PFNGLBEGINQUERYPROC$FUNC, session);
     }
     static PFNGLBEGINQUERYPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _target, int _id) -> {
             try {
-                constants$108.PFNGLBEGINQUERYPROC$MH.invokeExact((Addressable)symbol, _target, _id);
+                constants$115.PFNGLBEGINQUERYPROC$MH.invokeExact((Addressable)symbol, _target, _id);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

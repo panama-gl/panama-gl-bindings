@@ -11,13 +11,13 @@ public interface PFNGLDEFORMATIONMAP3DSGIXPROC {
 
     void apply(int target, double u1, double u2, int ustride, int uorder, double v1, double v2, int vstride, int vorder, double w1, double w2, int wstride, int worder, java.lang.foreign.MemoryAddress points);
     static MemorySegment allocate(PFNGLDEFORMATIONMAP3DSGIXPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLDEFORMATIONMAP3DSGIXPROC.class, fi, constants$904.PFNGLDEFORMATIONMAP3DSGIXPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLDEFORMATIONMAP3DSGIXPROC.class, fi, constants$1309.PFNGLDEFORMATIONMAP3DSGIXPROC$FUNC, session);
     }
     static PFNGLDEFORMATIONMAP3DSGIXPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _target, double _u1, double _u2, int _ustride, int _uorder, double _v1, double _v2, int _vstride, int _vorder, double _w1, double _w2, int _wstride, int _worder, java.lang.foreign.MemoryAddress _points) -> {
             try {
-                constants$904.PFNGLDEFORMATIONMAP3DSGIXPROC$MH.invokeExact((Addressable)symbol, _target, _u1, _u2, _ustride, _uorder, _v1, _v2, _vstride, _vorder, _w1, _w2, _wstride, _worder, (java.lang.foreign.Addressable)_points);
+                constants$1309.PFNGLDEFORMATIONMAP3DSGIXPROC$MH.invokeExact((Addressable)symbol, _target, _u1, _u2, _ustride, _uorder, _v1, _v2, _vstride, _vorder, _w1, _w2, _wstride, _worder, (java.lang.foreign.Addressable)_points);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

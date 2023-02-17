@@ -9,41 +9,30 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$261 {
 
-    static final FunctionDescriptor PFNGLTEXSTORAGE2DMULTISAMPLEPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLBLENDFUNCIPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_CHAR$LAYOUT
+        Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLTEXSTORAGE2DMULTISAMPLEPROC$MH = RuntimeHelper.downcallHandle(
-        constants$261.PFNGLTEXSTORAGE2DMULTISAMPLEPROC$FUNC
+    static final MethodHandle PFNGLBLENDFUNCIPROC$MH = RuntimeHelper.downcallHandle(
+        constants$261.PFNGLBLENDFUNCIPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLTEXSTORAGE3DMULTISAMPLEPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_CHAR$LAYOUT
-    );
-    static final MethodHandle PFNGLTEXSTORAGE3DMULTISAMPLEPROC$MH = RuntimeHelper.downcallHandle(
-        constants$261.PFNGLTEXSTORAGE3DMULTISAMPLEPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLTEXTUREVIEWPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
+    static final FunctionDescriptor PFNGLBLENDFUNCSEPARATEIPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLTEXTUREVIEWPROC$MH = RuntimeHelper.downcallHandle(
-        constants$261.PFNGLTEXTUREVIEWPROC$FUNC
+    static final MethodHandle PFNGLBLENDFUNCSEPARATEIPROC$MH = RuntimeHelper.downcallHandle(
+        constants$261.PFNGLBLENDFUNCSEPARATEIPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLDRAWARRAYSINDIRECTPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle PFNGLDRAWARRAYSINDIRECTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$261.PFNGLDRAWARRAYSINDIRECTPROC$FUNC
     );
 }
 

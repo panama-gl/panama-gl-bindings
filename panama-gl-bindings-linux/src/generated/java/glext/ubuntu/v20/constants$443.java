@@ -9,24 +9,34 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$443 {
 
-    static final FunctionDescriptor PFNGLTEXCOORD1XVOESPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle PFNGLTEXCOORD1XVOESPROC$MH = RuntimeHelper.downcallHandle(
-        constants$443.PFNGLTEXCOORD1XVOESPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLTEXCOORD2XOESPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLGETPROGRAMLOCALPARAMETERDVARBPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT
-    );
-    static final MethodHandle PFNGLTEXCOORD2XOESPROC$MH = RuntimeHelper.downcallHandle(
-        constants$443.PFNGLTEXCOORD2XOESPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLTEXCOORD2XVOESPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLTEXCOORD2XVOESPROC$MH = RuntimeHelper.downcallHandle(
-        constants$443.PFNGLTEXCOORD2XVOESPROC$FUNC
+    static final MethodHandle PFNGLGETPROGRAMLOCALPARAMETERDVARBPROC$MH = RuntimeHelper.downcallHandle(
+        constants$443.PFNGLGETPROGRAMLOCALPARAMETERDVARBPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLGETPROGRAMLOCALPARAMETERFVARBPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle PFNGLGETPROGRAMLOCALPARAMETERFVARBPROC$MH = RuntimeHelper.downcallHandle(
+        constants$443.PFNGLGETPROGRAMLOCALPARAMETERFVARBPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLGETPROGRAMIVARBPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle PFNGLGETPROGRAMIVARBPROC$MH = RuntimeHelper.downcallHandle(
+        constants$443.PFNGLGETPROGRAMIVARBPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLGETPROGRAMSTRINGARBPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
 }
 

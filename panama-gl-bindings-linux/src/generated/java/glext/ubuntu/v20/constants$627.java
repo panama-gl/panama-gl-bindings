@@ -9,26 +9,38 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$627 {
 
-    static final FunctionDescriptor PFNGLGETRENDERBUFFERPARAMETERIVEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
+    static final FunctionDescriptor PFNGLDEPTHRANGEFOESPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT
+    );
+    static final MethodHandle PFNGLDEPTHRANGEFOESPROC$MH = RuntimeHelper.downcallHandle(
+        constants$627.PFNGLDEPTHRANGEFOESPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLFRUSTUMFOESPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT
+    );
+    static final MethodHandle PFNGLFRUSTUMFOESPROC$MH = RuntimeHelper.downcallHandle(
+        constants$627.PFNGLFRUSTUMFOESPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLGETCLIPPLANEFOESPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLGETRENDERBUFFERPARAMETERIVEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$627.PFNGLGETRENDERBUFFERPARAMETERIVEXTPROC$FUNC
+    static final MethodHandle PFNGLGETCLIPPLANEFOESPROC$MH = RuntimeHelper.downcallHandle(
+        constants$627.PFNGLGETCLIPPLANEFOESPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLISFRAMEBUFFEREXTPROC$FUNC = FunctionDescriptor.of(Constants$root.C_CHAR$LAYOUT,
-        Constants$root.C_INT$LAYOUT
-    );
-    static final MethodHandle PFNGLISFRAMEBUFFEREXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$627.PFNGLISFRAMEBUFFEREXTPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLBINDFRAMEBUFFEREXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT
-    );
-    static final MethodHandle PFNGLBINDFRAMEBUFFEREXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$627.PFNGLBINDFRAMEBUFFEREXTPROC$FUNC
+    static final FunctionDescriptor PFNGLORTHOFOESPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT
     );
 }
 

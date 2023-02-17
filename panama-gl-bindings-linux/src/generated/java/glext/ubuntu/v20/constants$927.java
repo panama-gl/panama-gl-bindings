@@ -9,36 +9,43 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$927 {
 
-    static final FunctionDescriptor PFNGLREPLACEMENTCODEUITEXCOORD2FVERTEX3FVSUNPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
+    static final FunctionDescriptor PFNGLSAMPLEPATTERNEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLREPLACEMENTCODEUITEXCOORD2FVERTEX3FVSUNPROC$MH = RuntimeHelper.downcallHandle(
-        constants$927.PFNGLREPLACEMENTCODEUITEXCOORD2FVERTEX3FVSUNPROC$FUNC
+    static final MethodHandle PFNGLSAMPLEPATTERNEXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$927.PFNGLSAMPLEPATTERNEXTPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLREPLACEMENTCODEUITEXCOORD2FNORMAL3FVERTEX3FSUNPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glSampleMaskEXT$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_CHAR$LAYOUT
+    );
+    static final MethodHandle glSampleMaskEXT$MH = RuntimeHelper.downcallHandle(
+        "glSampleMaskEXT",
+        constants$927.glSampleMaskEXT$FUNC
+    );
+    static final FunctionDescriptor glSamplePatternEXT$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle glSamplePatternEXT$MH = RuntimeHelper.downcallHandle(
+        "glSamplePatternEXT",
+        constants$927.glSamplePatternEXT$FUNC
+    );
+    static final FunctionDescriptor PFNGLCOLORTABLEEXTPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT
-    );
-    static final MethodHandle PFNGLREPLACEMENTCODEUITEXCOORD2FNORMAL3FVERTEX3FSUNPROC$MH = RuntimeHelper.downcallHandle(
-        constants$927.PFNGLREPLACEMENTCODEUITEXCOORD2FNORMAL3FVERTEX3FSUNPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLREPLACEMENTCODEUITEXCOORD2FNORMAL3FVERTEX3FVSUNPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLREPLACEMENTCODEUITEXCOORD2FNORMAL3FVERTEX3FVSUNPROC$MH = RuntimeHelper.downcallHandle(
-        constants$927.PFNGLREPLACEMENTCODEUITEXCOORD2FNORMAL3FVERTEX3FVSUNPROC$FUNC
+    static final MethodHandle PFNGLCOLORTABLEEXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$927.PFNGLCOLORTABLEEXTPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLGETCOLORTABLEEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
 }
 

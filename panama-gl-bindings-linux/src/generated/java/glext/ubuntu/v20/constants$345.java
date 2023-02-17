@@ -9,28 +9,34 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$345 {
 
-    static final FunctionDescriptor PFNGLMATRIXINDEXUIVARBPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLDEBUGMESSAGECALLBACKPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle PFNGLDEBUGMESSAGECALLBACKPROC$MH = RuntimeHelper.downcallHandle(
+        constants$345.PFNGLDEBUGMESSAGECALLBACKPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLGETDEBUGMESSAGELOGPROC$FUNC = FunctionDescriptor.of(Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle PFNGLGETDEBUGMESSAGELOGPROC$MH = RuntimeHelper.downcallHandle(
+        constants$345.PFNGLGETDEBUGMESSAGELOGPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLPUSHDEBUGGROUPPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLMATRIXINDEXUIVARBPROC$MH = RuntimeHelper.downcallHandle(
-        constants$345.PFNGLMATRIXINDEXUIVARBPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLMATRIXINDEXPOINTERARBPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle PFNGLMATRIXINDEXPOINTERARBPROC$MH = RuntimeHelper.downcallHandle(
-        constants$345.PFNGLMATRIXINDEXPOINTERARBPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLSAMPLECOVERAGEARBPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_FLOAT$LAYOUT,
-        Constants$root.C_CHAR$LAYOUT
-    );
-    static final MethodHandle PFNGLSAMPLECOVERAGEARBPROC$MH = RuntimeHelper.downcallHandle(
-        constants$345.PFNGLSAMPLECOVERAGEARBPROC$FUNC
+    static final MethodHandle PFNGLPUSHDEBUGGROUPPROC$MH = RuntimeHelper.downcallHandle(
+        constants$345.PFNGLPUSHDEBUGGROUPPROC$FUNC
     );
 }
 

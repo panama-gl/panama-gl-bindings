@@ -11,13 +11,13 @@ public interface PFNGLTEXTURERANGEAPPLEPROC {
 
     void apply(int target, int length, java.lang.foreign.MemoryAddress pointer);
     static MemorySegment allocate(PFNGLTEXTURERANGEAPPLEPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLTEXTURERANGEAPPLEPROC.class, fi, constants$481.PFNGLTEXTURERANGEAPPLEPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLTEXTURERANGEAPPLEPROC.class, fi, constants$675.PFNGLTEXTURERANGEAPPLEPROC$FUNC, session);
     }
     static PFNGLTEXTURERANGEAPPLEPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _target, int _length, java.lang.foreign.MemoryAddress _pointer) -> {
             try {
-                constants$481.PFNGLTEXTURERANGEAPPLEPROC$MH.invokeExact((Addressable)symbol, _target, _length, (java.lang.foreign.Addressable)_pointer);
+                constants$675.PFNGLTEXTURERANGEAPPLEPROC$MH.invokeExact((Addressable)symbol, _target, _length, (java.lang.foreign.Addressable)_pointer);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

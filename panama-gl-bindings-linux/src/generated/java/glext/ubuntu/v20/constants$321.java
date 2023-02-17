@@ -9,28 +9,71 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$321 {
 
-    static final FunctionDescriptor PFNGLBLENDEQUATIONIARBPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT
-    );
-    static final MethodHandle PFNGLBLENDEQUATIONIARBPROC$MH = RuntimeHelper.downcallHandle(
-        constants$321.PFNGLBLENDEQUATIONIARBPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLBLENDEQUATIONSEPARATEIARBPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glProgramUniformMatrix3dv$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_CHAR$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLBLENDEQUATIONSEPARATEIARBPROC$MH = RuntimeHelper.downcallHandle(
-        constants$321.PFNGLBLENDEQUATIONSEPARATEIARBPROC$FUNC
+    static final MethodHandle glProgramUniformMatrix3dv$MH = RuntimeHelper.downcallHandle(
+        "glProgramUniformMatrix3dv",
+        constants$321.glProgramUniformMatrix3dv$FUNC
     );
-    static final FunctionDescriptor PFNGLBLENDFUNCIARBPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glProgramUniformMatrix4dv$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_CHAR$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLBLENDFUNCIARBPROC$MH = RuntimeHelper.downcallHandle(
-        constants$321.PFNGLBLENDFUNCIARBPROC$FUNC
+    static final MethodHandle glProgramUniformMatrix4dv$MH = RuntimeHelper.downcallHandle(
+        "glProgramUniformMatrix4dv",
+        constants$321.glProgramUniformMatrix4dv$FUNC
+    );
+    static final FunctionDescriptor glProgramUniformMatrix2x3fv$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_CHAR$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glProgramUniformMatrix2x3fv$MH = RuntimeHelper.downcallHandle(
+        "glProgramUniformMatrix2x3fv",
+        constants$321.glProgramUniformMatrix2x3fv$FUNC
+    );
+    static final FunctionDescriptor glProgramUniformMatrix3x2fv$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_CHAR$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glProgramUniformMatrix3x2fv$MH = RuntimeHelper.downcallHandle(
+        "glProgramUniformMatrix3x2fv",
+        constants$321.glProgramUniformMatrix3x2fv$FUNC
+    );
+    static final FunctionDescriptor glProgramUniformMatrix2x4fv$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_CHAR$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glProgramUniformMatrix2x4fv$MH = RuntimeHelper.downcallHandle(
+        "glProgramUniformMatrix2x4fv",
+        constants$321.glProgramUniformMatrix2x4fv$FUNC
+    );
+    static final FunctionDescriptor glProgramUniformMatrix4x2fv$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_CHAR$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glProgramUniformMatrix4x2fv$MH = RuntimeHelper.downcallHandle(
+        "glProgramUniformMatrix4x2fv",
+        constants$321.glProgramUniformMatrix4x2fv$FUNC
     );
 }
 

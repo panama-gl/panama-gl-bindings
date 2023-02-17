@@ -11,13 +11,13 @@ public interface PFNGLQUERYOBJECTPARAMETERUIAMDPROC {
 
     void apply(int target, int id, int pname, int param);
     static MemorySegment allocate(PFNGLQUERYOBJECTPARAMETERUIAMDPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLQUERYOBJECTPARAMETERUIAMDPROC.class, fi, constants$469.PFNGLQUERYOBJECTPARAMETERUIAMDPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLQUERYOBJECTPARAMETERUIAMDPROC.class, fi, constants$657.PFNGLQUERYOBJECTPARAMETERUIAMDPROC$FUNC, session);
     }
     static PFNGLQUERYOBJECTPARAMETERUIAMDPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _target, int _id, int _pname, int _param) -> {
             try {
-                constants$469.PFNGLQUERYOBJECTPARAMETERUIAMDPROC$MH.invokeExact((Addressable)symbol, _target, _id, _pname, _param);
+                constants$657.PFNGLQUERYOBJECTPARAMETERUIAMDPROC$MH.invokeExact((Addressable)symbol, _target, _id, _pname, _param);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

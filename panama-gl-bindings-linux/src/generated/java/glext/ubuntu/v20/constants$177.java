@@ -9,31 +9,37 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$177 {
 
-    static final FunctionDescriptor PFNGLGETUNIFORMBLOCKINDEXPROC$FUNC = FunctionDescriptor.of(Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle PFNGLGETUNIFORMBLOCKINDEXPROC$MH = RuntimeHelper.downcallHandle(
-        constants$177.PFNGLGETUNIFORMBLOCKINDEXPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLGETACTIVEUNIFORMBLOCKIVPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLTRANSFORMFEEDBACKVARYINGSPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLGETACTIVEUNIFORMBLOCKIVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$177.PFNGLGETACTIVEUNIFORMBLOCKIVPROC$FUNC
+    static final MethodHandle PFNGLTRANSFORMFEEDBACKVARYINGSPROC$MH = RuntimeHelper.downcallHandle(
+        constants$177.PFNGLTRANSFORMFEEDBACKVARYINGSPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLGETACTIVEUNIFORMBLOCKNAMEPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLGETTRANSFORMFEEDBACKVARYINGPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLGETACTIVEUNIFORMBLOCKNAMEPROC$MH = RuntimeHelper.downcallHandle(
-        constants$177.PFNGLGETACTIVEUNIFORMBLOCKNAMEPROC$FUNC
+    static final MethodHandle PFNGLGETTRANSFORMFEEDBACKVARYINGPROC$MH = RuntimeHelper.downcallHandle(
+        constants$177.PFNGLGETTRANSFORMFEEDBACKVARYINGPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLCLAMPCOLORPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle PFNGLCLAMPCOLORPROC$MH = RuntimeHelper.downcallHandle(
+        constants$177.PFNGLCLAMPCOLORPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLBEGINCONDITIONALRENDERPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
 }
 

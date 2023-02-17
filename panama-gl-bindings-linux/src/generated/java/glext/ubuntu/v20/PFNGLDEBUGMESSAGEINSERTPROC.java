@@ -11,13 +11,13 @@ public interface PFNGLDEBUGMESSAGEINSERTPROC {
 
     void apply(int source, int type, int id, int severity, int length, java.lang.foreign.MemoryAddress buf);
     static MemorySegment allocate(PFNGLDEBUGMESSAGEINSERTPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLDEBUGMESSAGEINSERTPROC.class, fi, constants$264.PFNGLDEBUGMESSAGEINSERTPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLDEBUGMESSAGEINSERTPROC.class, fi, constants$344.PFNGLDEBUGMESSAGEINSERTPROC$FUNC, session);
     }
     static PFNGLDEBUGMESSAGEINSERTPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _source, int _type, int _id, int _severity, int _length, java.lang.foreign.MemoryAddress _buf) -> {
             try {
-                constants$264.PFNGLDEBUGMESSAGEINSERTPROC$MH.invokeExact((Addressable)symbol, _source, _type, _id, _severity, _length, (java.lang.foreign.Addressable)_buf);
+                constants$344.PFNGLDEBUGMESSAGEINSERTPROC$MH.invokeExact((Addressable)symbol, _source, _type, _id, _severity, _length, (java.lang.foreign.Addressable)_buf);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

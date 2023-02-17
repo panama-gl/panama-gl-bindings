@@ -11,13 +11,13 @@ public interface PFNGLBINDSHADINGRATEIMAGENVPROC {
 
     void apply(int texture);
     static MemorySegment allocate(PFNGLBINDSHADINGRATEIMAGENVPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLBINDSHADINGRATEIMAGENVPROC.class, fi, constants$824.PFNGLBINDSHADINGRATEIMAGENVPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLBINDSHADINGRATEIMAGENVPROC.class, fi, constants$1189.PFNGLBINDSHADINGRATEIMAGENVPROC$FUNC, session);
     }
     static PFNGLBINDSHADINGRATEIMAGENVPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _texture) -> {
             try {
-                constants$824.PFNGLBINDSHADINGRATEIMAGENVPROC$MH.invokeExact((Addressable)symbol, _texture);
+                constants$1189.PFNGLBINDSHADINGRATEIMAGENVPROC$MH.invokeExact((Addressable)symbol, _texture);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

@@ -11,13 +11,13 @@ public interface PFNGLISOCCLUSIONQUERYNVPROC {
 
     byte apply(int id);
     static MemorySegment allocate(PFNGLISOCCLUSIONQUERYNVPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLISOCCLUSIONQUERYNVPROC.class, fi, constants$783.PFNGLISOCCLUSIONQUERYNVPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLISOCCLUSIONQUERYNVPROC.class, fi, constants$1128.PFNGLISOCCLUSIONQUERYNVPROC$FUNC, session);
     }
     static PFNGLISOCCLUSIONQUERYNVPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _id) -> {
             try {
-                return (byte)constants$783.PFNGLISOCCLUSIONQUERYNVPROC$MH.invokeExact((Addressable)symbol, _id);
+                return (byte)constants$1128.PFNGLISOCCLUSIONQUERYNVPROC$MH.invokeExact((Addressable)symbol, _id);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

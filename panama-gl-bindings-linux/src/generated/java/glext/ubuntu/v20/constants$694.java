@@ -9,29 +9,31 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$694 {
 
-    static final FunctionDescriptor PFNGLGETINVARIANTBOOLEANVEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
+    static final FunctionDescriptor PFNGLMAPOBJECTBUFFERATIPROC$FUNC = FunctionDescriptor.of(Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLGETINVARIANTBOOLEANVEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$694.PFNGLGETINVARIANTBOOLEANVEXTPROC$FUNC
+    static final MethodHandle PFNGLMAPOBJECTBUFFERATIPROC$MH = RuntimeHelper.downcallHandle(
+        constants$694.PFNGLMAPOBJECTBUFFERATIPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLGETINVARIANTINTEGERVEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
+    static final FunctionDescriptor PFNGLUNMAPOBJECTBUFFERATIPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLGETINVARIANTINTEGERVEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$694.PFNGLGETINVARIANTINTEGERVEXTPROC$FUNC
+    static final MethodHandle PFNGLUNMAPOBJECTBUFFERATIPROC$MH = RuntimeHelper.downcallHandle(
+        constants$694.PFNGLUNMAPOBJECTBUFFERATIPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLGETINVARIANTFLOATVEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
+    static final FunctionDescriptor glMapObjectBufferATI$FUNC = FunctionDescriptor.of(Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLGETINVARIANTFLOATVEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$694.PFNGLGETINVARIANTFLOATVEXTPROC$FUNC
+    static final MethodHandle glMapObjectBufferATI$MH = RuntimeHelper.downcallHandle(
+        "glMapObjectBufferATI",
+        constants$694.glMapObjectBufferATI$FUNC
+    );
+    static final FunctionDescriptor glUnmapObjectBufferATI$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle glUnmapObjectBufferATI$MH = RuntimeHelper.downcallHandle(
+        "glUnmapObjectBufferATI",
+        constants$694.glUnmapObjectBufferATI$FUNC
     );
 }
 

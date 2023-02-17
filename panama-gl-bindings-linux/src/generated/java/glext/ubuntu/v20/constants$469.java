@@ -9,32 +9,38 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$469 {
 
-    static final FunctionDescriptor PFNGLQUERYOBJECTPARAMETERUIAMDPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glMultiDrawElementsIndirectCountARB$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLQUERYOBJECTPARAMETERUIAMDPROC$MH = RuntimeHelper.downcallHandle(
-        constants$469.PFNGLQUERYOBJECTPARAMETERUIAMDPROC$FUNC
+    static final MethodHandle glMultiDrawElementsIndirectCountARB$MH = RuntimeHelper.downcallHandle(
+        "glMultiDrawElementsIndirectCountARB",
+        constants$469.glMultiDrawElementsIndirectCountARB$FUNC
     );
-    static final FunctionDescriptor PFNGLGETPERFMONITORGROUPSAMDPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_POINTER$LAYOUT,
+    static final FunctionDescriptor PFNGLVERTEXATTRIBDIVISORARBPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
+        Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLGETPERFMONITORGROUPSAMDPROC$MH = RuntimeHelper.downcallHandle(
-        constants$469.PFNGLGETPERFMONITORGROUPSAMDPROC$FUNC
+    static final MethodHandle PFNGLVERTEXATTRIBDIVISORARBPROC$MH = RuntimeHelper.downcallHandle(
+        constants$469.PFNGLVERTEXATTRIBDIVISORARBPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLGETPERFMONITORCOUNTERSAMDPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glVertexAttribDivisorARB$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
+        Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLGETPERFMONITORCOUNTERSAMDPROC$MH = RuntimeHelper.downcallHandle(
-        constants$469.PFNGLGETPERFMONITORCOUNTERSAMDPROC$FUNC
+    static final MethodHandle glVertexAttribDivisorARB$MH = RuntimeHelper.downcallHandle(
+        "glVertexAttribDivisorARB",
+        constants$469.glVertexAttribDivisorARB$FUNC
+    );
+    static final FunctionDescriptor PFNGLCURRENTPALETTEMATRIXARBPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle PFNGLCURRENTPALETTEMATRIXARBPROC$MH = RuntimeHelper.downcallHandle(
+        constants$469.PFNGLCURRENTPALETTEMATRIXARBPROC$FUNC
     );
 }
 

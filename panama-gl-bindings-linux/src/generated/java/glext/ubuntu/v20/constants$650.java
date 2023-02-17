@@ -9,29 +9,62 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$650 {
 
-    static final FunctionDescriptor PFNGLGETCOLORTABLEPARAMETERIVEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glUniform3ui64NV$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT
+    );
+    static final MethodHandle glUniform3ui64NV$MH = RuntimeHelper.downcallHandle(
+        "glUniform3ui64NV",
+        constants$650.glUniform3ui64NV$FUNC
+    );
+    static final FunctionDescriptor glUniform4ui64NV$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT
+    );
+    static final MethodHandle glUniform4ui64NV$MH = RuntimeHelper.downcallHandle(
+        "glUniform4ui64NV",
+        constants$650.glUniform4ui64NV$FUNC
+    );
+    static final FunctionDescriptor glUniform1ui64vNV$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLGETCOLORTABLEPARAMETERIVEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$650.PFNGLGETCOLORTABLEPARAMETERIVEXTPROC$FUNC
+    static final MethodHandle glUniform1ui64vNV$MH = RuntimeHelper.downcallHandle(
+        "glUniform1ui64vNV",
+        constants$650.glUniform1ui64vNV$FUNC
     );
-    static final FunctionDescriptor PFNGLGETCOLORTABLEPARAMETERFVEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glUniform2ui64vNV$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLGETCOLORTABLEPARAMETERFVEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$650.PFNGLGETCOLORTABLEPARAMETERFVEXTPROC$FUNC
+    static final MethodHandle glUniform2ui64vNV$MH = RuntimeHelper.downcallHandle(
+        "glUniform2ui64vNV",
+        constants$650.glUniform2ui64vNV$FUNC
     );
-    static final FunctionDescriptor PFNGLPIXELTRANSFORMPARAMETERIEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glUniform3ui64vNV$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT
+        Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLPIXELTRANSFORMPARAMETERIEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$650.PFNGLPIXELTRANSFORMPARAMETERIEXTPROC$FUNC
+    static final MethodHandle glUniform3ui64vNV$MH = RuntimeHelper.downcallHandle(
+        "glUniform3ui64vNV",
+        constants$650.glUniform3ui64vNV$FUNC
+    );
+    static final FunctionDescriptor glUniform4ui64vNV$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glUniform4ui64vNV$MH = RuntimeHelper.downcallHandle(
+        "glUniform4ui64vNV",
+        constants$650.glUniform4ui64vNV$FUNC
     );
 }
 

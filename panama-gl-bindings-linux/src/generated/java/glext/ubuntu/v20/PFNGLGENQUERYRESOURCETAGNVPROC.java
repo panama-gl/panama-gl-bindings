@@ -11,13 +11,13 @@ public interface PFNGLGENQUERYRESOURCETAGNVPROC {
 
     void apply(int n, java.lang.foreign.MemoryAddress tagIds);
     static MemorySegment allocate(PFNGLGENQUERYRESOURCETAGNVPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLGENQUERYRESOURCETAGNVPROC.class, fi, constants$812.PFNGLGENQUERYRESOURCETAGNVPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLGENQUERYRESOURCETAGNVPROC.class, fi, constants$1171.PFNGLGENQUERYRESOURCETAGNVPROC$FUNC, session);
     }
     static PFNGLGENQUERYRESOURCETAGNVPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _n, java.lang.foreign.MemoryAddress _tagIds) -> {
             try {
-                constants$812.PFNGLGENQUERYRESOURCETAGNVPROC$MH.invokeExact((Addressable)symbol, _n, (java.lang.foreign.Addressable)_tagIds);
+                constants$1171.PFNGLGENQUERYRESOURCETAGNVPROC$MH.invokeExact((Addressable)symbol, _n, (java.lang.foreign.Addressable)_tagIds);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

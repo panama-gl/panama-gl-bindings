@@ -11,13 +11,13 @@ public interface PFNGLUNIFORMSUBROUTINESUIVPROC {
 
     void apply(int shadertype, int count, java.lang.foreign.MemoryAddress indices);
     static MemorySegment allocate(PFNGLUNIFORMSUBROUTINESUIVPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLUNIFORMSUBROUTINESUIVPROC.class, fi, constants$214.PFNGLUNIFORMSUBROUTINESUIVPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLUNIFORMSUBROUTINESUIVPROC.class, fi, constants$270.PFNGLUNIFORMSUBROUTINESUIVPROC$FUNC, session);
     }
     static PFNGLUNIFORMSUBROUTINESUIVPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _shadertype, int _count, java.lang.foreign.MemoryAddress _indices) -> {
             try {
-                constants$214.PFNGLUNIFORMSUBROUTINESUIVPROC$MH.invokeExact((Addressable)symbol, _shadertype, _count, (java.lang.foreign.Addressable)_indices);
+                constants$270.PFNGLUNIFORMSUBROUTINESUIVPROC$MH.invokeExact((Addressable)symbol, _shadertype, _count, (java.lang.foreign.Addressable)_indices);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

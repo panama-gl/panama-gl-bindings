@@ -11,13 +11,13 @@ public interface PFNGLGETVERTEXATTRIBLDVEXTPROC {
 
     void apply(int index, int pname, java.lang.foreign.MemoryAddress params);
     static MemorySegment allocate(PFNGLGETVERTEXATTRIBLDVEXTPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLGETVERTEXATTRIBLDVEXTPROC.class, fi, constants$681.PFNGLGETVERTEXATTRIBLDVEXTPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLGETVERTEXATTRIBLDVEXTPROC.class, fi, constants$974.PFNGLGETVERTEXATTRIBLDVEXTPROC$FUNC, session);
     }
     static PFNGLGETVERTEXATTRIBLDVEXTPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _index, int _pname, java.lang.foreign.MemoryAddress _params) -> {
             try {
-                constants$681.PFNGLGETVERTEXATTRIBLDVEXTPROC$MH.invokeExact((Addressable)symbol, _index, _pname, (java.lang.foreign.Addressable)_params);
+                constants$974.PFNGLGETVERTEXATTRIBLDVEXTPROC$MH.invokeExact((Addressable)symbol, _index, _pname, (java.lang.foreign.Addressable)_params);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

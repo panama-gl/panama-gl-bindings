@@ -11,13 +11,13 @@ public interface PFNGLPATHSUBCOMMANDSNVPROC {
 
     void apply(int path, int commandStart, int commandsToDelete, int numCommands, java.lang.foreign.MemoryAddress commands, int numCoords, int coordType, java.lang.foreign.MemoryAddress coords);
     static MemorySegment allocate(PFNGLPATHSUBCOMMANDSNVPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLPATHSUBCOMMANDSNVPROC.class, fi, constants$788.PFNGLPATHSUBCOMMANDSNVPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLPATHSUBCOMMANDSNVPROC.class, fi, constants$1134.PFNGLPATHSUBCOMMANDSNVPROC$FUNC, session);
     }
     static PFNGLPATHSUBCOMMANDSNVPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _path, int _commandStart, int _commandsToDelete, int _numCommands, java.lang.foreign.MemoryAddress _commands, int _numCoords, int _coordType, java.lang.foreign.MemoryAddress _coords) -> {
             try {
-                constants$788.PFNGLPATHSUBCOMMANDSNVPROC$MH.invokeExact((Addressable)symbol, _path, _commandStart, _commandsToDelete, _numCommands, (java.lang.foreign.Addressable)_commands, _numCoords, _coordType, (java.lang.foreign.Addressable)_coords);
+                constants$1134.PFNGLPATHSUBCOMMANDSNVPROC$MH.invokeExact((Addressable)symbol, _path, _commandStart, _commandsToDelete, _numCommands, (java.lang.foreign.Addressable)_commands, _numCoords, _coordType, (java.lang.foreign.Addressable)_coords);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

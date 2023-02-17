@@ -11,13 +11,13 @@ public interface PFNGLFOGCOORDHNVPROC {
 
     void apply(short fog);
     static MemorySegment allocate(PFNGLFOGCOORDHNVPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLFOGCOORDHNVPROC.class, fi, constants$773.PFNGLFOGCOORDHNVPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLFOGCOORDHNVPROC.class, fi, constants$1108.PFNGLFOGCOORDHNVPROC$FUNC, session);
     }
     static PFNGLFOGCOORDHNVPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (short _fog) -> {
             try {
-                constants$773.PFNGLFOGCOORDHNVPROC$MH.invokeExact((Addressable)symbol, _fog);
+                constants$1108.PFNGLFOGCOORDHNVPROC$MH.invokeExact((Addressable)symbol, _fog);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

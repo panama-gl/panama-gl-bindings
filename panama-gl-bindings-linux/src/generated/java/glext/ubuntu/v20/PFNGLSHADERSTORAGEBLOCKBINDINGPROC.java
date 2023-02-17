@@ -11,13 +11,13 @@ public interface PFNGLSHADERSTORAGEBLOCKBINDINGPROC {
 
     void apply(int program, int storageBlockIndex, int storageBlockBinding);
     static MemorySegment allocate(PFNGLSHADERSTORAGEBLOCKBINDINGPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLSHADERSTORAGEBLOCKBINDINGPROC.class, fi, constants$260.PFNGLSHADERSTORAGEBLOCKBINDINGPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLSHADERSTORAGEBLOCKBINDINGPROC.class, fi, constants$340.PFNGLSHADERSTORAGEBLOCKBINDINGPROC$FUNC, session);
     }
     static PFNGLSHADERSTORAGEBLOCKBINDINGPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _program, int _storageBlockIndex, int _storageBlockBinding) -> {
             try {
-                constants$260.PFNGLSHADERSTORAGEBLOCKBINDINGPROC$MH.invokeExact((Addressable)symbol, _program, _storageBlockIndex, _storageBlockBinding);
+                constants$340.PFNGLSHADERSTORAGEBLOCKBINDINGPROC$MH.invokeExact((Addressable)symbol, _program, _storageBlockIndex, _storageBlockBinding);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

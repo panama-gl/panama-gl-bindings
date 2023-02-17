@@ -11,13 +11,13 @@ public interface PFNGLCREATESHADERPROC {
 
     int apply(int type);
     static MemorySegment allocate(PFNGLCREATESHADERPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLCREATESHADERPROC.class, fi, constants$116.PFNGLCREATESHADERPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLCREATESHADERPROC.class, fi, constants$127.PFNGLCREATESHADERPROC$FUNC, session);
     }
     static PFNGLCREATESHADERPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _type) -> {
             try {
-                return (int)constants$116.PFNGLCREATESHADERPROC$MH.invokeExact((Addressable)symbol, _type);
+                return (int)constants$127.PFNGLCREATESHADERPROC$MH.invokeExact((Addressable)symbol, _type);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

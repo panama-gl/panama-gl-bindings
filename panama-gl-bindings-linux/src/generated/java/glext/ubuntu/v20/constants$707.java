@@ -9,27 +9,32 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$707 {
 
-    static final FunctionDescriptor PFNGLCOLORPOINTERVINTELPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle PFNGLCOLORPOINTERVINTELPROC$MH = RuntimeHelper.downcallHandle(
-        constants$707.PFNGLCOLORPOINTERVINTELPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLTEXCOORDPOINTERVINTELPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
+    static final FunctionDescriptor PFNGLVERTEXSTREAM1DVATIPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLTEXCOORDPOINTERVINTELPROC$MH = RuntimeHelper.downcallHandle(
-        constants$707.PFNGLTEXCOORDPOINTERVINTELPROC$FUNC
+    static final MethodHandle PFNGLVERTEXSTREAM1DVATIPROC$MH = RuntimeHelper.downcallHandle(
+        constants$707.PFNGLVERTEXSTREAM1DVATIPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLBEGINPERFQUERYINTELPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLVERTEXSTREAM2SATIPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_SHORT$LAYOUT,
+        Constants$root.C_SHORT$LAYOUT
+    );
+    static final MethodHandle PFNGLVERTEXSTREAM2SATIPROC$MH = RuntimeHelper.downcallHandle(
+        constants$707.PFNGLVERTEXSTREAM2SATIPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLVERTEXSTREAM2SVATIPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle PFNGLVERTEXSTREAM2SVATIPROC$MH = RuntimeHelper.downcallHandle(
+        constants$707.PFNGLVERTEXSTREAM2SVATIPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLVERTEXSTREAM2IATIPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT
-    );
-    static final MethodHandle PFNGLBEGINPERFQUERYINTELPROC$MH = RuntimeHelper.downcallHandle(
-        constants$707.PFNGLBEGINPERFQUERYINTELPROC$FUNC
     );
 }
 

@@ -9,31 +9,58 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$324 {
 
-    static final FunctionDescriptor PFNGLGENPROGRAMSARBPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glVertexAttribL3d$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
+        Constants$root.C_DOUBLE$LAYOUT,
+        Constants$root.C_DOUBLE$LAYOUT,
+        Constants$root.C_DOUBLE$LAYOUT
     );
-    static final MethodHandle PFNGLGENPROGRAMSARBPROC$MH = RuntimeHelper.downcallHandle(
-        constants$324.PFNGLGENPROGRAMSARBPROC$FUNC
+    static final MethodHandle glVertexAttribL3d$MH = RuntimeHelper.downcallHandle(
+        "glVertexAttribL3d",
+        constants$324.glVertexAttribL3d$FUNC
     );
-    static final FunctionDescriptor PFNGLPROGRAMENVPARAMETER4DARBPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
+    static final FunctionDescriptor glVertexAttribL4d$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_DOUBLE$LAYOUT,
         Constants$root.C_DOUBLE$LAYOUT,
         Constants$root.C_DOUBLE$LAYOUT,
         Constants$root.C_DOUBLE$LAYOUT
     );
-    static final MethodHandle PFNGLPROGRAMENVPARAMETER4DARBPROC$MH = RuntimeHelper.downcallHandle(
-        constants$324.PFNGLPROGRAMENVPARAMETER4DARBPROC$FUNC
+    static final MethodHandle glVertexAttribL4d$MH = RuntimeHelper.downcallHandle(
+        "glVertexAttribL4d",
+        constants$324.glVertexAttribL4d$FUNC
     );
-    static final FunctionDescriptor PFNGLPROGRAMENVPARAMETER4DVARBPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
+    static final FunctionDescriptor glVertexAttribL1dv$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLPROGRAMENVPARAMETER4DVARBPROC$MH = RuntimeHelper.downcallHandle(
-        constants$324.PFNGLPROGRAMENVPARAMETER4DVARBPROC$FUNC
+    static final MethodHandle glVertexAttribL1dv$MH = RuntimeHelper.downcallHandle(
+        "glVertexAttribL1dv",
+        constants$324.glVertexAttribL1dv$FUNC
+    );
+    static final FunctionDescriptor glVertexAttribL2dv$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glVertexAttribL2dv$MH = RuntimeHelper.downcallHandle(
+        "glVertexAttribL2dv",
+        constants$324.glVertexAttribL2dv$FUNC
+    );
+    static final FunctionDescriptor glVertexAttribL3dv$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glVertexAttribL3dv$MH = RuntimeHelper.downcallHandle(
+        "glVertexAttribL3dv",
+        constants$324.glVertexAttribL3dv$FUNC
+    );
+    static final FunctionDescriptor glVertexAttribL4dv$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glVertexAttribL4dv$MH = RuntimeHelper.downcallHandle(
+        "glVertexAttribL4dv",
+        constants$324.glVertexAttribL4dv$FUNC
     );
 }
 

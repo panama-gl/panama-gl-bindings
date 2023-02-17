@@ -11,13 +11,13 @@ public interface glutVisibilityFunc$callback {
 
     void apply(int _x0);
     static MemorySegment allocate(glutVisibilityFunc$callback fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(glutVisibilityFunc$callback.class, fi, constants$951.glutVisibilityFunc$callback$FUNC, session);
+        return RuntimeHelper.upcallStub(glutVisibilityFunc$callback.class, fi, constants$1369.glutVisibilityFunc$callback$FUNC, session);
     }
     static glutVisibilityFunc$callback ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int __x0) -> {
             try {
-                constants$951.glutVisibilityFunc$callback$MH.invokeExact((Addressable)symbol, __x0);
+                constants$1369.glutVisibilityFunc$callback$MH.invokeExact((Addressable)symbol, __x0);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

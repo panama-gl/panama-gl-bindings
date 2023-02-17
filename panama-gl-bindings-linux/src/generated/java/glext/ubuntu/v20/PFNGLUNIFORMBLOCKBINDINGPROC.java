@@ -11,13 +11,13 @@ public interface PFNGLUNIFORMBLOCKBINDINGPROC {
 
     void apply(int program, int uniformBlockIndex, int uniformBlockBinding);
     static MemorySegment allocate(PFNGLUNIFORMBLOCKBINDINGPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLUNIFORMBLOCKBINDINGPROC.class, fi, constants$178.PFNGLUNIFORMBLOCKBINDINGPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLUNIFORMBLOCKBINDINGPROC.class, fi, constants$219.PFNGLUNIFORMBLOCKBINDINGPROC$FUNC, session);
     }
     static PFNGLUNIFORMBLOCKBINDINGPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _program, int _uniformBlockIndex, int _uniformBlockBinding) -> {
             try {
-                constants$178.PFNGLUNIFORMBLOCKBINDINGPROC$MH.invokeExact((Addressable)symbol, _program, _uniformBlockIndex, _uniformBlockBinding);
+                constants$219.PFNGLUNIFORMBLOCKBINDINGPROC$MH.invokeExact((Addressable)symbol, _program, _uniformBlockIndex, _uniformBlockBinding);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

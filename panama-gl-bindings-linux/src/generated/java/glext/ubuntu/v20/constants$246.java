@@ -9,30 +9,29 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$246 {
 
-    static final FunctionDescriptor PFNGLVIEWPORTINDEXEDFVPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle PFNGLVIEWPORTINDEXEDFVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$246.PFNGLVIEWPORTINDEXEDFVPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLSCISSORARRAYVPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLMULTITEXCOORDP2UIVPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLSCISSORARRAYVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$246.PFNGLSCISSORARRAYVPROC$FUNC
+    static final MethodHandle PFNGLMULTITEXCOORDP2UIVPROC$MH = RuntimeHelper.downcallHandle(
+        constants$246.PFNGLMULTITEXCOORDP2UIVPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLSCISSORINDEXEDPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
+    static final FunctionDescriptor PFNGLMULTITEXCOORDP3UIPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLSCISSORINDEXEDPROC$MH = RuntimeHelper.downcallHandle(
-        constants$246.PFNGLSCISSORINDEXEDPROC$FUNC
+    static final MethodHandle PFNGLMULTITEXCOORDP3UIPROC$MH = RuntimeHelper.downcallHandle(
+        constants$246.PFNGLMULTITEXCOORDP3UIPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLMULTITEXCOORDP3UIVPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle PFNGLMULTITEXCOORDP3UIVPROC$MH = RuntimeHelper.downcallHandle(
+        constants$246.PFNGLMULTITEXCOORDP3UIVPROC$FUNC
     );
 }
 

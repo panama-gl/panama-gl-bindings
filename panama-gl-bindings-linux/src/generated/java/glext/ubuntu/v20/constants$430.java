@@ -9,29 +9,49 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$430 {
 
-    static final FunctionDescriptor PFNGLGETCONVOLUTIONPARAMETERXVOESPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glIsTextureHandleResidentARB$FUNC = FunctionDescriptor.of(Constants$root.C_CHAR$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT
+    );
+    static final MethodHandle glIsTextureHandleResidentARB$MH = RuntimeHelper.downcallHandle(
+        "glIsTextureHandleResidentARB",
+        constants$430.glIsTextureHandleResidentARB$FUNC
+    );
+    static final FunctionDescriptor glIsImageHandleResidentARB$FUNC = FunctionDescriptor.of(Constants$root.C_CHAR$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT
+    );
+    static final MethodHandle glIsImageHandleResidentARB$MH = RuntimeHelper.downcallHandle(
+        "glIsImageHandleResidentARB",
+        constants$430.glIsImageHandleResidentARB$FUNC
+    );
+    static final FunctionDescriptor glVertexAttribL1ui64ARB$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT
+    );
+    static final MethodHandle glVertexAttribL1ui64ARB$MH = RuntimeHelper.downcallHandle(
+        "glVertexAttribL1ui64ARB",
+        constants$430.glVertexAttribL1ui64ARB$FUNC
+    );
+    static final FunctionDescriptor glVertexAttribL1ui64vARB$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glVertexAttribL1ui64vARB$MH = RuntimeHelper.downcallHandle(
+        "glVertexAttribL1ui64vARB",
+        constants$430.glVertexAttribL1ui64vARB$FUNC
+    );
+    static final FunctionDescriptor glGetVertexAttribLui64vARB$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLGETCONVOLUTIONPARAMETERXVOESPROC$MH = RuntimeHelper.downcallHandle(
-        constants$430.PFNGLGETCONVOLUTIONPARAMETERXVOESPROC$FUNC
+    static final MethodHandle glGetVertexAttribLui64vARB$MH = RuntimeHelper.downcallHandle(
+        "glGetVertexAttribLui64vARB",
+        constants$430.glGetVertexAttribLui64vARB$FUNC
     );
-    static final FunctionDescriptor PFNGLGETHISTOGRAMPARAMETERXVOESPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle PFNGLGETHISTOGRAMPARAMETERXVOESPROC$MH = RuntimeHelper.downcallHandle(
-        constants$430.PFNGLGETHISTOGRAMPARAMETERXVOESPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLGETLIGHTXOESPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle PFNGLGETLIGHTXOESPROC$MH = RuntimeHelper.downcallHandle(
-        constants$430.PFNGLGETLIGHTXOESPROC$FUNC
+    static final FunctionDescriptor PFNGLCREATESYNCFROMCLEVENTARBPROC$FUNC = FunctionDescriptor.of(Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
 }
 

@@ -11,13 +11,13 @@ public interface PFNGLNAMEDCOPYBUFFERSUBDATAEXTPROC {
 
     void apply(int readBuffer, int writeBuffer, long readOffset, long writeOffset, long size);
     static MemorySegment allocate(PFNGLNAMEDCOPYBUFFERSUBDATAEXTPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLNAMEDCOPYBUFFERSUBDATAEXTPROC.class, fi, constants$599.PFNGLNAMEDCOPYBUFFERSUBDATAEXTPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLNAMEDCOPYBUFFERSUBDATAEXTPROC.class, fi, constants$821.PFNGLNAMEDCOPYBUFFERSUBDATAEXTPROC$FUNC, session);
     }
     static PFNGLNAMEDCOPYBUFFERSUBDATAEXTPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _readBuffer, int _writeBuffer, long _readOffset, long _writeOffset, long _size) -> {
             try {
-                constants$599.PFNGLNAMEDCOPYBUFFERSUBDATAEXTPROC$MH.invokeExact((Addressable)symbol, _readBuffer, _writeBuffer, _readOffset, _writeOffset, _size);
+                constants$821.PFNGLNAMEDCOPYBUFFERSUBDATAEXTPROC$MH.invokeExact((Addressable)symbol, _readBuffer, _writeBuffer, _readOffset, _writeOffset, _size);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

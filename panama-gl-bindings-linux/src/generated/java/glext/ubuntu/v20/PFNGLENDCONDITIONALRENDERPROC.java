@@ -11,13 +11,13 @@ public interface PFNGLENDCONDITIONALRENDERPROC {
 
     void apply();
     static MemorySegment allocate(PFNGLENDCONDITIONALRENDERPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLENDCONDITIONALRENDERPROC.class, fi, constants$151.PFNGLENDCONDITIONALRENDERPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLENDCONDITIONALRENDERPROC.class, fi, constants$178.PFNGLENDCONDITIONALRENDERPROC$FUNC, session);
     }
     static PFNGLENDCONDITIONALRENDERPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return () -> {
             try {
-                constants$151.PFNGLENDCONDITIONALRENDERPROC$MH.invokeExact((Addressable)symbol);
+                constants$178.PFNGLENDCONDITIONALRENDERPROC$MH.invokeExact((Addressable)symbol);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

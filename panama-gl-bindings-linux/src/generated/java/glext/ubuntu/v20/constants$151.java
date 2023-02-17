@@ -9,27 +9,29 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$151 {
 
-    static final FunctionDescriptor PFNGLENDCONDITIONALRENDERPROC$FUNC = FunctionDescriptor.ofVoid();
-    static final MethodHandle PFNGLENDCONDITIONALRENDERPROC$MH = RuntimeHelper.downcallHandle(
-        constants$151.PFNGLENDCONDITIONALRENDERPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLVERTEXATTRIBIPOINTERPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
+    static final FunctionDescriptor PFNGLVERTEXATTRIB4BVPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLVERTEXATTRIBIPOINTERPROC$MH = RuntimeHelper.downcallHandle(
-        constants$151.PFNGLVERTEXATTRIBIPOINTERPROC$FUNC
+    static final MethodHandle PFNGLVERTEXATTRIB4BVPROC$MH = RuntimeHelper.downcallHandle(
+        constants$151.PFNGLVERTEXATTRIB4BVPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLGETVERTEXATTRIBIIVPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLVERTEXATTRIB4DPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
+        Constants$root.C_DOUBLE$LAYOUT,
+        Constants$root.C_DOUBLE$LAYOUT,
+        Constants$root.C_DOUBLE$LAYOUT,
+        Constants$root.C_DOUBLE$LAYOUT
+    );
+    static final MethodHandle PFNGLVERTEXATTRIB4DPROC$MH = RuntimeHelper.downcallHandle(
+        constants$151.PFNGLVERTEXATTRIB4DPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLVERTEXATTRIB4DVPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLGETVERTEXATTRIBIIVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$151.PFNGLGETVERTEXATTRIBIIVPROC$FUNC
+    static final MethodHandle PFNGLVERTEXATTRIB4DVPROC$MH = RuntimeHelper.downcallHandle(
+        constants$151.PFNGLVERTEXATTRIB4DVPROC$FUNC
     );
 }
 

@@ -11,13 +11,13 @@ public interface PFNGLMULTICASTGETQUERYOBJECTUIVNVPROC {
 
     void apply(int gpu, int id, int pname, java.lang.foreign.MemoryAddress params);
     static MemorySegment allocate(PFNGLMULTICASTGETQUERYOBJECTUIVNVPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLMULTICASTGETQUERYOBJECTUIVNVPROC.class, fi, constants$757.PFNGLMULTICASTGETQUERYOBJECTUIVNVPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLMULTICASTGETQUERYOBJECTUIVNVPROC.class, fi, constants$1087.PFNGLMULTICASTGETQUERYOBJECTUIVNVPROC$FUNC, session);
     }
     static PFNGLMULTICASTGETQUERYOBJECTUIVNVPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _gpu, int _id, int _pname, java.lang.foreign.MemoryAddress _params) -> {
             try {
-                constants$757.PFNGLMULTICASTGETQUERYOBJECTUIVNVPROC$MH.invokeExact((Addressable)symbol, _gpu, _id, _pname, (java.lang.foreign.Addressable)_params);
+                constants$1087.PFNGLMULTICASTGETQUERYOBJECTUIVNVPROC$MH.invokeExact((Addressable)symbol, _gpu, _id, _pname, (java.lang.foreign.Addressable)_params);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

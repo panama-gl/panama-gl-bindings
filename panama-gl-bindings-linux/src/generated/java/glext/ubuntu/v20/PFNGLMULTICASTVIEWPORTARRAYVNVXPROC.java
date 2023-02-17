@@ -11,13 +11,13 @@ public interface PFNGLMULTICASTVIEWPORTARRAYVNVXPROC {
 
     void apply(int gpu, int first, int count, java.lang.foreign.MemoryAddress v);
     static MemorySegment allocate(PFNGLMULTICASTVIEWPORTARRAYVNVXPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLMULTICASTVIEWPORTARRAYVNVXPROC.class, fi, constants$721.PFNGLMULTICASTVIEWPORTARRAYVNVXPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLMULTICASTVIEWPORTARRAYVNVXPROC.class, fi, constants$1034.PFNGLMULTICASTVIEWPORTARRAYVNVXPROC$FUNC, session);
     }
     static PFNGLMULTICASTVIEWPORTARRAYVNVXPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _gpu, int _first, int _count, java.lang.foreign.MemoryAddress _v) -> {
             try {
-                constants$721.PFNGLMULTICASTVIEWPORTARRAYVNVXPROC$MH.invokeExact((Addressable)symbol, _gpu, _first, _count, (java.lang.foreign.Addressable)_v);
+                constants$1035.PFNGLMULTICASTVIEWPORTARRAYVNVXPROC$MH.invokeExact((Addressable)symbol, _gpu, _first, _count, (java.lang.foreign.Addressable)_v);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

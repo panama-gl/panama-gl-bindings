@@ -11,13 +11,13 @@ public interface PFNGLDEPTHBOUNDSEXTPROC {
 
     void apply(double zmin, double zmax);
     static MemorySegment allocate(PFNGLDEPTHBOUNDSEXTPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLDEPTHBOUNDSEXTPROC.class, fi, constants$535.PFNGLDEPTHBOUNDSEXTPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLDEPTHBOUNDSEXTPROC.class, fi, constants$757.PFNGLDEPTHBOUNDSEXTPROC$FUNC, session);
     }
     static PFNGLDEPTHBOUNDSEXTPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (double _zmin, double _zmax) -> {
             try {
-                constants$535.PFNGLDEPTHBOUNDSEXTPROC$MH.invokeExact((Addressable)symbol, _zmin, _zmax);
+                constants$757.PFNGLDEPTHBOUNDSEXTPROC$MH.invokeExact((Addressable)symbol, _zmin, _zmax);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

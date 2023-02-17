@@ -9,16 +9,34 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$987 {
 
-    static final FunctionDescriptor getloadavg$FUNC = FunctionDescriptor.of(Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
+    static final FunctionDescriptor PFNGLISVARIANTENABLEDEXTPROC$FUNC = FunctionDescriptor.of(Constants$root.C_CHAR$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle getloadavg$MH = RuntimeHelper.downcallHandle(
-        "getloadavg",
-        constants$987.getloadavg$FUNC
+    static final MethodHandle PFNGLISVARIANTENABLEDEXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$987.PFNGLISVARIANTENABLEDEXTPROC$FUNC
     );
-    static final MemoryAddress NULL$ADDR = MemoryAddress.ofLong(0L);
-    static final MemorySegment __FD_ZERO_STOS$SEGMENT = RuntimeHelper.CONSTANT_ALLOCATOR.allocateUtf8String("stosq");
+    static final FunctionDescriptor PFNGLGETVARIANTBOOLEANVEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle PFNGLGETVARIANTBOOLEANVEXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$987.PFNGLGETVARIANTBOOLEANVEXTPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLGETVARIANTINTEGERVEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle PFNGLGETVARIANTINTEGERVEXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$987.PFNGLGETVARIANTINTEGERVEXTPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLGETVARIANTFLOATVEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
 }
 
 

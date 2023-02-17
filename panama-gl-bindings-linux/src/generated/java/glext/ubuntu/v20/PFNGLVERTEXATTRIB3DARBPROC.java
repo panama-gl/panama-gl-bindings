@@ -11,13 +11,13 @@ public interface PFNGLVERTEXATTRIB3DARBPROC {
 
     void apply(int index, double x, double y, double z);
     static MemorySegment allocate(PFNGLVERTEXATTRIB3DARBPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLVERTEXATTRIB3DARBPROC.class, fi, constants$389.PFNGLVERTEXATTRIB3DARBPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLVERTEXATTRIB3DARBPROC.class, fi, constants$535.PFNGLVERTEXATTRIB3DARBPROC$FUNC, session);
     }
     static PFNGLVERTEXATTRIB3DARBPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _index, double _x, double _y, double _z) -> {
             try {
-                constants$389.PFNGLVERTEXATTRIB3DARBPROC$MH.invokeExact((Addressable)symbol, _index, _x, _y, _z);
+                constants$535.PFNGLVERTEXATTRIB3DARBPROC$MH.invokeExact((Addressable)symbol, _index, _x, _y, _z);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

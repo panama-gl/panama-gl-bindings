@@ -11,13 +11,13 @@ public interface PFNGLDELETESEMAPHORESEXTPROC {
 
     void apply(int n, java.lang.foreign.MemoryAddress semaphores);
     static MemorySegment allocate(PFNGLDELETESEMAPHORESEXTPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLDELETESEMAPHORESEXTPROC.class, fi, constants$660.PFNGLDELETESEMAPHORESEXTPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLDELETESEMAPHORESEXTPROC.class, fi, constants$944.PFNGLDELETESEMAPHORESEXTPROC$FUNC, session);
     }
     static PFNGLDELETESEMAPHORESEXTPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _n, java.lang.foreign.MemoryAddress _semaphores) -> {
             try {
-                constants$660.PFNGLDELETESEMAPHORESEXTPROC$MH.invokeExact((Addressable)symbol, _n, (java.lang.foreign.Addressable)_semaphores);
+                constants$944.PFNGLDELETESEMAPHORESEXTPROC$MH.invokeExact((Addressable)symbol, _n, (java.lang.foreign.Addressable)_semaphores);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

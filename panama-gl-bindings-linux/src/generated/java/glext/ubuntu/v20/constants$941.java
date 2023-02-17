@@ -9,38 +9,55 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$941 {
 
-    static final  OfAddress glutBitmapHelvetica10$LAYOUT = Constants$root.C_POINTER$LAYOUT;
-    static final VarHandle glutBitmapHelvetica10$VH = constants$941.glutBitmapHelvetica10$LAYOUT.varHandle();
-    static final MemorySegment glutBitmapHelvetica10$SEGMENT = RuntimeHelper.lookupGlobalVariable("glutBitmapHelvetica10", constants$941.glutBitmapHelvetica10$LAYOUT);
-    static final  OfAddress glutBitmapHelvetica12$LAYOUT = Constants$root.C_POINTER$LAYOUT;
-    static final VarHandle glutBitmapHelvetica12$VH = constants$941.glutBitmapHelvetica12$LAYOUT.varHandle();
-    static final MemorySegment glutBitmapHelvetica12$SEGMENT = RuntimeHelper.lookupGlobalVariable("glutBitmapHelvetica12", constants$941.glutBitmapHelvetica12$LAYOUT);
-    static final  OfAddress glutBitmapHelvetica18$LAYOUT = Constants$root.C_POINTER$LAYOUT;
-    static final VarHandle glutBitmapHelvetica18$VH = constants$941.glutBitmapHelvetica18$LAYOUT.varHandle();
-    static final MemorySegment glutBitmapHelvetica18$SEGMENT = RuntimeHelper.lookupGlobalVariable("glutBitmapHelvetica18", constants$941.glutBitmapHelvetica18$LAYOUT);
-    static final FunctionDescriptor glutInit$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_POINTER$LAYOUT,
+    static final FunctionDescriptor PFNGLSECONDARYCOLORPOINTEREXTPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle glutInit$MH = RuntimeHelper.downcallHandle(
-        "glutInit",
-        constants$941.glutInit$FUNC
+    static final MethodHandle PFNGLSECONDARYCOLORPOINTEREXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$941.PFNGLSECONDARYCOLORPOINTEREXTPROC$FUNC
     );
-    static final FunctionDescriptor glutInitWindowPosition$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT
+    static final FunctionDescriptor glSecondaryColor3bEXT$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_CHAR$LAYOUT,
+        Constants$root.C_CHAR$LAYOUT,
+        Constants$root.C_CHAR$LAYOUT
     );
-    static final MethodHandle glutInitWindowPosition$MH = RuntimeHelper.downcallHandle(
-        "glutInitWindowPosition",
-        constants$941.glutInitWindowPosition$FUNC
+    static final MethodHandle glSecondaryColor3bEXT$MH = RuntimeHelper.downcallHandle(
+        "glSecondaryColor3bEXT",
+        constants$941.glSecondaryColor3bEXT$FUNC
     );
-    static final FunctionDescriptor glutInitWindowSize$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT
+    static final FunctionDescriptor glSecondaryColor3bvEXT$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle glutInitWindowSize$MH = RuntimeHelper.downcallHandle(
-        "glutInitWindowSize",
-        constants$941.glutInitWindowSize$FUNC
+    static final MethodHandle glSecondaryColor3bvEXT$MH = RuntimeHelper.downcallHandle(
+        "glSecondaryColor3bvEXT",
+        constants$941.glSecondaryColor3bvEXT$FUNC
+    );
+    static final FunctionDescriptor glSecondaryColor3dEXT$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_DOUBLE$LAYOUT,
+        Constants$root.C_DOUBLE$LAYOUT,
+        Constants$root.C_DOUBLE$LAYOUT
+    );
+    static final MethodHandle glSecondaryColor3dEXT$MH = RuntimeHelper.downcallHandle(
+        "glSecondaryColor3dEXT",
+        constants$941.glSecondaryColor3dEXT$FUNC
+    );
+    static final FunctionDescriptor glSecondaryColor3dvEXT$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glSecondaryColor3dvEXT$MH = RuntimeHelper.downcallHandle(
+        "glSecondaryColor3dvEXT",
+        constants$941.glSecondaryColor3dvEXT$FUNC
+    );
+    static final FunctionDescriptor glSecondaryColor3fEXT$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT
+    );
+    static final MethodHandle glSecondaryColor3fEXT$MH = RuntimeHelper.downcallHandle(
+        "glSecondaryColor3fEXT",
+        constants$941.glSecondaryColor3fEXT$FUNC
     );
 }
 

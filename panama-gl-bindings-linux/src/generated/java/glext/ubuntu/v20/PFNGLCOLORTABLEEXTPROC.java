@@ -11,13 +11,13 @@ public interface PFNGLCOLORTABLEEXTPROC {
 
     void apply(int target, int internalFormat, int width, int format, int type, java.lang.foreign.MemoryAddress table);
     static MemorySegment allocate(PFNGLCOLORTABLEEXTPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLCOLORTABLEEXTPROC.class, fi, constants$649.PFNGLCOLORTABLEEXTPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLCOLORTABLEEXTPROC.class, fi, constants$927.PFNGLCOLORTABLEEXTPROC$FUNC, session);
     }
     static PFNGLCOLORTABLEEXTPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _target, int _internalFormat, int _width, int _format, int _type, java.lang.foreign.MemoryAddress _table) -> {
             try {
-                constants$649.PFNGLCOLORTABLEEXTPROC$MH.invokeExact((Addressable)symbol, _target, _internalFormat, _width, _format, _type, (java.lang.foreign.Addressable)_table);
+                constants$927.PFNGLCOLORTABLEEXTPROC$MH.invokeExact((Addressable)symbol, _target, _internalFormat, _width, _format, _type, (java.lang.foreign.Addressable)_table);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

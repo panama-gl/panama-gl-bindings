@@ -11,13 +11,13 @@ public interface PFNGLRESETHISTOGRAMEXTPROC {
 
     void apply(int target);
     static MemorySegment allocate(PFNGLRESETHISTOGRAMEXTPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLRESETHISTOGRAMEXTPROC.class, fi, constants$638.PFNGLRESETHISTOGRAMEXTPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLRESETHISTOGRAMEXTPROC.class, fi, constants$909.PFNGLRESETHISTOGRAMEXTPROC$FUNC, session);
     }
     static PFNGLRESETHISTOGRAMEXTPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _target) -> {
             try {
-                constants$638.PFNGLRESETHISTOGRAMEXTPROC$MH.invokeExact((Addressable)symbol, _target);
+                constants$909.PFNGLRESETHISTOGRAMEXTPROC$MH.invokeExact((Addressable)symbol, _target);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

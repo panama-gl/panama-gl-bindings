@@ -11,13 +11,13 @@ public interface PFNGLPUSHGROUPMARKEREXTPROC {
 
     void apply(int length, java.lang.foreign.MemoryAddress marker);
     static MemorySegment allocate(PFNGLPUSHGROUPMARKEREXTPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLPUSHGROUPMARKEREXTPROC.class, fi, constants$535.PFNGLPUSHGROUPMARKEREXTPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLPUSHGROUPMARKEREXTPROC.class, fi, constants$755.PFNGLPUSHGROUPMARKEREXTPROC$FUNC, session);
     }
     static PFNGLPUSHGROUPMARKEREXTPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _length, java.lang.foreign.MemoryAddress _marker) -> {
             try {
-                constants$535.PFNGLPUSHGROUPMARKEREXTPROC$MH.invokeExact((Addressable)symbol, _length, (java.lang.foreign.Addressable)_marker);
+                constants$756.PFNGLPUSHGROUPMARKEREXTPROC$MH.invokeExact((Addressable)symbol, _length, (java.lang.foreign.Addressable)_marker);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

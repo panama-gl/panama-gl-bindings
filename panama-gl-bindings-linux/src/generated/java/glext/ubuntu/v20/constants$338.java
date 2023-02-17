@@ -9,35 +9,33 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$338 {
 
-    static final FunctionDescriptor PFNGLPROGRAMUNIFORM2I64ARBPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLMULTIDRAWARRAYSINDIRECTPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_LONG_LONG$LAYOUT,
-        Constants$root.C_LONG_LONG$LAYOUT
+        Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLPROGRAMUNIFORM2I64ARBPROC$MH = RuntimeHelper.downcallHandle(
-        constants$338.PFNGLPROGRAMUNIFORM2I64ARBPROC$FUNC
+    static final MethodHandle PFNGLMULTIDRAWARRAYSINDIRECTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$338.PFNGLMULTIDRAWARRAYSINDIRECTPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLPROGRAMUNIFORM3I64ARBPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLMULTIDRAWELEMENTSINDIRECTPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_LONG_LONG$LAYOUT,
-        Constants$root.C_LONG_LONG$LAYOUT,
-        Constants$root.C_LONG_LONG$LAYOUT
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLPROGRAMUNIFORM3I64ARBPROC$MH = RuntimeHelper.downcallHandle(
-        constants$338.PFNGLPROGRAMUNIFORM3I64ARBPROC$FUNC
+    static final MethodHandle PFNGLMULTIDRAWELEMENTSINDIRECTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$338.PFNGLMULTIDRAWELEMENTSINDIRECTPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLPROGRAMUNIFORM4I64ARBPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLGETPROGRAMINTERFACEIVPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_LONG_LONG$LAYOUT,
-        Constants$root.C_LONG_LONG$LAYOUT,
-        Constants$root.C_LONG_LONG$LAYOUT,
-        Constants$root.C_LONG_LONG$LAYOUT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLPROGRAMUNIFORM4I64ARBPROC$MH = RuntimeHelper.downcallHandle(
-        constants$338.PFNGLPROGRAMUNIFORM4I64ARBPROC$FUNC
+    static final MethodHandle PFNGLGETPROGRAMINTERFACEIVPROC$MH = RuntimeHelper.downcallHandle(
+        constants$338.PFNGLGETPROGRAMINTERFACEIVPROC$FUNC
     );
 }
 

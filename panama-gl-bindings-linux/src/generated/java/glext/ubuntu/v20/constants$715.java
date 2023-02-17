@@ -9,25 +9,34 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$715 {
 
-    static final FunctionDescriptor PFNGLWINDOWPOS3DVMESAPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLVERTEXSTREAM4DVATIPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLWINDOWPOS3DVMESAPROC$MH = RuntimeHelper.downcallHandle(
-        constants$715.PFNGLWINDOWPOS3DVMESAPROC$FUNC
+    static final MethodHandle PFNGLVERTEXSTREAM4DVATIPROC$MH = RuntimeHelper.downcallHandle(
+        constants$715.PFNGLVERTEXSTREAM4DVATIPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLWINDOWPOS3FMESAPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_FLOAT$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT
+    static final FunctionDescriptor PFNGLNORMALSTREAM3BATIPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_CHAR$LAYOUT,
+        Constants$root.C_CHAR$LAYOUT,
+        Constants$root.C_CHAR$LAYOUT
     );
-    static final MethodHandle PFNGLWINDOWPOS3FMESAPROC$MH = RuntimeHelper.downcallHandle(
-        constants$715.PFNGLWINDOWPOS3FMESAPROC$FUNC
+    static final MethodHandle PFNGLNORMALSTREAM3BATIPROC$MH = RuntimeHelper.downcallHandle(
+        constants$715.PFNGLNORMALSTREAM3BATIPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLWINDOWPOS3FVMESAPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLNORMALSTREAM3BVATIPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLWINDOWPOS3FVMESAPROC$MH = RuntimeHelper.downcallHandle(
-        constants$715.PFNGLWINDOWPOS3FVMESAPROC$FUNC
+    static final MethodHandle PFNGLNORMALSTREAM3BVATIPROC$MH = RuntimeHelper.downcallHandle(
+        constants$715.PFNGLNORMALSTREAM3BVATIPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLNORMALSTREAM3SATIPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_SHORT$LAYOUT,
+        Constants$root.C_SHORT$LAYOUT,
+        Constants$root.C_SHORT$LAYOUT
     );
 }
 

@@ -9,49 +9,30 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$973 {
 
-    static final FunctionDescriptor random$FUNC = FunctionDescriptor.of(Constants$root.C_LONG_LONG$LAYOUT);
-    static final MethodHandle random$MH = RuntimeHelper.downcallHandle(
-        "random",
-        constants$973.random$FUNC
-    );
-    static final FunctionDescriptor srandom$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT
-    );
-    static final MethodHandle srandom$MH = RuntimeHelper.downcallHandle(
-        "srandom",
-        constants$973.srandom$FUNC
-    );
-    static final FunctionDescriptor initstate$FUNC = FunctionDescriptor.of(Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_LONG_LONG$LAYOUT
-    );
-    static final MethodHandle initstate$MH = RuntimeHelper.downcallHandle(
-        "initstate",
-        constants$973.initstate$FUNC
-    );
-    static final FunctionDescriptor setstate$FUNC = FunctionDescriptor.of(Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle setstate$MH = RuntimeHelper.downcallHandle(
-        "setstate",
-        constants$973.setstate$FUNC
-    );
-    static final FunctionDescriptor random_r$FUNC = FunctionDescriptor.of(Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle random_r$MH = RuntimeHelper.downcallHandle(
-        "random_r",
-        constants$973.random_r$FUNC
-    );
-    static final FunctionDescriptor srandom_r$FUNC = FunctionDescriptor.of(Constants$root.C_INT$LAYOUT,
+    static final FunctionDescriptor PFNGLVERTEXATTRIBL1DVEXTPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle srandom_r$MH = RuntimeHelper.downcallHandle(
-        "srandom_r",
-        constants$973.srandom_r$FUNC
+    static final MethodHandle PFNGLVERTEXATTRIBL1DVEXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$973.PFNGLVERTEXATTRIBL1DVEXTPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLVERTEXATTRIBL2DVEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle PFNGLVERTEXATTRIBL2DVEXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$973.PFNGLVERTEXATTRIBL2DVEXTPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLVERTEXATTRIBL3DVEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle PFNGLVERTEXATTRIBL3DVEXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$973.PFNGLVERTEXATTRIBL3DVEXTPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLVERTEXATTRIBL4DVEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
 }
 

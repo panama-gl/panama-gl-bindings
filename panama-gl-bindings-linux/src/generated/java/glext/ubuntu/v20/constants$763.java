@@ -9,29 +9,35 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$763 {
 
-    static final FunctionDescriptor PFNGLGETPROGRAMENVPARAMETERIUIVNVPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLPUSHCLIENTATTRIBDEFAULTEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle PFNGLPUSHCLIENTATTRIBDEFAULTEXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$763.PFNGLPUSHCLIENTATTRIBDEFAULTEXTPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLTEXTUREPARAMETERFEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT
+    );
+    static final MethodHandle PFNGLTEXTUREPARAMETERFEXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$763.PFNGLTEXTUREPARAMETERFEXTPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLTEXTUREPARAMETERFVEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLGETPROGRAMENVPARAMETERIUIVNVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$763.PFNGLGETPROGRAMENVPARAMETERIUIVNVPROC$FUNC
+    static final MethodHandle PFNGLTEXTUREPARAMETERFVEXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$763.PFNGLTEXTUREPARAMETERFVEXTPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLPROGRAMSUBROUTINEPARAMETERSUIVNVPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLTEXTUREPARAMETERIEXTPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle PFNGLPROGRAMSUBROUTINEPARAMETERSUIVNVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$763.PFNGLPROGRAMSUBROUTINEPARAMETERSUIVNVPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLGETPROGRAMSUBROUTINEPARAMETERUIVNVPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle PFNGLGETPROGRAMSUBROUTINEPARAMETERUIVNVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$763.PFNGLGETPROGRAMSUBROUTINEPARAMETERUIVNVPROC$FUNC
+        Constants$root.C_INT$LAYOUT
     );
 }
 

@@ -11,13 +11,13 @@ public interface PFNGLBINDVERTEXBUFFERSPROC {
 
     void apply(int first, int count, java.lang.foreign.MemoryAddress buffers, java.lang.foreign.MemoryAddress offsets, java.lang.foreign.MemoryAddress strides);
     static MemorySegment allocate(PFNGLBINDVERTEXBUFFERSPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLBINDVERTEXBUFFERSPROC.class, fi, constants$270.PFNGLBINDVERTEXBUFFERSPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLBINDVERTEXBUFFERSPROC.class, fi, constants$357.PFNGLBINDVERTEXBUFFERSPROC$FUNC, session);
     }
     static PFNGLBINDVERTEXBUFFERSPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _first, int _count, java.lang.foreign.MemoryAddress _buffers, java.lang.foreign.MemoryAddress _offsets, java.lang.foreign.MemoryAddress _strides) -> {
             try {
-                constants$270.PFNGLBINDVERTEXBUFFERSPROC$MH.invokeExact((Addressable)symbol, _first, _count, (java.lang.foreign.Addressable)_buffers, (java.lang.foreign.Addressable)_offsets, (java.lang.foreign.Addressable)_strides);
+                constants$357.PFNGLBINDVERTEXBUFFERSPROC$MH.invokeExact((Addressable)symbol, _first, _count, (java.lang.foreign.Addressable)_buffers, (java.lang.foreign.Addressable)_offsets, (java.lang.foreign.Addressable)_strides);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

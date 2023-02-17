@@ -9,29 +9,64 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$871 {
 
-    static final FunctionDescriptor PFNGLVERTEXATTRIBI1IEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glGetNamedProgramLocalParameterdvEXT$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glGetNamedProgramLocalParameterdvEXT$MH = RuntimeHelper.downcallHandle(
+        "glGetNamedProgramLocalParameterdvEXT",
+        constants$871.glGetNamedProgramLocalParameterdvEXT$FUNC
+    );
+    static final FunctionDescriptor glGetNamedProgramLocalParameterfvEXT$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glGetNamedProgramLocalParameterfvEXT$MH = RuntimeHelper.downcallHandle(
+        "glGetNamedProgramLocalParameterfvEXT",
+        constants$871.glGetNamedProgramLocalParameterfvEXT$FUNC
+    );
+    static final FunctionDescriptor glGetNamedProgramivEXT$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glGetNamedProgramivEXT$MH = RuntimeHelper.downcallHandle(
+        "glGetNamedProgramivEXT",
+        constants$871.glGetNamedProgramivEXT$FUNC
+    );
+    static final FunctionDescriptor glGetNamedProgramStringEXT$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glGetNamedProgramStringEXT$MH = RuntimeHelper.downcallHandle(
+        "glGetNamedProgramStringEXT",
+        constants$871.glGetNamedProgramStringEXT$FUNC
+    );
+    static final FunctionDescriptor glNamedRenderbufferStorageEXT$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLVERTEXATTRIBI1IEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$871.PFNGLVERTEXATTRIBI1IEXTPROC$FUNC
+    static final MethodHandle glNamedRenderbufferStorageEXT$MH = RuntimeHelper.downcallHandle(
+        "glNamedRenderbufferStorageEXT",
+        constants$871.glNamedRenderbufferStorageEXT$FUNC
     );
-    static final FunctionDescriptor PFNGLVERTEXATTRIBI2IEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glGetNamedRenderbufferParameterivEXT$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT
+        Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLVERTEXATTRIBI2IEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$871.PFNGLVERTEXATTRIBI2IEXTPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLVERTEXATTRIBI3IEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT
-    );
-    static final MethodHandle PFNGLVERTEXATTRIBI3IEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$871.PFNGLVERTEXATTRIBI3IEXTPROC$FUNC
+    static final MethodHandle glGetNamedRenderbufferParameterivEXT$MH = RuntimeHelper.downcallHandle(
+        "glGetNamedRenderbufferParameterivEXT",
+        constants$871.glGetNamedRenderbufferParameterivEXT$FUNC
     );
 }
 

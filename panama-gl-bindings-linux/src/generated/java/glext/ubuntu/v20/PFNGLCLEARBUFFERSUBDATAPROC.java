@@ -11,13 +11,13 @@ public interface PFNGLCLEARBUFFERSUBDATAPROC {
 
     void apply(int target, int internalformat, long offset, long size, int format, int type, java.lang.foreign.MemoryAddress data);
     static MemorySegment allocate(PFNGLCLEARBUFFERSUBDATAPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLCLEARBUFFERSUBDATAPROC.class, fi, constants$253.PFNGLCLEARBUFFERSUBDATAPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLCLEARBUFFERSUBDATAPROC.class, fi, constants$333.PFNGLCLEARBUFFERSUBDATAPROC$FUNC, session);
     }
     static PFNGLCLEARBUFFERSUBDATAPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _target, int _internalformat, long _offset, long _size, int _format, int _type, java.lang.foreign.MemoryAddress _data) -> {
             try {
-                constants$253.PFNGLCLEARBUFFERSUBDATAPROC$MH.invokeExact((Addressable)symbol, _target, _internalformat, _offset, _size, _format, _type, (java.lang.foreign.Addressable)_data);
+                constants$333.PFNGLCLEARBUFFERSUBDATAPROC$MH.invokeExact((Addressable)symbol, _target, _internalformat, _offset, _size, _format, _type, (java.lang.foreign.Addressable)_data);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

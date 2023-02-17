@@ -9,29 +9,32 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$699 {
 
-    static final FunctionDescriptor PFNGLIMAGETRANSFORMPARAMETERIHPPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLARRAYOBJECTATIPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLIMAGETRANSFORMPARAMETERIHPPROC$MH = RuntimeHelper.downcallHandle(
-        constants$699.PFNGLIMAGETRANSFORMPARAMETERIHPPROC$FUNC
+    static final MethodHandle PFNGLARRAYOBJECTATIPROC$MH = RuntimeHelper.downcallHandle(
+        constants$699.PFNGLARRAYOBJECTATIPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLIMAGETRANSFORMPARAMETERFHPPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT
-    );
-    static final MethodHandle PFNGLIMAGETRANSFORMPARAMETERFHPPROC$MH = RuntimeHelper.downcallHandle(
-        constants$699.PFNGLIMAGETRANSFORMPARAMETERFHPPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLIMAGETRANSFORMPARAMETERIVHPPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLGETARRAYOBJECTFVATIPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLIMAGETRANSFORMPARAMETERIVHPPROC$MH = RuntimeHelper.downcallHandle(
-        constants$699.PFNGLIMAGETRANSFORMPARAMETERIVHPPROC$FUNC
+    static final MethodHandle PFNGLGETARRAYOBJECTFVATIPROC$MH = RuntimeHelper.downcallHandle(
+        constants$699.PFNGLGETARRAYOBJECTFVATIPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLGETARRAYOBJECTIVATIPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle PFNGLGETARRAYOBJECTIVATIPROC$MH = RuntimeHelper.downcallHandle(
+        constants$699.PFNGLGETARRAYOBJECTIVATIPROC$FUNC
     );
 }
 

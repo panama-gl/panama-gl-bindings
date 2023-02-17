@@ -11,13 +11,13 @@ public interface PFNGLNAMEDFRAMEBUFFERRENDERBUFFEREXTPROC {
 
     void apply(int framebuffer, int attachment, int renderbuffertarget, int renderbuffer);
     static MemorySegment allocate(PFNGLNAMEDFRAMEBUFFERRENDERBUFFEREXTPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLNAMEDFRAMEBUFFERRENDERBUFFEREXTPROC.class, fi, constants$597.PFNGLNAMEDFRAMEBUFFERRENDERBUFFEREXTPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLNAMEDFRAMEBUFFERRENDERBUFFEREXTPROC.class, fi, constants$818.PFNGLNAMEDFRAMEBUFFERRENDERBUFFEREXTPROC$FUNC, session);
     }
     static PFNGLNAMEDFRAMEBUFFERRENDERBUFFEREXTPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _framebuffer, int _attachment, int _renderbuffertarget, int _renderbuffer) -> {
             try {
-                constants$597.PFNGLNAMEDFRAMEBUFFERRENDERBUFFEREXTPROC$MH.invokeExact((Addressable)symbol, _framebuffer, _attachment, _renderbuffertarget, _renderbuffer);
+                constants$818.PFNGLNAMEDFRAMEBUFFERRENDERBUFFEREXTPROC$MH.invokeExact((Addressable)symbol, _framebuffer, _attachment, _renderbuffertarget, _renderbuffer);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

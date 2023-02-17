@@ -11,13 +11,13 @@ public interface PFNGLMULTIDRAWRANGEELEMENTARRAYAPPLEPROC {
 
     void apply(int mode, int start, int end, java.lang.foreign.MemoryAddress first, java.lang.foreign.MemoryAddress count, int primcount);
     static MemorySegment allocate(PFNGLMULTIDRAWRANGEELEMENTARRAYAPPLEPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLMULTIDRAWRANGEELEMENTARRAYAPPLEPROC.class, fi, constants$476.PFNGLMULTIDRAWRANGEELEMENTARRAYAPPLEPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLMULTIDRAWRANGEELEMENTARRAYAPPLEPROC.class, fi, constants$667.PFNGLMULTIDRAWRANGEELEMENTARRAYAPPLEPROC$FUNC, session);
     }
     static PFNGLMULTIDRAWRANGEELEMENTARRAYAPPLEPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _mode, int _start, int _end, java.lang.foreign.MemoryAddress _first, java.lang.foreign.MemoryAddress _count, int _primcount) -> {
             try {
-                constants$476.PFNGLMULTIDRAWRANGEELEMENTARRAYAPPLEPROC$MH.invokeExact((Addressable)symbol, _mode, _start, _end, (java.lang.foreign.Addressable)_first, (java.lang.foreign.Addressable)_count, _primcount);
+                constants$667.PFNGLMULTIDRAWRANGEELEMENTARRAYAPPLEPROC$MH.invokeExact((Addressable)symbol, _mode, _start, _end, (java.lang.foreign.Addressable)_first, (java.lang.foreign.Addressable)_count, _primcount);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

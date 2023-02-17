@@ -9,26 +9,39 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$502 {
 
-    static final FunctionDescriptor PFNGLVERTEXSTREAM1FATIPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLGETACTIVEUNIFORMARBPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLVERTEXSTREAM1FATIPROC$MH = RuntimeHelper.downcallHandle(
-        constants$502.PFNGLVERTEXSTREAM1FATIPROC$FUNC
+    static final MethodHandle PFNGLGETACTIVEUNIFORMARBPROC$MH = RuntimeHelper.downcallHandle(
+        constants$502.PFNGLGETACTIVEUNIFORMARBPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLVERTEXSTREAM1FVATIPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLGETUNIFORMFVARBPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLVERTEXSTREAM1FVATIPROC$MH = RuntimeHelper.downcallHandle(
-        constants$502.PFNGLVERTEXSTREAM1FVATIPROC$FUNC
+    static final MethodHandle PFNGLGETUNIFORMFVARBPROC$MH = RuntimeHelper.downcallHandle(
+        constants$502.PFNGLGETUNIFORMFVARBPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLVERTEXSTREAM1DATIPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLGETUNIFORMIVARBPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_DOUBLE$LAYOUT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLVERTEXSTREAM1DATIPROC$MH = RuntimeHelper.downcallHandle(
-        constants$502.PFNGLVERTEXSTREAM1DATIPROC$FUNC
+    static final MethodHandle PFNGLGETUNIFORMIVARBPROC$MH = RuntimeHelper.downcallHandle(
+        constants$502.PFNGLGETUNIFORMIVARBPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLGETSHADERSOURCEARBPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
 }
 

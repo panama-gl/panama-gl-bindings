@@ -11,13 +11,13 @@ public interface PFNGLGETVARYINGLOCATIONNVPROC {
 
     int apply(int program, java.lang.foreign.MemoryAddress name);
     static MemorySegment allocate(PFNGLGETVARYINGLOCATIONNVPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLGETVARYINGLOCATIONNVPROC.class, fi, constants$831.PFNGLGETVARYINGLOCATIONNVPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLGETVARYINGLOCATIONNVPROC.class, fi, constants$1199.PFNGLGETVARYINGLOCATIONNVPROC$FUNC, session);
     }
     static PFNGLGETVARYINGLOCATIONNVPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _program, java.lang.foreign.MemoryAddress _name) -> {
             try {
-                return (int)constants$831.PFNGLGETVARYINGLOCATIONNVPROC$MH.invokeExact((Addressable)symbol, _program, (java.lang.foreign.Addressable)_name);
+                return (int)constants$1199.PFNGLGETVARYINGLOCATIONNVPROC$MH.invokeExact((Addressable)symbol, _program, (java.lang.foreign.Addressable)_name);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

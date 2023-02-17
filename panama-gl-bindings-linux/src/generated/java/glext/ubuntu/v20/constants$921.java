@@ -9,34 +9,55 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$921 {
 
-    static final FunctionDescriptor PFNGLTEXCOORD2FCOLOR3FVERTEX3FVSUNPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
+    static final FunctionDescriptor glGetUnsignedBytei_vEXT$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLTEXCOORD2FCOLOR3FVERTEX3FVSUNPROC$MH = RuntimeHelper.downcallHandle(
-        constants$921.PFNGLTEXCOORD2FCOLOR3FVERTEX3FVSUNPROC$FUNC
+    static final MethodHandle glGetUnsignedBytei_vEXT$MH = RuntimeHelper.downcallHandle(
+        "glGetUnsignedBytei_vEXT",
+        constants$921.glGetUnsignedBytei_vEXT$FUNC
     );
-    static final FunctionDescriptor PFNGLTEXCOORD2FNORMAL3FVERTEX3FSUNPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_FLOAT$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT
-    );
-    static final MethodHandle PFNGLTEXCOORD2FNORMAL3FVERTEX3FSUNPROC$MH = RuntimeHelper.downcallHandle(
-        constants$921.PFNGLTEXCOORD2FNORMAL3FVERTEX3FSUNPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLTEXCOORD2FNORMAL3FVERTEX3FVSUNPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
+    static final FunctionDescriptor glDeleteMemoryObjectsEXT$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLTEXCOORD2FNORMAL3FVERTEX3FVSUNPROC$MH = RuntimeHelper.downcallHandle(
-        constants$921.PFNGLTEXCOORD2FNORMAL3FVERTEX3FVSUNPROC$FUNC
+    static final MethodHandle glDeleteMemoryObjectsEXT$MH = RuntimeHelper.downcallHandle(
+        "glDeleteMemoryObjectsEXT",
+        constants$921.glDeleteMemoryObjectsEXT$FUNC
+    );
+    static final FunctionDescriptor glIsMemoryObjectEXT$FUNC = FunctionDescriptor.of(Constants$root.C_CHAR$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle glIsMemoryObjectEXT$MH = RuntimeHelper.downcallHandle(
+        "glIsMemoryObjectEXT",
+        constants$921.glIsMemoryObjectEXT$FUNC
+    );
+    static final FunctionDescriptor glCreateMemoryObjectsEXT$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glCreateMemoryObjectsEXT$MH = RuntimeHelper.downcallHandle(
+        "glCreateMemoryObjectsEXT",
+        constants$921.glCreateMemoryObjectsEXT$FUNC
+    );
+    static final FunctionDescriptor glMemoryObjectParameterivEXT$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glMemoryObjectParameterivEXT$MH = RuntimeHelper.downcallHandle(
+        "glMemoryObjectParameterivEXT",
+        constants$921.glMemoryObjectParameterivEXT$FUNC
+    );
+    static final FunctionDescriptor glGetMemoryObjectParameterivEXT$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glGetMemoryObjectParameterivEXT$MH = RuntimeHelper.downcallHandle(
+        "glGetMemoryObjectParameterivEXT",
+        constants$921.glGetMemoryObjectParameterivEXT$FUNC
     );
 }
 

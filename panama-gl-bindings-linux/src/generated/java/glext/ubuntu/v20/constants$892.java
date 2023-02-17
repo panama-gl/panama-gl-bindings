@@ -9,22 +9,32 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$892 {
 
-    static final FunctionDescriptor PFNGLDELETEASYNCMARKERSSGIXPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLBINDRENDERBUFFEREXTPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLDELETEASYNCMARKERSSGIXPROC$MH = RuntimeHelper.downcallHandle(
-        constants$892.PFNGLDELETEASYNCMARKERSSGIXPROC$FUNC
+    static final MethodHandle PFNGLBINDRENDERBUFFEREXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$892.PFNGLBINDRENDERBUFFEREXTPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLISASYNCMARKERSGIXPROC$FUNC = FunctionDescriptor.of(Constants$root.C_CHAR$LAYOUT,
+    static final FunctionDescriptor PFNGLDELETERENDERBUFFERSEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle PFNGLDELETERENDERBUFFERSEXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$892.PFNGLDELETERENDERBUFFERSEXTPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLGENRENDERBUFFERSEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle PFNGLGENRENDERBUFFERSEXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$892.PFNGLGENRENDERBUFFERSEXTPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLRENDERBUFFERSTORAGEEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT
-    );
-    static final MethodHandle PFNGLISASYNCMARKERSGIXPROC$MH = RuntimeHelper.downcallHandle(
-        constants$892.PFNGLISASYNCMARKERSGIXPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLFLUSHRASTERSGIXPROC$FUNC = FunctionDescriptor.ofVoid();
-    static final MethodHandle PFNGLFLUSHRASTERSGIXPROC$MH = RuntimeHelper.downcallHandle(
-        constants$892.PFNGLFLUSHRASTERSGIXPROC$FUNC
     );
 }
 

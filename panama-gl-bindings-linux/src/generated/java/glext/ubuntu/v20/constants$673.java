@@ -9,23 +9,44 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$673 {
 
-    static final FunctionDescriptor PFNGLGETQUERYOBJECTUI64VEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLFLUSHMAPPEDBUFFERRANGEAPPLEPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT
+    );
+    static final MethodHandle PFNGLFLUSHMAPPEDBUFFERRANGEAPPLEPROC$MH = RuntimeHelper.downcallHandle(
+        constants$673.PFNGLFLUSHMAPPEDBUFFERRANGEAPPLEPROC$FUNC
+    );
+    static final FunctionDescriptor glBufferParameteriAPPLE$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle PFNGLGETQUERYOBJECTUI64VEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$673.PFNGLGETQUERYOBJECTUI64VEXTPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLBEGINTRANSFORMFEEDBACKEXTPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLBEGINTRANSFORMFEEDBACKEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$673.PFNGLBEGINTRANSFORMFEEDBACKEXTPROC$FUNC
+    static final MethodHandle glBufferParameteriAPPLE$MH = RuntimeHelper.downcallHandle(
+        "glBufferParameteriAPPLE",
+        constants$673.glBufferParameteriAPPLE$FUNC
     );
-    static final FunctionDescriptor PFNGLENDTRANSFORMFEEDBACKEXTPROC$FUNC = FunctionDescriptor.ofVoid();
-    static final MethodHandle PFNGLENDTRANSFORMFEEDBACKEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$673.PFNGLENDTRANSFORMFEEDBACKEXTPROC$FUNC
+    static final FunctionDescriptor glFlushMappedBufferRangeAPPLE$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT
+    );
+    static final MethodHandle glFlushMappedBufferRangeAPPLE$MH = RuntimeHelper.downcallHandle(
+        "glFlushMappedBufferRangeAPPLE",
+        constants$673.glFlushMappedBufferRangeAPPLE$FUNC
+    );
+    static final FunctionDescriptor PFNGLOBJECTPURGEABLEAPPLEPROC$FUNC = FunctionDescriptor.of(Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle PFNGLOBJECTPURGEABLEAPPLEPROC$MH = RuntimeHelper.downcallHandle(
+        constants$673.PFNGLOBJECTPURGEABLEAPPLEPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLOBJECTUNPURGEABLEAPPLEPROC$FUNC = FunctionDescriptor.of(Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
 }
 

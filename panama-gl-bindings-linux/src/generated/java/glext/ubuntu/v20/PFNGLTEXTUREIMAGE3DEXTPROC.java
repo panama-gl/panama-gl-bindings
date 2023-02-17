@@ -11,13 +11,13 @@ public interface PFNGLTEXTUREIMAGE3DEXTPROC {
 
     void apply(int texture, int target, int level, int internalformat, int width, int height, int depth, int border, int format, int type, java.lang.foreign.MemoryAddress pixels);
     static MemorySegment allocate(PFNGLTEXTUREIMAGE3DEXTPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLTEXTUREIMAGE3DEXTPROC.class, fi, constants$547.PFNGLTEXTUREIMAGE3DEXTPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLTEXTUREIMAGE3DEXTPROC.class, fi, constants$768.PFNGLTEXTUREIMAGE3DEXTPROC$FUNC, session);
     }
     static PFNGLTEXTUREIMAGE3DEXTPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _texture, int _target, int _level, int _internalformat, int _width, int _height, int _depth, int _border, int _format, int _type, java.lang.foreign.MemoryAddress _pixels) -> {
             try {
-                constants$547.PFNGLTEXTUREIMAGE3DEXTPROC$MH.invokeExact((Addressable)symbol, _texture, _target, _level, _internalformat, _width, _height, _depth, _border, _format, _type, (java.lang.foreign.Addressable)_pixels);
+                constants$769.PFNGLTEXTUREIMAGE3DEXTPROC$MH.invokeExact((Addressable)symbol, _texture, _target, _level, _internalformat, _width, _height, _depth, _border, _format, _type, (java.lang.foreign.Addressable)_pixels);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

@@ -9,30 +9,54 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$917 {
 
-    static final FunctionDescriptor PFNGLCOLOR3FVERTEX3FVSUNPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
+    static final FunctionDescriptor PFNGLTEXSTORAGEMEM2DEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT
     );
-    static final MethodHandle PFNGLCOLOR3FVERTEX3FVSUNPROC$MH = RuntimeHelper.downcallHandle(
-        constants$917.PFNGLCOLOR3FVERTEX3FVSUNPROC$FUNC
+    static final MethodHandle PFNGLTEXSTORAGEMEM2DEXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$917.PFNGLTEXSTORAGEMEM2DEXTPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLNORMAL3FVERTEX3FSUNPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_FLOAT$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT
+    static final FunctionDescriptor PFNGLTEXSTORAGEMEM2DMULTISAMPLEEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_CHAR$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT
     );
-    static final MethodHandle PFNGLNORMAL3FVERTEX3FSUNPROC$MH = RuntimeHelper.downcallHandle(
-        constants$917.PFNGLNORMAL3FVERTEX3FSUNPROC$FUNC
+    static final MethodHandle PFNGLTEXSTORAGEMEM2DMULTISAMPLEEXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$917.PFNGLTEXSTORAGEMEM2DMULTISAMPLEEXTPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLNORMAL3FVERTEX3FVSUNPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
+    static final FunctionDescriptor PFNGLTEXSTORAGEMEM3DEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT
     );
-    static final MethodHandle PFNGLNORMAL3FVERTEX3FVSUNPROC$MH = RuntimeHelper.downcallHandle(
-        constants$917.PFNGLNORMAL3FVERTEX3FVSUNPROC$FUNC
+    static final MethodHandle PFNGLTEXSTORAGEMEM3DEXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$917.PFNGLTEXSTORAGEMEM3DEXTPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLTEXSTORAGEMEM3DMULTISAMPLEEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_CHAR$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT
     );
 }
 

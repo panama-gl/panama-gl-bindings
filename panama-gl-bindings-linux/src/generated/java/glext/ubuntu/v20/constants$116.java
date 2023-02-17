@@ -9,21 +9,32 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$116 {
 
-    static final FunctionDescriptor PFNGLCREATEPROGRAMPROC$FUNC = FunctionDescriptor.of(Constants$root.C_INT$LAYOUT);
-    static final MethodHandle PFNGLCREATEPROGRAMPROC$MH = RuntimeHelper.downcallHandle(
-        constants$116.PFNGLCREATEPROGRAMPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLCREATESHADERPROC$FUNC = FunctionDescriptor.of(Constants$root.C_INT$LAYOUT,
+    static final FunctionDescriptor PFNGLENDQUERYPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLCREATESHADERPROC$MH = RuntimeHelper.downcallHandle(
-        constants$116.PFNGLCREATESHADERPROC$FUNC
+    static final MethodHandle PFNGLENDQUERYPROC$MH = RuntimeHelper.downcallHandle(
+        constants$116.PFNGLENDQUERYPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLDELETEPROGRAMPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT
+    static final FunctionDescriptor PFNGLGETQUERYIVPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLDELETEPROGRAMPROC$MH = RuntimeHelper.downcallHandle(
-        constants$116.PFNGLDELETEPROGRAMPROC$FUNC
+    static final MethodHandle PFNGLGETQUERYIVPROC$MH = RuntimeHelper.downcallHandle(
+        constants$116.PFNGLGETQUERYIVPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLGETQUERYOBJECTIVPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle PFNGLGETQUERYOBJECTIVPROC$MH = RuntimeHelper.downcallHandle(
+        constants$116.PFNGLGETQUERYOBJECTIVPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLGETQUERYOBJECTUIVPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
 }
 

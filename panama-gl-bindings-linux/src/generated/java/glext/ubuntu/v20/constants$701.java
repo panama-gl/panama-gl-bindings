@@ -9,32 +9,57 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$701 {
 
-    static final FunctionDescriptor PFNGLMULTIMODEDRAWARRAYSIBMPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT
-    );
-    static final MethodHandle PFNGLMULTIMODEDRAWARRAYSIBMPROC$MH = RuntimeHelper.downcallHandle(
-        constants$701.PFNGLMULTIMODEDRAWARRAYSIBMPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLMULTIMODEDRAWELEMENTSIBMPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
+    static final FunctionDescriptor glNewObjectBufferATI$FUNC = FunctionDescriptor.of(Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle glNewObjectBufferATI$MH = RuntimeHelper.downcallHandle(
+        "glNewObjectBufferATI",
+        constants$701.glNewObjectBufferATI$FUNC
+    );
+    static final FunctionDescriptor glIsObjectBufferATI$FUNC = FunctionDescriptor.of(Constants$root.C_CHAR$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle glIsObjectBufferATI$MH = RuntimeHelper.downcallHandle(
+        "glIsObjectBufferATI",
+        constants$701.glIsObjectBufferATI$FUNC
+    );
+    static final FunctionDescriptor glUpdateObjectBufferATI$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
         Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLMULTIMODEDRAWELEMENTSIBMPROC$MH = RuntimeHelper.downcallHandle(
-        constants$701.PFNGLMULTIMODEDRAWELEMENTSIBMPROC$FUNC
+    static final MethodHandle glUpdateObjectBufferATI$MH = RuntimeHelper.downcallHandle(
+        "glUpdateObjectBufferATI",
+        constants$701.glUpdateObjectBufferATI$FUNC
     );
-    static final FunctionDescriptor PFNGLFLUSHSTATICDATAIBMPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glGetObjectBufferfvATI$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glGetObjectBufferfvATI$MH = RuntimeHelper.downcallHandle(
+        "glGetObjectBufferfvATI",
+        constants$701.glGetObjectBufferfvATI$FUNC
+    );
+    static final FunctionDescriptor glGetObjectBufferivATI$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glGetObjectBufferivATI$MH = RuntimeHelper.downcallHandle(
+        "glGetObjectBufferivATI",
+        constants$701.glGetObjectBufferivATI$FUNC
+    );
+    static final FunctionDescriptor glFreeObjectBufferATI$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLFLUSHSTATICDATAIBMPROC$MH = RuntimeHelper.downcallHandle(
-        constants$701.PFNGLFLUSHSTATICDATAIBMPROC$FUNC
+    static final MethodHandle glFreeObjectBufferATI$MH = RuntimeHelper.downcallHandle(
+        "glFreeObjectBufferATI",
+        constants$701.glFreeObjectBufferATI$FUNC
     );
 }
 

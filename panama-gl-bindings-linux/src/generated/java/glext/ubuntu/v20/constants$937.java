@@ -9,57 +9,30 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$937 {
 
-    static final FunctionDescriptor gluPwlCurve$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT
+    static final FunctionDescriptor PFNGLSECONDARYCOLOR3FEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT
     );
-    static final MethodHandle gluPwlCurve$MH = RuntimeHelper.downcallHandle(
-        "gluPwlCurve",
-        constants$937.gluPwlCurve$FUNC
+    static final MethodHandle PFNGLSECONDARYCOLOR3FEXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$937.PFNGLSECONDARYCOLOR3FEXTPROC$FUNC
     );
-    static final FunctionDescriptor gluQuadricCallback$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
+    static final FunctionDescriptor PFNGLSECONDARYCOLOR3FVEXTPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle gluQuadricCallback$MH = RuntimeHelper.downcallHandle(
-        "gluQuadricCallback",
-        constants$937.gluQuadricCallback$FUNC
+    static final MethodHandle PFNGLSECONDARYCOLOR3FVEXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$937.PFNGLSECONDARYCOLOR3FVEXTPROC$FUNC
     );
-    static final FunctionDescriptor gluQuadricDrawStyle$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_POINTER$LAYOUT,
+    static final FunctionDescriptor PFNGLSECONDARYCOLOR3IEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle gluQuadricDrawStyle$MH = RuntimeHelper.downcallHandle(
-        "gluQuadricDrawStyle",
-        constants$937.gluQuadricDrawStyle$FUNC
+    static final MethodHandle PFNGLSECONDARYCOLOR3IEXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$937.PFNGLSECONDARYCOLOR3IEXTPROC$FUNC
     );
-    static final FunctionDescriptor gluQuadricNormals$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_INT$LAYOUT
-    );
-    static final MethodHandle gluQuadricNormals$MH = RuntimeHelper.downcallHandle(
-        "gluQuadricNormals",
-        constants$937.gluQuadricNormals$FUNC
-    );
-    static final FunctionDescriptor gluQuadricOrientation$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_INT$LAYOUT
-    );
-    static final MethodHandle gluQuadricOrientation$MH = RuntimeHelper.downcallHandle(
-        "gluQuadricOrientation",
-        constants$937.gluQuadricOrientation$FUNC
-    );
-    static final FunctionDescriptor gluQuadricTexture$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_CHAR$LAYOUT
-    );
-    static final MethodHandle gluQuadricTexture$MH = RuntimeHelper.downcallHandle(
-        "gluQuadricTexture",
-        constants$937.gluQuadricTexture$FUNC
+    static final FunctionDescriptor PFNGLSECONDARYCOLOR3IVEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_POINTER$LAYOUT
     );
 }
 

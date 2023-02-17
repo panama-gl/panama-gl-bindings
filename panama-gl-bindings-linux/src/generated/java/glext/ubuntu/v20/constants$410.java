@@ -9,25 +9,65 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$410 {
 
-    static final FunctionDescriptor PFNGLTEXCOORD2BVOESPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glCopyTextureSubImage3D$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle glCopyTextureSubImage3D$MH = RuntimeHelper.downcallHandle(
+        "glCopyTextureSubImage3D",
+        constants$410.glCopyTextureSubImage3D$FUNC
+    );
+    static final FunctionDescriptor glTextureParameterf$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT
+    );
+    static final MethodHandle glTextureParameterf$MH = RuntimeHelper.downcallHandle(
+        "glTextureParameterf",
+        constants$410.glTextureParameterf$FUNC
+    );
+    static final FunctionDescriptor glTextureParameterfv$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLTEXCOORD2BVOESPROC$MH = RuntimeHelper.downcallHandle(
-        constants$410.PFNGLTEXCOORD2BVOESPROC$FUNC
+    static final MethodHandle glTextureParameterfv$MH = RuntimeHelper.downcallHandle(
+        "glTextureParameterfv",
+        constants$410.glTextureParameterfv$FUNC
     );
-    static final FunctionDescriptor PFNGLTEXCOORD3BOESPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_CHAR$LAYOUT,
-        Constants$root.C_CHAR$LAYOUT,
-        Constants$root.C_CHAR$LAYOUT
+    static final FunctionDescriptor glTextureParameteri$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLTEXCOORD3BOESPROC$MH = RuntimeHelper.downcallHandle(
-        constants$410.PFNGLTEXCOORD3BOESPROC$FUNC
+    static final MethodHandle glTextureParameteri$MH = RuntimeHelper.downcallHandle(
+        "glTextureParameteri",
+        constants$410.glTextureParameteri$FUNC
     );
-    static final FunctionDescriptor PFNGLTEXCOORD3BVOESPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glTextureParameterIiv$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLTEXCOORD3BVOESPROC$MH = RuntimeHelper.downcallHandle(
-        constants$410.PFNGLTEXCOORD3BVOESPROC$FUNC
+    static final MethodHandle glTextureParameterIiv$MH = RuntimeHelper.downcallHandle(
+        "glTextureParameterIiv",
+        constants$410.glTextureParameterIiv$FUNC
+    );
+    static final FunctionDescriptor glTextureParameterIuiv$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glTextureParameterIuiv$MH = RuntimeHelper.downcallHandle(
+        "glTextureParameterIuiv",
+        constants$410.glTextureParameterIuiv$FUNC
     );
 }
 

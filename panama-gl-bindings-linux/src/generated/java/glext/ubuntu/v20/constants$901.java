@@ -9,23 +9,47 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$901 {
 
-    static final FunctionDescriptor PFNGLSTARTINSTRUMENTSSGIXPROC$FUNC = FunctionDescriptor.ofVoid();
-    static final MethodHandle PFNGLSTARTINSTRUMENTSSGIXPROC$MH = RuntimeHelper.downcallHandle(
-        constants$901.PFNGLSTARTINSTRUMENTSSGIXPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLSTOPINSTRUMENTSSGIXPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT
-    );
-    static final MethodHandle PFNGLSTOPINSTRUMENTSSGIXPROC$MH = RuntimeHelper.downcallHandle(
-        constants$901.PFNGLSTOPINSTRUMENTSSGIXPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLGETLISTPARAMETERFVSGIXPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLPROGRAMLOCALPARAMETERS4FVEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLGETLISTPARAMETERFVSGIXPROC$MH = RuntimeHelper.downcallHandle(
-        constants$901.PFNGLGETLISTPARAMETERFVSGIXPROC$FUNC
+    static final MethodHandle PFNGLPROGRAMLOCALPARAMETERS4FVEXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$901.PFNGLPROGRAMLOCALPARAMETERS4FVEXTPROC$FUNC
+    );
+    static final FunctionDescriptor glProgramEnvParameters4fvEXT$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glProgramEnvParameters4fvEXT$MH = RuntimeHelper.downcallHandle(
+        "glProgramEnvParameters4fvEXT",
+        constants$901.glProgramEnvParameters4fvEXT$FUNC
+    );
+    static final FunctionDescriptor glProgramLocalParameters4fvEXT$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glProgramLocalParameters4fvEXT$MH = RuntimeHelper.downcallHandle(
+        "glProgramLocalParameters4fvEXT",
+        constants$901.glProgramLocalParameters4fvEXT$FUNC
+    );
+    static final FunctionDescriptor PFNGLGETUNIFORMUIVEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle PFNGLGETUNIFORMUIVEXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$901.PFNGLGETUNIFORMUIVEXTPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLBINDFRAGDATALOCATIONEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
 }
 

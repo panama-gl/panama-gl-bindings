@@ -11,13 +11,13 @@ public interface PFNGLGETPATHMETRICRANGENVPROC {
 
     void apply(int metricQueryMask, int firstPathName, int numPaths, int stride, java.lang.foreign.MemoryAddress metrics);
     static MemorySegment allocate(PFNGLGETPATHMETRICRANGENVPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLGETPATHMETRICRANGENVPROC.class, fi, constants$798.PFNGLGETPATHMETRICRANGENVPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLGETPATHMETRICRANGENVPROC.class, fi, constants$1144.PFNGLGETPATHMETRICRANGENVPROC$FUNC, session);
     }
     static PFNGLGETPATHMETRICRANGENVPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _metricQueryMask, int _firstPathName, int _numPaths, int _stride, java.lang.foreign.MemoryAddress _metrics) -> {
             try {
-                constants$798.PFNGLGETPATHMETRICRANGENVPROC$MH.invokeExact((Addressable)symbol, _metricQueryMask, _firstPathName, _numPaths, _stride, (java.lang.foreign.Addressable)_metrics);
+                constants$1145.PFNGLGETPATHMETRICRANGENVPROC$MH.invokeExact((Addressable)symbol, _metricQueryMask, _firstPathName, _numPaths, _stride, (java.lang.foreign.Addressable)_metrics);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

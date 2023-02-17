@@ -9,29 +9,29 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$140 {
 
-    static final FunctionDescriptor PFNGLVERTEXATTRIB4NUSVPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLUNIFORM1IVPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLVERTEXATTRIB4NUSVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$140.PFNGLVERTEXATTRIB4NUSVPROC$FUNC
+    static final MethodHandle PFNGLUNIFORM1IVPROC$MH = RuntimeHelper.downcallHandle(
+        constants$140.PFNGLUNIFORM1IVPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLVERTEXATTRIB4BVPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLUNIFORM2IVPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLVERTEXATTRIB4BVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$140.PFNGLVERTEXATTRIB4BVPROC$FUNC
+    static final MethodHandle PFNGLUNIFORM2IVPROC$MH = RuntimeHelper.downcallHandle(
+        constants$140.PFNGLUNIFORM2IVPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLVERTEXATTRIB4DPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLUNIFORM3IVPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_DOUBLE$LAYOUT,
-        Constants$root.C_DOUBLE$LAYOUT,
-        Constants$root.C_DOUBLE$LAYOUT,
-        Constants$root.C_DOUBLE$LAYOUT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLVERTEXATTRIB4DPROC$MH = RuntimeHelper.downcallHandle(
-        constants$140.PFNGLVERTEXATTRIB4DPROC$FUNC
+    static final MethodHandle PFNGLUNIFORM3IVPROC$MH = RuntimeHelper.downcallHandle(
+        constants$140.PFNGLUNIFORM3IVPROC$FUNC
     );
 }
 

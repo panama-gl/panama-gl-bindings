@@ -9,28 +9,30 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$537 {
 
-    static final FunctionDescriptor PFNGLMATRIXMULTDEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLVERTEXATTRIB3SVARBPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLMATRIXMULTDEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$537.PFNGLMATRIXMULTDEXTPROC$FUNC
+    static final MethodHandle PFNGLVERTEXATTRIB3SVARBPROC$MH = RuntimeHelper.downcallHandle(
+        constants$537.PFNGLVERTEXATTRIB3SVARBPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLMATRIXLOADIDENTITYEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT
-    );
-    static final MethodHandle PFNGLMATRIXLOADIDENTITYEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$537.PFNGLMATRIXLOADIDENTITYEXTPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLMATRIXROTATEFEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLVERTEXATTRIB4NBVARBPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT
+        Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLMATRIXROTATEFEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$537.PFNGLMATRIXROTATEFEXTPROC$FUNC
+    static final MethodHandle PFNGLVERTEXATTRIB4NBVARBPROC$MH = RuntimeHelper.downcallHandle(
+        constants$537.PFNGLVERTEXATTRIB4NBVARBPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLVERTEXATTRIB4NIVARBPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle PFNGLVERTEXATTRIB4NIVARBPROC$MH = RuntimeHelper.downcallHandle(
+        constants$537.PFNGLVERTEXATTRIB4NIVARBPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLVERTEXATTRIB4NSVARBPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
 }
 

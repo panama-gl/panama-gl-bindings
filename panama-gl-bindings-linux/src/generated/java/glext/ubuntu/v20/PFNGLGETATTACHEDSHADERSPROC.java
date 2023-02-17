@@ -11,13 +11,13 @@ public interface PFNGLGETATTACHEDSHADERSPROC {
 
     void apply(int program, int maxCount, java.lang.foreign.MemoryAddress count, java.lang.foreign.MemoryAddress shaders);
     static MemorySegment allocate(PFNGLGETATTACHEDSHADERSPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLGETATTACHEDSHADERSPROC.class, fi, constants$119.PFNGLGETATTACHEDSHADERSPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLGETATTACHEDSHADERSPROC.class, fi, constants$129.PFNGLGETATTACHEDSHADERSPROC$FUNC, session);
     }
     static PFNGLGETATTACHEDSHADERSPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _program, int _maxCount, java.lang.foreign.MemoryAddress _count, java.lang.foreign.MemoryAddress _shaders) -> {
             try {
-                constants$119.PFNGLGETATTACHEDSHADERSPROC$MH.invokeExact((Addressable)symbol, _program, _maxCount, (java.lang.foreign.Addressable)_count, (java.lang.foreign.Addressable)_shaders);
+                constants$129.PFNGLGETATTACHEDSHADERSPROC$MH.invokeExact((Addressable)symbol, _program, _maxCount, (java.lang.foreign.Addressable)_count, (java.lang.foreign.Addressable)_shaders);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

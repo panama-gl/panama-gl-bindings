@@ -11,13 +11,13 @@ public interface PFNGLDRAWELEMENTSINSTANCEDEXTPROC {
 
     void apply(int mode, int count, int type, java.lang.foreign.MemoryAddress indices, int primcount);
     static MemorySegment allocate(PFNGLDRAWELEMENTSINSTANCEDEXTPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLDRAWELEMENTSINSTANCEDEXTPROC.class, fi, constants$621.PFNGLDRAWELEMENTSINSTANCEDEXTPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLDRAWELEMENTSINSTANCEDEXTPROC.class, fi, constants$885.PFNGLDRAWELEMENTSINSTANCEDEXTPROC$FUNC, session);
     }
     static PFNGLDRAWELEMENTSINSTANCEDEXTPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _mode, int _count, int _type, java.lang.foreign.MemoryAddress _indices, int _primcount) -> {
             try {
-                constants$621.PFNGLDRAWELEMENTSINSTANCEDEXTPROC$MH.invokeExact((Addressable)symbol, _mode, _count, _type, (java.lang.foreign.Addressable)_indices, _primcount);
+                constants$886.PFNGLDRAWELEMENTSINSTANCEDEXTPROC$MH.invokeExact((Addressable)symbol, _mode, _count, _type, (java.lang.foreign.Addressable)_indices, _primcount);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

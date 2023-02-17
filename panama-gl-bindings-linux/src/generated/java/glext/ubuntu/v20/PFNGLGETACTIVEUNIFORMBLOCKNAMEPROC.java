@@ -11,13 +11,13 @@ public interface PFNGLGETACTIVEUNIFORMBLOCKNAMEPROC {
 
     void apply(int program, int uniformBlockIndex, int bufSize, java.lang.foreign.MemoryAddress length, java.lang.foreign.MemoryAddress uniformBlockName);
     static MemorySegment allocate(PFNGLGETACTIVEUNIFORMBLOCKNAMEPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLGETACTIVEUNIFORMBLOCKNAMEPROC.class, fi, constants$177.PFNGLGETACTIVEUNIFORMBLOCKNAMEPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLGETACTIVEUNIFORMBLOCKNAMEPROC.class, fi, constants$218.PFNGLGETACTIVEUNIFORMBLOCKNAMEPROC$FUNC, session);
     }
     static PFNGLGETACTIVEUNIFORMBLOCKNAMEPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _program, int _uniformBlockIndex, int _bufSize, java.lang.foreign.MemoryAddress _length, java.lang.foreign.MemoryAddress _uniformBlockName) -> {
             try {
-                constants$177.PFNGLGETACTIVEUNIFORMBLOCKNAMEPROC$MH.invokeExact((Addressable)symbol, _program, _uniformBlockIndex, _bufSize, (java.lang.foreign.Addressable)_length, (java.lang.foreign.Addressable)_uniformBlockName);
+                constants$219.PFNGLGETACTIVEUNIFORMBLOCKNAMEPROC$MH.invokeExact((Addressable)symbol, _program, _uniformBlockIndex, _bufSize, (java.lang.foreign.Addressable)_length, (java.lang.foreign.Addressable)_uniformBlockName);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

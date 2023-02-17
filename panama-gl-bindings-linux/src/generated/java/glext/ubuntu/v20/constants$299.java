@@ -9,31 +9,35 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$299 {
 
-    static final FunctionDescriptor PFNGLVERTEXARRAYATTRIBLFORMATPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLPROGRAMUNIFORMMATRIX2FVPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT
-    );
-    static final MethodHandle PFNGLVERTEXARRAYATTRIBLFORMATPROC$MH = RuntimeHelper.downcallHandle(
-        constants$299.PFNGLVERTEXARRAYATTRIBLFORMATPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLVERTEXARRAYBINDINGDIVISORPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT
-    );
-    static final MethodHandle PFNGLVERTEXARRAYBINDINGDIVISORPROC$MH = RuntimeHelper.downcallHandle(
-        constants$299.PFNGLVERTEXARRAYBINDINGDIVISORPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLGETVERTEXARRAYIVPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_CHAR$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLGETVERTEXARRAYIVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$299.PFNGLGETVERTEXARRAYIVPROC$FUNC
+    static final MethodHandle PFNGLPROGRAMUNIFORMMATRIX2FVPROC$MH = RuntimeHelper.downcallHandle(
+        constants$299.PFNGLPROGRAMUNIFORMMATRIX2FVPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLPROGRAMUNIFORMMATRIX3FVPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_CHAR$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle PFNGLPROGRAMUNIFORMMATRIX3FVPROC$MH = RuntimeHelper.downcallHandle(
+        constants$299.PFNGLPROGRAMUNIFORMMATRIX3FVPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLPROGRAMUNIFORMMATRIX4FVPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_CHAR$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle PFNGLPROGRAMUNIFORMMATRIX4FVPROC$MH = RuntimeHelper.downcallHandle(
+        constants$299.PFNGLPROGRAMUNIFORMMATRIX4FVPROC$FUNC
     );
 }
 

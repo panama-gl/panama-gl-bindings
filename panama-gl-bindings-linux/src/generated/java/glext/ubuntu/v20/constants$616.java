@@ -9,37 +9,54 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$616 {
 
-    static final FunctionDescriptor PFNGLTEXTUREBUFFERRANGEEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_LONG_LONG$LAYOUT,
-        Constants$root.C_LONG_LONG$LAYOUT
+    static final FunctionDescriptor glEvalCoord1xvOES$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLTEXTUREBUFFERRANGEEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$616.PFNGLTEXTUREBUFFERRANGEEXTPROC$FUNC
+    static final MethodHandle glEvalCoord1xvOES$MH = RuntimeHelper.downcallHandle(
+        "glEvalCoord1xvOES",
+        constants$616.glEvalCoord1xvOES$FUNC
     );
-    static final FunctionDescriptor PFNGLTEXTURESTORAGE1DEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
+    static final FunctionDescriptor glEvalCoord2xOES$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLTEXTURESTORAGE1DEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$616.PFNGLTEXTURESTORAGE1DEXTPROC$FUNC
+    static final MethodHandle glEvalCoord2xOES$MH = RuntimeHelper.downcallHandle(
+        "glEvalCoord2xOES",
+        constants$616.glEvalCoord2xOES$FUNC
     );
-    static final FunctionDescriptor PFNGLTEXTURESTORAGE2DEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT
+    static final FunctionDescriptor glEvalCoord2xvOES$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLTEXTURESTORAGE2DEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$616.PFNGLTEXTURESTORAGE2DEXTPROC$FUNC
+    static final MethodHandle glEvalCoord2xvOES$MH = RuntimeHelper.downcallHandle(
+        "glEvalCoord2xvOES",
+        constants$616.glEvalCoord2xvOES$FUNC
+    );
+    static final FunctionDescriptor glFeedbackBufferxOES$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glFeedbackBufferxOES$MH = RuntimeHelper.downcallHandle(
+        "glFeedbackBufferxOES",
+        constants$616.glFeedbackBufferxOES$FUNC
+    );
+    static final FunctionDescriptor glGetConvolutionParameterxvOES$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glGetConvolutionParameterxvOES$MH = RuntimeHelper.downcallHandle(
+        "glGetConvolutionParameterxvOES",
+        constants$616.glGetConvolutionParameterxvOES$FUNC
+    );
+    static final FunctionDescriptor glGetHistogramParameterxvOES$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glGetHistogramParameterxvOES$MH = RuntimeHelper.downcallHandle(
+        "glGetHistogramParameterxvOES",
+        constants$616.glGetHistogramParameterxvOES$FUNC
     );
 }
 

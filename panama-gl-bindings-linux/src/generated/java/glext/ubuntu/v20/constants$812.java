@@ -9,26 +9,36 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$812 {
 
-    static final FunctionDescriptor PFNGLGENQUERYRESOURCETAGNVPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLGETFLOATI_VEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLGENQUERYRESOURCETAGNVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$812.PFNGLGENQUERYRESOURCETAGNVPROC$FUNC
+    static final MethodHandle PFNGLGETFLOATI_VEXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$812.PFNGLGETFLOATI_VEXTPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLDELETEQUERYRESOURCETAGNVPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLGETDOUBLEI_VEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLDELETEQUERYRESOURCETAGNVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$812.PFNGLDELETEQUERYRESOURCETAGNVPROC$FUNC
+    static final MethodHandle PFNGLGETDOUBLEI_VEXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$812.PFNGLGETDOUBLEI_VEXTPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLQUERYRESOURCETAGNVPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLGETPOINTERI_VEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLQUERYRESOURCETAGNVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$812.PFNGLQUERYRESOURCETAGNVPROC$FUNC
+    static final MethodHandle PFNGLGETPOINTERI_VEXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$812.PFNGLGETPOINTERI_VEXTPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLNAMEDPROGRAMSTRINGEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
 }
 

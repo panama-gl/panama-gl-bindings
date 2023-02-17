@@ -9,29 +9,26 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$762 {
 
-    static final FunctionDescriptor PFNGLGETPROGRAMLOCALPARAMETERIIVNVPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
+    static final FunctionDescriptor PFNGLMATRIXPOPEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLGETPROGRAMLOCALPARAMETERIIVNVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$762.PFNGLGETPROGRAMLOCALPARAMETERIIVNVPROC$FUNC
+    static final MethodHandle PFNGLMATRIXPOPEXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$762.PFNGLMATRIXPOPEXTPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLGETPROGRAMLOCALPARAMETERIUIVNVPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
+    static final FunctionDescriptor PFNGLMATRIXPUSHEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLGETPROGRAMLOCALPARAMETERIUIVNVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$762.PFNGLGETPROGRAMLOCALPARAMETERIUIVNVPROC$FUNC
+    static final MethodHandle PFNGLMATRIXPUSHEXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$762.PFNGLMATRIXPUSHEXTPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLGETPROGRAMENVPARAMETERIIVNVPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
+    static final FunctionDescriptor PFNGLCLIENTATTRIBDEFAULTEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLGETPROGRAMENVPARAMETERIIVNVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$762.PFNGLGETPROGRAMENVPARAMETERIIVNVPROC$FUNC
+    static final MethodHandle PFNGLCLIENTATTRIBDEFAULTEXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$762.PFNGLCLIENTATTRIBDEFAULTEXTPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLPUSHCLIENTATTRIBDEFAULTEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT
     );
 }
 

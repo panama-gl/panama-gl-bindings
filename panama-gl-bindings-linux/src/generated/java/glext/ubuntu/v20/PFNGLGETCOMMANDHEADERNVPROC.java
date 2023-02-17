@@ -11,13 +11,13 @@ public interface PFNGLGETCOMMANDHEADERNVPROC {
 
     int apply(int tokenID, int size);
     static MemorySegment allocate(PFNGLGETCOMMANDHEADERNVPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLGETCOMMANDHEADERNVPROC.class, fi, constants$733.PFNGLGETCOMMANDHEADERNVPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLGETCOMMANDHEADERNVPROC.class, fi, constants$1052.PFNGLGETCOMMANDHEADERNVPROC$FUNC, session);
     }
     static PFNGLGETCOMMANDHEADERNVPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _tokenID, int _size) -> {
             try {
-                return (int)constants$733.PFNGLGETCOMMANDHEADERNVPROC$MH.invokeExact((Addressable)symbol, _tokenID, _size);
+                return (int)constants$1053.PFNGLGETCOMMANDHEADERNVPROC$MH.invokeExact((Addressable)symbol, _tokenID, _size);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

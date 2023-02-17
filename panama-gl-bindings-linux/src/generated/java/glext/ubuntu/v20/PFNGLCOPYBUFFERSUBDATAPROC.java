@@ -11,13 +11,13 @@ public interface PFNGLCOPYBUFFERSUBDATAPROC {
 
     void apply(int readTarget, int writeTarget, long readOffset, long writeOffset, long size);
     static MemorySegment allocate(PFNGLCOPYBUFFERSUBDATAPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLCOPYBUFFERSUBDATAPROC.class, fi, constants$175.PFNGLCOPYBUFFERSUBDATAPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLCOPYBUFFERSUBDATAPROC.class, fi, constants$216.PFNGLCOPYBUFFERSUBDATAPROC$FUNC, session);
     }
     static PFNGLCOPYBUFFERSUBDATAPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _readTarget, int _writeTarget, long _readOffset, long _writeOffset, long _size) -> {
             try {
-                constants$175.PFNGLCOPYBUFFERSUBDATAPROC$MH.invokeExact((Addressable)symbol, _readTarget, _writeTarget, _readOffset, _writeOffset, _size);
+                constants$217.PFNGLCOPYBUFFERSUBDATAPROC$MH.invokeExact((Addressable)symbol, _readTarget, _writeTarget, _readOffset, _writeOffset, _size);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

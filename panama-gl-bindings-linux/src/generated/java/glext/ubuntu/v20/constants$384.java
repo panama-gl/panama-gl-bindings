@@ -9,27 +9,29 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$384 {
 
-    static final FunctionDescriptor PFNGLUNMAPBUFFERARBPROC$FUNC = FunctionDescriptor.of(Constants$root.C_CHAR$LAYOUT,
-        Constants$root.C_INT$LAYOUT
-    );
-    static final MethodHandle PFNGLUNMAPBUFFERARBPROC$MH = RuntimeHelper.downcallHandle(
-        constants$384.PFNGLUNMAPBUFFERARBPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLGETBUFFERPARAMETERIVARBPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLGETTEXTUREPARAMETERIIVPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLGETBUFFERPARAMETERIVARBPROC$MH = RuntimeHelper.downcallHandle(
-        constants$384.PFNGLGETBUFFERPARAMETERIVARBPROC$FUNC
+    static final MethodHandle PFNGLGETTEXTUREPARAMETERIIVPROC$MH = RuntimeHelper.downcallHandle(
+        constants$384.PFNGLGETTEXTUREPARAMETERIIVPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLGETBUFFERPOINTERVARBPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLGETTEXTUREPARAMETERIUIVPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLGETBUFFERPOINTERVARBPROC$MH = RuntimeHelper.downcallHandle(
-        constants$384.PFNGLGETBUFFERPOINTERVARBPROC$FUNC
+    static final MethodHandle PFNGLGETTEXTUREPARAMETERIUIVPROC$MH = RuntimeHelper.downcallHandle(
+        constants$384.PFNGLGETTEXTUREPARAMETERIUIVPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLGETTEXTUREPARAMETERIVPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle PFNGLGETTEXTUREPARAMETERIVPROC$MH = RuntimeHelper.downcallHandle(
+        constants$384.PFNGLGETTEXTUREPARAMETERIVPROC$FUNC
     );
 }
 

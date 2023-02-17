@@ -9,30 +9,56 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$354 {
 
-    static final FunctionDescriptor PFNGLGETNPIXELMAPUSVARBPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
+    static final FunctionDescriptor glPopDebugGroup$FUNC = FunctionDescriptor.ofVoid();
+    static final MethodHandle glPopDebugGroup$MH = RuntimeHelper.downcallHandle(
+        "glPopDebugGroup",
+        constants$354.glPopDebugGroup$FUNC
     );
-    static final MethodHandle PFNGLGETNPIXELMAPUSVARBPROC$MH = RuntimeHelper.downcallHandle(
-        constants$354.PFNGLGETNPIXELMAPUSVARBPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLGETNPOLYGONSTIPPLEARBPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle PFNGLGETNPOLYGONSTIPPLEARBPROC$MH = RuntimeHelper.downcallHandle(
-        constants$354.PFNGLGETNPOLYGONSTIPPLEARBPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLGETNCOLORTABLEARBPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
+    static final FunctionDescriptor glObjectLabel$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLGETNCOLORTABLEARBPROC$MH = RuntimeHelper.downcallHandle(
-        constants$354.PFNGLGETNCOLORTABLEARBPROC$FUNC
+    static final MethodHandle glObjectLabel$MH = RuntimeHelper.downcallHandle(
+        "glObjectLabel",
+        constants$354.glObjectLabel$FUNC
+    );
+    static final FunctionDescriptor glGetObjectLabel$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glGetObjectLabel$MH = RuntimeHelper.downcallHandle(
+        "glGetObjectLabel",
+        constants$354.glGetObjectLabel$FUNC
+    );
+    static final FunctionDescriptor glObjectPtrLabel$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glObjectPtrLabel$MH = RuntimeHelper.downcallHandle(
+        "glObjectPtrLabel",
+        constants$354.glObjectPtrLabel$FUNC
+    );
+    static final FunctionDescriptor glGetObjectPtrLabel$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glGetObjectPtrLabel$MH = RuntimeHelper.downcallHandle(
+        "glGetObjectPtrLabel",
+        constants$354.glGetObjectPtrLabel$FUNC
+    );
+    static final FunctionDescriptor PFNGLBUFFERSTORAGEPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
 }
 

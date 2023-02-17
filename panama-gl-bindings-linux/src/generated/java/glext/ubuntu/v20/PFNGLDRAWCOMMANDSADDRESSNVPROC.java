@@ -11,13 +11,13 @@ public interface PFNGLDRAWCOMMANDSADDRESSNVPROC {
 
     void apply(int primitiveMode, java.lang.foreign.MemoryAddress indirects, java.lang.foreign.MemoryAddress sizes, int count);
     static MemorySegment allocate(PFNGLDRAWCOMMANDSADDRESSNVPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLDRAWCOMMANDSADDRESSNVPROC.class, fi, constants$734.PFNGLDRAWCOMMANDSADDRESSNVPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLDRAWCOMMANDSADDRESSNVPROC.class, fi, constants$1053.PFNGLDRAWCOMMANDSADDRESSNVPROC$FUNC, session);
     }
     static PFNGLDRAWCOMMANDSADDRESSNVPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _primitiveMode, java.lang.foreign.MemoryAddress _indirects, java.lang.foreign.MemoryAddress _sizes, int _count) -> {
             try {
-                constants$734.PFNGLDRAWCOMMANDSADDRESSNVPROC$MH.invokeExact((Addressable)symbol, _primitiveMode, (java.lang.foreign.Addressable)_indirects, (java.lang.foreign.Addressable)_sizes, _count);
+                constants$1054.PFNGLDRAWCOMMANDSADDRESSNVPROC$MH.invokeExact((Addressable)symbol, _primitiveMode, (java.lang.foreign.Addressable)_indirects, (java.lang.foreign.Addressable)_sizes, _count);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

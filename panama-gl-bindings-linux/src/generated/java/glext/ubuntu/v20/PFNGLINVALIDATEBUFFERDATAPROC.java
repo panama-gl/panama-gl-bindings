@@ -11,13 +11,13 @@ public interface PFNGLINVALIDATEBUFFERDATAPROC {
 
     void apply(int buffer);
     static MemorySegment allocate(PFNGLINVALIDATEBUFFERDATAPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLINVALIDATEBUFFERDATAPROC.class, fi, constants$256.PFNGLINVALIDATEBUFFERDATAPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLINVALIDATEBUFFERDATAPROC.class, fi, constants$337.PFNGLINVALIDATEBUFFERDATAPROC$FUNC, session);
     }
     static PFNGLINVALIDATEBUFFERDATAPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _buffer) -> {
             try {
-                constants$256.PFNGLINVALIDATEBUFFERDATAPROC$MH.invokeExact((Addressable)symbol, _buffer);
+                constants$337.PFNGLINVALIDATEBUFFERDATAPROC$MH.invokeExact((Addressable)symbol, _buffer);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

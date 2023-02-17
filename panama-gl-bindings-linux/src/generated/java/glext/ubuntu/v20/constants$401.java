@@ -9,25 +9,64 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$401 {
 
-    static final FunctionDescriptor PFNGLWINDOWPOS2FARBPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_FLOAT$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT
-    );
-    static final MethodHandle PFNGLWINDOWPOS2FARBPROC$MH = RuntimeHelper.downcallHandle(
-        constants$401.PFNGLWINDOWPOS2FARBPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLWINDOWPOS2FVARBPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glGetTransformFeedbacki64_v$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLWINDOWPOS2FVARBPROC$MH = RuntimeHelper.downcallHandle(
-        constants$401.PFNGLWINDOWPOS2FVARBPROC$FUNC
+    static final MethodHandle glGetTransformFeedbacki64_v$MH = RuntimeHelper.downcallHandle(
+        "glGetTransformFeedbacki64_v",
+        constants$401.glGetTransformFeedbacki64_v$FUNC
     );
-    static final FunctionDescriptor PFNGLWINDOWPOS2IARBPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glCreateBuffers$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glCreateBuffers$MH = RuntimeHelper.downcallHandle(
+        "glCreateBuffers",
+        constants$401.glCreateBuffers$FUNC
+    );
+    static final FunctionDescriptor glNamedBufferStorage$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
         Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLWINDOWPOS2IARBPROC$MH = RuntimeHelper.downcallHandle(
-        constants$401.PFNGLWINDOWPOS2IARBPROC$FUNC
+    static final MethodHandle glNamedBufferStorage$MH = RuntimeHelper.downcallHandle(
+        "glNamedBufferStorage",
+        constants$401.glNamedBufferStorage$FUNC
+    );
+    static final FunctionDescriptor glNamedBufferData$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle glNamedBufferData$MH = RuntimeHelper.downcallHandle(
+        "glNamedBufferData",
+        constants$401.glNamedBufferData$FUNC
+    );
+    static final FunctionDescriptor glNamedBufferSubData$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glNamedBufferSubData$MH = RuntimeHelper.downcallHandle(
+        "glNamedBufferSubData",
+        constants$401.glNamedBufferSubData$FUNC
+    );
+    static final FunctionDescriptor glCopyNamedBufferSubData$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT
+    );
+    static final MethodHandle glCopyNamedBufferSubData$MH = RuntimeHelper.downcallHandle(
+        "glCopyNamedBufferSubData",
+        constants$401.glCopyNamedBufferSubData$FUNC
     );
 }
 

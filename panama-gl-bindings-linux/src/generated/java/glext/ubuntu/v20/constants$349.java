@@ -9,23 +9,65 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$349 {
 
-    static final FunctionDescriptor PFNGLPOINTPARAMETERFARBPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glInvalidateTexSubImage$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLPOINTPARAMETERFARBPROC$MH = RuntimeHelper.downcallHandle(
-        constants$349.PFNGLPOINTPARAMETERFARBPROC$FUNC
+    static final MethodHandle glInvalidateTexSubImage$MH = RuntimeHelper.downcallHandle(
+        "glInvalidateTexSubImage",
+        constants$349.glInvalidateTexSubImage$FUNC
     );
-    static final FunctionDescriptor PFNGLPOINTPARAMETERFVARBPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glInvalidateTexImage$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle glInvalidateTexImage$MH = RuntimeHelper.downcallHandle(
+        "glInvalidateTexImage",
+        constants$349.glInvalidateTexImage$FUNC
+    );
+    static final FunctionDescriptor glInvalidateBufferSubData$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT
+    );
+    static final MethodHandle glInvalidateBufferSubData$MH = RuntimeHelper.downcallHandle(
+        "glInvalidateBufferSubData",
+        constants$349.glInvalidateBufferSubData$FUNC
+    );
+    static final FunctionDescriptor glInvalidateBufferData$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle glInvalidateBufferData$MH = RuntimeHelper.downcallHandle(
+        "glInvalidateBufferData",
+        constants$349.glInvalidateBufferData$FUNC
+    );
+    static final FunctionDescriptor glInvalidateFramebuffer$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLPOINTPARAMETERFVARBPROC$MH = RuntimeHelper.downcallHandle(
-        constants$349.PFNGLPOINTPARAMETERFVARBPROC$FUNC
+    static final MethodHandle glInvalidateFramebuffer$MH = RuntimeHelper.downcallHandle(
+        "glInvalidateFramebuffer",
+        constants$349.glInvalidateFramebuffer$FUNC
     );
-    static final FunctionDescriptor PFNGLGETGRAPHICSRESETSTATUSARBPROC$FUNC = FunctionDescriptor.of(Constants$root.C_INT$LAYOUT);
-    static final MethodHandle PFNGLGETGRAPHICSRESETSTATUSARBPROC$MH = RuntimeHelper.downcallHandle(
-        constants$349.PFNGLGETGRAPHICSRESETSTATUSARBPROC$FUNC
+    static final FunctionDescriptor glInvalidateSubFramebuffer$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle glInvalidateSubFramebuffer$MH = RuntimeHelper.downcallHandle(
+        "glInvalidateSubFramebuffer",
+        constants$349.glInvalidateSubFramebuffer$FUNC
     );
 }
 

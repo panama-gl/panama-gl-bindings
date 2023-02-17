@@ -11,13 +11,13 @@ public interface PFNGLCOMBINEROUTPUTNVPROC {
 
     void apply(int stage, int portion, int abOutput, int cdOutput, int sumOutput, int scale, int bias, byte abDotProduct, byte cdDotProduct, byte muxSum);
     static MemorySegment allocate(PFNGLCOMBINEROUTPUTNVPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLCOMBINEROUTPUTNVPROC.class, fi, constants$814.PFNGLCOMBINEROUTPUTNVPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLCOMBINEROUTPUTNVPROC.class, fi, constants$1174.PFNGLCOMBINEROUTPUTNVPROC$FUNC, session);
     }
     static PFNGLCOMBINEROUTPUTNVPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _stage, int _portion, int _abOutput, int _cdOutput, int _sumOutput, int _scale, int _bias, byte _abDotProduct, byte _cdDotProduct, byte _muxSum) -> {
             try {
-                constants$814.PFNGLCOMBINEROUTPUTNVPROC$MH.invokeExact((Addressable)symbol, _stage, _portion, _abOutput, _cdOutput, _sumOutput, _scale, _bias, _abDotProduct, _cdDotProduct, _muxSum);
+                constants$1174.PFNGLCOMBINEROUTPUTNVPROC$MH.invokeExact((Addressable)symbol, _stage, _portion, _abOutput, _cdOutput, _sumOutput, _scale, _bias, _abDotProduct, _cdDotProduct, _muxSum);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

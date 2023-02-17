@@ -9,48 +9,58 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$547 {
 
-    static final FunctionDescriptor PFNGLGETTEXTURELEVELPARAMETERIVEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
+    static final FunctionDescriptor glVertexAttrib2fvARB$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLGETTEXTURELEVELPARAMETERIVEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$547.PFNGLGETTEXTURELEVELPARAMETERIVEXTPROC$FUNC
+    static final MethodHandle glVertexAttrib2fvARB$MH = RuntimeHelper.downcallHandle(
+        "glVertexAttrib2fvARB",
+        constants$547.glVertexAttrib2fvARB$FUNC
     );
-    static final FunctionDescriptor PFNGLTEXTUREIMAGE3DEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glVertexAttrib2sARB$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_SHORT$LAYOUT,
+        Constants$root.C_SHORT$LAYOUT
+    );
+    static final MethodHandle glVertexAttrib2sARB$MH = RuntimeHelper.downcallHandle(
+        "glVertexAttrib2sARB",
+        constants$547.glVertexAttrib2sARB$FUNC
+    );
+    static final FunctionDescriptor glVertexAttrib2svARB$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLTEXTUREIMAGE3DEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$547.PFNGLTEXTUREIMAGE3DEXTPROC$FUNC
+    static final MethodHandle glVertexAttrib2svARB$MH = RuntimeHelper.downcallHandle(
+        "glVertexAttrib2svARB",
+        constants$547.glVertexAttrib2svARB$FUNC
     );
-    static final FunctionDescriptor PFNGLTEXTURESUBIMAGE3DEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glVertexAttrib3dARB$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_DOUBLE$LAYOUT,
+        Constants$root.C_DOUBLE$LAYOUT,
+        Constants$root.C_DOUBLE$LAYOUT
+    );
+    static final MethodHandle glVertexAttrib3dARB$MH = RuntimeHelper.downcallHandle(
+        "glVertexAttrib3dARB",
+        constants$547.glVertexAttrib3dARB$FUNC
+    );
+    static final FunctionDescriptor glVertexAttrib3dvARB$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLTEXTURESUBIMAGE3DEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$547.PFNGLTEXTURESUBIMAGE3DEXTPROC$FUNC
+    static final MethodHandle glVertexAttrib3dvARB$MH = RuntimeHelper.downcallHandle(
+        "glVertexAttrib3dvARB",
+        constants$547.glVertexAttrib3dvARB$FUNC
+    );
+    static final FunctionDescriptor glVertexAttrib3fARB$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT
+    );
+    static final MethodHandle glVertexAttrib3fARB$MH = RuntimeHelper.downcallHandle(
+        "glVertexAttrib3fARB",
+        constants$547.glVertexAttrib3fARB$FUNC
     );
 }
 

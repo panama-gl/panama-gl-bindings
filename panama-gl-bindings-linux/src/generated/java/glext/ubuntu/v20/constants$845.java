@@ -9,31 +9,59 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$845 {
 
-    static final FunctionDescriptor PFNGLGETVERTEXATTRIBLUI64VNVPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glClientAttribDefaultEXT$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle glClientAttribDefaultEXT$MH = RuntimeHelper.downcallHandle(
+        "glClientAttribDefaultEXT",
+        constants$845.glClientAttribDefaultEXT$FUNC
+    );
+    static final FunctionDescriptor glPushClientAttribDefaultEXT$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle glPushClientAttribDefaultEXT$MH = RuntimeHelper.downcallHandle(
+        "glPushClientAttribDefaultEXT",
+        constants$845.glPushClientAttribDefaultEXT$FUNC
+    );
+    static final FunctionDescriptor glTextureParameterfEXT$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT
+    );
+    static final MethodHandle glTextureParameterfEXT$MH = RuntimeHelper.downcallHandle(
+        "glTextureParameterfEXT",
+        constants$845.glTextureParameterfEXT$FUNC
+    );
+    static final FunctionDescriptor glTextureParameterfvEXT$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLGETVERTEXATTRIBLUI64VNVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$845.PFNGLGETVERTEXATTRIBLUI64VNVPROC$FUNC
+    static final MethodHandle glTextureParameterfvEXT$MH = RuntimeHelper.downcallHandle(
+        "glTextureParameterfvEXT",
+        constants$845.glTextureParameterfvEXT$FUNC
     );
-    static final FunctionDescriptor PFNGLVERTEXATTRIBLFORMATNVPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glTextureParameteriEXT$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLVERTEXATTRIBLFORMATNVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$845.PFNGLVERTEXATTRIBLFORMATNVPROC$FUNC
+    static final MethodHandle glTextureParameteriEXT$MH = RuntimeHelper.downcallHandle(
+        "glTextureParameteriEXT",
+        constants$845.glTextureParameteriEXT$FUNC
     );
-    static final FunctionDescriptor PFNGLBUFFERADDRESSRANGENVPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glTextureParameterivEXT$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_LONG_LONG$LAYOUT,
-        Constants$root.C_LONG_LONG$LAYOUT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLBUFFERADDRESSRANGENVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$845.PFNGLBUFFERADDRESSRANGENVPROC$FUNC
+    static final MethodHandle glTextureParameterivEXT$MH = RuntimeHelper.downcallHandle(
+        "glTextureParameterivEXT",
+        constants$845.glTextureParameterivEXT$FUNC
     );
 }
 

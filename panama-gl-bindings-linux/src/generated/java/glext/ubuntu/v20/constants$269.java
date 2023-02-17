@@ -9,29 +9,37 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$269 {
 
-    static final FunctionDescriptor PFNGLBINDTEXTURESPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLGETACTIVESUBROUTINEUNIFORMIVPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLBINDTEXTURESPROC$MH = RuntimeHelper.downcallHandle(
-        constants$269.PFNGLBINDTEXTURESPROC$FUNC
+    static final MethodHandle PFNGLGETACTIVESUBROUTINEUNIFORMIVPROC$MH = RuntimeHelper.downcallHandle(
+        constants$269.PFNGLGETACTIVESUBROUTINEUNIFORMIVPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLBINDSAMPLERSPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLGETACTIVESUBROUTINEUNIFORMNAMEPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLBINDSAMPLERSPROC$MH = RuntimeHelper.downcallHandle(
-        constants$269.PFNGLBINDSAMPLERSPROC$FUNC
+    static final MethodHandle PFNGLGETACTIVESUBROUTINEUNIFORMNAMEPROC$MH = RuntimeHelper.downcallHandle(
+        constants$269.PFNGLGETACTIVESUBROUTINEUNIFORMNAMEPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLBINDIMAGETEXTURESPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLGETACTIVESUBROUTINENAMEPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLBINDIMAGETEXTURESPROC$MH = RuntimeHelper.downcallHandle(
-        constants$269.PFNGLBINDIMAGETEXTURESPROC$FUNC
+    static final MethodHandle PFNGLGETACTIVESUBROUTINENAMEPROC$MH = RuntimeHelper.downcallHandle(
+        constants$269.PFNGLGETACTIVESUBROUTINENAMEPROC$FUNC
     );
 }
 

@@ -9,25 +9,34 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$448 {
 
-    static final FunctionDescriptor PFNGLQUERYMATRIXXOESPROC$FUNC = FunctionDescriptor.of(Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle PFNGLQUERYMATRIXXOESPROC$MH = RuntimeHelper.downcallHandle(
-        constants$448.PFNGLQUERYMATRIXXOESPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLCLEARDEPTHFOESPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_FLOAT$LAYOUT
-    );
-    static final MethodHandle PFNGLCLEARDEPTHFOESPROC$MH = RuntimeHelper.downcallHandle(
-        constants$448.PFNGLCLEARDEPTHFOESPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLCLIPPLANEFOESPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLFRAMEBUFFERTEXTUREARBPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLCLIPPLANEFOESPROC$MH = RuntimeHelper.downcallHandle(
-        constants$448.PFNGLCLIPPLANEFOESPROC$FUNC
+    static final MethodHandle PFNGLFRAMEBUFFERTEXTUREARBPROC$MH = RuntimeHelper.downcallHandle(
+        constants$448.PFNGLFRAMEBUFFERTEXTUREARBPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLFRAMEBUFFERTEXTURELAYERARBPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle PFNGLFRAMEBUFFERTEXTURELAYERARBPROC$MH = RuntimeHelper.downcallHandle(
+        constants$448.PFNGLFRAMEBUFFERTEXTURELAYERARBPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLFRAMEBUFFERTEXTUREFACEARBPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle PFNGLFRAMEBUFFERTEXTUREFACEARBPROC$MH = RuntimeHelper.downcallHandle(
+        constants$448.PFNGLFRAMEBUFFERTEXTUREFACEARBPROC$FUNC
     );
 }
 

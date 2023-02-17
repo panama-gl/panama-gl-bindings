@@ -11,13 +11,13 @@ public interface PFNGLMATRIXORTHOEXTPROC {
 
     void apply(int mode, double left, double right, double bottom, double top, double zNear, double zFar);
     static MemorySegment allocate(PFNGLMATRIXORTHOEXTPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLMATRIXORTHOEXTPROC.class, fi, constants$540.PFNGLMATRIXORTHOEXTPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLMATRIXORTHOEXTPROC.class, fi, constants$761.PFNGLMATRIXORTHOEXTPROC$FUNC, session);
     }
     static PFNGLMATRIXORTHOEXTPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _mode, double _left, double _right, double _bottom, double _top, double _zNear, double _zFar) -> {
             try {
-                constants$540.PFNGLMATRIXORTHOEXTPROC$MH.invokeExact((Addressable)symbol, _mode, _left, _right, _bottom, _top, _zNear, _zFar);
+                constants$761.PFNGLMATRIXORTHOEXTPROC$MH.invokeExact((Addressable)symbol, _mode, _left, _right, _bottom, _top, _zNear, _zFar);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

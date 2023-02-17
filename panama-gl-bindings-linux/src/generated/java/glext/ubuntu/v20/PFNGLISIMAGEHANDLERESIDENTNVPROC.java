@@ -11,13 +11,13 @@ public interface PFNGLISIMAGEHANDLERESIDENTNVPROC {
 
     byte apply(long handle);
     static MemorySegment allocate(PFNGLISIMAGEHANDLERESIDENTNVPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLISIMAGEHANDLERESIDENTNVPROC.class, fi, constants$730.PFNGLISIMAGEHANDLERESIDENTNVPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLISIMAGEHANDLERESIDENTNVPROC.class, fi, constants$1047.PFNGLISIMAGEHANDLERESIDENTNVPROC$FUNC, session);
     }
     static PFNGLISIMAGEHANDLERESIDENTNVPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (long _handle) -> {
             try {
-                return (byte)constants$730.PFNGLISIMAGEHANDLERESIDENTNVPROC$MH.invokeExact((Addressable)symbol, _handle);
+                return (byte)constants$1047.PFNGLISIMAGEHANDLERESIDENTNVPROC$MH.invokeExact((Addressable)symbol, _handle);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

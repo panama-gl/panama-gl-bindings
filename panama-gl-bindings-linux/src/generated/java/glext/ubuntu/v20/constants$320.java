@@ -9,32 +9,71 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$320 {
 
-    static final FunctionDescriptor PFNGLDEBUGMESSAGECALLBACKARBPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle PFNGLDEBUGMESSAGECALLBACKARBPROC$MH = RuntimeHelper.downcallHandle(
-        constants$320.PFNGLDEBUGMESSAGECALLBACKARBPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLGETDEBUGMESSAGELOGARBPROC$FUNC = FunctionDescriptor.of(Constants$root.C_INT$LAYOUT,
+    static final FunctionDescriptor glProgramUniform4ui$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLGETDEBUGMESSAGELOGARBPROC$MH = RuntimeHelper.downcallHandle(
-        constants$320.PFNGLGETDEBUGMESSAGELOGARBPROC$FUNC
+    static final MethodHandle glProgramUniform4ui$MH = RuntimeHelper.downcallHandle(
+        "glProgramUniform4ui",
+        constants$320.glProgramUniform4ui$FUNC
     );
-    static final FunctionDescriptor PFNGLDRAWBUFFERSARBPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glProgramUniform4uiv$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLDRAWBUFFERSARBPROC$MH = RuntimeHelper.downcallHandle(
-        constants$320.PFNGLDRAWBUFFERSARBPROC$FUNC
+    static final MethodHandle glProgramUniform4uiv$MH = RuntimeHelper.downcallHandle(
+        "glProgramUniform4uiv",
+        constants$320.glProgramUniform4uiv$FUNC
+    );
+    static final FunctionDescriptor glProgramUniformMatrix2fv$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_CHAR$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glProgramUniformMatrix2fv$MH = RuntimeHelper.downcallHandle(
+        "glProgramUniformMatrix2fv",
+        constants$320.glProgramUniformMatrix2fv$FUNC
+    );
+    static final FunctionDescriptor glProgramUniformMatrix3fv$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_CHAR$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glProgramUniformMatrix3fv$MH = RuntimeHelper.downcallHandle(
+        "glProgramUniformMatrix3fv",
+        constants$320.glProgramUniformMatrix3fv$FUNC
+    );
+    static final FunctionDescriptor glProgramUniformMatrix4fv$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_CHAR$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glProgramUniformMatrix4fv$MH = RuntimeHelper.downcallHandle(
+        "glProgramUniformMatrix4fv",
+        constants$320.glProgramUniformMatrix4fv$FUNC
+    );
+    static final FunctionDescriptor glProgramUniformMatrix2dv$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_CHAR$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glProgramUniformMatrix2dv$MH = RuntimeHelper.downcallHandle(
+        "glProgramUniformMatrix2dv",
+        constants$320.glProgramUniformMatrix2dv$FUNC
     );
 }
 

@@ -11,13 +11,13 @@ public interface PFNGLCLEARDEPTHDNVPROC {
 
     void apply(double depth);
     static MemorySegment allocate(PFNGLCLEARDEPTHDNVPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLCLEARDEPTHDNVPROC.class, fi, constants$740.PFNGLCLEARDEPTHDNVPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLCLEARDEPTHDNVPROC.class, fi, constants$1063.PFNGLCLEARDEPTHDNVPROC$FUNC, session);
     }
     static PFNGLCLEARDEPTHDNVPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (double _depth) -> {
             try {
-                constants$740.PFNGLCLEARDEPTHDNVPROC$MH.invokeExact((Addressable)symbol, _depth);
+                constants$1063.PFNGLCLEARDEPTHDNVPROC$MH.invokeExact((Addressable)symbol, _depth);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

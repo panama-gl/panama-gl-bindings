@@ -11,13 +11,13 @@ public interface PFNGLBUFFERSTORAGEPROC {
 
     void apply(int target, long size, java.lang.foreign.MemoryAddress data, int flags);
     static MemorySegment allocate(PFNGLBUFFERSTORAGEPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLBUFFERSTORAGEPROC.class, fi, constants$267.PFNGLBUFFERSTORAGEPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLBUFFERSTORAGEPROC.class, fi, constants$354.PFNGLBUFFERSTORAGEPROC$FUNC, session);
     }
     static PFNGLBUFFERSTORAGEPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _target, long _size, java.lang.foreign.MemoryAddress _data, int _flags) -> {
             try {
-                constants$267.PFNGLBUFFERSTORAGEPROC$MH.invokeExact((Addressable)symbol, _target, _size, (java.lang.foreign.Addressable)_data, _flags);
+                constants$355.PFNGLBUFFERSTORAGEPROC$MH.invokeExact((Addressable)symbol, _target, _size, (java.lang.foreign.Addressable)_data, _flags);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

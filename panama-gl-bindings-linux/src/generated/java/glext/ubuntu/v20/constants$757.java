@@ -9,32 +9,31 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$757 {
 
-    static final FunctionDescriptor PFNGLMULTICASTGETQUERYOBJECTUIVNVPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
+    static final FunctionDescriptor PFNGLDEPTHBOUNDSEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_DOUBLE$LAYOUT,
+        Constants$root.C_DOUBLE$LAYOUT
+    );
+    static final MethodHandle PFNGLDEPTHBOUNDSEXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$757.PFNGLDEPTHBOUNDSEXTPROC$FUNC
+    );
+    static final FunctionDescriptor glDepthBoundsEXT$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_DOUBLE$LAYOUT,
+        Constants$root.C_DOUBLE$LAYOUT
+    );
+    static final MethodHandle glDepthBoundsEXT$MH = RuntimeHelper.downcallHandle(
+        "glDepthBoundsEXT",
+        constants$757.glDepthBoundsEXT$FUNC
+    );
+    static final FunctionDescriptor PFNGLMATRIXLOADFEXTPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLMULTICASTGETQUERYOBJECTUIVNVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$757.PFNGLMULTICASTGETQUERYOBJECTUIVNVPROC$FUNC
+    static final MethodHandle PFNGLMATRIXLOADFEXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$757.PFNGLMATRIXLOADFEXTPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLMULTICASTGETQUERYOBJECTI64VNVPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
+    static final FunctionDescriptor PFNGLMATRIXLOADDEXTPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle PFNGLMULTICASTGETQUERYOBJECTI64VNVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$757.PFNGLMULTICASTGETQUERYOBJECTI64VNVPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLMULTICASTGETQUERYOBJECTUI64VNVPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle PFNGLMULTICASTGETQUERYOBJECTUI64VNVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$757.PFNGLMULTICASTGETQUERYOBJECTUI64VNVPROC$FUNC
     );
 }
 

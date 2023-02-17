@@ -11,13 +11,13 @@ public interface PFNGLVDPAUUNREGISTERSURFACENVPROC {
 
     void apply(long surface);
     static MemorySegment allocate(PFNGLVDPAUUNREGISTERSURFACENVPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLVDPAUUNREGISTERSURFACENVPROC.class, fi, constants$836.PFNGLVDPAUUNREGISTERSURFACENVPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLVDPAUUNREGISTERSURFACENVPROC.class, fi, constants$1207.PFNGLVDPAUUNREGISTERSURFACENVPROC$FUNC, session);
     }
     static PFNGLVDPAUUNREGISTERSURFACENVPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (long _surface) -> {
             try {
-                constants$836.PFNGLVDPAUUNREGISTERSURFACENVPROC$MH.invokeExact((Addressable)symbol, _surface);
+                constants$1207.PFNGLVDPAUUNREGISTERSURFACENVPROC$MH.invokeExact((Addressable)symbol, _surface);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

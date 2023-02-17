@@ -11,13 +11,13 @@ public interface PFNGLIMPORTSYNCEXTPROC {
 
     java.lang.foreign.Addressable apply(int external_sync_type, long external_sync, int flags);
     static MemorySegment allocate(PFNGLIMPORTSYNCEXTPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLIMPORTSYNCEXTPROC.class, fi, constants$698.PFNGLIMPORTSYNCEXTPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLIMPORTSYNCEXTPROC.class, fi, constants$1000.PFNGLIMPORTSYNCEXTPROC$FUNC, session);
     }
     static PFNGLIMPORTSYNCEXTPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _external_sync_type, long _external_sync, int _flags) -> {
             try {
-                return (java.lang.foreign.Addressable)(java.lang.foreign.MemoryAddress)constants$698.PFNGLIMPORTSYNCEXTPROC$MH.invokeExact((Addressable)symbol, _external_sync_type, _external_sync, _flags);
+                return (java.lang.foreign.Addressable)(java.lang.foreign.MemoryAddress)constants$1000.PFNGLIMPORTSYNCEXTPROC$MH.invokeExact((Addressable)symbol, _external_sync_type, _external_sync, _flags);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

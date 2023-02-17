@@ -11,13 +11,13 @@ public interface GLDEBUGPROCAMD {
 
     void apply(int id, int category, int severity, int length, java.lang.foreign.MemoryAddress message, java.lang.foreign.MemoryAddress userParam);
     static MemorySegment allocate(GLDEBUGPROCAMD fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(GLDEBUGPROCAMD.class, fi, constants$450.GLDEBUGPROCAMD$FUNC, session);
+        return RuntimeHelper.upcallStub(GLDEBUGPROCAMD.class, fi, constants$629.GLDEBUGPROCAMD$FUNC, session);
     }
     static GLDEBUGPROCAMD ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _id, int _category, int _severity, int _length, java.lang.foreign.MemoryAddress _message, java.lang.foreign.MemoryAddress _userParam) -> {
             try {
-                constants$450.GLDEBUGPROCAMD$MH.invokeExact((Addressable)symbol, _id, _category, _severity, _length, (java.lang.foreign.Addressable)_message, (java.lang.foreign.Addressable)_userParam);
+                constants$629.GLDEBUGPROCAMD$MH.invokeExact((Addressable)symbol, _id, _category, _severity, _length, (java.lang.foreign.Addressable)_message, (java.lang.foreign.Addressable)_userParam);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

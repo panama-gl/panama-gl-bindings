@@ -9,34 +9,29 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$956 {
 
-    static final FunctionDescriptor glutJoystickFunc$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_INT$LAYOUT
-    );
-    static final MethodHandle glutJoystickFunc$MH = RuntimeHelper.downcallHandle(
-        "glutJoystickFunc",
-        constants$956.glutJoystickFunc$FUNC
-    );
-    static final FunctionDescriptor glutMenuStateFunc$callback$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT
-    );
-    static final MethodHandle glutMenuStateFunc$callback$MH = RuntimeHelper.downcallHandle(
-        constants$956.glutMenuStateFunc$callback$FUNC
-    );
-    static final FunctionDescriptor glutMenuStateFunc$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLTEXPARAMETERIIVEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle glutMenuStateFunc$MH = RuntimeHelper.downcallHandle(
-        "glutMenuStateFunc",
-        constants$956.glutMenuStateFunc$FUNC
+    static final MethodHandle PFNGLTEXPARAMETERIIVEXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$956.PFNGLTEXPARAMETERIIVEXTPROC$FUNC
     );
-    static final FunctionDescriptor glutMenuStatusFunc$callback$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLTEXPARAMETERIUIVEXTPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT
+        Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle glutMenuStatusFunc$callback$MH = RuntimeHelper.downcallHandle(
-        constants$956.glutMenuStatusFunc$callback$FUNC
+    static final MethodHandle PFNGLTEXPARAMETERIUIVEXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$956.PFNGLTEXPARAMETERIUIVEXTPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLGETTEXPARAMETERIIVEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle PFNGLGETTEXPARAMETERIIVEXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$956.PFNGLGETTEXPARAMETERIIVEXTPROC$FUNC
     );
 }
 

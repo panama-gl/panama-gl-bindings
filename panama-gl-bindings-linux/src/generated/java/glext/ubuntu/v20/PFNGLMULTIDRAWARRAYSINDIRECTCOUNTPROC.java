@@ -11,13 +11,13 @@ public interface PFNGLMULTIDRAWARRAYSINDIRECTCOUNTPROC {
 
     void apply(int mode, java.lang.foreign.MemoryAddress indirect, long drawcount, int maxdrawcount, int stride);
     static MemorySegment allocate(PFNGLMULTIDRAWARRAYSINDIRECTCOUNTPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLMULTIDRAWARRAYSINDIRECTCOUNTPROC.class, fi, constants$311.PFNGLMULTIDRAWARRAYSINDIRECTCOUNTPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLMULTIDRAWARRAYSINDIRECTCOUNTPROC.class, fi, constants$420.PFNGLMULTIDRAWARRAYSINDIRECTCOUNTPROC$FUNC, session);
     }
     static PFNGLMULTIDRAWARRAYSINDIRECTCOUNTPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _mode, java.lang.foreign.MemoryAddress _indirect, long _drawcount, int _maxdrawcount, int _stride) -> {
             try {
-                constants$311.PFNGLMULTIDRAWARRAYSINDIRECTCOUNTPROC$MH.invokeExact((Addressable)symbol, _mode, (java.lang.foreign.Addressable)_indirect, _drawcount, _maxdrawcount, _stride);
+                constants$420.PFNGLMULTIDRAWARRAYSINDIRECTCOUNTPROC$MH.invokeExact((Addressable)symbol, _mode, (java.lang.foreign.Addressable)_indirect, _drawcount, _maxdrawcount, _stride);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

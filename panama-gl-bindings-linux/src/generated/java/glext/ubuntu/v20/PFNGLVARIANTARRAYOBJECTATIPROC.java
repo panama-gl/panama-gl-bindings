@@ -11,13 +11,13 @@ public interface PFNGLVARIANTARRAYOBJECTATIPROC {
 
     void apply(int id, int type, int stride, int buffer, int offset);
     static MemorySegment allocate(PFNGLVARIANTARRAYOBJECTATIPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLVARIANTARRAYOBJECTATIPROC.class, fi, constants$498.PFNGLVARIANTARRAYOBJECTATIPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLVARIANTARRAYOBJECTATIPROC.class, fi, constants$700.PFNGLVARIANTARRAYOBJECTATIPROC$FUNC, session);
     }
     static PFNGLVARIANTARRAYOBJECTATIPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _id, int _type, int _stride, int _buffer, int _offset) -> {
             try {
-                constants$498.PFNGLVARIANTARRAYOBJECTATIPROC$MH.invokeExact((Addressable)symbol, _id, _type, _stride, _buffer, _offset);
+                constants$700.PFNGLVARIANTARRAYOBJECTATIPROC$MH.invokeExact((Addressable)symbol, _id, _type, _stride, _buffer, _offset);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

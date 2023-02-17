@@ -9,27 +9,40 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$658 {
 
-    static final FunctionDescriptor PFNGLSECONDARYCOLOR3UBEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_CHAR$LAYOUT,
-        Constants$root.C_CHAR$LAYOUT,
-        Constants$root.C_CHAR$LAYOUT
-    );
-    static final MethodHandle PFNGLSECONDARYCOLOR3UBEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$658.PFNGLSECONDARYCOLOR3UBEXTPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLSECONDARYCOLOR3UBVEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLGETPERFMONITORCOUNTERSAMDPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLSECONDARYCOLOR3UBVEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$658.PFNGLSECONDARYCOLOR3UBVEXTPROC$FUNC
+    static final MethodHandle PFNGLGETPERFMONITORCOUNTERSAMDPROC$MH = RuntimeHelper.downcallHandle(
+        constants$658.PFNGLGETPERFMONITORCOUNTERSAMDPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLSECONDARYCOLOR3UIEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLGETPERFMONITORGROUPSTRINGAMDPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLSECONDARYCOLOR3UIEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$658.PFNGLSECONDARYCOLOR3UIEXTPROC$FUNC
+    static final MethodHandle PFNGLGETPERFMONITORGROUPSTRINGAMDPROC$MH = RuntimeHelper.downcallHandle(
+        constants$658.PFNGLGETPERFMONITORGROUPSTRINGAMDPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLGETPERFMONITORCOUNTERSTRINGAMDPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle PFNGLGETPERFMONITORCOUNTERSTRINGAMDPROC$MH = RuntimeHelper.downcallHandle(
+        constants$658.PFNGLGETPERFMONITORCOUNTERSTRINGAMDPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLGETPERFMONITORCOUNTERINFOAMDPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
 }
 

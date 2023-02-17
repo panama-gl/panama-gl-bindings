@@ -9,27 +9,32 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$292 {
 
-    static final FunctionDescriptor PFNGLTEXTUREPARAMETERIUIVPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLPROGRAMUNIFORM2FVPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle PFNGLTEXTUREPARAMETERIUIVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$292.PFNGLTEXTUREPARAMETERIUIVPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLTEXTUREPARAMETERIVPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLTEXTUREPARAMETERIVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$292.PFNGLTEXTUREPARAMETERIVPROC$FUNC
+    static final MethodHandle PFNGLPROGRAMUNIFORM2FVPROC$MH = RuntimeHelper.downcallHandle(
+        constants$292.PFNGLPROGRAMUNIFORM2FVPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLGENERATETEXTUREMIPMAPPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT
+    static final FunctionDescriptor PFNGLPROGRAMUNIFORM2DPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_DOUBLE$LAYOUT,
+        Constants$root.C_DOUBLE$LAYOUT
     );
-    static final MethodHandle PFNGLGENERATETEXTUREMIPMAPPROC$MH = RuntimeHelper.downcallHandle(
-        constants$292.PFNGLGENERATETEXTUREMIPMAPPROC$FUNC
+    static final MethodHandle PFNGLPROGRAMUNIFORM2DPROC$MH = RuntimeHelper.downcallHandle(
+        constants$292.PFNGLPROGRAMUNIFORM2DPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLPROGRAMUNIFORM2DVPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle PFNGLPROGRAMUNIFORM2DVPROC$MH = RuntimeHelper.downcallHandle(
+        constants$292.PFNGLPROGRAMUNIFORM2DVPROC$FUNC
     );
 }
 

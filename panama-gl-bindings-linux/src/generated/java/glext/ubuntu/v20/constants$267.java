@@ -9,33 +9,32 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$267 {
 
-    static final FunctionDescriptor PFNGLGETOBJECTPTRLABELPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_POINTER$LAYOUT,
+    static final FunctionDescriptor PFNGLUNIFORMMATRIX3X4DVPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_CHAR$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLGETOBJECTPTRLABELPROC$MH = RuntimeHelper.downcallHandle(
-        constants$267.PFNGLGETOBJECTPTRLABELPROC$FUNC
+    static final MethodHandle PFNGLUNIFORMMATRIX3X4DVPROC$MH = RuntimeHelper.downcallHandle(
+        constants$267.PFNGLUNIFORMMATRIX3X4DVPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLBUFFERSTORAGEPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_LONG_LONG$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_INT$LAYOUT
-    );
-    static final MethodHandle PFNGLBUFFERSTORAGEPROC$MH = RuntimeHelper.downcallHandle(
-        constants$267.PFNGLBUFFERSTORAGEPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLCLEARTEXIMAGEPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLUNIFORMMATRIX4X2DVPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_CHAR$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLCLEARTEXIMAGEPROC$MH = RuntimeHelper.downcallHandle(
-        constants$267.PFNGLCLEARTEXIMAGEPROC$FUNC
+    static final MethodHandle PFNGLUNIFORMMATRIX4X2DVPROC$MH = RuntimeHelper.downcallHandle(
+        constants$267.PFNGLUNIFORMMATRIX4X2DVPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLUNIFORMMATRIX4X3DVPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_CHAR$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle PFNGLUNIFORMMATRIX4X3DVPROC$MH = RuntimeHelper.downcallHandle(
+        constants$267.PFNGLUNIFORMMATRIX4X3DVPROC$FUNC
     );
 }
 

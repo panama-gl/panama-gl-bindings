@@ -9,36 +9,31 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$596 {
 
-    static final FunctionDescriptor PFNGLNAMEDFRAMEBUFFERTEXTURE1DEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLMULTITEXCOORD1XOESPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle PFNGLMULTITEXCOORD1XOESPROC$MH = RuntimeHelper.downcallHandle(
+        constants$596.PFNGLMULTITEXCOORD1XOESPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLMULTITEXCOORD1XVOESPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle PFNGLMULTITEXCOORD1XVOESPROC$MH = RuntimeHelper.downcallHandle(
+        constants$596.PFNGLMULTITEXCOORD1XVOESPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLMULTITEXCOORD2XOESPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLNAMEDFRAMEBUFFERTEXTURE1DEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$596.PFNGLNAMEDFRAMEBUFFERTEXTURE1DEXTPROC$FUNC
+    static final MethodHandle PFNGLMULTITEXCOORD2XOESPROC$MH = RuntimeHelper.downcallHandle(
+        constants$596.PFNGLMULTITEXCOORD2XOESPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLNAMEDFRAMEBUFFERTEXTURE2DEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLMULTITEXCOORD2XVOESPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT
-    );
-    static final MethodHandle PFNGLNAMEDFRAMEBUFFERTEXTURE2DEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$596.PFNGLNAMEDFRAMEBUFFERTEXTURE2DEXTPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLNAMEDFRAMEBUFFERTEXTURE3DEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT
-    );
-    static final MethodHandle PFNGLNAMEDFRAMEBUFFERTEXTURE3DEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$596.PFNGLNAMEDFRAMEBUFFERTEXTURE3DEXTPROC$FUNC
+        Constants$root.C_POINTER$LAYOUT
     );
 }
 

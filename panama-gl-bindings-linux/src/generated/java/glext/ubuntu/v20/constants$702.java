@@ -9,33 +9,64 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$702 {
 
-    static final FunctionDescriptor PFNGLCOLORPOINTERLISTIBMPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glArrayObjectATI$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLCOLORPOINTERLISTIBMPROC$MH = RuntimeHelper.downcallHandle(
-        constants$702.PFNGLCOLORPOINTERLISTIBMPROC$FUNC
+    static final MethodHandle glArrayObjectATI$MH = RuntimeHelper.downcallHandle(
+        "glArrayObjectATI",
+        constants$702.glArrayObjectATI$FUNC
     );
-    static final FunctionDescriptor PFNGLSECONDARYCOLORPOINTERLISTIBMPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glGetArrayObjectfvATI$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glGetArrayObjectfvATI$MH = RuntimeHelper.downcallHandle(
+        "glGetArrayObjectfvATI",
+        constants$702.glGetArrayObjectfvATI$FUNC
+    );
+    static final FunctionDescriptor glGetArrayObjectivATI$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glGetArrayObjectivATI$MH = RuntimeHelper.downcallHandle(
+        "glGetArrayObjectivATI",
+        constants$702.glGetArrayObjectivATI$FUNC
+    );
+    static final FunctionDescriptor glVariantArrayObjectATI$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLSECONDARYCOLORPOINTERLISTIBMPROC$MH = RuntimeHelper.downcallHandle(
-        constants$702.PFNGLSECONDARYCOLORPOINTERLISTIBMPROC$FUNC
+    static final MethodHandle glVariantArrayObjectATI$MH = RuntimeHelper.downcallHandle(
+        "glVariantArrayObjectATI",
+        constants$702.glVariantArrayObjectATI$FUNC
     );
-    static final FunctionDescriptor PFNGLEDGEFLAGPOINTERLISTIBMPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glGetVariantArrayObjectfvATI$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_INT$LAYOUT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLEDGEFLAGPOINTERLISTIBMPROC$MH = RuntimeHelper.downcallHandle(
-        constants$702.PFNGLEDGEFLAGPOINTERLISTIBMPROC$FUNC
+    static final MethodHandle glGetVariantArrayObjectfvATI$MH = RuntimeHelper.downcallHandle(
+        "glGetVariantArrayObjectfvATI",
+        constants$702.glGetVariantArrayObjectfvATI$FUNC
+    );
+    static final FunctionDescriptor glGetVariantArrayObjectivATI$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glGetVariantArrayObjectivATI$MH = RuntimeHelper.downcallHandle(
+        "glGetVariantArrayObjectivATI",
+        constants$702.glGetVariantArrayObjectivATI$FUNC
     );
 }
 

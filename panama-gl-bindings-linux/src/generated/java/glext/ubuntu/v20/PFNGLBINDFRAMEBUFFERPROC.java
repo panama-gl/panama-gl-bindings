@@ -11,13 +11,13 @@ public interface PFNGLBINDFRAMEBUFFERPROC {
 
     void apply(int target, int framebuffer);
     static MemorySegment allocate(PFNGLBINDFRAMEBUFFERPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLBINDFRAMEBUFFERPROC.class, fi, constants$168.PFNGLBINDFRAMEBUFFERPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLBINDFRAMEBUFFERPROC.class, fi, constants$195.PFNGLBINDFRAMEBUFFERPROC$FUNC, session);
     }
     static PFNGLBINDFRAMEBUFFERPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _target, int _framebuffer) -> {
             try {
-                constants$168.PFNGLBINDFRAMEBUFFERPROC$MH.invokeExact((Addressable)symbol, _target, _framebuffer);
+                constants$195.PFNGLBINDFRAMEBUFFERPROC$MH.invokeExact((Addressable)symbol, _target, _framebuffer);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

@@ -9,31 +9,31 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$337 {
 
-    static final FunctionDescriptor PFNGLGETNUNIFORMI64VARBPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
+    static final FunctionDescriptor PFNGLINVALIDATEBUFFERDATAPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle PFNGLINVALIDATEBUFFERDATAPROC$MH = RuntimeHelper.downcallHandle(
+        constants$337.PFNGLINVALIDATEBUFFERDATAPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLINVALIDATEFRAMEBUFFERPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLGETNUNIFORMI64VARBPROC$MH = RuntimeHelper.downcallHandle(
-        constants$337.PFNGLGETNUNIFORMI64VARBPROC$FUNC
+    static final MethodHandle PFNGLINVALIDATEFRAMEBUFFERPROC$MH = RuntimeHelper.downcallHandle(
+        constants$337.PFNGLINVALIDATEFRAMEBUFFERPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLGETNUNIFORMUI64VARBPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLINVALIDATESUBFRAMEBUFFERPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
+        Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLGETNUNIFORMUI64VARBPROC$MH = RuntimeHelper.downcallHandle(
-        constants$337.PFNGLGETNUNIFORMUI64VARBPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLPROGRAMUNIFORM1I64ARBPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_LONG_LONG$LAYOUT
-    );
-    static final MethodHandle PFNGLPROGRAMUNIFORM1I64ARBPROC$MH = RuntimeHelper.downcallHandle(
-        constants$337.PFNGLPROGRAMUNIFORM1I64ARBPROC$FUNC
+    static final MethodHandle PFNGLINVALIDATESUBFRAMEBUFFERPROC$MH = RuntimeHelper.downcallHandle(
+        constants$337.PFNGLINVALIDATESUBFRAMEBUFFERPROC$FUNC
     );
 }
 

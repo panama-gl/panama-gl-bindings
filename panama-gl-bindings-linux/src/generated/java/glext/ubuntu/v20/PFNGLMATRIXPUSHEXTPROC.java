@@ -11,13 +11,13 @@ public interface PFNGLMATRIXPUSHEXTPROC {
 
     void apply(int mode);
     static MemorySegment allocate(PFNGLMATRIXPUSHEXTPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLMATRIXPUSHEXTPROC.class, fi, constants$540.PFNGLMATRIXPUSHEXTPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLMATRIXPUSHEXTPROC.class, fi, constants$762.PFNGLMATRIXPUSHEXTPROC$FUNC, session);
     }
     static PFNGLMATRIXPUSHEXTPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _mode) -> {
             try {
-                constants$540.PFNGLMATRIXPUSHEXTPROC$MH.invokeExact((Addressable)symbol, _mode);
+                constants$762.PFNGLMATRIXPUSHEXTPROC$MH.invokeExact((Addressable)symbol, _mode);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

@@ -9,32 +9,54 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$221 {
 
-    static final FunctionDescriptor PFNGLGETPROGRAMBINARYPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glGetActiveUniformBlockiv$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glGetActiveUniformBlockiv$MH = RuntimeHelper.downcallHandle(
+        "glGetActiveUniformBlockiv",
+        constants$221.glGetActiveUniformBlockiv$FUNC
+    );
+    static final FunctionDescriptor glGetActiveUniformBlockName$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLGETPROGRAMBINARYPROC$MH = RuntimeHelper.downcallHandle(
-        constants$221.PFNGLGETPROGRAMBINARYPROC$FUNC
+    static final MethodHandle glGetActiveUniformBlockName$MH = RuntimeHelper.downcallHandle(
+        "glGetActiveUniformBlockName",
+        constants$221.glGetActiveUniformBlockName$FUNC
     );
-    static final FunctionDescriptor PFNGLPROGRAMBINARYPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glUniformBlockBinding$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle glUniformBlockBinding$MH = RuntimeHelper.downcallHandle(
+        "glUniformBlockBinding",
+        constants$221.glUniformBlockBinding$FUNC
+    );
+    static final FunctionDescriptor PFNGLDRAWELEMENTSBASEVERTEXPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT,
         Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLPROGRAMBINARYPROC$MH = RuntimeHelper.downcallHandle(
-        constants$221.PFNGLPROGRAMBINARYPROC$FUNC
+    static final MethodHandle PFNGLDRAWELEMENTSBASEVERTEXPROC$MH = RuntimeHelper.downcallHandle(
+        constants$221.PFNGLDRAWELEMENTSBASEVERTEXPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLPROGRAMPARAMETERIPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLDRAWRANGEELEMENTSBASEVERTEXPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
         Constants$root.C_INT$LAYOUT
-    );
-    static final MethodHandle PFNGLPROGRAMPARAMETERIPROC$MH = RuntimeHelper.downcallHandle(
-        constants$221.PFNGLPROGRAMPARAMETERIPROC$FUNC
     );
 }
 

@@ -9,25 +9,68 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$406 {
 
-    static final FunctionDescriptor PFNGLMAXSHADERCOMPILERTHREADSKHRPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glBlitNamedFramebuffer$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLMAXSHADERCOMPILERTHREADSKHRPROC$MH = RuntimeHelper.downcallHandle(
-        constants$406.PFNGLMAXSHADERCOMPILERTHREADSKHRPROC$FUNC
+    static final MethodHandle glBlitNamedFramebuffer$MH = RuntimeHelper.downcallHandle(
+        "glBlitNamedFramebuffer",
+        constants$406.glBlitNamedFramebuffer$FUNC
     );
-    static final FunctionDescriptor PFNGLMULTITEXCOORD1BOESPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glCheckNamedFramebufferStatus$FUNC = FunctionDescriptor.of(Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_CHAR$LAYOUT
+        Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLMULTITEXCOORD1BOESPROC$MH = RuntimeHelper.downcallHandle(
-        constants$406.PFNGLMULTITEXCOORD1BOESPROC$FUNC
+    static final MethodHandle glCheckNamedFramebufferStatus$MH = RuntimeHelper.downcallHandle(
+        "glCheckNamedFramebufferStatus",
+        constants$406.glCheckNamedFramebufferStatus$FUNC
     );
-    static final FunctionDescriptor PFNGLMULTITEXCOORD1BVOESPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glGetNamedFramebufferParameteriv$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLMULTITEXCOORD1BVOESPROC$MH = RuntimeHelper.downcallHandle(
-        constants$406.PFNGLMULTITEXCOORD1BVOESPROC$FUNC
+    static final MethodHandle glGetNamedFramebufferParameteriv$MH = RuntimeHelper.downcallHandle(
+        "glGetNamedFramebufferParameteriv",
+        constants$406.glGetNamedFramebufferParameteriv$FUNC
+    );
+    static final FunctionDescriptor glGetNamedFramebufferAttachmentParameteriv$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glGetNamedFramebufferAttachmentParameteriv$MH = RuntimeHelper.downcallHandle(
+        "glGetNamedFramebufferAttachmentParameteriv",
+        constants$406.glGetNamedFramebufferAttachmentParameteriv$FUNC
+    );
+    static final FunctionDescriptor glCreateRenderbuffers$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glCreateRenderbuffers$MH = RuntimeHelper.downcallHandle(
+        "glCreateRenderbuffers",
+        constants$406.glCreateRenderbuffers$FUNC
+    );
+    static final FunctionDescriptor glNamedRenderbufferStorage$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle glNamedRenderbufferStorage$MH = RuntimeHelper.downcallHandle(
+        "glNamedRenderbufferStorage",
+        constants$406.glNamedRenderbufferStorage$FUNC
     );
 }
 

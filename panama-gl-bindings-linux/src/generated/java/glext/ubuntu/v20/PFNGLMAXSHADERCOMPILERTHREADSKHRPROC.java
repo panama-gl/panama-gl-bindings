@@ -11,13 +11,13 @@ public interface PFNGLMAXSHADERCOMPILERTHREADSKHRPROC {
 
     void apply(int count);
     static MemorySegment allocate(PFNGLMAXSHADERCOMPILERTHREADSKHRPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLMAXSHADERCOMPILERTHREADSKHRPROC.class, fi, constants$406.PFNGLMAXSHADERCOMPILERTHREADSKHRPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLMAXSHADERCOMPILERTHREADSKHRPROC.class, fi, constants$562.PFNGLMAXSHADERCOMPILERTHREADSKHRPROC$FUNC, session);
     }
     static PFNGLMAXSHADERCOMPILERTHREADSKHRPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _count) -> {
             try {
-                constants$406.PFNGLMAXSHADERCOMPILERTHREADSKHRPROC$MH.invokeExact((Addressable)symbol, _count);
+                constants$562.PFNGLMAXSHADERCOMPILERTHREADSKHRPROC$MH.invokeExact((Addressable)symbol, _count);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

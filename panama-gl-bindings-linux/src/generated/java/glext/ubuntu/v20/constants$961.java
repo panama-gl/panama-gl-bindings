@@ -9,42 +9,54 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$961 {
 
-    static final FunctionDescriptor glutTabletMotionFunc$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glAreTexturesResidentEXT$FUNC = FunctionDescriptor.of(Constants$root.C_CHAR$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle glutTabletMotionFunc$MH = RuntimeHelper.downcallHandle(
-        "glutTabletMotionFunc",
-        constants$961.glutTabletMotionFunc$FUNC
+    static final MethodHandle glAreTexturesResidentEXT$MH = RuntimeHelper.downcallHandle(
+        "glAreTexturesResidentEXT",
+        constants$961.glAreTexturesResidentEXT$FUNC
     );
-    static final FunctionDescriptor glutTabletButtonFunc$callback$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
+    static final FunctionDescriptor glBindTextureEXT$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle glutTabletButtonFunc$callback$MH = RuntimeHelper.downcallHandle(
-        constants$961.glutTabletButtonFunc$callback$FUNC
+    static final MethodHandle glBindTextureEXT$MH = RuntimeHelper.downcallHandle(
+        "glBindTextureEXT",
+        constants$961.glBindTextureEXT$FUNC
     );
-    static final FunctionDescriptor glutTabletButtonFunc$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glDeleteTexturesEXT$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle glutTabletButtonFunc$MH = RuntimeHelper.downcallHandle(
-        "glutTabletButtonFunc",
-        constants$961.glutTabletButtonFunc$FUNC
+    static final MethodHandle glDeleteTexturesEXT$MH = RuntimeHelper.downcallHandle(
+        "glDeleteTexturesEXT",
+        constants$961.glDeleteTexturesEXT$FUNC
     );
-    static final FunctionDescriptor glutGet$FUNC = FunctionDescriptor.of(Constants$root.C_INT$LAYOUT,
+    static final FunctionDescriptor glGenTexturesEXT$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glGenTexturesEXT$MH = RuntimeHelper.downcallHandle(
+        "glGenTexturesEXT",
+        constants$961.glGenTexturesEXT$FUNC
+    );
+    static final FunctionDescriptor glIsTextureEXT$FUNC = FunctionDescriptor.of(Constants$root.C_CHAR$LAYOUT,
         Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle glutGet$MH = RuntimeHelper.downcallHandle(
-        "glutGet",
-        constants$961.glutGet$FUNC
+    static final MethodHandle glIsTextureEXT$MH = RuntimeHelper.downcallHandle(
+        "glIsTextureEXT",
+        constants$961.glIsTextureEXT$FUNC
     );
-    static final FunctionDescriptor glutDeviceGet$FUNC = FunctionDescriptor.of(Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT
+    static final FunctionDescriptor glPrioritizeTexturesEXT$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle glutDeviceGet$MH = RuntimeHelper.downcallHandle(
-        "glutDeviceGet",
-        constants$961.glutDeviceGet$FUNC
+    static final MethodHandle glPrioritizeTexturesEXT$MH = RuntimeHelper.downcallHandle(
+        "glPrioritizeTexturesEXT",
+        constants$961.glPrioritizeTexturesEXT$FUNC
     );
 }
 

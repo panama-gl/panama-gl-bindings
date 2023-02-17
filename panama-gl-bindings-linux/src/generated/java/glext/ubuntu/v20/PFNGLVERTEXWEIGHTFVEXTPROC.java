@@ -11,13 +11,13 @@ public interface PFNGLVERTEXWEIGHTFVEXTPROC {
 
     void apply(java.lang.foreign.MemoryAddress weight);
     static MemorySegment allocate(PFNGLVERTEXWEIGHTFVEXTPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLVERTEXWEIGHTFVEXTPROC.class, fi, constants$696.PFNGLVERTEXWEIGHTFVEXTPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLVERTEXWEIGHTFVEXTPROC.class, fi, constants$997.PFNGLVERTEXWEIGHTFVEXTPROC$FUNC, session);
     }
     static PFNGLVERTEXWEIGHTFVEXTPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (java.lang.foreign.MemoryAddress _weight) -> {
             try {
-                constants$696.PFNGLVERTEXWEIGHTFVEXTPROC$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)_weight);
+                constants$998.PFNGLVERTEXWEIGHTFVEXTPROC$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)_weight);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

@@ -11,13 +11,13 @@ public interface PFNGLCREATETEXTURESPROC {
 
     void apply(int target, int n, java.lang.foreign.MemoryAddress textures);
     static MemorySegment allocate(PFNGLCREATETEXTURESPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLCREATETEXTURESPROC.class, fi, constants$285.PFNGLCREATETEXTURESPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLCREATETEXTURESPROC.class, fi, constants$374.PFNGLCREATETEXTURESPROC$FUNC, session);
     }
     static PFNGLCREATETEXTURESPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _target, int _n, java.lang.foreign.MemoryAddress _textures) -> {
             try {
-                constants$285.PFNGLCREATETEXTURESPROC$MH.invokeExact((Addressable)symbol, _target, _n, (java.lang.foreign.Addressable)_textures);
+                constants$374.PFNGLCREATETEXTURESPROC$MH.invokeExact((Addressable)symbol, _target, _n, (java.lang.foreign.Addressable)_textures);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

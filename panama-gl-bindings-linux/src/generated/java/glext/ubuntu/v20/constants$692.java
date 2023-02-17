@@ -9,26 +9,53 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$692 {
 
-    static final FunctionDescriptor PFNGLBINDPARAMETEREXTPROC$FUNC = FunctionDescriptor.of(Constants$root.C_INT$LAYOUT,
+    static final FunctionDescriptor glDeleteFragmentShaderATI$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLBINDPARAMETEREXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$692.PFNGLBINDPARAMETEREXTPROC$FUNC
+    static final MethodHandle glDeleteFragmentShaderATI$MH = RuntimeHelper.downcallHandle(
+        "glDeleteFragmentShaderATI",
+        constants$692.glDeleteFragmentShaderATI$FUNC
     );
-    static final FunctionDescriptor PFNGLISVARIANTENABLEDEXTPROC$FUNC = FunctionDescriptor.of(Constants$root.C_CHAR$LAYOUT,
+    static final FunctionDescriptor glBeginFragmentShaderATI$FUNC = FunctionDescriptor.ofVoid();
+    static final MethodHandle glBeginFragmentShaderATI$MH = RuntimeHelper.downcallHandle(
+        "glBeginFragmentShaderATI",
+        constants$692.glBeginFragmentShaderATI$FUNC
+    );
+    static final FunctionDescriptor glEndFragmentShaderATI$FUNC = FunctionDescriptor.ofVoid();
+    static final MethodHandle glEndFragmentShaderATI$MH = RuntimeHelper.downcallHandle(
+        "glEndFragmentShaderATI",
+        constants$692.glEndFragmentShaderATI$FUNC
+    );
+    static final FunctionDescriptor glPassTexCoordATI$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLISVARIANTENABLEDEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$692.PFNGLISVARIANTENABLEDEXTPROC$FUNC
+    static final MethodHandle glPassTexCoordATI$MH = RuntimeHelper.downcallHandle(
+        "glPassTexCoordATI",
+        constants$692.glPassTexCoordATI$FUNC
     );
-    static final FunctionDescriptor PFNGLGETVARIANTBOOLEANVEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glSampleMapATI$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
+        Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLGETVARIANTBOOLEANVEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$692.PFNGLGETVARIANTBOOLEANVEXTPROC$FUNC
+    static final MethodHandle glSampleMapATI$MH = RuntimeHelper.downcallHandle(
+        "glSampleMapATI",
+        constants$692.glSampleMapATI$FUNC
+    );
+    static final FunctionDescriptor glColorFragmentOp1ATI$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle glColorFragmentOp1ATI$MH = RuntimeHelper.downcallHandle(
+        "glColorFragmentOp1ATI",
+        constants$692.glColorFragmentOp1ATI$FUNC
     );
 }
 

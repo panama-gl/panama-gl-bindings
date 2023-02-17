@@ -11,13 +11,13 @@ public interface PFNGLFLUSHMAPPEDNAMEDBUFFERRANGEPROC {
 
     void apply(int buffer, long offset, long length);
     static MemorySegment allocate(PFNGLFLUSHMAPPEDNAMEDBUFFERRANGEPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLFLUSHMAPPEDNAMEDBUFFERRANGEPROC.class, fi, constants$276.PFNGLFLUSHMAPPEDNAMEDBUFFERRANGEPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLFLUSHMAPPEDNAMEDBUFFERRANGEPROC.class, fi, constants$365.PFNGLFLUSHMAPPEDNAMEDBUFFERRANGEPROC$FUNC, session);
     }
     static PFNGLFLUSHMAPPEDNAMEDBUFFERRANGEPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _buffer, long _offset, long _length) -> {
             try {
-                constants$276.PFNGLFLUSHMAPPEDNAMEDBUFFERRANGEPROC$MH.invokeExact((Addressable)symbol, _buffer, _offset, _length);
+                constants$365.PFNGLFLUSHMAPPEDNAMEDBUFFERRANGEPROC$MH.invokeExact((Addressable)symbol, _buffer, _offset, _length);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

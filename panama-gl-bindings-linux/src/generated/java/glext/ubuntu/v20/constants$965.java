@@ -9,35 +9,41 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$965 {
 
-    static final FunctionDescriptor glutWireOctahedron$FUNC = FunctionDescriptor.ofVoid();
-    static final MethodHandle glutWireOctahedron$MH = RuntimeHelper.downcallHandle(
-        "glutWireOctahedron",
-        constants$965.glutWireOctahedron$FUNC
+    static final FunctionDescriptor PFNGLBINDBUFFERBASEEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
-    static final FunctionDescriptor glutSolidOctahedron$FUNC = FunctionDescriptor.ofVoid();
-    static final MethodHandle glutSolidOctahedron$MH = RuntimeHelper.downcallHandle(
-        "glutSolidOctahedron",
-        constants$965.glutSolidOctahedron$FUNC
+    static final MethodHandle PFNGLBINDBUFFERBASEEXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$965.PFNGLBINDBUFFERBASEEXTPROC$FUNC
     );
-    static final FunctionDescriptor glutWireTetrahedron$FUNC = FunctionDescriptor.ofVoid();
-    static final MethodHandle glutWireTetrahedron$MH = RuntimeHelper.downcallHandle(
-        "glutWireTetrahedron",
-        constants$965.glutWireTetrahedron$FUNC
+    static final FunctionDescriptor PFNGLTRANSFORMFEEDBACKVARYINGSEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
-    static final FunctionDescriptor glutSolidTetrahedron$FUNC = FunctionDescriptor.ofVoid();
-    static final MethodHandle glutSolidTetrahedron$MH = RuntimeHelper.downcallHandle(
-        "glutSolidTetrahedron",
-        constants$965.glutSolidTetrahedron$FUNC
+    static final MethodHandle PFNGLTRANSFORMFEEDBACKVARYINGSEXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$965.PFNGLTRANSFORMFEEDBACKVARYINGSEXTPROC$FUNC
     );
-    static final FunctionDescriptor glutWireIcosahedron$FUNC = FunctionDescriptor.ofVoid();
-    static final MethodHandle glutWireIcosahedron$MH = RuntimeHelper.downcallHandle(
-        "glutWireIcosahedron",
-        constants$965.glutWireIcosahedron$FUNC
+    static final FunctionDescriptor PFNGLGETTRANSFORMFEEDBACKVARYINGEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
-    static final FunctionDescriptor glutSolidIcosahedron$FUNC = FunctionDescriptor.ofVoid();
-    static final MethodHandle glutSolidIcosahedron$MH = RuntimeHelper.downcallHandle(
-        "glutSolidIcosahedron",
-        constants$965.glutSolidIcosahedron$FUNC
+    static final MethodHandle PFNGLGETTRANSFORMFEEDBACKVARYINGEXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$965.PFNGLGETTRANSFORMFEEDBACKVARYINGEXTPROC$FUNC
+    );
+    static final FunctionDescriptor glBeginTransformFeedbackEXT$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle glBeginTransformFeedbackEXT$MH = RuntimeHelper.downcallHandle(
+        "glBeginTransformFeedbackEXT",
+        constants$965.glBeginTransformFeedbackEXT$FUNC
     );
 }
 

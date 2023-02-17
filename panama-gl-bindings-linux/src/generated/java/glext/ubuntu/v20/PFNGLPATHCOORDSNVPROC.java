@@ -11,13 +11,13 @@ public interface PFNGLPATHCOORDSNVPROC {
 
     void apply(int path, int numCoords, int coordType, java.lang.foreign.MemoryAddress coords);
     static MemorySegment allocate(PFNGLPATHCOORDSNVPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLPATHCOORDSNVPROC.class, fi, constants$787.PFNGLPATHCOORDSNVPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLPATHCOORDSNVPROC.class, fi, constants$1134.PFNGLPATHCOORDSNVPROC$FUNC, session);
     }
     static PFNGLPATHCOORDSNVPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _path, int _numCoords, int _coordType, java.lang.foreign.MemoryAddress _coords) -> {
             try {
-                constants$787.PFNGLPATHCOORDSNVPROC$MH.invokeExact((Addressable)symbol, _path, _numCoords, _coordType, (java.lang.foreign.Addressable)_coords);
+                constants$1134.PFNGLPATHCOORDSNVPROC$MH.invokeExact((Addressable)symbol, _path, _numCoords, _coordType, (java.lang.foreign.Addressable)_coords);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

@@ -9,26 +9,42 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$801 {
 
-    static final FunctionDescriptor PFNGLMATRIXLOADTRANSPOSE3X3FNVPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLPROGRAMUNIFORMMATRIX2X4FVEXTPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_CHAR$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLMATRIXLOADTRANSPOSE3X3FNVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$801.PFNGLMATRIXLOADTRANSPOSE3X3FNVPROC$FUNC
+    static final MethodHandle PFNGLPROGRAMUNIFORMMATRIX2X4FVEXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$801.PFNGLPROGRAMUNIFORMMATRIX2X4FVEXTPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLMATRIXMULT3X2FNVPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLPROGRAMUNIFORMMATRIX4X2FVEXTPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_CHAR$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLMATRIXMULT3X2FNVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$801.PFNGLMATRIXMULT3X2FNVPROC$FUNC
+    static final MethodHandle PFNGLPROGRAMUNIFORMMATRIX4X2FVEXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$801.PFNGLPROGRAMUNIFORMMATRIX4X2FVEXTPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLMATRIXMULT3X3FNVPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLPROGRAMUNIFORMMATRIX3X4FVEXTPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_CHAR$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLMATRIXMULT3X3FNVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$801.PFNGLMATRIXMULT3X3FNVPROC$FUNC
+    static final MethodHandle PFNGLPROGRAMUNIFORMMATRIX3X4FVEXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$801.PFNGLPROGRAMUNIFORMMATRIX3X4FVEXTPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLPROGRAMUNIFORMMATRIX4X3FVEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_CHAR$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
 }
 

@@ -9,32 +9,37 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$459 {
 
-    static final FunctionDescriptor PFNGLUNIFORM3UI64NVPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLPROGRAMUNIFORM3I64VARBPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_LONG_LONG$LAYOUT,
-        Constants$root.C_LONG_LONG$LAYOUT,
-        Constants$root.C_LONG_LONG$LAYOUT
-    );
-    static final MethodHandle PFNGLUNIFORM3UI64NVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$459.PFNGLUNIFORM3UI64NVPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLUNIFORM4UI64NVPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_LONG_LONG$LAYOUT,
-        Constants$root.C_LONG_LONG$LAYOUT,
-        Constants$root.C_LONG_LONG$LAYOUT,
-        Constants$root.C_LONG_LONG$LAYOUT
-    );
-    static final MethodHandle PFNGLUNIFORM4UI64NVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$459.PFNGLUNIFORM4UI64NVPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLUNIFORM1UI64VNVPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLUNIFORM1UI64VNVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$459.PFNGLUNIFORM1UI64VNVPROC$FUNC
+    static final MethodHandle PFNGLPROGRAMUNIFORM3I64VARBPROC$MH = RuntimeHelper.downcallHandle(
+        constants$459.PFNGLPROGRAMUNIFORM3I64VARBPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLPROGRAMUNIFORM4I64VARBPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle PFNGLPROGRAMUNIFORM4I64VARBPROC$MH = RuntimeHelper.downcallHandle(
+        constants$459.PFNGLPROGRAMUNIFORM4I64VARBPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLPROGRAMUNIFORM1UI64ARBPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT
+    );
+    static final MethodHandle PFNGLPROGRAMUNIFORM1UI64ARBPROC$MH = RuntimeHelper.downcallHandle(
+        constants$459.PFNGLPROGRAMUNIFORM1UI64ARBPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLPROGRAMUNIFORM2UI64ARBPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT
     );
 }
 

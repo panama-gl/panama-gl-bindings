@@ -9,33 +9,28 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$231 {
 
-    static final FunctionDescriptor PFNGLPROGRAMUNIFORM3FVPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLBINDFRAGDATALOCATIONINDEXEDPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLPROGRAMUNIFORM3FVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$231.PFNGLPROGRAMUNIFORM3FVPROC$FUNC
+    static final MethodHandle PFNGLBINDFRAGDATALOCATIONINDEXEDPROC$MH = RuntimeHelper.downcallHandle(
+        constants$231.PFNGLBINDFRAGDATALOCATIONINDEXEDPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLPROGRAMUNIFORM3DPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_DOUBLE$LAYOUT,
-        Constants$root.C_DOUBLE$LAYOUT,
-        Constants$root.C_DOUBLE$LAYOUT
-    );
-    static final MethodHandle PFNGLPROGRAMUNIFORM3DPROC$MH = RuntimeHelper.downcallHandle(
-        constants$231.PFNGLPROGRAMUNIFORM3DPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLPROGRAMUNIFORM3DVPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
+    static final FunctionDescriptor PFNGLGETFRAGDATAINDEXPROC$FUNC = FunctionDescriptor.of(Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLPROGRAMUNIFORM3DVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$231.PFNGLPROGRAMUNIFORM3DVPROC$FUNC
+    static final MethodHandle PFNGLGETFRAGDATAINDEXPROC$MH = RuntimeHelper.downcallHandle(
+        constants$231.PFNGLGETFRAGDATAINDEXPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLGENSAMPLERSPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle PFNGLGENSAMPLERSPROC$MH = RuntimeHelper.downcallHandle(
+        constants$231.PFNGLGENSAMPLERSPROC$FUNC
     );
 }
 

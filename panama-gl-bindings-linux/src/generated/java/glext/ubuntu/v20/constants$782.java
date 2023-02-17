@@ -9,28 +9,39 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$782 {
 
-    static final FunctionDescriptor PFNGLDRAWMESHTASKSINDIRECTNVPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_LONG_LONG$LAYOUT
-    );
-    static final MethodHandle PFNGLDRAWMESHTASKSINDIRECTNVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$782.PFNGLDRAWMESHTASKSINDIRECTNVPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLMULTIDRAWMESHTASKSINDIRECTNVPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_LONG_LONG$LAYOUT,
+    static final FunctionDescriptor PFNGLCOPYMULTITEXSUBIMAGE3DEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLMULTIDRAWMESHTASKSINDIRECTNVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$782.PFNGLMULTIDRAWMESHTASKSINDIRECTNVPROC$FUNC
+    static final MethodHandle PFNGLCOPYMULTITEXSUBIMAGE3DEXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$782.PFNGLCOPYMULTITEXSUBIMAGE3DEXTPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLMULTIDRAWMESHTASKSINDIRECTCOUNTNVPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_LONG_LONG$LAYOUT,
-        Constants$root.C_LONG_LONG$LAYOUT,
+    static final FunctionDescriptor PFNGLENABLECLIENTSTATEINDEXEDEXTPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLMULTIDRAWMESHTASKSINDIRECTCOUNTNVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$782.PFNGLMULTIDRAWMESHTASKSINDIRECTCOUNTNVPROC$FUNC
+    static final MethodHandle PFNGLENABLECLIENTSTATEINDEXEDEXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$782.PFNGLENABLECLIENTSTATEINDEXEDEXTPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLDISABLECLIENTSTATEINDEXEDEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle PFNGLDISABLECLIENTSTATEINDEXEDEXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$782.PFNGLDISABLECLIENTSTATEINDEXEDEXTPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLGETFLOATINDEXEDVEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
 }
 

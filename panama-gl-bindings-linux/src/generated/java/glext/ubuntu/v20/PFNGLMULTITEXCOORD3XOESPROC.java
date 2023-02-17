@@ -11,13 +11,13 @@ public interface PFNGLMULTITEXCOORD3XOESPROC {
 
     void apply(int texture, int s, int t, int r);
     static MemorySegment allocate(PFNGLMULTITEXCOORD3XOESPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLMULTITEXCOORD3XOESPROC.class, fi, constants$436.PFNGLMULTITEXCOORD3XOESPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLMULTITEXCOORD3XOESPROC.class, fi, constants$597.PFNGLMULTITEXCOORD3XOESPROC$FUNC, session);
     }
     static PFNGLMULTITEXCOORD3XOESPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _texture, int _s, int _t, int _r) -> {
             try {
-                constants$436.PFNGLMULTITEXCOORD3XOESPROC$MH.invokeExact((Addressable)symbol, _texture, _s, _t, _r);
+                constants$597.PFNGLMULTITEXCOORD3XOESPROC$MH.invokeExact((Addressable)symbol, _texture, _s, _t, _r);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

@@ -9,32 +9,54 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$211 {
 
-    static final FunctionDescriptor PFNGLUNIFORMMATRIX3X4DVPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glGetStringi$FUNC = FunctionDescriptor.of(Constants$root.C_POINTER$LAYOUT,
         Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle glGetStringi$MH = RuntimeHelper.downcallHandle(
+        "glGetStringi",
+        constants$211.glGetStringi$FUNC
+    );
+    static final FunctionDescriptor glIsRenderbuffer$FUNC = FunctionDescriptor.of(Constants$root.C_CHAR$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle glIsRenderbuffer$MH = RuntimeHelper.downcallHandle(
+        "glIsRenderbuffer",
+        constants$211.glIsRenderbuffer$FUNC
+    );
+    static final FunctionDescriptor glBindRenderbuffer$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_CHAR$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle glBindRenderbuffer$MH = RuntimeHelper.downcallHandle(
+        "glBindRenderbuffer",
+        constants$211.glBindRenderbuffer$FUNC
+    );
+    static final FunctionDescriptor glDeleteRenderbuffers$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLUNIFORMMATRIX3X4DVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$211.PFNGLUNIFORMMATRIX3X4DVPROC$FUNC
+    static final MethodHandle glDeleteRenderbuffers$MH = RuntimeHelper.downcallHandle(
+        "glDeleteRenderbuffers",
+        constants$211.glDeleteRenderbuffers$FUNC
     );
-    static final FunctionDescriptor PFNGLUNIFORMMATRIX4X2DVPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glGenRenderbuffers$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_CHAR$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLUNIFORMMATRIX4X2DVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$211.PFNGLUNIFORMMATRIX4X2DVPROC$FUNC
+    static final MethodHandle glGenRenderbuffers$MH = RuntimeHelper.downcallHandle(
+        "glGenRenderbuffers",
+        constants$211.glGenRenderbuffers$FUNC
     );
-    static final FunctionDescriptor PFNGLUNIFORMMATRIX4X3DVPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glRenderbufferStorage$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_CHAR$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLUNIFORMMATRIX4X3DVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$211.PFNGLUNIFORMMATRIX4X3DVPROC$FUNC
+    static final MethodHandle glRenderbufferStorage$MH = RuntimeHelper.downcallHandle(
+        "glRenderbufferStorage",
+        constants$211.glRenderbufferStorage$FUNC
     );
 }
 

@@ -11,13 +11,13 @@ public interface PFNGLCONVOLUTIONPARAMETERFEXTPROC {
 
     void apply(int target, int pname, float params);
     static MemorySegment allocate(PFNGLCONVOLUTIONPARAMETERFEXTPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLCONVOLUTIONPARAMETERFEXTPROC.class, fi, constants$520.PFNGLCONVOLUTIONPARAMETERFEXTPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLCONVOLUTIONPARAMETERFEXTPROC.class, fi, constants$734.PFNGLCONVOLUTIONPARAMETERFEXTPROC$FUNC, session);
     }
     static PFNGLCONVOLUTIONPARAMETERFEXTPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _target, int _pname, float _params) -> {
             try {
-                constants$520.PFNGLCONVOLUTIONPARAMETERFEXTPROC$MH.invokeExact((Addressable)symbol, _target, _pname, _params);
+                constants$734.PFNGLCONVOLUTIONPARAMETERFEXTPROC$MH.invokeExact((Addressable)symbol, _target, _pname, _params);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

@@ -9,26 +9,42 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$483 {
 
-    static final FunctionDescriptor PFNGLVERTEXARRAYRANGEAPPLEPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLGETNPOLYGONSTIPPLEARBPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLVERTEXARRAYRANGEAPPLEPROC$MH = RuntimeHelper.downcallHandle(
-        constants$483.PFNGLVERTEXARRAYRANGEAPPLEPROC$FUNC
+    static final MethodHandle PFNGLGETNPOLYGONSTIPPLEARBPROC$MH = RuntimeHelper.downcallHandle(
+        constants$483.PFNGLGETNPOLYGONSTIPPLEARBPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLFLUSHVERTEXARRAYRANGEAPPLEPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLGETNCOLORTABLEARBPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLFLUSHVERTEXARRAYRANGEAPPLEPROC$MH = RuntimeHelper.downcallHandle(
-        constants$483.PFNGLFLUSHVERTEXARRAYRANGEAPPLEPROC$FUNC
+    static final MethodHandle PFNGLGETNCOLORTABLEARBPROC$MH = RuntimeHelper.downcallHandle(
+        constants$483.PFNGLGETNCOLORTABLEARBPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLVERTEXARRAYPARAMETERIAPPLEPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLGETNCONVOLUTIONFILTERARBPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLVERTEXARRAYPARAMETERIAPPLEPROC$MH = RuntimeHelper.downcallHandle(
-        constants$483.PFNGLVERTEXARRAYPARAMETERIAPPLEPROC$FUNC
+    static final MethodHandle PFNGLGETNCONVOLUTIONFILTERARBPROC$MH = RuntimeHelper.downcallHandle(
+        constants$483.PFNGLGETNCONVOLUTIONFILTERARBPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLGETNSEPARABLEFILTERARBPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
 }
 

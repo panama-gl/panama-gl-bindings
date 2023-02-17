@@ -11,13 +11,13 @@ public interface PFNGLGETFRAGMENTMATERIALFVSGIXPROC {
 
     void apply(int face, int pname, java.lang.foreign.MemoryAddress params);
     static MemorySegment allocate(PFNGLGETFRAGMENTMATERIALFVSGIXPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLGETFRAGMENTMATERIALFVSGIXPROC.class, fi, constants$898.PFNGLGETFRAGMENTMATERIALFVSGIXPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLGETFRAGMENTMATERIALFVSGIXPROC.class, fi, constants$1297.PFNGLGETFRAGMENTMATERIALFVSGIXPROC$FUNC, session);
     }
     static PFNGLGETFRAGMENTMATERIALFVSGIXPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _face, int _pname, java.lang.foreign.MemoryAddress _params) -> {
             try {
-                constants$898.PFNGLGETFRAGMENTMATERIALFVSGIXPROC$MH.invokeExact((Addressable)symbol, _face, _pname, (java.lang.foreign.Addressable)_params);
+                constants$1298.PFNGLGETFRAGMENTMATERIALFVSGIXPROC$MH.invokeExact((Addressable)symbol, _face, _pname, (java.lang.foreign.Addressable)_params);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

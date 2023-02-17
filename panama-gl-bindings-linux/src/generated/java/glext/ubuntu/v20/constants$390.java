@@ -9,28 +9,29 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$390 {
 
-    static final FunctionDescriptor PFNGLVERTEXATTRIB3FVARBPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLCREATEPROGRAMPIPELINESPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLVERTEXATTRIB3FVARBPROC$MH = RuntimeHelper.downcallHandle(
-        constants$390.PFNGLVERTEXATTRIB3FVARBPROC$FUNC
+    static final MethodHandle PFNGLCREATEPROGRAMPIPELINESPROC$MH = RuntimeHelper.downcallHandle(
+        constants$390.PFNGLCREATEPROGRAMPIPELINESPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLVERTEXATTRIB3SARBPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLCREATEQUERIESPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_SHORT$LAYOUT,
-        Constants$root.C_SHORT$LAYOUT,
-        Constants$root.C_SHORT$LAYOUT
-    );
-    static final MethodHandle PFNGLVERTEXATTRIB3SARBPROC$MH = RuntimeHelper.downcallHandle(
-        constants$390.PFNGLVERTEXATTRIB3SARBPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLVERTEXATTRIB3SVARBPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLVERTEXATTRIB3SVARBPROC$MH = RuntimeHelper.downcallHandle(
-        constants$390.PFNGLVERTEXATTRIB3SVARBPROC$FUNC
+    static final MethodHandle PFNGLCREATEQUERIESPROC$MH = RuntimeHelper.downcallHandle(
+        constants$390.PFNGLCREATEQUERIESPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLGETQUERYBUFFEROBJECTI64VPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT
+    );
+    static final MethodHandle PFNGLGETQUERYBUFFEROBJECTI64VPROC$MH = RuntimeHelper.downcallHandle(
+        constants$390.PFNGLGETQUERYBUFFEROBJECTI64VPROC$FUNC
     );
 }
 

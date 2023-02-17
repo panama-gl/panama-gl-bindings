@@ -11,13 +11,13 @@ public interface PFNGLREPLACEMENTCODEPOINTERSUNPROC {
 
     void apply(int type, int stride, java.lang.foreign.MemoryAddress pointer);
     static MemorySegment allocate(PFNGLREPLACEMENTCODEPOINTERSUNPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLREPLACEMENTCODEPOINTERSUNPROC.class, fi, constants$915.PFNGLREPLACEMENTCODEPOINTERSUNPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLREPLACEMENTCODEPOINTERSUNPROC.class, fi, constants$1324.PFNGLREPLACEMENTCODEPOINTERSUNPROC$FUNC, session);
     }
     static PFNGLREPLACEMENTCODEPOINTERSUNPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _type, int _stride, java.lang.foreign.MemoryAddress _pointer) -> {
             try {
-                constants$915.PFNGLREPLACEMENTCODEPOINTERSUNPROC$MH.invokeExact((Addressable)symbol, _type, _stride, (java.lang.foreign.Addressable)_pointer);
+                constants$1325.PFNGLREPLACEMENTCODEPOINTERSUNPROC$MH.invokeExact((Addressable)symbol, _type, _stride, (java.lang.foreign.Addressable)_pointer);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

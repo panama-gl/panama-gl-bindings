@@ -9,27 +9,27 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$562 {
 
-    static final FunctionDescriptor PFNGLGETPOINTERINDEXEDVEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
+    static final FunctionDescriptor glWindowPos3svARB$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLGETPOINTERINDEXEDVEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$562.PFNGLGETPOINTERINDEXEDVEXTPROC$FUNC
+    static final MethodHandle glWindowPos3svARB$MH = RuntimeHelper.downcallHandle(
+        "glWindowPos3svARB",
+        constants$562.glWindowPos3svARB$FUNC
     );
-    static final FunctionDescriptor PFNGLENABLEINDEXEDEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
+    static final FunctionDescriptor PFNGLBLENDBARRIERKHRPROC$FUNC = FunctionDescriptor.ofVoid();
+    static final MethodHandle PFNGLBLENDBARRIERKHRPROC$MH = RuntimeHelper.downcallHandle(
+        constants$562.PFNGLBLENDBARRIERKHRPROC$FUNC
+    );
+    static final FunctionDescriptor glBlendBarrierKHR$FUNC = FunctionDescriptor.ofVoid();
+    static final MethodHandle glBlendBarrierKHR$MH = RuntimeHelper.downcallHandle(
+        "glBlendBarrierKHR",
+        constants$562.glBlendBarrierKHR$FUNC
+    );
+    static final FunctionDescriptor PFNGLMAXSHADERCOMPILERTHREADSKHRPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLENABLEINDEXEDEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$562.PFNGLENABLEINDEXEDEXTPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLDISABLEINDEXEDEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT
-    );
-    static final MethodHandle PFNGLDISABLEINDEXEDEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$562.PFNGLDISABLEINDEXEDEXTPROC$FUNC
+    static final MethodHandle PFNGLMAXSHADERCOMPILERTHREADSKHRPROC$MH = RuntimeHelper.downcallHandle(
+        constants$562.PFNGLMAXSHADERCOMPILERTHREADSKHRPROC$FUNC
     );
 }
 

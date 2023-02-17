@@ -9,27 +9,46 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$656 {
 
-    static final FunctionDescriptor PFNGLSECONDARYCOLOR3FEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_FLOAT$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT
-    );
-    static final MethodHandle PFNGLSECONDARYCOLOR3FEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$656.PFNGLSECONDARYCOLOR3FEXTPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLSECONDARYCOLOR3FVEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLDELETENAMESAMDPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLSECONDARYCOLOR3FVEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$656.PFNGLSECONDARYCOLOR3FVEXTPROC$FUNC
+    static final MethodHandle PFNGLDELETENAMESAMDPROC$MH = RuntimeHelper.downcallHandle(
+        constants$656.PFNGLDELETENAMESAMDPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLSECONDARYCOLOR3IEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
+    static final FunctionDescriptor PFNGLISNAMEAMDPROC$FUNC = FunctionDescriptor.of(Constants$root.C_CHAR$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLSECONDARYCOLOR3IEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$656.PFNGLSECONDARYCOLOR3IEXTPROC$FUNC
+    static final MethodHandle PFNGLISNAMEAMDPROC$MH = RuntimeHelper.downcallHandle(
+        constants$656.PFNGLISNAMEAMDPROC$FUNC
+    );
+    static final FunctionDescriptor glGenNamesAMD$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glGenNamesAMD$MH = RuntimeHelper.downcallHandle(
+        "glGenNamesAMD",
+        constants$656.glGenNamesAMD$FUNC
+    );
+    static final FunctionDescriptor glDeleteNamesAMD$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glDeleteNamesAMD$MH = RuntimeHelper.downcallHandle(
+        "glDeleteNamesAMD",
+        constants$656.glDeleteNamesAMD$FUNC
+    );
+    static final FunctionDescriptor glIsNameAMD$FUNC = FunctionDescriptor.of(Constants$root.C_CHAR$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle glIsNameAMD$MH = RuntimeHelper.downcallHandle(
+        "glIsNameAMD",
+        constants$656.glIsNameAMD$FUNC
     );
 }
 

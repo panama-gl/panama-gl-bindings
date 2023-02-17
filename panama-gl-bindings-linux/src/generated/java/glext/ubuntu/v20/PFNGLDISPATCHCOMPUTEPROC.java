@@ -11,13 +11,13 @@ public interface PFNGLDISPATCHCOMPUTEPROC {
 
     void apply(int num_groups_x, int num_groups_y, int num_groups_z);
     static MemorySegment allocate(PFNGLDISPATCHCOMPUTEPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLDISPATCHCOMPUTEPROC.class, fi, constants$253.PFNGLDISPATCHCOMPUTEPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLDISPATCHCOMPUTEPROC.class, fi, constants$334.PFNGLDISPATCHCOMPUTEPROC$FUNC, session);
     }
     static PFNGLDISPATCHCOMPUTEPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _num_groups_x, int _num_groups_y, int _num_groups_z) -> {
             try {
-                constants$253.PFNGLDISPATCHCOMPUTEPROC$MH.invokeExact((Addressable)symbol, _num_groups_x, _num_groups_y, _num_groups_z);
+                constants$334.PFNGLDISPATCHCOMPUTEPROC$MH.invokeExact((Addressable)symbol, _num_groups_x, _num_groups_y, _num_groups_z);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

@@ -11,13 +11,13 @@ public interface PFNGLNAMEDFRAMEBUFFERTEXTURELAYERPROC {
 
     void apply(int framebuffer, int attachment, int texture, int level, int layer);
     static MemorySegment allocate(PFNGLNAMEDFRAMEBUFFERTEXTURELAYERPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLNAMEDFRAMEBUFFERTEXTURELAYERPROC.class, fi, constants$279.PFNGLNAMEDFRAMEBUFFERTEXTURELAYERPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLNAMEDFRAMEBUFFERTEXTURELAYERPROC.class, fi, constants$368.PFNGLNAMEDFRAMEBUFFERTEXTURELAYERPROC$FUNC, session);
     }
     static PFNGLNAMEDFRAMEBUFFERTEXTURELAYERPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _framebuffer, int _attachment, int _texture, int _level, int _layer) -> {
             try {
-                constants$279.PFNGLNAMEDFRAMEBUFFERTEXTURELAYERPROC$MH.invokeExact((Addressable)symbol, _framebuffer, _attachment, _texture, _level, _layer);
+                constants$368.PFNGLNAMEDFRAMEBUFFERTEXTURELAYERPROC$MH.invokeExact((Addressable)symbol, _framebuffer, _attachment, _texture, _level, _layer);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

@@ -9,24 +9,32 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$820 {
 
-    static final FunctionDescriptor PFNGLMAKEBUFFERNONRESIDENTNVPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT
-    );
-    static final MethodHandle PFNGLMAKEBUFFERNONRESIDENTNVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$820.PFNGLMAKEBUFFERNONRESIDENTNVPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLISBUFFERRESIDENTNVPROC$FUNC = FunctionDescriptor.of(Constants$root.C_CHAR$LAYOUT,
-        Constants$root.C_INT$LAYOUT
-    );
-    static final MethodHandle PFNGLISBUFFERRESIDENTNVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$820.PFNGLISBUFFERRESIDENTNVPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLMAKENAMEDBUFFERRESIDENTNVPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLFRAMEBUFFERDRAWBUFFEREXTPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLMAKENAMEDBUFFERRESIDENTNVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$820.PFNGLMAKENAMEDBUFFERRESIDENTNVPROC$FUNC
+    static final MethodHandle PFNGLFRAMEBUFFERDRAWBUFFEREXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$820.PFNGLFRAMEBUFFERDRAWBUFFEREXTPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLFRAMEBUFFERDRAWBUFFERSEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle PFNGLFRAMEBUFFERDRAWBUFFERSEXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$820.PFNGLFRAMEBUFFERDRAWBUFFERSEXTPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLFRAMEBUFFERREADBUFFEREXTPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle PFNGLFRAMEBUFFERREADBUFFEREXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$820.PFNGLFRAMEBUFFERREADBUFFEREXTPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLGETFRAMEBUFFERPARAMETERIVEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
 }
 

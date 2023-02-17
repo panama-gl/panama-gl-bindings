@@ -11,13 +11,13 @@ public interface PFNGLCOMPRESSEDTEXTURESUBIMAGE1DEXTPROC {
 
     void apply(int texture, int target, int level, int xoffset, int width, int format, int imageSize, java.lang.foreign.MemoryAddress bits);
     static MemorySegment allocate(PFNGLCOMPRESSEDTEXTURESUBIMAGE1DEXTPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLCOMPRESSEDTEXTURESUBIMAGE1DEXTPROC.class, fi, constants$565.PFNGLCOMPRESSEDTEXTURESUBIMAGE1DEXTPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLCOMPRESSEDTEXTURESUBIMAGE1DEXTPROC.class, fi, constants$787.PFNGLCOMPRESSEDTEXTURESUBIMAGE1DEXTPROC$FUNC, session);
     }
     static PFNGLCOMPRESSEDTEXTURESUBIMAGE1DEXTPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _texture, int _target, int _level, int _xoffset, int _width, int _format, int _imageSize, java.lang.foreign.MemoryAddress _bits) -> {
             try {
-                constants$565.PFNGLCOMPRESSEDTEXTURESUBIMAGE1DEXTPROC$MH.invokeExact((Addressable)symbol, _texture, _target, _level, _xoffset, _width, _format, _imageSize, (java.lang.foreign.Addressable)_bits);
+                constants$787.PFNGLCOMPRESSEDTEXTURESUBIMAGE1DEXTPROC$MH.invokeExact((Addressable)symbol, _texture, _target, _level, _xoffset, _width, _format, _imageSize, (java.lang.foreign.Addressable)_bits);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

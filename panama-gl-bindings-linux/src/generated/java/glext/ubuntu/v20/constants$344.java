@@ -9,25 +9,34 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$344 {
 
-    static final FunctionDescriptor PFNGLCURRENTPALETTEMATRIXARBPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLVERTEXBINDINGDIVISORPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLCURRENTPALETTEMATRIXARBPROC$MH = RuntimeHelper.downcallHandle(
-        constants$344.PFNGLCURRENTPALETTEMATRIXARBPROC$FUNC
+    static final MethodHandle PFNGLVERTEXBINDINGDIVISORPROC$MH = RuntimeHelper.downcallHandle(
+        constants$344.PFNGLVERTEXBINDINGDIVISORPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLMATRIXINDEXUBVARBPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLDEBUGMESSAGECONTROLPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_CHAR$LAYOUT
+    );
+    static final MethodHandle PFNGLDEBUGMESSAGECONTROLPROC$MH = RuntimeHelper.downcallHandle(
+        constants$344.PFNGLDEBUGMESSAGECONTROLPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLDEBUGMESSAGEINSERTPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLMATRIXINDEXUBVARBPROC$MH = RuntimeHelper.downcallHandle(
-        constants$344.PFNGLMATRIXINDEXUBVARBPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLMATRIXINDEXUSVARBPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle PFNGLMATRIXINDEXUSVARBPROC$MH = RuntimeHelper.downcallHandle(
-        constants$344.PFNGLMATRIXINDEXUSVARBPROC$FUNC
+    static final MethodHandle PFNGLDEBUGMESSAGEINSERTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$344.PFNGLDEBUGMESSAGEINSERTPROC$FUNC
     );
 }
 

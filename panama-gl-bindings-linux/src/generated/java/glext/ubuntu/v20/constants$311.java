@@ -9,36 +9,29 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$311 {
 
-    static final FunctionDescriptor PFNGLSPECIALIZESHADERPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLDEPTHRANGEARRAYVPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLSPECIALIZESHADERPROC$MH = RuntimeHelper.downcallHandle(
-        constants$311.PFNGLSPECIALIZESHADERPROC$FUNC
+    static final MethodHandle PFNGLDEPTHRANGEARRAYVPROC$MH = RuntimeHelper.downcallHandle(
+        constants$311.PFNGLDEPTHRANGEARRAYVPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLMULTIDRAWARRAYSINDIRECTCOUNTPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLDEPTHRANGEINDEXEDPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_LONG_LONG$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT
+        Constants$root.C_DOUBLE$LAYOUT,
+        Constants$root.C_DOUBLE$LAYOUT
     );
-    static final MethodHandle PFNGLMULTIDRAWARRAYSINDIRECTCOUNTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$311.PFNGLMULTIDRAWARRAYSINDIRECTCOUNTPROC$FUNC
+    static final MethodHandle PFNGLDEPTHRANGEINDEXEDPROC$MH = RuntimeHelper.downcallHandle(
+        constants$311.PFNGLDEPTHRANGEINDEXEDPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLMULTIDRAWELEMENTSINDIRECTCOUNTPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLGETFLOATI_VPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_LONG_LONG$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT
+        Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLMULTIDRAWELEMENTSINDIRECTCOUNTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$311.PFNGLMULTIDRAWELEMENTSINDIRECTCOUNTPROC$FUNC
+    static final MethodHandle PFNGLGETFLOATI_VPROC$MH = RuntimeHelper.downcallHandle(
+        constants$311.PFNGLGETFLOATI_VPROC$FUNC
     );
 }
 

@@ -9,32 +9,30 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$542 {
 
-    static final FunctionDescriptor PFNGLTEXTUREPARAMETERFVEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
+    static final FunctionDescriptor PFNGLVERTEXATTRIB4SVARBPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLTEXTUREPARAMETERFVEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$542.PFNGLTEXTUREPARAMETERFVEXTPROC$FUNC
+    static final MethodHandle PFNGLVERTEXATTRIB4SVARBPROC$MH = RuntimeHelper.downcallHandle(
+        constants$542.PFNGLVERTEXATTRIB4SVARBPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLTEXTUREPARAMETERIEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT
-    );
-    static final MethodHandle PFNGLTEXTUREPARAMETERIEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$542.PFNGLTEXTUREPARAMETERIEXTPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLTEXTUREPARAMETERIVEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
+    static final FunctionDescriptor PFNGLVERTEXATTRIB4UBVARBPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLTEXTUREPARAMETERIVEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$542.PFNGLTEXTUREPARAMETERIVEXTPROC$FUNC
+    static final MethodHandle PFNGLVERTEXATTRIB4UBVARBPROC$MH = RuntimeHelper.downcallHandle(
+        constants$542.PFNGLVERTEXATTRIB4UBVARBPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLVERTEXATTRIB4UIVARBPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle PFNGLVERTEXATTRIB4UIVARBPROC$MH = RuntimeHelper.downcallHandle(
+        constants$542.PFNGLVERTEXATTRIB4UIVARBPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLVERTEXATTRIB4USVARBPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
 }
 

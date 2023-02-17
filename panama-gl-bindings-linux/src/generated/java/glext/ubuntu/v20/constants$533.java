@@ -9,33 +9,32 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$533 {
 
-    static final FunctionDescriptor PFNGLCOPYTEXSUBIMAGE3DEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT
-    );
-    static final MethodHandle PFNGLCOPYTEXSUBIMAGE3DEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$533.PFNGLCOPYTEXSUBIMAGE3DEXTPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLCULLPARAMETERDVEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLVERTEXATTRIB1SVARBPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLCULLPARAMETERDVEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$533.PFNGLCULLPARAMETERDVEXTPROC$FUNC
+    static final MethodHandle PFNGLVERTEXATTRIB1SVARBPROC$MH = RuntimeHelper.downcallHandle(
+        constants$533.PFNGLVERTEXATTRIB1SVARBPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLCULLPARAMETERFVEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLVERTEXATTRIB2DARBPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_DOUBLE$LAYOUT,
+        Constants$root.C_DOUBLE$LAYOUT
+    );
+    static final MethodHandle PFNGLVERTEXATTRIB2DARBPROC$MH = RuntimeHelper.downcallHandle(
+        constants$533.PFNGLVERTEXATTRIB2DARBPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLVERTEXATTRIB2DVARBPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLCULLPARAMETERFVEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$533.PFNGLCULLPARAMETERFVEXTPROC$FUNC
+    static final MethodHandle PFNGLVERTEXATTRIB2DVARBPROC$MH = RuntimeHelper.downcallHandle(
+        constants$533.PFNGLVERTEXATTRIB2DVARBPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLVERTEXATTRIB2FARBPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT
     );
 }
 

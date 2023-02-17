@@ -9,25 +9,27 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$223 {
 
-    static final FunctionDescriptor PFNGLBINDPROGRAMPIPELINEPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLPROVOKINGVERTEXPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLBINDPROGRAMPIPELINEPROC$MH = RuntimeHelper.downcallHandle(
-        constants$223.PFNGLBINDPROGRAMPIPELINEPROC$FUNC
+    static final MethodHandle PFNGLPROVOKINGVERTEXPROC$MH = RuntimeHelper.downcallHandle(
+        constants$223.PFNGLPROVOKINGVERTEXPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLDELETEPROGRAMPIPELINESPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLFENCESYNCPROC$FUNC = FunctionDescriptor.of(Constants$root.C_POINTER$LAYOUT,
         Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle PFNGLFENCESYNCPROC$MH = RuntimeHelper.downcallHandle(
+        constants$223.PFNGLFENCESYNCPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLISSYNCPROC$FUNC = FunctionDescriptor.of(Constants$root.C_CHAR$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLDELETEPROGRAMPIPELINESPROC$MH = RuntimeHelper.downcallHandle(
-        constants$223.PFNGLDELETEPROGRAMPIPELINESPROC$FUNC
+    static final MethodHandle PFNGLISSYNCPROC$MH = RuntimeHelper.downcallHandle(
+        constants$223.PFNGLISSYNCPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLGENPROGRAMPIPELINESPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
+    static final FunctionDescriptor PFNGLDELETESYNCPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle PFNGLGENPROGRAMPIPELINESPROC$MH = RuntimeHelper.downcallHandle(
-        constants$223.PFNGLGENPROGRAMPIPELINESPROC$FUNC
     );
 }
 

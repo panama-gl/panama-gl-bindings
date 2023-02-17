@@ -9,29 +9,43 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$837 {
 
-    static final FunctionDescriptor PFNGLVDPAUGETSURFACEIVNVPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_LONG_LONG$LAYOUT,
+    static final FunctionDescriptor PFNGLPROGRAMUNIFORMMATRIX4X2DVEXTPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_CHAR$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLVDPAUGETSURFACEIVNVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$837.PFNGLVDPAUGETSURFACEIVNVPROC$FUNC
+    static final MethodHandle PFNGLPROGRAMUNIFORMMATRIX4X2DVEXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$837.PFNGLPROGRAMUNIFORMMATRIX4X2DVEXTPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLVDPAUSURFACEACCESSNVPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLPROGRAMUNIFORMMATRIX4X3DVEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_CHAR$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle PFNGLPROGRAMUNIFORMMATRIX4X3DVEXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$837.PFNGLPROGRAMUNIFORMMATRIX4X3DVEXTPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLTEXTUREBUFFERRANGEEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_LONG_LONG$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT
+    );
+    static final MethodHandle PFNGLTEXTUREBUFFERRANGEEXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$837.PFNGLTEXTUREBUFFERRANGEEXTPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLTEXTURESTORAGE1DEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT
-    );
-    static final MethodHandle PFNGLVDPAUSURFACEACCESSNVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$837.PFNGLVDPAUSURFACEACCESSNVPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLVDPAUMAPSURFACESNVPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle PFNGLVDPAUMAPSURFACESNVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$837.PFNGLVDPAUMAPSURFACESNVPROC$FUNC
     );
 }
 

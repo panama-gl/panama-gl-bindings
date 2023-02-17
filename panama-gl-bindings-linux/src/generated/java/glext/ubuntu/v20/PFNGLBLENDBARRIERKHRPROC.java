@@ -11,13 +11,13 @@ public interface PFNGLBLENDBARRIERKHRPROC {
 
     void apply();
     static MemorySegment allocate(PFNGLBLENDBARRIERKHRPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLBLENDBARRIERKHRPROC.class, fi, constants$405.PFNGLBLENDBARRIERKHRPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLBLENDBARRIERKHRPROC.class, fi, constants$562.PFNGLBLENDBARRIERKHRPROC$FUNC, session);
     }
     static PFNGLBLENDBARRIERKHRPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return () -> {
             try {
-                constants$405.PFNGLBLENDBARRIERKHRPROC$MH.invokeExact((Addressable)symbol);
+                constants$562.PFNGLBLENDBARRIERKHRPROC$MH.invokeExact((Addressable)symbol);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

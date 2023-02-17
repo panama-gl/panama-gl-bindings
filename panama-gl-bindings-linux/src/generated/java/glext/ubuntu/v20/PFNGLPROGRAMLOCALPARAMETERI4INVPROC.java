@@ -11,13 +11,13 @@ public interface PFNGLPROGRAMLOCALPARAMETERI4INVPROC {
 
     void apply(int target, int index, int x, int y, int z, int w);
     static MemorySegment allocate(PFNGLPROGRAMLOCALPARAMETERI4INVPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLPROGRAMLOCALPARAMETERI4INVPROC.class, fi, constants$758.PFNGLPROGRAMLOCALPARAMETERI4INVPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLPROGRAMLOCALPARAMETERI4INVPROC.class, fi, constants$1090.PFNGLPROGRAMLOCALPARAMETERI4INVPROC$FUNC, session);
     }
     static PFNGLPROGRAMLOCALPARAMETERI4INVPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _target, int _index, int _x, int _y, int _z, int _w) -> {
             try {
-                constants$758.PFNGLPROGRAMLOCALPARAMETERI4INVPROC$MH.invokeExact((Addressable)symbol, _target, _index, _x, _y, _z, _w);
+                constants$1090.PFNGLPROGRAMLOCALPARAMETERI4INVPROC$MH.invokeExact((Addressable)symbol, _target, _index, _x, _y, _z, _w);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

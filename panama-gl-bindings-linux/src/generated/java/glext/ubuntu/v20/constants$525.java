@@ -9,27 +9,45 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$525 {
 
-    static final FunctionDescriptor PFNGLTANGENT3DEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_DOUBLE$LAYOUT,
-        Constants$root.C_DOUBLE$LAYOUT,
-        Constants$root.C_DOUBLE$LAYOUT
-    );
-    static final MethodHandle PFNGLTANGENT3DEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$525.PFNGLTANGENT3DEXTPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLTANGENT3DVEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glWeightusvARB$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLTANGENT3DVEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$525.PFNGLTANGENT3DVEXTPROC$FUNC
+    static final MethodHandle glWeightusvARB$MH = RuntimeHelper.downcallHandle(
+        "glWeightusvARB",
+        constants$525.glWeightusvARB$FUNC
     );
-    static final FunctionDescriptor PFNGLTANGENT3FEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_FLOAT$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT
+    static final FunctionDescriptor glWeightuivARB$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLTANGENT3FEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$525.PFNGLTANGENT3FEXTPROC$FUNC
+    static final MethodHandle glWeightuivARB$MH = RuntimeHelper.downcallHandle(
+        "glWeightuivARB",
+        constants$525.glWeightuivARB$FUNC
+    );
+    static final FunctionDescriptor glWeightPointerARB$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glWeightPointerARB$MH = RuntimeHelper.downcallHandle(
+        "glWeightPointerARB",
+        constants$525.glWeightPointerARB$FUNC
+    );
+    static final FunctionDescriptor glVertexBlendARB$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle glVertexBlendARB$MH = RuntimeHelper.downcallHandle(
+        "glVertexBlendARB",
+        constants$525.glVertexBlendARB$FUNC
+    );
+    static final FunctionDescriptor PFNGLBINDBUFFERARBPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle PFNGLBINDBUFFERARBPROC$MH = RuntimeHelper.downcallHandle(
+        constants$525.PFNGLBINDBUFFERARBPROC$FUNC
     );
 }
 

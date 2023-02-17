@@ -9,36 +9,31 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$587 {
 
-    static final FunctionDescriptor PFNGLNAMEDPROGRAMLOCALPARAMETERI4IEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
+    static final FunctionDescriptor PFNGLCLEARACCUMXOESPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLNAMEDPROGRAMLOCALPARAMETERI4IEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$587.PFNGLNAMEDPROGRAMLOCALPARAMETERI4IEXTPROC$FUNC
+    static final MethodHandle PFNGLCLEARACCUMXOESPROC$MH = RuntimeHelper.downcallHandle(
+        constants$587.PFNGLCLEARACCUMXOESPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLNAMEDPROGRAMLOCALPARAMETERI4IVEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLCOLOR3XOESPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle PFNGLCOLOR3XOESPROC$MH = RuntimeHelper.downcallHandle(
+        constants$587.PFNGLCOLOR3XOESPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLCOLOR3XVOESPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLNAMEDPROGRAMLOCALPARAMETERI4IVEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$587.PFNGLNAMEDPROGRAMLOCALPARAMETERI4IVEXTPROC$FUNC
+    static final MethodHandle PFNGLCOLOR3XVOESPROC$MH = RuntimeHelper.downcallHandle(
+        constants$587.PFNGLCOLOR3XVOESPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLNAMEDPROGRAMLOCALPARAMETERSI4IVEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
+    static final FunctionDescriptor PFNGLCOLOR4XVOESPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle PFNGLNAMEDPROGRAMLOCALPARAMETERSI4IVEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$587.PFNGLNAMEDPROGRAMLOCALPARAMETERSI4IVEXTPROC$FUNC
     );
 }
 

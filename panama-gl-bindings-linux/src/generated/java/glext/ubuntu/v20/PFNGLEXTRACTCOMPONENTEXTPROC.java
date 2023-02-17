@@ -11,13 +11,13 @@ public interface PFNGLEXTRACTCOMPONENTEXTPROC {
 
     void apply(int res, int src, int num);
     static MemorySegment allocate(PFNGLEXTRACTCOMPONENTEXTPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLEXTRACTCOMPONENTEXTPROC.class, fi, constants$685.PFNGLEXTRACTCOMPONENTEXTPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLEXTRACTCOMPONENTEXTPROC.class, fi, constants$980.PFNGLEXTRACTCOMPONENTEXTPROC$FUNC, session);
     }
     static PFNGLEXTRACTCOMPONENTEXTPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _res, int _src, int _num) -> {
             try {
-                constants$685.PFNGLEXTRACTCOMPONENTEXTPROC$MH.invokeExact((Addressable)symbol, _res, _src, _num);
+                constants$980.PFNGLEXTRACTCOMPONENTEXTPROC$MH.invokeExact((Addressable)symbol, _res, _src, _num);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

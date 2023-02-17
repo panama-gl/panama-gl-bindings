@@ -9,36 +9,40 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$520 {
 
-    static final FunctionDescriptor PFNGLCONVOLUTIONFILTER1DEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
+    static final FunctionDescriptor glLoadTransposeMatrixfARB$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glLoadTransposeMatrixfARB$MH = RuntimeHelper.downcallHandle(
+        "glLoadTransposeMatrixfARB",
+        constants$520.glLoadTransposeMatrixfARB$FUNC
+    );
+    static final FunctionDescriptor glLoadTransposeMatrixdARB$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glLoadTransposeMatrixdARB$MH = RuntimeHelper.downcallHandle(
+        "glLoadTransposeMatrixdARB",
+        constants$520.glLoadTransposeMatrixdARB$FUNC
+    );
+    static final FunctionDescriptor glMultTransposeMatrixfARB$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glMultTransposeMatrixfARB$MH = RuntimeHelper.downcallHandle(
+        "glMultTransposeMatrixfARB",
+        constants$520.glMultTransposeMatrixfARB$FUNC
+    );
+    static final FunctionDescriptor glMultTransposeMatrixdARB$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glMultTransposeMatrixdARB$MH = RuntimeHelper.downcallHandle(
+        "glMultTransposeMatrixdARB",
+        constants$520.glMultTransposeMatrixdARB$FUNC
+    );
+    static final FunctionDescriptor PFNGLWEIGHTBVARBPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLCONVOLUTIONFILTER1DEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$520.PFNGLCONVOLUTIONFILTER1DEXTPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLCONVOLUTIONFILTER2DEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle PFNGLCONVOLUTIONFILTER2DEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$520.PFNGLCONVOLUTIONFILTER2DEXTPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLCONVOLUTIONPARAMETERFEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT
-    );
-    static final MethodHandle PFNGLCONVOLUTIONPARAMETERFEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$520.PFNGLCONVOLUTIONPARAMETERFEXTPROC$FUNC
+    static final MethodHandle PFNGLWEIGHTBVARBPROC$MH = RuntimeHelper.downcallHandle(
+        constants$520.PFNGLWEIGHTBVARBPROC$FUNC
     );
 }
 

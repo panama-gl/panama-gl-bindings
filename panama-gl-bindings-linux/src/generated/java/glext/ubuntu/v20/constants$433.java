@@ -9,28 +9,36 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$433 {
 
-    static final FunctionDescriptor PFNGLINDEXXVOESPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLDEBUGMESSAGEINSERTARBPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLINDEXXVOESPROC$MH = RuntimeHelper.downcallHandle(
-        constants$433.PFNGLINDEXXVOESPROC$FUNC
+    static final MethodHandle PFNGLDEBUGMESSAGEINSERTARBPROC$MH = RuntimeHelper.downcallHandle(
+        constants$433.PFNGLDEBUGMESSAGEINSERTARBPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLLOADTRANSPOSEMATRIXXOESPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLDEBUGMESSAGECALLBACKARBPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_POINTER$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLLOADTRANSPOSEMATRIXXOESPROC$MH = RuntimeHelper.downcallHandle(
-        constants$433.PFNGLLOADTRANSPOSEMATRIXXOESPROC$FUNC
+    static final MethodHandle PFNGLDEBUGMESSAGECALLBACKARBPROC$MH = RuntimeHelper.downcallHandle(
+        constants$433.PFNGLDEBUGMESSAGECALLBACKARBPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLMAP1XOESPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLGETDEBUGMESSAGELOGARBPROC$FUNC = FunctionDescriptor.of(Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLMAP1XOESPROC$MH = RuntimeHelper.downcallHandle(
-        constants$433.PFNGLMAP1XOESPROC$FUNC
+    static final MethodHandle PFNGLGETDEBUGMESSAGELOGARBPROC$MH = RuntimeHelper.downcallHandle(
+        constants$433.PFNGLGETDEBUGMESSAGELOGARBPROC$FUNC
     );
 }
 

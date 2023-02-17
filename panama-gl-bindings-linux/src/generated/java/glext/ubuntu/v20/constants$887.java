@@ -9,26 +9,47 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$887 {
 
-    static final FunctionDescriptor PFNGLGETPIXELTEXGENPARAMETERIVSGISPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLBUFFERSTORAGEEXTERNALEXTPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
+        Constants$root.C_LONG_LONG$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLGETPIXELTEXGENPARAMETERIVSGISPROC$MH = RuntimeHelper.downcallHandle(
-        constants$887.PFNGLGETPIXELTEXGENPARAMETERIVSGISPROC$FUNC
+    static final MethodHandle PFNGLBUFFERSTORAGEEXTERNALEXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$887.PFNGLBUFFERSTORAGEEXTERNALEXTPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLGETPIXELTEXGENPARAMETERFVSGISPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLNAMEDBUFFERSTORAGEEXTERNALEXTPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
+        Constants$root.C_LONG_LONG$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLGETPIXELTEXGENPARAMETERFVSGISPROC$MH = RuntimeHelper.downcallHandle(
-        constants$887.PFNGLGETPIXELTEXGENPARAMETERFVSGISPROC$FUNC
+    static final MethodHandle PFNGLNAMEDBUFFERSTORAGEEXTERNALEXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$887.PFNGLNAMEDBUFFERSTORAGEEXTERNALEXTPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLPOINTPARAMETERFSGISPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glBufferStorageExternalEXT$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT
+        Constants$root.C_LONG_LONG$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLPOINTPARAMETERFSGISPROC$MH = RuntimeHelper.downcallHandle(
-        constants$887.PFNGLPOINTPARAMETERFSGISPROC$FUNC
+    static final MethodHandle glBufferStorageExternalEXT$MH = RuntimeHelper.downcallHandle(
+        "glBufferStorageExternalEXT",
+        constants$887.glBufferStorageExternalEXT$FUNC
+    );
+    static final FunctionDescriptor glNamedBufferStorageExternalEXT$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle glNamedBufferStorageExternalEXT$MH = RuntimeHelper.downcallHandle(
+        "glNamedBufferStorageExternalEXT",
+        constants$887.glNamedBufferStorageExternalEXT$FUNC
     );
 }
 

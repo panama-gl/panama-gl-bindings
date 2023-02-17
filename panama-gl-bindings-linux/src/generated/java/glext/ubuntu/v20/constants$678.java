@@ -9,32 +9,26 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$678 {
 
-    static final FunctionDescriptor PFNGLTEXCOORDPOINTEREXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
+    static final FunctionDescriptor PFNGLVERTEXARRAYRANGEAPPLEPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLTEXCOORDPOINTEREXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$678.PFNGLTEXCOORDPOINTEREXTPROC$FUNC
+    static final MethodHandle PFNGLVERTEXARRAYRANGEAPPLEPROC$MH = RuntimeHelper.downcallHandle(
+        constants$678.PFNGLVERTEXARRAYRANGEAPPLEPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLVERTEXPOINTEREXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
+    static final FunctionDescriptor PFNGLFLUSHVERTEXARRAYRANGEAPPLEPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLVERTEXPOINTEREXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$678.PFNGLVERTEXPOINTEREXTPROC$FUNC
+    static final MethodHandle PFNGLFLUSHVERTEXARRAYRANGEAPPLEPROC$MH = RuntimeHelper.downcallHandle(
+        constants$678.PFNGLFLUSHVERTEXARRAYRANGEAPPLEPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLVERTEXATTRIBL1DEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLVERTEXARRAYPARAMETERIAPPLEPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_DOUBLE$LAYOUT
+        Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLVERTEXATTRIBL1DEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$678.PFNGLVERTEXATTRIBL1DEXTPROC$FUNC
+    static final MethodHandle PFNGLVERTEXARRAYPARAMETERIAPPLEPROC$MH = RuntimeHelper.downcallHandle(
+        constants$678.PFNGLVERTEXARRAYPARAMETERIAPPLEPROC$FUNC
     );
 }
 

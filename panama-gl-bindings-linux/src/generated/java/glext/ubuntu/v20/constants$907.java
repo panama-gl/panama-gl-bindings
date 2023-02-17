@@ -9,28 +9,31 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$907 {
 
-    static final FunctionDescriptor PFNGLTAGSAMPLEBUFFERSGIXPROC$FUNC = FunctionDescriptor.ofVoid();
-    static final MethodHandle PFNGLTAGSAMPLEBUFFERSGIXPROC$MH = RuntimeHelper.downcallHandle(
-        constants$907.PFNGLTAGSAMPLEBUFFERSGIXPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLCOLORTABLESGIPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLGETHISTOGRAMEXTPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_CHAR$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLCOLORTABLESGIPROC$MH = RuntimeHelper.downcallHandle(
-        constants$907.PFNGLCOLORTABLESGIPROC$FUNC
+    static final MethodHandle PFNGLGETHISTOGRAMEXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$907.PFNGLGETHISTOGRAMEXTPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLCOLORTABLEPARAMETERFVSGIPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLGETHISTOGRAMPARAMETERFVEXTPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLCOLORTABLEPARAMETERFVSGIPROC$MH = RuntimeHelper.downcallHandle(
-        constants$907.PFNGLCOLORTABLEPARAMETERFVSGIPROC$FUNC
+    static final MethodHandle PFNGLGETHISTOGRAMPARAMETERFVEXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$907.PFNGLGETHISTOGRAMPARAMETERFVEXTPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLGETHISTOGRAMPARAMETERIVEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle PFNGLGETHISTOGRAMPARAMETERIVEXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$907.PFNGLGETHISTOGRAMPARAMETERIVEXTPROC$FUNC
     );
 }
 

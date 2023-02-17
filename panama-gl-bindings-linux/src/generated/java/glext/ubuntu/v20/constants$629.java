@@ -9,36 +9,41 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$629 {
 
-    static final FunctionDescriptor PFNGLFRAMEBUFFERTEXTURE1DEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
+    static final FunctionDescriptor glOrthofOES$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT
+    );
+    static final MethodHandle glOrthofOES$MH = RuntimeHelper.downcallHandle(
+        "glOrthofOES",
+        constants$629.glOrthofOES$FUNC
+    );
+    static final FunctionDescriptor PFNGLTBUFFERMASK3DFXPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLFRAMEBUFFERTEXTURE1DEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$629.PFNGLFRAMEBUFFERTEXTURE1DEXTPROC$FUNC
+    static final MethodHandle PFNGLTBUFFERMASK3DFXPROC$MH = RuntimeHelper.downcallHandle(
+        constants$629.PFNGLTBUFFERMASK3DFXPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLFRAMEBUFFERTEXTURE2DEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
+    static final FunctionDescriptor glTbufferMask3DFX$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLFRAMEBUFFERTEXTURE2DEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$629.PFNGLFRAMEBUFFERTEXTURE2DEXTPROC$FUNC
+    static final MethodHandle glTbufferMask3DFX$MH = RuntimeHelper.downcallHandle(
+        "glTbufferMask3DFX",
+        constants$629.glTbufferMask3DFX$FUNC
     );
-    static final FunctionDescriptor PFNGLFRAMEBUFFERTEXTURE3DEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor GLDEBUGPROCAMD$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLFRAMEBUFFERTEXTURE3DEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$629.PFNGLFRAMEBUFFERTEXTURE3DEXTPROC$FUNC
+    static final MethodHandle GLDEBUGPROCAMD$MH = RuntimeHelper.downcallHandle(
+        constants$629.GLDEBUGPROCAMD$FUNC
     );
 }
 

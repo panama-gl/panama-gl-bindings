@@ -9,31 +9,26 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$260 {
 
-    static final FunctionDescriptor PFNGLGETPROGRAMRESOURCELOCATIONINDEXPROC$FUNC = FunctionDescriptor.of(Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
+    static final FunctionDescriptor PFNGLMINSAMPLESHADINGPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_FLOAT$LAYOUT
     );
-    static final MethodHandle PFNGLGETPROGRAMRESOURCELOCATIONINDEXPROC$MH = RuntimeHelper.downcallHandle(
-        constants$260.PFNGLGETPROGRAMRESOURCELOCATIONINDEXPROC$FUNC
+    static final MethodHandle PFNGLMINSAMPLESHADINGPROC$MH = RuntimeHelper.downcallHandle(
+        constants$260.PFNGLMINSAMPLESHADINGPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLSHADERSTORAGEBLOCKBINDINGPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLBLENDEQUATIONIPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle PFNGLBLENDEQUATIONIPROC$MH = RuntimeHelper.downcallHandle(
+        constants$260.PFNGLBLENDEQUATIONIPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLBLENDEQUATIONSEPARATEIPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLSHADERSTORAGEBLOCKBINDINGPROC$MH = RuntimeHelper.downcallHandle(
-        constants$260.PFNGLSHADERSTORAGEBLOCKBINDINGPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLTEXBUFFERRANGEPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_LONG_LONG$LAYOUT,
-        Constants$root.C_LONG_LONG$LAYOUT
-    );
-    static final MethodHandle PFNGLTEXBUFFERRANGEPROC$MH = RuntimeHelper.downcallHandle(
-        constants$260.PFNGLTEXBUFFERRANGEPROC$FUNC
+    static final MethodHandle PFNGLBLENDEQUATIONSEPARATEIPROC$MH = RuntimeHelper.downcallHandle(
+        constants$260.PFNGLBLENDEQUATIONSEPARATEIPROC$FUNC
     );
 }
 

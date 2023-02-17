@@ -9,28 +9,47 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$929 {
 
-    static final FunctionDescriptor PFNGLBLENDEQUATIONSEPARATEATIPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glGetColorTableEXT$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glGetColorTableEXT$MH = RuntimeHelper.downcallHandle(
+        "glGetColorTableEXT",
+        constants$929.glGetColorTableEXT$FUNC
+    );
+    static final FunctionDescriptor glGetColorTableParameterivEXT$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glGetColorTableParameterivEXT$MH = RuntimeHelper.downcallHandle(
+        "glGetColorTableParameterivEXT",
+        constants$929.glGetColorTableParameterivEXT$FUNC
+    );
+    static final FunctionDescriptor glGetColorTableParameterfvEXT$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glGetColorTableParameterfvEXT$MH = RuntimeHelper.downcallHandle(
+        "glGetColorTableParameterfvEXT",
+        constants$929.glGetColorTableParameterfvEXT$FUNC
+    );
+    static final FunctionDescriptor PFNGLPIXELTRANSFORMPARAMETERIEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLBLENDEQUATIONSEPARATEATIPROC$MH = RuntimeHelper.downcallHandle(
-        constants$929.PFNGLBLENDEQUATIONSEPARATEATIPROC$FUNC
+    static final MethodHandle PFNGLPIXELTRANSFORMPARAMETERIEXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$929.PFNGLPIXELTRANSFORMPARAMETERIEXTPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLEGLIMAGETARGETTEXTURE2DOESPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLPIXELTRANSFORMPARAMETERFEXTPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle PFNGLEGLIMAGETARGETTEXTURE2DOESPROC$MH = RuntimeHelper.downcallHandle(
-        constants$929.PFNGLEGLIMAGETARGETTEXTURE2DOESPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLEGLIMAGETARGETRENDERBUFFERSTORAGEOESPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
+        Constants$root.C_FLOAT$LAYOUT
     );
-    static final MethodHandle PFNGLEGLIMAGETARGETRENDERBUFFERSTORAGEOESPROC$MH = RuntimeHelper.downcallHandle(
-        constants$929.PFNGLEGLIMAGETARGETRENDERBUFFERSTORAGEOESPROC$FUNC
-    );
-    static final FunctionDescriptor _GLUfuncptr$FUNC = FunctionDescriptor.ofVoid();
 }
 
 

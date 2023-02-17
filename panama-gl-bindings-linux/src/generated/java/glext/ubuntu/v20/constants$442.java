@@ -9,27 +9,34 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$442 {
 
-    static final FunctionDescriptor PFNGLRECTXOESPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLPROGRAMLOCALPARAMETER4FVARBPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT
-    );
-    static final MethodHandle PFNGLRECTXOESPROC$MH = RuntimeHelper.downcallHandle(
-        constants$442.PFNGLRECTXOESPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLRECTXVOESPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_POINTER$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLRECTXVOESPROC$MH = RuntimeHelper.downcallHandle(
-        constants$442.PFNGLRECTXVOESPROC$FUNC
+    static final MethodHandle PFNGLPROGRAMLOCALPARAMETER4FVARBPROC$MH = RuntimeHelper.downcallHandle(
+        constants$442.PFNGLPROGRAMLOCALPARAMETER4FVARBPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLTEXCOORD1XOESPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT
+    static final FunctionDescriptor PFNGLGETPROGRAMENVPARAMETERDVARBPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLTEXCOORD1XOESPROC$MH = RuntimeHelper.downcallHandle(
-        constants$442.PFNGLTEXCOORD1XOESPROC$FUNC
+    static final MethodHandle PFNGLGETPROGRAMENVPARAMETERDVARBPROC$MH = RuntimeHelper.downcallHandle(
+        constants$442.PFNGLGETPROGRAMENVPARAMETERDVARBPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLGETPROGRAMENVPARAMETERFVARBPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle PFNGLGETPROGRAMENVPARAMETERFVARBPROC$MH = RuntimeHelper.downcallHandle(
+        constants$442.PFNGLGETPROGRAMENVPARAMETERFVARBPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLGETPROGRAMLOCALPARAMETERDVARBPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
 }
 

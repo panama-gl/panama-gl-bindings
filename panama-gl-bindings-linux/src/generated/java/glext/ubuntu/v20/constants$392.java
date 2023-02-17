@@ -9,29 +9,43 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$392 {
 
-    static final FunctionDescriptor PFNGLVERTEXATTRIB4NUBARBPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLMEMORYBARRIERBYREGIONPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle PFNGLMEMORYBARRIERBYREGIONPROC$MH = RuntimeHelper.downcallHandle(
+        constants$392.PFNGLMEMORYBARRIERBYREGIONPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLGETTEXTURESUBIMAGEPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_CHAR$LAYOUT,
-        Constants$root.C_CHAR$LAYOUT,
-        Constants$root.C_CHAR$LAYOUT,
-        Constants$root.C_CHAR$LAYOUT
-    );
-    static final MethodHandle PFNGLVERTEXATTRIB4NUBARBPROC$MH = RuntimeHelper.downcallHandle(
-        constants$392.PFNGLVERTEXATTRIB4NUBARBPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLVERTEXATTRIB4NUBVARBPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLVERTEXATTRIB4NUBVARBPROC$MH = RuntimeHelper.downcallHandle(
-        constants$392.PFNGLVERTEXATTRIB4NUBVARBPROC$FUNC
+    static final MethodHandle PFNGLGETTEXTURESUBIMAGEPROC$MH = RuntimeHelper.downcallHandle(
+        constants$392.PFNGLGETTEXTURESUBIMAGEPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLVERTEXATTRIB4NUIVARBPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLGETCOMPRESSEDTEXTURESUBIMAGEPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLVERTEXATTRIB4NUIVARBPROC$MH = RuntimeHelper.downcallHandle(
-        constants$392.PFNGLVERTEXATTRIB4NUIVARBPROC$FUNC
+    static final MethodHandle PFNGLGETCOMPRESSEDTEXTURESUBIMAGEPROC$MH = RuntimeHelper.downcallHandle(
+        constants$392.PFNGLGETCOMPRESSEDTEXTURESUBIMAGEPROC$FUNC
     );
 }
 

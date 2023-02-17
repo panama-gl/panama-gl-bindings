@@ -9,32 +9,49 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$552 {
 
-    static final FunctionDescriptor PFNGLMULTITEXGENIVEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle PFNGLMULTITEXGENIVEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$552.PFNGLMULTITEXGENIVEXTPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLGETMULTITEXENVFVEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
+    static final FunctionDescriptor glGetVertexAttribdvARB$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLGETMULTITEXENVFVEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$552.PFNGLGETMULTITEXENVFVEXTPROC$FUNC
+    static final MethodHandle glGetVertexAttribdvARB$MH = RuntimeHelper.downcallHandle(
+        "glGetVertexAttribdvARB",
+        constants$552.glGetVertexAttribdvARB$FUNC
     );
-    static final FunctionDescriptor PFNGLGETMULTITEXENVIVEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
+    static final FunctionDescriptor glGetVertexAttribfvARB$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLGETMULTITEXENVIVEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$552.PFNGLGETMULTITEXENVIVEXTPROC$FUNC
+    static final MethodHandle glGetVertexAttribfvARB$MH = RuntimeHelper.downcallHandle(
+        "glGetVertexAttribfvARB",
+        constants$552.glGetVertexAttribfvARB$FUNC
+    );
+    static final FunctionDescriptor glGetVertexAttribivARB$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glGetVertexAttribivARB$MH = RuntimeHelper.downcallHandle(
+        "glGetVertexAttribivARB",
+        constants$552.glGetVertexAttribivARB$FUNC
+    );
+    static final FunctionDescriptor glGetVertexAttribPointervARB$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glGetVertexAttribPointervARB$MH = RuntimeHelper.downcallHandle(
+        "glGetVertexAttribPointervARB",
+        constants$552.glGetVertexAttribPointervARB$FUNC
+    );
+    static final FunctionDescriptor PFNGLBINDATTRIBLOCATIONARBPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle PFNGLBINDATTRIBLOCATIONARBPROC$MH = RuntimeHelper.downcallHandle(
+        constants$552.PFNGLBINDATTRIBLOCATIONARBPROC$FUNC
     );
 }
 

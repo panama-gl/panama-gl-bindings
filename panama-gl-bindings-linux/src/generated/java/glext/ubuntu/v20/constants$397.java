@@ -9,28 +9,28 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$397 {
 
-    static final FunctionDescriptor PFNGLVERTEXATTRIBPOINTERARBPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLGETNPIXELMAPUIVPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_CHAR$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLVERTEXATTRIBPOINTERARBPROC$MH = RuntimeHelper.downcallHandle(
-        constants$397.PFNGLVERTEXATTRIBPOINTERARBPROC$FUNC
+    static final MethodHandle PFNGLGETNPIXELMAPUIVPROC$MH = RuntimeHelper.downcallHandle(
+        constants$397.PFNGLGETNPIXELMAPUIVPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLENABLEVERTEXATTRIBARRAYARBPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT
+    static final FunctionDescriptor PFNGLGETNPIXELMAPUSVPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLENABLEVERTEXATTRIBARRAYARBPROC$MH = RuntimeHelper.downcallHandle(
-        constants$397.PFNGLENABLEVERTEXATTRIBARRAYARBPROC$FUNC
+    static final MethodHandle PFNGLGETNPIXELMAPUSVPROC$MH = RuntimeHelper.downcallHandle(
+        constants$397.PFNGLGETNPIXELMAPUSVPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLDISABLEVERTEXATTRIBARRAYARBPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT
+    static final FunctionDescriptor PFNGLGETNPOLYGONSTIPPLEPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLDISABLEVERTEXATTRIBARRAYARBPROC$MH = RuntimeHelper.downcallHandle(
-        constants$397.PFNGLDISABLEVERTEXATTRIBARRAYARBPROC$FUNC
+    static final MethodHandle PFNGLGETNPOLYGONSTIPPLEPROC$MH = RuntimeHelper.downcallHandle(
+        constants$397.PFNGLGETNPOLYGONSTIPPLEPROC$FUNC
     );
 }
 

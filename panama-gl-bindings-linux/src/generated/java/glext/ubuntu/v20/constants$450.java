@@ -9,33 +9,37 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$450 {
 
-    static final FunctionDescriptor PFNGLORTHOFOESPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_FLOAT$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT
-    );
-    static final MethodHandle PFNGLORTHOFOESPROC$MH = RuntimeHelper.downcallHandle(
-        constants$450.PFNGLORTHOFOESPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLTBUFFERMASK3DFXPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT
-    );
-    static final MethodHandle PFNGLTBUFFERMASK3DFXPROC$MH = RuntimeHelper.downcallHandle(
-        constants$450.PFNGLTBUFFERMASK3DFXPROC$FUNC
-    );
-    static final FunctionDescriptor GLDEBUGPROCAMD$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glSpecializeShaderARB$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle GLDEBUGPROCAMD$MH = RuntimeHelper.downcallHandle(
-        constants$450.GLDEBUGPROCAMD$FUNC
+    static final MethodHandle glSpecializeShaderARB$MH = RuntimeHelper.downcallHandle(
+        "glSpecializeShaderARB",
+        constants$450.glSpecializeShaderARB$FUNC
+    );
+    static final FunctionDescriptor PFNGLUNIFORM1I64ARBPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT
+    );
+    static final MethodHandle PFNGLUNIFORM1I64ARBPROC$MH = RuntimeHelper.downcallHandle(
+        constants$450.PFNGLUNIFORM1I64ARBPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLUNIFORM2I64ARBPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT
+    );
+    static final MethodHandle PFNGLUNIFORM2I64ARBPROC$MH = RuntimeHelper.downcallHandle(
+        constants$450.PFNGLUNIFORM2I64ARBPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLUNIFORM3I64ARBPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT
     );
 }
 

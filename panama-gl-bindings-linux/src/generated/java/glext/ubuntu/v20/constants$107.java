@@ -9,25 +9,60 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$107 {
 
-    static final FunctionDescriptor PFNGLGENQUERIESPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glBlendFuncSeparate$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle PFNGLGENQUERIESPROC$MH = RuntimeHelper.downcallHandle(
-        constants$107.PFNGLGENQUERIESPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLDELETEQUERIESPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle PFNGLDELETEQUERIESPROC$MH = RuntimeHelper.downcallHandle(
-        constants$107.PFNGLDELETEQUERIESPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLISQUERYPROC$FUNC = FunctionDescriptor.of(Constants$root.C_CHAR$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLISQUERYPROC$MH = RuntimeHelper.downcallHandle(
-        constants$107.PFNGLISQUERYPROC$FUNC
+    static final MethodHandle glBlendFuncSeparate$MH = RuntimeHelper.downcallHandle(
+        "glBlendFuncSeparate",
+        constants$107.glBlendFuncSeparate$FUNC
+    );
+    static final FunctionDescriptor glMultiDrawArrays$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle glMultiDrawArrays$MH = RuntimeHelper.downcallHandle(
+        "glMultiDrawArrays",
+        constants$107.glMultiDrawArrays$FUNC
+    );
+    static final FunctionDescriptor glMultiDrawElements$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle glMultiDrawElements$MH = RuntimeHelper.downcallHandle(
+        "glMultiDrawElements",
+        constants$107.glMultiDrawElements$FUNC
+    );
+    static final FunctionDescriptor glPointParameterf$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT
+    );
+    static final MethodHandle glPointParameterf$MH = RuntimeHelper.downcallHandle(
+        "glPointParameterf",
+        constants$107.glPointParameterf$FUNC
+    );
+    static final FunctionDescriptor glPointParameterfv$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glPointParameterfv$MH = RuntimeHelper.downcallHandle(
+        "glPointParameterfv",
+        constants$107.glPointParameterfv$FUNC
+    );
+    static final FunctionDescriptor glPointParameteri$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle glPointParameteri$MH = RuntimeHelper.downcallHandle(
+        "glPointParameteri",
+        constants$107.glPointParameteri$FUNC
     );
 }
 

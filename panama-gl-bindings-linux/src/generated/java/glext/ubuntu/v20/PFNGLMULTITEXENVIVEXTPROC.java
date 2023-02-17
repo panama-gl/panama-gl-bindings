@@ -11,13 +11,13 @@ public interface PFNGLMULTITEXENVIVEXTPROC {
 
     void apply(int texunit, int target, int pname, java.lang.foreign.MemoryAddress params);
     static MemorySegment allocate(PFNGLMULTITEXENVIVEXTPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLMULTITEXENVIVEXTPROC.class, fi, constants$550.PFNGLMULTITEXENVIVEXTPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLMULTITEXENVIVEXTPROC.class, fi, constants$771.PFNGLMULTITEXENVIVEXTPROC$FUNC, session);
     }
     static PFNGLMULTITEXENVIVEXTPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _texunit, int _target, int _pname, java.lang.foreign.MemoryAddress _params) -> {
             try {
-                constants$550.PFNGLMULTITEXENVIVEXTPROC$MH.invokeExact((Addressable)symbol, _texunit, _target, _pname, (java.lang.foreign.Addressable)_params);
+                constants$771.PFNGLMULTITEXENVIVEXTPROC$MH.invokeExact((Addressable)symbol, _texunit, _target, _pname, (java.lang.foreign.Addressable)_params);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

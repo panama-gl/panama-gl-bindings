@@ -9,30 +9,65 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$849 {
 
-    static final FunctionDescriptor PFNGLVERTEXATTRIBIFORMATNVPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glMultiTexEnvfEXT$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT
+    );
+    static final MethodHandle glMultiTexEnvfEXT$MH = RuntimeHelper.downcallHandle(
+        "glMultiTexEnvfEXT",
+        constants$849.glMultiTexEnvfEXT$FUNC
+    );
+    static final FunctionDescriptor glMultiTexEnvfvEXT$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glMultiTexEnvfvEXT$MH = RuntimeHelper.downcallHandle(
+        "glMultiTexEnvfvEXT",
+        constants$849.glMultiTexEnvfvEXT$FUNC
+    );
+    static final FunctionDescriptor glMultiTexEnviEXT$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLVERTEXATTRIBIFORMATNVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$849.PFNGLVERTEXATTRIBIFORMATNVPROC$FUNC
+    static final MethodHandle glMultiTexEnviEXT$MH = RuntimeHelper.downcallHandle(
+        "glMultiTexEnviEXT",
+        constants$849.glMultiTexEnviEXT$FUNC
     );
-    static final FunctionDescriptor PFNGLGETINTEGERUI64I_VNVPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glMultiTexEnvivEXT$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLGETINTEGERUI64I_VNVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$849.PFNGLGETINTEGERUI64I_VNVPROC$FUNC
+    static final MethodHandle glMultiTexEnvivEXT$MH = RuntimeHelper.downcallHandle(
+        "glMultiTexEnvivEXT",
+        constants$849.glMultiTexEnvivEXT$FUNC
     );
-    static final FunctionDescriptor PFNGLAREPROGRAMSRESIDENTNVPROC$FUNC = FunctionDescriptor.of(Constants$root.C_CHAR$LAYOUT,
+    static final FunctionDescriptor glMultiTexGendEXT$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_DOUBLE$LAYOUT
+    );
+    static final MethodHandle glMultiTexGendEXT$MH = RuntimeHelper.downcallHandle(
+        "glMultiTexGendEXT",
+        constants$849.glMultiTexGendEXT$FUNC
+    );
+    static final FunctionDescriptor glMultiTexGendvEXT$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLAREPROGRAMSRESIDENTNVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$849.PFNGLAREPROGRAMSRESIDENTNVPROC$FUNC
+    static final MethodHandle glMultiTexGendvEXT$MH = RuntimeHelper.downcallHandle(
+        "glMultiTexGendvEXT",
+        constants$849.glMultiTexGendvEXT$FUNC
     );
 }
 

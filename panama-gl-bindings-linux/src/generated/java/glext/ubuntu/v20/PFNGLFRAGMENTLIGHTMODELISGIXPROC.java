@@ -11,13 +11,13 @@ public interface PFNGLFRAGMENTLIGHTMODELISGIXPROC {
 
     void apply(int pname, int param);
     static MemorySegment allocate(PFNGLFRAGMENTLIGHTMODELISGIXPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLFRAGMENTLIGHTMODELISGIXPROC.class, fi, constants$895.PFNGLFRAGMENTLIGHTMODELISGIXPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLFRAGMENTLIGHTMODELISGIXPROC.class, fi, constants$1295.PFNGLFRAGMENTLIGHTMODELISGIXPROC$FUNC, session);
     }
     static PFNGLFRAGMENTLIGHTMODELISGIXPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _pname, int _param) -> {
             try {
-                constants$895.PFNGLFRAGMENTLIGHTMODELISGIXPROC$MH.invokeExact((Addressable)symbol, _pname, _param);
+                constants$1295.PFNGLFRAGMENTLIGHTMODELISGIXPROC$MH.invokeExact((Addressable)symbol, _pname, _param);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

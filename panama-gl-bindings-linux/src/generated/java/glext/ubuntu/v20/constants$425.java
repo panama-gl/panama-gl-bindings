@@ -9,32 +9,31 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$425 {
 
-    static final FunctionDescriptor PFNGLTRANSLATEXOESPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT
+    static final FunctionDescriptor PFNGLMAKEIMAGEHANDLENONRESIDENTARBPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_LONG_LONG$LAYOUT
     );
-    static final MethodHandle PFNGLTRANSLATEXOESPROC$MH = RuntimeHelper.downcallHandle(
-        constants$425.PFNGLTRANSLATEXOESPROC$FUNC
+    static final MethodHandle PFNGLMAKEIMAGEHANDLENONRESIDENTARBPROC$MH = RuntimeHelper.downcallHandle(
+        constants$425.PFNGLMAKEIMAGEHANDLENONRESIDENTARBPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLACCUMXOESPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLUNIFORMHANDLEUI64ARBPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT
+        Constants$root.C_LONG_LONG$LAYOUT
     );
-    static final MethodHandle PFNGLACCUMXOESPROC$MH = RuntimeHelper.downcallHandle(
-        constants$425.PFNGLACCUMXOESPROC$FUNC
+    static final MethodHandle PFNGLUNIFORMHANDLEUI64ARBPROC$MH = RuntimeHelper.downcallHandle(
+        constants$425.PFNGLUNIFORMHANDLEUI64ARBPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLBITMAPXOESPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
+    static final FunctionDescriptor PFNGLUNIFORMHANDLEUI64VARBPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLBITMAPXOESPROC$MH = RuntimeHelper.downcallHandle(
-        constants$425.PFNGLBITMAPXOESPROC$FUNC
+    static final MethodHandle PFNGLUNIFORMHANDLEUI64VARBPROC$MH = RuntimeHelper.downcallHandle(
+        constants$425.PFNGLUNIFORMHANDLEUI64VARBPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLPROGRAMUNIFORMHANDLEUI64ARBPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT
     );
 }
 

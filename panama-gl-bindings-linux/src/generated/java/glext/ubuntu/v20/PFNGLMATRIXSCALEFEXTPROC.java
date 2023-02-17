@@ -11,13 +11,13 @@ public interface PFNGLMATRIXSCALEFEXTPROC {
 
     void apply(int mode, float x, float y, float z);
     static MemorySegment allocate(PFNGLMATRIXSCALEFEXTPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLMATRIXSCALEFEXTPROC.class, fi, constants$538.PFNGLMATRIXSCALEFEXTPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLMATRIXSCALEFEXTPROC.class, fi, constants$759.PFNGLMATRIXSCALEFEXTPROC$FUNC, session);
     }
     static PFNGLMATRIXSCALEFEXTPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _mode, float _x, float _y, float _z) -> {
             try {
-                constants$538.PFNGLMATRIXSCALEFEXTPROC$MH.invokeExact((Addressable)symbol, _mode, _x, _y, _z);
+                constants$760.PFNGLMATRIXSCALEFEXTPROC$MH.invokeExact((Addressable)symbol, _mode, _x, _y, _z);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

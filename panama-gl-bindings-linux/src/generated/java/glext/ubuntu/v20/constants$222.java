@@ -9,28 +9,42 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$222 {
 
-    static final FunctionDescriptor PFNGLUSEPROGRAMSTAGESPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLDRAWRANGEELEMENTSBASEVERTEXPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle PFNGLDRAWRANGEELEMENTSBASEVERTEXPROC$MH = RuntimeHelper.downcallHandle(
+        constants$222.PFNGLDRAWRANGEELEMENTSBASEVERTEXPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLDRAWELEMENTSINSTANCEDBASEVERTEXPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLUSEPROGRAMSTAGESPROC$MH = RuntimeHelper.downcallHandle(
-        constants$222.PFNGLUSEPROGRAMSTAGESPROC$FUNC
+    static final MethodHandle PFNGLDRAWELEMENTSINSTANCEDBASEVERTEXPROC$MH = RuntimeHelper.downcallHandle(
+        constants$222.PFNGLDRAWELEMENTSINSTANCEDBASEVERTEXPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLACTIVESHADERPROGRAMPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLMULTIDRAWELEMENTSBASEVERTEXPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT
-    );
-    static final MethodHandle PFNGLACTIVESHADERPROGRAMPROC$MH = RuntimeHelper.downcallHandle(
-        constants$222.PFNGLACTIVESHADERPROGRAMPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLCREATESHADERPROGRAMVPROC$FUNC = FunctionDescriptor.of(Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
         Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLCREATESHADERPROGRAMVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$222.PFNGLCREATESHADERPROGRAMVPROC$FUNC
+    static final MethodHandle PFNGLMULTIDRAWELEMENTSBASEVERTEXPROC$MH = RuntimeHelper.downcallHandle(
+        constants$222.PFNGLMULTIDRAWELEMENTSBASEVERTEXPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLPROVOKINGVERTEXPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT
     );
 }
 

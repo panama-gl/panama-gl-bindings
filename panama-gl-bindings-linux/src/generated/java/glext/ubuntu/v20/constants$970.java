@@ -9,57 +9,59 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$970 {
 
-    static final FunctionDescriptor strtod$FUNC = FunctionDescriptor.of(Constants$root.C_DOUBLE$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
+    static final FunctionDescriptor glArrayElementEXT$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle glArrayElementEXT$MH = RuntimeHelper.downcallHandle(
+        "glArrayElementEXT",
+        constants$970.glArrayElementEXT$FUNC
+    );
+    static final FunctionDescriptor glColorPointerEXT$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle strtod$MH = RuntimeHelper.downcallHandle(
-        "strtod",
-        constants$970.strtod$FUNC
+    static final MethodHandle glColorPointerEXT$MH = RuntimeHelper.downcallHandle(
+        "glColorPointerEXT",
+        constants$970.glColorPointerEXT$FUNC
     );
-    static final FunctionDescriptor strtof$FUNC = FunctionDescriptor.of(Constants$root.C_FLOAT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
+    static final FunctionDescriptor glDrawArraysEXT$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle glDrawArraysEXT$MH = RuntimeHelper.downcallHandle(
+        "glDrawArraysEXT",
+        constants$970.glDrawArraysEXT$FUNC
+    );
+    static final FunctionDescriptor glEdgeFlagPointerEXT$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle strtof$MH = RuntimeHelper.downcallHandle(
-        "strtof",
-        constants$970.strtof$FUNC
+    static final MethodHandle glEdgeFlagPointerEXT$MH = RuntimeHelper.downcallHandle(
+        "glEdgeFlagPointerEXT",
+        constants$970.glEdgeFlagPointerEXT$FUNC
     );
-    static final FunctionDescriptor strtol$FUNC = FunctionDescriptor.of(Constants$root.C_LONG_LONG$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_INT$LAYOUT
+    static final FunctionDescriptor glGetPointervEXT$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle strtol$MH = RuntimeHelper.downcallHandle(
-        "strtol",
-        constants$970.strtol$FUNC
+    static final MethodHandle glGetPointervEXT$MH = RuntimeHelper.downcallHandle(
+        "glGetPointervEXT",
+        constants$970.glGetPointervEXT$FUNC
     );
-    static final FunctionDescriptor strtoul$FUNC = FunctionDescriptor.of(Constants$root.C_LONG_LONG$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_INT$LAYOUT
+    static final FunctionDescriptor glIndexPointerEXT$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle strtoul$MH = RuntimeHelper.downcallHandle(
-        "strtoul",
-        constants$970.strtoul$FUNC
-    );
-    static final FunctionDescriptor strtoq$FUNC = FunctionDescriptor.of(Constants$root.C_LONG_LONG$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_INT$LAYOUT
-    );
-    static final MethodHandle strtoq$MH = RuntimeHelper.downcallHandle(
-        "strtoq",
-        constants$970.strtoq$FUNC
-    );
-    static final FunctionDescriptor strtouq$FUNC = FunctionDescriptor.of(Constants$root.C_LONG_LONG$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_INT$LAYOUT
-    );
-    static final MethodHandle strtouq$MH = RuntimeHelper.downcallHandle(
-        "strtouq",
-        constants$970.strtouq$FUNC
+    static final MethodHandle glIndexPointerEXT$MH = RuntimeHelper.downcallHandle(
+        "glIndexPointerEXT",
+        constants$970.glIndexPointerEXT$FUNC
     );
 }
 

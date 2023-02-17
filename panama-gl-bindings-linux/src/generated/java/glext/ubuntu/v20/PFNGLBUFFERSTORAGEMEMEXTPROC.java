@@ -11,13 +11,13 @@ public interface PFNGLBUFFERSTORAGEMEMEXTPROC {
 
     void apply(int target, long size, int memory, long offset);
     static MemorySegment allocate(PFNGLBUFFERSTORAGEMEMEXTPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLBUFFERSTORAGEMEMEXTPROC.class, fi, constants$644.PFNGLBUFFERSTORAGEMEMEXTPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLBUFFERSTORAGEMEMEXTPROC.class, fi, constants$918.PFNGLBUFFERSTORAGEMEMEXTPROC$FUNC, session);
     }
     static PFNGLBUFFERSTORAGEMEMEXTPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _target, long _size, int _memory, long _offset) -> {
             try {
-                constants$644.PFNGLBUFFERSTORAGEMEMEXTPROC$MH.invokeExact((Addressable)symbol, _target, _size, _memory, _offset);
+                constants$918.PFNGLBUFFERSTORAGEMEMEXTPROC$MH.invokeExact((Addressable)symbol, _target, _size, _memory, _offset);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

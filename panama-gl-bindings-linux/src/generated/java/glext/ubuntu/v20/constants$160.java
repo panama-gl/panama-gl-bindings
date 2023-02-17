@@ -9,29 +9,52 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$160 {
 
-    static final FunctionDescriptor PFNGLUNIFORM1UIPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glGetVertexAttribPointerv$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glGetVertexAttribPointerv$MH = RuntimeHelper.downcallHandle(
+        "glGetVertexAttribPointerv",
+        constants$160.glGetVertexAttribPointerv$FUNC
+    );
+    static final FunctionDescriptor glIsProgram$FUNC = FunctionDescriptor.of(Constants$root.C_CHAR$LAYOUT,
         Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLUNIFORM1UIPROC$MH = RuntimeHelper.downcallHandle(
-        constants$160.PFNGLUNIFORM1UIPROC$FUNC
+    static final MethodHandle glIsProgram$MH = RuntimeHelper.downcallHandle(
+        "glIsProgram",
+        constants$160.glIsProgram$FUNC
     );
-    static final FunctionDescriptor PFNGLUNIFORM2UIPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
+    static final FunctionDescriptor glIsShader$FUNC = FunctionDescriptor.of(Constants$root.C_CHAR$LAYOUT,
         Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLUNIFORM2UIPROC$MH = RuntimeHelper.downcallHandle(
-        constants$160.PFNGLUNIFORM2UIPROC$FUNC
+    static final MethodHandle glIsShader$MH = RuntimeHelper.downcallHandle(
+        "glIsShader",
+        constants$160.glIsShader$FUNC
     );
-    static final FunctionDescriptor PFNGLUNIFORM3UIPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
+    static final FunctionDescriptor glLinkProgram$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLUNIFORM3UIPROC$MH = RuntimeHelper.downcallHandle(
-        constants$160.PFNGLUNIFORM3UIPROC$FUNC
+    static final MethodHandle glLinkProgram$MH = RuntimeHelper.downcallHandle(
+        "glLinkProgram",
+        constants$160.glLinkProgram$FUNC
+    );
+    static final FunctionDescriptor glShaderSource$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glShaderSource$MH = RuntimeHelper.downcallHandle(
+        "glShaderSource",
+        constants$160.glShaderSource$FUNC
+    );
+    static final FunctionDescriptor glUseProgram$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle glUseProgram$MH = RuntimeHelper.downcallHandle(
+        "glUseProgram",
+        constants$160.glUseProgram$FUNC
     );
 }
 

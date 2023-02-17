@@ -11,13 +11,13 @@ public interface PFNGLBINORMAL3DEXTPROC {
 
     void apply(double bx, double by, double bz);
     static MemorySegment allocate(PFNGLBINORMAL3DEXTPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLBINORMAL3DEXTPROC.class, fi, constants$528.PFNGLBINORMAL3DEXTPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLBINORMAL3DEXTPROC.class, fi, constants$744.PFNGLBINORMAL3DEXTPROC$FUNC, session);
     }
     static PFNGLBINORMAL3DEXTPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (double _bx, double _by, double _bz) -> {
             try {
-                constants$528.PFNGLBINORMAL3DEXTPROC$MH.invokeExact((Addressable)symbol, _bx, _by, _bz);
+                constants$744.PFNGLBINORMAL3DEXTPROC$MH.invokeExact((Addressable)symbol, _bx, _by, _bz);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

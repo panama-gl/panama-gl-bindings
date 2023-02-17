@@ -11,13 +11,13 @@ public interface PFNGLBINDMATERIALPARAMETEREXTPROC {
 
     int apply(int face, int value);
     static MemorySegment allocate(PFNGLBINDMATERIALPARAMETEREXTPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLBINDMATERIALPARAMETEREXTPROC.class, fi, constants$691.PFNGLBINDMATERIALPARAMETEREXTPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLBINDMATERIALPARAMETEREXTPROC.class, fi, constants$985.PFNGLBINDMATERIALPARAMETEREXTPROC$FUNC, session);
     }
     static PFNGLBINDMATERIALPARAMETEREXTPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _face, int _value) -> {
             try {
-                return (int)constants$691.PFNGLBINDMATERIALPARAMETEREXTPROC$MH.invokeExact((Addressable)symbol, _face, _value);
+                return (int)constants$985.PFNGLBINDMATERIALPARAMETEREXTPROC$MH.invokeExact((Addressable)symbol, _face, _value);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

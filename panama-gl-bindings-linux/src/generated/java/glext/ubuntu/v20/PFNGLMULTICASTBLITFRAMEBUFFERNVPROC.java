@@ -11,13 +11,13 @@ public interface PFNGLMULTICASTBLITFRAMEBUFFERNVPROC {
 
     void apply(int srcGpu, int dstGpu, int srcX0, int srcY0, int srcX1, int srcY1, int dstX0, int dstY0, int dstX1, int dstY1, int mask, int filter);
     static MemorySegment allocate(PFNGLMULTICASTBLITFRAMEBUFFERNVPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLMULTICASTBLITFRAMEBUFFERNVPROC.class, fi, constants$755.PFNGLMULTICASTBLITFRAMEBUFFERNVPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLMULTICASTBLITFRAMEBUFFERNVPROC.class, fi, constants$1085.PFNGLMULTICASTBLITFRAMEBUFFERNVPROC$FUNC, session);
     }
     static PFNGLMULTICASTBLITFRAMEBUFFERNVPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _srcGpu, int _dstGpu, int _srcX0, int _srcY0, int _srcX1, int _srcY1, int _dstX0, int _dstY0, int _dstX1, int _dstY1, int _mask, int _filter) -> {
             try {
-                constants$755.PFNGLMULTICASTBLITFRAMEBUFFERNVPROC$MH.invokeExact((Addressable)symbol, _srcGpu, _dstGpu, _srcX0, _srcY0, _srcX1, _srcY1, _dstX0, _dstY0, _dstX1, _dstY1, _mask, _filter);
+                constants$1085.PFNGLMULTICASTBLITFRAMEBUFFERNVPROC$MH.invokeExact((Addressable)symbol, _srcGpu, _dstGpu, _srcX0, _srcY0, _srcX1, _srcY1, _dstX0, _dstY0, _dstX1, _dstY1, _mask, _filter);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

@@ -11,13 +11,13 @@ public interface PFNGLPOPGROUPMARKEREXTPROC {
 
     void apply();
     static MemorySegment allocate(PFNGLPOPGROUPMARKEREXTPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLPOPGROUPMARKEREXTPROC.class, fi, constants$535.PFNGLPOPGROUPMARKEREXTPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLPOPGROUPMARKEREXTPROC.class, fi, constants$756.PFNGLPOPGROUPMARKEREXTPROC$FUNC, session);
     }
     static PFNGLPOPGROUPMARKEREXTPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return () -> {
             try {
-                constants$535.PFNGLPOPGROUPMARKEREXTPROC$MH.invokeExact((Addressable)symbol);
+                constants$756.PFNGLPOPGROUPMARKEREXTPROC$MH.invokeExact((Addressable)symbol);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

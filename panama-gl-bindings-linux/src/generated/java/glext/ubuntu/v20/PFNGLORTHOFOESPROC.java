@@ -11,13 +11,13 @@ public interface PFNGLORTHOFOESPROC {
 
     void apply(float l, float r, float b, float t, float n, float f);
     static MemorySegment allocate(PFNGLORTHOFOESPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLORTHOFOESPROC.class, fi, constants$450.PFNGLORTHOFOESPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLORTHOFOESPROC.class, fi, constants$627.PFNGLORTHOFOESPROC$FUNC, session);
     }
     static PFNGLORTHOFOESPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (float _l, float _r, float _b, float _t, float _n, float _f) -> {
             try {
-                constants$450.PFNGLORTHOFOESPROC$MH.invokeExact((Addressable)symbol, _l, _r, _b, _t, _n, _f);
+                constants$628.PFNGLORTHOFOESPROC$MH.invokeExact((Addressable)symbol, _l, _r, _b, _t, _n, _f);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

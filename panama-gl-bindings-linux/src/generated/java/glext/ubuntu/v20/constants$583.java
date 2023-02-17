@@ -9,32 +9,32 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$583 {
 
-    static final FunctionDescriptor PFNGLMULTITEXPARAMETERIUIVEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
+    static final FunctionDescriptor PFNGLPOINTSIZEXOESPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLMULTITEXPARAMETERIUIVEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$583.PFNGLMULTITEXPARAMETERIUIVEXTPROC$FUNC
+    static final MethodHandle PFNGLPOINTSIZEXOESPROC$MH = RuntimeHelper.downcallHandle(
+        constants$583.PFNGLPOINTSIZEXOESPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLGETMULTITEXPARAMETERIIVEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLPOLYGONOFFSETXOESPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
+        Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLGETMULTITEXPARAMETERIIVEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$583.PFNGLGETMULTITEXPARAMETERIIVEXTPROC$FUNC
+    static final MethodHandle PFNGLPOLYGONOFFSETXOESPROC$MH = RuntimeHelper.downcallHandle(
+        constants$583.PFNGLPOLYGONOFFSETXOESPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLGETMULTITEXPARAMETERIUIVEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLROTATEXOESPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
+        Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLGETMULTITEXPARAMETERIUIVEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$583.PFNGLGETMULTITEXPARAMETERIUIVEXTPROC$FUNC
+    static final MethodHandle PFNGLROTATEXOESPROC$MH = RuntimeHelper.downcallHandle(
+        constants$583.PFNGLROTATEXOESPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLSCALEXOESPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
 }
 

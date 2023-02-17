@@ -11,13 +11,13 @@ public interface PFNGLUNIFORM1IARBPROC {
 
     void apply(int location, int v0);
     static MemorySegment allocate(PFNGLUNIFORM1IARBPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLUNIFORM1IARBPROC.class, fi, constants$362.PFNGLUNIFORM1IARBPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLUNIFORM1IARBPROC.class, fi, constants$495.PFNGLUNIFORM1IARBPROC$FUNC, session);
     }
     static PFNGLUNIFORM1IARBPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _location, int _v0) -> {
             try {
-                constants$362.PFNGLUNIFORM1IARBPROC$MH.invokeExact((Addressable)symbol, _location, _v0);
+                constants$495.PFNGLUNIFORM1IARBPROC$MH.invokeExact((Addressable)symbol, _location, _v0);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

@@ -9,26 +9,40 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$680 {
 
-    static final FunctionDescriptor PFNGLVERTEXATTRIBL1DVEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLDISABLEVERTEXATTRIBAPPLEPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle PFNGLDISABLEVERTEXATTRIBAPPLEPROC$MH = RuntimeHelper.downcallHandle(
+        constants$680.PFNGLDISABLEVERTEXATTRIBAPPLEPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLISVERTEXATTRIBENABLEDAPPLEPROC$FUNC = FunctionDescriptor.of(Constants$root.C_CHAR$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle PFNGLISVERTEXATTRIBENABLEDAPPLEPROC$MH = RuntimeHelper.downcallHandle(
+        constants$680.PFNGLISVERTEXATTRIBENABLEDAPPLEPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLMAPVERTEXATTRIB1DAPPLEPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_DOUBLE$LAYOUT,
+        Constants$root.C_DOUBLE$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLVERTEXATTRIBL1DVEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$680.PFNGLVERTEXATTRIBL1DVEXTPROC$FUNC
+    static final MethodHandle PFNGLMAPVERTEXATTRIB1DAPPLEPROC$MH = RuntimeHelper.downcallHandle(
+        constants$680.PFNGLMAPVERTEXATTRIB1DAPPLEPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLVERTEXATTRIBL2DVEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLMAPVERTEXATTRIB1FAPPLEPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle PFNGLVERTEXATTRIBL2DVEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$680.PFNGLVERTEXATTRIBL2DVEXTPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLVERTEXATTRIBL3DVEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle PFNGLVERTEXATTRIBL3DVEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$680.PFNGLVERTEXATTRIBL3DVEXTPROC$FUNC
     );
 }
 

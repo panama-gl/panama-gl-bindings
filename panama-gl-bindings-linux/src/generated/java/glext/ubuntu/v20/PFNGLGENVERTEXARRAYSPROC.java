@@ -11,13 +11,13 @@ public interface PFNGLGENVERTEXARRAYSPROC {
 
     void apply(int n, java.lang.foreign.MemoryAddress arrays);
     static MemorySegment allocate(PFNGLGENVERTEXARRAYSPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLGENVERTEXARRAYSPROC.class, fi, constants$173.PFNGLGENVERTEXARRAYSPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLGENVERTEXARRAYSPROC.class, fi, constants$200.PFNGLGENVERTEXARRAYSPROC$FUNC, session);
     }
     static PFNGLGENVERTEXARRAYSPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _n, java.lang.foreign.MemoryAddress _arrays) -> {
             try {
-                constants$173.PFNGLGENVERTEXARRAYSPROC$MH.invokeExact((Addressable)symbol, _n, (java.lang.foreign.Addressable)_arrays);
+                constants$201.PFNGLGENVERTEXARRAYSPROC$MH.invokeExact((Addressable)symbol, _n, (java.lang.foreign.Addressable)_arrays);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

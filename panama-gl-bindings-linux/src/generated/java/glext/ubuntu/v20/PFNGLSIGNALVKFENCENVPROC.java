@@ -11,13 +11,13 @@ public interface PFNGLSIGNALVKFENCENVPROC {
 
     void apply(long vkFence);
     static MemorySegment allocate(PFNGLSIGNALVKFENCENVPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLSIGNALVKFENCENVPROC.class, fi, constants$742.PFNGLSIGNALVKFENCENVPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLSIGNALVKFENCENVPROC.class, fi, constants$1066.PFNGLSIGNALVKFENCENVPROC$FUNC, session);
     }
     static PFNGLSIGNALVKFENCENVPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (long _vkFence) -> {
             try {
-                constants$742.PFNGLSIGNALVKFENCENVPROC$MH.invokeExact((Addressable)symbol, _vkFence);
+                constants$1066.PFNGLSIGNALVKFENCENVPROC$MH.invokeExact((Addressable)symbol, _vkFence);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

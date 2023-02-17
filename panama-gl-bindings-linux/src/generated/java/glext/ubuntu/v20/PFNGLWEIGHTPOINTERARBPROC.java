@@ -11,13 +11,13 @@ public interface PFNGLWEIGHTPOINTERARBPROC {
 
     void apply(int size, int type, int stride, java.lang.foreign.MemoryAddress pointer);
     static MemorySegment allocate(PFNGLWEIGHTPOINTERARBPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLWEIGHTPOINTERARBPROC.class, fi, constants$380.PFNGLWEIGHTPOINTERARBPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLWEIGHTPOINTERARBPROC.class, fi, constants$523.PFNGLWEIGHTPOINTERARBPROC$FUNC, session);
     }
     static PFNGLWEIGHTPOINTERARBPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _size, int _type, int _stride, java.lang.foreign.MemoryAddress _pointer) -> {
             try {
-                constants$380.PFNGLWEIGHTPOINTERARBPROC$MH.invokeExact((Addressable)symbol, _size, _type, _stride, (java.lang.foreign.Addressable)_pointer);
+                constants$523.PFNGLWEIGHTPOINTERARBPROC$MH.invokeExact((Addressable)symbol, _size, _type, _stride, (java.lang.foreign.Addressable)_pointer);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

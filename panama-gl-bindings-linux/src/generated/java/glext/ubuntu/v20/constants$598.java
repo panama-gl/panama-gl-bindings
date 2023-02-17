@@ -9,27 +9,29 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$598 {
 
-    static final FunctionDescriptor PFNGLGENERATEMULTITEXMIPMAPEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT
-    );
-    static final MethodHandle PFNGLGENERATEMULTITEXMIPMAPEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$598.PFNGLGENERATEMULTITEXMIPMAPEXTPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLFRAMEBUFFERDRAWBUFFEREXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT
-    );
-    static final MethodHandle PFNGLFRAMEBUFFERDRAWBUFFEREXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$598.PFNGLFRAMEBUFFERDRAWBUFFEREXTPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLFRAMEBUFFERDRAWBUFFERSEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
+    static final FunctionDescriptor PFNGLMULTITEXCOORD4XVOESPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLFRAMEBUFFERDRAWBUFFERSEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$598.PFNGLFRAMEBUFFERDRAWBUFFERSEXTPROC$FUNC
+    static final MethodHandle PFNGLMULTITEXCOORD4XVOESPROC$MH = RuntimeHelper.downcallHandle(
+        constants$598.PFNGLMULTITEXCOORD4XVOESPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLNORMAL3XVOESPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle PFNGLNORMAL3XVOESPROC$MH = RuntimeHelper.downcallHandle(
+        constants$598.PFNGLNORMAL3XVOESPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLPASSTHROUGHXOESPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle PFNGLPASSTHROUGHXOESPROC$MH = RuntimeHelper.downcallHandle(
+        constants$598.PFNGLPASSTHROUGHXOESPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLPIXELMAPXPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
 }
 

@@ -11,13 +11,13 @@ public interface PFNGLFINISHASYNCSGIXPROC {
 
     int apply(java.lang.foreign.MemoryAddress markerp);
     static MemorySegment allocate(PFNGLFINISHASYNCSGIXPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLFINISHASYNCSGIXPROC.class, fi, constants$891.PFNGLFINISHASYNCSGIXPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLFINISHASYNCSGIXPROC.class, fi, constants$1289.PFNGLFINISHASYNCSGIXPROC$FUNC, session);
     }
     static PFNGLFINISHASYNCSGIXPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (java.lang.foreign.MemoryAddress _markerp) -> {
             try {
-                return (int)constants$891.PFNGLFINISHASYNCSGIXPROC$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)_markerp);
+                return (int)constants$1289.PFNGLFINISHASYNCSGIXPROC$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)_markerp);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

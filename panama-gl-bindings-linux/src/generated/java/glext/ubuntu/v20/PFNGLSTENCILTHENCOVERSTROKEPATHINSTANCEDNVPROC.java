@@ -11,13 +11,13 @@ public interface PFNGLSTENCILTHENCOVERSTROKEPATHINSTANCEDNVPROC {
 
     void apply(int numPaths, int pathNameType, java.lang.foreign.MemoryAddress paths, int pathBase, int reference, int mask, int coverMode, int transformType, java.lang.foreign.MemoryAddress transformValues);
     static MemorySegment allocate(PFNGLSTENCILTHENCOVERSTROKEPATHINSTANCEDNVPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLSTENCILTHENCOVERSTROKEPATHINSTANCEDNVPROC.class, fi, constants$803.PFNGLSTENCILTHENCOVERSTROKEPATHINSTANCEDNVPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLSTENCILTHENCOVERSTROKEPATHINSTANCEDNVPROC.class, fi, constants$1149.PFNGLSTENCILTHENCOVERSTROKEPATHINSTANCEDNVPROC$FUNC, session);
     }
     static PFNGLSTENCILTHENCOVERSTROKEPATHINSTANCEDNVPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _numPaths, int _pathNameType, java.lang.foreign.MemoryAddress _paths, int _pathBase, int _reference, int _mask, int _coverMode, int _transformType, java.lang.foreign.MemoryAddress _transformValues) -> {
             try {
-                constants$803.PFNGLSTENCILTHENCOVERSTROKEPATHINSTANCEDNVPROC$MH.invokeExact((Addressable)symbol, _numPaths, _pathNameType, (java.lang.foreign.Addressable)_paths, _pathBase, _reference, _mask, _coverMode, _transformType, (java.lang.foreign.Addressable)_transformValues);
+                constants$1150.PFNGLSTENCILTHENCOVERSTROKEPATHINSTANCEDNVPROC$MH.invokeExact((Addressable)symbol, _numPaths, _pathNameType, (java.lang.foreign.Addressable)_paths, _pathBase, _reference, _mask, _coverMode, _transformType, (java.lang.foreign.Addressable)_transformValues);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

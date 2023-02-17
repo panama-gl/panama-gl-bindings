@@ -11,13 +11,13 @@ public interface PFNGLGETQUERYOBJECTI64VEXTPROC {
 
     void apply(int id, int pname, java.lang.foreign.MemoryAddress params);
     static MemorySegment allocate(PFNGLGETQUERYOBJECTI64VEXTPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLGETQUERYOBJECTI64VEXTPROC.class, fi, constants$672.PFNGLGETQUERYOBJECTI64VEXTPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLGETQUERYOBJECTI64VEXTPROC.class, fi, constants$962.PFNGLGETQUERYOBJECTI64VEXTPROC$FUNC, session);
     }
     static PFNGLGETQUERYOBJECTI64VEXTPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _id, int _pname, java.lang.foreign.MemoryAddress _params) -> {
             try {
-                constants$672.PFNGLGETQUERYOBJECTI64VEXTPROC$MH.invokeExact((Addressable)symbol, _id, _pname, (java.lang.foreign.Addressable)_params);
+                constants$962.PFNGLGETQUERYOBJECTI64VEXTPROC$MH.invokeExact((Addressable)symbol, _id, _pname, (java.lang.foreign.Addressable)_params);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

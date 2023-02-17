@@ -9,27 +9,37 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$488 {
 
-    static final FunctionDescriptor PFNGLTEXBUMPPARAMETERFVATIPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glGetnMinmaxARB$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_CHAR$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLTEXBUMPPARAMETERFVATIPROC$MH = RuntimeHelper.downcallHandle(
-        constants$488.PFNGLTEXBUMPPARAMETERFVATIPROC$FUNC
+    static final MethodHandle glGetnMinmaxARB$MH = RuntimeHelper.downcallHandle(
+        "glGetnMinmaxARB",
+        constants$488.glGetnMinmaxARB$FUNC
     );
-    static final FunctionDescriptor PFNGLGETTEXBUMPPARAMETERIVATIPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLFRAMEBUFFERSAMPLELOCATIONSFVARBPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLGETTEXBUMPPARAMETERIVATIPROC$MH = RuntimeHelper.downcallHandle(
-        constants$488.PFNGLGETTEXBUMPPARAMETERIVATIPROC$FUNC
+    static final MethodHandle PFNGLFRAMEBUFFERSAMPLELOCATIONSFVARBPROC$MH = RuntimeHelper.downcallHandle(
+        constants$488.PFNGLFRAMEBUFFERSAMPLELOCATIONSFVARBPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLGETTEXBUMPPARAMETERFVATIPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLNAMEDFRAMEBUFFERSAMPLELOCATIONSFVARBPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLGETTEXBUMPPARAMETERFVATIPROC$MH = RuntimeHelper.downcallHandle(
-        constants$488.PFNGLGETTEXBUMPPARAMETERFVATIPROC$FUNC
+    static final MethodHandle PFNGLNAMEDFRAMEBUFFERSAMPLELOCATIONSFVARBPROC$MH = RuntimeHelper.downcallHandle(
+        constants$488.PFNGLNAMEDFRAMEBUFFERSAMPLELOCATIONSFVARBPROC$FUNC
     );
+    static final FunctionDescriptor PFNGLEVALUATEDEPTHVALUESARBPROC$FUNC = FunctionDescriptor.ofVoid();
 }
 
 

@@ -9,29 +9,39 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$199 {
 
-    static final FunctionDescriptor PFNGLMULTITEXCOORDP1UIVPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLRENDERBUFFERSTORAGEMULTISAMPLEPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle PFNGLMULTITEXCOORDP1UIVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$199.PFNGLMULTITEXCOORDP1UIVPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLMULTITEXCOORDP2UIPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLMULTITEXCOORDP2UIPROC$MH = RuntimeHelper.downcallHandle(
-        constants$199.PFNGLMULTITEXCOORDP2UIPROC$FUNC
+    static final MethodHandle PFNGLRENDERBUFFERSTORAGEMULTISAMPLEPROC$MH = RuntimeHelper.downcallHandle(
+        constants$199.PFNGLRENDERBUFFERSTORAGEMULTISAMPLEPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLMULTITEXCOORDP2UIVPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLFRAMEBUFFERTEXTURELAYERPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLMULTITEXCOORDP2UIVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$199.PFNGLMULTITEXCOORDP2UIVPROC$FUNC
+    static final MethodHandle PFNGLFRAMEBUFFERTEXTURELAYERPROC$MH = RuntimeHelper.downcallHandle(
+        constants$199.PFNGLFRAMEBUFFERTEXTURELAYERPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLMAPBUFFERRANGEPROC$FUNC = FunctionDescriptor.of(Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle PFNGLMAPBUFFERRANGEPROC$MH = RuntimeHelper.downcallHandle(
+        constants$199.PFNGLMAPBUFFERRANGEPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLFLUSHMAPPEDBUFFERRANGEPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT
     );
 }
 

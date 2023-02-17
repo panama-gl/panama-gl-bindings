@@ -9,26 +9,39 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$895 {
 
-    static final FunctionDescriptor PFNGLFRAGMENTLIGHTMODELFVSGIXPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLCHECKFRAMEBUFFERSTATUSEXTPROC$FUNC = FunctionDescriptor.of(Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle PFNGLCHECKFRAMEBUFFERSTATUSEXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$895.PFNGLCHECKFRAMEBUFFERSTATUSEXTPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLFRAMEBUFFERTEXTURE1DEXTPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle PFNGLFRAGMENTLIGHTMODELFVSGIXPROC$MH = RuntimeHelper.downcallHandle(
-        constants$895.PFNGLFRAGMENTLIGHTMODELFVSGIXPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLFRAGMENTLIGHTMODELISGIXPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLFRAGMENTLIGHTMODELISGIXPROC$MH = RuntimeHelper.downcallHandle(
-        constants$895.PFNGLFRAGMENTLIGHTMODELISGIXPROC$FUNC
+    static final MethodHandle PFNGLFRAMEBUFFERTEXTURE1DEXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$895.PFNGLFRAMEBUFFERTEXTURE1DEXTPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLFRAGMENTLIGHTMODELIVSGIXPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLFRAMEBUFFERTEXTURE2DEXTPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLFRAGMENTLIGHTMODELIVSGIXPROC$MH = RuntimeHelper.downcallHandle(
-        constants$895.PFNGLFRAGMENTLIGHTMODELIVSGIXPROC$FUNC
+    static final MethodHandle PFNGLFRAMEBUFFERTEXTURE2DEXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$895.PFNGLFRAMEBUFFERTEXTURE2DEXTPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLFRAMEBUFFERTEXTURE3DEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
 }
 

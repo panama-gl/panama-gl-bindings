@@ -9,32 +9,46 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$553 {
 
-    static final FunctionDescriptor PFNGLGETMULTITEXGENDVEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLGETACTIVEATTRIBARBPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle PFNGLGETACTIVEATTRIBARBPROC$MH = RuntimeHelper.downcallHandle(
+        constants$553.PFNGLGETACTIVEATTRIBARBPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLGETATTRIBLOCATIONARBPROC$FUNC = FunctionDescriptor.of(Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle PFNGLGETATTRIBLOCATIONARBPROC$MH = RuntimeHelper.downcallHandle(
+        constants$553.PFNGLGETATTRIBLOCATIONARBPROC$FUNC
+    );
+    static final FunctionDescriptor glBindAttribLocationARB$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLGETMULTITEXGENDVEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$553.PFNGLGETMULTITEXGENDVEXTPROC$FUNC
+    static final MethodHandle glBindAttribLocationARB$MH = RuntimeHelper.downcallHandle(
+        "glBindAttribLocationARB",
+        constants$553.glBindAttribLocationARB$FUNC
     );
-    static final FunctionDescriptor PFNGLGETMULTITEXGENFVEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glGetActiveAttribARB$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLGETMULTITEXGENFVEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$553.PFNGLGETMULTITEXGENFVEXTPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLGETMULTITEXGENIVEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle PFNGLGETMULTITEXGENIVEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$553.PFNGLGETMULTITEXGENIVEXTPROC$FUNC
+    static final MethodHandle glGetActiveAttribARB$MH = RuntimeHelper.downcallHandle(
+        "glGetActiveAttribARB",
+        constants$553.glGetActiveAttribARB$FUNC
     );
 }
 

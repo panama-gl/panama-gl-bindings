@@ -9,38 +9,71 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$350 {
 
-    static final FunctionDescriptor PFNGLGETNTEXIMAGEARBPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glMultiDrawArraysIndirect$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle glMultiDrawArraysIndirect$MH = RuntimeHelper.downcallHandle(
+        "glMultiDrawArraysIndirect",
+        constants$350.glMultiDrawArraysIndirect$FUNC
+    );
+    static final FunctionDescriptor glMultiDrawElementsIndirect$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle glMultiDrawElementsIndirect$MH = RuntimeHelper.downcallHandle(
+        "glMultiDrawElementsIndirect",
+        constants$350.glMultiDrawElementsIndirect$FUNC
+    );
+    static final FunctionDescriptor glGetProgramInterfaceiv$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLGETNTEXIMAGEARBPROC$MH = RuntimeHelper.downcallHandle(
-        constants$350.PFNGLGETNTEXIMAGEARBPROC$FUNC
+    static final MethodHandle glGetProgramInterfaceiv$MH = RuntimeHelper.downcallHandle(
+        "glGetProgramInterfaceiv",
+        constants$350.glGetProgramInterfaceiv$FUNC
     );
-    static final FunctionDescriptor PFNGLREADNPIXELSARBPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
+    static final FunctionDescriptor glGetProgramResourceIndex$FUNC = FunctionDescriptor.of(Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLREADNPIXELSARBPROC$MH = RuntimeHelper.downcallHandle(
-        constants$350.PFNGLREADNPIXELSARBPROC$FUNC
+    static final MethodHandle glGetProgramResourceIndex$MH = RuntimeHelper.downcallHandle(
+        "glGetProgramResourceIndex",
+        constants$350.glGetProgramResourceIndex$FUNC
     );
-    static final FunctionDescriptor PFNGLGETNCOMPRESSEDTEXIMAGEARBPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glGetProgramResourceName$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLGETNCOMPRESSEDTEXIMAGEARBPROC$MH = RuntimeHelper.downcallHandle(
-        constants$350.PFNGLGETNCOMPRESSEDTEXIMAGEARBPROC$FUNC
+    static final MethodHandle glGetProgramResourceName$MH = RuntimeHelper.downcallHandle(
+        "glGetProgramResourceName",
+        constants$350.glGetProgramResourceName$FUNC
+    );
+    static final FunctionDescriptor glGetProgramResourceiv$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glGetProgramResourceiv$MH = RuntimeHelper.downcallHandle(
+        "glGetProgramResourceiv",
+        constants$350.glGetProgramResourceiv$FUNC
     );
 }
 

@@ -11,13 +11,13 @@ public interface PFNGLCOLORPOINTERVINTELPROC {
 
     void apply(int size, int type, java.lang.foreign.MemoryAddress pointer);
     static MemorySegment allocate(PFNGLCOLORPOINTERVINTELPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLCOLORPOINTERVINTELPROC.class, fi, constants$707.PFNGLCOLORPOINTERVINTELPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLCOLORPOINTERVINTELPROC.class, fi, constants$1013.PFNGLCOLORPOINTERVINTELPROC$FUNC, session);
     }
     static PFNGLCOLORPOINTERVINTELPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _size, int _type, java.lang.foreign.MemoryAddress _pointer) -> {
             try {
-                constants$707.PFNGLCOLORPOINTERVINTELPROC$MH.invokeExact((Addressable)symbol, _size, _type, (java.lang.foreign.Addressable)_pointer);
+                constants$1013.PFNGLCOLORPOINTERVINTELPROC$MH.invokeExact((Addressable)symbol, _size, _type, (java.lang.foreign.Addressable)_pointer);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

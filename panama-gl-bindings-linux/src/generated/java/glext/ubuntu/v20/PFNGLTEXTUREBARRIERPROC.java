@@ -11,13 +11,13 @@ public interface PFNGLTEXTUREBARRIERPROC {
 
     void apply();
     static MemorySegment allocate(PFNGLTEXTUREBARRIERPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLTEXTUREBARRIERPROC.class, fi, constants$310.PFNGLTEXTUREBARRIERPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLTEXTUREBARRIERPROC.class, fi, constants$399.PFNGLTEXTUREBARRIERPROC$FUNC, session);
     }
     static PFNGLTEXTUREBARRIERPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return () -> {
             try {
-                constants$310.PFNGLTEXTUREBARRIERPROC$MH.invokeExact((Addressable)symbol);
+                constants$399.PFNGLTEXTUREBARRIERPROC$MH.invokeExact((Addressable)symbol);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

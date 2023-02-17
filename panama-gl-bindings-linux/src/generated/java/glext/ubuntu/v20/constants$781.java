@@ -9,28 +9,60 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$781 {
 
-    static final FunctionDescriptor PFNGLTEXTUREATTACHMEMORYNVPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLGETMULTITEXLEVELPARAMETERIVEXTPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_LONG_LONG$LAYOUT
-    );
-    static final MethodHandle PFNGLTEXTUREATTACHMEMORYNVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$781.PFNGLTEXTUREATTACHMEMORYNVPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLNAMEDBUFFERATTACHMEMORYNVPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_LONG_LONG$LAYOUT
+        Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLNAMEDBUFFERATTACHMEMORYNVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$781.PFNGLNAMEDBUFFERATTACHMEMORYNVPROC$FUNC
+    static final MethodHandle PFNGLGETMULTITEXLEVELPARAMETERIVEXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$781.PFNGLGETMULTITEXLEVELPARAMETERIVEXTPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLDRAWMESHTASKSNVPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLMULTITEXIMAGE3DEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle PFNGLMULTITEXIMAGE3DEXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$781.PFNGLMULTITEXIMAGE3DEXTPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLMULTITEXSUBIMAGE3DEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle PFNGLMULTITEXSUBIMAGE3DEXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$781.PFNGLMULTITEXSUBIMAGE3DEXTPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLCOPYMULTITEXSUBIMAGE3DEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT
-    );
-    static final MethodHandle PFNGLDRAWMESHTASKSNVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$781.PFNGLDRAWMESHTASKSNVPROC$FUNC
     );
 }
 

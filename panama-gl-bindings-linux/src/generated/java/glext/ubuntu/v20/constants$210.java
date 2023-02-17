@@ -9,32 +9,60 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$210 {
 
-    static final FunctionDescriptor PFNGLUNIFORMMATRIX2X3DVPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glGetTexParameterIiv$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_CHAR$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLUNIFORMMATRIX2X3DVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$210.PFNGLUNIFORMMATRIX2X3DVPROC$FUNC
+    static final MethodHandle glGetTexParameterIiv$MH = RuntimeHelper.downcallHandle(
+        "glGetTexParameterIiv",
+        constants$210.glGetTexParameterIiv$FUNC
     );
-    static final FunctionDescriptor PFNGLUNIFORMMATRIX2X4DVPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glGetTexParameterIuiv$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_CHAR$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLUNIFORMMATRIX2X4DVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$210.PFNGLUNIFORMMATRIX2X4DVPROC$FUNC
+    static final MethodHandle glGetTexParameterIuiv$MH = RuntimeHelper.downcallHandle(
+        "glGetTexParameterIuiv",
+        constants$210.glGetTexParameterIuiv$FUNC
     );
-    static final FunctionDescriptor PFNGLUNIFORMMATRIX3X2DVPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glClearBufferiv$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_CHAR$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLUNIFORMMATRIX3X2DVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$210.PFNGLUNIFORMMATRIX3X2DVPROC$FUNC
+    static final MethodHandle glClearBufferiv$MH = RuntimeHelper.downcallHandle(
+        "glClearBufferiv",
+        constants$210.glClearBufferiv$FUNC
+    );
+    static final FunctionDescriptor glClearBufferuiv$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glClearBufferuiv$MH = RuntimeHelper.downcallHandle(
+        "glClearBufferuiv",
+        constants$210.glClearBufferuiv$FUNC
+    );
+    static final FunctionDescriptor glClearBufferfv$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glClearBufferfv$MH = RuntimeHelper.downcallHandle(
+        "glClearBufferfv",
+        constants$210.glClearBufferfv$FUNC
+    );
+    static final FunctionDescriptor glClearBufferfi$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle glClearBufferfi$MH = RuntimeHelper.downcallHandle(
+        "glClearBufferfi",
+        constants$210.glClearBufferfi$FUNC
     );
 }
 

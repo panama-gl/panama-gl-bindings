@@ -9,27 +9,41 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$672 {
 
-    static final FunctionDescriptor PFNGLPRIORITIZETEXTURESEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle PFNGLPRIORITIZETEXTURESEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$672.PFNGLPRIORITIZETEXTURESEXTPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLTEXTURENORMALEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glFinishFenceAPPLE$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLTEXTURENORMALEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$672.PFNGLTEXTURENORMALEXTPROC$FUNC
+    static final MethodHandle glFinishFenceAPPLE$MH = RuntimeHelper.downcallHandle(
+        "glFinishFenceAPPLE",
+        constants$672.glFinishFenceAPPLE$FUNC
     );
-    static final FunctionDescriptor PFNGLGETQUERYOBJECTI64VEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glTestObjectAPPLE$FUNC = FunctionDescriptor.of(Constants$root.C_CHAR$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle glTestObjectAPPLE$MH = RuntimeHelper.downcallHandle(
+        "glTestObjectAPPLE",
+        constants$672.glTestObjectAPPLE$FUNC
+    );
+    static final FunctionDescriptor glFinishObjectAPPLE$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle glFinishObjectAPPLE$MH = RuntimeHelper.downcallHandle(
+        "glFinishObjectAPPLE",
+        constants$672.glFinishObjectAPPLE$FUNC
+    );
+    static final FunctionDescriptor PFNGLBUFFERPARAMETERIAPPLEPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
+        Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLGETQUERYOBJECTI64VEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$672.PFNGLGETQUERYOBJECTI64VEXTPROC$FUNC
+    static final MethodHandle PFNGLBUFFERPARAMETERIAPPLEPROC$MH = RuntimeHelper.downcallHandle(
+        constants$672.PFNGLBUFFERPARAMETERIAPPLEPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLFLUSHMAPPEDBUFFERRANGEAPPLEPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT
     );
 }
 

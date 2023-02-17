@@ -11,13 +11,13 @@ public interface PFNGLPIXELTRANSFORMPARAMETERFEXTPROC {
 
     void apply(int target, int pname, float param);
     static MemorySegment allocate(PFNGLPIXELTRANSFORMPARAMETERFEXTPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLPIXELTRANSFORMPARAMETERFEXTPROC.class, fi, constants$651.PFNGLPIXELTRANSFORMPARAMETERFEXTPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLPIXELTRANSFORMPARAMETERFEXTPROC.class, fi, constants$929.PFNGLPIXELTRANSFORMPARAMETERFEXTPROC$FUNC, session);
     }
     static PFNGLPIXELTRANSFORMPARAMETERFEXTPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _target, int _pname, float _param) -> {
             try {
-                constants$651.PFNGLPIXELTRANSFORMPARAMETERFEXTPROC$MH.invokeExact((Addressable)symbol, _target, _pname, _param);
+                constants$930.PFNGLPIXELTRANSFORMPARAMETERFEXTPROC$MH.invokeExact((Addressable)symbol, _target, _pname, _param);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

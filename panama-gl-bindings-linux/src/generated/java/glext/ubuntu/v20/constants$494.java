@@ -9,25 +9,36 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$494 {
 
-    static final FunctionDescriptor PFNGLUNMAPOBJECTBUFFERATIPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT
-    );
-    static final MethodHandle PFNGLUNMAPOBJECTBUFFERATIPROC$MH = RuntimeHelper.downcallHandle(
-        constants$494.PFNGLUNMAPOBJECTBUFFERATIPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLPNTRIANGLESIATIPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT
-    );
-    static final MethodHandle PFNGLPNTRIANGLESIATIPROC$MH = RuntimeHelper.downcallHandle(
-        constants$494.PFNGLPNTRIANGLESIATIPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLPNTRIANGLESFATIPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLUNIFORM1FARBPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_FLOAT$LAYOUT
     );
-    static final MethodHandle PFNGLPNTRIANGLESFATIPROC$MH = RuntimeHelper.downcallHandle(
-        constants$494.PFNGLPNTRIANGLESFATIPROC$FUNC
+    static final MethodHandle PFNGLUNIFORM1FARBPROC$MH = RuntimeHelper.downcallHandle(
+        constants$494.PFNGLUNIFORM1FARBPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLUNIFORM2FARBPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT
+    );
+    static final MethodHandle PFNGLUNIFORM2FARBPROC$MH = RuntimeHelper.downcallHandle(
+        constants$494.PFNGLUNIFORM2FARBPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLUNIFORM3FARBPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT
+    );
+    static final MethodHandle PFNGLUNIFORM3FARBPROC$MH = RuntimeHelper.downcallHandle(
+        constants$494.PFNGLUNIFORM3FARBPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLUNIFORM4FARBPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT
     );
 }
 

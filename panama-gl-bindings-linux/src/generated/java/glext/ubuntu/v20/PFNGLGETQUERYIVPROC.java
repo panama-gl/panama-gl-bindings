@@ -11,13 +11,13 @@ public interface PFNGLGETQUERYIVPROC {
 
     void apply(int target, int pname, java.lang.foreign.MemoryAddress params);
     static MemorySegment allocate(PFNGLGETQUERYIVPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLGETQUERYIVPROC.class, fi, constants$108.PFNGLGETQUERYIVPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLGETQUERYIVPROC.class, fi, constants$116.PFNGLGETQUERYIVPROC$FUNC, session);
     }
     static PFNGLGETQUERYIVPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _target, int _pname, java.lang.foreign.MemoryAddress _params) -> {
             try {
-                constants$108.PFNGLGETQUERYIVPROC$MH.invokeExact((Addressable)symbol, _target, _pname, (java.lang.foreign.Addressable)_params);
+                constants$116.PFNGLGETQUERYIVPROC$MH.invokeExact((Addressable)symbol, _target, _pname, (java.lang.foreign.Addressable)_params);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

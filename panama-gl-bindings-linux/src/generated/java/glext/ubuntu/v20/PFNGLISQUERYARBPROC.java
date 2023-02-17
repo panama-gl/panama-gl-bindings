@@ -11,13 +11,13 @@ public interface PFNGLISQUERYARBPROC {
 
     byte apply(int id);
     static MemorySegment allocate(PFNGLISQUERYARBPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLISQUERYARBPROC.class, fi, constants$346.PFNGLISQUERYARBPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLISQUERYARBPROC.class, fi, constants$473.PFNGLISQUERYARBPROC$FUNC, session);
     }
     static PFNGLISQUERYARBPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _id) -> {
             try {
-                return (byte)constants$346.PFNGLISQUERYARBPROC$MH.invokeExact((Addressable)symbol, _id);
+                return (byte)constants$473.PFNGLISQUERYARBPROC$MH.invokeExact((Addressable)symbol, _id);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

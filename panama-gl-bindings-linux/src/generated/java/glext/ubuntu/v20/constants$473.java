@@ -9,38 +9,25 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$473 {
 
-    static final FunctionDescriptor PFNGLSETMULTISAMPLEFVAMDPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
+    static final FunctionDescriptor PFNGLDELETEQUERIESARBPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLSETMULTISAMPLEFVAMDPROC$MH = RuntimeHelper.downcallHandle(
-        constants$473.PFNGLSETMULTISAMPLEFVAMDPROC$FUNC
+    static final MethodHandle PFNGLDELETEQUERIESARBPROC$MH = RuntimeHelper.downcallHandle(
+        constants$473.PFNGLDELETEQUERIESARBPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLTEXSTORAGESPARSEAMDPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
+    static final FunctionDescriptor PFNGLISQUERYARBPROC$FUNC = FunctionDescriptor.of(Constants$root.C_CHAR$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle PFNGLISQUERYARBPROC$MH = RuntimeHelper.downcallHandle(
+        constants$473.PFNGLISQUERYARBPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLBEGINQUERYARBPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLTEXSTORAGESPARSEAMDPROC$MH = RuntimeHelper.downcallHandle(
-        constants$473.PFNGLTEXSTORAGESPARSEAMDPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLTEXTURESTORAGESPARSEAMDPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT
-    );
-    static final MethodHandle PFNGLTEXTURESTORAGESPARSEAMDPROC$MH = RuntimeHelper.downcallHandle(
-        constants$473.PFNGLTEXTURESTORAGESPARSEAMDPROC$FUNC
+    static final MethodHandle PFNGLBEGINQUERYARBPROC$MH = RuntimeHelper.downcallHandle(
+        constants$473.PFNGLBEGINQUERYARBPROC$FUNC
     );
 }
 

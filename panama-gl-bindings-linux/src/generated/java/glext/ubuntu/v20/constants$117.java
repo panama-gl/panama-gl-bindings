@@ -9,24 +9,31 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$117 {
 
-    static final FunctionDescriptor PFNGLDELETESHADERPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT
+    static final FunctionDescriptor PFNGLGETQUERYOBJECTUIVPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLDELETESHADERPROC$MH = RuntimeHelper.downcallHandle(
-        constants$117.PFNGLDELETESHADERPROC$FUNC
+    static final MethodHandle PFNGLGETQUERYOBJECTUIVPROC$MH = RuntimeHelper.downcallHandle(
+        constants$117.PFNGLGETQUERYOBJECTUIVPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLDETACHSHADERPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLBINDBUFFERPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLDETACHSHADERPROC$MH = RuntimeHelper.downcallHandle(
-        constants$117.PFNGLDETACHSHADERPROC$FUNC
+    static final MethodHandle PFNGLBINDBUFFERPROC$MH = RuntimeHelper.downcallHandle(
+        constants$117.PFNGLBINDBUFFERPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLDISABLEVERTEXATTRIBARRAYPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT
+    static final FunctionDescriptor PFNGLDELETEBUFFERSPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLDISABLEVERTEXATTRIBARRAYPROC$MH = RuntimeHelper.downcallHandle(
-        constants$117.PFNGLDISABLEVERTEXATTRIBARRAYPROC$FUNC
+    static final MethodHandle PFNGLDELETEBUFFERSPROC$MH = RuntimeHelper.downcallHandle(
+        constants$117.PFNGLDELETEBUFFERSPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLGENBUFFERSPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
 }
 

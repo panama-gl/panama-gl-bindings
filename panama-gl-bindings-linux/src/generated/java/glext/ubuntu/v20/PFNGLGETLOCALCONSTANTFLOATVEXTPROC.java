@@ -11,13 +11,13 @@ public interface PFNGLGETLOCALCONSTANTFLOATVEXTPROC {
 
     void apply(int id, int value, java.lang.foreign.MemoryAddress data);
     static MemorySegment allocate(PFNGLGETLOCALCONSTANTFLOATVEXTPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLGETLOCALCONSTANTFLOATVEXTPROC.class, fi, constants$695.PFNGLGETLOCALCONSTANTFLOATVEXTPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLGETLOCALCONSTANTFLOATVEXTPROC.class, fi, constants$990.PFNGLGETLOCALCONSTANTFLOATVEXTPROC$FUNC, session);
     }
     static PFNGLGETLOCALCONSTANTFLOATVEXTPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _id, int _value, java.lang.foreign.MemoryAddress _data) -> {
             try {
-                constants$695.PFNGLGETLOCALCONSTANTFLOATVEXTPROC$MH.invokeExact((Addressable)symbol, _id, _value, (java.lang.foreign.Addressable)_data);
+                constants$990.PFNGLGETLOCALCONSTANTFLOATVEXTPROC$MH.invokeExact((Addressable)symbol, _id, _value, (java.lang.foreign.Addressable)_data);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

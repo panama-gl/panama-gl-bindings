@@ -9,34 +9,30 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$580 {
 
-    static final FunctionDescriptor PFNGLPROGRAMUNIFORMMATRIX3X4FVEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_CHAR$LAYOUT,
+    static final FunctionDescriptor PFNGLLINEWIDTHXOESPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle PFNGLLINEWIDTHXOESPROC$MH = RuntimeHelper.downcallHandle(
+        constants$580.PFNGLLINEWIDTHXOESPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLLOADMATRIXXOESPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLPROGRAMUNIFORMMATRIX3X4FVEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$580.PFNGLPROGRAMUNIFORMMATRIX3X4FVEXTPROC$FUNC
+    static final MethodHandle PFNGLLOADMATRIXXOESPROC$MH = RuntimeHelper.downcallHandle(
+        constants$580.PFNGLLOADMATRIXXOESPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLPROGRAMUNIFORMMATRIX4X3FVEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_CHAR$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle PFNGLPROGRAMUNIFORMMATRIX4X3FVEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$580.PFNGLPROGRAMUNIFORMMATRIX4X3FVEXTPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLTEXTUREBUFFEREXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
+    static final FunctionDescriptor PFNGLMATERIALXOESPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLTEXTUREBUFFEREXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$580.PFNGLTEXTUREBUFFEREXTPROC$FUNC
+    static final MethodHandle PFNGLMATERIALXOESPROC$MH = RuntimeHelper.downcallHandle(
+        constants$580.PFNGLMATERIALXOESPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLMATERIALXVOESPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
 }
 

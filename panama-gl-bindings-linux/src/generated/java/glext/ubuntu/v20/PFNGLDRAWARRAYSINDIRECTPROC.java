@@ -11,13 +11,13 @@ public interface PFNGLDRAWARRAYSINDIRECTPROC {
 
     void apply(int mode, java.lang.foreign.MemoryAddress indirect);
     static MemorySegment allocate(PFNGLDRAWARRAYSINDIRECTPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLDRAWARRAYSINDIRECTPROC.class, fi, constants$205.PFNGLDRAWARRAYSINDIRECTPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLDRAWARRAYSINDIRECTPROC.class, fi, constants$261.PFNGLDRAWARRAYSINDIRECTPROC$FUNC, session);
     }
     static PFNGLDRAWARRAYSINDIRECTPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _mode, java.lang.foreign.MemoryAddress _indirect) -> {
             try {
-                constants$205.PFNGLDRAWARRAYSINDIRECTPROC$MH.invokeExact((Addressable)symbol, _mode, (java.lang.foreign.Addressable)_indirect);
+                constants$261.PFNGLDRAWARRAYSINDIRECTPROC$MH.invokeExact((Addressable)symbol, _mode, (java.lang.foreign.Addressable)_indirect);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

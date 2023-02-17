@@ -11,13 +11,13 @@ public interface PFNGLSTENCILFUNCSEPARATEPROC {
 
     void apply(int face, int func, int ref, int mask);
     static MemorySegment allocate(PFNGLSTENCILFUNCSEPARATEPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLSTENCILFUNCSEPARATEPROC.class, fi, constants$114.PFNGLSTENCILFUNCSEPARATEPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLSTENCILFUNCSEPARATEPROC.class, fi, constants$125.PFNGLSTENCILFUNCSEPARATEPROC$FUNC, session);
     }
     static PFNGLSTENCILFUNCSEPARATEPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _face, int _func, int _ref, int _mask) -> {
             try {
-                constants$114.PFNGLSTENCILFUNCSEPARATEPROC$MH.invokeExact((Addressable)symbol, _face, _func, _ref, _mask);
+                constants$125.PFNGLSTENCILFUNCSEPARATEPROC$MH.invokeExact((Addressable)symbol, _face, _func, _ref, _mask);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

@@ -11,13 +11,13 @@ public interface PFNGLPATHCOVERDEPTHFUNCNVPROC {
 
     void apply(int func);
     static MemorySegment allocate(PFNGLPATHCOVERDEPTHFUNCNVPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLPATHCOVERDEPTHFUNCNVPROC.class, fi, constants$794.PFNGLPATHCOVERDEPTHFUNCNVPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLPATHCOVERDEPTHFUNCNVPROC.class, fi, constants$1141.PFNGLPATHCOVERDEPTHFUNCNVPROC$FUNC, session);
     }
     static PFNGLPATHCOVERDEPTHFUNCNVPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _func) -> {
             try {
-                constants$794.PFNGLPATHCOVERDEPTHFUNCNVPROC$MH.invokeExact((Addressable)symbol, _func);
+                constants$1141.PFNGLPATHCOVERDEPTHFUNCNVPROC$MH.invokeExact((Addressable)symbol, _func);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

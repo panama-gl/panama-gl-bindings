@@ -9,35 +9,32 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$239 {
 
-    static final FunctionDescriptor PFNGLPROGRAMUNIFORMMATRIX4X3FVPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLVERTEXATTRIBP3UIPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_CHAR$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle PFNGLVERTEXATTRIBP3UIPROC$MH = RuntimeHelper.downcallHandle(
+        constants$239.PFNGLVERTEXATTRIBP3UIPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLVERTEXATTRIBP3UIVPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_CHAR$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLPROGRAMUNIFORMMATRIX4X3FVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$239.PFNGLPROGRAMUNIFORMMATRIX4X3FVPROC$FUNC
+    static final MethodHandle PFNGLVERTEXATTRIBP3UIVPROC$MH = RuntimeHelper.downcallHandle(
+        constants$239.PFNGLVERTEXATTRIBP3UIVPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLPROGRAMUNIFORMMATRIX2X3DVPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
+    static final FunctionDescriptor PFNGLVERTEXATTRIBP4UIPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_CHAR$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
+        Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLPROGRAMUNIFORMMATRIX2X3DVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$239.PFNGLPROGRAMUNIFORMMATRIX2X3DVPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLPROGRAMUNIFORMMATRIX3X2DVPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_CHAR$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle PFNGLPROGRAMUNIFORMMATRIX3X2DVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$239.PFNGLPROGRAMUNIFORMMATRIX3X2DVPROC$FUNC
+    static final MethodHandle PFNGLVERTEXATTRIBP4UIPROC$MH = RuntimeHelper.downcallHandle(
+        constants$239.PFNGLVERTEXATTRIBP4UIPROC$FUNC
     );
 }
 

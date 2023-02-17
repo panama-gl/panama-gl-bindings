@@ -11,13 +11,13 @@ public interface PFNGLCOPYTEXSUBIMAGE1DEXTPROC {
 
     void apply(int target, int level, int xoffset, int x, int y, int width);
     static MemorySegment allocate(PFNGLCOPYTEXSUBIMAGE1DEXTPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLCOPYTEXSUBIMAGE1DEXTPROC.class, fi, constants$532.PFNGLCOPYTEXSUBIMAGE1DEXTPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLCOPYTEXSUBIMAGE1DEXTPROC.class, fi, constants$751.PFNGLCOPYTEXSUBIMAGE1DEXTPROC$FUNC, session);
     }
     static PFNGLCOPYTEXSUBIMAGE1DEXTPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _target, int _level, int _xoffset, int _x, int _y, int _width) -> {
             try {
-                constants$532.PFNGLCOPYTEXSUBIMAGE1DEXTPROC$MH.invokeExact((Addressable)symbol, _target, _level, _xoffset, _x, _y, _width);
+                constants$751.PFNGLCOPYTEXSUBIMAGE1DEXTPROC$MH.invokeExact((Addressable)symbol, _target, _level, _xoffset, _x, _y, _width);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

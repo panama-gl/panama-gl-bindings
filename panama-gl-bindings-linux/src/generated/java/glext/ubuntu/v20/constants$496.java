@@ -9,29 +9,37 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$496 {
 
-    static final FunctionDescriptor PFNGLISOBJECTBUFFERATIPROC$FUNC = FunctionDescriptor.of(Constants$root.C_CHAR$LAYOUT,
+    static final FunctionDescriptor PFNGLUNIFORM3IARBPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLISOBJECTBUFFERATIPROC$MH = RuntimeHelper.downcallHandle(
-        constants$496.PFNGLISOBJECTBUFFERATIPROC$FUNC
+    static final MethodHandle PFNGLUNIFORM3IARBPROC$MH = RuntimeHelper.downcallHandle(
+        constants$496.PFNGLUNIFORM3IARBPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLUPDATEOBJECTBUFFERATIPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLUNIFORM4IARBPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLUPDATEOBJECTBUFFERATIPROC$MH = RuntimeHelper.downcallHandle(
-        constants$496.PFNGLUPDATEOBJECTBUFFERATIPROC$FUNC
+    static final MethodHandle PFNGLUNIFORM4IARBPROC$MH = RuntimeHelper.downcallHandle(
+        constants$496.PFNGLUNIFORM4IARBPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLGETOBJECTBUFFERFVATIPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLUNIFORM1FVARBPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLGETOBJECTBUFFERFVATIPROC$MH = RuntimeHelper.downcallHandle(
-        constants$496.PFNGLGETOBJECTBUFFERFVATIPROC$FUNC
+    static final MethodHandle PFNGLUNIFORM1FVARBPROC$MH = RuntimeHelper.downcallHandle(
+        constants$496.PFNGLUNIFORM1FVARBPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLUNIFORM2FVARBPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
 }
 

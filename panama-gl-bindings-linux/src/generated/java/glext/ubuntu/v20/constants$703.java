@@ -9,32 +9,33 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$703 {
 
-    static final FunctionDescriptor PFNGLFOGCOORDPOINTERLISTIBMPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLVERTEXATTRIBARRAYOBJECTATIPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_CHAR$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLFOGCOORDPOINTERLISTIBMPROC$MH = RuntimeHelper.downcallHandle(
-        constants$703.PFNGLFOGCOORDPOINTERLISTIBMPROC$FUNC
+    static final MethodHandle PFNGLVERTEXATTRIBARRAYOBJECTATIPROC$MH = RuntimeHelper.downcallHandle(
+        constants$703.PFNGLVERTEXATTRIBARRAYOBJECTATIPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLINDEXPOINTERLISTIBMPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLGETVERTEXATTRIBARRAYOBJECTFVATIPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_INT$LAYOUT
+        Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLINDEXPOINTERLISTIBMPROC$MH = RuntimeHelper.downcallHandle(
-        constants$703.PFNGLINDEXPOINTERLISTIBMPROC$FUNC
+    static final MethodHandle PFNGLGETVERTEXATTRIBARRAYOBJECTFVATIPROC$MH = RuntimeHelper.downcallHandle(
+        constants$703.PFNGLGETVERTEXATTRIBARRAYOBJECTFVATIPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLNORMALPOINTERLISTIBMPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLGETVERTEXATTRIBARRAYOBJECTIVATIPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_INT$LAYOUT
+        Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLNORMALPOINTERLISTIBMPROC$MH = RuntimeHelper.downcallHandle(
-        constants$703.PFNGLNORMALPOINTERLISTIBMPROC$FUNC
+    static final MethodHandle PFNGLGETVERTEXATTRIBARRAYOBJECTIVATIPROC$MH = RuntimeHelper.downcallHandle(
+        constants$703.PFNGLGETVERTEXATTRIBARRAYOBJECTIVATIPROC$FUNC
     );
 }
 

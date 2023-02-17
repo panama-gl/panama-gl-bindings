@@ -11,13 +11,13 @@ public interface PFNGLPIXELTEXGENPARAMETERISGISPROC {
 
     void apply(int pname, int param);
     static MemorySegment allocate(PFNGLPIXELTEXGENPARAMETERISGISPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLPIXELTEXGENPARAMETERISGISPROC.class, fi, constants$885.PFNGLPIXELTEXGENPARAMETERISGISPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLPIXELTEXGENPARAMETERISGISPROC.class, fi, constants$1281.PFNGLPIXELTEXGENPARAMETERISGISPROC$FUNC, session);
     }
     static PFNGLPIXELTEXGENPARAMETERISGISPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _pname, int _param) -> {
             try {
-                constants$885.PFNGLPIXELTEXGENPARAMETERISGISPROC$MH.invokeExact((Addressable)symbol, _pname, _param);
+                constants$1282.PFNGLPIXELTEXGENPARAMETERISGISPROC$MH.invokeExact((Addressable)symbol, _pname, _param);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

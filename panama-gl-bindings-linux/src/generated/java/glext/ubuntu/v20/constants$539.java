@@ -9,35 +9,33 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$539 {
 
-    static final FunctionDescriptor PFNGLMATRIXTRANSLATEFEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLVERTEXATTRIB4NUIVARBPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT
+        Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLMATRIXTRANSLATEFEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$539.PFNGLMATRIXTRANSLATEFEXTPROC$FUNC
+    static final MethodHandle PFNGLVERTEXATTRIB4NUIVARBPROC$MH = RuntimeHelper.downcallHandle(
+        constants$539.PFNGLVERTEXATTRIB4NUIVARBPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLMATRIXTRANSLATEDEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLVERTEXATTRIB4NUSVARBPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle PFNGLVERTEXATTRIB4NUSVARBPROC$MH = RuntimeHelper.downcallHandle(
+        constants$539.PFNGLVERTEXATTRIB4NUSVARBPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLVERTEXATTRIB4BVARBPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle PFNGLVERTEXATTRIB4BVARBPROC$MH = RuntimeHelper.downcallHandle(
+        constants$539.PFNGLVERTEXATTRIB4BVARBPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLVERTEXATTRIB4DARBPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_DOUBLE$LAYOUT,
         Constants$root.C_DOUBLE$LAYOUT,
         Constants$root.C_DOUBLE$LAYOUT,
         Constants$root.C_DOUBLE$LAYOUT
-    );
-    static final MethodHandle PFNGLMATRIXTRANSLATEDEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$539.PFNGLMATRIXTRANSLATEDEXTPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLMATRIXFRUSTUMEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_DOUBLE$LAYOUT,
-        Constants$root.C_DOUBLE$LAYOUT,
-        Constants$root.C_DOUBLE$LAYOUT,
-        Constants$root.C_DOUBLE$LAYOUT,
-        Constants$root.C_DOUBLE$LAYOUT,
-        Constants$root.C_DOUBLE$LAYOUT
-    );
-    static final MethodHandle PFNGLMATRIXFRUSTUMEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$539.PFNGLMATRIXFRUSTUMEXTPROC$FUNC
     );
 }
 

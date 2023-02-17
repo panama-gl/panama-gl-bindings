@@ -11,13 +11,13 @@ public interface PFNGLPOLYGONOFFSETXOESPROC {
 
     void apply(int factor, int units);
     static MemorySegment allocate(PFNGLPOLYGONOFFSETXOESPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLPOLYGONOFFSETXOESPROC.class, fi, constants$422.PFNGLPOLYGONOFFSETXOESPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLPOLYGONOFFSETXOESPROC.class, fi, constants$583.PFNGLPOLYGONOFFSETXOESPROC$FUNC, session);
     }
     static PFNGLPOLYGONOFFSETXOESPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _factor, int _units) -> {
             try {
-                constants$422.PFNGLPOLYGONOFFSETXOESPROC$MH.invokeExact((Addressable)symbol, _factor, _units);
+                constants$583.PFNGLPOLYGONOFFSETXOESPROC$MH.invokeExact((Addressable)symbol, _factor, _units);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

@@ -11,13 +11,13 @@ public interface PFNGLUNIFORM4DVPROC {
 
     void apply(int location, int count, java.lang.foreign.MemoryAddress value);
     static MemorySegment allocate(PFNGLUNIFORM4DVPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLUNIFORM4DVPROC.class, fi, constants$208.PFNGLUNIFORM4DVPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLUNIFORM4DVPROC.class, fi, constants$264.PFNGLUNIFORM4DVPROC$FUNC, session);
     }
     static PFNGLUNIFORM4DVPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _location, int _count, java.lang.foreign.MemoryAddress _value) -> {
             try {
-                constants$208.PFNGLUNIFORM4DVPROC$MH.invokeExact((Addressable)symbol, _location, _count, (java.lang.foreign.Addressable)_value);
+                constants$264.PFNGLUNIFORM4DVPROC$MH.invokeExact((Addressable)symbol, _location, _count, (java.lang.foreign.Addressable)_value);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

@@ -11,13 +11,13 @@ public interface PFNGLDEPTHRANGEINDEXEDPROC {
 
     void apply(int index, double n, double f);
     static MemorySegment allocate(PFNGLDEPTHRANGEINDEXEDPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLDEPTHRANGEINDEXEDPROC.class, fi, constants$247.PFNGLDEPTHRANGEINDEXEDPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLDEPTHRANGEINDEXEDPROC.class, fi, constants$311.PFNGLDEPTHRANGEINDEXEDPROC$FUNC, session);
     }
     static PFNGLDEPTHRANGEINDEXEDPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _index, double _n, double _f) -> {
             try {
-                constants$247.PFNGLDEPTHRANGEINDEXEDPROC$MH.invokeExact((Addressable)symbol, _index, _n, _f);
+                constants$311.PFNGLDEPTHRANGEINDEXEDPROC$MH.invokeExact((Addressable)symbol, _index, _n, _f);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

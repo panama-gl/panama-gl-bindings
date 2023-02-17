@@ -9,31 +9,52 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$648 {
 
-    static final FunctionDescriptor PFNGLMULTIDRAWARRAYSEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLPROGRAMUNIFORM4UI64VNVPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_INT$LAYOUT
-    );
-    static final MethodHandle PFNGLMULTIDRAWARRAYSEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$648.PFNGLMULTIDRAWARRAYSEXTPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLMULTIDRAWELEMENTSEXTPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_INT$LAYOUT
+        Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLMULTIDRAWELEMENTSEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$648.PFNGLMULTIDRAWELEMENTSEXTPROC$FUNC
+    static final MethodHandle PFNGLPROGRAMUNIFORM4UI64VNVPROC$MH = RuntimeHelper.downcallHandle(
+        constants$648.PFNGLPROGRAMUNIFORM4UI64VNVPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLSAMPLEMASKEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_FLOAT$LAYOUT,
-        Constants$root.C_CHAR$LAYOUT
+    static final FunctionDescriptor glUniform1i64NV$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT
     );
-    static final MethodHandle PFNGLSAMPLEMASKEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$648.PFNGLSAMPLEMASKEXTPROC$FUNC
+    static final MethodHandle glUniform1i64NV$MH = RuntimeHelper.downcallHandle(
+        "glUniform1i64NV",
+        constants$648.glUniform1i64NV$FUNC
+    );
+    static final FunctionDescriptor glUniform2i64NV$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT
+    );
+    static final MethodHandle glUniform2i64NV$MH = RuntimeHelper.downcallHandle(
+        "glUniform2i64NV",
+        constants$648.glUniform2i64NV$FUNC
+    );
+    static final FunctionDescriptor glUniform3i64NV$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT
+    );
+    static final MethodHandle glUniform3i64NV$MH = RuntimeHelper.downcallHandle(
+        "glUniform3i64NV",
+        constants$648.glUniform3i64NV$FUNC
+    );
+    static final FunctionDescriptor glUniform4i64NV$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT
+    );
+    static final MethodHandle glUniform4i64NV$MH = RuntimeHelper.downcallHandle(
+        "glUniform4i64NV",
+        constants$648.glUniform4i64NV$FUNC
     );
 }
 

@@ -11,13 +11,13 @@ public interface PFNGLGETPROGRAMRESOURCEINDEXPROC {
 
     int apply(int program, int programInterface, java.lang.foreign.MemoryAddress name);
     static MemorySegment allocate(PFNGLGETPROGRAMRESOURCEINDEXPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLGETPROGRAMRESOURCEINDEXPROC.class, fi, constants$258.PFNGLGETPROGRAMRESOURCEINDEXPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLGETPROGRAMRESOURCEINDEXPROC.class, fi, constants$339.PFNGLGETPROGRAMRESOURCEINDEXPROC$FUNC, session);
     }
     static PFNGLGETPROGRAMRESOURCEINDEXPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _program, int _programInterface, java.lang.foreign.MemoryAddress _name) -> {
             try {
-                return (int)constants$258.PFNGLGETPROGRAMRESOURCEINDEXPROC$MH.invokeExact((Addressable)symbol, _program, _programInterface, (java.lang.foreign.Addressable)_name);
+                return (int)constants$339.PFNGLGETPROGRAMRESOURCEINDEXPROC$MH.invokeExact((Addressable)symbol, _program, _programInterface, (java.lang.foreign.Addressable)_name);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

@@ -11,13 +11,13 @@ public interface PFNGLNORMALSTREAM3SATIPROC {
 
     void apply(int stream, short nx, short ny, short nz);
     static MemorySegment allocate(PFNGLNORMALSTREAM3SATIPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLNORMALSTREAM3SATIPROC.class, fi, constants$512.PFNGLNORMALSTREAM3SATIPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLNORMALSTREAM3SATIPROC.class, fi, constants$715.PFNGLNORMALSTREAM3SATIPROC$FUNC, session);
     }
     static PFNGLNORMALSTREAM3SATIPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _stream, short _nx, short _ny, short _nz) -> {
             try {
-                constants$512.PFNGLNORMALSTREAM3SATIPROC$MH.invokeExact((Addressable)symbol, _stream, _nx, _ny, _nz);
+                constants$716.PFNGLNORMALSTREAM3SATIPROC$MH.invokeExact((Addressable)symbol, _stream, _nx, _ny, _nz);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

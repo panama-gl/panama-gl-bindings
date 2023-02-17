@@ -9,27 +9,23 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$888 {
 
-    static final FunctionDescriptor PFNGLPOINTPARAMETERFVSGISPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
+    static final FunctionDescriptor PFNGLFOGCOORDFEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_FLOAT$LAYOUT
+    );
+    static final MethodHandle PFNGLFOGCOORDFEXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$888.PFNGLFOGCOORDFEXTPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLFOGCOORDFVEXTPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLPOINTPARAMETERFVSGISPROC$MH = RuntimeHelper.downcallHandle(
-        constants$888.PFNGLPOINTPARAMETERFVSGISPROC$FUNC
+    static final MethodHandle PFNGLFOGCOORDFVEXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$888.PFNGLFOGCOORDFVEXTPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLSHARPENTEXFUNCSGISPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
+    static final FunctionDescriptor PFNGLFOGCOORDDEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_DOUBLE$LAYOUT
     );
-    static final MethodHandle PFNGLSHARPENTEXFUNCSGISPROC$MH = RuntimeHelper.downcallHandle(
-        constants$888.PFNGLSHARPENTEXFUNCSGISPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLGETSHARPENTEXFUNCSGISPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle PFNGLGETSHARPENTEXFUNCSGISPROC$MH = RuntimeHelper.downcallHandle(
-        constants$888.PFNGLGETSHARPENTEXFUNCSGISPROC$FUNC
+    static final MethodHandle PFNGLFOGCOORDDEXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$888.PFNGLFOGCOORDDEXTPROC$FUNC
     );
 }
 

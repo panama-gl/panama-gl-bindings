@@ -9,26 +9,35 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$912 {
 
-    static final FunctionDescriptor PFNGLGLOBALALPHAFACTORUSSUNPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_SHORT$LAYOUT
+    static final FunctionDescriptor PFNGLINDEXFUNCEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT
     );
-    static final MethodHandle PFNGLGLOBALALPHAFACTORUSSUNPROC$MH = RuntimeHelper.downcallHandle(
-        constants$912.PFNGLGLOBALALPHAFACTORUSSUNPROC$FUNC
+    static final MethodHandle PFNGLINDEXFUNCEXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$912.PFNGLINDEXFUNCEXTPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLGLOBALALPHAFACTORUISUNPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glIndexFuncEXT$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT
+    );
+    static final MethodHandle glIndexFuncEXT$MH = RuntimeHelper.downcallHandle(
+        "glIndexFuncEXT",
+        constants$912.glIndexFuncEXT$FUNC
+    );
+    static final FunctionDescriptor PFNGLINDEXMATERIALEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLGLOBALALPHAFACTORUISUNPROC$MH = RuntimeHelper.downcallHandle(
-        constants$912.PFNGLGLOBALALPHAFACTORUISUNPROC$FUNC
+    static final MethodHandle PFNGLINDEXMATERIALEXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$912.PFNGLINDEXMATERIALEXTPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLDRAWMESHARRAYSSUNPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
+    static final FunctionDescriptor glIndexMaterialEXT$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLDRAWMESHARRAYSSUNPROC$MH = RuntimeHelper.downcallHandle(
-        constants$912.PFNGLDRAWMESHARRAYSSUNPROC$FUNC
+    static final MethodHandle glIndexMaterialEXT$MH = RuntimeHelper.downcallHandle(
+        "glIndexMaterialEXT",
+        constants$912.glIndexMaterialEXT$FUNC
     );
 }
 

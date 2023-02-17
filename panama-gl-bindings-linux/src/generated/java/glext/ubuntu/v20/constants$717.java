@@ -9,26 +9,34 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$717 {
 
-    static final FunctionDescriptor PFNGLWINDOWPOS3SVMESAPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLNORMALSTREAM3IVATIPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLWINDOWPOS3SVMESAPROC$MH = RuntimeHelper.downcallHandle(
-        constants$717.PFNGLWINDOWPOS3SVMESAPROC$FUNC
+    static final MethodHandle PFNGLNORMALSTREAM3IVATIPROC$MH = RuntimeHelper.downcallHandle(
+        constants$717.PFNGLNORMALSTREAM3IVATIPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLWINDOWPOS4DMESAPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_DOUBLE$LAYOUT,
+    static final FunctionDescriptor PFNGLNORMALSTREAM3FATIPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT
+    );
+    static final MethodHandle PFNGLNORMALSTREAM3FATIPROC$MH = RuntimeHelper.downcallHandle(
+        constants$717.PFNGLNORMALSTREAM3FATIPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLNORMALSTREAM3FVATIPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle PFNGLNORMALSTREAM3FVATIPROC$MH = RuntimeHelper.downcallHandle(
+        constants$717.PFNGLNORMALSTREAM3FVATIPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLNORMALSTREAM3DATIPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_DOUBLE$LAYOUT,
         Constants$root.C_DOUBLE$LAYOUT,
         Constants$root.C_DOUBLE$LAYOUT
-    );
-    static final MethodHandle PFNGLWINDOWPOS4DMESAPROC$MH = RuntimeHelper.downcallHandle(
-        constants$717.PFNGLWINDOWPOS4DMESAPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLWINDOWPOS4DVMESAPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle PFNGLWINDOWPOS4DVMESAPROC$MH = RuntimeHelper.downcallHandle(
-        constants$717.PFNGLWINDOWPOS4DVMESAPROC$FUNC
     );
 }
 

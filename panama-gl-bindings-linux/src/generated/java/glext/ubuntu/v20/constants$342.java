@@ -9,32 +9,37 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$342 {
 
-    static final FunctionDescriptor PFNGLPROGRAMUNIFORM2UI64VARBPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLTEXTUREVIEWPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLPROGRAMUNIFORM2UI64VARBPROC$MH = RuntimeHelper.downcallHandle(
-        constants$342.PFNGLPROGRAMUNIFORM2UI64VARBPROC$FUNC
+    static final MethodHandle PFNGLTEXTUREVIEWPROC$MH = RuntimeHelper.downcallHandle(
+        constants$342.PFNGLTEXTUREVIEWPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLPROGRAMUNIFORM3UI64VARBPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLBINDVERTEXBUFFERPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
+        Constants$root.C_LONG_LONG$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLPROGRAMUNIFORM3UI64VARBPROC$MH = RuntimeHelper.downcallHandle(
-        constants$342.PFNGLPROGRAMUNIFORM3UI64VARBPROC$FUNC
+    static final MethodHandle PFNGLBINDVERTEXBUFFERPROC$MH = RuntimeHelper.downcallHandle(
+        constants$342.PFNGLBINDVERTEXBUFFERPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLPROGRAMUNIFORM4UI64VARBPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLVERTEXATTRIBFORMATPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
+        Constants$root.C_CHAR$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLPROGRAMUNIFORM4UI64VARBPROC$MH = RuntimeHelper.downcallHandle(
-        constants$342.PFNGLPROGRAMUNIFORM4UI64VARBPROC$FUNC
+    static final MethodHandle PFNGLVERTEXATTRIBFORMATPROC$MH = RuntimeHelper.downcallHandle(
+        constants$342.PFNGLVERTEXATTRIBFORMATPROC$FUNC
     );
 }
 

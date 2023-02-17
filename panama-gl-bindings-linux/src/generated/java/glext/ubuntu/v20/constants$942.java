@@ -9,49 +9,53 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$942 {
 
-    static final FunctionDescriptor glutInitDisplayMode$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT
-    );
-    static final MethodHandle glutInitDisplayMode$MH = RuntimeHelper.downcallHandle(
-        "glutInitDisplayMode",
-        constants$942.glutInitDisplayMode$FUNC
-    );
-    static final FunctionDescriptor glutInitDisplayString$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glSecondaryColor3fvEXT$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle glutInitDisplayString$MH = RuntimeHelper.downcallHandle(
-        "glutInitDisplayString",
-        constants$942.glutInitDisplayString$FUNC
+    static final MethodHandle glSecondaryColor3fvEXT$MH = RuntimeHelper.downcallHandle(
+        "glSecondaryColor3fvEXT",
+        constants$942.glSecondaryColor3fvEXT$FUNC
     );
-    static final FunctionDescriptor glutMainLoop$FUNC = FunctionDescriptor.ofVoid();
-    static final MethodHandle glutMainLoop$MH = RuntimeHelper.downcallHandle(
-        "glutMainLoop",
-        constants$942.glutMainLoop$FUNC
+    static final FunctionDescriptor glSecondaryColor3iEXT$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
-    static final FunctionDescriptor glutCreateWindow$FUNC = FunctionDescriptor.of(Constants$root.C_INT$LAYOUT,
+    static final MethodHandle glSecondaryColor3iEXT$MH = RuntimeHelper.downcallHandle(
+        "glSecondaryColor3iEXT",
+        constants$942.glSecondaryColor3iEXT$FUNC
+    );
+    static final FunctionDescriptor glSecondaryColor3ivEXT$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle glutCreateWindow$MH = RuntimeHelper.downcallHandle(
-        "glutCreateWindow",
-        constants$942.glutCreateWindow$FUNC
+    static final MethodHandle glSecondaryColor3ivEXT$MH = RuntimeHelper.downcallHandle(
+        "glSecondaryColor3ivEXT",
+        constants$942.glSecondaryColor3ivEXT$FUNC
     );
-    static final FunctionDescriptor glutCreateSubWindow$FUNC = FunctionDescriptor.of(Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT
+    static final FunctionDescriptor glSecondaryColor3sEXT$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_SHORT$LAYOUT,
+        Constants$root.C_SHORT$LAYOUT,
+        Constants$root.C_SHORT$LAYOUT
     );
-    static final MethodHandle glutCreateSubWindow$MH = RuntimeHelper.downcallHandle(
-        "glutCreateSubWindow",
-        constants$942.glutCreateSubWindow$FUNC
+    static final MethodHandle glSecondaryColor3sEXT$MH = RuntimeHelper.downcallHandle(
+        "glSecondaryColor3sEXT",
+        constants$942.glSecondaryColor3sEXT$FUNC
     );
-    static final FunctionDescriptor glutDestroyWindow$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT
+    static final FunctionDescriptor glSecondaryColor3svEXT$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle glutDestroyWindow$MH = RuntimeHelper.downcallHandle(
-        "glutDestroyWindow",
-        constants$942.glutDestroyWindow$FUNC
+    static final MethodHandle glSecondaryColor3svEXT$MH = RuntimeHelper.downcallHandle(
+        "glSecondaryColor3svEXT",
+        constants$942.glSecondaryColor3svEXT$FUNC
+    );
+    static final FunctionDescriptor glSecondaryColor3ubEXT$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_CHAR$LAYOUT,
+        Constants$root.C_CHAR$LAYOUT,
+        Constants$root.C_CHAR$LAYOUT
+    );
+    static final MethodHandle glSecondaryColor3ubEXT$MH = RuntimeHelper.downcallHandle(
+        "glSecondaryColor3ubEXT",
+        constants$942.glSecondaryColor3ubEXT$FUNC
     );
 }
 

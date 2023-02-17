@@ -11,13 +11,13 @@ public interface PFNGLCLEARDEPTHFOESPROC {
 
     void apply(float depth);
     static MemorySegment allocate(PFNGLCLEARDEPTHFOESPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLCLEARDEPTHFOESPROC.class, fi, constants$448.PFNGLCLEARDEPTHFOESPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLCLEARDEPTHFOESPROC.class, fi, constants$626.PFNGLCLEARDEPTHFOESPROC$FUNC, session);
     }
     static PFNGLCLEARDEPTHFOESPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (float _depth) -> {
             try {
-                constants$448.PFNGLCLEARDEPTHFOESPROC$MH.invokeExact((Addressable)symbol, _depth);
+                constants$626.PFNGLCLEARDEPTHFOESPROC$MH.invokeExact((Addressable)symbol, _depth);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

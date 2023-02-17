@@ -11,13 +11,13 @@ public interface PFNGLISSEMAPHOREEXTPROC {
 
     byte apply(int semaphore);
     static MemorySegment allocate(PFNGLISSEMAPHOREEXTPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLISSEMAPHOREEXTPROC.class, fi, constants$661.PFNGLISSEMAPHOREEXTPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLISSEMAPHOREEXTPROC.class, fi, constants$944.PFNGLISSEMAPHOREEXTPROC$FUNC, session);
     }
     static PFNGLISSEMAPHOREEXTPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _semaphore) -> {
             try {
-                return (byte)constants$661.PFNGLISSEMAPHOREEXTPROC$MH.invokeExact((Addressable)symbol, _semaphore);
+                return (byte)constants$944.PFNGLISSEMAPHOREEXTPROC$MH.invokeExact((Addressable)symbol, _semaphore);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

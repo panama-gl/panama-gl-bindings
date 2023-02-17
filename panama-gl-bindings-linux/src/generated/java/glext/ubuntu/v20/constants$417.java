@@ -9,28 +9,67 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$417 {
 
-    static final FunctionDescriptor PFNGLGETFIXEDVOESPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glGetnCompressedTexImage$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle PFNGLGETFIXEDVOESPROC$MH = RuntimeHelper.downcallHandle(
-        constants$417.PFNGLGETFIXEDVOESPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLGETTEXENVXVOESPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLGETTEXENVXVOESPROC$MH = RuntimeHelper.downcallHandle(
-        constants$417.PFNGLGETTEXENVXVOESPROC$FUNC
+    static final MethodHandle glGetnCompressedTexImage$MH = RuntimeHelper.downcallHandle(
+        "glGetnCompressedTexImage",
+        constants$417.glGetnCompressedTexImage$FUNC
     );
-    static final FunctionDescriptor PFNGLGETTEXPARAMETERXVOESPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glGetnTexImage$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLGETTEXPARAMETERXVOESPROC$MH = RuntimeHelper.downcallHandle(
-        constants$417.PFNGLGETTEXPARAMETERXVOESPROC$FUNC
+    static final MethodHandle glGetnTexImage$MH = RuntimeHelper.downcallHandle(
+        "glGetnTexImage",
+        constants$417.glGetnTexImage$FUNC
+    );
+    static final FunctionDescriptor glGetnUniformdv$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glGetnUniformdv$MH = RuntimeHelper.downcallHandle(
+        "glGetnUniformdv",
+        constants$417.glGetnUniformdv$FUNC
+    );
+    static final FunctionDescriptor glGetnUniformfv$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glGetnUniformfv$MH = RuntimeHelper.downcallHandle(
+        "glGetnUniformfv",
+        constants$417.glGetnUniformfv$FUNC
+    );
+    static final FunctionDescriptor glGetnUniformiv$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glGetnUniformiv$MH = RuntimeHelper.downcallHandle(
+        "glGetnUniformiv",
+        constants$417.glGetnUniformiv$FUNC
+    );
+    static final FunctionDescriptor glGetnUniformuiv$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glGetnUniformuiv$MH = RuntimeHelper.downcallHandle(
+        "glGetnUniformuiv",
+        constants$417.glGetnUniformuiv$FUNC
     );
 }
 

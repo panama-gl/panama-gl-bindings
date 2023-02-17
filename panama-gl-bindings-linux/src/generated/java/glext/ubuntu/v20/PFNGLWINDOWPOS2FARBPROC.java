@@ -11,13 +11,13 @@ public interface PFNGLWINDOWPOS2FARBPROC {
 
     void apply(float x, float y);
     static MemorySegment allocate(PFNGLWINDOWPOS2FARBPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLWINDOWPOS2FARBPROC.class, fi, constants$401.PFNGLWINDOWPOS2FARBPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLWINDOWPOS2FARBPROC.class, fi, constants$554.PFNGLWINDOWPOS2FARBPROC$FUNC, session);
     }
     static PFNGLWINDOWPOS2FARBPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (float _x, float _y) -> {
             try {
-                constants$401.PFNGLWINDOWPOS2FARBPROC$MH.invokeExact((Addressable)symbol, _x, _y);
+                constants$555.PFNGLWINDOWPOS2FARBPROC$MH.invokeExact((Addressable)symbol, _x, _y);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

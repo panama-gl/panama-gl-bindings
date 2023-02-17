@@ -9,27 +9,35 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$439 {
 
-    static final FunctionDescriptor PFNGLPIXELTRANSFERXOESPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLDELETEPROGRAMSARBPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT
-    );
-    static final MethodHandle PFNGLPIXELTRANSFERXOESPROC$MH = RuntimeHelper.downcallHandle(
-        constants$439.PFNGLPIXELTRANSFERXOESPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLPIXELZOOMXOESPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT
-    );
-    static final MethodHandle PFNGLPIXELZOOMXOESPROC$MH = RuntimeHelper.downcallHandle(
-        constants$439.PFNGLPIXELZOOMXOESPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLPRIORITIZETEXTURESXOESPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLPRIORITIZETEXTURESXOESPROC$MH = RuntimeHelper.downcallHandle(
-        constants$439.PFNGLPRIORITIZETEXTURESXOESPROC$FUNC
+    static final MethodHandle PFNGLDELETEPROGRAMSARBPROC$MH = RuntimeHelper.downcallHandle(
+        constants$439.PFNGLDELETEPROGRAMSARBPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLGENPROGRAMSARBPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle PFNGLGENPROGRAMSARBPROC$MH = RuntimeHelper.downcallHandle(
+        constants$439.PFNGLGENPROGRAMSARBPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLPROGRAMENVPARAMETER4DARBPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_DOUBLE$LAYOUT,
+        Constants$root.C_DOUBLE$LAYOUT,
+        Constants$root.C_DOUBLE$LAYOUT,
+        Constants$root.C_DOUBLE$LAYOUT
+    );
+    static final MethodHandle PFNGLPROGRAMENVPARAMETER4DARBPROC$MH = RuntimeHelper.downcallHandle(
+        constants$439.PFNGLPROGRAMENVPARAMETER4DARBPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLPROGRAMENVPARAMETER4DVARBPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
 }
 

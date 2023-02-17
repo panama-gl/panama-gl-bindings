@@ -9,24 +9,34 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$477 {
 
-    static final FunctionDescriptor PFNGLDELETEFENCESAPPLEPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glMaxShaderCompilerThreadsARB$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle glMaxShaderCompilerThreadsARB$MH = RuntimeHelper.downcallHandle(
+        "glMaxShaderCompilerThreadsARB",
+        constants$477.glMaxShaderCompilerThreadsARB$FUNC
+    );
+    static final FunctionDescriptor PFNGLPOINTPARAMETERFARBPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT
+    );
+    static final MethodHandle PFNGLPOINTPARAMETERFARBPROC$MH = RuntimeHelper.downcallHandle(
+        constants$477.PFNGLPOINTPARAMETERFARBPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLPOINTPARAMETERFVARBPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLDELETEFENCESAPPLEPROC$MH = RuntimeHelper.downcallHandle(
-        constants$477.PFNGLDELETEFENCESAPPLEPROC$FUNC
+    static final MethodHandle PFNGLPOINTPARAMETERFVARBPROC$MH = RuntimeHelper.downcallHandle(
+        constants$477.PFNGLPOINTPARAMETERFVARBPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLSETFENCEAPPLEPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT
+    static final FunctionDescriptor glPointParameterfARB$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT
     );
-    static final MethodHandle PFNGLSETFENCEAPPLEPROC$MH = RuntimeHelper.downcallHandle(
-        constants$477.PFNGLSETFENCEAPPLEPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLISFENCEAPPLEPROC$FUNC = FunctionDescriptor.of(Constants$root.C_CHAR$LAYOUT,
-        Constants$root.C_INT$LAYOUT
-    );
-    static final MethodHandle PFNGLISFENCEAPPLEPROC$MH = RuntimeHelper.downcallHandle(
-        constants$477.PFNGLISFENCEAPPLEPROC$FUNC
+    static final MethodHandle glPointParameterfARB$MH = RuntimeHelper.downcallHandle(
+        "glPointParameterfARB",
+        constants$477.glPointParameterfARB$FUNC
     );
 }
 

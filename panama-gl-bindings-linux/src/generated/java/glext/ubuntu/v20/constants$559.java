@@ -9,41 +9,42 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$559 {
 
-    static final FunctionDescriptor PFNGLGETMULTITEXLEVELPARAMETERFVEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
+    static final FunctionDescriptor PFNGLWINDOWPOS3SARBPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_SHORT$LAYOUT,
+        Constants$root.C_SHORT$LAYOUT,
+        Constants$root.C_SHORT$LAYOUT
+    );
+    static final MethodHandle PFNGLWINDOWPOS3SARBPROC$MH = RuntimeHelper.downcallHandle(
+        constants$559.PFNGLWINDOWPOS3SARBPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLWINDOWPOS3SVARBPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLGETMULTITEXLEVELPARAMETERFVEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$559.PFNGLGETMULTITEXLEVELPARAMETERFVEXTPROC$FUNC
+    static final MethodHandle PFNGLWINDOWPOS3SVARBPROC$MH = RuntimeHelper.downcallHandle(
+        constants$559.PFNGLWINDOWPOS3SVARBPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLGETMULTITEXLEVELPARAMETERIVEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
+    static final FunctionDescriptor glWindowPos2dARB$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_DOUBLE$LAYOUT,
+        Constants$root.C_DOUBLE$LAYOUT
+    );
+    static final MethodHandle glWindowPos2dARB$MH = RuntimeHelper.downcallHandle(
+        "glWindowPos2dARB",
+        constants$559.glWindowPos2dARB$FUNC
+    );
+    static final FunctionDescriptor glWindowPos2dvARB$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLGETMULTITEXLEVELPARAMETERIVEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$559.PFNGLGETMULTITEXLEVELPARAMETERIVEXTPROC$FUNC
+    static final MethodHandle glWindowPos2dvARB$MH = RuntimeHelper.downcallHandle(
+        "glWindowPos2dvARB",
+        constants$559.glWindowPos2dvARB$FUNC
     );
-    static final FunctionDescriptor PFNGLMULTITEXIMAGE3DEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
+    static final FunctionDescriptor glWindowPos2fARB$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT
     );
-    static final MethodHandle PFNGLMULTITEXIMAGE3DEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$559.PFNGLMULTITEXIMAGE3DEXTPROC$FUNC
+    static final MethodHandle glWindowPos2fARB$MH = RuntimeHelper.downcallHandle(
+        "glWindowPos2fARB",
+        constants$559.glWindowPos2fARB$FUNC
     );
 }
 

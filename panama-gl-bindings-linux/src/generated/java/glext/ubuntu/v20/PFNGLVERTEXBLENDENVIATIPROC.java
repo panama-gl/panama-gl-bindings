@@ -11,13 +11,13 @@ public interface PFNGLVERTEXBLENDENVIATIPROC {
 
     void apply(int pname, int param);
     static MemorySegment allocate(PFNGLVERTEXBLENDENVIATIPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLVERTEXBLENDENVIATIPROC.class, fi, constants$515.PFNGLVERTEXBLENDENVIATIPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLVERTEXBLENDENVIATIPROC.class, fi, constants$718.PFNGLVERTEXBLENDENVIATIPROC$FUNC, session);
     }
     static PFNGLVERTEXBLENDENVIATIPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _pname, int _param) -> {
             try {
-                constants$515.PFNGLVERTEXBLENDENVIATIPROC$MH.invokeExact((Addressable)symbol, _pname, _param);
+                constants$719.PFNGLVERTEXBLENDENVIATIPROC$MH.invokeExact((Addressable)symbol, _pname, _param);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

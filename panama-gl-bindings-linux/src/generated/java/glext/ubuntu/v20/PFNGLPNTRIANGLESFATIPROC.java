@@ -11,13 +11,13 @@ public interface PFNGLPNTRIANGLESFATIPROC {
 
     void apply(int pname, float param);
     static MemorySegment allocate(PFNGLPNTRIANGLESFATIPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLPNTRIANGLESFATIPROC.class, fi, constants$494.PFNGLPNTRIANGLESFATIPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLPNTRIANGLESFATIPROC.class, fi, constants$695.PFNGLPNTRIANGLESFATIPROC$FUNC, session);
     }
     static PFNGLPNTRIANGLESFATIPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _pname, float _param) -> {
             try {
-                constants$494.PFNGLPNTRIANGLESFATIPROC$MH.invokeExact((Addressable)symbol, _pname, _param);
+                constants$695.PFNGLPNTRIANGLESFATIPROC$MH.invokeExact((Addressable)symbol, _pname, _param);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

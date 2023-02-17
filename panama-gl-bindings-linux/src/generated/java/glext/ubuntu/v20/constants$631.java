@@ -9,31 +9,60 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$631 {
 
-    static final FunctionDescriptor PFNGLPROGRAMPARAMETERIEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLGETDEBUGMESSAGELOGAMDPROC$FUNC = FunctionDescriptor.of(Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLPROGRAMPARAMETERIEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$631.PFNGLPROGRAMPARAMETERIEXTPROC$FUNC
+    static final MethodHandle PFNGLGETDEBUGMESSAGELOGAMDPROC$MH = RuntimeHelper.downcallHandle(
+        constants$631.PFNGLGETDEBUGMESSAGELOGAMDPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLPROGRAMENVPARAMETERS4FVEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glDebugMessageEnableAMD$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_CHAR$LAYOUT
+    );
+    static final MethodHandle glDebugMessageEnableAMD$MH = RuntimeHelper.downcallHandle(
+        "glDebugMessageEnableAMD",
+        constants$631.glDebugMessageEnableAMD$FUNC
+    );
+    static final FunctionDescriptor glDebugMessageInsertAMD$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLPROGRAMENVPARAMETERS4FVEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$631.PFNGLPROGRAMENVPARAMETERS4FVEXTPROC$FUNC
+    static final MethodHandle glDebugMessageInsertAMD$MH = RuntimeHelper.downcallHandle(
+        "glDebugMessageInsertAMD",
+        constants$631.glDebugMessageInsertAMD$FUNC
     );
-    static final FunctionDescriptor PFNGLPROGRAMLOCALPARAMETERS4FVEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
+    static final FunctionDescriptor glDebugMessageCallbackAMD$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_POINTER$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLPROGRAMLOCALPARAMETERS4FVEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$631.PFNGLPROGRAMLOCALPARAMETERS4FVEXTPROC$FUNC
+    static final MethodHandle glDebugMessageCallbackAMD$MH = RuntimeHelper.downcallHandle(
+        "glDebugMessageCallbackAMD",
+        constants$631.glDebugMessageCallbackAMD$FUNC
+    );
+    static final FunctionDescriptor glGetDebugMessageLogAMD$FUNC = FunctionDescriptor.of(Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glGetDebugMessageLogAMD$MH = RuntimeHelper.downcallHandle(
+        "glGetDebugMessageLogAMD",
+        constants$631.glGetDebugMessageLogAMD$FUNC
     );
 }
 

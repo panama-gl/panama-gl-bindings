@@ -11,13 +11,13 @@ public interface PFNGLBLITFRAMEBUFFEREXTPROC {
 
     void apply(int srcX0, int srcY0, int srcX1, int srcY1, int dstX0, int dstY0, int dstX1, int dstY1, int mask, int filter);
     static MemorySegment allocate(PFNGLBLITFRAMEBUFFEREXTPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLBLITFRAMEBUFFEREXTPROC.class, fi, constants$624.PFNGLBLITFRAMEBUFFEREXTPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLBLITFRAMEBUFFEREXTPROC.class, fi, constants$890.PFNGLBLITFRAMEBUFFEREXTPROC$FUNC, session);
     }
     static PFNGLBLITFRAMEBUFFEREXTPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _srcX0, int _srcY0, int _srcX1, int _srcY1, int _dstX0, int _dstY0, int _dstX1, int _dstY1, int _mask, int _filter) -> {
             try {
-                constants$624.PFNGLBLITFRAMEBUFFEREXTPROC$MH.invokeExact((Addressable)symbol, _srcX0, _srcY0, _srcX1, _srcY1, _dstX0, _dstY0, _dstX1, _dstY1, _mask, _filter);
+                constants$890.PFNGLBLITFRAMEBUFFEREXTPROC$MH.invokeExact((Addressable)symbol, _srcX0, _srcY0, _srcX1, _srcY1, _dstX0, _dstY0, _dstX1, _dstY1, _mask, _filter);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

@@ -9,35 +9,61 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$723 {
 
-    static final FunctionDescriptor PFNGLLGPUCOPYIMAGESUBDATANVXPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glVertexStream3fvATI$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glVertexStream3fvATI$MH = RuntimeHelper.downcallHandle(
+        "glVertexStream3fvATI",
+        constants$723.glVertexStream3fvATI$FUNC
+    );
+    static final FunctionDescriptor glVertexStream3dATI$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
+        Constants$root.C_DOUBLE$LAYOUT,
+        Constants$root.C_DOUBLE$LAYOUT,
+        Constants$root.C_DOUBLE$LAYOUT
+    );
+    static final MethodHandle glVertexStream3dATI$MH = RuntimeHelper.downcallHandle(
+        "glVertexStream3dATI",
+        constants$723.glVertexStream3dATI$FUNC
+    );
+    static final FunctionDescriptor glVertexStream3dvATI$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glVertexStream3dvATI$MH = RuntimeHelper.downcallHandle(
+        "glVertexStream3dvATI",
+        constants$723.glVertexStream3dvATI$FUNC
+    );
+    static final FunctionDescriptor glVertexStream4sATI$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
+        Constants$root.C_SHORT$LAYOUT,
+        Constants$root.C_SHORT$LAYOUT,
+        Constants$root.C_SHORT$LAYOUT,
+        Constants$root.C_SHORT$LAYOUT
+    );
+    static final MethodHandle glVertexStream4sATI$MH = RuntimeHelper.downcallHandle(
+        "glVertexStream4sATI",
+        constants$723.glVertexStream4sATI$FUNC
+    );
+    static final FunctionDescriptor glVertexStream4svATI$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glVertexStream4svATI$MH = RuntimeHelper.downcallHandle(
+        "glVertexStream4svATI",
+        constants$723.glVertexStream4svATI$FUNC
+    );
+    static final FunctionDescriptor glVertexStream4iATI$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLLGPUCOPYIMAGESUBDATANVXPROC$MH = RuntimeHelper.downcallHandle(
-        constants$723.PFNGLLGPUCOPYIMAGESUBDATANVXPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLLGPUINTERLOCKNVXPROC$FUNC = FunctionDescriptor.ofVoid();
-    static final MethodHandle PFNGLLGPUINTERLOCKNVXPROC$MH = RuntimeHelper.downcallHandle(
-        constants$723.PFNGLLGPUINTERLOCKNVXPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLCREATEPROGRESSFENCENVXPROC$FUNC = FunctionDescriptor.of(Constants$root.C_INT$LAYOUT);
-    static final MethodHandle PFNGLCREATEPROGRESSFENCENVXPROC$MH = RuntimeHelper.downcallHandle(
-        constants$723.PFNGLCREATEPROGRESSFENCENVXPROC$FUNC
+    static final MethodHandle glVertexStream4iATI$MH = RuntimeHelper.downcallHandle(
+        "glVertexStream4iATI",
+        constants$723.glVertexStream4iATI$FUNC
     );
 }
 

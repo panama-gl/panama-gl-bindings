@@ -9,25 +9,42 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$733 {
 
-    static final FunctionDescriptor PFNGLSTATECAPTURENVPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLUNLOCKARRAYSEXTPROC$FUNC = FunctionDescriptor.ofVoid();
+    static final MethodHandle PFNGLUNLOCKARRAYSEXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$733.PFNGLUNLOCKARRAYSEXTPROC$FUNC
+    );
+    static final FunctionDescriptor glLockArraysEXT$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLSTATECAPTURENVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$733.PFNGLSTATECAPTURENVPROC$FUNC
+    static final MethodHandle glLockArraysEXT$MH = RuntimeHelper.downcallHandle(
+        "glLockArraysEXT",
+        constants$733.glLockArraysEXT$FUNC
     );
-    static final FunctionDescriptor PFNGLGETCOMMANDHEADERNVPROC$FUNC = FunctionDescriptor.of(Constants$root.C_INT$LAYOUT,
+    static final FunctionDescriptor glUnlockArraysEXT$FUNC = FunctionDescriptor.ofVoid();
+    static final MethodHandle glUnlockArraysEXT$MH = RuntimeHelper.downcallHandle(
+        "glUnlockArraysEXT",
+        constants$733.glUnlockArraysEXT$FUNC
+    );
+    static final FunctionDescriptor PFNGLCONVOLUTIONFILTER1DEXTPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLGETCOMMANDHEADERNVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$733.PFNGLGETCOMMANDHEADERNVPROC$FUNC
+    static final MethodHandle PFNGLCONVOLUTIONFILTER1DEXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$733.PFNGLCONVOLUTIONFILTER1DEXTPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLGETSTAGEINDEXNVPROC$FUNC = FunctionDescriptor.of(Constants$root.C_SHORT$LAYOUT,
-        Constants$root.C_INT$LAYOUT
-    );
-    static final MethodHandle PFNGLGETSTAGEINDEXNVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$733.PFNGLGETSTAGEINDEXNVPROC$FUNC
+    static final FunctionDescriptor PFNGLCONVOLUTIONFILTER2DEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
 }
 

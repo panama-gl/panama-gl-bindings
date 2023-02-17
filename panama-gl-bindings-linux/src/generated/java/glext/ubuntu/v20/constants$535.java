@@ -9,23 +9,34 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$535 {
 
-    static final FunctionDescriptor PFNGLPUSHGROUPMARKEREXTPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLVERTEXATTRIB2SVARBPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLPUSHGROUPMARKEREXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$535.PFNGLPUSHGROUPMARKEREXTPROC$FUNC
+    static final MethodHandle PFNGLVERTEXATTRIB2SVARBPROC$MH = RuntimeHelper.downcallHandle(
+        constants$535.PFNGLVERTEXATTRIB2SVARBPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLPOPGROUPMARKEREXTPROC$FUNC = FunctionDescriptor.ofVoid();
-    static final MethodHandle PFNGLPOPGROUPMARKEREXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$535.PFNGLPOPGROUPMARKEREXTPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLDEPTHBOUNDSEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLVERTEXATTRIB3DARBPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_DOUBLE$LAYOUT,
         Constants$root.C_DOUBLE$LAYOUT,
         Constants$root.C_DOUBLE$LAYOUT
     );
-    static final MethodHandle PFNGLDEPTHBOUNDSEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$535.PFNGLDEPTHBOUNDSEXTPROC$FUNC
+    static final MethodHandle PFNGLVERTEXATTRIB3DARBPROC$MH = RuntimeHelper.downcallHandle(
+        constants$535.PFNGLVERTEXATTRIB3DARBPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLVERTEXATTRIB3DVARBPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle PFNGLVERTEXATTRIB3DVARBPROC$MH = RuntimeHelper.downcallHandle(
+        constants$535.PFNGLVERTEXATTRIB3DVARBPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLVERTEXATTRIB3FARBPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT
     );
 }
 

@@ -9,38 +9,30 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$309 {
 
-    static final FunctionDescriptor PFNGLGETNCOLORTABLEPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle PFNGLGETNCOLORTABLEPROC$MH = RuntimeHelper.downcallHandle(
-        constants$309.PFNGLGETNCOLORTABLEPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLGETNCONVOLUTIONFILTERPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
+    static final FunctionDescriptor PFNGLVIEWPORTARRAYVPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLGETNCONVOLUTIONFILTERPROC$MH = RuntimeHelper.downcallHandle(
-        constants$309.PFNGLGETNCONVOLUTIONFILTERPROC$FUNC
+    static final MethodHandle PFNGLVIEWPORTARRAYVPROC$MH = RuntimeHelper.downcallHandle(
+        constants$309.PFNGLVIEWPORTARRAYVPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLGETNSEPARABLEFILTERPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLVIEWPORTINDEXEDFPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT
+    );
+    static final MethodHandle PFNGLVIEWPORTINDEXEDFPROC$MH = RuntimeHelper.downcallHandle(
+        constants$309.PFNGLVIEWPORTINDEXEDFPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLVIEWPORTINDEXEDFVPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLGETNSEPARABLEFILTERPROC$MH = RuntimeHelper.downcallHandle(
-        constants$309.PFNGLGETNSEPARABLEFILTERPROC$FUNC
+    static final MethodHandle PFNGLVIEWPORTINDEXEDFVPROC$MH = RuntimeHelper.downcallHandle(
+        constants$309.PFNGLVIEWPORTINDEXEDFVPROC$FUNC
     );
 }
 

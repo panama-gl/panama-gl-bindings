@@ -11,13 +11,13 @@ public interface PFNGLVERTEXSTREAM2SATIPROC {
 
     void apply(int stream, short x, short y);
     static MemorySegment allocate(PFNGLVERTEXSTREAM2SATIPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLVERTEXSTREAM2SATIPROC.class, fi, constants$503.PFNGLVERTEXSTREAM2SATIPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLVERTEXSTREAM2SATIPROC.class, fi, constants$707.PFNGLVERTEXSTREAM2SATIPROC$FUNC, session);
     }
     static PFNGLVERTEXSTREAM2SATIPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _stream, short _x, short _y) -> {
             try {
-                constants$503.PFNGLVERTEXSTREAM2SATIPROC$MH.invokeExact((Addressable)symbol, _stream, _x, _y);
+                constants$707.PFNGLVERTEXSTREAM2SATIPROC$MH.invokeExact((Addressable)symbol, _stream, _x, _y);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

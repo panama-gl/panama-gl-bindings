@@ -9,37 +9,30 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$183 {
 
-    static final FunctionDescriptor PFNGLFRAMEBUFFERTEXTUREPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLVERTEXATTRIBI3IVPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT
+        Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLFRAMEBUFFERTEXTUREPROC$MH = RuntimeHelper.downcallHandle(
-        constants$183.PFNGLFRAMEBUFFERTEXTUREPROC$FUNC
+    static final MethodHandle PFNGLVERTEXATTRIBI3IVPROC$MH = RuntimeHelper.downcallHandle(
+        constants$183.PFNGLVERTEXATTRIBI3IVPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLTEXIMAGE2DMULTISAMPLEPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLVERTEXATTRIBI4IVPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_CHAR$LAYOUT
+        Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLTEXIMAGE2DMULTISAMPLEPROC$MH = RuntimeHelper.downcallHandle(
-        constants$183.PFNGLTEXIMAGE2DMULTISAMPLEPROC$FUNC
+    static final MethodHandle PFNGLVERTEXATTRIBI4IVPROC$MH = RuntimeHelper.downcallHandle(
+        constants$183.PFNGLVERTEXATTRIBI4IVPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLTEXIMAGE3DMULTISAMPLEPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLVERTEXATTRIBI1UIVPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_CHAR$LAYOUT
+        Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLTEXIMAGE3DMULTISAMPLEPROC$MH = RuntimeHelper.downcallHandle(
-        constants$183.PFNGLTEXIMAGE3DMULTISAMPLEPROC$FUNC
+    static final MethodHandle PFNGLVERTEXATTRIBI1UIVPROC$MH = RuntimeHelper.downcallHandle(
+        constants$183.PFNGLVERTEXATTRIBI1UIVPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLVERTEXATTRIBI2UIVPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
 }
 

@@ -9,37 +9,30 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$666 {
 
-    static final FunctionDescriptor PFNGLACTIVESTENCILFACEEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLELEMENTPOINTERAPPLEPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle PFNGLELEMENTPOINTERAPPLEPROC$MH = RuntimeHelper.downcallHandle(
+        constants$666.PFNGLELEMENTPOINTERAPPLEPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLDRAWELEMENTARRAYAPPLEPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLACTIVESTENCILFACEEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$666.PFNGLACTIVESTENCILFACEEXTPROC$FUNC
+    static final MethodHandle PFNGLDRAWELEMENTARRAYAPPLEPROC$MH = RuntimeHelper.downcallHandle(
+        constants$666.PFNGLDRAWELEMENTARRAYAPPLEPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLTEXSUBIMAGE1DEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLDRAWRANGEELEMENTARRAYAPPLEPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
+        Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLTEXSUBIMAGE1DEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$666.PFNGLTEXSUBIMAGE1DEXTPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLTEXSUBIMAGE2DEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle PFNGLTEXSUBIMAGE2DEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$666.PFNGLTEXSUBIMAGE2DEXTPROC$FUNC
+    static final MethodHandle PFNGLDRAWRANGEELEMENTARRAYAPPLEPROC$MH = RuntimeHelper.downcallHandle(
+        constants$666.PFNGLDRAWRANGEELEMENTARRAYAPPLEPROC$FUNC
     );
 }
 

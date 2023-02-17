@@ -9,30 +9,31 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$599 {
 
-    static final FunctionDescriptor PFNGLFRAMEBUFFERREADBUFFEREXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT
-    );
-    static final MethodHandle PFNGLFRAMEBUFFERREADBUFFEREXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$599.PFNGLFRAMEBUFFERREADBUFFEREXTPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLGETFRAMEBUFFERPARAMETERIVEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLPIXELMAPXPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLGETFRAMEBUFFERPARAMETERIVEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$599.PFNGLGETFRAMEBUFFERPARAMETERIVEXTPROC$FUNC
+    static final MethodHandle PFNGLPIXELMAPXPROC$MH = RuntimeHelper.downcallHandle(
+        constants$599.PFNGLPIXELMAPXPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLNAMEDCOPYBUFFERSUBDATAEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLPIXELSTOREXPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_LONG_LONG$LAYOUT,
-        Constants$root.C_LONG_LONG$LAYOUT,
-        Constants$root.C_LONG_LONG$LAYOUT
+        Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLNAMEDCOPYBUFFERSUBDATAEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$599.PFNGLNAMEDCOPYBUFFERSUBDATAEXTPROC$FUNC
+    static final MethodHandle PFNGLPIXELSTOREXPROC$MH = RuntimeHelper.downcallHandle(
+        constants$599.PFNGLPIXELSTOREXPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLPIXELTRANSFERXOESPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle PFNGLPIXELTRANSFERXOESPROC$MH = RuntimeHelper.downcallHandle(
+        constants$599.PFNGLPIXELTRANSFERXOESPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLPIXELZOOMXOESPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
 }
 

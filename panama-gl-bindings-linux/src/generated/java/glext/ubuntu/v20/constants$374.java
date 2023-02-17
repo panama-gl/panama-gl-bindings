@@ -9,40 +9,31 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$374 {
 
-    static final FunctionDescriptor PFNGLTEXBUFFERARBPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLCREATETEXTURESPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle PFNGLCREATETEXTURESPROC$MH = RuntimeHelper.downcallHandle(
+        constants$374.PFNGLCREATETEXTURESPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLTEXTUREBUFFERPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLTEXBUFFERARBPROC$MH = RuntimeHelper.downcallHandle(
-        constants$374.PFNGLTEXBUFFERARBPROC$FUNC
+    static final MethodHandle PFNGLTEXTUREBUFFERPROC$MH = RuntimeHelper.downcallHandle(
+        constants$374.PFNGLTEXTUREBUFFERPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLCOMPRESSEDTEXIMAGE3DARBPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLTEXTUREBUFFERRANGEPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
+        Constants$root.C_LONG_LONG$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT
     );
-    static final MethodHandle PFNGLCOMPRESSEDTEXIMAGE3DARBPROC$MH = RuntimeHelper.downcallHandle(
-        constants$374.PFNGLCOMPRESSEDTEXIMAGE3DARBPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLCOMPRESSEDTEXIMAGE2DARBPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle PFNGLCOMPRESSEDTEXIMAGE2DARBPROC$MH = RuntimeHelper.downcallHandle(
-        constants$374.PFNGLCOMPRESSEDTEXIMAGE2DARBPROC$FUNC
+    static final MethodHandle PFNGLTEXTUREBUFFERRANGEPROC$MH = RuntimeHelper.downcallHandle(
+        constants$374.PFNGLTEXTUREBUFFERRANGEPROC$FUNC
     );
 }
 

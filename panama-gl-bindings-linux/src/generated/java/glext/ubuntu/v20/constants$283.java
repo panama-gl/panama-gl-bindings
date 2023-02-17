@@ -9,29 +9,28 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$283 {
 
-    static final FunctionDescriptor PFNGLGETNAMEDFRAMEBUFFERPARAMETERIVPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLRELEASESHADERCOMPILERPROC$FUNC = FunctionDescriptor.ofVoid();
+    static final MethodHandle PFNGLRELEASESHADERCOMPILERPROC$MH = RuntimeHelper.downcallHandle(
+        constants$283.PFNGLRELEASESHADERCOMPILERPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLSHADERBINARYPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle PFNGLSHADERBINARYPROC$MH = RuntimeHelper.downcallHandle(
+        constants$283.PFNGLSHADERBINARYPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLGETSHADERPRECISIONFORMATPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLGETNAMEDFRAMEBUFFERPARAMETERIVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$283.PFNGLGETNAMEDFRAMEBUFFERPARAMETERIVPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLGETNAMEDFRAMEBUFFERATTACHMENTPARAMETERIVPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle PFNGLGETNAMEDFRAMEBUFFERATTACHMENTPARAMETERIVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$283.PFNGLGETNAMEDFRAMEBUFFERATTACHMENTPARAMETERIVPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLCREATERENDERBUFFERSPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle PFNGLCREATERENDERBUFFERSPROC$MH = RuntimeHelper.downcallHandle(
-        constants$283.PFNGLCREATERENDERBUFFERSPROC$FUNC
+    static final MethodHandle PFNGLGETSHADERPRECISIONFORMATPROC$MH = RuntimeHelper.downcallHandle(
+        constants$283.PFNGLGETSHADERPRECISIONFORMATPROC$FUNC
     );
 }
 

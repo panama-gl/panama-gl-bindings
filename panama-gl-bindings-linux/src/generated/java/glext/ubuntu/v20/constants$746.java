@@ -9,27 +9,27 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$746 {
 
-    static final FunctionDescriptor PFNGLGETMULTISAMPLEFVNVPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLBINORMAL3SEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_SHORT$LAYOUT,
+        Constants$root.C_SHORT$LAYOUT,
+        Constants$root.C_SHORT$LAYOUT
+    );
+    static final MethodHandle PFNGLBINORMAL3SEXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$746.PFNGLBINORMAL3SEXTPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLBINORMAL3SVEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle PFNGLBINORMAL3SVEXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$746.PFNGLBINORMAL3SVEXTPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLTANGENTPOINTEREXTPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLGETMULTISAMPLEFVNVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$746.PFNGLGETMULTISAMPLEFVNVPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLSAMPLEMASKINDEXEDNVPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT
-    );
-    static final MethodHandle PFNGLSAMPLEMASKINDEXEDNVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$746.PFNGLSAMPLEMASKINDEXEDNVPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLTEXRENDERBUFFERNVPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT
-    );
-    static final MethodHandle PFNGLTEXRENDERBUFFERNVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$746.PFNGLTEXRENDERBUFFERNVPROC$FUNC
+    static final MethodHandle PFNGLTANGENTPOINTEREXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$746.PFNGLTANGENTPOINTEREXTPROC$FUNC
     );
 }
 

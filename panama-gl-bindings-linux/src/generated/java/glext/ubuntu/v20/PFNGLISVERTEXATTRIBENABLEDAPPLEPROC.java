@@ -11,13 +11,13 @@ public interface PFNGLISVERTEXATTRIBENABLEDAPPLEPROC {
 
     byte apply(int index, int pname);
     static MemorySegment allocate(PFNGLISVERTEXATTRIBENABLEDAPPLEPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLISVERTEXATTRIBENABLEDAPPLEPROC.class, fi, constants$484.PFNGLISVERTEXATTRIBENABLEDAPPLEPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLISVERTEXATTRIBENABLEDAPPLEPROC.class, fi, constants$680.PFNGLISVERTEXATTRIBENABLEDAPPLEPROC$FUNC, session);
     }
     static PFNGLISVERTEXATTRIBENABLEDAPPLEPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _index, int _pname) -> {
             try {
-                return (byte)constants$484.PFNGLISVERTEXATTRIBENABLEDAPPLEPROC$MH.invokeExact((Addressable)symbol, _index, _pname);
+                return (byte)constants$680.PFNGLISVERTEXATTRIBENABLEDAPPLEPROC$MH.invokeExact((Addressable)symbol, _index, _pname);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

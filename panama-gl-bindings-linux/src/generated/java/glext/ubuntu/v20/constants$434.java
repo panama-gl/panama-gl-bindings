@@ -9,38 +9,58 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$434 {
 
-    static final FunctionDescriptor PFNGLMAP2XOESPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glDebugMessageControlARB$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_CHAR$LAYOUT
     );
-    static final MethodHandle PFNGLMAP2XOESPROC$MH = RuntimeHelper.downcallHandle(
-        constants$434.PFNGLMAP2XOESPROC$FUNC
+    static final MethodHandle glDebugMessageControlARB$MH = RuntimeHelper.downcallHandle(
+        "glDebugMessageControlARB",
+        constants$434.glDebugMessageControlARB$FUNC
     );
-    static final FunctionDescriptor PFNGLMAPGRID1XOESPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glDebugMessageInsertARB$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLMAPGRID1XOESPROC$MH = RuntimeHelper.downcallHandle(
-        constants$434.PFNGLMAPGRID1XOESPROC$FUNC
+    static final MethodHandle glDebugMessageInsertARB$MH = RuntimeHelper.downcallHandle(
+        "glDebugMessageInsertARB",
+        constants$434.glDebugMessageInsertARB$FUNC
     );
-    static final FunctionDescriptor PFNGLMAPGRID2XOESPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT
+    static final FunctionDescriptor glDebugMessageCallbackARB$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLMAPGRID2XOESPROC$MH = RuntimeHelper.downcallHandle(
-        constants$434.PFNGLMAPGRID2XOESPROC$FUNC
+    static final MethodHandle glDebugMessageCallbackARB$MH = RuntimeHelper.downcallHandle(
+        "glDebugMessageCallbackARB",
+        constants$434.glDebugMessageCallbackARB$FUNC
+    );
+    static final FunctionDescriptor glGetDebugMessageLogARB$FUNC = FunctionDescriptor.of(Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glGetDebugMessageLogARB$MH = RuntimeHelper.downcallHandle(
+        "glGetDebugMessageLogARB",
+        constants$434.glGetDebugMessageLogARB$FUNC
+    );
+    static final FunctionDescriptor PFNGLDRAWBUFFERSARBPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle PFNGLDRAWBUFFERSARBPROC$MH = RuntimeHelper.downcallHandle(
+        constants$434.PFNGLDRAWBUFFERSARBPROC$FUNC
     );
 }
 

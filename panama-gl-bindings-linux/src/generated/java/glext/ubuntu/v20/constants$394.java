@@ -9,29 +9,32 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$394 {
 
-    static final FunctionDescriptor PFNGLVERTEXATTRIB4DVARBPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLGETNUNIFORMDVPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLVERTEXATTRIB4DVARBPROC$MH = RuntimeHelper.downcallHandle(
-        constants$394.PFNGLVERTEXATTRIB4DVARBPROC$FUNC
+    static final MethodHandle PFNGLGETNUNIFORMDVPROC$MH = RuntimeHelper.downcallHandle(
+        constants$394.PFNGLGETNUNIFORMDVPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLVERTEXATTRIB4FARBPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLGETNUNIFORMFVPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT
-    );
-    static final MethodHandle PFNGLVERTEXATTRIB4FARBPROC$MH = RuntimeHelper.downcallHandle(
-        constants$394.PFNGLVERTEXATTRIB4FARBPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLVERTEXATTRIB4FVARBPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLVERTEXATTRIB4FVARBPROC$MH = RuntimeHelper.downcallHandle(
-        constants$394.PFNGLVERTEXATTRIB4FVARBPROC$FUNC
+    static final MethodHandle PFNGLGETNUNIFORMFVPROC$MH = RuntimeHelper.downcallHandle(
+        constants$394.PFNGLGETNUNIFORMFVPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLGETNUNIFORMIVPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle PFNGLGETNUNIFORMIVPROC$MH = RuntimeHelper.downcallHandle(
+        constants$394.PFNGLGETNUNIFORMIVPROC$FUNC
     );
 }
 

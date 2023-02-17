@@ -9,29 +9,45 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$826 {
 
-    static final FunctionDescriptor PFNGLSHADINGRATESAMPLEORDERCUSTOMNVPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLVERTEXARRAYSECONDARYCOLOROFFSETEXTPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT
     );
-    static final MethodHandle PFNGLSHADINGRATESAMPLEORDERCUSTOMNVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$826.PFNGLSHADINGRATESAMPLEORDERCUSTOMNVPROC$FUNC
+    static final MethodHandle PFNGLVERTEXARRAYSECONDARYCOLOROFFSETEXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$826.PFNGLVERTEXARRAYSECONDARYCOLOROFFSETEXTPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLTEXTUREBARRIERNVPROC$FUNC = FunctionDescriptor.ofVoid();
-    static final MethodHandle PFNGLTEXTUREBARRIERNVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$826.PFNGLTEXTUREBARRIERNVPROC$FUNC
+    static final FunctionDescriptor PFNGLVERTEXARRAYVERTEXATTRIBOFFSETEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_CHAR$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT
     );
-    static final FunctionDescriptor PFNGLTEXIMAGE2DMULTISAMPLECOVERAGENVPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_CHAR$LAYOUT
+    static final MethodHandle PFNGLVERTEXARRAYVERTEXATTRIBOFFSETEXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$826.PFNGLVERTEXARRAYVERTEXATTRIBOFFSETEXTPROC$FUNC
     );
-    static final MethodHandle PFNGLTEXIMAGE2DMULTISAMPLECOVERAGENVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$826.PFNGLTEXIMAGE2DMULTISAMPLECOVERAGENVPROC$FUNC
+    static final FunctionDescriptor PFNGLVERTEXARRAYVERTEXATTRIBIOFFSETEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT
+    );
+    static final MethodHandle PFNGLVERTEXARRAYVERTEXATTRIBIOFFSETEXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$826.PFNGLVERTEXARRAYVERTEXATTRIBIOFFSETEXTPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLENABLEVERTEXARRAYEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
 }
 

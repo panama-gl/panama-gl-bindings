@@ -11,13 +11,13 @@ public interface PFNGLVIEWPORTINDEXEDFPROC {
 
     void apply(int index, float x, float y, float w, float h);
     static MemorySegment allocate(PFNGLVIEWPORTINDEXEDFPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLVIEWPORTINDEXEDFPROC.class, fi, constants$245.PFNGLVIEWPORTINDEXEDFPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLVIEWPORTINDEXEDFPROC.class, fi, constants$309.PFNGLVIEWPORTINDEXEDFPROC$FUNC, session);
     }
     static PFNGLVIEWPORTINDEXEDFPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _index, float _x, float _y, float _w, float _h) -> {
             try {
-                constants$245.PFNGLVIEWPORTINDEXEDFPROC$MH.invokeExact((Addressable)symbol, _index, _x, _y, _w, _h);
+                constants$309.PFNGLVIEWPORTINDEXEDFPROC$MH.invokeExact((Addressable)symbol, _index, _x, _y, _w, _h);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

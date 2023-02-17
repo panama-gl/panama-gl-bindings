@@ -9,31 +9,41 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$830 {
 
-    static final FunctionDescriptor PFNGLBINDBUFFEROFFSETNVPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLFLUSHMAPPEDNAMEDBUFFERRANGEEXTPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT,
         Constants$root.C_LONG_LONG$LAYOUT
     );
-    static final MethodHandle PFNGLBINDBUFFEROFFSETNVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$830.PFNGLBINDBUFFEROFFSETNVPROC$FUNC
+    static final MethodHandle PFNGLFLUSHMAPPEDNAMEDBUFFERRANGEEXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$830.PFNGLFLUSHMAPPEDNAMEDBUFFERRANGEEXTPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLBINDBUFFERBASENVPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLNAMEDBUFFERSTORAGEEXTPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT
-    );
-    static final MethodHandle PFNGLBINDBUFFERBASENVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$830.PFNGLBINDBUFFERBASENVPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLTRANSFORMFEEDBACKVARYINGSNVPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT,
         Constants$root.C_POINTER$LAYOUT,
         Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLTRANSFORMFEEDBACKVARYINGSNVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$830.PFNGLTRANSFORMFEEDBACKVARYINGSNVPROC$FUNC
+    static final MethodHandle PFNGLNAMEDBUFFERSTORAGEEXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$830.PFNGLNAMEDBUFFERSTORAGEEXTPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLCLEARNAMEDBUFFERDATAEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle PFNGLCLEARNAMEDBUFFERDATAEXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$830.PFNGLCLEARNAMEDBUFFERDATAEXTPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLCLEARNAMEDBUFFERSUBDATAEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
 }
 

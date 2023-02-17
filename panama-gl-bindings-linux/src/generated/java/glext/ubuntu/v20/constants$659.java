@@ -9,25 +9,35 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$659 {
 
-    static final FunctionDescriptor PFNGLSECONDARYCOLOR3UIVEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLGETPERFMONITORCOUNTERINFOAMDPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLSECONDARYCOLOR3UIVEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$659.PFNGLSECONDARYCOLOR3UIVEXTPROC$FUNC
+    static final MethodHandle PFNGLGETPERFMONITORCOUNTERINFOAMDPROC$MH = RuntimeHelper.downcallHandle(
+        constants$659.PFNGLGETPERFMONITORCOUNTERINFOAMDPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLSECONDARYCOLOR3USEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_SHORT$LAYOUT,
-        Constants$root.C_SHORT$LAYOUT,
-        Constants$root.C_SHORT$LAYOUT
-    );
-    static final MethodHandle PFNGLSECONDARYCOLOR3USEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$659.PFNGLSECONDARYCOLOR3USEXTPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLSECONDARYCOLOR3USVEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLGENPERFMONITORSAMDPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLSECONDARYCOLOR3USVEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$659.PFNGLSECONDARYCOLOR3USVEXTPROC$FUNC
+    static final MethodHandle PFNGLGENPERFMONITORSAMDPROC$MH = RuntimeHelper.downcallHandle(
+        constants$659.PFNGLGENPERFMONITORSAMDPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLDELETEPERFMONITORSAMDPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle PFNGLDELETEPERFMONITORSAMDPROC$MH = RuntimeHelper.downcallHandle(
+        constants$659.PFNGLDELETEPERFMONITORSAMDPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLSELECTPERFMONITORCOUNTERSAMDPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_CHAR$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
 }
 

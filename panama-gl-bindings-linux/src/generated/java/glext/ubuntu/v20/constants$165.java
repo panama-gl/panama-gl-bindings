@@ -9,27 +9,55 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$165 {
 
-    static final FunctionDescriptor PFNGLCLEARBUFFERFIPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glVertexAttrib1s$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
+        Constants$root.C_SHORT$LAYOUT
+    );
+    static final MethodHandle glVertexAttrib1s$MH = RuntimeHelper.downcallHandle(
+        "glVertexAttrib1s",
+        constants$165.glVertexAttrib1s$FUNC
+    );
+    static final FunctionDescriptor glVertexAttrib1sv$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glVertexAttrib1sv$MH = RuntimeHelper.downcallHandle(
+        "glVertexAttrib1sv",
+        constants$165.glVertexAttrib1sv$FUNC
+    );
+    static final FunctionDescriptor glVertexAttrib2d$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_DOUBLE$LAYOUT,
+        Constants$root.C_DOUBLE$LAYOUT
+    );
+    static final MethodHandle glVertexAttrib2d$MH = RuntimeHelper.downcallHandle(
+        "glVertexAttrib2d",
+        constants$165.glVertexAttrib2d$FUNC
+    );
+    static final FunctionDescriptor glVertexAttrib2dv$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glVertexAttrib2dv$MH = RuntimeHelper.downcallHandle(
+        "glVertexAttrib2dv",
+        constants$165.glVertexAttrib2dv$FUNC
+    );
+    static final FunctionDescriptor glVertexAttrib2f$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_FLOAT$LAYOUT,
-        Constants$root.C_INT$LAYOUT
+        Constants$root.C_FLOAT$LAYOUT
     );
-    static final MethodHandle PFNGLCLEARBUFFERFIPROC$MH = RuntimeHelper.downcallHandle(
-        constants$165.PFNGLCLEARBUFFERFIPROC$FUNC
+    static final MethodHandle glVertexAttrib2f$MH = RuntimeHelper.downcallHandle(
+        "glVertexAttrib2f",
+        constants$165.glVertexAttrib2f$FUNC
     );
-    static final FunctionDescriptor PFNGLGETSTRINGIPROC$FUNC = FunctionDescriptor.of(Constants$root.C_POINTER$LAYOUT,
+    static final FunctionDescriptor glVertexAttrib2fv$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT
+        Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLGETSTRINGIPROC$MH = RuntimeHelper.downcallHandle(
-        constants$165.PFNGLGETSTRINGIPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLISRENDERBUFFERPROC$FUNC = FunctionDescriptor.of(Constants$root.C_CHAR$LAYOUT,
-        Constants$root.C_INT$LAYOUT
-    );
-    static final MethodHandle PFNGLISRENDERBUFFERPROC$MH = RuntimeHelper.downcallHandle(
-        constants$165.PFNGLISRENDERBUFFERPROC$FUNC
+    static final MethodHandle glVertexAttrib2fv$MH = RuntimeHelper.downcallHandle(
+        "glVertexAttrib2fv",
+        constants$165.glVertexAttrib2fv$FUNC
     );
 }
 

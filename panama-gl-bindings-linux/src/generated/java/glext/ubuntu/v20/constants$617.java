@@ -9,42 +9,60 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$617 {
 
-    static final FunctionDescriptor PFNGLTEXTURESTORAGE3DEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glGetLightxOES$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glGetLightxOES$MH = RuntimeHelper.downcallHandle(
+        "glGetLightxOES",
+        constants$617.glGetLightxOES$FUNC
+    );
+    static final FunctionDescriptor glGetMapxvOES$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glGetMapxvOES$MH = RuntimeHelper.downcallHandle(
+        "glGetMapxvOES",
+        constants$617.glGetMapxvOES$FUNC
+    );
+    static final FunctionDescriptor glGetMaterialxOES$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLTEXTURESTORAGE3DEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$617.PFNGLTEXTURESTORAGE3DEXTPROC$FUNC
+    static final MethodHandle glGetMaterialxOES$MH = RuntimeHelper.downcallHandle(
+        "glGetMaterialxOES",
+        constants$617.glGetMaterialxOES$FUNC
     );
-    static final FunctionDescriptor PFNGLTEXTURESTORAGE2DMULTISAMPLEEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glGetPixelMapxv$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_CHAR$LAYOUT
+        Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLTEXTURESTORAGE2DMULTISAMPLEEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$617.PFNGLTEXTURESTORAGE2DMULTISAMPLEEXTPROC$FUNC
+    static final MethodHandle glGetPixelMapxv$MH = RuntimeHelper.downcallHandle(
+        "glGetPixelMapxv",
+        constants$617.glGetPixelMapxv$FUNC
     );
-    static final FunctionDescriptor PFNGLTEXTURESTORAGE3DMULTISAMPLEEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glGetTexGenxvOES$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_CHAR$LAYOUT
+        Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLTEXTURESTORAGE3DMULTISAMPLEEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$617.PFNGLTEXTURESTORAGE3DMULTISAMPLEEXTPROC$FUNC
+    static final MethodHandle glGetTexGenxvOES$MH = RuntimeHelper.downcallHandle(
+        "glGetTexGenxvOES",
+        constants$617.glGetTexGenxvOES$FUNC
+    );
+    static final FunctionDescriptor glGetTexLevelParameterxvOES$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glGetTexLevelParameterxvOES$MH = RuntimeHelper.downcallHandle(
+        "glGetTexLevelParameterxvOES",
+        constants$617.glGetTexLevelParameterxvOES$FUNC
     );
 }
 

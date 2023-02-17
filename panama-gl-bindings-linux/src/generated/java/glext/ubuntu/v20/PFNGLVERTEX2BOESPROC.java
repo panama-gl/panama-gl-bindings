@@ -11,13 +11,13 @@ public interface PFNGLVERTEX2BOESPROC {
 
     void apply(byte x, byte y);
     static MemorySegment allocate(PFNGLVERTEX2BOESPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLVERTEX2BOESPROC.class, fi, constants$411.PFNGLVERTEX2BOESPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLVERTEX2BOESPROC.class, fi, constants$568.PFNGLVERTEX2BOESPROC$FUNC, session);
     }
     static PFNGLVERTEX2BOESPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (byte _x, byte _y) -> {
             try {
-                constants$411.PFNGLVERTEX2BOESPROC$MH.invokeExact((Addressable)symbol, _x, _y);
+                constants$568.PFNGLVERTEX2BOESPROC$MH.invokeExact((Addressable)symbol, _x, _y);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

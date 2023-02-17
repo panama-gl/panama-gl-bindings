@@ -9,45 +9,71 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$485 {
 
-    static final FunctionDescriptor PFNGLMAPVERTEXATTRIB1DAPPLEPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glGetnTexImageARB$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_DOUBLE$LAYOUT,
-        Constants$root.C_DOUBLE$LAYOUT,
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle PFNGLMAPVERTEXATTRIB1DAPPLEPROC$MH = RuntimeHelper.downcallHandle(
-        constants$485.PFNGLMAPVERTEXATTRIB1DAPPLEPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLMAPVERTEXATTRIB1FAPPLEPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLMAPVERTEXATTRIB1FAPPLEPROC$MH = RuntimeHelper.downcallHandle(
-        constants$485.PFNGLMAPVERTEXATTRIB1FAPPLEPROC$FUNC
+    static final MethodHandle glGetnTexImageARB$MH = RuntimeHelper.downcallHandle(
+        "glGetnTexImageARB",
+        constants$485.glGetnTexImageARB$FUNC
     );
-    static final FunctionDescriptor PFNGLMAPVERTEXATTRIB2DAPPLEPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glReadnPixelsARB$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_DOUBLE$LAYOUT,
-        Constants$root.C_DOUBLE$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_DOUBLE$LAYOUT,
-        Constants$root.C_DOUBLE$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLMAPVERTEXATTRIB2DAPPLEPROC$MH = RuntimeHelper.downcallHandle(
-        constants$485.PFNGLMAPVERTEXATTRIB2DAPPLEPROC$FUNC
+    static final MethodHandle glReadnPixelsARB$MH = RuntimeHelper.downcallHandle(
+        "glReadnPixelsARB",
+        constants$485.glReadnPixelsARB$FUNC
+    );
+    static final FunctionDescriptor glGetnCompressedTexImageARB$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glGetnCompressedTexImageARB$MH = RuntimeHelper.downcallHandle(
+        "glGetnCompressedTexImageARB",
+        constants$485.glGetnCompressedTexImageARB$FUNC
+    );
+    static final FunctionDescriptor glGetnUniformfvARB$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glGetnUniformfvARB$MH = RuntimeHelper.downcallHandle(
+        "glGetnUniformfvARB",
+        constants$485.glGetnUniformfvARB$FUNC
+    );
+    static final FunctionDescriptor glGetnUniformivARB$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glGetnUniformivARB$MH = RuntimeHelper.downcallHandle(
+        "glGetnUniformivARB",
+        constants$485.glGetnUniformivARB$FUNC
+    );
+    static final FunctionDescriptor glGetnUniformuivARB$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glGetnUniformuivARB$MH = RuntimeHelper.downcallHandle(
+        "glGetnUniformuivARB",
+        constants$485.glGetnUniformuivARB$FUNC
     );
 }
 

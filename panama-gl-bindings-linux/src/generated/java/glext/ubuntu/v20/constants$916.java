@@ -9,35 +9,37 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$916 {
 
-    static final FunctionDescriptor PFNGLCOLOR4UBVERTEX3FSUNPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_CHAR$LAYOUT,
-        Constants$root.C_CHAR$LAYOUT,
-        Constants$root.C_CHAR$LAYOUT,
-        Constants$root.C_CHAR$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT
-    );
-    static final MethodHandle PFNGLCOLOR4UBVERTEX3FSUNPROC$MH = RuntimeHelper.downcallHandle(
-        constants$916.PFNGLCOLOR4UBVERTEX3FSUNPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLCOLOR4UBVERTEX3FVSUNPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_POINTER$LAYOUT,
+    static final FunctionDescriptor PFNGLCREATEMEMORYOBJECTSEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLCOLOR4UBVERTEX3FVSUNPROC$MH = RuntimeHelper.downcallHandle(
-        constants$916.PFNGLCOLOR4UBVERTEX3FVSUNPROC$FUNC
+    static final MethodHandle PFNGLCREATEMEMORYOBJECTSEXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$916.PFNGLCREATEMEMORYOBJECTSEXTPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLCOLOR3FVERTEX3FSUNPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_FLOAT$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT
+    static final FunctionDescriptor PFNGLMEMORYOBJECTPARAMETERIVEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLCOLOR3FVERTEX3FSUNPROC$MH = RuntimeHelper.downcallHandle(
-        constants$916.PFNGLCOLOR3FVERTEX3FSUNPROC$FUNC
+    static final MethodHandle PFNGLMEMORYOBJECTPARAMETERIVEXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$916.PFNGLMEMORYOBJECTPARAMETERIVEXTPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLGETMEMORYOBJECTPARAMETERIVEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle PFNGLGETMEMORYOBJECTPARAMETERIVEXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$916.PFNGLGETMEMORYOBJECTPARAMETERIVEXTPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLTEXSTORAGEMEM2DEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT
     );
 }
 

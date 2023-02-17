@@ -9,29 +9,31 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$424 {
 
-    static final FunctionDescriptor PFNGLTEXENVXVOESPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
+    static final FunctionDescriptor PFNGLMAKETEXTUREHANDLENONRESIDENTARBPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_LONG_LONG$LAYOUT
     );
-    static final MethodHandle PFNGLTEXENVXVOESPROC$MH = RuntimeHelper.downcallHandle(
-        constants$424.PFNGLTEXENVXVOESPROC$FUNC
+    static final MethodHandle PFNGLMAKETEXTUREHANDLENONRESIDENTARBPROC$MH = RuntimeHelper.downcallHandle(
+        constants$424.PFNGLMAKETEXTUREHANDLENONRESIDENTARBPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLTEXPARAMETERXOESPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLGETIMAGEHANDLEARBPROC$FUNC = FunctionDescriptor.of(Constants$root.C_LONG_LONG$LAYOUT,
         Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_CHAR$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLTEXPARAMETERXOESPROC$MH = RuntimeHelper.downcallHandle(
-        constants$424.PFNGLTEXPARAMETERXOESPROC$FUNC
+    static final MethodHandle PFNGLGETIMAGEHANDLEARBPROC$MH = RuntimeHelper.downcallHandle(
+        constants$424.PFNGLGETIMAGEHANDLEARBPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLTEXPARAMETERXVOESPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
+    static final FunctionDescriptor PFNGLMAKEIMAGEHANDLERESIDENTARBPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_LONG_LONG$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLTEXPARAMETERXVOESPROC$MH = RuntimeHelper.downcallHandle(
-        constants$424.PFNGLTEXPARAMETERXVOESPROC$FUNC
+    static final MethodHandle PFNGLMAKEIMAGEHANDLERESIDENTARBPROC$MH = RuntimeHelper.downcallHandle(
+        constants$424.PFNGLMAKEIMAGEHANDLERESIDENTARBPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLMAKEIMAGEHANDLENONRESIDENTARBPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_LONG_LONG$LAYOUT
     );
 }
 

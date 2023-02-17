@@ -9,25 +9,53 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$110 {
 
-    static final FunctionDescriptor PFNGLDELETEBUFFERSPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glSecondaryColor3i$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle PFNGLDELETEBUFFERSPROC$MH = RuntimeHelper.downcallHandle(
-        constants$110.PFNGLDELETEBUFFERSPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLGENBUFFERSPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle PFNGLGENBUFFERSPROC$MH = RuntimeHelper.downcallHandle(
-        constants$110.PFNGLGENBUFFERSPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLISBUFFERPROC$FUNC = FunctionDescriptor.of(Constants$root.C_CHAR$LAYOUT,
         Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLISBUFFERPROC$MH = RuntimeHelper.downcallHandle(
-        constants$110.PFNGLISBUFFERPROC$FUNC
+    static final MethodHandle glSecondaryColor3i$MH = RuntimeHelper.downcallHandle(
+        "glSecondaryColor3i",
+        constants$110.glSecondaryColor3i$FUNC
+    );
+    static final FunctionDescriptor glSecondaryColor3iv$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glSecondaryColor3iv$MH = RuntimeHelper.downcallHandle(
+        "glSecondaryColor3iv",
+        constants$110.glSecondaryColor3iv$FUNC
+    );
+    static final FunctionDescriptor glSecondaryColor3s$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_SHORT$LAYOUT,
+        Constants$root.C_SHORT$LAYOUT,
+        Constants$root.C_SHORT$LAYOUT
+    );
+    static final MethodHandle glSecondaryColor3s$MH = RuntimeHelper.downcallHandle(
+        "glSecondaryColor3s",
+        constants$110.glSecondaryColor3s$FUNC
+    );
+    static final FunctionDescriptor glSecondaryColor3sv$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glSecondaryColor3sv$MH = RuntimeHelper.downcallHandle(
+        "glSecondaryColor3sv",
+        constants$110.glSecondaryColor3sv$FUNC
+    );
+    static final FunctionDescriptor glSecondaryColor3ub$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_CHAR$LAYOUT,
+        Constants$root.C_CHAR$LAYOUT,
+        Constants$root.C_CHAR$LAYOUT
+    );
+    static final MethodHandle glSecondaryColor3ub$MH = RuntimeHelper.downcallHandle(
+        "glSecondaryColor3ub",
+        constants$110.glSecondaryColor3ub$FUNC
+    );
+    static final FunctionDescriptor glSecondaryColor3ubv$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glSecondaryColor3ubv$MH = RuntimeHelper.downcallHandle(
+        "glSecondaryColor3ubv",
+        constants$110.glSecondaryColor3ubv$FUNC
     );
 }
 

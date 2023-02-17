@@ -9,26 +9,23 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$519 {
 
-    static final FunctionDescriptor PFNGLCOPYCOLORSUBTABLEEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT
+    static final FunctionDescriptor PFNGLLOADTRANSPOSEMATRIXDARBPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLCOPYCOLORSUBTABLEEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$519.PFNGLCOPYCOLORSUBTABLEEXTPROC$FUNC
+    static final MethodHandle PFNGLLOADTRANSPOSEMATRIXDARBPROC$MH = RuntimeHelper.downcallHandle(
+        constants$519.PFNGLLOADTRANSPOSEMATRIXDARBPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLLOCKARRAYSEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT
+    static final FunctionDescriptor PFNGLMULTTRANSPOSEMATRIXFARBPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLLOCKARRAYSEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$519.PFNGLLOCKARRAYSEXTPROC$FUNC
+    static final MethodHandle PFNGLMULTTRANSPOSEMATRIXFARBPROC$MH = RuntimeHelper.downcallHandle(
+        constants$519.PFNGLMULTTRANSPOSEMATRIXFARBPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLUNLOCKARRAYSEXTPROC$FUNC = FunctionDescriptor.ofVoid();
-    static final MethodHandle PFNGLUNLOCKARRAYSEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$519.PFNGLUNLOCKARRAYSEXTPROC$FUNC
+    static final FunctionDescriptor PFNGLMULTTRANSPOSEMATRIXDARBPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle PFNGLMULTTRANSPOSEMATRIXDARBPROC$MH = RuntimeHelper.downcallHandle(
+        constants$519.PFNGLMULTTRANSPOSEMATRIXDARBPROC$FUNC
     );
 }
 

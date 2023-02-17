@@ -9,25 +9,35 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$712 {
 
-    static final FunctionDescriptor PFNGLWINDOWPOS2DMESAPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLVERTEXSTREAM3DATIPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_DOUBLE$LAYOUT,
         Constants$root.C_DOUBLE$LAYOUT,
         Constants$root.C_DOUBLE$LAYOUT
     );
-    static final MethodHandle PFNGLWINDOWPOS2DMESAPROC$MH = RuntimeHelper.downcallHandle(
-        constants$712.PFNGLWINDOWPOS2DMESAPROC$FUNC
+    static final MethodHandle PFNGLVERTEXSTREAM3DATIPROC$MH = RuntimeHelper.downcallHandle(
+        constants$712.PFNGLVERTEXSTREAM3DATIPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLWINDOWPOS2DVMESAPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLVERTEXSTREAM3DVATIPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLWINDOWPOS2DVMESAPROC$MH = RuntimeHelper.downcallHandle(
-        constants$712.PFNGLWINDOWPOS2DVMESAPROC$FUNC
+    static final MethodHandle PFNGLVERTEXSTREAM3DVATIPROC$MH = RuntimeHelper.downcallHandle(
+        constants$712.PFNGLVERTEXSTREAM3DVATIPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLWINDOWPOS2FMESAPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_FLOAT$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT
+    static final FunctionDescriptor PFNGLVERTEXSTREAM4SATIPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_SHORT$LAYOUT,
+        Constants$root.C_SHORT$LAYOUT,
+        Constants$root.C_SHORT$LAYOUT,
+        Constants$root.C_SHORT$LAYOUT
     );
-    static final MethodHandle PFNGLWINDOWPOS2FMESAPROC$MH = RuntimeHelper.downcallHandle(
-        constants$712.PFNGLWINDOWPOS2FMESAPROC$FUNC
+    static final MethodHandle PFNGLVERTEXSTREAM4SATIPROC$MH = RuntimeHelper.downcallHandle(
+        constants$712.PFNGLVERTEXSTREAM4SATIPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLVERTEXSTREAM4SVATIPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
 }
 

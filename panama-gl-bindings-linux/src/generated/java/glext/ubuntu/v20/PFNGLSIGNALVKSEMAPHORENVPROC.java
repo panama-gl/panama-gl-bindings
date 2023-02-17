@@ -11,13 +11,13 @@ public interface PFNGLSIGNALVKSEMAPHORENVPROC {
 
     void apply(long vkSemaphore);
     static MemorySegment allocate(PFNGLSIGNALVKSEMAPHORENVPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLSIGNALVKSEMAPHORENVPROC.class, fi, constants$742.PFNGLSIGNALVKSEMAPHORENVPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLSIGNALVKSEMAPHORENVPROC.class, fi, constants$1066.PFNGLSIGNALVKSEMAPHORENVPROC$FUNC, session);
     }
     static PFNGLSIGNALVKSEMAPHORENVPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (long _vkSemaphore) -> {
             try {
-                constants$742.PFNGLSIGNALVKSEMAPHORENVPROC$MH.invokeExact((Addressable)symbol, _vkSemaphore);
+                constants$1066.PFNGLSIGNALVKSEMAPHORENVPROC$MH.invokeExact((Addressable)symbol, _vkSemaphore);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

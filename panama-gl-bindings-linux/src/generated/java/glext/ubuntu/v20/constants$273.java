@@ -9,32 +9,20 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$273 {
 
-    static final FunctionDescriptor PFNGLNAMEDBUFFERSTORAGEPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLPAUSETRANSFORMFEEDBACKPROC$FUNC = FunctionDescriptor.ofVoid();
+    static final MethodHandle PFNGLPAUSETRANSFORMFEEDBACKPROC$MH = RuntimeHelper.downcallHandle(
+        constants$273.PFNGLPAUSETRANSFORMFEEDBACKPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLRESUMETRANSFORMFEEDBACKPROC$FUNC = FunctionDescriptor.ofVoid();
+    static final MethodHandle PFNGLRESUMETRANSFORMFEEDBACKPROC$MH = RuntimeHelper.downcallHandle(
+        constants$273.PFNGLRESUMETRANSFORMFEEDBACKPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLDRAWTRANSFORMFEEDBACKPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_LONG_LONG$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
         Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLNAMEDBUFFERSTORAGEPROC$MH = RuntimeHelper.downcallHandle(
-        constants$273.PFNGLNAMEDBUFFERSTORAGEPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLNAMEDBUFFERDATAPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_LONG_LONG$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_INT$LAYOUT
-    );
-    static final MethodHandle PFNGLNAMEDBUFFERDATAPROC$MH = RuntimeHelper.downcallHandle(
-        constants$273.PFNGLNAMEDBUFFERDATAPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLNAMEDBUFFERSUBDATAPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_LONG_LONG$LAYOUT,
-        Constants$root.C_LONG_LONG$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle PFNGLNAMEDBUFFERSUBDATAPROC$MH = RuntimeHelper.downcallHandle(
-        constants$273.PFNGLNAMEDBUFFERSUBDATAPROC$FUNC
+    static final MethodHandle PFNGLDRAWTRANSFORMFEEDBACKPROC$MH = RuntimeHelper.downcallHandle(
+        constants$273.PFNGLDRAWTRANSFORMFEEDBACKPROC$FUNC
     );
 }
 

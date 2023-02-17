@@ -11,13 +11,13 @@ public interface PFNGLVDPAUREGISTEROUTPUTSURFACENVPROC {
 
     long apply(java.lang.foreign.MemoryAddress vdpSurface, int target, int numTextureNames, java.lang.foreign.MemoryAddress textureNames);
     static MemorySegment allocate(PFNGLVDPAUREGISTEROUTPUTSURFACENVPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLVDPAUREGISTEROUTPUTSURFACENVPROC.class, fi, constants$836.PFNGLVDPAUREGISTEROUTPUTSURFACENVPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLVDPAUREGISTEROUTPUTSURFACENVPROC.class, fi, constants$1206.PFNGLVDPAUREGISTEROUTPUTSURFACENVPROC$FUNC, session);
     }
     static PFNGLVDPAUREGISTEROUTPUTSURFACENVPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (java.lang.foreign.MemoryAddress _vdpSurface, int _target, int _numTextureNames, java.lang.foreign.MemoryAddress _textureNames) -> {
             try {
-                return (long)constants$836.PFNGLVDPAUREGISTEROUTPUTSURFACENVPROC$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)_vdpSurface, _target, _numTextureNames, (java.lang.foreign.Addressable)_textureNames);
+                return (long)constants$1207.PFNGLVDPAUREGISTEROUTPUTSURFACENVPROC$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)_vdpSurface, _target, _numTextureNames, (java.lang.foreign.Addressable)_textureNames);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

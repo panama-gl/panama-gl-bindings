@@ -11,13 +11,13 @@ public interface PFNGLVDPAUFININVPROC {
 
     void apply();
     static MemorySegment allocate(PFNGLVDPAUFININVPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLVDPAUFININVPROC.class, fi, constants$835.PFNGLVDPAUFININVPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLVDPAUFININVPROC.class, fi, constants$1206.PFNGLVDPAUFININVPROC$FUNC, session);
     }
     static PFNGLVDPAUFININVPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return () -> {
             try {
-                constants$835.PFNGLVDPAUFININVPROC$MH.invokeExact((Addressable)symbol);
+                constants$1206.PFNGLVDPAUFININVPROC$MH.invokeExact((Addressable)symbol);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

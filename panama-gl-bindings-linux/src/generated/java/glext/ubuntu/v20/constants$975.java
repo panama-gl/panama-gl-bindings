@@ -9,43 +9,59 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$975 {
 
-    static final FunctionDescriptor erand48$FUNC = FunctionDescriptor.of(Constants$root.C_DOUBLE$LAYOUT,
+    static final FunctionDescriptor glVertexAttribL2dEXT$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_DOUBLE$LAYOUT,
+        Constants$root.C_DOUBLE$LAYOUT
+    );
+    static final MethodHandle glVertexAttribL2dEXT$MH = RuntimeHelper.downcallHandle(
+        "glVertexAttribL2dEXT",
+        constants$975.glVertexAttribL2dEXT$FUNC
+    );
+    static final FunctionDescriptor glVertexAttribL3dEXT$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_DOUBLE$LAYOUT,
+        Constants$root.C_DOUBLE$LAYOUT,
+        Constants$root.C_DOUBLE$LAYOUT
+    );
+    static final MethodHandle glVertexAttribL3dEXT$MH = RuntimeHelper.downcallHandle(
+        "glVertexAttribL3dEXT",
+        constants$975.glVertexAttribL3dEXT$FUNC
+    );
+    static final FunctionDescriptor glVertexAttribL4dEXT$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_DOUBLE$LAYOUT,
+        Constants$root.C_DOUBLE$LAYOUT,
+        Constants$root.C_DOUBLE$LAYOUT,
+        Constants$root.C_DOUBLE$LAYOUT
+    );
+    static final MethodHandle glVertexAttribL4dEXT$MH = RuntimeHelper.downcallHandle(
+        "glVertexAttribL4dEXT",
+        constants$975.glVertexAttribL4dEXT$FUNC
+    );
+    static final FunctionDescriptor glVertexAttribL1dvEXT$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle erand48$MH = RuntimeHelper.downcallHandle(
-        "erand48",
-        constants$975.erand48$FUNC
+    static final MethodHandle glVertexAttribL1dvEXT$MH = RuntimeHelper.downcallHandle(
+        "glVertexAttribL1dvEXT",
+        constants$975.glVertexAttribL1dvEXT$FUNC
     );
-    static final FunctionDescriptor lrand48$FUNC = FunctionDescriptor.of(Constants$root.C_LONG_LONG$LAYOUT);
-    static final MethodHandle lrand48$MH = RuntimeHelper.downcallHandle(
-        "lrand48",
-        constants$975.lrand48$FUNC
-    );
-    static final FunctionDescriptor nrand48$FUNC = FunctionDescriptor.of(Constants$root.C_LONG_LONG$LAYOUT,
+    static final FunctionDescriptor glVertexAttribL2dvEXT$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle nrand48$MH = RuntimeHelper.downcallHandle(
-        "nrand48",
-        constants$975.nrand48$FUNC
+    static final MethodHandle glVertexAttribL2dvEXT$MH = RuntimeHelper.downcallHandle(
+        "glVertexAttribL2dvEXT",
+        constants$975.glVertexAttribL2dvEXT$FUNC
     );
-    static final FunctionDescriptor mrand48$FUNC = FunctionDescriptor.of(Constants$root.C_LONG_LONG$LAYOUT);
-    static final MethodHandle mrand48$MH = RuntimeHelper.downcallHandle(
-        "mrand48",
-        constants$975.mrand48$FUNC
-    );
-    static final FunctionDescriptor jrand48$FUNC = FunctionDescriptor.of(Constants$root.C_LONG_LONG$LAYOUT,
+    static final FunctionDescriptor glVertexAttribL3dvEXT$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle jrand48$MH = RuntimeHelper.downcallHandle(
-        "jrand48",
-        constants$975.jrand48$FUNC
-    );
-    static final FunctionDescriptor srand48$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_LONG_LONG$LAYOUT
-    );
-    static final MethodHandle srand48$MH = RuntimeHelper.downcallHandle(
-        "srand48",
-        constants$975.srand48$FUNC
+    static final MethodHandle glVertexAttribL3dvEXT$MH = RuntimeHelper.downcallHandle(
+        "glVertexAttribL3dvEXT",
+        constants$975.glVertexAttribL3dvEXT$FUNC
     );
 }
 

@@ -11,13 +11,13 @@ public interface PFNGLGETSHARPENTEXFUNCSGISPROC {
 
     void apply(int target, java.lang.foreign.MemoryAddress points);
     static MemorySegment allocate(PFNGLGETSHARPENTEXFUNCSGISPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLGETSHARPENTEXFUNCSGISPROC.class, fi, constants$888.PFNGLGETSHARPENTEXFUNCSGISPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLGETSHARPENTEXFUNCSGISPROC.class, fi, constants$1286.PFNGLGETSHARPENTEXFUNCSGISPROC$FUNC, session);
     }
     static PFNGLGETSHARPENTEXFUNCSGISPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _target, java.lang.foreign.MemoryAddress _points) -> {
             try {
-                constants$888.PFNGLGETSHARPENTEXFUNCSGISPROC$MH.invokeExact((Addressable)symbol, _target, (java.lang.foreign.Addressable)_points);
+                constants$1286.PFNGLGETSHARPENTEXFUNCSGISPROC$MH.invokeExact((Addressable)symbol, _target, (java.lang.foreign.Addressable)_points);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

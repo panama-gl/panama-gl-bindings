@@ -11,13 +11,13 @@ public interface PFNGLVIEWPORTSWIZZLENVPROC {
 
     void apply(int index, int swizzlex, int swizzley, int swizzlez, int swizzlew);
     static MemorySegment allocate(PFNGLVIEWPORTSWIZZLENVPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLVIEWPORTSWIZZLENVPROC.class, fi, constants$882.PFNGLVIEWPORTSWIZZLENVPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLVIEWPORTSWIZZLENVPROC.class, fi, constants$1277.PFNGLVIEWPORTSWIZZLENVPROC$FUNC, session);
     }
     static PFNGLVIEWPORTSWIZZLENVPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _index, int _swizzlex, int _swizzley, int _swizzlez, int _swizzlew) -> {
             try {
-                constants$882.PFNGLVIEWPORTSWIZZLENVPROC$MH.invokeExact((Addressable)symbol, _index, _swizzlex, _swizzley, _swizzlez, _swizzlew);
+                constants$1277.PFNGLVIEWPORTSWIZZLENVPROC$MH.invokeExact((Addressable)symbol, _index, _swizzlex, _swizzley, _swizzlez, _swizzlew);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

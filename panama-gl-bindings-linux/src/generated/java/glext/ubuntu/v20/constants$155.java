@@ -9,26 +9,57 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$155 {
 
-    static final FunctionDescriptor PFNGLVERTEXATTRIBI1IVPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glBlendEquationSeparate$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle glBlendEquationSeparate$MH = RuntimeHelper.downcallHandle(
+        "glBlendEquationSeparate",
+        constants$155.glBlendEquationSeparate$FUNC
+    );
+    static final FunctionDescriptor glDrawBuffers$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLVERTEXATTRIBI1IVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$155.PFNGLVERTEXATTRIBI1IVPROC$FUNC
+    static final MethodHandle glDrawBuffers$MH = RuntimeHelper.downcallHandle(
+        "glDrawBuffers",
+        constants$155.glDrawBuffers$FUNC
     );
-    static final FunctionDescriptor PFNGLVERTEXATTRIBI2IVPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glStencilOpSeparate$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle PFNGLVERTEXATTRIBI2IVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$155.PFNGLVERTEXATTRIBI2IVPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLVERTEXATTRIBI3IVPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLVERTEXATTRIBI3IVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$155.PFNGLVERTEXATTRIBI3IVPROC$FUNC
+    static final MethodHandle glStencilOpSeparate$MH = RuntimeHelper.downcallHandle(
+        "glStencilOpSeparate",
+        constants$155.glStencilOpSeparate$FUNC
+    );
+    static final FunctionDescriptor glStencilFuncSeparate$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle glStencilFuncSeparate$MH = RuntimeHelper.downcallHandle(
+        "glStencilFuncSeparate",
+        constants$155.glStencilFuncSeparate$FUNC
+    );
+    static final FunctionDescriptor glStencilMaskSeparate$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle glStencilMaskSeparate$MH = RuntimeHelper.downcallHandle(
+        "glStencilMaskSeparate",
+        constants$155.glStencilMaskSeparate$FUNC
+    );
+    static final FunctionDescriptor glAttachShader$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle glAttachShader$MH = RuntimeHelper.downcallHandle(
+        "glAttachShader",
+        constants$155.glAttachShader$FUNC
     );
 }
 

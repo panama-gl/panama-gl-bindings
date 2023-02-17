@@ -11,13 +11,13 @@ public interface PFNGLDRAWARRAYSINSTANCEDBASEINSTANCEPROC {
 
     void apply(int mode, int first, int count, int instancecount, int baseinstance);
     static MemorySegment allocate(PFNGLDRAWARRAYSINSTANCEDBASEINSTANCEPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLDRAWARRAYSINSTANCEDBASEINSTANCEPROC.class, fi, constants$248.PFNGLDRAWARRAYSINSTANCEDBASEINSTANCEPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLDRAWARRAYSINSTANCEDBASEINSTANCEPROC.class, fi, constants$327.PFNGLDRAWARRAYSINSTANCEDBASEINSTANCEPROC$FUNC, session);
     }
     static PFNGLDRAWARRAYSINSTANCEDBASEINSTANCEPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _mode, int _first, int _count, int _instancecount, int _baseinstance) -> {
             try {
-                constants$248.PFNGLDRAWARRAYSINSTANCEDBASEINSTANCEPROC$MH.invokeExact((Addressable)symbol, _mode, _first, _count, _instancecount, _baseinstance);
+                constants$327.PFNGLDRAWARRAYSINSTANCEDBASEINSTANCEPROC$MH.invokeExact((Addressable)symbol, _mode, _first, _count, _instancecount, _baseinstance);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

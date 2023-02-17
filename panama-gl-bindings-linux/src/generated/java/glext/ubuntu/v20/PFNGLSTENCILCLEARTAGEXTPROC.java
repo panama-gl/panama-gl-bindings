@@ -11,13 +11,13 @@ public interface PFNGLSTENCILCLEARTAGEXTPROC {
 
     void apply(int stencilTagBits, int stencilClearTag);
     static MemorySegment allocate(PFNGLSTENCILCLEARTAGEXTPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLSTENCILCLEARTAGEXTPROC.class, fi, constants$665.PFNGLSTENCILCLEARTAGEXTPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLSTENCILCLEARTAGEXTPROC.class, fi, constants$952.PFNGLSTENCILCLEARTAGEXTPROC$FUNC, session);
     }
     static PFNGLSTENCILCLEARTAGEXTPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _stencilTagBits, int _stencilClearTag) -> {
             try {
-                constants$665.PFNGLSTENCILCLEARTAGEXTPROC$MH.invokeExact((Addressable)symbol, _stencilTagBits, _stencilClearTag);
+                constants$952.PFNGLSTENCILCLEARTAGEXTPROC$MH.invokeExact((Addressable)symbol, _stencilTagBits, _stencilClearTag);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

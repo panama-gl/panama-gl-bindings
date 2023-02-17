@@ -11,13 +11,13 @@ public interface PFNGLEDGEFLAGPOINTERLISTIBMPROC {
 
     void apply(int stride, java.lang.foreign.MemoryAddress pointer, int ptrstride);
     static MemorySegment allocate(PFNGLEDGEFLAGPOINTERLISTIBMPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLEDGEFLAGPOINTERLISTIBMPROC.class, fi, constants$702.PFNGLEDGEFLAGPOINTERLISTIBMPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLEDGEFLAGPOINTERLISTIBMPROC.class, fi, constants$1007.PFNGLEDGEFLAGPOINTERLISTIBMPROC$FUNC, session);
     }
     static PFNGLEDGEFLAGPOINTERLISTIBMPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _stride, java.lang.foreign.MemoryAddress _pointer, int _ptrstride) -> {
             try {
-                constants$702.PFNGLEDGEFLAGPOINTERLISTIBMPROC$MH.invokeExact((Addressable)symbol, _stride, (java.lang.foreign.Addressable)_pointer, _ptrstride);
+                constants$1007.PFNGLEDGEFLAGPOINTERLISTIBMPROC$MH.invokeExact((Addressable)symbol, _stride, (java.lang.foreign.Addressable)_pointer, _ptrstride);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

@@ -9,35 +9,37 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$950 {
 
-    static final FunctionDescriptor glutIdleFunc$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle glutIdleFunc$MH = RuntimeHelper.downcallHandle(
-        "glutIdleFunc",
-        constants$950.glutIdleFunc$FUNC
-    );
-    static final FunctionDescriptor glutKeyboardFunc$callback$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_CHAR$LAYOUT,
+    static final FunctionDescriptor glUseShaderProgramEXT$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle glutKeyboardFunc$callback$MH = RuntimeHelper.downcallHandle(
-        constants$950.glutKeyboardFunc$callback$FUNC
+    static final MethodHandle glUseShaderProgramEXT$MH = RuntimeHelper.downcallHandle(
+        "glUseShaderProgramEXT",
+        constants$950.glUseShaderProgramEXT$FUNC
     );
-    static final FunctionDescriptor glutKeyboardFunc$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle glutKeyboardFunc$MH = RuntimeHelper.downcallHandle(
-        "glutKeyboardFunc",
-        constants$950.glutKeyboardFunc$FUNC
-    );
-    static final FunctionDescriptor glutSpecialFunc$callback$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
+    static final FunctionDescriptor glActiveProgramEXT$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle glutSpecialFunc$callback$MH = RuntimeHelper.downcallHandle(
-        constants$950.glutSpecialFunc$callback$FUNC
+    static final MethodHandle glActiveProgramEXT$MH = RuntimeHelper.downcallHandle(
+        "glActiveProgramEXT",
+        constants$950.glActiveProgramEXT$FUNC
+    );
+    static final FunctionDescriptor glCreateShaderProgramEXT$FUNC = FunctionDescriptor.of(Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glCreateShaderProgramEXT$MH = RuntimeHelper.downcallHandle(
+        "glCreateShaderProgramEXT",
+        constants$950.glCreateShaderProgramEXT$FUNC
+    );
+    static final FunctionDescriptor PFNGLFRAMEBUFFERFETCHBARRIEREXTPROC$FUNC = FunctionDescriptor.ofVoid();
+    static final MethodHandle PFNGLFRAMEBUFFERFETCHBARRIEREXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$950.PFNGLFRAMEBUFFERFETCHBARRIEREXTPROC$FUNC
+    );
+    static final FunctionDescriptor glFramebufferFetchBarrierEXT$FUNC = FunctionDescriptor.ofVoid();
+    static final MethodHandle glFramebufferFetchBarrierEXT$MH = RuntimeHelper.downcallHandle(
+        "glFramebufferFetchBarrierEXT",
+        constants$950.glFramebufferFetchBarrierEXT$FUNC
     );
 }
 

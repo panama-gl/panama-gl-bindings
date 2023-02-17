@@ -11,13 +11,13 @@ public interface PFNGLMULTIDRAWELEMENTSEXTPROC {
 
     void apply(int mode, java.lang.foreign.MemoryAddress count, int type, java.lang.foreign.MemoryAddress indices, int primcount);
     static MemorySegment allocate(PFNGLMULTIDRAWELEMENTSEXTPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLMULTIDRAWELEMENTSEXTPROC.class, fi, constants$648.PFNGLMULTIDRAWELEMENTSEXTPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLMULTIDRAWELEMENTSEXTPROC.class, fi, constants$925.PFNGLMULTIDRAWELEMENTSEXTPROC$FUNC, session);
     }
     static PFNGLMULTIDRAWELEMENTSEXTPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _mode, java.lang.foreign.MemoryAddress _count, int _type, java.lang.foreign.MemoryAddress _indices, int _primcount) -> {
             try {
-                constants$648.PFNGLMULTIDRAWELEMENTSEXTPROC$MH.invokeExact((Addressable)symbol, _mode, (java.lang.foreign.Addressable)_count, _type, (java.lang.foreign.Addressable)_indices, _primcount);
+                constants$926.PFNGLMULTIDRAWELEMENTSEXTPROC$MH.invokeExact((Addressable)symbol, _mode, (java.lang.foreign.Addressable)_count, _type, (java.lang.foreign.Addressable)_indices, _primcount);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

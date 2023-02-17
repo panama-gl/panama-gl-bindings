@@ -9,38 +9,26 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$249 {
 
-    static final FunctionDescriptor PFNGLDRAWELEMENTSINSTANCEDBASEINSTANCEPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
+    static final FunctionDescriptor PFNGLCOLORP4UIPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLDRAWELEMENTSINSTANCEDBASEINSTANCEPROC$MH = RuntimeHelper.downcallHandle(
-        constants$249.PFNGLDRAWELEMENTSINSTANCEDBASEINSTANCEPROC$FUNC
+    static final MethodHandle PFNGLCOLORP4UIPROC$MH = RuntimeHelper.downcallHandle(
+        constants$249.PFNGLCOLORP4UIPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLDRAWELEMENTSINSTANCEDBASEVERTEXBASEINSTANCEPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT
-    );
-    static final MethodHandle PFNGLDRAWELEMENTSINSTANCEDBASEVERTEXBASEINSTANCEPROC$MH = RuntimeHelper.downcallHandle(
-        constants$249.PFNGLDRAWELEMENTSINSTANCEDBASEVERTEXBASEINSTANCEPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLGETINTERNALFORMATIVPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
+    static final FunctionDescriptor PFNGLCOLORP4UIVPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLGETINTERNALFORMATIVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$249.PFNGLGETINTERNALFORMATIVPROC$FUNC
+    static final MethodHandle PFNGLCOLORP4UIVPROC$MH = RuntimeHelper.downcallHandle(
+        constants$249.PFNGLCOLORP4UIVPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLSECONDARYCOLORP3UIPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle PFNGLSECONDARYCOLORP3UIPROC$MH = RuntimeHelper.downcallHandle(
+        constants$249.PFNGLSECONDARYCOLORP3UIPROC$FUNC
     );
 }
 

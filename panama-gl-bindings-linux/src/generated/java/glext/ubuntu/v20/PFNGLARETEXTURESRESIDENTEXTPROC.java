@@ -11,13 +11,13 @@ public interface PFNGLARETEXTURESRESIDENTEXTPROC {
 
     byte apply(int n, java.lang.foreign.MemoryAddress textures, java.lang.foreign.MemoryAddress residences);
     static MemorySegment allocate(PFNGLARETEXTURESRESIDENTEXTPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLARETEXTURESRESIDENTEXTPROC.class, fi, constants$670.PFNGLARETEXTURESRESIDENTEXTPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLARETEXTURESRESIDENTEXTPROC.class, fi, constants$959.PFNGLARETEXTURESRESIDENTEXTPROC$FUNC, session);
     }
     static PFNGLARETEXTURESRESIDENTEXTPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _n, java.lang.foreign.MemoryAddress _textures, java.lang.foreign.MemoryAddress _residences) -> {
             try {
-                return (byte)constants$670.PFNGLARETEXTURESRESIDENTEXTPROC$MH.invokeExact((Addressable)symbol, _n, (java.lang.foreign.Addressable)_textures, (java.lang.foreign.Addressable)_residences);
+                return (byte)constants$959.PFNGLARETEXTURESRESIDENTEXTPROC$MH.invokeExact((Addressable)symbol, _n, (java.lang.foreign.Addressable)_textures, (java.lang.foreign.Addressable)_residences);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

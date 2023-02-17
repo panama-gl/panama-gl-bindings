@@ -9,26 +9,47 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$156 {
 
-    static final FunctionDescriptor PFNGLVERTEXATTRIBI4IVPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glBindAttribLocation$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLVERTEXATTRIBI4IVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$156.PFNGLVERTEXATTRIBI4IVPROC$FUNC
+    static final MethodHandle glBindAttribLocation$MH = RuntimeHelper.downcallHandle(
+        "glBindAttribLocation",
+        constants$156.glBindAttribLocation$FUNC
     );
-    static final FunctionDescriptor PFNGLVERTEXATTRIBI1UIVPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
+    static final FunctionDescriptor glCompileShader$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLVERTEXATTRIBI1UIVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$156.PFNGLVERTEXATTRIBI1UIVPROC$FUNC
+    static final MethodHandle glCompileShader$MH = RuntimeHelper.downcallHandle(
+        "glCompileShader",
+        constants$156.glCompileShader$FUNC
     );
-    static final FunctionDescriptor PFNGLVERTEXATTRIBI2UIVPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
+    static final FunctionDescriptor glCreateProgram$FUNC = FunctionDescriptor.of(Constants$root.C_INT$LAYOUT);
+    static final MethodHandle glCreateProgram$MH = RuntimeHelper.downcallHandle(
+        "glCreateProgram",
+        constants$156.glCreateProgram$FUNC
     );
-    static final MethodHandle PFNGLVERTEXATTRIBI2UIVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$156.PFNGLVERTEXATTRIBI2UIVPROC$FUNC
+    static final FunctionDescriptor glCreateShader$FUNC = FunctionDescriptor.of(Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle glCreateShader$MH = RuntimeHelper.downcallHandle(
+        "glCreateShader",
+        constants$156.glCreateShader$FUNC
+    );
+    static final FunctionDescriptor glDeleteProgram$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle glDeleteProgram$MH = RuntimeHelper.downcallHandle(
+        "glDeleteProgram",
+        constants$156.glDeleteProgram$FUNC
+    );
+    static final FunctionDescriptor glDeleteShader$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle glDeleteShader$MH = RuntimeHelper.downcallHandle(
+        "glDeleteShader",
+        constants$156.glDeleteShader$FUNC
     );
 }
 

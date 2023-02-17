@@ -11,13 +11,13 @@ public interface PFNGLINVALIDATENAMEDFRAMEBUFFERSUBDATAPROC {
 
     void apply(int framebuffer, int numAttachments, java.lang.foreign.MemoryAddress attachments, int x, int y, int width, int height);
     static MemorySegment allocate(PFNGLINVALIDATENAMEDFRAMEBUFFERSUBDATAPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLINVALIDATENAMEDFRAMEBUFFERSUBDATAPROC.class, fi, constants$280.PFNGLINVALIDATENAMEDFRAMEBUFFERSUBDATAPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLINVALIDATENAMEDFRAMEBUFFERSUBDATAPROC.class, fi, constants$369.PFNGLINVALIDATENAMEDFRAMEBUFFERSUBDATAPROC$FUNC, session);
     }
     static PFNGLINVALIDATENAMEDFRAMEBUFFERSUBDATAPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _framebuffer, int _numAttachments, java.lang.foreign.MemoryAddress _attachments, int _x, int _y, int _width, int _height) -> {
             try {
-                constants$280.PFNGLINVALIDATENAMEDFRAMEBUFFERSUBDATAPROC$MH.invokeExact((Addressable)symbol, _framebuffer, _numAttachments, (java.lang.foreign.Addressable)_attachments, _x, _y, _width, _height);
+                constants$369.PFNGLINVALIDATENAMEDFRAMEBUFFERSUBDATAPROC$MH.invokeExact((Addressable)symbol, _framebuffer, _numAttachments, (java.lang.foreign.Addressable)_attachments, _x, _y, _width, _height);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

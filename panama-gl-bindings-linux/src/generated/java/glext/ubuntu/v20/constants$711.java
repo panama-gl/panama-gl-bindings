@@ -9,25 +9,34 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$711 {
 
-    static final FunctionDescriptor PFNGLFRAMEBUFFERPARAMETERIMESAPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT
-    );
-    static final MethodHandle PFNGLFRAMEBUFFERPARAMETERIMESAPROC$MH = RuntimeHelper.downcallHandle(
-        constants$711.PFNGLFRAMEBUFFERPARAMETERIMESAPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLGETFRAMEBUFFERPARAMETERIVMESAPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
+    static final FunctionDescriptor PFNGLVERTEXSTREAM3IVATIPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLGETFRAMEBUFFERPARAMETERIVMESAPROC$MH = RuntimeHelper.downcallHandle(
-        constants$711.PFNGLGETFRAMEBUFFERPARAMETERIVMESAPROC$FUNC
+    static final MethodHandle PFNGLVERTEXSTREAM3IVATIPROC$MH = RuntimeHelper.downcallHandle(
+        constants$711.PFNGLVERTEXSTREAM3IVATIPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLRESIZEBUFFERSMESAPROC$FUNC = FunctionDescriptor.ofVoid();
-    static final MethodHandle PFNGLRESIZEBUFFERSMESAPROC$MH = RuntimeHelper.downcallHandle(
-        constants$711.PFNGLRESIZEBUFFERSMESAPROC$FUNC
+    static final FunctionDescriptor PFNGLVERTEXSTREAM3FATIPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT
+    );
+    static final MethodHandle PFNGLVERTEXSTREAM3FATIPROC$MH = RuntimeHelper.downcallHandle(
+        constants$711.PFNGLVERTEXSTREAM3FATIPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLVERTEXSTREAM3FVATIPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle PFNGLVERTEXSTREAM3FVATIPROC$MH = RuntimeHelper.downcallHandle(
+        constants$711.PFNGLVERTEXSTREAM3FVATIPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLVERTEXSTREAM3DATIPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_DOUBLE$LAYOUT,
+        Constants$root.C_DOUBLE$LAYOUT,
+        Constants$root.C_DOUBLE$LAYOUT
     );
 }
 

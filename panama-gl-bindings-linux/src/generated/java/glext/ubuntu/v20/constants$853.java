@@ -9,29 +9,80 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$853 {
 
-    static final FunctionDescriptor PFNGLGETVERTEXATTRIBDVNVPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glCopyMultiTexImage2DEXT$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle glCopyMultiTexImage2DEXT$MH = RuntimeHelper.downcallHandle(
+        "glCopyMultiTexImage2DEXT",
+        constants$853.glCopyMultiTexImage2DEXT$FUNC
+    );
+    static final FunctionDescriptor glCopyMultiTexSubImage1DEXT$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle glCopyMultiTexSubImage1DEXT$MH = RuntimeHelper.downcallHandle(
+        "glCopyMultiTexSubImage1DEXT",
+        constants$853.glCopyMultiTexSubImage1DEXT$FUNC
+    );
+    static final FunctionDescriptor glCopyMultiTexSubImage2DEXT$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle glCopyMultiTexSubImage2DEXT$MH = RuntimeHelper.downcallHandle(
+        "glCopyMultiTexSubImage2DEXT",
+        constants$853.glCopyMultiTexSubImage2DEXT$FUNC
+    );
+    static final FunctionDescriptor glGetMultiTexImageEXT$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLGETVERTEXATTRIBDVNVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$853.PFNGLGETVERTEXATTRIBDVNVPROC$FUNC
+    static final MethodHandle glGetMultiTexImageEXT$MH = RuntimeHelper.downcallHandle(
+        "glGetMultiTexImageEXT",
+        constants$853.glGetMultiTexImageEXT$FUNC
     );
-    static final FunctionDescriptor PFNGLGETVERTEXATTRIBFVNVPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glGetMultiTexParameterfvEXT$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle PFNGLGETVERTEXATTRIBFVNVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$853.PFNGLGETVERTEXATTRIBFVNVPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLGETVERTEXATTRIBIVNVPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLGETVERTEXATTRIBIVNVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$853.PFNGLGETVERTEXATTRIBIVNVPROC$FUNC
+    static final MethodHandle glGetMultiTexParameterfvEXT$MH = RuntimeHelper.downcallHandle(
+        "glGetMultiTexParameterfvEXT",
+        constants$853.glGetMultiTexParameterfvEXT$FUNC
+    );
+    static final FunctionDescriptor glGetMultiTexParameterivEXT$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glGetMultiTexParameterivEXT$MH = RuntimeHelper.downcallHandle(
+        "glGetMultiTexParameterivEXT",
+        constants$853.glGetMultiTexParameterivEXT$FUNC
     );
 }
 

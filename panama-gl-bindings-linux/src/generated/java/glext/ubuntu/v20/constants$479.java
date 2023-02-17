@@ -9,28 +9,42 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$479 {
 
-    static final FunctionDescriptor PFNGLFINISHOBJECTAPPLEPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT
-    );
-    static final MethodHandle PFNGLFINISHOBJECTAPPLEPROC$MH = RuntimeHelper.downcallHandle(
-        constants$479.PFNGLFINISHOBJECTAPPLEPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLBUFFERPARAMETERIAPPLEPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLREADNPIXELSARBPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT
-    );
-    static final MethodHandle PFNGLBUFFERPARAMETERIAPPLEPROC$MH = RuntimeHelper.downcallHandle(
-        constants$479.PFNGLBUFFERPARAMETERIAPPLEPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLFLUSHMAPPEDBUFFERRANGEAPPLEPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_LONG_LONG$LAYOUT,
-        Constants$root.C_LONG_LONG$LAYOUT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLFLUSHMAPPEDBUFFERRANGEAPPLEPROC$MH = RuntimeHelper.downcallHandle(
-        constants$479.PFNGLFLUSHMAPPEDBUFFERRANGEAPPLEPROC$FUNC
+    static final MethodHandle PFNGLREADNPIXELSARBPROC$MH = RuntimeHelper.downcallHandle(
+        constants$479.PFNGLREADNPIXELSARBPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLGETNCOMPRESSEDTEXIMAGEARBPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle PFNGLGETNCOMPRESSEDTEXIMAGEARBPROC$MH = RuntimeHelper.downcallHandle(
+        constants$479.PFNGLGETNCOMPRESSEDTEXIMAGEARBPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLGETNUNIFORMFVARBPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle PFNGLGETNUNIFORMFVARBPROC$MH = RuntimeHelper.downcallHandle(
+        constants$479.PFNGLGETNUNIFORMFVARBPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLGETNUNIFORMIVARBPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
 }
 

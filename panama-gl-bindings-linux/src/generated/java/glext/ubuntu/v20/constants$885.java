@@ -9,25 +9,42 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$885 {
 
-    static final FunctionDescriptor PFNGLSAMPLEMASKSGISPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_FLOAT$LAYOUT,
+    static final FunctionDescriptor PFNGLCOLORMASKINDEXEDEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_CHAR$LAYOUT,
+        Constants$root.C_CHAR$LAYOUT,
+        Constants$root.C_CHAR$LAYOUT,
         Constants$root.C_CHAR$LAYOUT
     );
-    static final MethodHandle PFNGLSAMPLEMASKSGISPROC$MH = RuntimeHelper.downcallHandle(
-        constants$885.PFNGLSAMPLEMASKSGISPROC$FUNC
+    static final MethodHandle PFNGLCOLORMASKINDEXEDEXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$885.PFNGLCOLORMASKINDEXEDEXTPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLSAMPLEPATTERNSGISPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT
+    static final FunctionDescriptor glColorMaskIndexedEXT$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_CHAR$LAYOUT,
+        Constants$root.C_CHAR$LAYOUT,
+        Constants$root.C_CHAR$LAYOUT,
+        Constants$root.C_CHAR$LAYOUT
     );
-    static final MethodHandle PFNGLSAMPLEPATTERNSGISPROC$MH = RuntimeHelper.downcallHandle(
-        constants$885.PFNGLSAMPLEPATTERNSGISPROC$FUNC
+    static final MethodHandle glColorMaskIndexedEXT$MH = RuntimeHelper.downcallHandle(
+        "glColorMaskIndexedEXT",
+        constants$885.glColorMaskIndexedEXT$FUNC
     );
-    static final FunctionDescriptor PFNGLPIXELTEXGENPARAMETERISGISPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLDRAWARRAYSINSTANCEDEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLPIXELTEXGENPARAMETERISGISPROC$MH = RuntimeHelper.downcallHandle(
-        constants$885.PFNGLPIXELTEXGENPARAMETERISGISPROC$FUNC
+    static final MethodHandle PFNGLDRAWARRAYSINSTANCEDEXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$885.PFNGLDRAWARRAYSINSTANCEDEXTPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLDRAWELEMENTSINSTANCEDEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
 }
 

@@ -9,34 +9,27 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$144 {
 
-    static final FunctionDescriptor PFNGLVERTEXATTRIBPOINTERPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLVERTEXATTRIB1SPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_CHAR$LAYOUT,
+        Constants$root.C_SHORT$LAYOUT
+    );
+    static final MethodHandle PFNGLVERTEXATTRIB1SPROC$MH = RuntimeHelper.downcallHandle(
+        constants$144.PFNGLVERTEXATTRIB1SPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLVERTEXATTRIB1SVPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLVERTEXATTRIBPOINTERPROC$MH = RuntimeHelper.downcallHandle(
-        constants$144.PFNGLVERTEXATTRIBPOINTERPROC$FUNC
+    static final MethodHandle PFNGLVERTEXATTRIB1SVPROC$MH = RuntimeHelper.downcallHandle(
+        constants$144.PFNGLVERTEXATTRIB1SVPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLUNIFORMMATRIX2X3FVPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLVERTEXATTRIB2DPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_CHAR$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
+        Constants$root.C_DOUBLE$LAYOUT,
+        Constants$root.C_DOUBLE$LAYOUT
     );
-    static final MethodHandle PFNGLUNIFORMMATRIX2X3FVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$144.PFNGLUNIFORMMATRIX2X3FVPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLUNIFORMMATRIX3X2FVPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_CHAR$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle PFNGLUNIFORMMATRIX3X2FVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$144.PFNGLUNIFORMMATRIX3X2FVPROC$FUNC
+    static final MethodHandle PFNGLVERTEXATTRIB2DPROC$MH = RuntimeHelper.downcallHandle(
+        constants$144.PFNGLVERTEXATTRIB2DPROC$FUNC
     );
 }
 

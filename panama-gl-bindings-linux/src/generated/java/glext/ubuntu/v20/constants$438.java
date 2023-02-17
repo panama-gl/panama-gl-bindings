@@ -9,26 +9,36 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$438 {
 
-    static final FunctionDescriptor PFNGLPASSTHROUGHXOESPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glDrawElementsInstancedARB$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
         Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLPASSTHROUGHXOESPROC$MH = RuntimeHelper.downcallHandle(
-        constants$438.PFNGLPASSTHROUGHXOESPROC$FUNC
+    static final MethodHandle glDrawElementsInstancedARB$MH = RuntimeHelper.downcallHandle(
+        "glDrawElementsInstancedARB",
+        constants$438.glDrawElementsInstancedARB$FUNC
     );
-    static final FunctionDescriptor PFNGLPIXELMAPXPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLPROGRAMSTRINGARBPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLPIXELMAPXPROC$MH = RuntimeHelper.downcallHandle(
-        constants$438.PFNGLPIXELMAPXPROC$FUNC
+    static final MethodHandle PFNGLPROGRAMSTRINGARBPROC$MH = RuntimeHelper.downcallHandle(
+        constants$438.PFNGLPROGRAMSTRINGARBPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLPIXELSTOREXPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLBINDPROGRAMARBPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLPIXELSTOREXPROC$MH = RuntimeHelper.downcallHandle(
-        constants$438.PFNGLPIXELSTOREXPROC$FUNC
+    static final MethodHandle PFNGLBINDPROGRAMARBPROC$MH = RuntimeHelper.downcallHandle(
+        constants$438.PFNGLBINDPROGRAMARBPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLDELETEPROGRAMSARBPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
 }
 

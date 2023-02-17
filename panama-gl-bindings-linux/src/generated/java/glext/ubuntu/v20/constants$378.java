@@ -9,26 +9,46 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$378 {
 
-    static final FunctionDescriptor PFNGLWEIGHTBVARBPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLCOMPRESSEDTEXTURESUBIMAGE2DPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLWEIGHTBVARBPROC$MH = RuntimeHelper.downcallHandle(
-        constants$378.PFNGLWEIGHTBVARBPROC$FUNC
+    static final MethodHandle PFNGLCOMPRESSEDTEXTURESUBIMAGE2DPROC$MH = RuntimeHelper.downcallHandle(
+        constants$378.PFNGLCOMPRESSEDTEXTURESUBIMAGE2DPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLWEIGHTSVARBPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLCOMPRESSEDTEXTURESUBIMAGE3DPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLWEIGHTSVARBPROC$MH = RuntimeHelper.downcallHandle(
-        constants$378.PFNGLWEIGHTSVARBPROC$FUNC
+    static final MethodHandle PFNGLCOMPRESSEDTEXTURESUBIMAGE3DPROC$MH = RuntimeHelper.downcallHandle(
+        constants$378.PFNGLCOMPRESSEDTEXTURESUBIMAGE3DPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLWEIGHTIVARBPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLCOPYTEXTURESUBIMAGE1DPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLWEIGHTIVARBPROC$MH = RuntimeHelper.downcallHandle(
-        constants$378.PFNGLWEIGHTIVARBPROC$FUNC
+    static final MethodHandle PFNGLCOPYTEXTURESUBIMAGE1DPROC$MH = RuntimeHelper.downcallHandle(
+        constants$378.PFNGLCOPYTEXTURESUBIMAGE1DPROC$FUNC
     );
 }
 

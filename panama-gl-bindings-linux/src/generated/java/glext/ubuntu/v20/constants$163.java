@@ -9,29 +9,61 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$163 {
 
-    static final FunctionDescriptor PFNGLTEXPARAMETERIUIVPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glUniform1iv$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLTEXPARAMETERIUIVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$163.PFNGLTEXPARAMETERIUIVPROC$FUNC
+    static final MethodHandle glUniform1iv$MH = RuntimeHelper.downcallHandle(
+        "glUniform1iv",
+        constants$163.glUniform1iv$FUNC
     );
-    static final FunctionDescriptor PFNGLGETTEXPARAMETERIIVPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glUniform2iv$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLGETTEXPARAMETERIIVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$163.PFNGLGETTEXPARAMETERIIVPROC$FUNC
+    static final MethodHandle glUniform2iv$MH = RuntimeHelper.downcallHandle(
+        "glUniform2iv",
+        constants$163.glUniform2iv$FUNC
     );
-    static final FunctionDescriptor PFNGLGETTEXPARAMETERIUIVPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glUniform3iv$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLGETTEXPARAMETERIUIVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$163.PFNGLGETTEXPARAMETERIUIVPROC$FUNC
+    static final MethodHandle glUniform3iv$MH = RuntimeHelper.downcallHandle(
+        "glUniform3iv",
+        constants$163.glUniform3iv$FUNC
+    );
+    static final FunctionDescriptor glUniform4iv$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glUniform4iv$MH = RuntimeHelper.downcallHandle(
+        "glUniform4iv",
+        constants$163.glUniform4iv$FUNC
+    );
+    static final FunctionDescriptor glUniformMatrix2fv$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_CHAR$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glUniformMatrix2fv$MH = RuntimeHelper.downcallHandle(
+        "glUniformMatrix2fv",
+        constants$163.glUniformMatrix2fv$FUNC
+    );
+    static final FunctionDescriptor glUniformMatrix3fv$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_CHAR$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glUniformMatrix3fv$MH = RuntimeHelper.downcallHandle(
+        "glUniformMatrix3fv",
+        constants$163.glUniformMatrix3fv$FUNC
     );
 }
 

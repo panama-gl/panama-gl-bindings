@@ -9,30 +9,38 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$736 {
 
-    static final FunctionDescriptor PFNGLISCOMMANDLISTNVPROC$FUNC = FunctionDescriptor.of(Constants$root.C_CHAR$LAYOUT,
-        Constants$root.C_INT$LAYOUT
-    );
-    static final MethodHandle PFNGLISCOMMANDLISTNVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$736.PFNGLISCOMMANDLISTNVPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLLISTDRAWCOMMANDSSTATESCLIENTNVPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLCOPYCONVOLUTIONFILTER2DEXTPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_INT$LAYOUT
-    );
-    static final MethodHandle PFNGLLISTDRAWCOMMANDSSTATESCLIENTNVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$736.PFNGLLISTDRAWCOMMANDSSTATESCLIENTNVPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLCOMMANDLISTSEGMENTSNVPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLCOMMANDLISTSEGMENTSNVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$736.PFNGLCOMMANDLISTSEGMENTSNVPROC$FUNC
+    static final MethodHandle PFNGLCOPYCONVOLUTIONFILTER2DEXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$736.PFNGLCOPYCONVOLUTIONFILTER2DEXTPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLGETCONVOLUTIONFILTEREXTPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle PFNGLGETCONVOLUTIONFILTEREXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$736.PFNGLGETCONVOLUTIONFILTEREXTPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLGETCONVOLUTIONPARAMETERFVEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle PFNGLGETCONVOLUTIONPARAMETERFVEXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$736.PFNGLGETCONVOLUTIONPARAMETERFVEXTPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLGETCONVOLUTIONPARAMETERIVEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
 }
 

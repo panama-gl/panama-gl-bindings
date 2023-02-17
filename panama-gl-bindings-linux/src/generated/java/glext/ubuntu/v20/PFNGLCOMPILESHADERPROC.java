@@ -11,13 +11,13 @@ public interface PFNGLCOMPILESHADERPROC {
 
     void apply(int shader);
     static MemorySegment allocate(PFNGLCOMPILESHADERPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLCOMPILESHADERPROC.class, fi, constants$115.PFNGLCOMPILESHADERPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLCOMPILESHADERPROC.class, fi, constants$126.PFNGLCOMPILESHADERPROC$FUNC, session);
     }
     static PFNGLCOMPILESHADERPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _shader) -> {
             try {
-                constants$115.PFNGLCOMPILESHADERPROC$MH.invokeExact((Addressable)symbol, _shader);
+                constants$126.PFNGLCOMPILESHADERPROC$MH.invokeExact((Addressable)symbol, _shader);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

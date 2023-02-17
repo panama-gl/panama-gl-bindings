@@ -9,43 +9,34 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$969 {
 
-    static final FunctionDescriptor glutReportErrors$FUNC = FunctionDescriptor.ofVoid();
-    static final MethodHandle glutReportErrors$MH = RuntimeHelper.downcallHandle(
-        "glutReportErrors",
-        constants$969.glutReportErrors$FUNC
-    );
-    static final FunctionDescriptor __ctype_get_mb_cur_max$FUNC = FunctionDescriptor.of(Constants$root.C_LONG_LONG$LAYOUT);
-    static final MethodHandle __ctype_get_mb_cur_max$MH = RuntimeHelper.downcallHandle(
-        "__ctype_get_mb_cur_max",
-        constants$969.__ctype_get_mb_cur_max$FUNC
-    );
-    static final FunctionDescriptor atof$FUNC = FunctionDescriptor.of(Constants$root.C_DOUBLE$LAYOUT,
+    static final FunctionDescriptor PFNGLNORMALPOINTEREXTPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle atof$MH = RuntimeHelper.downcallHandle(
-        "atof",
-        constants$969.atof$FUNC
+    static final MethodHandle PFNGLNORMALPOINTEREXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$969.PFNGLNORMALPOINTEREXTPROC$FUNC
     );
-    static final FunctionDescriptor atoi$FUNC = FunctionDescriptor.of(Constants$root.C_INT$LAYOUT,
+    static final FunctionDescriptor PFNGLTEXCOORDPOINTEREXTPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle atoi$MH = RuntimeHelper.downcallHandle(
-        "atoi",
-        constants$969.atoi$FUNC
+    static final MethodHandle PFNGLTEXCOORDPOINTEREXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$969.PFNGLTEXCOORDPOINTEREXTPROC$FUNC
     );
-    static final FunctionDescriptor atol$FUNC = FunctionDescriptor.of(Constants$root.C_LONG_LONG$LAYOUT,
+    static final FunctionDescriptor PFNGLVERTEXPOINTEREXTPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle atol$MH = RuntimeHelper.downcallHandle(
-        "atol",
-        constants$969.atol$FUNC
-    );
-    static final FunctionDescriptor atoll$FUNC = FunctionDescriptor.of(Constants$root.C_LONG_LONG$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle atoll$MH = RuntimeHelper.downcallHandle(
-        "atoll",
-        constants$969.atoll$FUNC
+    static final MethodHandle PFNGLVERTEXPOINTEREXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$969.PFNGLVERTEXPOINTEREXTPROC$FUNC
     );
 }
 

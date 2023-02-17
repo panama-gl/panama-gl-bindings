@@ -11,13 +11,13 @@ public interface PFNGLTEXTUREPARAMETERFEXTPROC {
 
     void apply(int texture, int target, int pname, float param);
     static MemorySegment allocate(PFNGLTEXTUREPARAMETERFEXTPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLTEXTUREPARAMETERFEXTPROC.class, fi, constants$541.PFNGLTEXTUREPARAMETERFEXTPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLTEXTUREPARAMETERFEXTPROC.class, fi, constants$763.PFNGLTEXTUREPARAMETERFEXTPROC$FUNC, session);
     }
     static PFNGLTEXTUREPARAMETERFEXTPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _texture, int _target, int _pname, float _param) -> {
             try {
-                constants$541.PFNGLTEXTUREPARAMETERFEXTPROC$MH.invokeExact((Addressable)symbol, _texture, _target, _pname, _param);
+                constants$763.PFNGLTEXTUREPARAMETERFEXTPROC$MH.invokeExact((Addressable)symbol, _texture, _target, _pname, _param);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

@@ -9,24 +9,63 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$402 {
 
-    static final FunctionDescriptor PFNGLWINDOWPOS2IVARBPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glClearNamedBufferData$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLWINDOWPOS2IVARBPROC$MH = RuntimeHelper.downcallHandle(
-        constants$402.PFNGLWINDOWPOS2IVARBPROC$FUNC
+    static final MethodHandle glClearNamedBufferData$MH = RuntimeHelper.downcallHandle(
+        "glClearNamedBufferData",
+        constants$402.glClearNamedBufferData$FUNC
     );
-    static final FunctionDescriptor PFNGLWINDOWPOS2SARBPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_SHORT$LAYOUT,
-        Constants$root.C_SHORT$LAYOUT
-    );
-    static final MethodHandle PFNGLWINDOWPOS2SARBPROC$MH = RuntimeHelper.downcallHandle(
-        constants$402.PFNGLWINDOWPOS2SARBPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLWINDOWPOS2SVARBPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glClearNamedBufferSubData$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLWINDOWPOS2SVARBPROC$MH = RuntimeHelper.downcallHandle(
-        constants$402.PFNGLWINDOWPOS2SVARBPROC$FUNC
+    static final MethodHandle glClearNamedBufferSubData$MH = RuntimeHelper.downcallHandle(
+        "glClearNamedBufferSubData",
+        constants$402.glClearNamedBufferSubData$FUNC
+    );
+    static final FunctionDescriptor glMapNamedBuffer$FUNC = FunctionDescriptor.of(Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle glMapNamedBuffer$MH = RuntimeHelper.downcallHandle(
+        "glMapNamedBuffer",
+        constants$402.glMapNamedBuffer$FUNC
+    );
+    static final FunctionDescriptor glMapNamedBufferRange$FUNC = FunctionDescriptor.of(Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle glMapNamedBufferRange$MH = RuntimeHelper.downcallHandle(
+        "glMapNamedBufferRange",
+        constants$402.glMapNamedBufferRange$FUNC
+    );
+    static final FunctionDescriptor glUnmapNamedBuffer$FUNC = FunctionDescriptor.of(Constants$root.C_CHAR$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle glUnmapNamedBuffer$MH = RuntimeHelper.downcallHandle(
+        "glUnmapNamedBuffer",
+        constants$402.glUnmapNamedBuffer$FUNC
+    );
+    static final FunctionDescriptor glFlushMappedNamedBufferRange$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT
+    );
+    static final MethodHandle glFlushMappedNamedBufferRange$MH = RuntimeHelper.downcallHandle(
+        "glFlushMappedNamedBufferRange",
+        constants$402.glFlushMappedNamedBufferRange$FUNC
     );
 }
 

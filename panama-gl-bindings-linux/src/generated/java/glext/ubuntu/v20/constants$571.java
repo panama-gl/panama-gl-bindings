@@ -9,27 +9,57 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$571 {
 
-    static final FunctionDescriptor PFNGLUNMAPNAMEDBUFFEREXTPROC$FUNC = FunctionDescriptor.of(Constants$root.C_CHAR$LAYOUT,
-        Constants$root.C_INT$LAYOUT
-    );
-    static final MethodHandle PFNGLUNMAPNAMEDBUFFEREXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$571.PFNGLUNMAPNAMEDBUFFEREXTPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLGETNAMEDBUFFERPARAMETERIVEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
+    static final FunctionDescriptor glMultiTexCoord2bvOES$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLGETNAMEDBUFFERPARAMETERIVEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$571.PFNGLGETNAMEDBUFFERPARAMETERIVEXTPROC$FUNC
+    static final MethodHandle glMultiTexCoord2bvOES$MH = RuntimeHelper.downcallHandle(
+        "glMultiTexCoord2bvOES",
+        constants$571.glMultiTexCoord2bvOES$FUNC
     );
-    static final FunctionDescriptor PFNGLGETNAMEDBUFFERPOINTERVEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glMultiTexCoord3bOES$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
+        Constants$root.C_CHAR$LAYOUT,
+        Constants$root.C_CHAR$LAYOUT,
+        Constants$root.C_CHAR$LAYOUT
+    );
+    static final MethodHandle glMultiTexCoord3bOES$MH = RuntimeHelper.downcallHandle(
+        "glMultiTexCoord3bOES",
+        constants$571.glMultiTexCoord3bOES$FUNC
+    );
+    static final FunctionDescriptor glMultiTexCoord3bvOES$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLGETNAMEDBUFFERPOINTERVEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$571.PFNGLGETNAMEDBUFFERPOINTERVEXTPROC$FUNC
+    static final MethodHandle glMultiTexCoord3bvOES$MH = RuntimeHelper.downcallHandle(
+        "glMultiTexCoord3bvOES",
+        constants$571.glMultiTexCoord3bvOES$FUNC
+    );
+    static final FunctionDescriptor glMultiTexCoord4bOES$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_CHAR$LAYOUT,
+        Constants$root.C_CHAR$LAYOUT,
+        Constants$root.C_CHAR$LAYOUT,
+        Constants$root.C_CHAR$LAYOUT
+    );
+    static final MethodHandle glMultiTexCoord4bOES$MH = RuntimeHelper.downcallHandle(
+        "glMultiTexCoord4bOES",
+        constants$571.glMultiTexCoord4bOES$FUNC
+    );
+    static final FunctionDescriptor glMultiTexCoord4bvOES$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glMultiTexCoord4bvOES$MH = RuntimeHelper.downcallHandle(
+        "glMultiTexCoord4bvOES",
+        constants$571.glMultiTexCoord4bvOES$FUNC
+    );
+    static final FunctionDescriptor glTexCoord1bOES$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_CHAR$LAYOUT
+    );
+    static final MethodHandle glTexCoord1bOES$MH = RuntimeHelper.downcallHandle(
+        "glTexCoord1bOES",
+        constants$571.glTexCoord1bOES$FUNC
     );
 }
 

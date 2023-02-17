@@ -9,27 +9,32 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$527 {
 
-    static final FunctionDescriptor PFNGLTANGENT3SEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_SHORT$LAYOUT,
-        Constants$root.C_SHORT$LAYOUT,
-        Constants$root.C_SHORT$LAYOUT
+    static final FunctionDescriptor PFNGLBUFFERDATAARBPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLTANGENT3SEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$527.PFNGLTANGENT3SEXTPROC$FUNC
+    static final MethodHandle PFNGLBUFFERDATAARBPROC$MH = RuntimeHelper.downcallHandle(
+        constants$527.PFNGLBUFFERDATAARBPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLTANGENT3SVEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLBUFFERSUBDATAARBPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLTANGENT3SVEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$527.PFNGLTANGENT3SVEXTPROC$FUNC
+    static final MethodHandle PFNGLBUFFERSUBDATAARBPROC$MH = RuntimeHelper.downcallHandle(
+        constants$527.PFNGLBUFFERSUBDATAARBPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLBINORMAL3BEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_CHAR$LAYOUT,
-        Constants$root.C_CHAR$LAYOUT,
-        Constants$root.C_CHAR$LAYOUT
+    static final FunctionDescriptor PFNGLGETBUFFERSUBDATAARBPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLBINORMAL3BEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$527.PFNGLBINORMAL3BEXTPROC$FUNC
+    static final MethodHandle PFNGLGETBUFFERSUBDATAARBPROC$MH = RuntimeHelper.downcallHandle(
+        constants$527.PFNGLGETBUFFERSUBDATAARBPROC$FUNC
     );
 }
 

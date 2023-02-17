@@ -9,30 +9,69 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$353 {
 
-    static final FunctionDescriptor PFNGLGETNMAPIVARBPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glVertexBindingDivisor$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle glVertexBindingDivisor$MH = RuntimeHelper.downcallHandle(
+        "glVertexBindingDivisor",
+        constants$353.glVertexBindingDivisor$FUNC
+    );
+    static final FunctionDescriptor glDebugMessageControl$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_CHAR$LAYOUT
+    );
+    static final MethodHandle glDebugMessageControl$MH = RuntimeHelper.downcallHandle(
+        "glDebugMessageControl",
+        constants$353.glDebugMessageControl$FUNC
+    );
+    static final FunctionDescriptor glDebugMessageInsert$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLGETNMAPIVARBPROC$MH = RuntimeHelper.downcallHandle(
-        constants$353.PFNGLGETNMAPIVARBPROC$FUNC
+    static final MethodHandle glDebugMessageInsert$MH = RuntimeHelper.downcallHandle(
+        "glDebugMessageInsert",
+        constants$353.glDebugMessageInsert$FUNC
     );
-    static final FunctionDescriptor PFNGLGETNPIXELMAPFVARBPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glDebugMessageCallback$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glDebugMessageCallback$MH = RuntimeHelper.downcallHandle(
+        "glDebugMessageCallback",
+        constants$353.glDebugMessageCallback$FUNC
+    );
+    static final FunctionDescriptor glGetDebugMessageLog$FUNC = FunctionDescriptor.of(Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glGetDebugMessageLog$MH = RuntimeHelper.downcallHandle(
+        "glGetDebugMessageLog",
+        constants$353.glGetDebugMessageLog$FUNC
+    );
+    static final FunctionDescriptor glPushDebugGroup$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLGETNPIXELMAPFVARBPROC$MH = RuntimeHelper.downcallHandle(
-        constants$353.PFNGLGETNPIXELMAPFVARBPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLGETNPIXELMAPUIVARBPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle PFNGLGETNPIXELMAPUIVARBPROC$MH = RuntimeHelper.downcallHandle(
-        constants$353.PFNGLGETNPIXELMAPUIVARBPROC$FUNC
+    static final MethodHandle glPushDebugGroup$MH = RuntimeHelper.downcallHandle(
+        "glPushDebugGroup",
+        constants$353.glPushDebugGroup$FUNC
     );
 }
 

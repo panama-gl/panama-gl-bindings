@@ -11,13 +11,13 @@ public interface PFNGLGETUNIFORMBUFFERSIZEEXTPROC {
 
     int apply(int program, int location);
     static MemorySegment allocate(PFNGLGETUNIFORMBUFFERSIZEEXTPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLGETUNIFORMBUFFERSIZEEXTPROC.class, fi, constants$516.PFNGLGETUNIFORMBUFFERSIZEEXTPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLGETUNIFORMBUFFERSIZEEXTPROC.class, fi, constants$728.PFNGLGETUNIFORMBUFFERSIZEEXTPROC$FUNC, session);
     }
     static PFNGLGETUNIFORMBUFFERSIZEEXTPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _program, int _location) -> {
             try {
-                return (int)constants$516.PFNGLGETUNIFORMBUFFERSIZEEXTPROC$MH.invokeExact((Addressable)symbol, _program, _location);
+                return (int)constants$728.PFNGLGETUNIFORMBUFFERSIZEEXTPROC$MH.invokeExact((Addressable)symbol, _program, _location);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

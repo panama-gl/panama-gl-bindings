@@ -9,32 +9,70 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$864 {
 
-    static final FunctionDescriptor PFNGLVERTEXATTRIB4DNVPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glProgramUniformMatrix3x2fvEXT$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_DOUBLE$LAYOUT,
-        Constants$root.C_DOUBLE$LAYOUT,
-        Constants$root.C_DOUBLE$LAYOUT,
-        Constants$root.C_DOUBLE$LAYOUT
-    );
-    static final MethodHandle PFNGLVERTEXATTRIB4DNVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$864.PFNGLVERTEXATTRIB4DNVPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLVERTEXATTRIB4DVNVPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_CHAR$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLVERTEXATTRIB4DVNVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$864.PFNGLVERTEXATTRIB4DVNVPROC$FUNC
+    static final MethodHandle glProgramUniformMatrix3x2fvEXT$MH = RuntimeHelper.downcallHandle(
+        "glProgramUniformMatrix3x2fvEXT",
+        constants$864.glProgramUniformMatrix3x2fvEXT$FUNC
     );
-    static final FunctionDescriptor PFNGLVERTEXATTRIB4FNVPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glProgramUniformMatrix2x4fvEXT$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_CHAR$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLVERTEXATTRIB4FNVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$864.PFNGLVERTEXATTRIB4FNVPROC$FUNC
+    static final MethodHandle glProgramUniformMatrix2x4fvEXT$MH = RuntimeHelper.downcallHandle(
+        "glProgramUniformMatrix2x4fvEXT",
+        constants$864.glProgramUniformMatrix2x4fvEXT$FUNC
+    );
+    static final FunctionDescriptor glProgramUniformMatrix4x2fvEXT$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_CHAR$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glProgramUniformMatrix4x2fvEXT$MH = RuntimeHelper.downcallHandle(
+        "glProgramUniformMatrix4x2fvEXT",
+        constants$864.glProgramUniformMatrix4x2fvEXT$FUNC
+    );
+    static final FunctionDescriptor glProgramUniformMatrix3x4fvEXT$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_CHAR$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glProgramUniformMatrix3x4fvEXT$MH = RuntimeHelper.downcallHandle(
+        "glProgramUniformMatrix3x4fvEXT",
+        constants$864.glProgramUniformMatrix3x4fvEXT$FUNC
+    );
+    static final FunctionDescriptor glProgramUniformMatrix4x3fvEXT$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_CHAR$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glProgramUniformMatrix4x3fvEXT$MH = RuntimeHelper.downcallHandle(
+        "glProgramUniformMatrix4x3fvEXT",
+        constants$864.glProgramUniformMatrix4x3fvEXT$FUNC
+    );
+    static final FunctionDescriptor glTextureBufferEXT$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle glTextureBufferEXT$MH = RuntimeHelper.downcallHandle(
+        "glTextureBufferEXT",
+        constants$864.glTextureBufferEXT$FUNC
     );
 }
 

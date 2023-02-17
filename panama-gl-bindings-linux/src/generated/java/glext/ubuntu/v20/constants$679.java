@@ -9,32 +9,40 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$679 {
 
-    static final FunctionDescriptor PFNGLVERTEXATTRIBL2DEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glVertexArrayRangeAPPLE$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_DOUBLE$LAYOUT,
-        Constants$root.C_DOUBLE$LAYOUT
+        Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLVERTEXATTRIBL2DEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$679.PFNGLVERTEXATTRIBL2DEXTPROC$FUNC
+    static final MethodHandle glVertexArrayRangeAPPLE$MH = RuntimeHelper.downcallHandle(
+        "glVertexArrayRangeAPPLE",
+        constants$679.glVertexArrayRangeAPPLE$FUNC
     );
-    static final FunctionDescriptor PFNGLVERTEXATTRIBL3DEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glFlushVertexArrayRangeAPPLE$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_DOUBLE$LAYOUT,
-        Constants$root.C_DOUBLE$LAYOUT,
-        Constants$root.C_DOUBLE$LAYOUT
+        Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLVERTEXATTRIBL3DEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$679.PFNGLVERTEXATTRIBL3DEXTPROC$FUNC
+    static final MethodHandle glFlushVertexArrayRangeAPPLE$MH = RuntimeHelper.downcallHandle(
+        "glFlushVertexArrayRangeAPPLE",
+        constants$679.glFlushVertexArrayRangeAPPLE$FUNC
     );
-    static final FunctionDescriptor PFNGLVERTEXATTRIBL4DEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glVertexArrayParameteriAPPLE$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_DOUBLE$LAYOUT,
-        Constants$root.C_DOUBLE$LAYOUT,
-        Constants$root.C_DOUBLE$LAYOUT,
-        Constants$root.C_DOUBLE$LAYOUT
+        Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLVERTEXATTRIBL4DEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$679.PFNGLVERTEXATTRIBL4DEXTPROC$FUNC
+    static final MethodHandle glVertexArrayParameteriAPPLE$MH = RuntimeHelper.downcallHandle(
+        "glVertexArrayParameteriAPPLE",
+        constants$679.glVertexArrayParameteriAPPLE$FUNC
+    );
+    static final FunctionDescriptor PFNGLENABLEVERTEXATTRIBAPPLEPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle PFNGLENABLEVERTEXATTRIBAPPLEPROC$MH = RuntimeHelper.downcallHandle(
+        constants$679.PFNGLENABLEVERTEXATTRIBAPPLEPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLDISABLEVERTEXATTRIBAPPLEPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
 }
 

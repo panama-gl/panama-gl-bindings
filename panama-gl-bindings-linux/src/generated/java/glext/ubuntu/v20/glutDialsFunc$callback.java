@@ -11,13 +11,13 @@ public interface glutDialsFunc$callback {
 
     void apply(int _x0, int _x1);
     static MemorySegment allocate(glutDialsFunc$callback fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(glutDialsFunc$callback.class, fi, constants$960.glutDialsFunc$callback$FUNC, session);
+        return RuntimeHelper.upcallStub(glutDialsFunc$callback.class, fi, constants$1378.glutDialsFunc$callback$FUNC, session);
     }
     static glutDialsFunc$callback ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int __x0, int __x1) -> {
             try {
-                constants$960.glutDialsFunc$callback$MH.invokeExact((Addressable)symbol, __x0, __x1);
+                constants$1378.glutDialsFunc$callback$MH.invokeExact((Addressable)symbol, __x0, __x1);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

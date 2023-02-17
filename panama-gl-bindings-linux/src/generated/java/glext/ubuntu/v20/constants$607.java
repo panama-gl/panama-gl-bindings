@@ -9,31 +9,29 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$607 {
 
-    static final FunctionDescriptor PFNGLGETVERTEXARRAYPOINTERVEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
+    static final FunctionDescriptor PFNGLVERTEX2XVOESPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLGETVERTEXARRAYPOINTERVEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$607.PFNGLGETVERTEXARRAYPOINTERVEXTPROC$FUNC
+    static final MethodHandle PFNGLVERTEX2XVOESPROC$MH = RuntimeHelper.downcallHandle(
+        constants$607.PFNGLVERTEX2XVOESPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLGETVERTEXARRAYINTEGERI_VEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLVERTEX3XOESPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle PFNGLVERTEX3XOESPROC$MH = RuntimeHelper.downcallHandle(
+        constants$607.PFNGLVERTEX3XOESPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLVERTEX3XVOESPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLGETVERTEXARRAYINTEGERI_VEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$607.PFNGLGETVERTEXARRAYINTEGERI_VEXTPROC$FUNC
+    static final MethodHandle PFNGLVERTEX3XVOESPROC$MH = RuntimeHelper.downcallHandle(
+        constants$607.PFNGLVERTEX3XVOESPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLGETVERTEXARRAYPOINTERI_VEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLVERTEX4XOESPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle PFNGLGETVERTEXARRAYPOINTERI_VEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$607.PFNGLGETVERTEXARRAYPOINTERI_VEXTPROC$FUNC
+        Constants$root.C_INT$LAYOUT
     );
 }
 

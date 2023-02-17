@@ -11,13 +11,13 @@ public interface PFNGLGETTRANSFORMFEEDBACKVARYINGEXTPROC {
 
     void apply(int program, int index, int bufSize, java.lang.foreign.MemoryAddress length, java.lang.foreign.MemoryAddress size, java.lang.foreign.MemoryAddress type, java.lang.foreign.MemoryAddress name);
     static MemorySegment allocate(PFNGLGETTRANSFORMFEEDBACKVARYINGEXTPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLGETTRANSFORMFEEDBACKVARYINGEXTPROC.class, fi, constants$675.PFNGLGETTRANSFORMFEEDBACKVARYINGEXTPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLGETTRANSFORMFEEDBACKVARYINGEXTPROC.class, fi, constants$965.PFNGLGETTRANSFORMFEEDBACKVARYINGEXTPROC$FUNC, session);
     }
     static PFNGLGETTRANSFORMFEEDBACKVARYINGEXTPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _program, int _index, int _bufSize, java.lang.foreign.MemoryAddress _length, java.lang.foreign.MemoryAddress _size, java.lang.foreign.MemoryAddress _type, java.lang.foreign.MemoryAddress _name) -> {
             try {
-                constants$675.PFNGLGETTRANSFORMFEEDBACKVARYINGEXTPROC$MH.invokeExact((Addressable)symbol, _program, _index, _bufSize, (java.lang.foreign.Addressable)_length, (java.lang.foreign.Addressable)_size, (java.lang.foreign.Addressable)_type, (java.lang.foreign.Addressable)_name);
+                constants$965.PFNGLGETTRANSFORMFEEDBACKVARYINGEXTPROC$MH.invokeExact((Addressable)symbol, _program, _index, _bufSize, (java.lang.foreign.Addressable)_length, (java.lang.foreign.Addressable)_size, (java.lang.foreign.Addressable)_type, (java.lang.foreign.Addressable)_name);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

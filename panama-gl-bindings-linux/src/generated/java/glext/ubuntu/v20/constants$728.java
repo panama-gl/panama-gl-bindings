@@ -9,28 +9,27 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$728 {
 
-    static final FunctionDescriptor PFNGLGETIMAGEHANDLENVPROC$FUNC = FunctionDescriptor.of(Constants$root.C_LONG_LONG$LAYOUT,
+    static final FunctionDescriptor PFNGLUNIFORMBUFFEREXTPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_CHAR$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLGETIMAGEHANDLENVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$728.PFNGLGETIMAGEHANDLENVPROC$FUNC
+    static final MethodHandle PFNGLUNIFORMBUFFEREXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$728.PFNGLUNIFORMBUFFEREXTPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLMAKEIMAGEHANDLERESIDENTNVPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_LONG_LONG$LAYOUT,
+    static final FunctionDescriptor PFNGLGETUNIFORMBUFFERSIZEEXTPROC$FUNC = FunctionDescriptor.of(Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLMAKEIMAGEHANDLERESIDENTNVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$728.PFNGLMAKEIMAGEHANDLERESIDENTNVPROC$FUNC
+    static final MethodHandle PFNGLGETUNIFORMBUFFERSIZEEXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$728.PFNGLGETUNIFORMBUFFERSIZEEXTPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLMAKEIMAGEHANDLENONRESIDENTNVPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_LONG_LONG$LAYOUT
+    static final FunctionDescriptor PFNGLGETUNIFORMOFFSETEXTPROC$FUNC = FunctionDescriptor.of(Constants$root.C_LONG_LONG$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLMAKEIMAGEHANDLENONRESIDENTNVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$728.PFNGLMAKEIMAGEHANDLENONRESIDENTNVPROC$FUNC
+    static final MethodHandle PFNGLGETUNIFORMOFFSETEXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$728.PFNGLGETUNIFORMOFFSETEXTPROC$FUNC
     );
 }
 

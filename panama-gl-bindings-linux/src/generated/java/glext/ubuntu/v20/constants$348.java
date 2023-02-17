@@ -9,27 +9,71 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$348 {
 
-    static final FunctionDescriptor PFNGLGETQUERYOBJECTIVARBPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glDispatchCompute$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle PFNGLGETQUERYOBJECTIVARBPROC$MH = RuntimeHelper.downcallHandle(
-        constants$348.PFNGLGETQUERYOBJECTIVARBPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLGETQUERYOBJECTUIVARBPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle PFNGLGETQUERYOBJECTUIVARBPROC$MH = RuntimeHelper.downcallHandle(
-        constants$348.PFNGLGETQUERYOBJECTUIVARBPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLMAXSHADERCOMPILERTHREADSARBPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLMAXSHADERCOMPILERTHREADSARBPROC$MH = RuntimeHelper.downcallHandle(
-        constants$348.PFNGLMAXSHADERCOMPILERTHREADSARBPROC$FUNC
+    static final MethodHandle glDispatchCompute$MH = RuntimeHelper.downcallHandle(
+        "glDispatchCompute",
+        constants$348.glDispatchCompute$FUNC
+    );
+    static final FunctionDescriptor glDispatchComputeIndirect$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_LONG_LONG$LAYOUT
+    );
+    static final MethodHandle glDispatchComputeIndirect$MH = RuntimeHelper.downcallHandle(
+        "glDispatchComputeIndirect",
+        constants$348.glDispatchComputeIndirect$FUNC
+    );
+    static final FunctionDescriptor glCopyImageSubData$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle glCopyImageSubData$MH = RuntimeHelper.downcallHandle(
+        "glCopyImageSubData",
+        constants$348.glCopyImageSubData$FUNC
+    );
+    static final FunctionDescriptor glFramebufferParameteri$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle glFramebufferParameteri$MH = RuntimeHelper.downcallHandle(
+        "glFramebufferParameteri",
+        constants$348.glFramebufferParameteri$FUNC
+    );
+    static final FunctionDescriptor glGetFramebufferParameteriv$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glGetFramebufferParameteriv$MH = RuntimeHelper.downcallHandle(
+        "glGetFramebufferParameteriv",
+        constants$348.glGetFramebufferParameteriv$FUNC
+    );
+    static final FunctionDescriptor glGetInternalformati64v$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glGetInternalformati64v$MH = RuntimeHelper.downcallHandle(
+        "glGetInternalformati64v",
+        constants$348.glGetInternalformati64v$FUNC
     );
 }
 

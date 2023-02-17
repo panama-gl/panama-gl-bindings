@@ -11,13 +11,13 @@ public interface PFNGLCLEARACCUMXOESPROC {
 
     void apply(int red, int green, int blue, int alpha);
     static MemorySegment allocate(PFNGLCLEARACCUMXOESPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLCLEARACCUMXOESPROC.class, fi, constants$426.PFNGLCLEARACCUMXOESPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLCLEARACCUMXOESPROC.class, fi, constants$586.PFNGLCLEARACCUMXOESPROC$FUNC, session);
     }
     static PFNGLCLEARACCUMXOESPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _red, int _green, int _blue, int _alpha) -> {
             try {
-                constants$426.PFNGLCLEARACCUMXOESPROC$MH.invokeExact((Addressable)symbol, _red, _green, _blue, _alpha);
+                constants$587.PFNGLCLEARACCUMXOESPROC$MH.invokeExact((Addressable)symbol, _red, _green, _blue, _alpha);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

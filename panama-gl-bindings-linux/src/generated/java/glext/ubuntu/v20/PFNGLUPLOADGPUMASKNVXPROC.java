@@ -11,13 +11,13 @@ public interface PFNGLUPLOADGPUMASKNVXPROC {
 
     void apply(int mask);
     static MemorySegment allocate(PFNGLUPLOADGPUMASKNVXPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLUPLOADGPUMASKNVXPROC.class, fi, constants$720.PFNGLUPLOADGPUMASKNVXPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLUPLOADGPUMASKNVXPROC.class, fi, constants$1034.PFNGLUPLOADGPUMASKNVXPROC$FUNC, session);
     }
     static PFNGLUPLOADGPUMASKNVXPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _mask) -> {
             try {
-                constants$720.PFNGLUPLOADGPUMASKNVXPROC$MH.invokeExact((Addressable)symbol, _mask);
+                constants$1034.PFNGLUPLOADGPUMASKNVXPROC$MH.invokeExact((Addressable)symbol, _mask);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

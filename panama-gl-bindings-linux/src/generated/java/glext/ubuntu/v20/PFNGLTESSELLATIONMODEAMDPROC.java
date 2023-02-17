@@ -11,13 +11,13 @@ public interface PFNGLTESSELLATIONMODEAMDPROC {
 
     void apply(int mode);
     static MemorySegment allocate(PFNGLTESSELLATIONMODEAMDPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLTESSELLATIONMODEAMDPROC.class, fi, constants$474.PFNGLTESSELLATIONMODEAMDPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLTESSELLATIONMODEAMDPROC.class, fi, constants$665.PFNGLTESSELLATIONMODEAMDPROC$FUNC, session);
     }
     static PFNGLTESSELLATIONMODEAMDPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _mode) -> {
             try {
-                constants$474.PFNGLTESSELLATIONMODEAMDPROC$MH.invokeExact((Addressable)symbol, _mode);
+                constants$665.PFNGLTESSELLATIONMODEAMDPROC$MH.invokeExact((Addressable)symbol, _mode);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

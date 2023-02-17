@@ -11,13 +11,13 @@ public interface PFNGLDELETEOBJECTARBPROC {
 
     void apply(int obj);
     static MemorySegment allocate(PFNGLDELETEOBJECTARBPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLDELETEOBJECTARBPROC.class, fi, constants$357.PFNGLDELETEOBJECTARBPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLDELETEOBJECTARBPROC.class, fi, constants$490.PFNGLDELETEOBJECTARBPROC$FUNC, session);
     }
     static PFNGLDELETEOBJECTARBPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _obj) -> {
             try {
-                constants$357.PFNGLDELETEOBJECTARBPROC$MH.invokeExact((Addressable)symbol, _obj);
+                constants$490.PFNGLDELETEOBJECTARBPROC$MH.invokeExact((Addressable)symbol, _obj);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

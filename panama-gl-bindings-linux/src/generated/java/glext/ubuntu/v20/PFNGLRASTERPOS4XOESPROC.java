@@ -11,13 +11,13 @@ public interface PFNGLRASTERPOS4XOESPROC {
 
     void apply(int x, int y, int z, int w);
     static MemorySegment allocate(PFNGLRASTERPOS4XOESPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLRASTERPOS4XOESPROC.class, fi, constants$441.PFNGLRASTERPOS4XOESPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLRASTERPOS4XOESPROC.class, fi, constants$601.PFNGLRASTERPOS4XOESPROC$FUNC, session);
     }
     static PFNGLRASTERPOS4XOESPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _x, int _y, int _z, int _w) -> {
             try {
-                constants$441.PFNGLRASTERPOS4XOESPROC$MH.invokeExact((Addressable)symbol, _x, _y, _z, _w);
+                constants$602.PFNGLRASTERPOS4XOESPROC$MH.invokeExact((Addressable)symbol, _x, _y, _z, _w);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

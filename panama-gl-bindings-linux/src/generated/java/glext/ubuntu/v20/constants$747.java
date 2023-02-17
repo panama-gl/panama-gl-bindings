@@ -9,25 +9,45 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$747 {
 
-    static final FunctionDescriptor PFNGLDELETEFENCESNVPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLBINORMALPOINTEREXTPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLDELETEFENCESNVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$747.PFNGLDELETEFENCESNVPROC$FUNC
+    static final MethodHandle PFNGLBINORMALPOINTEREXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$747.PFNGLBINORMALPOINTEREXTPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLGENFENCESNVPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
+    static final FunctionDescriptor glTangent3bEXT$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_CHAR$LAYOUT,
+        Constants$root.C_CHAR$LAYOUT,
+        Constants$root.C_CHAR$LAYOUT
+    );
+    static final MethodHandle glTangent3bEXT$MH = RuntimeHelper.downcallHandle(
+        "glTangent3bEXT",
+        constants$747.glTangent3bEXT$FUNC
+    );
+    static final FunctionDescriptor glTangent3bvEXT$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLGENFENCESNVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$747.PFNGLGENFENCESNVPROC$FUNC
+    static final MethodHandle glTangent3bvEXT$MH = RuntimeHelper.downcallHandle(
+        "glTangent3bvEXT",
+        constants$747.glTangent3bvEXT$FUNC
     );
-    static final FunctionDescriptor PFNGLISFENCENVPROC$FUNC = FunctionDescriptor.of(Constants$root.C_CHAR$LAYOUT,
-        Constants$root.C_INT$LAYOUT
+    static final FunctionDescriptor glTangent3dEXT$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_DOUBLE$LAYOUT,
+        Constants$root.C_DOUBLE$LAYOUT,
+        Constants$root.C_DOUBLE$LAYOUT
     );
-    static final MethodHandle PFNGLISFENCENVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$747.PFNGLISFENCENVPROC$FUNC
+    static final MethodHandle glTangent3dEXT$MH = RuntimeHelper.downcallHandle(
+        "glTangent3dEXT",
+        constants$747.glTangent3dEXT$FUNC
+    );
+    static final FunctionDescriptor glTangent3dvEXT$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glTangent3dvEXT$MH = RuntimeHelper.downcallHandle(
+        "glTangent3dvEXT",
+        constants$747.glTangent3dvEXT$FUNC
     );
 }
 

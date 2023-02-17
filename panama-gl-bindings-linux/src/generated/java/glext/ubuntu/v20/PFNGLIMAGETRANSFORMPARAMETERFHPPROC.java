@@ -11,13 +11,13 @@ public interface PFNGLIMAGETRANSFORMPARAMETERFHPPROC {
 
     void apply(int target, int pname, float param);
     static MemorySegment allocate(PFNGLIMAGETRANSFORMPARAMETERFHPPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLIMAGETRANSFORMPARAMETERFHPPROC.class, fi, constants$699.PFNGLIMAGETRANSFORMPARAMETERFHPPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLIMAGETRANSFORMPARAMETERFHPPROC.class, fi, constants$1002.PFNGLIMAGETRANSFORMPARAMETERFHPPROC$FUNC, session);
     }
     static PFNGLIMAGETRANSFORMPARAMETERFHPPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _target, int _pname, float _param) -> {
             try {
-                constants$699.PFNGLIMAGETRANSFORMPARAMETERFHPPROC$MH.invokeExact((Addressable)symbol, _target, _pname, _param);
+                constants$1002.PFNGLIMAGETRANSFORMPARAMETERFHPPROC$MH.invokeExact((Addressable)symbol, _target, _pname, _param);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

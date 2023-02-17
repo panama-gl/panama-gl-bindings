@@ -9,29 +9,59 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$877 {
 
-    static final FunctionDescriptor PFNGLVERTEXATTRIBI4UBVEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glVertexArrayVertexAttribIOffsetEXT$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT
+    );
+    static final MethodHandle glVertexArrayVertexAttribIOffsetEXT$MH = RuntimeHelper.downcallHandle(
+        "glVertexArrayVertexAttribIOffsetEXT",
+        constants$877.glVertexArrayVertexAttribIOffsetEXT$FUNC
+    );
+    static final FunctionDescriptor glEnableVertexArrayEXT$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle glEnableVertexArrayEXT$MH = RuntimeHelper.downcallHandle(
+        "glEnableVertexArrayEXT",
+        constants$877.glEnableVertexArrayEXT$FUNC
+    );
+    static final FunctionDescriptor glDisableVertexArrayEXT$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle glDisableVertexArrayEXT$MH = RuntimeHelper.downcallHandle(
+        "glDisableVertexArrayEXT",
+        constants$877.glDisableVertexArrayEXT$FUNC
+    );
+    static final FunctionDescriptor glEnableVertexArrayAttribEXT$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle glEnableVertexArrayAttribEXT$MH = RuntimeHelper.downcallHandle(
+        "glEnableVertexArrayAttribEXT",
+        constants$877.glEnableVertexArrayAttribEXT$FUNC
+    );
+    static final FunctionDescriptor glDisableVertexArrayAttribEXT$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle glDisableVertexArrayAttribEXT$MH = RuntimeHelper.downcallHandle(
+        "glDisableVertexArrayAttribEXT",
+        constants$877.glDisableVertexArrayAttribEXT$FUNC
+    );
+    static final FunctionDescriptor glGetVertexArrayIntegervEXT$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLVERTEXATTRIBI4UBVEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$877.PFNGLVERTEXATTRIBI4UBVEXTPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLVERTEXATTRIBI4USVEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle PFNGLVERTEXATTRIBI4USVEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$877.PFNGLVERTEXATTRIBI4USVEXTPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLVERTEXATTRIBIPOINTEREXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle PFNGLVERTEXATTRIBIPOINTEREXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$877.PFNGLVERTEXATTRIBIPOINTEREXTPROC$FUNC
+    static final MethodHandle glGetVertexArrayIntegervEXT$MH = RuntimeHelper.downcallHandle(
+        "glGetVertexArrayIntegervEXT",
+        constants$877.glGetVertexArrayIntegervEXT$FUNC
     );
 }
 

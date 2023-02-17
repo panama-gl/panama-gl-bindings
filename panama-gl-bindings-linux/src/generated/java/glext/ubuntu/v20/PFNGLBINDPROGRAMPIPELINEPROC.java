@@ -11,13 +11,13 @@ public interface PFNGLBINDPROGRAMPIPELINEPROC {
 
     void apply(int pipeline);
     static MemorySegment allocate(PFNGLBINDPROGRAMPIPELINEPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLBINDPROGRAMPIPELINEPROC.class, fi, constants$223.PFNGLBINDPROGRAMPIPELINEPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLBINDPROGRAMPIPELINEPROC.class, fi, constants$286.PFNGLBINDPROGRAMPIPELINEPROC$FUNC, session);
     }
     static PFNGLBINDPROGRAMPIPELINEPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _pipeline) -> {
             try {
-                constants$223.PFNGLBINDPROGRAMPIPELINEPROC$MH.invokeExact((Addressable)symbol, _pipeline);
+                constants$286.PFNGLBINDPROGRAMPIPELINEPROC$MH.invokeExact((Addressable)symbol, _pipeline);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

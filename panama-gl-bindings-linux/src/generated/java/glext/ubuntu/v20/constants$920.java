@@ -9,40 +9,44 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$920 {
 
-    static final FunctionDescriptor PFNGLTEXCOORD2FCOLOR4UBVERTEX3FSUNPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_FLOAT$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT,
-        Constants$root.C_CHAR$LAYOUT,
-        Constants$root.C_CHAR$LAYOUT,
-        Constants$root.C_CHAR$LAYOUT,
-        Constants$root.C_CHAR$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT
+    static final FunctionDescriptor PFNGLNAMEDBUFFERSTORAGEMEMEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT
     );
-    static final MethodHandle PFNGLTEXCOORD2FCOLOR4UBVERTEX3FSUNPROC$MH = RuntimeHelper.downcallHandle(
-        constants$920.PFNGLTEXCOORD2FCOLOR4UBVERTEX3FSUNPROC$FUNC
+    static final MethodHandle PFNGLNAMEDBUFFERSTORAGEMEMEXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$920.PFNGLNAMEDBUFFERSTORAGEMEMEXTPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLTEXCOORD2FCOLOR4UBVERTEX3FVSUNPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
+    static final FunctionDescriptor PFNGLTEXSTORAGEMEM1DEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT
+    );
+    static final MethodHandle PFNGLTEXSTORAGEMEM1DEXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$920.PFNGLTEXSTORAGEMEM1DEXTPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLTEXTURESTORAGEMEM1DEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT
+    );
+    static final MethodHandle PFNGLTEXTURESTORAGEMEM1DEXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$920.PFNGLTEXTURESTORAGEMEM1DEXTPROC$FUNC
+    );
+    static final FunctionDescriptor glGetUnsignedBytevEXT$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLTEXCOORD2FCOLOR4UBVERTEX3FVSUNPROC$MH = RuntimeHelper.downcallHandle(
-        constants$920.PFNGLTEXCOORD2FCOLOR4UBVERTEX3FVSUNPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLTEXCOORD2FCOLOR3FVERTEX3FSUNPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_FLOAT$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT
-    );
-    static final MethodHandle PFNGLTEXCOORD2FCOLOR3FVERTEX3FSUNPROC$MH = RuntimeHelper.downcallHandle(
-        constants$920.PFNGLTEXCOORD2FCOLOR3FVERTEX3FSUNPROC$FUNC
+    static final MethodHandle glGetUnsignedBytevEXT$MH = RuntimeHelper.downcallHandle(
+        "glGetUnsignedBytevEXT",
+        constants$920.glGetUnsignedBytevEXT$FUNC
     );
 }
 

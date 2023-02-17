@@ -11,13 +11,13 @@ public interface PFNGLGETPERFQUERYDATAINTELPROC {
 
     void apply(int queryHandle, int flags, int dataSize, java.lang.foreign.MemoryAddress data, java.lang.foreign.MemoryAddress bytesWritten);
     static MemorySegment allocate(PFNGLGETPERFQUERYDATAINTELPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLGETPERFQUERYDATAINTELPROC.class, fi, constants$710.PFNGLGETPERFQUERYDATAINTELPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLGETPERFQUERYDATAINTELPROC.class, fi, constants$1017.PFNGLGETPERFQUERYDATAINTELPROC$FUNC, session);
     }
     static PFNGLGETPERFQUERYDATAINTELPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _queryHandle, int _flags, int _dataSize, java.lang.foreign.MemoryAddress _data, java.lang.foreign.MemoryAddress _bytesWritten) -> {
             try {
-                constants$710.PFNGLGETPERFQUERYDATAINTELPROC$MH.invokeExact((Addressable)symbol, _queryHandle, _flags, _dataSize, (java.lang.foreign.Addressable)_data, (java.lang.foreign.Addressable)_bytesWritten);
+                constants$1017.PFNGLGETPERFQUERYDATAINTELPROC$MH.invokeExact((Addressable)symbol, _queryHandle, _flags, _dataSize, (java.lang.foreign.Addressable)_data, (java.lang.foreign.Addressable)_bytesWritten);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

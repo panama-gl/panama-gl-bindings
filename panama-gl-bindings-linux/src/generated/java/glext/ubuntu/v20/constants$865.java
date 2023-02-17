@@ -9,29 +9,65 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$865 {
 
-    static final FunctionDescriptor PFNGLVERTEXATTRIB4FVNVPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glMultiTexBufferEXT$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle glMultiTexBufferEXT$MH = RuntimeHelper.downcallHandle(
+        "glMultiTexBufferEXT",
+        constants$865.glMultiTexBufferEXT$FUNC
+    );
+    static final FunctionDescriptor glTextureParameterIivEXT$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLVERTEXATTRIB4FVNVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$865.PFNGLVERTEXATTRIB4FVNVPROC$FUNC
+    static final MethodHandle glTextureParameterIivEXT$MH = RuntimeHelper.downcallHandle(
+        "glTextureParameterIivEXT",
+        constants$865.glTextureParameterIivEXT$FUNC
     );
-    static final FunctionDescriptor PFNGLVERTEXATTRIB4SNVPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glTextureParameterIuivEXT$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_SHORT$LAYOUT,
-        Constants$root.C_SHORT$LAYOUT,
-        Constants$root.C_SHORT$LAYOUT,
-        Constants$root.C_SHORT$LAYOUT
-    );
-    static final MethodHandle PFNGLVERTEXATTRIB4SNVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$865.PFNGLVERTEXATTRIB4SNVPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLVERTEXATTRIB4SVNVPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLVERTEXATTRIB4SVNVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$865.PFNGLVERTEXATTRIB4SVNVPROC$FUNC
+    static final MethodHandle glTextureParameterIuivEXT$MH = RuntimeHelper.downcallHandle(
+        "glTextureParameterIuivEXT",
+        constants$865.glTextureParameterIuivEXT$FUNC
+    );
+    static final FunctionDescriptor glGetTextureParameterIivEXT$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glGetTextureParameterIivEXT$MH = RuntimeHelper.downcallHandle(
+        "glGetTextureParameterIivEXT",
+        constants$865.glGetTextureParameterIivEXT$FUNC
+    );
+    static final FunctionDescriptor glGetTextureParameterIuivEXT$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glGetTextureParameterIuivEXT$MH = RuntimeHelper.downcallHandle(
+        "glGetTextureParameterIuivEXT",
+        constants$865.glGetTextureParameterIuivEXT$FUNC
+    );
+    static final FunctionDescriptor glMultiTexParameterIivEXT$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glMultiTexParameterIivEXT$MH = RuntimeHelper.downcallHandle(
+        "glMultiTexParameterIivEXT",
+        constants$865.glMultiTexParameterIivEXT$FUNC
     );
 }
 

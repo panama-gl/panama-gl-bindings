@@ -9,29 +9,54 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$164 {
 
-    static final FunctionDescriptor PFNGLCLEARBUFFERIVPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glUniformMatrix4fv$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_CHAR$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glUniformMatrix4fv$MH = RuntimeHelper.downcallHandle(
+        "glUniformMatrix4fv",
+        constants$164.glUniformMatrix4fv$FUNC
+    );
+    static final FunctionDescriptor glValidateProgram$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle glValidateProgram$MH = RuntimeHelper.downcallHandle(
+        "glValidateProgram",
+        constants$164.glValidateProgram$FUNC
+    );
+    static final FunctionDescriptor glVertexAttrib1d$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_DOUBLE$LAYOUT
+    );
+    static final MethodHandle glVertexAttrib1d$MH = RuntimeHelper.downcallHandle(
+        "glVertexAttrib1d",
+        constants$164.glVertexAttrib1d$FUNC
+    );
+    static final FunctionDescriptor glVertexAttrib1dv$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLCLEARBUFFERIVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$164.PFNGLCLEARBUFFERIVPROC$FUNC
+    static final MethodHandle glVertexAttrib1dv$MH = RuntimeHelper.downcallHandle(
+        "glVertexAttrib1dv",
+        constants$164.glVertexAttrib1dv$FUNC
     );
-    static final FunctionDescriptor PFNGLCLEARBUFFERUIVPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glVertexAttrib1f$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT
+    );
+    static final MethodHandle glVertexAttrib1f$MH = RuntimeHelper.downcallHandle(
+        "glVertexAttrib1f",
+        constants$164.glVertexAttrib1f$FUNC
+    );
+    static final FunctionDescriptor glVertexAttrib1fv$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLCLEARBUFFERUIVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$164.PFNGLCLEARBUFFERUIVPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLCLEARBUFFERFVPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle PFNGLCLEARBUFFERFVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$164.PFNGLCLEARBUFFERFVPROC$FUNC
+    static final MethodHandle glVertexAttrib1fv$MH = RuntimeHelper.downcallHandle(
+        "glVertexAttrib1fv",
+        constants$164.glVertexAttrib1fv$FUNC
     );
 }
 

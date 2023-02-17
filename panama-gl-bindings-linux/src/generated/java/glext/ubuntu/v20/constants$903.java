@@ -9,27 +9,37 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$903 {
 
-    static final FunctionDescriptor PFNGLLISTPARAMETERISGIXPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLUNIFORM2UIEXTPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLLISTPARAMETERISGIXPROC$MH = RuntimeHelper.downcallHandle(
-        constants$903.PFNGLLISTPARAMETERISGIXPROC$FUNC
+    static final MethodHandle PFNGLUNIFORM2UIEXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$903.PFNGLUNIFORM2UIEXTPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLLISTPARAMETERIVSGIXPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLUNIFORM3UIEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle PFNGLUNIFORM3UIEXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$903.PFNGLUNIFORM3UIEXTPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLUNIFORM4UIEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle PFNGLUNIFORM4UIEXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$903.PFNGLUNIFORM4UIEXTPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLUNIFORM1UIVEXTPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle PFNGLLISTPARAMETERIVSGIXPROC$MH = RuntimeHelper.downcallHandle(
-        constants$903.PFNGLLISTPARAMETERIVSGIXPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLPIXELTEXGENSGIXPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT
-    );
-    static final MethodHandle PFNGLPIXELTEXGENSGIXPROC$MH = RuntimeHelper.downcallHandle(
-        constants$903.PFNGLPIXELTEXGENSGIXPROC$FUNC
     );
 }
 

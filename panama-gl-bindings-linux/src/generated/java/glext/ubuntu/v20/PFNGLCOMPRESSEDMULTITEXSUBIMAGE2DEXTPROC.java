@@ -11,13 +11,13 @@ public interface PFNGLCOMPRESSEDMULTITEXSUBIMAGE2DEXTPROC {
 
     void apply(int texunit, int target, int level, int xoffset, int yoffset, int width, int height, int format, int imageSize, java.lang.foreign.MemoryAddress bits);
     static MemorySegment allocate(PFNGLCOMPRESSEDMULTITEXSUBIMAGE2DEXTPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLCOMPRESSEDMULTITEXSUBIMAGE2DEXTPROC.class, fi, constants$567.PFNGLCOMPRESSEDMULTITEXSUBIMAGE2DEXTPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLCOMPRESSEDMULTITEXSUBIMAGE2DEXTPROC.class, fi, constants$789.PFNGLCOMPRESSEDMULTITEXSUBIMAGE2DEXTPROC$FUNC, session);
     }
     static PFNGLCOMPRESSEDMULTITEXSUBIMAGE2DEXTPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _texunit, int _target, int _level, int _xoffset, int _yoffset, int _width, int _height, int _format, int _imageSize, java.lang.foreign.MemoryAddress _bits) -> {
             try {
-                constants$567.PFNGLCOMPRESSEDMULTITEXSUBIMAGE2DEXTPROC$MH.invokeExact((Addressable)symbol, _texunit, _target, _level, _xoffset, _yoffset, _width, _height, _format, _imageSize, (java.lang.foreign.Addressable)_bits);
+                constants$789.PFNGLCOMPRESSEDMULTITEXSUBIMAGE2DEXTPROC$MH.invokeExact((Addressable)symbol, _texunit, _target, _level, _xoffset, _yoffset, _width, _height, _format, _imageSize, (java.lang.foreign.Addressable)_bits);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

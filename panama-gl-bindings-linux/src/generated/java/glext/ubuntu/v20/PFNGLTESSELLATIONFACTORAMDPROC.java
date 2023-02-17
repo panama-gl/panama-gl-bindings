@@ -11,13 +11,13 @@ public interface PFNGLTESSELLATIONFACTORAMDPROC {
 
     void apply(float factor);
     static MemorySegment allocate(PFNGLTESSELLATIONFACTORAMDPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLTESSELLATIONFACTORAMDPROC.class, fi, constants$474.PFNGLTESSELLATIONFACTORAMDPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLTESSELLATIONFACTORAMDPROC.class, fi, constants$665.PFNGLTESSELLATIONFACTORAMDPROC$FUNC, session);
     }
     static PFNGLTESSELLATIONFACTORAMDPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (float _factor) -> {
             try {
-                constants$474.PFNGLTESSELLATIONFACTORAMDPROC$MH.invokeExact((Addressable)symbol, _factor);
+                constants$665.PFNGLTESSELLATIONFACTORAMDPROC$MH.invokeExact((Addressable)symbol, _factor);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

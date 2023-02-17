@@ -9,33 +9,28 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$262 {
 
-    static final FunctionDescriptor PFNGLBINDVERTEXBUFFERPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLDRAWELEMENTSINDIRECTPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_LONG_LONG$LAYOUT,
-        Constants$root.C_INT$LAYOUT
+        Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLBINDVERTEXBUFFERPROC$MH = RuntimeHelper.downcallHandle(
-        constants$262.PFNGLBINDVERTEXBUFFERPROC$FUNC
+    static final MethodHandle PFNGLDRAWELEMENTSINDIRECTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$262.PFNGLDRAWELEMENTSINDIRECTPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLVERTEXATTRIBFORMATPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLUNIFORM1DPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_CHAR$LAYOUT,
-        Constants$root.C_INT$LAYOUT
+        Constants$root.C_DOUBLE$LAYOUT
     );
-    static final MethodHandle PFNGLVERTEXATTRIBFORMATPROC$MH = RuntimeHelper.downcallHandle(
-        constants$262.PFNGLVERTEXATTRIBFORMATPROC$FUNC
+    static final MethodHandle PFNGLUNIFORM1DPROC$MH = RuntimeHelper.downcallHandle(
+        constants$262.PFNGLUNIFORM1DPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLVERTEXATTRIBIFORMATPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLUNIFORM2DPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT
+        Constants$root.C_DOUBLE$LAYOUT,
+        Constants$root.C_DOUBLE$LAYOUT
     );
-    static final MethodHandle PFNGLVERTEXATTRIBIFORMATPROC$MH = RuntimeHelper.downcallHandle(
-        constants$262.PFNGLVERTEXATTRIBIFORMATPROC$FUNC
+    static final MethodHandle PFNGLUNIFORM2DPROC$MH = RuntimeHelper.downcallHandle(
+        constants$262.PFNGLUNIFORM2DPROC$FUNC
     );
 }
 

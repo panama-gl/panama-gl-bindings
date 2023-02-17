@@ -11,13 +11,13 @@ public interface PFNGLMATRIXROTATEDEXTPROC {
 
     void apply(int mode, double angle, double x, double y, double z);
     static MemorySegment allocate(PFNGLMATRIXROTATEDEXTPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLMATRIXROTATEDEXTPROC.class, fi, constants$538.PFNGLMATRIXROTATEDEXTPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLMATRIXROTATEDEXTPROC.class, fi, constants$759.PFNGLMATRIXROTATEDEXTPROC$FUNC, session);
     }
     static PFNGLMATRIXROTATEDEXTPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _mode, double _angle, double _x, double _y, double _z) -> {
             try {
-                constants$538.PFNGLMATRIXROTATEDEXTPROC$MH.invokeExact((Addressable)symbol, _mode, _angle, _x, _y, _z);
+                constants$759.PFNGLMATRIXROTATEDEXTPROC$MH.invokeExact((Addressable)symbol, _mode, _angle, _x, _y, _z);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

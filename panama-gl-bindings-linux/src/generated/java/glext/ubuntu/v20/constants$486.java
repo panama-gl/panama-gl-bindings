@@ -9,35 +9,63 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$486 {
 
-    static final FunctionDescriptor PFNGLMAPVERTEXATTRIB2FAPPLEPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glGetnUniformdvARB$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLMAPVERTEXATTRIB2FAPPLEPROC$MH = RuntimeHelper.downcallHandle(
-        constants$486.PFNGLMAPVERTEXATTRIB2FAPPLEPROC$FUNC
+    static final MethodHandle glGetnUniformdvARB$MH = RuntimeHelper.downcallHandle(
+        "glGetnUniformdvARB",
+        constants$486.glGetnUniformdvARB$FUNC
     );
-    static final FunctionDescriptor PFNGLDRAWBUFFERSATIPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glGetnMapdvARB$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLDRAWBUFFERSATIPROC$MH = RuntimeHelper.downcallHandle(
-        constants$486.PFNGLDRAWBUFFERSATIPROC$FUNC
+    static final MethodHandle glGetnMapdvARB$MH = RuntimeHelper.downcallHandle(
+        "glGetnMapdvARB",
+        constants$486.glGetnMapdvARB$FUNC
     );
-    static final FunctionDescriptor PFNGLELEMENTPOINTERATIPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glGetnMapfvARB$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLELEMENTPOINTERATIPROC$MH = RuntimeHelper.downcallHandle(
-        constants$486.PFNGLELEMENTPOINTERATIPROC$FUNC
+    static final MethodHandle glGetnMapfvARB$MH = RuntimeHelper.downcallHandle(
+        "glGetnMapfvARB",
+        constants$486.glGetnMapfvARB$FUNC
+    );
+    static final FunctionDescriptor glGetnMapivARB$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glGetnMapivARB$MH = RuntimeHelper.downcallHandle(
+        "glGetnMapivARB",
+        constants$486.glGetnMapivARB$FUNC
+    );
+    static final FunctionDescriptor glGetnPixelMapfvARB$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glGetnPixelMapfvARB$MH = RuntimeHelper.downcallHandle(
+        "glGetnPixelMapfvARB",
+        constants$486.glGetnPixelMapfvARB$FUNC
+    );
+    static final FunctionDescriptor glGetnPixelMapuivARB$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glGetnPixelMapuivARB$MH = RuntimeHelper.downcallHandle(
+        "glGetnPixelMapuivARB",
+        constants$486.glGetnPixelMapuivARB$FUNC
     );
 }
 

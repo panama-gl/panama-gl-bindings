@@ -11,13 +11,13 @@ public interface PFNGLGENPROGRAMSNVPROC {
 
     void apply(int n, java.lang.foreign.MemoryAddress programs);
     static MemorySegment allocate(PFNGLGENPROGRAMSNVPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLGENPROGRAMSNVPROC.class, fi, constants$851.PFNGLGENPROGRAMSNVPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLGENPROGRAMSNVPROC.class, fi, constants$1229.PFNGLGENPROGRAMSNVPROC$FUNC, session);
     }
     static PFNGLGENPROGRAMSNVPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _n, java.lang.foreign.MemoryAddress _programs) -> {
             try {
-                constants$851.PFNGLGENPROGRAMSNVPROC$MH.invokeExact((Addressable)symbol, _n, (java.lang.foreign.Addressable)_programs);
+                constants$1229.PFNGLGENPROGRAMSNVPROC$MH.invokeExact((Addressable)symbol, _n, (java.lang.foreign.Addressable)_programs);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

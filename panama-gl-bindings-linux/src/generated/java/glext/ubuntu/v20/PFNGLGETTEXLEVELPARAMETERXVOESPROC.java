@@ -11,13 +11,13 @@ public interface PFNGLGETTEXLEVELPARAMETERXVOESPROC {
 
     void apply(int target, int level, int pname, java.lang.foreign.MemoryAddress params);
     static MemorySegment allocate(PFNGLGETTEXLEVELPARAMETERXVOESPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLGETTEXLEVELPARAMETERXVOESPROC.class, fi, constants$432.PFNGLGETTEXLEVELPARAMETERXVOESPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLGETTEXLEVELPARAMETERXVOESPROC.class, fi, constants$592.PFNGLGETTEXLEVELPARAMETERXVOESPROC$FUNC, session);
     }
     static PFNGLGETTEXLEVELPARAMETERXVOESPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _target, int _level, int _pname, java.lang.foreign.MemoryAddress _params) -> {
             try {
-                constants$432.PFNGLGETTEXLEVELPARAMETERXVOESPROC$MH.invokeExact((Addressable)symbol, _target, _level, _pname, (java.lang.foreign.Addressable)_params);
+                constants$593.PFNGLGETTEXLEVELPARAMETERXVOESPROC$MH.invokeExact((Addressable)symbol, _target, _level, _pname, (java.lang.foreign.Addressable)_params);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

@@ -9,25 +9,70 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$419 {
 
-    static final FunctionDescriptor PFNGLLIGHTXVOESPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glGetnPixelMapusv$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLLIGHTXVOESPROC$MH = RuntimeHelper.downcallHandle(
-        constants$419.PFNGLLIGHTXVOESPROC$FUNC
+    static final MethodHandle glGetnPixelMapusv$MH = RuntimeHelper.downcallHandle(
+        "glGetnPixelMapusv",
+        constants$419.glGetnPixelMapusv$FUNC
     );
-    static final FunctionDescriptor PFNGLLINEWIDTHXOESPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT
-    );
-    static final MethodHandle PFNGLLINEWIDTHXOESPROC$MH = RuntimeHelper.downcallHandle(
-        constants$419.PFNGLLINEWIDTHXOESPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLLOADMATRIXXOESPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glGetnPolygonStipple$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLLOADMATRIXXOESPROC$MH = RuntimeHelper.downcallHandle(
-        constants$419.PFNGLLOADMATRIXXOESPROC$FUNC
+    static final MethodHandle glGetnPolygonStipple$MH = RuntimeHelper.downcallHandle(
+        "glGetnPolygonStipple",
+        constants$419.glGetnPolygonStipple$FUNC
+    );
+    static final FunctionDescriptor glGetnColorTable$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glGetnColorTable$MH = RuntimeHelper.downcallHandle(
+        "glGetnColorTable",
+        constants$419.glGetnColorTable$FUNC
+    );
+    static final FunctionDescriptor glGetnConvolutionFilter$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glGetnConvolutionFilter$MH = RuntimeHelper.downcallHandle(
+        "glGetnConvolutionFilter",
+        constants$419.glGetnConvolutionFilter$FUNC
+    );
+    static final FunctionDescriptor glGetnSeparableFilter$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glGetnSeparableFilter$MH = RuntimeHelper.downcallHandle(
+        "glGetnSeparableFilter",
+        constants$419.glGetnSeparableFilter$FUNC
+    );
+    static final FunctionDescriptor glGetnHistogram$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_CHAR$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glGetnHistogram$MH = RuntimeHelper.downcallHandle(
+        "glGetnHistogram",
+        constants$419.glGetnHistogram$FUNC
     );
 }
 

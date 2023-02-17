@@ -9,29 +9,55 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$122 {
 
-    static final FunctionDescriptor PFNGLGETUNIFORMIVPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glGetQueryObjectuiv$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLGETUNIFORMIVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$122.PFNGLGETUNIFORMIVPROC$FUNC
+    static final MethodHandle glGetQueryObjectuiv$MH = RuntimeHelper.downcallHandle(
+        "glGetQueryObjectuiv",
+        constants$122.glGetQueryObjectuiv$FUNC
     );
-    static final FunctionDescriptor PFNGLGETVERTEXATTRIBDVPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glBindBuffer$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle glBindBuffer$MH = RuntimeHelper.downcallHandle(
+        "glBindBuffer",
+        constants$122.glBindBuffer$FUNC
+    );
+    static final FunctionDescriptor glDeleteBuffers$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLGETVERTEXATTRIBDVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$122.PFNGLGETVERTEXATTRIBDVPROC$FUNC
+    static final MethodHandle glDeleteBuffers$MH = RuntimeHelper.downcallHandle(
+        "glDeleteBuffers",
+        constants$122.glDeleteBuffers$FUNC
     );
-    static final FunctionDescriptor PFNGLGETVERTEXATTRIBFVPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
+    static final FunctionDescriptor glGenBuffers$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLGETVERTEXATTRIBFVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$122.PFNGLGETVERTEXATTRIBFVPROC$FUNC
+    static final MethodHandle glGenBuffers$MH = RuntimeHelper.downcallHandle(
+        "glGenBuffers",
+        constants$122.glGenBuffers$FUNC
+    );
+    static final FunctionDescriptor glIsBuffer$FUNC = FunctionDescriptor.of(Constants$root.C_CHAR$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle glIsBuffer$MH = RuntimeHelper.downcallHandle(
+        "glIsBuffer",
+        constants$122.glIsBuffer$FUNC
+    );
+    static final FunctionDescriptor glBufferData$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle glBufferData$MH = RuntimeHelper.downcallHandle(
+        "glBufferData",
+        constants$122.glBufferData$FUNC
     );
 }
 

@@ -11,13 +11,13 @@ public interface PFNGLISSAMPLERPROC {
 
     byte apply(int sampler);
     static MemorySegment allocate(PFNGLISSAMPLERPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLISSAMPLERPROC.class, fi, constants$186.PFNGLISSAMPLERPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLISSAMPLERPROC.class, fi, constants$232.PFNGLISSAMPLERPROC$FUNC, session);
     }
     static PFNGLISSAMPLERPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _sampler) -> {
             try {
-                return (byte)constants$186.PFNGLISSAMPLERPROC$MH.invokeExact((Addressable)symbol, _sampler);
+                return (byte)constants$232.PFNGLISSAMPLERPROC$MH.invokeExact((Addressable)symbol, _sampler);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

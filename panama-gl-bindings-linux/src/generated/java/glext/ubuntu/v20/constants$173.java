@@ -9,25 +9,50 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$173 {
 
-    static final FunctionDescriptor PFNGLBINDVERTEXARRAYPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT
-    );
-    static final MethodHandle PFNGLBINDVERTEXARRAYPROC$MH = RuntimeHelper.downcallHandle(
-        constants$173.PFNGLBINDVERTEXARRAYPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLDELETEVERTEXARRAYSPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glUniformMatrix4x2fv$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_CHAR$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLDELETEVERTEXARRAYSPROC$MH = RuntimeHelper.downcallHandle(
-        constants$173.PFNGLDELETEVERTEXARRAYSPROC$FUNC
+    static final MethodHandle glUniformMatrix4x2fv$MH = RuntimeHelper.downcallHandle(
+        "glUniformMatrix4x2fv",
+        constants$173.glUniformMatrix4x2fv$FUNC
     );
-    static final FunctionDescriptor PFNGLGENVERTEXARRAYSPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glUniformMatrix3x4fv$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_CHAR$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLGENVERTEXARRAYSPROC$MH = RuntimeHelper.downcallHandle(
-        constants$173.PFNGLGENVERTEXARRAYSPROC$FUNC
+    static final MethodHandle glUniformMatrix3x4fv$MH = RuntimeHelper.downcallHandle(
+        "glUniformMatrix3x4fv",
+        constants$173.glUniformMatrix3x4fv$FUNC
+    );
+    static final FunctionDescriptor glUniformMatrix4x3fv$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_CHAR$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glUniformMatrix4x3fv$MH = RuntimeHelper.downcallHandle(
+        "glUniformMatrix4x3fv",
+        constants$173.glUniformMatrix4x3fv$FUNC
+    );
+    static final FunctionDescriptor PFNGLCOLORMASKIPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_CHAR$LAYOUT,
+        Constants$root.C_CHAR$LAYOUT,
+        Constants$root.C_CHAR$LAYOUT,
+        Constants$root.C_CHAR$LAYOUT
+    );
+    static final MethodHandle PFNGLCOLORMASKIPROC$MH = RuntimeHelper.downcallHandle(
+        constants$173.PFNGLCOLORMASKIPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLGETBOOLEANI_VPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
 }
 

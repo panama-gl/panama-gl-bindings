@@ -9,32 +9,55 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$111 {
 
-    static final FunctionDescriptor PFNGLBUFFERDATAPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glSecondaryColor3ui$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_LONG_LONG$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLBUFFERDATAPROC$MH = RuntimeHelper.downcallHandle(
-        constants$111.PFNGLBUFFERDATAPROC$FUNC
+    static final MethodHandle glSecondaryColor3ui$MH = RuntimeHelper.downcallHandle(
+        "glSecondaryColor3ui",
+        constants$111.glSecondaryColor3ui$FUNC
     );
-    static final FunctionDescriptor PFNGLBUFFERSUBDATAPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_LONG_LONG$LAYOUT,
-        Constants$root.C_LONG_LONG$LAYOUT,
+    static final FunctionDescriptor glSecondaryColor3uiv$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLBUFFERSUBDATAPROC$MH = RuntimeHelper.downcallHandle(
-        constants$111.PFNGLBUFFERSUBDATAPROC$FUNC
+    static final MethodHandle glSecondaryColor3uiv$MH = RuntimeHelper.downcallHandle(
+        "glSecondaryColor3uiv",
+        constants$111.glSecondaryColor3uiv$FUNC
     );
-    static final FunctionDescriptor PFNGLGETBUFFERSUBDATAPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_LONG_LONG$LAYOUT,
-        Constants$root.C_LONG_LONG$LAYOUT,
+    static final FunctionDescriptor glSecondaryColor3us$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_SHORT$LAYOUT,
+        Constants$root.C_SHORT$LAYOUT,
+        Constants$root.C_SHORT$LAYOUT
+    );
+    static final MethodHandle glSecondaryColor3us$MH = RuntimeHelper.downcallHandle(
+        "glSecondaryColor3us",
+        constants$111.glSecondaryColor3us$FUNC
+    );
+    static final FunctionDescriptor glSecondaryColor3usv$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLGETBUFFERSUBDATAPROC$MH = RuntimeHelper.downcallHandle(
-        constants$111.PFNGLGETBUFFERSUBDATAPROC$FUNC
+    static final MethodHandle glSecondaryColor3usv$MH = RuntimeHelper.downcallHandle(
+        "glSecondaryColor3usv",
+        constants$111.glSecondaryColor3usv$FUNC
+    );
+    static final FunctionDescriptor glSecondaryColorPointer$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glSecondaryColorPointer$MH = RuntimeHelper.downcallHandle(
+        "glSecondaryColorPointer",
+        constants$111.glSecondaryColorPointer$FUNC
+    );
+    static final FunctionDescriptor glWindowPos2d$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_DOUBLE$LAYOUT,
+        Constants$root.C_DOUBLE$LAYOUT
+    );
+    static final MethodHandle glWindowPos2d$MH = RuntimeHelper.downcallHandle(
+        "glWindowPos2d",
+        constants$111.glWindowPos2d$FUNC
     );
 }
 

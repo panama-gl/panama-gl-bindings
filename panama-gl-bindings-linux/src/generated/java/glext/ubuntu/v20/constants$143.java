@@ -9,26 +9,26 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$143 {
 
-    static final FunctionDescriptor PFNGLVERTEXATTRIB4UBVPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLVERTEXATTRIB1DVPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLVERTEXATTRIB4UBVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$143.PFNGLVERTEXATTRIB4UBVPROC$FUNC
+    static final MethodHandle PFNGLVERTEXATTRIB1DVPROC$MH = RuntimeHelper.downcallHandle(
+        constants$143.PFNGLVERTEXATTRIB1DVPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLVERTEXATTRIB4UIVPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLVERTEXATTRIB1FPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT
+    );
+    static final MethodHandle PFNGLVERTEXATTRIB1FPROC$MH = RuntimeHelper.downcallHandle(
+        constants$143.PFNGLVERTEXATTRIB1FPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLVERTEXATTRIB1FVPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLVERTEXATTRIB4UIVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$143.PFNGLVERTEXATTRIB4UIVPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLVERTEXATTRIB4USVPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle PFNGLVERTEXATTRIB4USVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$143.PFNGLVERTEXATTRIB4USVPROC$FUNC
+    static final MethodHandle PFNGLVERTEXATTRIB1FVPROC$MH = RuntimeHelper.downcallHandle(
+        constants$143.PFNGLVERTEXATTRIB1FVPROC$FUNC
     );
 }
 

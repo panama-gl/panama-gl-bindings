@@ -11,13 +11,13 @@ public interface PFNGLIGLOOINTERFACESGIXPROC {
 
     void apply(int pname, java.lang.foreign.MemoryAddress params);
     static MemorySegment allocate(PFNGLIGLOOINTERFACESGIXPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLIGLOOINTERFACESGIXPROC.class, fi, constants$899.PFNGLIGLOOINTERFACESGIXPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLIGLOOINTERFACESGIXPROC.class, fi, constants$1302.PFNGLIGLOOINTERFACESGIXPROC$FUNC, session);
     }
     static PFNGLIGLOOINTERFACESGIXPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _pname, java.lang.foreign.MemoryAddress _params) -> {
             try {
-                constants$899.PFNGLIGLOOINTERFACESGIXPROC$MH.invokeExact((Addressable)symbol, _pname, (java.lang.foreign.Addressable)_params);
+                constants$1302.PFNGLIGLOOINTERFACESGIXPROC$MH.invokeExact((Addressable)symbol, _pname, (java.lang.foreign.Addressable)_params);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

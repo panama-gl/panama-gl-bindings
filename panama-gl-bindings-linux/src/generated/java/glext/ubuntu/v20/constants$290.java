@@ -9,40 +9,31 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$290 {
 
-    static final FunctionDescriptor PFNGLCOPYTEXTURESUBIMAGE2DPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLPROGRAMUNIFORM1DVPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle PFNGLPROGRAMUNIFORM1DVPROC$MH = RuntimeHelper.downcallHandle(
+        constants$290.PFNGLPROGRAMUNIFORM1DVPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLPROGRAMUNIFORM1UIPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLCOPYTEXTURESUBIMAGE2DPROC$MH = RuntimeHelper.downcallHandle(
-        constants$290.PFNGLCOPYTEXTURESUBIMAGE2DPROC$FUNC
+    static final MethodHandle PFNGLPROGRAMUNIFORM1UIPROC$MH = RuntimeHelper.downcallHandle(
+        constants$290.PFNGLPROGRAMUNIFORM1UIPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLCOPYTEXTURESUBIMAGE3DPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLPROGRAMUNIFORM1UIVPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT
+        Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLCOPYTEXTURESUBIMAGE3DPROC$MH = RuntimeHelper.downcallHandle(
-        constants$290.PFNGLCOPYTEXTURESUBIMAGE3DPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLTEXTUREPARAMETERFPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT
-    );
-    static final MethodHandle PFNGLTEXTUREPARAMETERFPROC$MH = RuntimeHelper.downcallHandle(
-        constants$290.PFNGLTEXTUREPARAMETERFPROC$FUNC
+    static final MethodHandle PFNGLPROGRAMUNIFORM1UIVPROC$MH = RuntimeHelper.downcallHandle(
+        constants$290.PFNGLPROGRAMUNIFORM1UIVPROC$FUNC
     );
 }
 

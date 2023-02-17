@@ -9,26 +9,43 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$696 {
 
-    static final FunctionDescriptor PFNGLVERTEXWEIGHTFEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_FLOAT$LAYOUT
-    );
-    static final MethodHandle PFNGLVERTEXWEIGHTFEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$696.PFNGLVERTEXWEIGHTFEXTPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLVERTEXWEIGHTFVEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle PFNGLVERTEXWEIGHTFVEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$696.PFNGLVERTEXWEIGHTFVEXTPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLVERTEXWEIGHTPOINTEREXTPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLSTENCILOPSEPARATEATIPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
+        Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLVERTEXWEIGHTPOINTEREXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$696.PFNGLVERTEXWEIGHTPOINTEREXTPROC$FUNC
+    static final MethodHandle PFNGLSTENCILOPSEPARATEATIPROC$MH = RuntimeHelper.downcallHandle(
+        constants$696.PFNGLSTENCILOPSEPARATEATIPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLSTENCILFUNCSEPARATEATIPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle PFNGLSTENCILFUNCSEPARATEATIPROC$MH = RuntimeHelper.downcallHandle(
+        constants$696.PFNGLSTENCILFUNCSEPARATEATIPROC$FUNC
+    );
+    static final FunctionDescriptor glStencilOpSeparateATI$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle glStencilOpSeparateATI$MH = RuntimeHelper.downcallHandle(
+        "glStencilOpSeparateATI",
+        constants$696.glStencilOpSeparateATI$FUNC
+    );
+    static final FunctionDescriptor glStencilFuncSeparateATI$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle glStencilFuncSeparateATI$MH = RuntimeHelper.downcallHandle(
+        "glStencilFuncSeparateATI",
+        constants$696.glStencilFuncSeparateATI$FUNC
     );
 }
 

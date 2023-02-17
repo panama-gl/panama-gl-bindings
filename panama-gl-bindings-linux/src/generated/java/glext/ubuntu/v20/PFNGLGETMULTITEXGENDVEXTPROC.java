@@ -11,13 +11,13 @@ public interface PFNGLGETMULTITEXGENDVEXTPROC {
 
     void apply(int texunit, int coord, int pname, java.lang.foreign.MemoryAddress params);
     static MemorySegment allocate(PFNGLGETMULTITEXGENDVEXTPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLGETMULTITEXGENDVEXTPROC.class, fi, constants$553.PFNGLGETMULTITEXGENDVEXTPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLGETMULTITEXGENDVEXTPROC.class, fi, constants$774.PFNGLGETMULTITEXGENDVEXTPROC$FUNC, session);
     }
     static PFNGLGETMULTITEXGENDVEXTPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _texunit, int _coord, int _pname, java.lang.foreign.MemoryAddress _params) -> {
             try {
-                constants$553.PFNGLGETMULTITEXGENDVEXTPROC$MH.invokeExact((Addressable)symbol, _texunit, _coord, _pname, (java.lang.foreign.Addressable)_params);
+                constants$774.PFNGLGETMULTITEXGENDVEXTPROC$MH.invokeExact((Addressable)symbol, _texunit, _coord, _pname, (java.lang.foreign.Addressable)_params);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

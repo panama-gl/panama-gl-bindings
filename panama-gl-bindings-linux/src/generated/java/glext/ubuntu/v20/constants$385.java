@@ -9,26 +9,26 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$385 {
 
-    static final FunctionDescriptor PFNGLVERTEXATTRIB1DARBPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_DOUBLE$LAYOUT
-    );
-    static final MethodHandle PFNGLVERTEXATTRIB1DARBPROC$MH = RuntimeHelper.downcallHandle(
-        constants$385.PFNGLVERTEXATTRIB1DARBPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLVERTEXATTRIB1DVARBPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLCREATEVERTEXARRAYSPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLVERTEXATTRIB1DVARBPROC$MH = RuntimeHelper.downcallHandle(
-        constants$385.PFNGLVERTEXATTRIB1DVARBPROC$FUNC
+    static final MethodHandle PFNGLCREATEVERTEXARRAYSPROC$MH = RuntimeHelper.downcallHandle(
+        constants$385.PFNGLCREATEVERTEXARRAYSPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLVERTEXATTRIB1FARBPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLDISABLEVERTEXARRAYATTRIBPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT
+        Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLVERTEXATTRIB1FARBPROC$MH = RuntimeHelper.downcallHandle(
-        constants$385.PFNGLVERTEXATTRIB1FARBPROC$FUNC
+    static final MethodHandle PFNGLDISABLEVERTEXARRAYATTRIBPROC$MH = RuntimeHelper.downcallHandle(
+        constants$385.PFNGLDISABLEVERTEXARRAYATTRIBPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLENABLEVERTEXARRAYATTRIBPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle PFNGLENABLEVERTEXARRAYATTRIBPROC$MH = RuntimeHelper.downcallHandle(
+        constants$385.PFNGLENABLEVERTEXARRAYATTRIBPROC$FUNC
     );
 }
 

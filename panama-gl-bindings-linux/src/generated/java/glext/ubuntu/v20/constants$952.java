@@ -9,32 +9,33 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$952 {
 
-    static final FunctionDescriptor glutVisibilityFunc$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle glutVisibilityFunc$MH = RuntimeHelper.downcallHandle(
-        "glutVisibilityFunc",
-        constants$952.glutVisibilityFunc$FUNC
-    );
-    static final FunctionDescriptor glutDisplayFunc$callback$FUNC = FunctionDescriptor.ofVoid();
-    static final MethodHandle glutDisplayFunc$callback$MH = RuntimeHelper.downcallHandle(
-        constants$952.glutDisplayFunc$callback$FUNC
-    );
-    static final FunctionDescriptor glutDisplayFunc$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle glutDisplayFunc$MH = RuntimeHelper.downcallHandle(
-        "glutDisplayFunc",
-        constants$952.glutDisplayFunc$FUNC
-    );
-    static final FunctionDescriptor glutMouseFunc$callback$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
+    static final FunctionDescriptor PFNGLSTENCILCLEARTAGEXTPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle glutMouseFunc$callback$MH = RuntimeHelper.downcallHandle(
-        constants$952.glutMouseFunc$callback$FUNC
+    static final MethodHandle PFNGLSTENCILCLEARTAGEXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$952.PFNGLSTENCILCLEARTAGEXTPROC$FUNC
+    );
+    static final FunctionDescriptor glStencilClearTagEXT$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle glStencilClearTagEXT$MH = RuntimeHelper.downcallHandle(
+        "glStencilClearTagEXT",
+        constants$952.glStencilClearTagEXT$FUNC
+    );
+    static final FunctionDescriptor PFNGLACTIVESTENCILFACEEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle PFNGLACTIVESTENCILFACEEXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$952.PFNGLACTIVESTENCILFACEEXTPROC$FUNC
+    );
+    static final FunctionDescriptor glActiveStencilFaceEXT$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle glActiveStencilFaceEXT$MH = RuntimeHelper.downcallHandle(
+        "glActiveStencilFaceEXT",
+        constants$952.glActiveStencilFaceEXT$FUNC
     );
 }
 

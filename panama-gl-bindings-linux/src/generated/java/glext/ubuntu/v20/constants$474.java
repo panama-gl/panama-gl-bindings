@@ -9,24 +9,27 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$474 {
 
-    static final FunctionDescriptor PFNGLSTENCILOPVALUEAMDPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLENDQUERYARBPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle PFNGLENDQUERYARBPROC$MH = RuntimeHelper.downcallHandle(
+        constants$474.PFNGLENDQUERYARBPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLGETQUERYIVARBPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLSTENCILOPVALUEAMDPROC$MH = RuntimeHelper.downcallHandle(
-        constants$474.PFNGLSTENCILOPVALUEAMDPROC$FUNC
+    static final MethodHandle PFNGLGETQUERYIVARBPROC$MH = RuntimeHelper.downcallHandle(
+        constants$474.PFNGLGETQUERYIVARBPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLTESSELLATIONFACTORAMDPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_FLOAT$LAYOUT
+    static final FunctionDescriptor PFNGLGETQUERYOBJECTIVARBPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLTESSELLATIONFACTORAMDPROC$MH = RuntimeHelper.downcallHandle(
-        constants$474.PFNGLTESSELLATIONFACTORAMDPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLTESSELLATIONMODEAMDPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT
-    );
-    static final MethodHandle PFNGLTESSELLATIONMODEAMDPROC$MH = RuntimeHelper.downcallHandle(
-        constants$474.PFNGLTESSELLATIONMODEAMDPROC$FUNC
+    static final MethodHandle PFNGLGETQUERYOBJECTIVARBPROC$MH = RuntimeHelper.downcallHandle(
+        constants$474.PFNGLGETQUERYOBJECTIVARBPROC$FUNC
     );
 }
 

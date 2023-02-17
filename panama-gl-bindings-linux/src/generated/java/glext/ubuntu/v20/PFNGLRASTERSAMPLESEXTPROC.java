@@ -11,13 +11,13 @@ public interface PFNGLRASTERSAMPLESEXTPROC {
 
     void apply(int samples, byte fixedsamplelocations);
     static MemorySegment allocate(PFNGLRASTERSAMPLESEXTPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLRASTERSAMPLESEXTPROC.class, fi, constants$654.PFNGLRASTERSAMPLESEXTPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLRASTERSAMPLESEXTPROC.class, fi, constants$935.PFNGLRASTERSAMPLESEXTPROC$FUNC, session);
     }
     static PFNGLRASTERSAMPLESEXTPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _samples, byte _fixedsamplelocations) -> {
             try {
-                constants$654.PFNGLRASTERSAMPLESEXTPROC$MH.invokeExact((Addressable)symbol, _samples, _fixedsamplelocations);
+                constants$935.PFNGLRASTERSAMPLESEXTPROC$MH.invokeExact((Addressable)symbol, _samples, _fixedsamplelocations);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

@@ -9,28 +9,64 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$652 {
 
-    static final FunctionDescriptor PFNGLGETPIXELTRANSFORMPARAMETERIVEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glProgramUniform1i64vNV$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle PFNGLGETPIXELTRANSFORMPARAMETERIVEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$652.PFNGLGETPIXELTRANSFORMPARAMETERIVEXTPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLGETPIXELTRANSFORMPARAMETERFVEXTPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLGETPIXELTRANSFORMPARAMETERFVEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$652.PFNGLGETPIXELTRANSFORMPARAMETERFVEXTPROC$FUNC
+    static final MethodHandle glProgramUniform1i64vNV$MH = RuntimeHelper.downcallHandle(
+        "glProgramUniform1i64vNV",
+        constants$652.glProgramUniform1i64vNV$FUNC
     );
-    static final FunctionDescriptor PFNGLPOINTPARAMETERFEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glProgramUniform2i64vNV$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLPOINTPARAMETERFEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$652.PFNGLPOINTPARAMETERFEXTPROC$FUNC
+    static final MethodHandle glProgramUniform2i64vNV$MH = RuntimeHelper.downcallHandle(
+        "glProgramUniform2i64vNV",
+        constants$652.glProgramUniform2i64vNV$FUNC
+    );
+    static final FunctionDescriptor glProgramUniform3i64vNV$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glProgramUniform3i64vNV$MH = RuntimeHelper.downcallHandle(
+        "glProgramUniform3i64vNV",
+        constants$652.glProgramUniform3i64vNV$FUNC
+    );
+    static final FunctionDescriptor glProgramUniform4i64vNV$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glProgramUniform4i64vNV$MH = RuntimeHelper.downcallHandle(
+        "glProgramUniform4i64vNV",
+        constants$652.glProgramUniform4i64vNV$FUNC
+    );
+    static final FunctionDescriptor glProgramUniform1ui64NV$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT
+    );
+    static final MethodHandle glProgramUniform1ui64NV$MH = RuntimeHelper.downcallHandle(
+        "glProgramUniform1ui64NV",
+        constants$652.glProgramUniform1ui64NV$FUNC
+    );
+    static final FunctionDescriptor glProgramUniform2ui64NV$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT
+    );
+    static final MethodHandle glProgramUniform2ui64NV$MH = RuntimeHelper.downcallHandle(
+        "glProgramUniform2ui64NV",
+        constants$652.glProgramUniform2ui64NV$FUNC
     );
 }
 

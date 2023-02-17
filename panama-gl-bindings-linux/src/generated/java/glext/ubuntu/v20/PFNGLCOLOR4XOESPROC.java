@@ -11,13 +11,13 @@ public interface PFNGLCOLOR4XOESPROC {
 
     void apply(int red, int green, int blue, int alpha);
     static MemorySegment allocate(PFNGLCOLOR4XOESPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLCOLOR4XOESPROC.class, fi, constants$415.PFNGLCOLOR4XOESPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLCOLOR4XOESPROC.class, fi, constants$575.PFNGLCOLOR4XOESPROC$FUNC, session);
     }
     static PFNGLCOLOR4XOESPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _red, int _green, int _blue, int _alpha) -> {
             try {
-                constants$415.PFNGLCOLOR4XOESPROC$MH.invokeExact((Addressable)symbol, _red, _green, _blue, _alpha);
+                constants$575.PFNGLCOLOR4XOESPROC$MH.invokeExact((Addressable)symbol, _red, _green, _blue, _alpha);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

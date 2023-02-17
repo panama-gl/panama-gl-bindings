@@ -9,28 +9,30 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$308 {
 
-    static final FunctionDescriptor PFNGLGETNPIXELMAPUIVPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLVERTEXATTRIBL4DVPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle PFNGLVERTEXATTRIBL4DVPROC$MH = RuntimeHelper.downcallHandle(
+        constants$308.PFNGLVERTEXATTRIBL4DVPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLVERTEXATTRIBLPOINTERPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLGETNPIXELMAPUIVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$308.PFNGLGETNPIXELMAPUIVPROC$FUNC
+    static final MethodHandle PFNGLVERTEXATTRIBLPOINTERPROC$MH = RuntimeHelper.downcallHandle(
+        constants$308.PFNGLVERTEXATTRIBLPOINTERPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLGETNPIXELMAPUSVPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLGETVERTEXATTRIBLDVPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLGETNPIXELMAPUSVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$308.PFNGLGETNPIXELMAPUSVPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLGETNPOLYGONSTIPPLEPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle PFNGLGETNPOLYGONSTIPPLEPROC$MH = RuntimeHelper.downcallHandle(
-        constants$308.PFNGLGETNPOLYGONSTIPPLEPROC$FUNC
+    static final MethodHandle PFNGLGETVERTEXATTRIBLDVPROC$MH = RuntimeHelper.downcallHandle(
+        constants$308.PFNGLGETVERTEXATTRIBLDVPROC$FUNC
     );
 }
 

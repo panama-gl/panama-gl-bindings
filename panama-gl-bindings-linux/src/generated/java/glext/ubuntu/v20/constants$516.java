@@ -9,28 +9,56 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$516 {
 
-    static final FunctionDescriptor PFNGLEGLIMAGETARGETTEXTURESTORAGEEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLCOMPRESSEDTEXIMAGE1DARBPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLEGLIMAGETARGETTEXTURESTORAGEEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$516.PFNGLEGLIMAGETARGETTEXTURESTORAGEEXTPROC$FUNC
+    static final MethodHandle PFNGLCOMPRESSEDTEXIMAGE1DARBPROC$MH = RuntimeHelper.downcallHandle(
+        constants$516.PFNGLCOMPRESSEDTEXIMAGE1DARBPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLUNIFORMBUFFEREXTPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLCOMPRESSEDTEXSUBIMAGE3DARBPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT
-    );
-    static final MethodHandle PFNGLUNIFORMBUFFEREXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$516.PFNGLUNIFORMBUFFEREXTPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLGETUNIFORMBUFFERSIZEEXTPROC$FUNC = FunctionDescriptor.of(Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLGETUNIFORMBUFFERSIZEEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$516.PFNGLGETUNIFORMBUFFERSIZEEXTPROC$FUNC
+    static final MethodHandle PFNGLCOMPRESSEDTEXSUBIMAGE3DARBPROC$MH = RuntimeHelper.downcallHandle(
+        constants$516.PFNGLCOMPRESSEDTEXSUBIMAGE3DARBPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLCOMPRESSEDTEXSUBIMAGE2DARBPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle PFNGLCOMPRESSEDTEXSUBIMAGE2DARBPROC$MH = RuntimeHelper.downcallHandle(
+        constants$516.PFNGLCOMPRESSEDTEXSUBIMAGE2DARBPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLCOMPRESSEDTEXSUBIMAGE1DARBPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
 }
 

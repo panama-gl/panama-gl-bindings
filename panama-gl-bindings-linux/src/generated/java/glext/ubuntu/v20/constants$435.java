@@ -9,25 +9,33 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$435 {
 
-    static final FunctionDescriptor PFNGLMULTTRANSPOSEMATRIXXOESPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glDrawBuffersARB$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLMULTTRANSPOSEMATRIXXOESPROC$MH = RuntimeHelper.downcallHandle(
-        constants$435.PFNGLMULTTRANSPOSEMATRIXXOESPROC$FUNC
+    static final MethodHandle glDrawBuffersARB$MH = RuntimeHelper.downcallHandle(
+        "glDrawBuffersARB",
+        constants$435.glDrawBuffersARB$FUNC
     );
-    static final FunctionDescriptor PFNGLMULTITEXCOORD1XOESPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLBLENDEQUATIONIARBPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLMULTITEXCOORD1XOESPROC$MH = RuntimeHelper.downcallHandle(
-        constants$435.PFNGLMULTITEXCOORD1XOESPROC$FUNC
+    static final MethodHandle PFNGLBLENDEQUATIONIARBPROC$MH = RuntimeHelper.downcallHandle(
+        constants$435.PFNGLBLENDEQUATIONIARBPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLMULTITEXCOORD1XVOESPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLBLENDEQUATIONSEPARATEIARBPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLMULTITEXCOORD1XVOESPROC$MH = RuntimeHelper.downcallHandle(
-        constants$435.PFNGLMULTITEXCOORD1XVOESPROC$FUNC
+    static final MethodHandle PFNGLBLENDEQUATIONSEPARATEIARBPROC$MH = RuntimeHelper.downcallHandle(
+        constants$435.PFNGLBLENDEQUATIONSEPARATEIARBPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLBLENDFUNCIARBPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
 }
 

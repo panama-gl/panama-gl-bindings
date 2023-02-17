@@ -9,66 +9,30 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$985 {
 
-    static final FunctionDescriptor ecvt$FUNC = FunctionDescriptor.of(Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_DOUBLE$LAYOUT,
+    static final FunctionDescriptor PFNGLDISABLEVARIANTCLIENTSTATEEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle PFNGLDISABLEVARIANTCLIENTSTATEEXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$985.PFNGLDISABLEVARIANTCLIENTSTATEEXTPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLBINDLIGHTPARAMETEREXTPROC$FUNC = FunctionDescriptor.of(Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
+        Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle ecvt$MH = RuntimeHelper.downcallHandle(
-        "ecvt",
-        constants$985.ecvt$FUNC
+    static final MethodHandle PFNGLBINDLIGHTPARAMETEREXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$985.PFNGLBINDLIGHTPARAMETEREXTPROC$FUNC
     );
-    static final FunctionDescriptor fcvt$FUNC = FunctionDescriptor.of(Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_DOUBLE$LAYOUT,
+    static final FunctionDescriptor PFNGLBINDMATERIALPARAMETEREXTPROC$FUNC = FunctionDescriptor.of(Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
+        Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle fcvt$MH = RuntimeHelper.downcallHandle(
-        "fcvt",
-        constants$985.fcvt$FUNC
+    static final MethodHandle PFNGLBINDMATERIALPARAMETEREXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$985.PFNGLBINDMATERIALPARAMETEREXTPROC$FUNC
     );
-    static final FunctionDescriptor gcvt$FUNC = FunctionDescriptor.of(Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_DOUBLE$LAYOUT,
+    static final FunctionDescriptor PFNGLBINDTEXGENPARAMETEREXTPROC$FUNC = FunctionDescriptor.of(Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle gcvt$MH = RuntimeHelper.downcallHandle(
-        "gcvt",
-        constants$985.gcvt$FUNC
-    );
-    static final FunctionDescriptor ecvt_r$FUNC = FunctionDescriptor.of(Constants$root.C_INT$LAYOUT,
-        Constants$root.C_DOUBLE$LAYOUT,
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_LONG_LONG$LAYOUT
-    );
-    static final MethodHandle ecvt_r$MH = RuntimeHelper.downcallHandle(
-        "ecvt_r",
-        constants$985.ecvt_r$FUNC
-    );
-    static final FunctionDescriptor fcvt_r$FUNC = FunctionDescriptor.of(Constants$root.C_INT$LAYOUT,
-        Constants$root.C_DOUBLE$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_LONG_LONG$LAYOUT
-    );
-    static final MethodHandle fcvt_r$MH = RuntimeHelper.downcallHandle(
-        "fcvt_r",
-        constants$985.fcvt_r$FUNC
-    );
-    static final FunctionDescriptor mblen$FUNC = FunctionDescriptor.of(Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_LONG_LONG$LAYOUT
-    );
-    static final MethodHandle mblen$MH = RuntimeHelper.downcallHandle(
-        "mblen",
-        constants$985.mblen$FUNC
+        Constants$root.C_INT$LAYOUT
     );
 }
 

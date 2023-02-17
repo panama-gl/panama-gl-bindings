@@ -9,28 +9,43 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$625 {
 
-    static final FunctionDescriptor PFNGLRENDERBUFFERSTORAGEMULTISAMPLEEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glVertex3xOES$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle glVertex3xOES$MH = RuntimeHelper.downcallHandle(
+        "glVertex3xOES",
+        constants$625.glVertex3xOES$FUNC
+    );
+    static final FunctionDescriptor glVertex3xvOES$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glVertex3xvOES$MH = RuntimeHelper.downcallHandle(
+        "glVertex3xvOES",
+        constants$625.glVertex3xvOES$FUNC
+    );
+    static final FunctionDescriptor glVertex4xOES$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLRENDERBUFFERSTORAGEMULTISAMPLEEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$625.PFNGLRENDERBUFFERSTORAGEMULTISAMPLEEXTPROC$FUNC
+    static final MethodHandle glVertex4xOES$MH = RuntimeHelper.downcallHandle(
+        "glVertex4xOES",
+        constants$625.glVertex4xOES$FUNC
     );
-    static final FunctionDescriptor PFNGLISRENDERBUFFEREXTPROC$FUNC = FunctionDescriptor.of(Constants$root.C_CHAR$LAYOUT,
-        Constants$root.C_INT$LAYOUT
+    static final FunctionDescriptor glVertex4xvOES$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLISRENDERBUFFEREXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$625.PFNGLISRENDERBUFFEREXTPROC$FUNC
+    static final MethodHandle glVertex4xvOES$MH = RuntimeHelper.downcallHandle(
+        "glVertex4xvOES",
+        constants$625.glVertex4xvOES$FUNC
     );
-    static final FunctionDescriptor PFNGLBINDRENDERBUFFEREXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT
+    static final FunctionDescriptor PFNGLQUERYMATRIXXOESPROC$FUNC = FunctionDescriptor.of(Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLBINDRENDERBUFFEREXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$625.PFNGLBINDRENDERBUFFEREXTPROC$FUNC
+    static final MethodHandle PFNGLQUERYMATRIXXOESPROC$MH = RuntimeHelper.downcallHandle(
+        constants$625.PFNGLQUERYMATRIXXOESPROC$FUNC
     );
 }
 

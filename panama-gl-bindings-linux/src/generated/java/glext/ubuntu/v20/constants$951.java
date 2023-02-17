@@ -9,32 +9,43 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$951 {
 
-    static final FunctionDescriptor glutSpecialFunc$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle glutSpecialFunc$MH = RuntimeHelper.downcallHandle(
-        "glutSpecialFunc",
-        constants$951.glutSpecialFunc$FUNC
-    );
-    static final FunctionDescriptor glutReshapeFunc$callback$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLBINDIMAGETEXTUREEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_CHAR$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle glutReshapeFunc$callback$MH = RuntimeHelper.downcallHandle(
-        constants$951.glutReshapeFunc$callback$FUNC
+    static final MethodHandle PFNGLBINDIMAGETEXTUREEXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$951.PFNGLBINDIMAGETEXTUREEXTPROC$FUNC
     );
-    static final FunctionDescriptor glutReshapeFunc$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle glutReshapeFunc$MH = RuntimeHelper.downcallHandle(
-        "glutReshapeFunc",
-        constants$951.glutReshapeFunc$FUNC
-    );
-    static final FunctionDescriptor glutVisibilityFunc$callback$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLMEMORYBARRIEREXTPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle glutVisibilityFunc$callback$MH = RuntimeHelper.downcallHandle(
-        constants$951.glutVisibilityFunc$callback$FUNC
+    static final MethodHandle PFNGLMEMORYBARRIEREXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$951.PFNGLMEMORYBARRIEREXTPROC$FUNC
+    );
+    static final FunctionDescriptor glBindImageTextureEXT$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_CHAR$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle glBindImageTextureEXT$MH = RuntimeHelper.downcallHandle(
+        "glBindImageTextureEXT",
+        constants$951.glBindImageTextureEXT$FUNC
+    );
+    static final FunctionDescriptor glMemoryBarrierEXT$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle glMemoryBarrierEXT$MH = RuntimeHelper.downcallHandle(
+        "glMemoryBarrierEXT",
+        constants$951.glMemoryBarrierEXT$FUNC
     );
 }
 

@@ -9,31 +9,25 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$741 {
 
-    static final FunctionDescriptor GLVULKANPROCNV$FUNC = FunctionDescriptor.ofVoid();
-    static final MethodHandle GLVULKANPROCNV$MH = RuntimeHelper.downcallHandle(
-        constants$741.GLVULKANPROCNV$FUNC
+    static final FunctionDescriptor PFNGLTANGENT3DVEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_POINTER$LAYOUT
     );
-    static final FunctionDescriptor PFNGLDRAWVKIMAGENVPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_LONG_LONG$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT,
+    static final MethodHandle PFNGLTANGENT3DVEXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$741.PFNGLTANGENT3DVEXTPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLTANGENT3FEXTPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_FLOAT$LAYOUT,
         Constants$root.C_FLOAT$LAYOUT,
         Constants$root.C_FLOAT$LAYOUT
     );
-    static final MethodHandle PFNGLDRAWVKIMAGENVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$741.PFNGLDRAWVKIMAGENVPROC$FUNC
+    static final MethodHandle PFNGLTANGENT3FEXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$741.PFNGLTANGENT3FEXTPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLGETVKPROCADDRNVPROC$FUNC = FunctionDescriptor.of(Constants$root.C_POINTER$LAYOUT,
+    static final FunctionDescriptor PFNGLTANGENT3FVEXTPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLGETVKPROCADDRNVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$741.PFNGLGETVKPROCADDRNVPROC$FUNC
+    static final MethodHandle PFNGLTANGENT3FVEXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$741.PFNGLTANGENT3FVEXTPROC$FUNC
     );
 }
 

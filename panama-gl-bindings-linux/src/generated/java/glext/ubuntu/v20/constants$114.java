@@ -9,30 +9,39 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$114 {
 
-    static final FunctionDescriptor PFNGLSTENCILOPSEPARATEPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT
+    static final FunctionDescriptor glWindowPos3iv$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLSTENCILOPSEPARATEPROC$MH = RuntimeHelper.downcallHandle(
-        constants$114.PFNGLSTENCILOPSEPARATEPROC$FUNC
+    static final MethodHandle glWindowPos3iv$MH = RuntimeHelper.downcallHandle(
+        "glWindowPos3iv",
+        constants$114.glWindowPos3iv$FUNC
     );
-    static final FunctionDescriptor PFNGLSTENCILFUNCSEPARATEPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT
+    static final FunctionDescriptor glWindowPos3s$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_SHORT$LAYOUT,
+        Constants$root.C_SHORT$LAYOUT,
+        Constants$root.C_SHORT$LAYOUT
     );
-    static final MethodHandle PFNGLSTENCILFUNCSEPARATEPROC$MH = RuntimeHelper.downcallHandle(
-        constants$114.PFNGLSTENCILFUNCSEPARATEPROC$FUNC
+    static final MethodHandle glWindowPos3s$MH = RuntimeHelper.downcallHandle(
+        "glWindowPos3s",
+        constants$114.glWindowPos3s$FUNC
     );
-    static final FunctionDescriptor PFNGLSTENCILMASKSEPARATEPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glWindowPos3sv$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glWindowPos3sv$MH = RuntimeHelper.downcallHandle(
+        "glWindowPos3sv",
+        constants$114.glWindowPos3sv$FUNC
+    );
+    static final FunctionDescriptor PFNGLGENQUERIESPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT
+        Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLSTENCILMASKSEPARATEPROC$MH = RuntimeHelper.downcallHandle(
-        constants$114.PFNGLSTENCILMASKSEPARATEPROC$FUNC
+    static final MethodHandle PFNGLGENQUERIESPROC$MH = RuntimeHelper.downcallHandle(
+        constants$114.PFNGLGENQUERIESPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLDELETEQUERIESPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
 }
 

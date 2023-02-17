@@ -11,13 +11,13 @@ public interface PFNGLDISABLEVERTEXATTRIBAPPLEPROC {
 
     void apply(int index, int pname);
     static MemorySegment allocate(PFNGLDISABLEVERTEXATTRIBAPPLEPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLDISABLEVERTEXATTRIBAPPLEPROC.class, fi, constants$484.PFNGLDISABLEVERTEXATTRIBAPPLEPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLDISABLEVERTEXATTRIBAPPLEPROC.class, fi, constants$679.PFNGLDISABLEVERTEXATTRIBAPPLEPROC$FUNC, session);
     }
     static PFNGLDISABLEVERTEXATTRIBAPPLEPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _index, int _pname) -> {
             try {
-                constants$484.PFNGLDISABLEVERTEXATTRIBAPPLEPROC$MH.invokeExact((Addressable)symbol, _index, _pname);
+                constants$680.PFNGLDISABLEVERTEXATTRIBAPPLEPROC$MH.invokeExact((Addressable)symbol, _index, _pname);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

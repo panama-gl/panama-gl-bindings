@@ -11,13 +11,13 @@ public interface PFNGLGETUNSIGNEDBYTEI_VEXTPROC {
 
     void apply(int target, int index, java.lang.foreign.MemoryAddress data);
     static MemorySegment allocate(PFNGLGETUNSIGNEDBYTEI_VEXTPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLGETUNSIGNEDBYTEI_VEXTPROC.class, fi, constants$641.PFNGLGETUNSIGNEDBYTEI_VEXTPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLGETUNSIGNEDBYTEI_VEXTPROC.class, fi, constants$914.PFNGLGETUNSIGNEDBYTEI_VEXTPROC$FUNC, session);
     }
     static PFNGLGETUNSIGNEDBYTEI_VEXTPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _target, int _index, java.lang.foreign.MemoryAddress _data) -> {
             try {
-                constants$641.PFNGLGETUNSIGNEDBYTEI_VEXTPROC$MH.invokeExact((Addressable)symbol, _target, _index, (java.lang.foreign.Addressable)_data);
+                constants$915.PFNGLGETUNSIGNEDBYTEI_VEXTPROC$MH.invokeExact((Addressable)symbol, _target, _index, (java.lang.foreign.Addressable)_data);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

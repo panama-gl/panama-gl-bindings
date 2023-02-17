@@ -9,26 +9,29 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$133 {
 
-    static final FunctionDescriptor PFNGLVERTEXATTRIB1FVPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLGETVERTEXATTRIBDVPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLVERTEXATTRIB1FVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$133.PFNGLVERTEXATTRIB1FVPROC$FUNC
+    static final MethodHandle PFNGLGETVERTEXATTRIBDVPROC$MH = RuntimeHelper.downcallHandle(
+        constants$133.PFNGLGETVERTEXATTRIBDVPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLVERTEXATTRIB1SPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLGETVERTEXATTRIBFVPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_SHORT$LAYOUT
-    );
-    static final MethodHandle PFNGLVERTEXATTRIB1SPROC$MH = RuntimeHelper.downcallHandle(
-        constants$133.PFNGLVERTEXATTRIB1SPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLVERTEXATTRIB1SVPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLVERTEXATTRIB1SVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$133.PFNGLVERTEXATTRIB1SVPROC$FUNC
+    static final MethodHandle PFNGLGETVERTEXATTRIBFVPROC$MH = RuntimeHelper.downcallHandle(
+        constants$133.PFNGLGETVERTEXATTRIBFVPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLGETVERTEXATTRIBIVPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle PFNGLGETVERTEXATTRIBIVPROC$MH = RuntimeHelper.downcallHandle(
+        constants$133.PFNGLGETVERTEXATTRIBIVPROC$FUNC
     );
 }
 

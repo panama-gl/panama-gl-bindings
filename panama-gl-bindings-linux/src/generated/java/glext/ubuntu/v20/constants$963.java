@@ -9,54 +9,39 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$963 {
 
-    static final FunctionDescriptor glutBitmapLength$FUNC = FunctionDescriptor.of(Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
+    static final FunctionDescriptor PFNGLGETQUERYOBJECTUI64VEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle glutBitmapLength$MH = RuntimeHelper.downcallHandle(
-        "glutBitmapLength",
-        constants$963.glutBitmapLength$FUNC
+    static final MethodHandle PFNGLGETQUERYOBJECTUI64VEXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$963.PFNGLGETQUERYOBJECTUI64VEXTPROC$FUNC
     );
-    static final FunctionDescriptor glutStrokeLength$FUNC = FunctionDescriptor.of(Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
+    static final FunctionDescriptor glGetQueryObjecti64vEXT$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle glutStrokeLength$MH = RuntimeHelper.downcallHandle(
-        "glutStrokeLength",
-        constants$963.glutStrokeLength$FUNC
+    static final MethodHandle glGetQueryObjecti64vEXT$MH = RuntimeHelper.downcallHandle(
+        "glGetQueryObjecti64vEXT",
+        constants$963.glGetQueryObjecti64vEXT$FUNC
     );
-    static final FunctionDescriptor glutWireCube$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_DOUBLE$LAYOUT
-    );
-    static final MethodHandle glutWireCube$MH = RuntimeHelper.downcallHandle(
-        "glutWireCube",
-        constants$963.glutWireCube$FUNC
-    );
-    static final FunctionDescriptor glutSolidCube$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_DOUBLE$LAYOUT
-    );
-    static final MethodHandle glutSolidCube$MH = RuntimeHelper.downcallHandle(
-        "glutSolidCube",
-        constants$963.glutSolidCube$FUNC
-    );
-    static final FunctionDescriptor glutWireSphere$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_DOUBLE$LAYOUT,
+    static final FunctionDescriptor glGetQueryObjectui64vEXT$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glGetQueryObjectui64vEXT$MH = RuntimeHelper.downcallHandle(
+        "glGetQueryObjectui64vEXT",
+        constants$963.glGetQueryObjectui64vEXT$FUNC
+    );
+    static final FunctionDescriptor PFNGLBEGINTRANSFORMFEEDBACKEXTPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle glutWireSphere$MH = RuntimeHelper.downcallHandle(
-        "glutWireSphere",
-        constants$963.glutWireSphere$FUNC
+    static final MethodHandle PFNGLBEGINTRANSFORMFEEDBACKEXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$963.PFNGLBEGINTRANSFORMFEEDBACKEXTPROC$FUNC
     );
-    static final FunctionDescriptor glutSolidSphere$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_DOUBLE$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT
-    );
-    static final MethodHandle glutSolidSphere$MH = RuntimeHelper.downcallHandle(
-        "glutSolidSphere",
-        constants$963.glutSolidSphere$FUNC
-    );
+    static final FunctionDescriptor PFNGLENDTRANSFORMFEEDBACKEXTPROC$FUNC = FunctionDescriptor.ofVoid();
 }
 
 

@@ -11,13 +11,13 @@ public interface PFNGLFINALCOMBINERINPUTNVPROC {
 
     void apply(int variable, int input, int mapping, int componentUsage);
     static MemorySegment allocate(PFNGLFINALCOMBINERINPUTNVPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLFINALCOMBINERINPUTNVPROC.class, fi, constants$815.PFNGLFINALCOMBINERINPUTNVPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLFINALCOMBINERINPUTNVPROC.class, fi, constants$1174.PFNGLFINALCOMBINERINPUTNVPROC$FUNC, session);
     }
     static PFNGLFINALCOMBINERINPUTNVPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _variable, int _input, int _mapping, int _componentUsage) -> {
             try {
-                constants$815.PFNGLFINALCOMBINERINPUTNVPROC$MH.invokeExact((Addressable)symbol, _variable, _input, _mapping, _componentUsage);
+                constants$1175.PFNGLFINALCOMBINERINPUTNVPROC$MH.invokeExact((Addressable)symbol, _variable, _input, _mapping, _componentUsage);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

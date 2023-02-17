@@ -9,43 +9,63 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$966 {
 
-    static final FunctionDescriptor glutWireTeapot$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_DOUBLE$LAYOUT
+    static final FunctionDescriptor glEndTransformFeedbackEXT$FUNC = FunctionDescriptor.ofVoid();
+    static final MethodHandle glEndTransformFeedbackEXT$MH = RuntimeHelper.downcallHandle(
+        "glEndTransformFeedbackEXT",
+        constants$966.glEndTransformFeedbackEXT$FUNC
     );
-    static final MethodHandle glutWireTeapot$MH = RuntimeHelper.downcallHandle(
-        "glutWireTeapot",
-        constants$966.glutWireTeapot$FUNC
+    static final FunctionDescriptor glBindBufferRangeEXT$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT
     );
-    static final FunctionDescriptor glutSolidTeapot$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_DOUBLE$LAYOUT
+    static final MethodHandle glBindBufferRangeEXT$MH = RuntimeHelper.downcallHandle(
+        "glBindBufferRangeEXT",
+        constants$966.glBindBufferRangeEXT$FUNC
     );
-    static final MethodHandle glutSolidTeapot$MH = RuntimeHelper.downcallHandle(
-        "glutSolidTeapot",
-        constants$966.glutSolidTeapot$FUNC
+    static final FunctionDescriptor glBindBufferOffsetEXT$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT
     );
-    static final FunctionDescriptor glutGameModeString$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_POINTER$LAYOUT
+    static final MethodHandle glBindBufferOffsetEXT$MH = RuntimeHelper.downcallHandle(
+        "glBindBufferOffsetEXT",
+        constants$966.glBindBufferOffsetEXT$FUNC
     );
-    static final MethodHandle glutGameModeString$MH = RuntimeHelper.downcallHandle(
-        "glutGameModeString",
-        constants$966.glutGameModeString$FUNC
-    );
-    static final FunctionDescriptor glutEnterGameMode$FUNC = FunctionDescriptor.of(Constants$root.C_INT$LAYOUT);
-    static final MethodHandle glutEnterGameMode$MH = RuntimeHelper.downcallHandle(
-        "glutEnterGameMode",
-        constants$966.glutEnterGameMode$FUNC
-    );
-    static final FunctionDescriptor glutLeaveGameMode$FUNC = FunctionDescriptor.ofVoid();
-    static final MethodHandle glutLeaveGameMode$MH = RuntimeHelper.downcallHandle(
-        "glutLeaveGameMode",
-        constants$966.glutLeaveGameMode$FUNC
-    );
-    static final FunctionDescriptor glutGameModeGet$FUNC = FunctionDescriptor.of(Constants$root.C_INT$LAYOUT,
+    static final FunctionDescriptor glBindBufferBaseEXT$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle glutGameModeGet$MH = RuntimeHelper.downcallHandle(
-        "glutGameModeGet",
-        constants$966.glutGameModeGet$FUNC
+    static final MethodHandle glBindBufferBaseEXT$MH = RuntimeHelper.downcallHandle(
+        "glBindBufferBaseEXT",
+        constants$966.glBindBufferBaseEXT$FUNC
+    );
+    static final FunctionDescriptor glTransformFeedbackVaryingsEXT$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle glTransformFeedbackVaryingsEXT$MH = RuntimeHelper.downcallHandle(
+        "glTransformFeedbackVaryingsEXT",
+        constants$966.glTransformFeedbackVaryingsEXT$FUNC
+    );
+    static final FunctionDescriptor glGetTransformFeedbackVaryingEXT$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glGetTransformFeedbackVaryingEXT$MH = RuntimeHelper.downcallHandle(
+        "glGetTransformFeedbackVaryingEXT",
+        constants$966.glGetTransformFeedbackVaryingEXT$FUNC
     );
 }
 

@@ -9,23 +9,51 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$910 {
 
-    static final FunctionDescriptor PFNGLGLOBALALPHAFACTORBSUNPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_CHAR$LAYOUT
-    );
-    static final MethodHandle PFNGLGLOBALALPHAFACTORBSUNPROC$MH = RuntimeHelper.downcallHandle(
-        constants$910.PFNGLGLOBALALPHAFACTORBSUNPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLGLOBALALPHAFACTORSSUNPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_SHORT$LAYOUT
-    );
-    static final MethodHandle PFNGLGLOBALALPHAFACTORSSUNPROC$MH = RuntimeHelper.downcallHandle(
-        constants$910.PFNGLGLOBALALPHAFACTORSSUNPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLGLOBALALPHAFACTORISUNPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLRESETMINMAXEXTPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLGLOBALALPHAFACTORISUNPROC$MH = RuntimeHelper.downcallHandle(
-        constants$910.PFNGLGLOBALALPHAFACTORISUNPROC$FUNC
+    static final MethodHandle PFNGLRESETMINMAXEXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$910.PFNGLRESETMINMAXEXTPROC$FUNC
+    );
+    static final FunctionDescriptor glGetHistogramEXT$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_CHAR$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glGetHistogramEXT$MH = RuntimeHelper.downcallHandle(
+        "glGetHistogramEXT",
+        constants$910.glGetHistogramEXT$FUNC
+    );
+    static final FunctionDescriptor glGetHistogramParameterfvEXT$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glGetHistogramParameterfvEXT$MH = RuntimeHelper.downcallHandle(
+        "glGetHistogramParameterfvEXT",
+        constants$910.glGetHistogramParameterfvEXT$FUNC
+    );
+    static final FunctionDescriptor glGetHistogramParameterivEXT$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glGetHistogramParameterivEXT$MH = RuntimeHelper.downcallHandle(
+        "glGetHistogramParameterivEXT",
+        constants$910.glGetHistogramParameterivEXT$FUNC
+    );
+    static final FunctionDescriptor glGetMinmaxEXT$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_CHAR$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glGetMinmaxEXT$MH = RuntimeHelper.downcallHandle(
+        "glGetMinmaxEXT",
+        constants$910.glGetMinmaxEXT$FUNC
     );
 }
 

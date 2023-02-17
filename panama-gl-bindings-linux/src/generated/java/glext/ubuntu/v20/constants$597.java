@@ -9,30 +9,32 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$597 {
 
-    static final FunctionDescriptor PFNGLNAMEDFRAMEBUFFERRENDERBUFFEREXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT
-    );
-    static final MethodHandle PFNGLNAMEDFRAMEBUFFERRENDERBUFFEREXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$597.PFNGLNAMEDFRAMEBUFFERRENDERBUFFEREXTPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLGETNAMEDFRAMEBUFFERATTACHMENTPARAMETERIVEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
+    static final FunctionDescriptor PFNGLMULTITEXCOORD2XVOESPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLGETNAMEDFRAMEBUFFERATTACHMENTPARAMETERIVEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$597.PFNGLGETNAMEDFRAMEBUFFERATTACHMENTPARAMETERIVEXTPROC$FUNC
+    static final MethodHandle PFNGLMULTITEXCOORD2XVOESPROC$MH = RuntimeHelper.downcallHandle(
+        constants$597.PFNGLMULTITEXCOORD2XVOESPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLGENERATETEXTUREMIPMAPEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLMULTITEXCOORD3XOESPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLGENERATETEXTUREMIPMAPEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$597.PFNGLGENERATETEXTUREMIPMAPEXTPROC$FUNC
+    static final MethodHandle PFNGLMULTITEXCOORD3XOESPROC$MH = RuntimeHelper.downcallHandle(
+        constants$597.PFNGLMULTITEXCOORD3XOESPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLMULTITEXCOORD3XVOESPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle PFNGLMULTITEXCOORD3XVOESPROC$MH = RuntimeHelper.downcallHandle(
+        constants$597.PFNGLMULTITEXCOORD3XVOESPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLMULTITEXCOORD4XVOESPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
 }
 

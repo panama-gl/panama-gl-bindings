@@ -11,13 +11,13 @@ public interface PFNGLPASSTHROUGHXOESPROC {
 
     void apply(int token);
     static MemorySegment allocate(PFNGLPASSTHROUGHXOESPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLPASSTHROUGHXOESPROC.class, fi, constants$438.PFNGLPASSTHROUGHXOESPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLPASSTHROUGHXOESPROC.class, fi, constants$598.PFNGLPASSTHROUGHXOESPROC$FUNC, session);
     }
     static PFNGLPASSTHROUGHXOESPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _token) -> {
             try {
-                constants$438.PFNGLPASSTHROUGHXOESPROC$MH.invokeExact((Addressable)symbol, _token);
+                constants$598.PFNGLPASSTHROUGHXOESPROC$MH.invokeExact((Addressable)symbol, _token);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

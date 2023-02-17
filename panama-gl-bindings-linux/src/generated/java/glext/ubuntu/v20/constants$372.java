@@ -9,33 +9,29 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$372 {
 
-    static final FunctionDescriptor PFNGLGETNAMEDSTRINGARBPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLGETNAMEDFRAMEBUFFERPARAMETERIVPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle PFNGLGETNAMEDSTRINGARBPROC$MH = RuntimeHelper.downcallHandle(
-        constants$372.PFNGLGETNAMEDSTRINGARBPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLGETNAMEDSTRINGIVARBPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLGETNAMEDSTRINGIVARBPROC$MH = RuntimeHelper.downcallHandle(
-        constants$372.PFNGLGETNAMEDSTRINGIVARBPROC$FUNC
+    static final MethodHandle PFNGLGETNAMEDFRAMEBUFFERPARAMETERIVPROC$MH = RuntimeHelper.downcallHandle(
+        constants$372.PFNGLGETNAMEDFRAMEBUFFERPARAMETERIVPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLBUFFERPAGECOMMITMENTARBPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLGETNAMEDFRAMEBUFFERATTACHMENTPARAMETERIVPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_LONG_LONG$LAYOUT,
-        Constants$root.C_LONG_LONG$LAYOUT,
-        Constants$root.C_CHAR$LAYOUT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLBUFFERPAGECOMMITMENTARBPROC$MH = RuntimeHelper.downcallHandle(
-        constants$372.PFNGLBUFFERPAGECOMMITMENTARBPROC$FUNC
+    static final MethodHandle PFNGLGETNAMEDFRAMEBUFFERATTACHMENTPARAMETERIVPROC$MH = RuntimeHelper.downcallHandle(
+        constants$372.PFNGLGETNAMEDFRAMEBUFFERATTACHMENTPARAMETERIVPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLCREATERENDERBUFFERSPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle PFNGLCREATERENDERBUFFERSPROC$MH = RuntimeHelper.downcallHandle(
+        constants$372.PFNGLCREATERENDERBUFFERSPROC$FUNC
     );
 }
 

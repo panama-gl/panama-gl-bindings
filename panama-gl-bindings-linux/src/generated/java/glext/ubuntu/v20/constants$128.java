@@ -9,29 +9,24 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$128 {
 
-    static final FunctionDescriptor PFNGLUNIFORM1FVPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLDETACHSHADERPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
+        Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLUNIFORM1FVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$128.PFNGLUNIFORM1FVPROC$FUNC
+    static final MethodHandle PFNGLDETACHSHADERPROC$MH = RuntimeHelper.downcallHandle(
+        constants$128.PFNGLDETACHSHADERPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLUNIFORM2FVPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
+    static final FunctionDescriptor PFNGLDISABLEVERTEXATTRIBARRAYPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLUNIFORM2FVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$128.PFNGLUNIFORM2FVPROC$FUNC
+    static final MethodHandle PFNGLDISABLEVERTEXATTRIBARRAYPROC$MH = RuntimeHelper.downcallHandle(
+        constants$128.PFNGLDISABLEVERTEXATTRIBARRAYPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLUNIFORM3FVPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
+    static final FunctionDescriptor PFNGLENABLEVERTEXATTRIBARRAYPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLUNIFORM3FVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$128.PFNGLUNIFORM3FVPROC$FUNC
+    static final MethodHandle PFNGLENABLEVERTEXATTRIBARRAYPROC$MH = RuntimeHelper.downcallHandle(
+        constants$128.PFNGLENABLEVERTEXATTRIBARRAYPROC$FUNC
     );
 }
 

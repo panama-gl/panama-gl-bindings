@@ -9,35 +9,33 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$452 {
 
-    static final FunctionDescriptor PFNGLGETDEBUGMESSAGELOGAMDPROC$FUNC = FunctionDescriptor.of(Constants$root.C_INT$LAYOUT,
+    static final FunctionDescriptor PFNGLUNIFORM2I64VARBPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLGETDEBUGMESSAGELOGAMDPROC$MH = RuntimeHelper.downcallHandle(
-        constants$452.PFNGLGETDEBUGMESSAGELOGAMDPROC$FUNC
+    static final MethodHandle PFNGLUNIFORM2I64VARBPROC$MH = RuntimeHelper.downcallHandle(
+        constants$452.PFNGLUNIFORM2I64VARBPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLBLENDFUNCINDEXEDAMDPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLUNIFORM3I64VARBPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT
+        Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLBLENDFUNCINDEXEDAMDPROC$MH = RuntimeHelper.downcallHandle(
-        constants$452.PFNGLBLENDFUNCINDEXEDAMDPROC$FUNC
+    static final MethodHandle PFNGLUNIFORM3I64VARBPROC$MH = RuntimeHelper.downcallHandle(
+        constants$452.PFNGLUNIFORM3I64VARBPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLBLENDFUNCSEPARATEINDEXEDAMDPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLUNIFORM4I64VARBPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT
+        Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLBLENDFUNCSEPARATEINDEXEDAMDPROC$MH = RuntimeHelper.downcallHandle(
-        constants$452.PFNGLBLENDFUNCSEPARATEINDEXEDAMDPROC$FUNC
+    static final MethodHandle PFNGLUNIFORM4I64VARBPROC$MH = RuntimeHelper.downcallHandle(
+        constants$452.PFNGLUNIFORM4I64VARBPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLUNIFORM1UI64ARBPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT
     );
 }
 

@@ -9,30 +9,63 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$279 {
 
-    static final FunctionDescriptor PFNGLNAMEDFRAMEBUFFERTEXTURELAYERPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glUniformMatrix4x2dv$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT
+        Constants$root.C_CHAR$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLNAMEDFRAMEBUFFERTEXTURELAYERPROC$MH = RuntimeHelper.downcallHandle(
-        constants$279.PFNGLNAMEDFRAMEBUFFERTEXTURELAYERPROC$FUNC
+    static final MethodHandle glUniformMatrix4x2dv$MH = RuntimeHelper.downcallHandle(
+        "glUniformMatrix4x2dv",
+        constants$279.glUniformMatrix4x2dv$FUNC
     );
-    static final FunctionDescriptor PFNGLNAMEDFRAMEBUFFERDRAWBUFFERPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glUniformMatrix4x3dv$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_CHAR$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLNAMEDFRAMEBUFFERDRAWBUFFERPROC$MH = RuntimeHelper.downcallHandle(
-        constants$279.PFNGLNAMEDFRAMEBUFFERDRAWBUFFERPROC$FUNC
+    static final MethodHandle glUniformMatrix4x3dv$MH = RuntimeHelper.downcallHandle(
+        "glUniformMatrix4x3dv",
+        constants$279.glUniformMatrix4x3dv$FUNC
     );
-    static final FunctionDescriptor PFNGLNAMEDFRAMEBUFFERDRAWBUFFERSPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glGetUniformdv$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLNAMEDFRAMEBUFFERDRAWBUFFERSPROC$MH = RuntimeHelper.downcallHandle(
-        constants$279.PFNGLNAMEDFRAMEBUFFERDRAWBUFFERSPROC$FUNC
+    static final MethodHandle glGetUniformdv$MH = RuntimeHelper.downcallHandle(
+        "glGetUniformdv",
+        constants$279.glGetUniformdv$FUNC
+    );
+    static final FunctionDescriptor glGetSubroutineUniformLocation$FUNC = FunctionDescriptor.of(Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glGetSubroutineUniformLocation$MH = RuntimeHelper.downcallHandle(
+        "glGetSubroutineUniformLocation",
+        constants$279.glGetSubroutineUniformLocation$FUNC
+    );
+    static final FunctionDescriptor glGetSubroutineIndex$FUNC = FunctionDescriptor.of(Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glGetSubroutineIndex$MH = RuntimeHelper.downcallHandle(
+        "glGetSubroutineIndex",
+        constants$279.glGetSubroutineIndex$FUNC
+    );
+    static final FunctionDescriptor glGetActiveSubroutineUniformiv$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glGetActiveSubroutineUniformiv$MH = RuntimeHelper.downcallHandle(
+        "glGetActiveSubroutineUniformiv",
+        constants$279.glGetActiveSubroutineUniformiv$FUNC
     );
 }
 

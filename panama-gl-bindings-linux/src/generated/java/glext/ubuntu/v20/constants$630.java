@@ -9,29 +9,32 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$630 {
 
-    static final FunctionDescriptor PFNGLFRAMEBUFFERRENDERBUFFEREXTPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLDEBUGMESSAGEENABLEAMDPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_CHAR$LAYOUT
     );
-    static final MethodHandle PFNGLFRAMEBUFFERRENDERBUFFEREXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$630.PFNGLFRAMEBUFFERRENDERBUFFEREXTPROC$FUNC
+    static final MethodHandle PFNGLDEBUGMESSAGEENABLEAMDPROC$MH = RuntimeHelper.downcallHandle(
+        constants$630.PFNGLDEBUGMESSAGEENABLEAMDPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLGETFRAMEBUFFERATTACHMENTPARAMETERIVEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLDEBUGMESSAGEINSERTAMDPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLGETFRAMEBUFFERATTACHMENTPARAMETERIVEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$630.PFNGLGETFRAMEBUFFERATTACHMENTPARAMETERIVEXTPROC$FUNC
+    static final MethodHandle PFNGLDEBUGMESSAGEINSERTAMDPROC$MH = RuntimeHelper.downcallHandle(
+        constants$630.PFNGLDEBUGMESSAGEINSERTAMDPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLGENERATEMIPMAPEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT
+    static final FunctionDescriptor PFNGLDEBUGMESSAGECALLBACKAMDPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLGENERATEMIPMAPEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$630.PFNGLGENERATEMIPMAPEXTPROC$FUNC
+    static final MethodHandle PFNGLDEBUGMESSAGECALLBACKAMDPROC$MH = RuntimeHelper.downcallHandle(
+        constants$630.PFNGLDEBUGMESSAGECALLBACKAMDPROC$FUNC
     );
 }
 

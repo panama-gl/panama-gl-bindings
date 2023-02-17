@@ -11,13 +11,13 @@ public interface PFNGLMULTIDRAWMESHTASKSINDIRECTCOUNTNVPROC {
 
     void apply(long indirect, long drawcount, int maxdrawcount, int stride);
     static MemorySegment allocate(PFNGLMULTIDRAWMESHTASKSINDIRECTCOUNTNVPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLMULTIDRAWMESHTASKSINDIRECTCOUNTNVPROC.class, fi, constants$782.PFNGLMULTIDRAWMESHTASKSINDIRECTCOUNTNVPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLMULTIDRAWMESHTASKSINDIRECTCOUNTNVPROC.class, fi, constants$1126.PFNGLMULTIDRAWMESHTASKSINDIRECTCOUNTNVPROC$FUNC, session);
     }
     static PFNGLMULTIDRAWMESHTASKSINDIRECTCOUNTNVPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (long _indirect, long _drawcount, int _maxdrawcount, int _stride) -> {
             try {
-                constants$782.PFNGLMULTIDRAWMESHTASKSINDIRECTCOUNTNVPROC$MH.invokeExact((Addressable)symbol, _indirect, _drawcount, _maxdrawcount, _stride);
+                constants$1127.PFNGLMULTIDRAWMESHTASKSINDIRECTCOUNTNVPROC$MH.invokeExact((Addressable)symbol, _indirect, _drawcount, _maxdrawcount, _stride);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

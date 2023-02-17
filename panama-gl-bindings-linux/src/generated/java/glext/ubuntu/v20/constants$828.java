@@ -9,38 +9,34 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$828 {
 
-    static final FunctionDescriptor PFNGLTEXTUREIMAGE2DMULTISAMPLECOVERAGENVPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLDISABLEVERTEXARRAYATTRIBEXTPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_CHAR$LAYOUT
-    );
-    static final MethodHandle PFNGLTEXTUREIMAGE2DMULTISAMPLECOVERAGENVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$828.PFNGLTEXTUREIMAGE2DMULTISAMPLECOVERAGENVPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLTEXTUREIMAGE3DMULTISAMPLECOVERAGENVPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_CHAR$LAYOUT
-    );
-    static final MethodHandle PFNGLTEXTUREIMAGE3DMULTISAMPLECOVERAGENVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$828.PFNGLTEXTUREIMAGE3DMULTISAMPLECOVERAGENVPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLBEGINTRANSFORMFEEDBACKNVPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLBEGINTRANSFORMFEEDBACKNVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$828.PFNGLBEGINTRANSFORMFEEDBACKNVPROC$FUNC
+    static final MethodHandle PFNGLDISABLEVERTEXARRAYATTRIBEXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$828.PFNGLDISABLEVERTEXARRAYATTRIBEXTPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLGETVERTEXARRAYINTEGERVEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle PFNGLGETVERTEXARRAYINTEGERVEXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$828.PFNGLGETVERTEXARRAYINTEGERVEXTPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLGETVERTEXARRAYPOINTERVEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle PFNGLGETVERTEXARRAYPOINTERVEXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$828.PFNGLGETVERTEXARRAYPOINTERVEXTPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLGETVERTEXARRAYINTEGERI_VEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
 }
 

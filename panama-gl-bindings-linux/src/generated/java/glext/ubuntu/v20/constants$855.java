@@ -9,35 +9,56 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$855 {
 
-    static final FunctionDescriptor PFNGLPROGRAMPARAMETER4DNVPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glDisableClientStateIndexedEXT$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_DOUBLE$LAYOUT,
-        Constants$root.C_DOUBLE$LAYOUT,
-        Constants$root.C_DOUBLE$LAYOUT,
-        Constants$root.C_DOUBLE$LAYOUT
+        Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLPROGRAMPARAMETER4DNVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$855.PFNGLPROGRAMPARAMETER4DNVPROC$FUNC
+    static final MethodHandle glDisableClientStateIndexedEXT$MH = RuntimeHelper.downcallHandle(
+        "glDisableClientStateIndexedEXT",
+        constants$855.glDisableClientStateIndexedEXT$FUNC
     );
-    static final FunctionDescriptor PFNGLPROGRAMPARAMETER4DVNVPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glGetFloatIndexedvEXT$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLPROGRAMPARAMETER4DVNVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$855.PFNGLPROGRAMPARAMETER4DVNVPROC$FUNC
+    static final MethodHandle glGetFloatIndexedvEXT$MH = RuntimeHelper.downcallHandle(
+        "glGetFloatIndexedvEXT",
+        constants$855.glGetFloatIndexedvEXT$FUNC
     );
-    static final FunctionDescriptor PFNGLPROGRAMPARAMETER4FNVPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glGetDoubleIndexedvEXT$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT
+        Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLPROGRAMPARAMETER4FNVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$855.PFNGLPROGRAMPARAMETER4FNVPROC$FUNC
+    static final MethodHandle glGetDoubleIndexedvEXT$MH = RuntimeHelper.downcallHandle(
+        "glGetDoubleIndexedvEXT",
+        constants$855.glGetDoubleIndexedvEXT$FUNC
+    );
+    static final FunctionDescriptor glGetPointerIndexedvEXT$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glGetPointerIndexedvEXT$MH = RuntimeHelper.downcallHandle(
+        "glGetPointerIndexedvEXT",
+        constants$855.glGetPointerIndexedvEXT$FUNC
+    );
+    static final FunctionDescriptor glEnableIndexedEXT$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle glEnableIndexedEXT$MH = RuntimeHelper.downcallHandle(
+        "glEnableIndexedEXT",
+        constants$855.glEnableIndexedEXT$FUNC
+    );
+    static final FunctionDescriptor glDisableIndexedEXT$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle glDisableIndexedEXT$MH = RuntimeHelper.downcallHandle(
+        "glDisableIndexedEXT",
+        constants$855.glDisableIndexedEXT$FUNC
     );
 }
 

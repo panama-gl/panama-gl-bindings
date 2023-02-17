@@ -9,38 +9,39 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$924 {
 
-    static final FunctionDescriptor PFNGLREPLACEMENTCODEUICOLOR4UBVERTEX3FSUNPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLIMPORTMEMORYFDEXTPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_CHAR$LAYOUT,
-        Constants$root.C_CHAR$LAYOUT,
-        Constants$root.C_CHAR$LAYOUT,
-        Constants$root.C_CHAR$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT
+        Constants$root.C_LONG_LONG$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLREPLACEMENTCODEUICOLOR4UBVERTEX3FSUNPROC$MH = RuntimeHelper.downcallHandle(
-        constants$924.PFNGLREPLACEMENTCODEUICOLOR4UBVERTEX3FSUNPROC$FUNC
+    static final MethodHandle PFNGLIMPORTMEMORYFDEXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$924.PFNGLIMPORTMEMORYFDEXTPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLREPLACEMENTCODEUICOLOR4UBVERTEX3FVSUNPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
+    static final FunctionDescriptor glImportMemoryFdEXT$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle glImportMemoryFdEXT$MH = RuntimeHelper.downcallHandle(
+        "glImportMemoryFdEXT",
+        constants$924.glImportMemoryFdEXT$FUNC
+    );
+    static final FunctionDescriptor PFNGLIMPORTMEMORYWIN32HANDLEEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLREPLACEMENTCODEUICOLOR4UBVERTEX3FVSUNPROC$MH = RuntimeHelper.downcallHandle(
-        constants$924.PFNGLREPLACEMENTCODEUICOLOR4UBVERTEX3FVSUNPROC$FUNC
+    static final MethodHandle PFNGLIMPORTMEMORYWIN32HANDLEEXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$924.PFNGLIMPORTMEMORYWIN32HANDLEEXTPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLREPLACEMENTCODEUICOLOR3FVERTEX3FSUNPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLIMPORTMEMORYWIN32NAMEEXTPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT
-    );
-    static final MethodHandle PFNGLREPLACEMENTCODEUICOLOR3FVERTEX3FSUNPROC$MH = RuntimeHelper.downcallHandle(
-        constants$924.PFNGLREPLACEMENTCODEUICOLOR3FVERTEX3FSUNPROC$FUNC
+        Constants$root.C_LONG_LONG$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
 }
 

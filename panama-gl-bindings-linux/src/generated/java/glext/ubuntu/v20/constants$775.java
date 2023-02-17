@@ -9,25 +9,38 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$775 {
 
-    static final FunctionDescriptor PFNGLVERTEXWEIGHTHVNVPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle PFNGLVERTEXWEIGHTHVNVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$775.PFNGLVERTEXWEIGHTHVNVPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLVERTEXATTRIB1HNVPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLGETMULTITEXGENFVEXTPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_SHORT$LAYOUT
-    );
-    static final MethodHandle PFNGLVERTEXATTRIB1HNVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$775.PFNGLVERTEXATTRIB1HNVPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLVERTEXATTRIB1HVNVPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLVERTEXATTRIB1HVNVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$775.PFNGLVERTEXATTRIB1HVNVPROC$FUNC
+    static final MethodHandle PFNGLGETMULTITEXGENFVEXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$775.PFNGLGETMULTITEXGENFVEXTPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLGETMULTITEXGENIVEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle PFNGLGETMULTITEXGENIVEXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$775.PFNGLGETMULTITEXGENIVEXTPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLMULTITEXPARAMETERIEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle PFNGLMULTITEXPARAMETERIEXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$775.PFNGLMULTITEXPARAMETERIEXTPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLMULTITEXPARAMETERIVEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
 }
 

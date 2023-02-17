@@ -9,32 +9,53 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$524 {
 
-    static final FunctionDescriptor PFNGLSEPARABLEFILTER2DEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glWeightbvARB$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLSEPARABLEFILTER2DEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$524.PFNGLSEPARABLEFILTER2DEXTPROC$FUNC
+    static final MethodHandle glWeightbvARB$MH = RuntimeHelper.downcallHandle(
+        "glWeightbvARB",
+        constants$524.glWeightbvARB$FUNC
     );
-    static final FunctionDescriptor PFNGLTANGENT3BEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_CHAR$LAYOUT,
-        Constants$root.C_CHAR$LAYOUT,
-        Constants$root.C_CHAR$LAYOUT
-    );
-    static final MethodHandle PFNGLTANGENT3BEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$524.PFNGLTANGENT3BEXTPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLTANGENT3BVEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glWeightsvARB$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLTANGENT3BVEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$524.PFNGLTANGENT3BVEXTPROC$FUNC
+    static final MethodHandle glWeightsvARB$MH = RuntimeHelper.downcallHandle(
+        "glWeightsvARB",
+        constants$524.glWeightsvARB$FUNC
+    );
+    static final FunctionDescriptor glWeightivARB$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glWeightivARB$MH = RuntimeHelper.downcallHandle(
+        "glWeightivARB",
+        constants$524.glWeightivARB$FUNC
+    );
+    static final FunctionDescriptor glWeightfvARB$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glWeightfvARB$MH = RuntimeHelper.downcallHandle(
+        "glWeightfvARB",
+        constants$524.glWeightfvARB$FUNC
+    );
+    static final FunctionDescriptor glWeightdvARB$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glWeightdvARB$MH = RuntimeHelper.downcallHandle(
+        "glWeightdvARB",
+        constants$524.glWeightdvARB$FUNC
+    );
+    static final FunctionDescriptor glWeightubvARB$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glWeightubvARB$MH = RuntimeHelper.downcallHandle(
+        "glWeightubvARB",
+        constants$524.glWeightubvARB$FUNC
     );
 }
 

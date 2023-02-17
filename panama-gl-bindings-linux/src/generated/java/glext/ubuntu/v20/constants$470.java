@@ -9,33 +9,26 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$470 {
 
-    static final FunctionDescriptor PFNGLGETPERFMONITORGROUPSTRINGAMDPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle PFNGLGETPERFMONITORGROUPSTRINGAMDPROC$MH = RuntimeHelper.downcallHandle(
-        constants$470.PFNGLGETPERFMONITORGROUPSTRINGAMDPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLGETPERFMONITORCOUNTERSTRINGAMDPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle PFNGLGETPERFMONITORCOUNTERSTRINGAMDPROC$MH = RuntimeHelper.downcallHandle(
-        constants$470.PFNGLGETPERFMONITORCOUNTERSTRINGAMDPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLGETPERFMONITORCOUNTERINFOAMDPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
+    static final FunctionDescriptor PFNGLMATRIXINDEXUBVARBPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLGETPERFMONITORCOUNTERINFOAMDPROC$MH = RuntimeHelper.downcallHandle(
-        constants$470.PFNGLGETPERFMONITORCOUNTERINFOAMDPROC$FUNC
+    static final MethodHandle PFNGLMATRIXINDEXUBVARBPROC$MH = RuntimeHelper.downcallHandle(
+        constants$470.PFNGLMATRIXINDEXUBVARBPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLMATRIXINDEXUSVARBPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle PFNGLMATRIXINDEXUSVARBPROC$MH = RuntimeHelper.downcallHandle(
+        constants$470.PFNGLMATRIXINDEXUSVARBPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLMATRIXINDEXUIVARBPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle PFNGLMATRIXINDEXUIVARBPROC$MH = RuntimeHelper.downcallHandle(
+        constants$470.PFNGLMATRIXINDEXUIVARBPROC$FUNC
     );
 }
 

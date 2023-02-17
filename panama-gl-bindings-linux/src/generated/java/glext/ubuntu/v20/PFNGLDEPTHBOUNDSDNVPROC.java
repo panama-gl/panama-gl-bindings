@@ -11,13 +11,13 @@ public interface PFNGLDEPTHBOUNDSDNVPROC {
 
     void apply(double zmin, double zmax);
     static MemorySegment allocate(PFNGLDEPTHBOUNDSDNVPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLDEPTHBOUNDSDNVPROC.class, fi, constants$740.PFNGLDEPTHBOUNDSDNVPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLDEPTHBOUNDSDNVPROC.class, fi, constants$1063.PFNGLDEPTHBOUNDSDNVPROC$FUNC, session);
     }
     static PFNGLDEPTHBOUNDSDNVPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (double _zmin, double _zmax) -> {
             try {
-                constants$740.PFNGLDEPTHBOUNDSDNVPROC$MH.invokeExact((Addressable)symbol, _zmin, _zmax);
+                constants$1063.PFNGLDEPTHBOUNDSDNVPROC$MH.invokeExact((Addressable)symbol, _zmin, _zmax);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

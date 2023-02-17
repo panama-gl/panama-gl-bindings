@@ -9,74 +9,30 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$939 {
 
-    static final FunctionDescriptor gluTessEndPolygon$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLSECONDARYCOLOR3UBEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_CHAR$LAYOUT,
+        Constants$root.C_CHAR$LAYOUT,
+        Constants$root.C_CHAR$LAYOUT
+    );
+    static final MethodHandle PFNGLSECONDARYCOLOR3UBEXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$939.PFNGLSECONDARYCOLOR3UBEXTPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLSECONDARYCOLOR3UBVEXTPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle gluTessEndPolygon$MH = RuntimeHelper.downcallHandle(
-        "gluTessEndPolygon",
-        constants$939.gluTessEndPolygon$FUNC
+    static final MethodHandle PFNGLSECONDARYCOLOR3UBVEXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$939.PFNGLSECONDARYCOLOR3UBVEXTPROC$FUNC
     );
-    static final FunctionDescriptor gluTessNormal$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_DOUBLE$LAYOUT,
-        Constants$root.C_DOUBLE$LAYOUT,
-        Constants$root.C_DOUBLE$LAYOUT
-    );
-    static final MethodHandle gluTessNormal$MH = RuntimeHelper.downcallHandle(
-        "gluTessNormal",
-        constants$939.gluTessNormal$FUNC
-    );
-    static final FunctionDescriptor gluTessProperty$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_POINTER$LAYOUT,
+    static final FunctionDescriptor PFNGLSECONDARYCOLOR3UIEXTPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_DOUBLE$LAYOUT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle gluTessProperty$MH = RuntimeHelper.downcallHandle(
-        "gluTessProperty",
-        constants$939.gluTessProperty$FUNC
+    static final MethodHandle PFNGLSECONDARYCOLOR3UIEXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$939.PFNGLSECONDARYCOLOR3UIEXTPROC$FUNC
     );
-    static final FunctionDescriptor gluTessVertex$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
+    static final FunctionDescriptor PFNGLSECONDARYCOLOR3UIVEXTPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle gluTessVertex$MH = RuntimeHelper.downcallHandle(
-        "gluTessVertex",
-        constants$939.gluTessVertex$FUNC
-    );
-    static final FunctionDescriptor gluUnProject$FUNC = FunctionDescriptor.of(Constants$root.C_INT$LAYOUT,
-        Constants$root.C_DOUBLE$LAYOUT,
-        Constants$root.C_DOUBLE$LAYOUT,
-        Constants$root.C_DOUBLE$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle gluUnProject$MH = RuntimeHelper.downcallHandle(
-        "gluUnProject",
-        constants$939.gluUnProject$FUNC
-    );
-    static final FunctionDescriptor gluUnProject4$FUNC = FunctionDescriptor.of(Constants$root.C_INT$LAYOUT,
-        Constants$root.C_DOUBLE$LAYOUT,
-        Constants$root.C_DOUBLE$LAYOUT,
-        Constants$root.C_DOUBLE$LAYOUT,
-        Constants$root.C_DOUBLE$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_DOUBLE$LAYOUT,
-        Constants$root.C_DOUBLE$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle gluUnProject4$MH = RuntimeHelper.downcallHandle(
-        "gluUnProject4",
-        constants$939.gluUnProject4$FUNC
     );
 }
 

@@ -9,31 +9,32 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$265 {
 
-    static final FunctionDescriptor PFNGLGETDEBUGMESSAGELOGPROC$FUNC = FunctionDescriptor.of(Constants$root.C_INT$LAYOUT,
+    static final FunctionDescriptor PFNGLUNIFORMMATRIX2DVPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_CHAR$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLGETDEBUGMESSAGELOGPROC$MH = RuntimeHelper.downcallHandle(
-        constants$265.PFNGLGETDEBUGMESSAGELOGPROC$FUNC
+    static final MethodHandle PFNGLUNIFORMMATRIX2DVPROC$MH = RuntimeHelper.downcallHandle(
+        constants$265.PFNGLUNIFORMMATRIX2DVPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLPUSHDEBUGGROUPPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLUNIFORMMATRIX3DVPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_CHAR$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLPUSHDEBUGGROUPPROC$MH = RuntimeHelper.downcallHandle(
-        constants$265.PFNGLPUSHDEBUGGROUPPROC$FUNC
+    static final MethodHandle PFNGLUNIFORMMATRIX3DVPROC$MH = RuntimeHelper.downcallHandle(
+        constants$265.PFNGLUNIFORMMATRIX3DVPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLPOPDEBUGGROUPPROC$FUNC = FunctionDescriptor.ofVoid();
-    static final MethodHandle PFNGLPOPDEBUGGROUPPROC$MH = RuntimeHelper.downcallHandle(
-        constants$265.PFNGLPOPDEBUGGROUPPROC$FUNC
+    static final FunctionDescriptor PFNGLUNIFORMMATRIX4DVPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_CHAR$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle PFNGLUNIFORMMATRIX4DVPROC$MH = RuntimeHelper.downcallHandle(
+        constants$265.PFNGLUNIFORMMATRIX4DVPROC$FUNC
     );
 }
 

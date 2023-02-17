@@ -11,13 +11,13 @@ public interface PFNGLGETUNSIGNEDBYTEVEXTPROC {
 
     void apply(int pname, java.lang.foreign.MemoryAddress data);
     static MemorySegment allocate(PFNGLGETUNSIGNEDBYTEVEXTPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLGETUNSIGNEDBYTEVEXTPROC.class, fi, constants$640.PFNGLGETUNSIGNEDBYTEVEXTPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLGETUNSIGNEDBYTEVEXTPROC.class, fi, constants$914.PFNGLGETUNSIGNEDBYTEVEXTPROC$FUNC, session);
     }
     static PFNGLGETUNSIGNEDBYTEVEXTPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _pname, java.lang.foreign.MemoryAddress _data) -> {
             try {
-                constants$640.PFNGLGETUNSIGNEDBYTEVEXTPROC$MH.invokeExact((Addressable)symbol, _pname, (java.lang.foreign.Addressable)_data);
+                constants$914.PFNGLGETUNSIGNEDBYTEVEXTPROC$MH.invokeExact((Addressable)symbol, _pname, (java.lang.foreign.Addressable)_data);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

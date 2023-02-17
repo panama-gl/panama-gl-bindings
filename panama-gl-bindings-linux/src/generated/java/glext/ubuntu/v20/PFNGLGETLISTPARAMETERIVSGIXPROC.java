@@ -11,13 +11,13 @@ public interface PFNGLGETLISTPARAMETERIVSGIXPROC {
 
     void apply(int list, int pname, java.lang.foreign.MemoryAddress params);
     static MemorySegment allocate(PFNGLGETLISTPARAMETERIVSGIXPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLGETLISTPARAMETERIVSGIXPROC.class, fi, constants$902.PFNGLGETLISTPARAMETERIVSGIXPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLGETLISTPARAMETERIVSGIXPROC.class, fi, constants$1306.PFNGLGETLISTPARAMETERIVSGIXPROC$FUNC, session);
     }
     static PFNGLGETLISTPARAMETERIVSGIXPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _list, int _pname, java.lang.foreign.MemoryAddress _params) -> {
             try {
-                constants$902.PFNGLGETLISTPARAMETERIVSGIXPROC$MH.invokeExact((Addressable)symbol, _list, _pname, (java.lang.foreign.Addressable)_params);
+                constants$1306.PFNGLGETLISTPARAMETERIVSGIXPROC$MH.invokeExact((Addressable)symbol, _list, _pname, (java.lang.foreign.Addressable)_params);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

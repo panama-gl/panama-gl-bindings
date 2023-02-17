@@ -9,29 +9,36 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$328 {
 
-    static final FunctionDescriptor PFNGLGETPROGRAMLOCALPARAMETERFVARBPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLGETINTERNALFORMATIVPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLGETPROGRAMLOCALPARAMETERFVARBPROC$MH = RuntimeHelper.downcallHandle(
-        constants$328.PFNGLGETPROGRAMLOCALPARAMETERFVARBPROC$FUNC
+    static final MethodHandle PFNGLGETINTERNALFORMATIVPROC$MH = RuntimeHelper.downcallHandle(
+        constants$328.PFNGLGETINTERNALFORMATIVPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLGETPROGRAMIVARBPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLGETACTIVEATOMICCOUNTERBUFFERIVPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle PFNGLGETPROGRAMIVARBPROC$MH = RuntimeHelper.downcallHandle(
-        constants$328.PFNGLGETPROGRAMIVARBPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLGETPROGRAMSTRINGARBPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLGETPROGRAMSTRINGARBPROC$MH = RuntimeHelper.downcallHandle(
-        constants$328.PFNGLGETPROGRAMSTRINGARBPROC$FUNC
+    static final MethodHandle PFNGLGETACTIVEATOMICCOUNTERBUFFERIVPROC$MH = RuntimeHelper.downcallHandle(
+        constants$328.PFNGLGETACTIVEATOMICCOUNTERBUFFERIVPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLBINDIMAGETEXTUREPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_CHAR$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle PFNGLBINDIMAGETEXTUREPROC$MH = RuntimeHelper.downcallHandle(
+        constants$328.PFNGLBINDIMAGETEXTUREPROC$FUNC
     );
 }
 

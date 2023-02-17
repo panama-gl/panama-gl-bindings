@@ -9,45 +9,42 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$928 {
 
-    static final FunctionDescriptor PFNGLREPLACEMENTCODEUITEXCOORD2FCOLOR4FNORMAL3FVERTEX3FSUNPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLGETCOLORTABLEEXTPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT
-    );
-    static final MethodHandle PFNGLREPLACEMENTCODEUITEXCOORD2FCOLOR4FNORMAL3FVERTEX3FSUNPROC$MH = RuntimeHelper.downcallHandle(
-        constants$928.PFNGLREPLACEMENTCODEUITEXCOORD2FCOLOR4FNORMAL3FVERTEX3FSUNPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLREPLACEMENTCODEUITEXCOORD2FCOLOR4FNORMAL3FVERTEX3FVSUNPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLREPLACEMENTCODEUITEXCOORD2FCOLOR4FNORMAL3FVERTEX3FVSUNPROC$MH = RuntimeHelper.downcallHandle(
-        constants$928.PFNGLREPLACEMENTCODEUITEXCOORD2FCOLOR4FNORMAL3FVERTEX3FVSUNPROC$FUNC
+    static final MethodHandle PFNGLGETCOLORTABLEEXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$928.PFNGLGETCOLORTABLEEXTPROC$FUNC
     );
-    static final FunctionDescriptor glBlendEquationSeparateATI$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLGETCOLORTABLEPARAMETERIVEXTPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT
-    );
-    static final MethodHandle glBlendEquationSeparateATI$MH = RuntimeHelper.downcallHandle(
-        "glBlendEquationSeparateATI",
-        constants$928.glBlendEquationSeparateATI$FUNC
-    );
-    static final FunctionDescriptor PFNGLBLENDEQUATIONSEPARATEATIPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle PFNGLGETCOLORTABLEPARAMETERIVEXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$928.PFNGLGETCOLORTABLEPARAMETERIVEXTPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLGETCOLORTABLEPARAMETERFVEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle PFNGLGETCOLORTABLEPARAMETERFVEXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$928.PFNGLGETCOLORTABLEPARAMETERFVEXTPROC$FUNC
+    );
+    static final FunctionDescriptor glColorTableEXT$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glColorTableEXT$MH = RuntimeHelper.downcallHandle(
+        "glColorTableEXT",
+        constants$928.glColorTableEXT$FUNC
     );
 }
 

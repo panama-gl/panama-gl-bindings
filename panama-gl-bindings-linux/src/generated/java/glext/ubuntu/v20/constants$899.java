@@ -9,22 +9,66 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$899 {
 
-    static final FunctionDescriptor PFNGLFRAMEZOOMSGIXPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glFramebufferTexture1DEXT$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLFRAMEZOOMSGIXPROC$MH = RuntimeHelper.downcallHandle(
-        constants$899.PFNGLFRAMEZOOMSGIXPROC$FUNC
+    static final MethodHandle glFramebufferTexture1DEXT$MH = RuntimeHelper.downcallHandle(
+        "glFramebufferTexture1DEXT",
+        constants$899.glFramebufferTexture1DEXT$FUNC
     );
-    static final FunctionDescriptor PFNGLIGLOOINTERFACESGIXPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glFramebufferTexture2DEXT$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle glFramebufferTexture2DEXT$MH = RuntimeHelper.downcallHandle(
+        "glFramebufferTexture2DEXT",
+        constants$899.glFramebufferTexture2DEXT$FUNC
+    );
+    static final FunctionDescriptor glFramebufferTexture3DEXT$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle glFramebufferTexture3DEXT$MH = RuntimeHelper.downcallHandle(
+        "glFramebufferTexture3DEXT",
+        constants$899.glFramebufferTexture3DEXT$FUNC
+    );
+    static final FunctionDescriptor glFramebufferRenderbufferEXT$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle glFramebufferRenderbufferEXT$MH = RuntimeHelper.downcallHandle(
+        "glFramebufferRenderbufferEXT",
+        constants$899.glFramebufferRenderbufferEXT$FUNC
+    );
+    static final FunctionDescriptor glGetFramebufferAttachmentParameterivEXT$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLIGLOOINTERFACESGIXPROC$MH = RuntimeHelper.downcallHandle(
-        constants$899.PFNGLIGLOOINTERFACESGIXPROC$FUNC
+    static final MethodHandle glGetFramebufferAttachmentParameterivEXT$MH = RuntimeHelper.downcallHandle(
+        "glGetFramebufferAttachmentParameterivEXT",
+        constants$899.glGetFramebufferAttachmentParameterivEXT$FUNC
     );
-    static final FunctionDescriptor PFNGLGETINSTRUMENTSSGIXPROC$FUNC = FunctionDescriptor.of(Constants$root.C_INT$LAYOUT);
-    static final MethodHandle PFNGLGETINSTRUMENTSSGIXPROC$MH = RuntimeHelper.downcallHandle(
-        constants$899.PFNGLGETINSTRUMENTSSGIXPROC$FUNC
+    static final FunctionDescriptor glGenerateMipmapEXT$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle glGenerateMipmapEXT$MH = RuntimeHelper.downcallHandle(
+        "glGenerateMipmapEXT",
+        constants$899.glGenerateMipmapEXT$FUNC
     );
 }
 

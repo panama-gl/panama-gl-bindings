@@ -9,29 +9,32 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$819 {
 
-    static final FunctionDescriptor PFNGLSCISSOREXCLUSIVENVPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLGETNAMEDFRAMEBUFFERATTACHMENTPARAMETERIVEXTPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT
-    );
-    static final MethodHandle PFNGLSCISSOREXCLUSIVENVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$819.PFNGLSCISSOREXCLUSIVENVPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLSCISSOREXCLUSIVEARRAYVNVPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLSCISSOREXCLUSIVEARRAYVNVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$819.PFNGLSCISSOREXCLUSIVEARRAYVNVPROC$FUNC
+    static final MethodHandle PFNGLGETNAMEDFRAMEBUFFERATTACHMENTPARAMETERIVEXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$819.PFNGLGETNAMEDFRAMEBUFFERATTACHMENTPARAMETERIVEXTPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLMAKEBUFFERRESIDENTNVPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLGENERATETEXTUREMIPMAPEXTPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLMAKEBUFFERRESIDENTNVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$819.PFNGLMAKEBUFFERRESIDENTNVPROC$FUNC
+    static final MethodHandle PFNGLGENERATETEXTUREMIPMAPEXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$819.PFNGLGENERATETEXTUREMIPMAPEXTPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLGENERATEMULTITEXMIPMAPEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle PFNGLGENERATEMULTITEXMIPMAPEXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$819.PFNGLGENERATEMULTITEXMIPMAPEXTPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLFRAMEBUFFERDRAWBUFFEREXTPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
 }
 

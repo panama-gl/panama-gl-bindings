@@ -11,13 +11,13 @@ public interface PFNGLCOVERSTROKEPATHNVPROC {
 
     void apply(int path, int coverMode);
     static MemorySegment allocate(PFNGLCOVERSTROKEPATHNVPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLCOVERSTROKEPATHNVPROC.class, fi, constants$795.PFNGLCOVERSTROKEPATHNVPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLCOVERSTROKEPATHNVPROC.class, fi, constants$1141.PFNGLCOVERSTROKEPATHNVPROC$FUNC, session);
     }
     static PFNGLCOVERSTROKEPATHNVPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _path, int _coverMode) -> {
             try {
-                constants$795.PFNGLCOVERSTROKEPATHNVPROC$MH.invokeExact((Addressable)symbol, _path, _coverMode);
+                constants$1142.PFNGLCOVERSTROKEPATHNVPROC$MH.invokeExact((Addressable)symbol, _path, _coverMode);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

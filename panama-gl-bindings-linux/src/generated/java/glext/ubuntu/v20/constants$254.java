@@ -9,39 +9,65 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$254 {
 
-    static final FunctionDescriptor PFNGLDISPATCHCOMPUTEINDIRECTPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_LONG_LONG$LAYOUT
-    );
-    static final MethodHandle PFNGLDISPATCHCOMPUTEINDIRECTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$254.PFNGLDISPATCHCOMPUTEINDIRECTPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLCOPYIMAGESUBDATAPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glVertexAttribP2ui$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_CHAR$LAYOUT,
         Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLCOPYIMAGESUBDATAPROC$MH = RuntimeHelper.downcallHandle(
-        constants$254.PFNGLCOPYIMAGESUBDATAPROC$FUNC
+    static final MethodHandle glVertexAttribP2ui$MH = RuntimeHelper.downcallHandle(
+        "glVertexAttribP2ui",
+        constants$254.glVertexAttribP2ui$FUNC
     );
-    static final FunctionDescriptor PFNGLFRAMEBUFFERPARAMETERIPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glVertexAttribP2uiv$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
+        Constants$root.C_CHAR$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glVertexAttribP2uiv$MH = RuntimeHelper.downcallHandle(
+        "glVertexAttribP2uiv",
+        constants$254.glVertexAttribP2uiv$FUNC
+    );
+    static final FunctionDescriptor glVertexAttribP3ui$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_CHAR$LAYOUT,
         Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLFRAMEBUFFERPARAMETERIPROC$MH = RuntimeHelper.downcallHandle(
-        constants$254.PFNGLFRAMEBUFFERPARAMETERIPROC$FUNC
+    static final MethodHandle glVertexAttribP3ui$MH = RuntimeHelper.downcallHandle(
+        "glVertexAttribP3ui",
+        constants$254.glVertexAttribP3ui$FUNC
+    );
+    static final FunctionDescriptor glVertexAttribP3uiv$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_CHAR$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glVertexAttribP3uiv$MH = RuntimeHelper.downcallHandle(
+        "glVertexAttribP3uiv",
+        constants$254.glVertexAttribP3uiv$FUNC
+    );
+    static final FunctionDescriptor glVertexAttribP4ui$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_CHAR$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle glVertexAttribP4ui$MH = RuntimeHelper.downcallHandle(
+        "glVertexAttribP4ui",
+        constants$254.glVertexAttribP4ui$FUNC
+    );
+    static final FunctionDescriptor glVertexAttribP4uiv$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_CHAR$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glVertexAttribP4uiv$MH = RuntimeHelper.downcallHandle(
+        "glVertexAttribP4uiv",
+        constants$254.glVertexAttribP4uiv$FUNC
     );
 }
 

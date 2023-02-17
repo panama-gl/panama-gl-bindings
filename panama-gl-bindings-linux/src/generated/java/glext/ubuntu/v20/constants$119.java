@@ -9,29 +9,33 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$119 {
 
-    static final FunctionDescriptor PFNGLGETATTACHEDSHADERSPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLBUFFERSUBDATAPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLGETATTACHEDSHADERSPROC$MH = RuntimeHelper.downcallHandle(
-        constants$119.PFNGLGETATTACHEDSHADERSPROC$FUNC
+    static final MethodHandle PFNGLBUFFERSUBDATAPROC$MH = RuntimeHelper.downcallHandle(
+        constants$119.PFNGLBUFFERSUBDATAPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLGETATTRIBLOCATIONPROC$FUNC = FunctionDescriptor.of(Constants$root.C_INT$LAYOUT,
+    static final FunctionDescriptor PFNGLGETBUFFERSUBDATAPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLGETATTRIBLOCATIONPROC$MH = RuntimeHelper.downcallHandle(
-        constants$119.PFNGLGETATTRIBLOCATIONPROC$FUNC
+    static final MethodHandle PFNGLGETBUFFERSUBDATAPROC$MH = RuntimeHelper.downcallHandle(
+        constants$119.PFNGLGETBUFFERSUBDATAPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLGETPROGRAMIVPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLMAPBUFFERPROC$FUNC = FunctionDescriptor.of(Constants$root.C_POINTER$LAYOUT,
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
+        Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLGETPROGRAMIVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$119.PFNGLGETPROGRAMIVPROC$FUNC
+    static final MethodHandle PFNGLMAPBUFFERPROC$MH = RuntimeHelper.downcallHandle(
+        constants$119.PFNGLMAPBUFFERPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLUNMAPBUFFERPROC$FUNC = FunctionDescriptor.of(Constants$root.C_CHAR$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
 }
 

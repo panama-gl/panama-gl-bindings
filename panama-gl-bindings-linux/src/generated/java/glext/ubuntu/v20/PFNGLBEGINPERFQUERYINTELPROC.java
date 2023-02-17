@@ -11,13 +11,13 @@ public interface PFNGLBEGINPERFQUERYINTELPROC {
 
     void apply(int queryHandle);
     static MemorySegment allocate(PFNGLBEGINPERFQUERYINTELPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLBEGINPERFQUERYINTELPROC.class, fi, constants$707.PFNGLBEGINPERFQUERYINTELPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLBEGINPERFQUERYINTELPROC.class, fi, constants$1015.PFNGLBEGINPERFQUERYINTELPROC$FUNC, session);
     }
     static PFNGLBEGINPERFQUERYINTELPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _queryHandle) -> {
             try {
-                constants$707.PFNGLBEGINPERFQUERYINTELPROC$MH.invokeExact((Addressable)symbol, _queryHandle);
+                constants$1015.PFNGLBEGINPERFQUERYINTELPROC$MH.invokeExact((Addressable)symbol, _queryHandle);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

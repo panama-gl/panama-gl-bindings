@@ -9,26 +9,29 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$195 {
 
-    static final FunctionDescriptor PFNGLVERTEXP3UIVPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
+    static final FunctionDescriptor PFNGLISFRAMEBUFFERPROC$FUNC = FunctionDescriptor.of(Constants$root.C_CHAR$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLVERTEXP3UIVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$195.PFNGLVERTEXP3UIVPROC$FUNC
+    static final MethodHandle PFNGLISFRAMEBUFFERPROC$MH = RuntimeHelper.downcallHandle(
+        constants$195.PFNGLISFRAMEBUFFERPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLVERTEXP4UIPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLBINDFRAMEBUFFERPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLVERTEXP4UIPROC$MH = RuntimeHelper.downcallHandle(
-        constants$195.PFNGLVERTEXP4UIPROC$FUNC
+    static final MethodHandle PFNGLBINDFRAMEBUFFERPROC$MH = RuntimeHelper.downcallHandle(
+        constants$195.PFNGLBINDFRAMEBUFFERPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLVERTEXP4UIVPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLDELETEFRAMEBUFFERSPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLVERTEXP4UIVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$195.PFNGLVERTEXP4UIVPROC$FUNC
+    static final MethodHandle PFNGLDELETEFRAMEBUFFERSPROC$MH = RuntimeHelper.downcallHandle(
+        constants$195.PFNGLDELETEFRAMEBUFFERSPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLGENFRAMEBUFFERSPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
 }
 

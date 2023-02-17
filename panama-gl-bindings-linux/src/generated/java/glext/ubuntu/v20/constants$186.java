@@ -9,26 +9,32 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$186 {
 
-    static final FunctionDescriptor PFNGLISSAMPLERPROC$FUNC = FunctionDescriptor.of(Constants$root.C_CHAR$LAYOUT,
-        Constants$root.C_INT$LAYOUT
-    );
-    static final MethodHandle PFNGLISSAMPLERPROC$MH = RuntimeHelper.downcallHandle(
-        constants$186.PFNGLISSAMPLERPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLBINDSAMPLERPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLVERTEXATTRIBI4USVPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT
+        Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLBINDSAMPLERPROC$MH = RuntimeHelper.downcallHandle(
-        constants$186.PFNGLBINDSAMPLERPROC$FUNC
+    static final MethodHandle PFNGLVERTEXATTRIBI4USVPROC$MH = RuntimeHelper.downcallHandle(
+        constants$186.PFNGLVERTEXATTRIBI4USVPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLSAMPLERPARAMETERIPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLGETUNIFORMUIVPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT
+        Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLSAMPLERPARAMETERIPROC$MH = RuntimeHelper.downcallHandle(
-        constants$186.PFNGLSAMPLERPARAMETERIPROC$FUNC
+    static final MethodHandle PFNGLGETUNIFORMUIVPROC$MH = RuntimeHelper.downcallHandle(
+        constants$186.PFNGLGETUNIFORMUIVPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLBINDFRAGDATALOCATIONPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle PFNGLBINDFRAGDATALOCATIONPROC$MH = RuntimeHelper.downcallHandle(
+        constants$186.PFNGLBINDFRAGDATALOCATIONPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLGETFRAGDATALOCATIONPROC$FUNC = FunctionDescriptor.of(Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
 }
 

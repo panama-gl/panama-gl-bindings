@@ -9,34 +9,48 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$779 {
 
-    static final FunctionDescriptor PFNGLVERTEXATTRIBS4HVNVPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLCOPYMULTITEXSUBIMAGE1DEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle PFNGLCOPYMULTITEXSUBIMAGE1DEXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$779.PFNGLCOPYMULTITEXSUBIMAGE1DEXTPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLCOPYMULTITEXSUBIMAGE2DEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle PFNGLCOPYMULTITEXSUBIMAGE2DEXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$779.PFNGLCOPYMULTITEXSUBIMAGE2DEXTPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLGETMULTITEXIMAGEEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLVERTEXATTRIBS4HVNVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$779.PFNGLVERTEXATTRIBS4HVNVPROC$FUNC
+    static final MethodHandle PFNGLGETMULTITEXIMAGEEXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$779.PFNGLGETMULTITEXIMAGEEXTPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLGETINTERNALFORMATSAMPLEIVNVPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
+    static final FunctionDescriptor PFNGLGETMULTITEXPARAMETERFVEXTPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle PFNGLGETINTERNALFORMATSAMPLEIVNVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$779.PFNGLGETINTERNALFORMATSAMPLEIVNVPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLGETMEMORYOBJECTDETACHEDRESOURCESUIVNVPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle PFNGLGETMEMORYOBJECTDETACHEDRESOURCESUIVNVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$779.PFNGLGETMEMORYOBJECTDETACHEDRESOURCESUIVNVPROC$FUNC
     );
 }
 

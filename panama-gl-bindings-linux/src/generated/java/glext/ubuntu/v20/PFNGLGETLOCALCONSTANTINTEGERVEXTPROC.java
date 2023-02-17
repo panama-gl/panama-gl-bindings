@@ -11,13 +11,13 @@ public interface PFNGLGETLOCALCONSTANTINTEGERVEXTPROC {
 
     void apply(int id, int value, java.lang.foreign.MemoryAddress data);
     static MemorySegment allocate(PFNGLGETLOCALCONSTANTINTEGERVEXTPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLGETLOCALCONSTANTINTEGERVEXTPROC.class, fi, constants$695.PFNGLGETLOCALCONSTANTINTEGERVEXTPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLGETLOCALCONSTANTINTEGERVEXTPROC.class, fi, constants$989.PFNGLGETLOCALCONSTANTINTEGERVEXTPROC$FUNC, session);
     }
     static PFNGLGETLOCALCONSTANTINTEGERVEXTPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _id, int _value, java.lang.foreign.MemoryAddress _data) -> {
             try {
-                constants$695.PFNGLGETLOCALCONSTANTINTEGERVEXTPROC$MH.invokeExact((Addressable)symbol, _id, _value, (java.lang.foreign.Addressable)_data);
+                constants$990.PFNGLGETLOCALCONSTANTINTEGERVEXTPROC$MH.invokeExact((Addressable)symbol, _id, _value, (java.lang.foreign.Addressable)_data);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

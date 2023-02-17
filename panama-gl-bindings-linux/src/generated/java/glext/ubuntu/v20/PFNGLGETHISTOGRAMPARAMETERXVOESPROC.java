@@ -11,13 +11,13 @@ public interface PFNGLGETHISTOGRAMPARAMETERXVOESPROC {
 
     void apply(int target, int pname, java.lang.foreign.MemoryAddress params);
     static MemorySegment allocate(PFNGLGETHISTOGRAMPARAMETERXVOESPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLGETHISTOGRAMPARAMETERXVOESPROC.class, fi, constants$430.PFNGLGETHISTOGRAMPARAMETERXVOESPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLGETHISTOGRAMPARAMETERXVOESPROC.class, fi, constants$590.PFNGLGETHISTOGRAMPARAMETERXVOESPROC$FUNC, session);
     }
     static PFNGLGETHISTOGRAMPARAMETERXVOESPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _target, int _pname, java.lang.foreign.MemoryAddress _params) -> {
             try {
-                constants$430.PFNGLGETHISTOGRAMPARAMETERXVOESPROC$MH.invokeExact((Addressable)symbol, _target, _pname, (java.lang.foreign.Addressable)_params);
+                constants$591.PFNGLGETHISTOGRAMPARAMETERXVOESPROC$MH.invokeExact((Addressable)symbol, _target, _pname, (java.lang.foreign.Addressable)_params);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

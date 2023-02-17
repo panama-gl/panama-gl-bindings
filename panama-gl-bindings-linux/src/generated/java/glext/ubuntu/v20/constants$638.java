@@ -9,25 +9,31 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$638 {
 
-    static final FunctionDescriptor PFNGLMINMAXEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLUNIFORM4I64NVPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT
+    );
+    static final MethodHandle PFNGLUNIFORM4I64NVPROC$MH = RuntimeHelper.downcallHandle(
+        constants$638.PFNGLUNIFORM4I64NVPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLUNIFORM1I64VNVPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_CHAR$LAYOUT
+        Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLMINMAXEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$638.PFNGLMINMAXEXTPROC$FUNC
+    static final MethodHandle PFNGLUNIFORM1I64VNVPROC$MH = RuntimeHelper.downcallHandle(
+        constants$638.PFNGLUNIFORM1I64VNVPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLRESETHISTOGRAMEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT
+    static final FunctionDescriptor PFNGLUNIFORM2I64VNVPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLRESETHISTOGRAMEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$638.PFNGLRESETHISTOGRAMEXTPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLRESETMINMAXEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT
-    );
-    static final MethodHandle PFNGLRESETMINMAXEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$638.PFNGLRESETMINMAXEXTPROC$FUNC
+    static final MethodHandle PFNGLUNIFORM2I64VNVPROC$MH = RuntimeHelper.downcallHandle(
+        constants$638.PFNGLUNIFORM2I64VNVPROC$FUNC
     );
 }
 

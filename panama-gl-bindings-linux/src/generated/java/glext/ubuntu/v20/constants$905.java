@@ -9,24 +9,56 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$905 {
 
-    static final FunctionDescriptor PFNGLLOADIDENTITYDEFORMATIONMAPSGIXPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT
-    );
-    static final MethodHandle PFNGLLOADIDENTITYDEFORMATIONMAPSGIXPROC$MH = RuntimeHelper.downcallHandle(
-        constants$905.PFNGLLOADIDENTITYDEFORMATIONMAPSGIXPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLREFERENCEPLANESGIXPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLUNIFORM4UIVEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLREFERENCEPLANESGIXPROC$MH = RuntimeHelper.downcallHandle(
-        constants$905.PFNGLREFERENCEPLANESGIXPROC$FUNC
+    static final MethodHandle PFNGLUNIFORM4UIVEXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$905.PFNGLUNIFORM4UIVEXTPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLSPRITEPARAMETERFSGIXPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glGetUniformuivEXT$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLSPRITEPARAMETERFSGIXPROC$MH = RuntimeHelper.downcallHandle(
-        constants$905.PFNGLSPRITEPARAMETERFSGIXPROC$FUNC
+    static final MethodHandle glGetUniformuivEXT$MH = RuntimeHelper.downcallHandle(
+        "glGetUniformuivEXT",
+        constants$905.glGetUniformuivEXT$FUNC
+    );
+    static final FunctionDescriptor glBindFragDataLocationEXT$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glBindFragDataLocationEXT$MH = RuntimeHelper.downcallHandle(
+        "glBindFragDataLocationEXT",
+        constants$905.glBindFragDataLocationEXT$FUNC
+    );
+    static final FunctionDescriptor glGetFragDataLocationEXT$FUNC = FunctionDescriptor.of(Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glGetFragDataLocationEXT$MH = RuntimeHelper.downcallHandle(
+        "glGetFragDataLocationEXT",
+        constants$905.glGetFragDataLocationEXT$FUNC
+    );
+    static final FunctionDescriptor glUniform1uiEXT$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle glUniform1uiEXT$MH = RuntimeHelper.downcallHandle(
+        "glUniform1uiEXT",
+        constants$905.glUniform1uiEXT$FUNC
+    );
+    static final FunctionDescriptor glUniform2uiEXT$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle glUniform2uiEXT$MH = RuntimeHelper.downcallHandle(
+        "glUniform2uiEXT",
+        constants$905.glUniform2uiEXT$FUNC
     );
 }
 

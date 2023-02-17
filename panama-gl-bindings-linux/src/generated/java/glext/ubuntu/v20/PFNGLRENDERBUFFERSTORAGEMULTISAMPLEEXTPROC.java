@@ -11,13 +11,13 @@ public interface PFNGLRENDERBUFFERSTORAGEMULTISAMPLEEXTPROC {
 
     void apply(int target, int samples, int internalformat, int width, int height);
     static MemorySegment allocate(PFNGLRENDERBUFFERSTORAGEMULTISAMPLEEXTPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLRENDERBUFFERSTORAGEMULTISAMPLEEXTPROC.class, fi, constants$625.PFNGLRENDERBUFFERSTORAGEMULTISAMPLEEXTPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLRENDERBUFFERSTORAGEMULTISAMPLEEXTPROC.class, fi, constants$891.PFNGLRENDERBUFFERSTORAGEMULTISAMPLEEXTPROC$FUNC, session);
     }
     static PFNGLRENDERBUFFERSTORAGEMULTISAMPLEEXTPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _target, int _samples, int _internalformat, int _width, int _height) -> {
             try {
-                constants$625.PFNGLRENDERBUFFERSTORAGEMULTISAMPLEEXTPROC$MH.invokeExact((Addressable)symbol, _target, _samples, _internalformat, _width, _height);
+                constants$891.PFNGLRENDERBUFFERSTORAGEMULTISAMPLEEXTPROC$MH.invokeExact((Addressable)symbol, _target, _samples, _internalformat, _width, _height);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

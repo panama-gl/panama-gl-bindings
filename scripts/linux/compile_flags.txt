@@ -1,1 +1,1 @@
--F/usr/include/GL
+-F/usr/include/GL -DGL_GLEXT_PROTOTYPES=1 -DGLX_GLXEXT_PROTOTYPES=1

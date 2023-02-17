@@ -9,32 +9,53 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$172 {
 
-    static final FunctionDescriptor PFNGLFRAMEBUFFERTEXTURELAYERPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLUNIFORMMATRIX3X4FVPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT
+        Constants$root.C_CHAR$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLFRAMEBUFFERTEXTURELAYERPROC$MH = RuntimeHelper.downcallHandle(
-        constants$172.PFNGLFRAMEBUFFERTEXTURELAYERPROC$FUNC
+    static final MethodHandle PFNGLUNIFORMMATRIX3X4FVPROC$MH = RuntimeHelper.downcallHandle(
+        constants$172.PFNGLUNIFORMMATRIX3X4FVPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLMAPBUFFERRANGEPROC$FUNC = FunctionDescriptor.of(Constants$root.C_POINTER$LAYOUT,
+    static final FunctionDescriptor PFNGLUNIFORMMATRIX4X3FVPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_LONG_LONG$LAYOUT,
-        Constants$root.C_LONG_LONG$LAYOUT,
-        Constants$root.C_INT$LAYOUT
-    );
-    static final MethodHandle PFNGLMAPBUFFERRANGEPROC$MH = RuntimeHelper.downcallHandle(
-        constants$172.PFNGLMAPBUFFERRANGEPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLFLUSHMAPPEDBUFFERRANGEPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_LONG_LONG$LAYOUT,
-        Constants$root.C_LONG_LONG$LAYOUT
+        Constants$root.C_CHAR$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLFLUSHMAPPEDBUFFERRANGEPROC$MH = RuntimeHelper.downcallHandle(
-        constants$172.PFNGLFLUSHMAPPEDBUFFERRANGEPROC$FUNC
+    static final MethodHandle PFNGLUNIFORMMATRIX4X3FVPROC$MH = RuntimeHelper.downcallHandle(
+        constants$172.PFNGLUNIFORMMATRIX4X3FVPROC$FUNC
+    );
+    static final FunctionDescriptor glUniformMatrix2x3fv$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_CHAR$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glUniformMatrix2x3fv$MH = RuntimeHelper.downcallHandle(
+        "glUniformMatrix2x3fv",
+        constants$172.glUniformMatrix2x3fv$FUNC
+    );
+    static final FunctionDescriptor glUniformMatrix3x2fv$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_CHAR$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glUniformMatrix3x2fv$MH = RuntimeHelper.downcallHandle(
+        "glUniformMatrix3x2fv",
+        constants$172.glUniformMatrix3x2fv$FUNC
+    );
+    static final FunctionDescriptor glUniformMatrix2x4fv$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_CHAR$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glUniformMatrix2x4fv$MH = RuntimeHelper.downcallHandle(
+        "glUniformMatrix2x4fv",
+        constants$172.glUniformMatrix2x4fv$FUNC
     );
 }
 

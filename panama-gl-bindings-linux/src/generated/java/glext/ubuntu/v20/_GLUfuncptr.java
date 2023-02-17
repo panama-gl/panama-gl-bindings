@@ -11,13 +11,13 @@ public interface _GLUfuncptr {
 
     void apply();
     static MemorySegment allocate(_GLUfuncptr fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(_GLUfuncptr.class, fi, constants$929._GLUfuncptr$FUNC, session);
+        return RuntimeHelper.upcallStub(_GLUfuncptr.class, fi, constants$1347._GLUfuncptr$FUNC, session);
     }
     static _GLUfuncptr ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return () -> {
             try {
-                constants$930._GLUfuncptr$MH.invokeExact((Addressable)symbol);
+                constants$1348._GLUfuncptr$MH.invokeExact((Addressable)symbol);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

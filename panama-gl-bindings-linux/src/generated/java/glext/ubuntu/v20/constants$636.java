@@ -9,31 +9,60 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$636 {
 
-    static final FunctionDescriptor PFNGLGETHISTOGRAMPARAMETERFVEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLGETNAMEDFRAMEBUFFERPARAMETERFVAMDPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle PFNGLGETHISTOGRAMPARAMETERFVEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$636.PFNGLGETHISTOGRAMPARAMETERFVEXTPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLGETHISTOGRAMPARAMETERIVEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLGETHISTOGRAMPARAMETERIVEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$636.PFNGLGETHISTOGRAMPARAMETERIVEXTPROC$FUNC
+    static final MethodHandle PFNGLGETNAMEDFRAMEBUFFERPARAMETERFVAMDPROC$MH = RuntimeHelper.downcallHandle(
+        constants$636.PFNGLGETNAMEDFRAMEBUFFERPARAMETERFVAMDPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLGETMINMAXEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glFramebufferSamplePositionsfvAMD$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_CHAR$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLGETMINMAXEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$636.PFNGLGETMINMAXEXTPROC$FUNC
+    static final MethodHandle glFramebufferSamplePositionsfvAMD$MH = RuntimeHelper.downcallHandle(
+        "glFramebufferSamplePositionsfvAMD",
+        constants$636.glFramebufferSamplePositionsfvAMD$FUNC
+    );
+    static final FunctionDescriptor glNamedFramebufferSamplePositionsfvAMD$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glNamedFramebufferSamplePositionsfvAMD$MH = RuntimeHelper.downcallHandle(
+        "glNamedFramebufferSamplePositionsfvAMD",
+        constants$636.glNamedFramebufferSamplePositionsfvAMD$FUNC
+    );
+    static final FunctionDescriptor glGetFramebufferParameterfvAMD$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glGetFramebufferParameterfvAMD$MH = RuntimeHelper.downcallHandle(
+        "glGetFramebufferParameterfvAMD",
+        constants$636.glGetFramebufferParameterfvAMD$FUNC
+    );
+    static final FunctionDescriptor glGetNamedFramebufferParameterfvAMD$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glGetNamedFramebufferParameterfvAMD$MH = RuntimeHelper.downcallHandle(
+        "glGetNamedFramebufferParameterfvAMD",
+        constants$636.glGetNamedFramebufferParameterfvAMD$FUNC
     );
 }
 

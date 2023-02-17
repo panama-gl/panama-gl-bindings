@@ -9,29 +9,34 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$791 {
 
-    static final FunctionDescriptor PFNGLPATHPARAMETERIVNVPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
+    static final FunctionDescriptor PFNGLMATRIXMULTTRANSPOSEFEXTPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLPATHPARAMETERIVNVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$791.PFNGLPATHPARAMETERIVNVPROC$FUNC
+    static final MethodHandle PFNGLMATRIXMULTTRANSPOSEFEXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$791.PFNGLMATRIXMULTTRANSPOSEFEXTPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLPATHPARAMETERINVPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLMATRIXMULTTRANSPOSEDEXTPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle PFNGLMATRIXMULTTRANSPOSEDEXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$791.PFNGLMATRIXMULTTRANSPOSEDEXTPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLNAMEDBUFFERDATAEXTPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
         Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLPATHPARAMETERINVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$791.PFNGLPATHPARAMETERINVPROC$FUNC
+    static final MethodHandle PFNGLNAMEDBUFFERDATAEXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$791.PFNGLNAMEDBUFFERDATAEXTPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLPATHPARAMETERFVNVPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLNAMEDBUFFERSUBDATAEXTPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle PFNGLPATHPARAMETERFVNVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$791.PFNGLPATHPARAMETERFVNVPROC$FUNC
     );
 }
 

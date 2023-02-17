@@ -9,32 +9,37 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$451 {
 
-    static final FunctionDescriptor PFNGLDEBUGMESSAGEENABLEAMDPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLUNIFORM3I64ARBPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_CHAR$LAYOUT
+        Constants$root.C_LONG_LONG$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT
     );
-    static final MethodHandle PFNGLDEBUGMESSAGEENABLEAMDPROC$MH = RuntimeHelper.downcallHandle(
-        constants$451.PFNGLDEBUGMESSAGEENABLEAMDPROC$FUNC
+    static final MethodHandle PFNGLUNIFORM3I64ARBPROC$MH = RuntimeHelper.downcallHandle(
+        constants$451.PFNGLUNIFORM3I64ARBPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLDEBUGMESSAGEINSERTAMDPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLUNIFORM4I64ARBPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT
+    );
+    static final MethodHandle PFNGLUNIFORM4I64ARBPROC$MH = RuntimeHelper.downcallHandle(
+        constants$451.PFNGLUNIFORM4I64ARBPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLUNIFORM1I64VARBPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLDEBUGMESSAGEINSERTAMDPROC$MH = RuntimeHelper.downcallHandle(
-        constants$451.PFNGLDEBUGMESSAGEINSERTAMDPROC$FUNC
+    static final MethodHandle PFNGLUNIFORM1I64VARBPROC$MH = RuntimeHelper.downcallHandle(
+        constants$451.PFNGLUNIFORM1I64VARBPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLDEBUGMESSAGECALLBACKAMDPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_POINTER$LAYOUT,
+    static final FunctionDescriptor PFNGLUNIFORM2I64VARBPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle PFNGLDEBUGMESSAGECALLBACKAMDPROC$MH = RuntimeHelper.downcallHandle(
-        constants$451.PFNGLDEBUGMESSAGECALLBACKAMDPROC$FUNC
     );
 }
 

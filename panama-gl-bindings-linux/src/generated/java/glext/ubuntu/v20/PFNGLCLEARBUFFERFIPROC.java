@@ -11,13 +11,13 @@ public interface PFNGLCLEARBUFFERFIPROC {
 
     void apply(int buffer, int drawbuffer, float depth, int stencil);
     static MemorySegment allocate(PFNGLCLEARBUFFERFIPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLCLEARBUFFERFIPROC.class, fi, constants$165.PFNGLCLEARBUFFERFIPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLCLEARBUFFERFIPROC.class, fi, constants$192.PFNGLCLEARBUFFERFIPROC$FUNC, session);
     }
     static PFNGLCLEARBUFFERFIPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _buffer, int _drawbuffer, float _depth, int _stencil) -> {
             try {
-                constants$165.PFNGLCLEARBUFFERFIPROC$MH.invokeExact((Addressable)symbol, _buffer, _drawbuffer, _depth, _stencil);
+                constants$192.PFNGLCLEARBUFFERFIPROC$MH.invokeExact((Addressable)symbol, _buffer, _drawbuffer, _depth, _stencil);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

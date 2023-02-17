@@ -9,26 +9,46 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$347 {
 
-    static final FunctionDescriptor PFNGLBEGINQUERYARBPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLOBJECTPTRLABELPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_POINTER$LAYOUT,
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT
+        Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLBEGINQUERYARBPROC$MH = RuntimeHelper.downcallHandle(
-        constants$347.PFNGLBEGINQUERYARBPROC$FUNC
+    static final MethodHandle PFNGLOBJECTPTRLABELPROC$MH = RuntimeHelper.downcallHandle(
+        constants$347.PFNGLOBJECTPTRLABELPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLENDQUERYARBPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT
+    static final FunctionDescriptor PFNGLGETOBJECTPTRLABELPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLENDQUERYARBPROC$MH = RuntimeHelper.downcallHandle(
-        constants$347.PFNGLENDQUERYARBPROC$FUNC
+    static final MethodHandle PFNGLGETOBJECTPTRLABELPROC$MH = RuntimeHelper.downcallHandle(
+        constants$347.PFNGLGETOBJECTPTRLABELPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLGETQUERYIVARBPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glClearBufferData$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLGETQUERYIVARBPROC$MH = RuntimeHelper.downcallHandle(
-        constants$347.PFNGLGETQUERYIVARBPROC$FUNC
+    static final MethodHandle glClearBufferData$MH = RuntimeHelper.downcallHandle(
+        "glClearBufferData",
+        constants$347.glClearBufferData$FUNC
+    );
+    static final FunctionDescriptor glClearBufferSubData$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glClearBufferSubData$MH = RuntimeHelper.downcallHandle(
+        "glClearBufferSubData",
+        constants$347.glClearBufferSubData$FUNC
     );
 }
 

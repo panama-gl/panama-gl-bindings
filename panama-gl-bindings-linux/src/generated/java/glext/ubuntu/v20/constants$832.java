@@ -9,30 +9,40 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$832 {
 
-    static final FunctionDescriptor PFNGLGETTRANSFORMFEEDBACKVARYINGNVPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLPROGRAMUNIFORM1DEXTPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
+        Constants$root.C_DOUBLE$LAYOUT
     );
-    static final MethodHandle PFNGLGETTRANSFORMFEEDBACKVARYINGNVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$832.PFNGLGETTRANSFORMFEEDBACKVARYINGNVPROC$FUNC
+    static final MethodHandle PFNGLPROGRAMUNIFORM1DEXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$832.PFNGLPROGRAMUNIFORM1DEXTPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLTRANSFORMFEEDBACKSTREAMATTRIBSNVPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLPROGRAMUNIFORM2DEXTPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_INT$LAYOUT
+        Constants$root.C_DOUBLE$LAYOUT,
+        Constants$root.C_DOUBLE$LAYOUT
     );
-    static final MethodHandle PFNGLTRANSFORMFEEDBACKSTREAMATTRIBSNVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$832.PFNGLTRANSFORMFEEDBACKSTREAMATTRIBSNVPROC$FUNC
+    static final MethodHandle PFNGLPROGRAMUNIFORM2DEXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$832.PFNGLPROGRAMUNIFORM2DEXTPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLBINDTRANSFORMFEEDBACKNVPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLPROGRAMUNIFORM3DEXTPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_DOUBLE$LAYOUT,
+        Constants$root.C_DOUBLE$LAYOUT,
+        Constants$root.C_DOUBLE$LAYOUT
     );
-    static final MethodHandle PFNGLBINDTRANSFORMFEEDBACKNVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$832.PFNGLBINDTRANSFORMFEEDBACKNVPROC$FUNC
+    static final MethodHandle PFNGLPROGRAMUNIFORM3DEXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$832.PFNGLPROGRAMUNIFORM3DEXTPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLPROGRAMUNIFORM4DEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_DOUBLE$LAYOUT,
+        Constants$root.C_DOUBLE$LAYOUT,
+        Constants$root.C_DOUBLE$LAYOUT,
+        Constants$root.C_DOUBLE$LAYOUT
     );
 }
 

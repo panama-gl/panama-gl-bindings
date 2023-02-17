@@ -11,13 +11,13 @@ public interface PFNGLTANGENTPOINTEREXTPROC {
 
     void apply(int type, int stride, java.lang.foreign.MemoryAddress pointer);
     static MemorySegment allocate(PFNGLTANGENTPOINTEREXTPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLTANGENTPOINTEREXTPROC.class, fi, constants$531.PFNGLTANGENTPOINTEREXTPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLTANGENTPOINTEREXTPROC.class, fi, constants$746.PFNGLTANGENTPOINTEREXTPROC$FUNC, session);
     }
     static PFNGLTANGENTPOINTEREXTPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _type, int _stride, java.lang.foreign.MemoryAddress _pointer) -> {
             try {
-                constants$531.PFNGLTANGENTPOINTEREXTPROC$MH.invokeExact((Addressable)symbol, _type, _stride, (java.lang.foreign.Addressable)_pointer);
+                constants$746.PFNGLTANGENTPOINTEREXTPROC$MH.invokeExact((Addressable)symbol, _type, _stride, (java.lang.foreign.Addressable)_pointer);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

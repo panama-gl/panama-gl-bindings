@@ -9,32 +9,34 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$581 {
 
-    static final FunctionDescriptor PFNGLMULTITEXBUFFEREXTPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLMATERIALXVOESPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle PFNGLMATERIALXVOESPROC$MH = RuntimeHelper.downcallHandle(
+        constants$581.PFNGLMATERIALXVOESPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLMULTMATRIXXOESPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle PFNGLMULTMATRIXXOESPROC$MH = RuntimeHelper.downcallHandle(
+        constants$581.PFNGLMULTMATRIXXOESPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLMULTITEXCOORD4XOESPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLMULTITEXBUFFEREXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$581.PFNGLMULTITEXBUFFEREXTPROC$FUNC
+    static final MethodHandle PFNGLMULTITEXCOORD4XOESPROC$MH = RuntimeHelper.downcallHandle(
+        constants$581.PFNGLMULTITEXCOORD4XOESPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLTEXTUREPARAMETERIIVEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLNORMAL3XOESPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle PFNGLTEXTUREPARAMETERIIVEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$581.PFNGLTEXTUREPARAMETERIIVEXTPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLTEXTUREPARAMETERIUIVEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle PFNGLTEXTUREPARAMETERIUIVEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$581.PFNGLTEXTUREPARAMETERIUIVEXTPROC$FUNC
+        Constants$root.C_INT$LAYOUT
     );
 }
 

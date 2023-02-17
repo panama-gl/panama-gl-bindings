@@ -11,13 +11,13 @@ public interface PFNGLMAKEIMAGEHANDLENONRESIDENTARBPROC {
 
     void apply(long handle);
     static MemorySegment allocate(PFNGLMAKEIMAGEHANDLENONRESIDENTARBPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLMAKEIMAGEHANDLENONRESIDENTARBPROC.class, fi, constants$314.PFNGLMAKEIMAGEHANDLENONRESIDENTARBPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLMAKEIMAGEHANDLENONRESIDENTARBPROC.class, fi, constants$424.PFNGLMAKEIMAGEHANDLENONRESIDENTARBPROC$FUNC, session);
     }
     static PFNGLMAKEIMAGEHANDLENONRESIDENTARBPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (long _handle) -> {
             try {
-                constants$314.PFNGLMAKEIMAGEHANDLENONRESIDENTARBPROC$MH.invokeExact((Addressable)symbol, _handle);
+                constants$425.PFNGLMAKEIMAGEHANDLENONRESIDENTARBPROC$MH.invokeExact((Addressable)symbol, _handle);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

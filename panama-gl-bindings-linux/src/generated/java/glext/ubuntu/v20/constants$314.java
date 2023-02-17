@@ -9,28 +9,53 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$314 {
 
-    static final FunctionDescriptor PFNGLGETIMAGEHANDLEARBPROC$FUNC = FunctionDescriptor.of(Constants$root.C_LONG_LONG$LAYOUT,
+    static final FunctionDescriptor glCreateShaderProgramv$FUNC = FunctionDescriptor.of(Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_CHAR$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glCreateShaderProgramv$MH = RuntimeHelper.downcallHandle(
+        "glCreateShaderProgramv",
+        constants$314.glCreateShaderProgramv$FUNC
+    );
+    static final FunctionDescriptor glBindProgramPipeline$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLGETIMAGEHANDLEARBPROC$MH = RuntimeHelper.downcallHandle(
-        constants$314.PFNGLGETIMAGEHANDLEARBPROC$FUNC
+    static final MethodHandle glBindProgramPipeline$MH = RuntimeHelper.downcallHandle(
+        "glBindProgramPipeline",
+        constants$314.glBindProgramPipeline$FUNC
     );
-    static final FunctionDescriptor PFNGLMAKEIMAGEHANDLERESIDENTARBPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_LONG_LONG$LAYOUT,
+    static final FunctionDescriptor glDeleteProgramPipelines$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glDeleteProgramPipelines$MH = RuntimeHelper.downcallHandle(
+        "glDeleteProgramPipelines",
+        constants$314.glDeleteProgramPipelines$FUNC
+    );
+    static final FunctionDescriptor glGenProgramPipelines$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glGenProgramPipelines$MH = RuntimeHelper.downcallHandle(
+        "glGenProgramPipelines",
+        constants$314.glGenProgramPipelines$FUNC
+    );
+    static final FunctionDescriptor glIsProgramPipeline$FUNC = FunctionDescriptor.of(Constants$root.C_CHAR$LAYOUT,
         Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLMAKEIMAGEHANDLERESIDENTARBPROC$MH = RuntimeHelper.downcallHandle(
-        constants$314.PFNGLMAKEIMAGEHANDLERESIDENTARBPROC$FUNC
+    static final MethodHandle glIsProgramPipeline$MH = RuntimeHelper.downcallHandle(
+        "glIsProgramPipeline",
+        constants$314.glIsProgramPipeline$FUNC
     );
-    static final FunctionDescriptor PFNGLMAKEIMAGEHANDLENONRESIDENTARBPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_LONG_LONG$LAYOUT
+    static final FunctionDescriptor glGetProgramPipelineiv$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLMAKEIMAGEHANDLENONRESIDENTARBPROC$MH = RuntimeHelper.downcallHandle(
-        constants$314.PFNGLMAKEIMAGEHANDLENONRESIDENTARBPROC$FUNC
+    static final MethodHandle glGetProgramPipelineiv$MH = RuntimeHelper.downcallHandle(
+        "glGetProgramPipelineiv",
+        constants$314.glGetProgramPipelineiv$FUNC
     );
 }
 

@@ -9,34 +9,59 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$252 {
 
-    static final FunctionDescriptor PFNGLDRAWTRANSFORMFEEDBACKINSTANCEDPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glSamplerParameterIiv$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT
-    );
-    static final MethodHandle PFNGLDRAWTRANSFORMFEEDBACKINSTANCEDPROC$MH = RuntimeHelper.downcallHandle(
-        constants$252.PFNGLDRAWTRANSFORMFEEDBACKINSTANCEDPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLDRAWTRANSFORMFEEDBACKSTREAMINSTANCEDPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT
-    );
-    static final MethodHandle PFNGLDRAWTRANSFORMFEEDBACKSTREAMINSTANCEDPROC$MH = RuntimeHelper.downcallHandle(
-        constants$252.PFNGLDRAWTRANSFORMFEEDBACKSTREAMINSTANCEDPROC$FUNC
-    );
-    static final FunctionDescriptor GLDEBUGPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle GLDEBUGPROC$MH = RuntimeHelper.downcallHandle(
-        constants$252.GLDEBUGPROC$FUNC
+    static final MethodHandle glSamplerParameterIiv$MH = RuntimeHelper.downcallHandle(
+        "glSamplerParameterIiv",
+        constants$252.glSamplerParameterIiv$FUNC
+    );
+    static final FunctionDescriptor glSamplerParameterIuiv$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glSamplerParameterIuiv$MH = RuntimeHelper.downcallHandle(
+        "glSamplerParameterIuiv",
+        constants$252.glSamplerParameterIuiv$FUNC
+    );
+    static final FunctionDescriptor glGetSamplerParameteriv$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glGetSamplerParameteriv$MH = RuntimeHelper.downcallHandle(
+        "glGetSamplerParameteriv",
+        constants$252.glGetSamplerParameteriv$FUNC
+    );
+    static final FunctionDescriptor glGetSamplerParameterIiv$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glGetSamplerParameterIiv$MH = RuntimeHelper.downcallHandle(
+        "glGetSamplerParameterIiv",
+        constants$252.glGetSamplerParameterIiv$FUNC
+    );
+    static final FunctionDescriptor glGetSamplerParameterfv$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glGetSamplerParameterfv$MH = RuntimeHelper.downcallHandle(
+        "glGetSamplerParameterfv",
+        constants$252.glGetSamplerParameterfv$FUNC
+    );
+    static final FunctionDescriptor glGetSamplerParameterIuiv$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glGetSamplerParameterIuiv$MH = RuntimeHelper.downcallHandle(
+        "glGetSamplerParameterIuiv",
+        constants$252.glGetSamplerParameterIuiv$FUNC
     );
 }
 

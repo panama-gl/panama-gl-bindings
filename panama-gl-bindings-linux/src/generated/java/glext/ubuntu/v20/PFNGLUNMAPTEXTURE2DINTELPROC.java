@@ -11,13 +11,13 @@ public interface PFNGLUNMAPTEXTURE2DINTELPROC {
 
     void apply(int texture, int level);
     static MemorySegment allocate(PFNGLUNMAPTEXTURE2DINTELPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLUNMAPTEXTURE2DINTELPROC.class, fi, constants$705.PFNGLUNMAPTEXTURE2DINTELPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLUNMAPTEXTURE2DINTELPROC.class, fi, constants$1011.PFNGLUNMAPTEXTURE2DINTELPROC$FUNC, session);
     }
     static PFNGLUNMAPTEXTURE2DINTELPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _texture, int _level) -> {
             try {
-                constants$705.PFNGLUNMAPTEXTURE2DINTELPROC$MH.invokeExact((Addressable)symbol, _texture, _level);
+                constants$1012.PFNGLUNMAPTEXTURE2DINTELPROC$MH.invokeExact((Addressable)symbol, _texture, _level);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

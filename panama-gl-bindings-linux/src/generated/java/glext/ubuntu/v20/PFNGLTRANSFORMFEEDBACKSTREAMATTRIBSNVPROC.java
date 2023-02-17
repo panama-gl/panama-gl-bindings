@@ -11,13 +11,13 @@ public interface PFNGLTRANSFORMFEEDBACKSTREAMATTRIBSNVPROC {
 
     void apply(int count, java.lang.foreign.MemoryAddress attribs, int nbuffers, java.lang.foreign.MemoryAddress bufstreams, int bufferMode);
     static MemorySegment allocate(PFNGLTRANSFORMFEEDBACKSTREAMATTRIBSNVPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLTRANSFORMFEEDBACKSTREAMATTRIBSNVPROC.class, fi, constants$832.PFNGLTRANSFORMFEEDBACKSTREAMATTRIBSNVPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLTRANSFORMFEEDBACKSTREAMATTRIBSNVPROC.class, fi, constants$1200.PFNGLTRANSFORMFEEDBACKSTREAMATTRIBSNVPROC$FUNC, session);
     }
     static PFNGLTRANSFORMFEEDBACKSTREAMATTRIBSNVPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _count, java.lang.foreign.MemoryAddress _attribs, int _nbuffers, java.lang.foreign.MemoryAddress _bufstreams, int _bufferMode) -> {
             try {
-                constants$832.PFNGLTRANSFORMFEEDBACKSTREAMATTRIBSNVPROC$MH.invokeExact((Addressable)symbol, _count, (java.lang.foreign.Addressable)_attribs, _nbuffers, (java.lang.foreign.Addressable)_bufstreams, _bufferMode);
+                constants$1200.PFNGLTRANSFORMFEEDBACKSTREAMATTRIBSNVPROC$MH.invokeExact((Addressable)symbol, _count, (java.lang.foreign.Addressable)_attribs, _nbuffers, (java.lang.foreign.Addressable)_bufstreams, _bufferMode);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

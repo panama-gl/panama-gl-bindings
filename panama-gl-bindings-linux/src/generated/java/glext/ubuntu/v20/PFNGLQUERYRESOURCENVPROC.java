@@ -11,13 +11,13 @@ public interface PFNGLQUERYRESOURCENVPROC {
 
     int apply(int queryType, int tagId, int bufSize, java.lang.foreign.MemoryAddress buffer);
     static MemorySegment allocate(PFNGLQUERYRESOURCENVPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLQUERYRESOURCENVPROC.class, fi, constants$811.PFNGLQUERYRESOURCENVPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLQUERYRESOURCENVPROC.class, fi, constants$1170.PFNGLQUERYRESOURCENVPROC$FUNC, session);
     }
     static PFNGLQUERYRESOURCENVPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _queryType, int _tagId, int _bufSize, java.lang.foreign.MemoryAddress _buffer) -> {
             try {
-                return (int)constants$811.PFNGLQUERYRESOURCENVPROC$MH.invokeExact((Addressable)symbol, _queryType, _tagId, _bufSize, (java.lang.foreign.Addressable)_buffer);
+                return (int)constants$1171.PFNGLQUERYRESOURCENVPROC$MH.invokeExact((Addressable)symbol, _queryType, _tagId, _bufSize, (java.lang.foreign.Addressable)_buffer);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

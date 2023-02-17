@@ -9,31 +9,31 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$367 {
 
-    static final FunctionDescriptor PFNGLUNIFORMMATRIX3FVARBPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLNAMEDFRAMEBUFFERRENDERBUFFERPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_CHAR$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLUNIFORMMATRIX3FVARBPROC$MH = RuntimeHelper.downcallHandle(
-        constants$367.PFNGLUNIFORMMATRIX3FVARBPROC$FUNC
+    static final MethodHandle PFNGLNAMEDFRAMEBUFFERRENDERBUFFERPROC$MH = RuntimeHelper.downcallHandle(
+        constants$367.PFNGLNAMEDFRAMEBUFFERRENDERBUFFERPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLUNIFORMMATRIX4FVARBPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLNAMEDFRAMEBUFFERPARAMETERIPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_CHAR$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
+        Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLUNIFORMMATRIX4FVARBPROC$MH = RuntimeHelper.downcallHandle(
-        constants$367.PFNGLUNIFORMMATRIX4FVARBPROC$FUNC
+    static final MethodHandle PFNGLNAMEDFRAMEBUFFERPARAMETERIPROC$MH = RuntimeHelper.downcallHandle(
+        constants$367.PFNGLNAMEDFRAMEBUFFERPARAMETERIPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLGETOBJECTPARAMETERFVARBPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLNAMEDFRAMEBUFFERTEXTUREPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLGETOBJECTPARAMETERFVARBPROC$MH = RuntimeHelper.downcallHandle(
-        constants$367.PFNGLGETOBJECTPARAMETERFVARBPROC$FUNC
+    static final MethodHandle PFNGLNAMEDFRAMEBUFFERTEXTUREPROC$MH = RuntimeHelper.downcallHandle(
+        constants$367.PFNGLNAMEDFRAMEBUFFERTEXTUREPROC$FUNC
     );
 }
 

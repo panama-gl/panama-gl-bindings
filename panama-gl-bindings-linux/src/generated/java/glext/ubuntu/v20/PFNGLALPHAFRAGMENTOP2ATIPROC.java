@@ -11,13 +11,13 @@ public interface PFNGLALPHAFRAGMENTOP2ATIPROC {
 
     void apply(int op, int dst, int dstMod, int arg1, int arg1Rep, int arg1Mod, int arg2, int arg2Rep, int arg2Mod);
     static MemorySegment allocate(PFNGLALPHAFRAGMENTOP2ATIPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLALPHAFRAGMENTOP2ATIPROC.class, fi, constants$492.PFNGLALPHAFRAGMENTOP2ATIPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLALPHAFRAGMENTOP2ATIPROC.class, fi, constants$690.PFNGLALPHAFRAGMENTOP2ATIPROC$FUNC, session);
     }
     static PFNGLALPHAFRAGMENTOP2ATIPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _op, int _dst, int _dstMod, int _arg1, int _arg1Rep, int _arg1Mod, int _arg2, int _arg2Rep, int _arg2Mod) -> {
             try {
-                constants$492.PFNGLALPHAFRAGMENTOP2ATIPROC$MH.invokeExact((Addressable)symbol, _op, _dst, _dstMod, _arg1, _arg1Rep, _arg1Mod, _arg2, _arg2Rep, _arg2Mod);
+                constants$690.PFNGLALPHAFRAGMENTOP2ATIPROC$MH.invokeExact((Addressable)symbol, _op, _dst, _dstMod, _arg1, _arg1Rep, _arg1Mod, _arg2, _arg2Rep, _arg2Mod);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

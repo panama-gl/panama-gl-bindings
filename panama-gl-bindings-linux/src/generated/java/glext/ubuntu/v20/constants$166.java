@@ -9,26 +9,58 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$166 {
 
-    static final FunctionDescriptor PFNGLBINDRENDERBUFFERPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glVertexAttrib2s$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT
+        Constants$root.C_SHORT$LAYOUT,
+        Constants$root.C_SHORT$LAYOUT
     );
-    static final MethodHandle PFNGLBINDRENDERBUFFERPROC$MH = RuntimeHelper.downcallHandle(
-        constants$166.PFNGLBINDRENDERBUFFERPROC$FUNC
+    static final MethodHandle glVertexAttrib2s$MH = RuntimeHelper.downcallHandle(
+        "glVertexAttrib2s",
+        constants$166.glVertexAttrib2s$FUNC
     );
-    static final FunctionDescriptor PFNGLDELETERENDERBUFFERSPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle PFNGLDELETERENDERBUFFERSPROC$MH = RuntimeHelper.downcallHandle(
-        constants$166.PFNGLDELETERENDERBUFFERSPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLGENRENDERBUFFERSPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glVertexAttrib2sv$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLGENRENDERBUFFERSPROC$MH = RuntimeHelper.downcallHandle(
-        constants$166.PFNGLGENRENDERBUFFERSPROC$FUNC
+    static final MethodHandle glVertexAttrib2sv$MH = RuntimeHelper.downcallHandle(
+        "glVertexAttrib2sv",
+        constants$166.glVertexAttrib2sv$FUNC
+    );
+    static final FunctionDescriptor glVertexAttrib3d$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_DOUBLE$LAYOUT,
+        Constants$root.C_DOUBLE$LAYOUT,
+        Constants$root.C_DOUBLE$LAYOUT
+    );
+    static final MethodHandle glVertexAttrib3d$MH = RuntimeHelper.downcallHandle(
+        "glVertexAttrib3d",
+        constants$166.glVertexAttrib3d$FUNC
+    );
+    static final FunctionDescriptor glVertexAttrib3dv$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glVertexAttrib3dv$MH = RuntimeHelper.downcallHandle(
+        "glVertexAttrib3dv",
+        constants$166.glVertexAttrib3dv$FUNC
+    );
+    static final FunctionDescriptor glVertexAttrib3f$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT
+    );
+    static final MethodHandle glVertexAttrib3f$MH = RuntimeHelper.downcallHandle(
+        "glVertexAttrib3f",
+        constants$166.glVertexAttrib3f$FUNC
+    );
+    static final FunctionDescriptor glVertexAttrib3fv$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glVertexAttrib3fv$MH = RuntimeHelper.downcallHandle(
+        "glVertexAttrib3fv",
+        constants$166.glVertexAttrib3fv$FUNC
     );
 }
 

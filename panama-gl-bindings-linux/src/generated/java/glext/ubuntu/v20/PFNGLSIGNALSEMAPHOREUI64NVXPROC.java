@@ -11,13 +11,13 @@ public interface PFNGLSIGNALSEMAPHOREUI64NVXPROC {
 
     void apply(int signalGpu, int fenceObjectCount, java.lang.foreign.MemoryAddress semaphoreArray, java.lang.foreign.MemoryAddress fenceValueArray);
     static MemorySegment allocate(PFNGLSIGNALSEMAPHOREUI64NVXPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLSIGNALSEMAPHOREUI64NVXPROC.class, fi, constants$724.PFNGLSIGNALSEMAPHOREUI64NVXPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLSIGNALSEMAPHOREUI64NVXPROC.class, fi, constants$1039.PFNGLSIGNALSEMAPHOREUI64NVXPROC$FUNC, session);
     }
     static PFNGLSIGNALSEMAPHOREUI64NVXPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _signalGpu, int _fenceObjectCount, java.lang.foreign.MemoryAddress _semaphoreArray, java.lang.foreign.MemoryAddress _fenceValueArray) -> {
             try {
-                constants$724.PFNGLSIGNALSEMAPHOREUI64NVXPROC$MH.invokeExact((Addressable)symbol, _signalGpu, _fenceObjectCount, (java.lang.foreign.Addressable)_semaphoreArray, (java.lang.foreign.Addressable)_fenceValueArray);
+                constants$1039.PFNGLSIGNALSEMAPHOREUI64NVXPROC$MH.invokeExact((Addressable)symbol, _signalGpu, _fenceObjectCount, (java.lang.foreign.Addressable)_semaphoreArray, (java.lang.foreign.Addressable)_fenceValueArray);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

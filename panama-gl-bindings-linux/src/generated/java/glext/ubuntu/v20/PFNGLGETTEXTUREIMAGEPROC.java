@@ -11,13 +11,13 @@ public interface PFNGLGETTEXTUREIMAGEPROC {
 
     void apply(int texture, int level, int format, int type, int bufSize, java.lang.foreign.MemoryAddress pixels);
     static MemorySegment allocate(PFNGLGETTEXTUREIMAGEPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLGETTEXTUREIMAGEPROC.class, fi, constants$293.PFNGLGETTEXTUREIMAGEPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLGETTEXTUREIMAGEPROC.class, fi, constants$382.PFNGLGETTEXTUREIMAGEPROC$FUNC, session);
     }
     static PFNGLGETTEXTUREIMAGEPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _texture, int _level, int _format, int _type, int _bufSize, java.lang.foreign.MemoryAddress _pixels) -> {
             try {
-                constants$293.PFNGLGETTEXTUREIMAGEPROC$MH.invokeExact((Addressable)symbol, _texture, _level, _format, _type, _bufSize, (java.lang.foreign.Addressable)_pixels);
+                constants$382.PFNGLGETTEXTUREIMAGEPROC$MH.invokeExact((Addressable)symbol, _texture, _level, _format, _type, _bufSize, (java.lang.foreign.Addressable)_pixels);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

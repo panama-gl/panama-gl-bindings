@@ -9,29 +9,31 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$700 {
 
-    static final FunctionDescriptor PFNGLIMAGETRANSFORMPARAMETERFVHPPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLVARIANTARRAYOBJECTATIPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle PFNGLVARIANTARRAYOBJECTATIPROC$MH = RuntimeHelper.downcallHandle(
+        constants$700.PFNGLVARIANTARRAYOBJECTATIPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLGETVARIANTARRAYOBJECTFVATIPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLIMAGETRANSFORMPARAMETERFVHPPROC$MH = RuntimeHelper.downcallHandle(
-        constants$700.PFNGLIMAGETRANSFORMPARAMETERFVHPPROC$FUNC
+    static final MethodHandle PFNGLGETVARIANTARRAYOBJECTFVATIPROC$MH = RuntimeHelper.downcallHandle(
+        constants$700.PFNGLGETVARIANTARRAYOBJECTFVATIPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLGETIMAGETRANSFORMPARAMETERIVHPPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLGETVARIANTARRAYOBJECTIVATIPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLGETIMAGETRANSFORMPARAMETERIVHPPROC$MH = RuntimeHelper.downcallHandle(
-        constants$700.PFNGLGETIMAGETRANSFORMPARAMETERIVHPPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLGETIMAGETRANSFORMPARAMETERFVHPPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle PFNGLGETIMAGETRANSFORMPARAMETERFVHPPROC$MH = RuntimeHelper.downcallHandle(
-        constants$700.PFNGLGETIMAGETRANSFORMPARAMETERFVHPPROC$FUNC
+    static final MethodHandle PFNGLGETVARIANTARRAYOBJECTIVATIPROC$MH = RuntimeHelper.downcallHandle(
+        constants$700.PFNGLGETVARIANTARRAYOBJECTIVATIPROC$FUNC
     );
 }
 

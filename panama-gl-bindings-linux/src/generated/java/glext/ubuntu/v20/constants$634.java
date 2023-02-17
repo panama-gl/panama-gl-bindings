@@ -9,31 +9,51 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$634 {
 
-    static final FunctionDescriptor PFNGLUNIFORM4UIEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLRENDERBUFFERSTORAGEMULTISAMPLEADVANCEDAMDPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLUNIFORM4UIEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$634.PFNGLUNIFORM4UIEXTPROC$FUNC
+    static final MethodHandle PFNGLRENDERBUFFERSTORAGEMULTISAMPLEADVANCEDAMDPROC$MH = RuntimeHelper.downcallHandle(
+        constants$634.PFNGLRENDERBUFFERSTORAGEMULTISAMPLEADVANCEDAMDPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLUNIFORM1UIVEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLNAMEDRENDERBUFFERSTORAGEMULTISAMPLEADVANCEDAMDPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle PFNGLUNIFORM1UIVEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$634.PFNGLUNIFORM1UIVEXTPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLUNIFORM2UIVEXTPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLUNIFORM2UIVEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$634.PFNGLUNIFORM2UIVEXTPROC$FUNC
+    static final MethodHandle PFNGLNAMEDRENDERBUFFERSTORAGEMULTISAMPLEADVANCEDAMDPROC$MH = RuntimeHelper.downcallHandle(
+        constants$634.PFNGLNAMEDRENDERBUFFERSTORAGEMULTISAMPLEADVANCEDAMDPROC$FUNC
+    );
+    static final FunctionDescriptor glRenderbufferStorageMultisampleAdvancedAMD$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle glRenderbufferStorageMultisampleAdvancedAMD$MH = RuntimeHelper.downcallHandle(
+        "glRenderbufferStorageMultisampleAdvancedAMD",
+        constants$634.glRenderbufferStorageMultisampleAdvancedAMD$FUNC
+    );
+    static final FunctionDescriptor glNamedRenderbufferStorageMultisampleAdvancedAMD$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle glNamedRenderbufferStorageMultisampleAdvancedAMD$MH = RuntimeHelper.downcallHandle(
+        "glNamedRenderbufferStorageMultisampleAdvancedAMD",
+        constants$634.glNamedRenderbufferStorageMultisampleAdvancedAMD$FUNC
     );
 }
 

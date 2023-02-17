@@ -11,13 +11,13 @@ public interface PFNGLTESTOBJECTAPPLEPROC {
 
     byte apply(int object, int name);
     static MemorySegment allocate(PFNGLTESTOBJECTAPPLEPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLTESTOBJECTAPPLEPROC.class, fi, constants$478.PFNGLTESTOBJECTAPPLEPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLTESTOBJECTAPPLEPROC.class, fi, constants$670.PFNGLTESTOBJECTAPPLEPROC$FUNC, session);
     }
     static PFNGLTESTOBJECTAPPLEPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _object, int _name) -> {
             try {
-                return (byte)constants$478.PFNGLTESTOBJECTAPPLEPROC$MH.invokeExact((Addressable)symbol, _object, _name);
+                return (byte)constants$670.PFNGLTESTOBJECTAPPLEPROC$MH.invokeExact((Addressable)symbol, _object, _name);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

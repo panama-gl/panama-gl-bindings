@@ -9,29 +9,34 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$189 {
 
-    static final FunctionDescriptor PFNGLGETSAMPLERPARAMETERIIVPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLUNIFORM2UIVPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLGETSAMPLERPARAMETERIIVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$189.PFNGLGETSAMPLERPARAMETERIIVPROC$FUNC
+    static final MethodHandle PFNGLUNIFORM2UIVPROC$MH = RuntimeHelper.downcallHandle(
+        constants$189.PFNGLUNIFORM2UIVPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLGETSAMPLERPARAMETERFVPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLUNIFORM3UIVPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLGETSAMPLERPARAMETERFVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$189.PFNGLGETSAMPLERPARAMETERFVPROC$FUNC
+    static final MethodHandle PFNGLUNIFORM3UIVPROC$MH = RuntimeHelper.downcallHandle(
+        constants$189.PFNGLUNIFORM3UIVPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLGETSAMPLERPARAMETERIUIVPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLUNIFORM4UIVPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLGETSAMPLERPARAMETERIUIVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$189.PFNGLGETSAMPLERPARAMETERIUIVPROC$FUNC
+    static final MethodHandle PFNGLUNIFORM4UIVPROC$MH = RuntimeHelper.downcallHandle(
+        constants$189.PFNGLUNIFORM4UIVPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLTEXPARAMETERIIVPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
 }
 

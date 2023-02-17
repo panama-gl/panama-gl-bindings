@@ -9,24 +9,36 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$731 {
 
-    static final FunctionDescriptor PFNGLBLENDPARAMETERINVPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
+    static final FunctionDescriptor PFNGLBLENDEQUATIONEXTPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLBLENDPARAMETERINVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$731.PFNGLBLENDPARAMETERINVPROC$FUNC
+    static final MethodHandle PFNGLBLENDEQUATIONEXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$731.PFNGLBLENDEQUATIONEXTPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLBLENDBARRIERNVPROC$FUNC = FunctionDescriptor.ofVoid();
-    static final MethodHandle PFNGLBLENDBARRIERNVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$731.PFNGLBLENDBARRIERNVPROC$FUNC
+    static final FunctionDescriptor glBlendEquationEXT$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT
     );
-    static final FunctionDescriptor PFNGLVIEWPORTPOSITIONWSCALENVPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final MethodHandle glBlendEquationEXT$MH = RuntimeHelper.downcallHandle(
+        "glBlendEquationEXT",
+        constants$731.glBlendEquationEXT$FUNC
+    );
+    static final FunctionDescriptor PFNGLCOLORSUBTABLEEXTPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLVIEWPORTPOSITIONWSCALENVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$731.PFNGLVIEWPORTPOSITIONWSCALENVPROC$FUNC
+    static final MethodHandle PFNGLCOLORSUBTABLEEXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$731.PFNGLCOLORSUBTABLEEXTPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLCOPYCOLORSUBTABLEEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
 }
 

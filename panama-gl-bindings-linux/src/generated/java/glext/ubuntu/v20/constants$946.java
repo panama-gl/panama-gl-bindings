@@ -9,39 +9,48 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$946 {
 
-    static final FunctionDescriptor glutRemoveOverlay$FUNC = FunctionDescriptor.ofVoid();
-    static final MethodHandle glutRemoveOverlay$MH = RuntimeHelper.downcallHandle(
-        "glutRemoveOverlay",
-        constants$946.glutRemoveOverlay$FUNC
+    static final FunctionDescriptor PFNGLSIGNALSEMAPHOREEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
-    static final FunctionDescriptor glutUseLayer$FUNC = FunctionDescriptor.ofVoid(
+    static final MethodHandle PFNGLSIGNALSEMAPHOREEXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$946.PFNGLSIGNALSEMAPHOREEXTPROC$FUNC
+    );
+    static final FunctionDescriptor glGenSemaphoresEXT$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glGenSemaphoresEXT$MH = RuntimeHelper.downcallHandle(
+        "glGenSemaphoresEXT",
+        constants$946.glGenSemaphoresEXT$FUNC
+    );
+    static final FunctionDescriptor glDeleteSemaphoresEXT$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glDeleteSemaphoresEXT$MH = RuntimeHelper.downcallHandle(
+        "glDeleteSemaphoresEXT",
+        constants$946.glDeleteSemaphoresEXT$FUNC
+    );
+    static final FunctionDescriptor glIsSemaphoreEXT$FUNC = FunctionDescriptor.of(Constants$root.C_CHAR$LAYOUT,
         Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle glutUseLayer$MH = RuntimeHelper.downcallHandle(
-        "glutUseLayer",
-        constants$946.glutUseLayer$FUNC
+    static final MethodHandle glIsSemaphoreEXT$MH = RuntimeHelper.downcallHandle(
+        "glIsSemaphoreEXT",
+        constants$946.glIsSemaphoreEXT$FUNC
     );
-    static final FunctionDescriptor glutPostOverlayRedisplay$FUNC = FunctionDescriptor.ofVoid();
-    static final MethodHandle glutPostOverlayRedisplay$MH = RuntimeHelper.downcallHandle(
-        "glutPostOverlayRedisplay",
-        constants$946.glutPostOverlayRedisplay$FUNC
+    static final FunctionDescriptor glSemaphoreParameterui64vEXT$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
-    static final FunctionDescriptor glutPostWindowOverlayRedisplay$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT
-    );
-    static final MethodHandle glutPostWindowOverlayRedisplay$MH = RuntimeHelper.downcallHandle(
-        "glutPostWindowOverlayRedisplay",
-        constants$946.glutPostWindowOverlayRedisplay$FUNC
-    );
-    static final FunctionDescriptor glutShowOverlay$FUNC = FunctionDescriptor.ofVoid();
-    static final MethodHandle glutShowOverlay$MH = RuntimeHelper.downcallHandle(
-        "glutShowOverlay",
-        constants$946.glutShowOverlay$FUNC
-    );
-    static final FunctionDescriptor glutHideOverlay$FUNC = FunctionDescriptor.ofVoid();
-    static final MethodHandle glutHideOverlay$MH = RuntimeHelper.downcallHandle(
-        "glutHideOverlay",
-        constants$946.glutHideOverlay$FUNC
+    static final MethodHandle glSemaphoreParameterui64vEXT$MH = RuntimeHelper.downcallHandle(
+        "glSemaphoreParameterui64vEXT",
+        constants$946.glSemaphoreParameterui64vEXT$FUNC
     );
 }
 

@@ -11,13 +11,13 @@ public interface PFNGLCREATEMEMORYOBJECTSEXTPROC {
 
     void apply(int n, java.lang.foreign.MemoryAddress memoryObjects);
     static MemorySegment allocate(PFNGLCREATEMEMORYOBJECTSEXTPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLCREATEMEMORYOBJECTSEXTPROC.class, fi, constants$642.PFNGLCREATEMEMORYOBJECTSEXTPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLCREATEMEMORYOBJECTSEXTPROC.class, fi, constants$915.PFNGLCREATEMEMORYOBJECTSEXTPROC$FUNC, session);
     }
     static PFNGLCREATEMEMORYOBJECTSEXTPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _n, java.lang.foreign.MemoryAddress _memoryObjects) -> {
             try {
-                constants$642.PFNGLCREATEMEMORYOBJECTSEXTPROC$MH.invokeExact((Addressable)symbol, _n, (java.lang.foreign.Addressable)_memoryObjects);
+                constants$916.PFNGLCREATEMEMORYOBJECTSEXTPROC$MH.invokeExact((Addressable)symbol, _n, (java.lang.foreign.Addressable)_memoryObjects);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

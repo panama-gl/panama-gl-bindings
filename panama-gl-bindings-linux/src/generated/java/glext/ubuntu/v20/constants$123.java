@@ -9,27 +9,58 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$123 {
 
-    static final FunctionDescriptor PFNGLGETVERTEXATTRIBIVPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glBufferSubData$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLGETVERTEXATTRIBIVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$123.PFNGLGETVERTEXATTRIBIVPROC$FUNC
+    static final MethodHandle glBufferSubData$MH = RuntimeHelper.downcallHandle(
+        "glBufferSubData",
+        constants$123.glBufferSubData$FUNC
     );
-    static final FunctionDescriptor PFNGLGETVERTEXATTRIBPOINTERVPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glGetBufferSubData$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLGETVERTEXATTRIBPOINTERVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$123.PFNGLGETVERTEXATTRIBPOINTERVPROC$FUNC
+    static final MethodHandle glGetBufferSubData$MH = RuntimeHelper.downcallHandle(
+        "glGetBufferSubData",
+        constants$123.glGetBufferSubData$FUNC
     );
-    static final FunctionDescriptor PFNGLISPROGRAMPROC$FUNC = FunctionDescriptor.of(Constants$root.C_CHAR$LAYOUT,
+    static final FunctionDescriptor glMapBuffer$FUNC = FunctionDescriptor.of(Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLISPROGRAMPROC$MH = RuntimeHelper.downcallHandle(
-        constants$123.PFNGLISPROGRAMPROC$FUNC
+    static final MethodHandle glMapBuffer$MH = RuntimeHelper.downcallHandle(
+        "glMapBuffer",
+        constants$123.glMapBuffer$FUNC
+    );
+    static final FunctionDescriptor glUnmapBuffer$FUNC = FunctionDescriptor.of(Constants$root.C_CHAR$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle glUnmapBuffer$MH = RuntimeHelper.downcallHandle(
+        "glUnmapBuffer",
+        constants$123.glUnmapBuffer$FUNC
+    );
+    static final FunctionDescriptor glGetBufferParameteriv$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glGetBufferParameteriv$MH = RuntimeHelper.downcallHandle(
+        "glGetBufferParameteriv",
+        constants$123.glGetBufferParameteriv$FUNC
+    );
+    static final FunctionDescriptor glGetBufferPointerv$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glGetBufferPointerv$MH = RuntimeHelper.downcallHandle(
+        "glGetBufferPointerv",
+        constants$123.glGetBufferPointerv$FUNC
     );
 }
 

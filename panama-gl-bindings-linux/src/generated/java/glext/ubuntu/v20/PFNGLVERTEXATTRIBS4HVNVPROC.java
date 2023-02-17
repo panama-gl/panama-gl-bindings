@@ -11,13 +11,13 @@ public interface PFNGLVERTEXATTRIBS4HVNVPROC {
 
     void apply(int index, int n, java.lang.foreign.MemoryAddress v);
     static MemorySegment allocate(PFNGLVERTEXATTRIBS4HVNVPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLVERTEXATTRIBS4HVNVPROC.class, fi, constants$779.PFNGLVERTEXATTRIBS4HVNVPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLVERTEXATTRIBS4HVNVPROC.class, fi, constants$1114.PFNGLVERTEXATTRIBS4HVNVPROC$FUNC, session);
     }
     static PFNGLVERTEXATTRIBS4HVNVPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _index, int _n, java.lang.foreign.MemoryAddress _v) -> {
             try {
-                constants$779.PFNGLVERTEXATTRIBS4HVNVPROC$MH.invokeExact((Addressable)symbol, _index, _n, (java.lang.foreign.Addressable)_v);
+                constants$1114.PFNGLVERTEXATTRIBS4HVNVPROC$MH.invokeExact((Addressable)symbol, _index, _n, (java.lang.foreign.Addressable)_v);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

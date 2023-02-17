@@ -11,13 +11,13 @@ public interface PFNGLGETMAPPARAMETERIVNVPROC {
 
     void apply(int target, int pname, java.lang.foreign.MemoryAddress params);
     static MemorySegment allocate(PFNGLGETMAPPARAMETERIVNVPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLGETMAPPARAMETERIVNVPROC.class, fi, constants$744.PFNGLGETMAPPARAMETERIVNVPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLGETMAPPARAMETERIVNVPROC.class, fi, constants$1069.PFNGLGETMAPPARAMETERIVNVPROC$FUNC, session);
     }
     static PFNGLGETMAPPARAMETERIVNVPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _target, int _pname, java.lang.foreign.MemoryAddress _params) -> {
             try {
-                constants$744.PFNGLGETMAPPARAMETERIVNVPROC$MH.invokeExact((Addressable)symbol, _target, _pname, (java.lang.foreign.Addressable)_params);
+                constants$1069.PFNGLGETMAPPARAMETERIVNVPROC$MH.invokeExact((Addressable)symbol, _target, _pname, (java.lang.foreign.Addressable)_params);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

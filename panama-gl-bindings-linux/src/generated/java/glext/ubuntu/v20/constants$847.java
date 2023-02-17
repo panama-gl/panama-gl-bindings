@@ -9,26 +9,76 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$847 {
 
-    static final FunctionDescriptor PFNGLINDEXFORMATNVPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glCopyTextureSubImage1DEXT$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT
-    );
-    static final MethodHandle PFNGLINDEXFORMATNVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$847.PFNGLINDEXFORMATNVPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLTEXCOORDFORMATNVPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLTEXCOORDFORMATNVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$847.PFNGLTEXCOORDFORMATNVPROC$FUNC
+    static final MethodHandle glCopyTextureSubImage1DEXT$MH = RuntimeHelper.downcallHandle(
+        "glCopyTextureSubImage1DEXT",
+        constants$847.glCopyTextureSubImage1DEXT$FUNC
     );
-    static final FunctionDescriptor PFNGLEDGEFLAGFORMATNVPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glCopyTextureSubImage2DEXT$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLEDGEFLAGFORMATNVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$847.PFNGLEDGEFLAGFORMATNVPROC$FUNC
+    static final MethodHandle glCopyTextureSubImage2DEXT$MH = RuntimeHelper.downcallHandle(
+        "glCopyTextureSubImage2DEXT",
+        constants$847.glCopyTextureSubImage2DEXT$FUNC
+    );
+    static final FunctionDescriptor glGetTextureImageEXT$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glGetTextureImageEXT$MH = RuntimeHelper.downcallHandle(
+        "glGetTextureImageEXT",
+        constants$847.glGetTextureImageEXT$FUNC
+    );
+    static final FunctionDescriptor glGetTextureParameterfvEXT$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glGetTextureParameterfvEXT$MH = RuntimeHelper.downcallHandle(
+        "glGetTextureParameterfvEXT",
+        constants$847.glGetTextureParameterfvEXT$FUNC
+    );
+    static final FunctionDescriptor glGetTextureParameterivEXT$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glGetTextureParameterivEXT$MH = RuntimeHelper.downcallHandle(
+        "glGetTextureParameterivEXT",
+        constants$847.glGetTextureParameterivEXT$FUNC
+    );
+    static final FunctionDescriptor glGetTextureLevelParameterfvEXT$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glGetTextureLevelParameterfvEXT$MH = RuntimeHelper.downcallHandle(
+        "glGetTextureLevelParameterfvEXT",
+        constants$847.glGetTextureLevelParameterfvEXT$FUNC
     );
 }
 

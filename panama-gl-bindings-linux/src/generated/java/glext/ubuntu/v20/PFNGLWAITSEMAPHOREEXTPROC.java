@@ -11,13 +11,13 @@ public interface PFNGLWAITSEMAPHOREEXTPROC {
 
     void apply(int semaphore, int numBufferBarriers, java.lang.foreign.MemoryAddress buffers, int numTextureBarriers, java.lang.foreign.MemoryAddress textures, java.lang.foreign.MemoryAddress srcLayouts);
     static MemorySegment allocate(PFNGLWAITSEMAPHOREEXTPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLWAITSEMAPHOREEXTPROC.class, fi, constants$662.PFNGLWAITSEMAPHOREEXTPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLWAITSEMAPHOREEXTPROC.class, fi, constants$945.PFNGLWAITSEMAPHOREEXTPROC$FUNC, session);
     }
     static PFNGLWAITSEMAPHOREEXTPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _semaphore, int _numBufferBarriers, java.lang.foreign.MemoryAddress _buffers, int _numTextureBarriers, java.lang.foreign.MemoryAddress _textures, java.lang.foreign.MemoryAddress _srcLayouts) -> {
             try {
-                constants$662.PFNGLWAITSEMAPHOREEXTPROC$MH.invokeExact((Addressable)symbol, _semaphore, _numBufferBarriers, (java.lang.foreign.Addressable)_buffers, _numTextureBarriers, (java.lang.foreign.Addressable)_textures, (java.lang.foreign.Addressable)_srcLayouts);
+                constants$945.PFNGLWAITSEMAPHOREEXTPROC$MH.invokeExact((Addressable)symbol, _semaphore, _numBufferBarriers, (java.lang.foreign.Addressable)_buffers, _numTextureBarriers, (java.lang.foreign.Addressable)_textures, (java.lang.foreign.Addressable)_srcLayouts);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

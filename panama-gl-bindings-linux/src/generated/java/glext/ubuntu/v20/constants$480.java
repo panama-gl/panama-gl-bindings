@@ -9,30 +9,38 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$480 {
 
-    static final FunctionDescriptor PFNGLOBJECTPURGEABLEAPPLEPROC$FUNC = FunctionDescriptor.of(Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT
-    );
-    static final MethodHandle PFNGLOBJECTPURGEABLEAPPLEPROC$MH = RuntimeHelper.downcallHandle(
-        constants$480.PFNGLOBJECTPURGEABLEAPPLEPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLOBJECTUNPURGEABLEAPPLEPROC$FUNC = FunctionDescriptor.of(Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT
-    );
-    static final MethodHandle PFNGLOBJECTUNPURGEABLEAPPLEPROC$MH = RuntimeHelper.downcallHandle(
-        constants$480.PFNGLOBJECTUNPURGEABLEAPPLEPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLGETOBJECTPARAMETERIVAPPLEPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLGETNUNIFORMIVARBPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLGETOBJECTPARAMETERIVAPPLEPROC$MH = RuntimeHelper.downcallHandle(
-        constants$480.PFNGLGETOBJECTPARAMETERIVAPPLEPROC$FUNC
+    static final MethodHandle PFNGLGETNUNIFORMIVARBPROC$MH = RuntimeHelper.downcallHandle(
+        constants$480.PFNGLGETNUNIFORMIVARBPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLGETNUNIFORMUIVARBPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle PFNGLGETNUNIFORMUIVARBPROC$MH = RuntimeHelper.downcallHandle(
+        constants$480.PFNGLGETNUNIFORMUIVARBPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLGETNUNIFORMDVARBPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle PFNGLGETNUNIFORMDVARBPROC$MH = RuntimeHelper.downcallHandle(
+        constants$480.PFNGLGETNUNIFORMDVARBPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLGETNMAPDVARBPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
 }
 

@@ -9,31 +9,41 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$840 {
 
-    static final FunctionDescriptor PFNGLVERTEXATTRIBL3I64NVPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLVERTEXARRAYVERTEXATTRIBFORMATEXTPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_LONG_LONG$LAYOUT,
-        Constants$root.C_LONG_LONG$LAYOUT,
-        Constants$root.C_LONG_LONG$LAYOUT
-    );
-    static final MethodHandle PFNGLVERTEXATTRIBL3I64NVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$840.PFNGLVERTEXATTRIBL3I64NVPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLVERTEXATTRIBL4I64NVPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_LONG_LONG$LAYOUT,
-        Constants$root.C_LONG_LONG$LAYOUT,
-        Constants$root.C_LONG_LONG$LAYOUT,
-        Constants$root.C_LONG_LONG$LAYOUT
-    );
-    static final MethodHandle PFNGLVERTEXATTRIBL4I64NVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$840.PFNGLVERTEXATTRIBL4I64NVPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLVERTEXATTRIBL1I64VNVPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_CHAR$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLVERTEXATTRIBL1I64VNVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$840.PFNGLVERTEXATTRIBL1I64VNVPROC$FUNC
+    static final MethodHandle PFNGLVERTEXARRAYVERTEXATTRIBFORMATEXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$840.PFNGLVERTEXARRAYVERTEXATTRIBFORMATEXTPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLVERTEXARRAYVERTEXATTRIBIFORMATEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle PFNGLVERTEXARRAYVERTEXATTRIBIFORMATEXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$840.PFNGLVERTEXARRAYVERTEXATTRIBIFORMATEXTPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLVERTEXARRAYVERTEXATTRIBLFORMATEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle PFNGLVERTEXARRAYVERTEXATTRIBLFORMATEXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$840.PFNGLVERTEXARRAYVERTEXATTRIBLFORMATEXTPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLVERTEXARRAYVERTEXATTRIBBINDINGEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
 }
 

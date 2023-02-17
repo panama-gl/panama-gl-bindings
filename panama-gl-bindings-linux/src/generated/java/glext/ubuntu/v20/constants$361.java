@@ -9,26 +9,30 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$361 {
 
-    static final FunctionDescriptor PFNGLVALIDATEPROGRAMARBPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT
-    );
-    static final MethodHandle PFNGLVALIDATEPROGRAMARBPROC$MH = RuntimeHelper.downcallHandle(
-        constants$361.PFNGLVALIDATEPROGRAMARBPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLUNIFORM1FARBPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLGETTRANSFORMFEEDBACKI_VPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT
-    );
-    static final MethodHandle PFNGLUNIFORM1FARBPROC$MH = RuntimeHelper.downcallHandle(
-        constants$361.PFNGLUNIFORM1FARBPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLUNIFORM2FARBPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLUNIFORM2FARBPROC$MH = RuntimeHelper.downcallHandle(
-        constants$361.PFNGLUNIFORM2FARBPROC$FUNC
+    static final MethodHandle PFNGLGETTRANSFORMFEEDBACKI_VPROC$MH = RuntimeHelper.downcallHandle(
+        constants$361.PFNGLGETTRANSFORMFEEDBACKI_VPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLGETTRANSFORMFEEDBACKI64_VPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle PFNGLGETTRANSFORMFEEDBACKI64_VPROC$MH = RuntimeHelper.downcallHandle(
+        constants$361.PFNGLGETTRANSFORMFEEDBACKI64_VPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLCREATEBUFFERSPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle PFNGLCREATEBUFFERSPROC$MH = RuntimeHelper.downcallHandle(
+        constants$361.PFNGLCREATEBUFFERSPROC$FUNC
     );
 }
 

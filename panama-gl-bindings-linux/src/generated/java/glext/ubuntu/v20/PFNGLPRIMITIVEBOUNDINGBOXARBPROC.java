@@ -11,13 +11,13 @@ public interface PFNGLPRIMITIVEBOUNDINGBOXARBPROC {
 
     void apply(float minX, float minY, float minZ, float minW, float maxX, float maxY, float maxZ, float maxW);
     static MemorySegment allocate(PFNGLPRIMITIVEBOUNDINGBOXARBPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLPRIMITIVEBOUNDINGBOXARBPROC.class, fi, constants$312.PFNGLPRIMITIVEBOUNDINGBOXARBPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLPRIMITIVEBOUNDINGBOXARBPROC.class, fi, constants$422.PFNGLPRIMITIVEBOUNDINGBOXARBPROC$FUNC, session);
     }
     static PFNGLPRIMITIVEBOUNDINGBOXARBPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (float _minX, float _minY, float _minZ, float _minW, float _maxX, float _maxY, float _maxZ, float _maxW) -> {
             try {
-                constants$312.PFNGLPRIMITIVEBOUNDINGBOXARBPROC$MH.invokeExact((Addressable)symbol, _minX, _minY, _minZ, _minW, _maxX, _maxY, _maxZ, _maxW);
+                constants$422.PFNGLPRIMITIVEBOUNDINGBOXARBPROC$MH.invokeExact((Addressable)symbol, _minX, _minY, _minZ, _minW, _maxX, _maxY, _maxZ, _maxW);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

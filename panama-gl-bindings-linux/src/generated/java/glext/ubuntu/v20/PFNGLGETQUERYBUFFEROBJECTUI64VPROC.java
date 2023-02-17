@@ -11,13 +11,13 @@ public interface PFNGLGETQUERYBUFFEROBJECTUI64VPROC {
 
     void apply(int id, int buffer, int pname, long offset);
     static MemorySegment allocate(PFNGLGETQUERYBUFFEROBJECTUI64VPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLGETQUERYBUFFEROBJECTUI64VPROC.class, fi, constants$302.PFNGLGETQUERYBUFFEROBJECTUI64VPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLGETQUERYBUFFEROBJECTUI64VPROC.class, fi, constants$391.PFNGLGETQUERYBUFFEROBJECTUI64VPROC$FUNC, session);
     }
     static PFNGLGETQUERYBUFFEROBJECTUI64VPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _id, int _buffer, int _pname, long _offset) -> {
             try {
-                constants$302.PFNGLGETQUERYBUFFEROBJECTUI64VPROC$MH.invokeExact((Addressable)symbol, _id, _buffer, _pname, _offset);
+                constants$391.PFNGLGETQUERYBUFFEROBJECTUI64VPROC$MH.invokeExact((Addressable)symbol, _id, _buffer, _pname, _offset);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

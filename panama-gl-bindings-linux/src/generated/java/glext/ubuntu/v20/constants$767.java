@@ -9,26 +9,45 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$767 {
 
-    static final FunctionDescriptor PFNGLCOLOR3HVNVPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLCOPYTEXTURESUBIMAGE2DEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle PFNGLCOPYTEXTURESUBIMAGE2DEXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$767.PFNGLCOPYTEXTURESUBIMAGE2DEXTPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLGETTEXTUREIMAGEEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLCOLOR3HVNVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$767.PFNGLCOLOR3HVNVPROC$FUNC
+    static final MethodHandle PFNGLGETTEXTUREIMAGEEXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$767.PFNGLGETTEXTUREIMAGEEXTPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLCOLOR4HNVPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_SHORT$LAYOUT,
-        Constants$root.C_SHORT$LAYOUT,
-        Constants$root.C_SHORT$LAYOUT,
-        Constants$root.C_SHORT$LAYOUT
-    );
-    static final MethodHandle PFNGLCOLOR4HNVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$767.PFNGLCOLOR4HNVPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLCOLOR4HVNVPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLGETTEXTUREPARAMETERFVEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLCOLOR4HVNVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$767.PFNGLCOLOR4HVNVPROC$FUNC
+    static final MethodHandle PFNGLGETTEXTUREPARAMETERFVEXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$767.PFNGLGETTEXTUREPARAMETERFVEXTPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLGETTEXTUREPARAMETERIVEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
 }
 

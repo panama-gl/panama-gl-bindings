@@ -11,13 +11,13 @@ public interface PFNGLTEXSTORAGE2DPROC {
 
     void apply(int target, int levels, int internalformat, int width, int height);
     static MemorySegment allocate(PFNGLTEXSTORAGE2DPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLTEXSTORAGE2DPROC.class, fi, constants$251.PFNGLTEXSTORAGE2DPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLTEXSTORAGE2DPROC.class, fi, constants$329.PFNGLTEXSTORAGE2DPROC$FUNC, session);
     }
     static PFNGLTEXSTORAGE2DPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _target, int _levels, int _internalformat, int _width, int _height) -> {
             try {
-                constants$251.PFNGLTEXSTORAGE2DPROC$MH.invokeExact((Addressable)symbol, _target, _levels, _internalformat, _width, _height);
+                constants$329.PFNGLTEXSTORAGE2DPROC$MH.invokeExact((Addressable)symbol, _target, _levels, _internalformat, _width, _height);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

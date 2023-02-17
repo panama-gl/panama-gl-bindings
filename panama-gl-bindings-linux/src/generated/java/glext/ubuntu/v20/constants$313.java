@@ -9,24 +9,59 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$313 {
 
-    static final FunctionDescriptor PFNGLGETTEXTURESAMPLERHANDLEARBPROC$FUNC = FunctionDescriptor.of(Constants$root.C_LONG_LONG$LAYOUT,
+    static final FunctionDescriptor glClearDepthf$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_FLOAT$LAYOUT
+    );
+    static final MethodHandle glClearDepthf$MH = RuntimeHelper.downcallHandle(
+        "glClearDepthf",
+        constants$313.glClearDepthf$FUNC
+    );
+    static final FunctionDescriptor glGetProgramBinary$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glGetProgramBinary$MH = RuntimeHelper.downcallHandle(
+        "glGetProgramBinary",
+        constants$313.glGetProgramBinary$FUNC
+    );
+    static final FunctionDescriptor glProgramBinary$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle glProgramBinary$MH = RuntimeHelper.downcallHandle(
+        "glProgramBinary",
+        constants$313.glProgramBinary$FUNC
+    );
+    static final FunctionDescriptor glProgramParameteri$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLGETTEXTURESAMPLERHANDLEARBPROC$MH = RuntimeHelper.downcallHandle(
-        constants$313.PFNGLGETTEXTURESAMPLERHANDLEARBPROC$FUNC
+    static final MethodHandle glProgramParameteri$MH = RuntimeHelper.downcallHandle(
+        "glProgramParameteri",
+        constants$313.glProgramParameteri$FUNC
     );
-    static final FunctionDescriptor PFNGLMAKETEXTUREHANDLERESIDENTARBPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_LONG_LONG$LAYOUT
+    static final FunctionDescriptor glUseProgramStages$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLMAKETEXTUREHANDLERESIDENTARBPROC$MH = RuntimeHelper.downcallHandle(
-        constants$313.PFNGLMAKETEXTUREHANDLERESIDENTARBPROC$FUNC
+    static final MethodHandle glUseProgramStages$MH = RuntimeHelper.downcallHandle(
+        "glUseProgramStages",
+        constants$313.glUseProgramStages$FUNC
     );
-    static final FunctionDescriptor PFNGLMAKETEXTUREHANDLENONRESIDENTARBPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_LONG_LONG$LAYOUT
+    static final FunctionDescriptor glActiveShaderProgram$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLMAKETEXTUREHANDLENONRESIDENTARBPROC$MH = RuntimeHelper.downcallHandle(
-        constants$313.PFNGLMAKETEXTUREHANDLENONRESIDENTARBPROC$FUNC
+    static final MethodHandle glActiveShaderProgram$MH = RuntimeHelper.downcallHandle(
+        "glActiveShaderProgram",
+        constants$313.glActiveShaderProgram$FUNC
     );
 }
 

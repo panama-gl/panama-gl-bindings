@@ -11,13 +11,13 @@ public interface PFNGLCOLORFORMATNVPROC {
 
     void apply(int size, int type, int stride);
     static MemorySegment allocate(PFNGLCOLORFORMATNVPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLCOLORFORMATNVPROC.class, fi, constants$846.PFNGLCOLORFORMATNVPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLCOLORFORMATNVPROC.class, fi, constants$1222.PFNGLCOLORFORMATNVPROC$FUNC, session);
     }
     static PFNGLCOLORFORMATNVPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _size, int _type, int _stride) -> {
             try {
-                constants$846.PFNGLCOLORFORMATNVPROC$MH.invokeExact((Addressable)symbol, _size, _type, _stride);
+                constants$1223.PFNGLCOLORFORMATNVPROC$MH.invokeExact((Addressable)symbol, _size, _type, _stride);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

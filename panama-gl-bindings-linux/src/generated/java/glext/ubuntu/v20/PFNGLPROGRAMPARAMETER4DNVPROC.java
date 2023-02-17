@@ -11,13 +11,13 @@ public interface PFNGLPROGRAMPARAMETER4DNVPROC {
 
     void apply(int target, int index, double x, double y, double z, double w);
     static MemorySegment allocate(PFNGLPROGRAMPARAMETER4DNVPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLPROGRAMPARAMETER4DNVPROC.class, fi, constants$855.PFNGLPROGRAMPARAMETER4DNVPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLPROGRAMPARAMETER4DNVPROC.class, fi, constants$1233.PFNGLPROGRAMPARAMETER4DNVPROC$FUNC, session);
     }
     static PFNGLPROGRAMPARAMETER4DNVPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _target, int _index, double _x, double _y, double _z, double _w) -> {
             try {
-                constants$855.PFNGLPROGRAMPARAMETER4DNVPROC$MH.invokeExact((Addressable)symbol, _target, _index, _x, _y, _z, _w);
+                constants$1233.PFNGLPROGRAMPARAMETER4DNVPROC$MH.invokeExact((Addressable)symbol, _target, _index, _x, _y, _z, _w);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

@@ -9,25 +9,28 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$346 {
 
-    static final FunctionDescriptor PFNGLGENQUERIESARBPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLPOPDEBUGGROUPPROC$FUNC = FunctionDescriptor.ofVoid();
+    static final MethodHandle PFNGLPOPDEBUGGROUPPROC$MH = RuntimeHelper.downcallHandle(
+        constants$346.PFNGLPOPDEBUGGROUPPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLOBJECTLABELPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLGENQUERIESARBPROC$MH = RuntimeHelper.downcallHandle(
-        constants$346.PFNGLGENQUERIESARBPROC$FUNC
+    static final MethodHandle PFNGLOBJECTLABELPROC$MH = RuntimeHelper.downcallHandle(
+        constants$346.PFNGLOBJECTLABELPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLDELETEQUERIESARBPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLGETOBJECTLABELPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLDELETEQUERIESARBPROC$MH = RuntimeHelper.downcallHandle(
-        constants$346.PFNGLDELETEQUERIESARBPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLISQUERYARBPROC$FUNC = FunctionDescriptor.of(Constants$root.C_CHAR$LAYOUT,
-        Constants$root.C_INT$LAYOUT
-    );
-    static final MethodHandle PFNGLISQUERYARBPROC$MH = RuntimeHelper.downcallHandle(
-        constants$346.PFNGLISQUERYARBPROC$FUNC
+    static final MethodHandle PFNGLGETOBJECTLABELPROC$MH = RuntimeHelper.downcallHandle(
+        constants$346.PFNGLGETOBJECTLABELPROC$FUNC
     );
 }
 

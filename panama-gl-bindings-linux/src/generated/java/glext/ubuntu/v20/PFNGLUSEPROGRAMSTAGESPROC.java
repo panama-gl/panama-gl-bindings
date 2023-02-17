@@ -11,13 +11,13 @@ public interface PFNGLUSEPROGRAMSTAGESPROC {
 
     void apply(int pipeline, int stages, int program);
     static MemorySegment allocate(PFNGLUSEPROGRAMSTAGESPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLUSEPROGRAMSTAGESPROC.class, fi, constants$222.PFNGLUSEPROGRAMSTAGESPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLUSEPROGRAMSTAGESPROC.class, fi, constants$285.PFNGLUSEPROGRAMSTAGESPROC$FUNC, session);
     }
     static PFNGLUSEPROGRAMSTAGESPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _pipeline, int _stages, int _program) -> {
             try {
-                constants$222.PFNGLUSEPROGRAMSTAGESPROC$MH.invokeExact((Addressable)symbol, _pipeline, _stages, _program);
+                constants$285.PFNGLUSEPROGRAMSTAGESPROC$MH.invokeExact((Addressable)symbol, _pipeline, _stages, _program);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

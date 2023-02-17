@@ -11,13 +11,13 @@ public interface PFNGLGETRENDERBUFFERPARAMETERIVEXTPROC {
 
     void apply(int target, int pname, java.lang.foreign.MemoryAddress params);
     static MemorySegment allocate(PFNGLGETRENDERBUFFERPARAMETERIVEXTPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLGETRENDERBUFFERPARAMETERIVEXTPROC.class, fi, constants$627.PFNGLGETRENDERBUFFERPARAMETERIVEXTPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLGETRENDERBUFFERPARAMETERIVEXTPROC.class, fi, constants$893.PFNGLGETRENDERBUFFERPARAMETERIVEXTPROC$FUNC, session);
     }
     static PFNGLGETRENDERBUFFERPARAMETERIVEXTPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _target, int _pname, java.lang.foreign.MemoryAddress _params) -> {
             try {
-                constants$627.PFNGLGETRENDERBUFFERPARAMETERIVEXTPROC$MH.invokeExact((Addressable)symbol, _target, _pname, (java.lang.foreign.Addressable)_params);
+                constants$893.PFNGLGETRENDERBUFFERPARAMETERIVEXTPROC$MH.invokeExact((Addressable)symbol, _target, _pname, (java.lang.foreign.Addressable)_params);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

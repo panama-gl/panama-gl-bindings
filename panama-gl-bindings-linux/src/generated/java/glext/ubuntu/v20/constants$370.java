@@ -9,32 +9,32 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$370 {
 
-    static final FunctionDescriptor PFNGLGETUNIFORMIVARBPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLCLEARNAMEDFRAMEBUFFERIVPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle PFNGLCLEARNAMEDFRAMEBUFFERIVPROC$MH = RuntimeHelper.downcallHandle(
+        constants$370.PFNGLCLEARNAMEDFRAMEBUFFERIVPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLCLEARNAMEDFRAMEBUFFERUIVPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLGETUNIFORMIVARBPROC$MH = RuntimeHelper.downcallHandle(
-        constants$370.PFNGLGETUNIFORMIVARBPROC$FUNC
+    static final MethodHandle PFNGLCLEARNAMEDFRAMEBUFFERUIVPROC$MH = RuntimeHelper.downcallHandle(
+        constants$370.PFNGLCLEARNAMEDFRAMEBUFFERUIVPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLGETSHADERSOURCEARBPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLCLEARNAMEDFRAMEBUFFERFVPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle PFNGLGETSHADERSOURCEARBPROC$MH = RuntimeHelper.downcallHandle(
-        constants$370.PFNGLGETSHADERSOURCEARBPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLNAMEDSTRINGARBPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLNAMEDSTRINGARBPROC$MH = RuntimeHelper.downcallHandle(
-        constants$370.PFNGLNAMEDSTRINGARBPROC$FUNC
+    static final MethodHandle PFNGLCLEARNAMEDFRAMEBUFFERFVPROC$MH = RuntimeHelper.downcallHandle(
+        constants$370.PFNGLCLEARNAMEDFRAMEBUFFERFVPROC$FUNC
     );
 }
 

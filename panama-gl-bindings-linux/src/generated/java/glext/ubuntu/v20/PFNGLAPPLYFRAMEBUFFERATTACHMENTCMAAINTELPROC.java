@@ -11,13 +11,13 @@ public interface PFNGLAPPLYFRAMEBUFFERATTACHMENTCMAAINTELPROC {
 
     void apply();
     static MemorySegment allocate(PFNGLAPPLYFRAMEBUFFERATTACHMENTCMAAINTELPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLAPPLYFRAMEBUFFERATTACHMENTCMAAINTELPROC.class, fi, constants$705.PFNGLAPPLYFRAMEBUFFERATTACHMENTCMAAINTELPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLAPPLYFRAMEBUFFERATTACHMENTCMAAINTELPROC.class, fi, constants$1011.PFNGLAPPLYFRAMEBUFFERATTACHMENTCMAAINTELPROC$FUNC, session);
     }
     static PFNGLAPPLYFRAMEBUFFERATTACHMENTCMAAINTELPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return () -> {
             try {
-                constants$705.PFNGLAPPLYFRAMEBUFFERATTACHMENTCMAAINTELPROC$MH.invokeExact((Addressable)symbol);
+                constants$1011.PFNGLAPPLYFRAMEBUFFERATTACHMENTCMAAINTELPROC$MH.invokeExact((Addressable)symbol);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

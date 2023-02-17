@@ -5158,3470 +5158,4993 @@ import static java.lang.foreign.ValueLayout.*;
     public static int KHRONOS_BOOLEAN_ENUM_FORCE_SIZE() {
         return (int)2147483647L;
     }
+    public static MethodHandle glBlendFuncSeparate$MH() {
+        return RuntimeHelper.requireNonNull(constants$107.glBlendFuncSeparate$MH,"glBlendFuncSeparate");
+    }
+    public static void glBlendFuncSeparate ( int sfactorRGB,  int dfactorRGB,  int sfactorAlpha,  int dfactorAlpha) {
+        var mh$ = glBlendFuncSeparate$MH();
+        try {
+            mh$.invokeExact(sfactorRGB, dfactorRGB, sfactorAlpha, dfactorAlpha);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle glMultiDrawArrays$MH() {
+        return RuntimeHelper.requireNonNull(constants$107.glMultiDrawArrays$MH,"glMultiDrawArrays");
+    }
+    public static void glMultiDrawArrays ( int mode,  Addressable first,  Addressable count,  int drawcount) {
+        var mh$ = glMultiDrawArrays$MH();
+        try {
+            mh$.invokeExact(mode, first, count, drawcount);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle glMultiDrawElements$MH() {
+        return RuntimeHelper.requireNonNull(constants$107.glMultiDrawElements$MH,"glMultiDrawElements");
+    }
+    public static void glMultiDrawElements ( int mode,  Addressable count,  int type,  Addressable indices,  int drawcount) {
+        var mh$ = glMultiDrawElements$MH();
+        try {
+            mh$.invokeExact(mode, count, type, indices, drawcount);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle glPointParameterf$MH() {
+        return RuntimeHelper.requireNonNull(constants$107.glPointParameterf$MH,"glPointParameterf");
+    }
+    public static void glPointParameterf ( int pname,  float param) {
+        var mh$ = glPointParameterf$MH();
+        try {
+            mh$.invokeExact(pname, param);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle glPointParameterfv$MH() {
+        return RuntimeHelper.requireNonNull(constants$107.glPointParameterfv$MH,"glPointParameterfv");
+    }
+    public static void glPointParameterfv ( int pname,  Addressable params) {
+        var mh$ = glPointParameterfv$MH();
+        try {
+            mh$.invokeExact(pname, params);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle glPointParameteri$MH() {
+        return RuntimeHelper.requireNonNull(constants$107.glPointParameteri$MH,"glPointParameteri");
+    }
+    public static void glPointParameteri ( int pname,  int param) {
+        var mh$ = glPointParameteri$MH();
+        try {
+            mh$.invokeExact(pname, param);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle glPointParameteriv$MH() {
+        return RuntimeHelper.requireNonNull(constants$108.glPointParameteriv$MH,"glPointParameteriv");
+    }
+    public static void glPointParameteriv ( int pname,  Addressable params) {
+        var mh$ = glPointParameteriv$MH();
+        try {
+            mh$.invokeExact(pname, params);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle glFogCoordf$MH() {
+        return RuntimeHelper.requireNonNull(constants$108.glFogCoordf$MH,"glFogCoordf");
+    }
+    public static void glFogCoordf ( float coord) {
+        var mh$ = glFogCoordf$MH();
+        try {
+            mh$.invokeExact(coord);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle glFogCoordfv$MH() {
+        return RuntimeHelper.requireNonNull(constants$108.glFogCoordfv$MH,"glFogCoordfv");
+    }
+    public static void glFogCoordfv ( Addressable coord) {
+        var mh$ = glFogCoordfv$MH();
+        try {
+            mh$.invokeExact(coord);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle glFogCoordd$MH() {
+        return RuntimeHelper.requireNonNull(constants$108.glFogCoordd$MH,"glFogCoordd");
+    }
+    public static void glFogCoordd ( double coord) {
+        var mh$ = glFogCoordd$MH();
+        try {
+            mh$.invokeExact(coord);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle glFogCoorddv$MH() {
+        return RuntimeHelper.requireNonNull(constants$108.glFogCoorddv$MH,"glFogCoorddv");
+    }
+    public static void glFogCoorddv ( Addressable coord) {
+        var mh$ = glFogCoorddv$MH();
+        try {
+            mh$.invokeExact(coord);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle glFogCoordPointer$MH() {
+        return RuntimeHelper.requireNonNull(constants$108.glFogCoordPointer$MH,"glFogCoordPointer");
+    }
+    public static void glFogCoordPointer ( int type,  int stride,  Addressable pointer) {
+        var mh$ = glFogCoordPointer$MH();
+        try {
+            mh$.invokeExact(type, stride, pointer);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle glSecondaryColor3b$MH() {
+        return RuntimeHelper.requireNonNull(constants$109.glSecondaryColor3b$MH,"glSecondaryColor3b");
+    }
+    public static void glSecondaryColor3b ( byte red,  byte green,  byte blue) {
+        var mh$ = glSecondaryColor3b$MH();
+        try {
+            mh$.invokeExact(red, green, blue);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle glSecondaryColor3bv$MH() {
+        return RuntimeHelper.requireNonNull(constants$109.glSecondaryColor3bv$MH,"glSecondaryColor3bv");
+    }
+    public static void glSecondaryColor3bv ( Addressable v) {
+        var mh$ = glSecondaryColor3bv$MH();
+        try {
+            mh$.invokeExact(v);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle glSecondaryColor3d$MH() {
+        return RuntimeHelper.requireNonNull(constants$109.glSecondaryColor3d$MH,"glSecondaryColor3d");
+    }
+    public static void glSecondaryColor3d ( double red,  double green,  double blue) {
+        var mh$ = glSecondaryColor3d$MH();
+        try {
+            mh$.invokeExact(red, green, blue);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle glSecondaryColor3dv$MH() {
+        return RuntimeHelper.requireNonNull(constants$109.glSecondaryColor3dv$MH,"glSecondaryColor3dv");
+    }
+    public static void glSecondaryColor3dv ( Addressable v) {
+        var mh$ = glSecondaryColor3dv$MH();
+        try {
+            mh$.invokeExact(v);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle glSecondaryColor3f$MH() {
+        return RuntimeHelper.requireNonNull(constants$109.glSecondaryColor3f$MH,"glSecondaryColor3f");
+    }
+    public static void glSecondaryColor3f ( float red,  float green,  float blue) {
+        var mh$ = glSecondaryColor3f$MH();
+        try {
+            mh$.invokeExact(red, green, blue);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle glSecondaryColor3fv$MH() {
+        return RuntimeHelper.requireNonNull(constants$109.glSecondaryColor3fv$MH,"glSecondaryColor3fv");
+    }
+    public static void glSecondaryColor3fv ( Addressable v) {
+        var mh$ = glSecondaryColor3fv$MH();
+        try {
+            mh$.invokeExact(v);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle glSecondaryColor3i$MH() {
+        return RuntimeHelper.requireNonNull(constants$110.glSecondaryColor3i$MH,"glSecondaryColor3i");
+    }
+    public static void glSecondaryColor3i ( int red,  int green,  int blue) {
+        var mh$ = glSecondaryColor3i$MH();
+        try {
+            mh$.invokeExact(red, green, blue);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle glSecondaryColor3iv$MH() {
+        return RuntimeHelper.requireNonNull(constants$110.glSecondaryColor3iv$MH,"glSecondaryColor3iv");
+    }
+    public static void glSecondaryColor3iv ( Addressable v) {
+        var mh$ = glSecondaryColor3iv$MH();
+        try {
+            mh$.invokeExact(v);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle glSecondaryColor3s$MH() {
+        return RuntimeHelper.requireNonNull(constants$110.glSecondaryColor3s$MH,"glSecondaryColor3s");
+    }
+    public static void glSecondaryColor3s ( short red,  short green,  short blue) {
+        var mh$ = glSecondaryColor3s$MH();
+        try {
+            mh$.invokeExact(red, green, blue);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle glSecondaryColor3sv$MH() {
+        return RuntimeHelper.requireNonNull(constants$110.glSecondaryColor3sv$MH,"glSecondaryColor3sv");
+    }
+    public static void glSecondaryColor3sv ( Addressable v) {
+        var mh$ = glSecondaryColor3sv$MH();
+        try {
+            mh$.invokeExact(v);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle glSecondaryColor3ub$MH() {
+        return RuntimeHelper.requireNonNull(constants$110.glSecondaryColor3ub$MH,"glSecondaryColor3ub");
+    }
+    public static void glSecondaryColor3ub ( byte red,  byte green,  byte blue) {
+        var mh$ = glSecondaryColor3ub$MH();
+        try {
+            mh$.invokeExact(red, green, blue);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle glSecondaryColor3ubv$MH() {
+        return RuntimeHelper.requireNonNull(constants$110.glSecondaryColor3ubv$MH,"glSecondaryColor3ubv");
+    }
+    public static void glSecondaryColor3ubv ( Addressable v) {
+        var mh$ = glSecondaryColor3ubv$MH();
+        try {
+            mh$.invokeExact(v);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle glSecondaryColor3ui$MH() {
+        return RuntimeHelper.requireNonNull(constants$111.glSecondaryColor3ui$MH,"glSecondaryColor3ui");
+    }
+    public static void glSecondaryColor3ui ( int red,  int green,  int blue) {
+        var mh$ = glSecondaryColor3ui$MH();
+        try {
+            mh$.invokeExact(red, green, blue);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle glSecondaryColor3uiv$MH() {
+        return RuntimeHelper.requireNonNull(constants$111.glSecondaryColor3uiv$MH,"glSecondaryColor3uiv");
+    }
+    public static void glSecondaryColor3uiv ( Addressable v) {
+        var mh$ = glSecondaryColor3uiv$MH();
+        try {
+            mh$.invokeExact(v);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle glSecondaryColor3us$MH() {
+        return RuntimeHelper.requireNonNull(constants$111.glSecondaryColor3us$MH,"glSecondaryColor3us");
+    }
+    public static void glSecondaryColor3us ( short red,  short green,  short blue) {
+        var mh$ = glSecondaryColor3us$MH();
+        try {
+            mh$.invokeExact(red, green, blue);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle glSecondaryColor3usv$MH() {
+        return RuntimeHelper.requireNonNull(constants$111.glSecondaryColor3usv$MH,"glSecondaryColor3usv");
+    }
+    public static void glSecondaryColor3usv ( Addressable v) {
+        var mh$ = glSecondaryColor3usv$MH();
+        try {
+            mh$.invokeExact(v);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle glSecondaryColorPointer$MH() {
+        return RuntimeHelper.requireNonNull(constants$111.glSecondaryColorPointer$MH,"glSecondaryColorPointer");
+    }
+    public static void glSecondaryColorPointer ( int size,  int type,  int stride,  Addressable pointer) {
+        var mh$ = glSecondaryColorPointer$MH();
+        try {
+            mh$.invokeExact(size, type, stride, pointer);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle glWindowPos2d$MH() {
+        return RuntimeHelper.requireNonNull(constants$111.glWindowPos2d$MH,"glWindowPos2d");
+    }
+    public static void glWindowPos2d ( double x,  double y) {
+        var mh$ = glWindowPos2d$MH();
+        try {
+            mh$.invokeExact(x, y);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle glWindowPos2dv$MH() {
+        return RuntimeHelper.requireNonNull(constants$112.glWindowPos2dv$MH,"glWindowPos2dv");
+    }
+    public static void glWindowPos2dv ( Addressable v) {
+        var mh$ = glWindowPos2dv$MH();
+        try {
+            mh$.invokeExact(v);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle glWindowPos2f$MH() {
+        return RuntimeHelper.requireNonNull(constants$112.glWindowPos2f$MH,"glWindowPos2f");
+    }
+    public static void glWindowPos2f ( float x,  float y) {
+        var mh$ = glWindowPos2f$MH();
+        try {
+            mh$.invokeExact(x, y);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle glWindowPos2fv$MH() {
+        return RuntimeHelper.requireNonNull(constants$112.glWindowPos2fv$MH,"glWindowPos2fv");
+    }
+    public static void glWindowPos2fv ( Addressable v) {
+        var mh$ = glWindowPos2fv$MH();
+        try {
+            mh$.invokeExact(v);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle glWindowPos2i$MH() {
+        return RuntimeHelper.requireNonNull(constants$112.glWindowPos2i$MH,"glWindowPos2i");
+    }
+    public static void glWindowPos2i ( int x,  int y) {
+        var mh$ = glWindowPos2i$MH();
+        try {
+            mh$.invokeExact(x, y);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle glWindowPos2iv$MH() {
+        return RuntimeHelper.requireNonNull(constants$112.glWindowPos2iv$MH,"glWindowPos2iv");
+    }
+    public static void glWindowPos2iv ( Addressable v) {
+        var mh$ = glWindowPos2iv$MH();
+        try {
+            mh$.invokeExact(v);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle glWindowPos2s$MH() {
+        return RuntimeHelper.requireNonNull(constants$112.glWindowPos2s$MH,"glWindowPos2s");
+    }
+    public static void glWindowPos2s ( short x,  short y) {
+        var mh$ = glWindowPos2s$MH();
+        try {
+            mh$.invokeExact(x, y);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle glWindowPos2sv$MH() {
+        return RuntimeHelper.requireNonNull(constants$113.glWindowPos2sv$MH,"glWindowPos2sv");
+    }
+    public static void glWindowPos2sv ( Addressable v) {
+        var mh$ = glWindowPos2sv$MH();
+        try {
+            mh$.invokeExact(v);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle glWindowPos3d$MH() {
+        return RuntimeHelper.requireNonNull(constants$113.glWindowPos3d$MH,"glWindowPos3d");
+    }
+    public static void glWindowPos3d ( double x,  double y,  double z) {
+        var mh$ = glWindowPos3d$MH();
+        try {
+            mh$.invokeExact(x, y, z);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle glWindowPos3dv$MH() {
+        return RuntimeHelper.requireNonNull(constants$113.glWindowPos3dv$MH,"glWindowPos3dv");
+    }
+    public static void glWindowPos3dv ( Addressable v) {
+        var mh$ = glWindowPos3dv$MH();
+        try {
+            mh$.invokeExact(v);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle glWindowPos3f$MH() {
+        return RuntimeHelper.requireNonNull(constants$113.glWindowPos3f$MH,"glWindowPos3f");
+    }
+    public static void glWindowPos3f ( float x,  float y,  float z) {
+        var mh$ = glWindowPos3f$MH();
+        try {
+            mh$.invokeExact(x, y, z);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle glWindowPos3fv$MH() {
+        return RuntimeHelper.requireNonNull(constants$113.glWindowPos3fv$MH,"glWindowPos3fv");
+    }
+    public static void glWindowPos3fv ( Addressable v) {
+        var mh$ = glWindowPos3fv$MH();
+        try {
+            mh$.invokeExact(v);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle glWindowPos3i$MH() {
+        return RuntimeHelper.requireNonNull(constants$113.glWindowPos3i$MH,"glWindowPos3i");
+    }
+    public static void glWindowPos3i ( int x,  int y,  int z) {
+        var mh$ = glWindowPos3i$MH();
+        try {
+            mh$.invokeExact(x, y, z);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle glWindowPos3iv$MH() {
+        return RuntimeHelper.requireNonNull(constants$114.glWindowPos3iv$MH,"glWindowPos3iv");
+    }
+    public static void glWindowPos3iv ( Addressable v) {
+        var mh$ = glWindowPos3iv$MH();
+        try {
+            mh$.invokeExact(v);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle glWindowPos3s$MH() {
+        return RuntimeHelper.requireNonNull(constants$114.glWindowPos3s$MH,"glWindowPos3s");
+    }
+    public static void glWindowPos3s ( short x,  short y,  short z) {
+        var mh$ = glWindowPos3s$MH();
+        try {
+            mh$.invokeExact(x, y, z);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle glWindowPos3sv$MH() {
+        return RuntimeHelper.requireNonNull(constants$114.glWindowPos3sv$MH,"glWindowPos3sv");
+    }
+    public static void glWindowPos3sv ( Addressable v) {
+        var mh$ = glWindowPos3sv$MH();
+        try {
+            mh$.invokeExact(v);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
     public static OfLong GLsizeiptr = Constants$root.C_LONG_LONG$LAYOUT;
     public static OfLong GLintptr = Constants$root.C_LONG_LONG$LAYOUT;
+    public static MethodHandle glGenQueries$MH() {
+        return RuntimeHelper.requireNonNull(constants$120.glGenQueries$MH,"glGenQueries");
+    }
+    public static void glGenQueries ( int n,  Addressable ids) {
+        var mh$ = glGenQueries$MH();
+        try {
+            mh$.invokeExact(n, ids);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle glDeleteQueries$MH() {
+        return RuntimeHelper.requireNonNull(constants$121.glDeleteQueries$MH,"glDeleteQueries");
+    }
+    public static void glDeleteQueries ( int n,  Addressable ids) {
+        var mh$ = glDeleteQueries$MH();
+        try {
+            mh$.invokeExact(n, ids);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle glIsQuery$MH() {
+        return RuntimeHelper.requireNonNull(constants$121.glIsQuery$MH,"glIsQuery");
+    }
+    public static byte glIsQuery ( int id) {
+        var mh$ = glIsQuery$MH();
+        try {
+            return (byte)mh$.invokeExact(id);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle glBeginQuery$MH() {
+        return RuntimeHelper.requireNonNull(constants$121.glBeginQuery$MH,"glBeginQuery");
+    }
+    public static void glBeginQuery ( int target,  int id) {
+        var mh$ = glBeginQuery$MH();
+        try {
+            mh$.invokeExact(target, id);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle glEndQuery$MH() {
+        return RuntimeHelper.requireNonNull(constants$121.glEndQuery$MH,"glEndQuery");
+    }
+    public static void glEndQuery ( int target) {
+        var mh$ = glEndQuery$MH();
+        try {
+            mh$.invokeExact(target);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle glGetQueryiv$MH() {
+        return RuntimeHelper.requireNonNull(constants$121.glGetQueryiv$MH,"glGetQueryiv");
+    }
+    public static void glGetQueryiv ( int target,  int pname,  Addressable params) {
+        var mh$ = glGetQueryiv$MH();
+        try {
+            mh$.invokeExact(target, pname, params);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle glGetQueryObjectiv$MH() {
+        return RuntimeHelper.requireNonNull(constants$121.glGetQueryObjectiv$MH,"glGetQueryObjectiv");
+    }
+    public static void glGetQueryObjectiv ( int id,  int pname,  Addressable params) {
+        var mh$ = glGetQueryObjectiv$MH();
+        try {
+            mh$.invokeExact(id, pname, params);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle glGetQueryObjectuiv$MH() {
+        return RuntimeHelper.requireNonNull(constants$122.glGetQueryObjectuiv$MH,"glGetQueryObjectuiv");
+    }
+    public static void glGetQueryObjectuiv ( int id,  int pname,  Addressable params) {
+        var mh$ = glGetQueryObjectuiv$MH();
+        try {
+            mh$.invokeExact(id, pname, params);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle glBindBuffer$MH() {
+        return RuntimeHelper.requireNonNull(constants$122.glBindBuffer$MH,"glBindBuffer");
+    }
+    public static void glBindBuffer ( int target,  int buffer) {
+        var mh$ = glBindBuffer$MH();
+        try {
+            mh$.invokeExact(target, buffer);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle glDeleteBuffers$MH() {
+        return RuntimeHelper.requireNonNull(constants$122.glDeleteBuffers$MH,"glDeleteBuffers");
+    }
+    public static void glDeleteBuffers ( int n,  Addressable buffers) {
+        var mh$ = glDeleteBuffers$MH();
+        try {
+            mh$.invokeExact(n, buffers);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle glGenBuffers$MH() {
+        return RuntimeHelper.requireNonNull(constants$122.glGenBuffers$MH,"glGenBuffers");
+    }
+    public static void glGenBuffers ( int n,  Addressable buffers) {
+        var mh$ = glGenBuffers$MH();
+        try {
+            mh$.invokeExact(n, buffers);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle glIsBuffer$MH() {
+        return RuntimeHelper.requireNonNull(constants$122.glIsBuffer$MH,"glIsBuffer");
+    }
+    public static byte glIsBuffer ( int buffer) {
+        var mh$ = glIsBuffer$MH();
+        try {
+            return (byte)mh$.invokeExact(buffer);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle glBufferData$MH() {
+        return RuntimeHelper.requireNonNull(constants$122.glBufferData$MH,"glBufferData");
+    }
+    public static void glBufferData ( int target,  long size,  Addressable data,  int usage) {
+        var mh$ = glBufferData$MH();
+        try {
+            mh$.invokeExact(target, size, data, usage);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle glBufferSubData$MH() {
+        return RuntimeHelper.requireNonNull(constants$123.glBufferSubData$MH,"glBufferSubData");
+    }
+    public static void glBufferSubData ( int target,  long offset,  long size,  Addressable data) {
+        var mh$ = glBufferSubData$MH();
+        try {
+            mh$.invokeExact(target, offset, size, data);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle glGetBufferSubData$MH() {
+        return RuntimeHelper.requireNonNull(constants$123.glGetBufferSubData$MH,"glGetBufferSubData");
+    }
+    public static void glGetBufferSubData ( int target,  long offset,  long size,  Addressable data) {
+        var mh$ = glGetBufferSubData$MH();
+        try {
+            mh$.invokeExact(target, offset, size, data);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle glMapBuffer$MH() {
+        return RuntimeHelper.requireNonNull(constants$123.glMapBuffer$MH,"glMapBuffer");
+    }
+    public static MemoryAddress glMapBuffer ( int target,  int access) {
+        var mh$ = glMapBuffer$MH();
+        try {
+            return (java.lang.foreign.MemoryAddress)mh$.invokeExact(target, access);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle glUnmapBuffer$MH() {
+        return RuntimeHelper.requireNonNull(constants$123.glUnmapBuffer$MH,"glUnmapBuffer");
+    }
+    public static byte glUnmapBuffer ( int target) {
+        var mh$ = glUnmapBuffer$MH();
+        try {
+            return (byte)mh$.invokeExact(target);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle glGetBufferParameteriv$MH() {
+        return RuntimeHelper.requireNonNull(constants$123.glGetBufferParameteriv$MH,"glGetBufferParameteriv");
+    }
+    public static void glGetBufferParameteriv ( int target,  int pname,  Addressable params) {
+        var mh$ = glGetBufferParameteriv$MH();
+        try {
+            mh$.invokeExact(target, pname, params);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle glGetBufferPointerv$MH() {
+        return RuntimeHelper.requireNonNull(constants$123.glGetBufferPointerv$MH,"glGetBufferPointerv");
+    }
+    public static void glGetBufferPointerv ( int target,  int pname,  Addressable params) {
+        var mh$ = glGetBufferPointerv$MH();
+        try {
+            mh$.invokeExact(target, pname, params);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
     public static OfByte GLchar = Constants$root.C_CHAR$LAYOUT;
+    public static MethodHandle glBlendEquationSeparate$MH() {
+        return RuntimeHelper.requireNonNull(constants$155.glBlendEquationSeparate$MH,"glBlendEquationSeparate");
+    }
+    public static void glBlendEquationSeparate ( int modeRGB,  int modeAlpha) {
+        var mh$ = glBlendEquationSeparate$MH();
+        try {
+            mh$.invokeExact(modeRGB, modeAlpha);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle glDrawBuffers$MH() {
+        return RuntimeHelper.requireNonNull(constants$155.glDrawBuffers$MH,"glDrawBuffers");
+    }
+    public static void glDrawBuffers ( int n,  Addressable bufs) {
+        var mh$ = glDrawBuffers$MH();
+        try {
+            mh$.invokeExact(n, bufs);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle glStencilOpSeparate$MH() {
+        return RuntimeHelper.requireNonNull(constants$155.glStencilOpSeparate$MH,"glStencilOpSeparate");
+    }
+    public static void glStencilOpSeparate ( int face,  int sfail,  int dpfail,  int dppass) {
+        var mh$ = glStencilOpSeparate$MH();
+        try {
+            mh$.invokeExact(face, sfail, dpfail, dppass);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle glStencilFuncSeparate$MH() {
+        return RuntimeHelper.requireNonNull(constants$155.glStencilFuncSeparate$MH,"glStencilFuncSeparate");
+    }
+    public static void glStencilFuncSeparate ( int face,  int func,  int ref,  int mask) {
+        var mh$ = glStencilFuncSeparate$MH();
+        try {
+            mh$.invokeExact(face, func, ref, mask);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle glStencilMaskSeparate$MH() {
+        return RuntimeHelper.requireNonNull(constants$155.glStencilMaskSeparate$MH,"glStencilMaskSeparate");
+    }
+    public static void glStencilMaskSeparate ( int face,  int mask) {
+        var mh$ = glStencilMaskSeparate$MH();
+        try {
+            mh$.invokeExact(face, mask);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle glAttachShader$MH() {
+        return RuntimeHelper.requireNonNull(constants$155.glAttachShader$MH,"glAttachShader");
+    }
+    public static void glAttachShader ( int program,  int shader) {
+        var mh$ = glAttachShader$MH();
+        try {
+            mh$.invokeExact(program, shader);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle glBindAttribLocation$MH() {
+        return RuntimeHelper.requireNonNull(constants$156.glBindAttribLocation$MH,"glBindAttribLocation");
+    }
+    public static void glBindAttribLocation ( int program,  int index,  Addressable name) {
+        var mh$ = glBindAttribLocation$MH();
+        try {
+            mh$.invokeExact(program, index, name);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle glCompileShader$MH() {
+        return RuntimeHelper.requireNonNull(constants$156.glCompileShader$MH,"glCompileShader");
+    }
+    public static void glCompileShader ( int shader) {
+        var mh$ = glCompileShader$MH();
+        try {
+            mh$.invokeExact(shader);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle glCreateProgram$MH() {
+        return RuntimeHelper.requireNonNull(constants$156.glCreateProgram$MH,"glCreateProgram");
+    }
+    public static int glCreateProgram () {
+        var mh$ = glCreateProgram$MH();
+        try {
+            return (int)mh$.invokeExact();
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle glCreateShader$MH() {
+        return RuntimeHelper.requireNonNull(constants$156.glCreateShader$MH,"glCreateShader");
+    }
+    public static int glCreateShader ( int type) {
+        var mh$ = glCreateShader$MH();
+        try {
+            return (int)mh$.invokeExact(type);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle glDeleteProgram$MH() {
+        return RuntimeHelper.requireNonNull(constants$156.glDeleteProgram$MH,"glDeleteProgram");
+    }
+    public static void glDeleteProgram ( int program) {
+        var mh$ = glDeleteProgram$MH();
+        try {
+            mh$.invokeExact(program);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle glDeleteShader$MH() {
+        return RuntimeHelper.requireNonNull(constants$156.glDeleteShader$MH,"glDeleteShader");
+    }
+    public static void glDeleteShader ( int shader) {
+        var mh$ = glDeleteShader$MH();
+        try {
+            mh$.invokeExact(shader);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle glDetachShader$MH() {
+        return RuntimeHelper.requireNonNull(constants$157.glDetachShader$MH,"glDetachShader");
+    }
+    public static void glDetachShader ( int program,  int shader) {
+        var mh$ = glDetachShader$MH();
+        try {
+            mh$.invokeExact(program, shader);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle glDisableVertexAttribArray$MH() {
+        return RuntimeHelper.requireNonNull(constants$157.glDisableVertexAttribArray$MH,"glDisableVertexAttribArray");
+    }
+    public static void glDisableVertexAttribArray ( int index) {
+        var mh$ = glDisableVertexAttribArray$MH();
+        try {
+            mh$.invokeExact(index);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle glEnableVertexAttribArray$MH() {
+        return RuntimeHelper.requireNonNull(constants$157.glEnableVertexAttribArray$MH,"glEnableVertexAttribArray");
+    }
+    public static void glEnableVertexAttribArray ( int index) {
+        var mh$ = glEnableVertexAttribArray$MH();
+        try {
+            mh$.invokeExact(index);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle glGetActiveAttrib$MH() {
+        return RuntimeHelper.requireNonNull(constants$157.glGetActiveAttrib$MH,"glGetActiveAttrib");
+    }
+    public static void glGetActiveAttrib ( int program,  int index,  int bufSize,  Addressable length,  Addressable size,  Addressable type,  Addressable name) {
+        var mh$ = glGetActiveAttrib$MH();
+        try {
+            mh$.invokeExact(program, index, bufSize, length, size, type, name);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle glGetActiveUniform$MH() {
+        return RuntimeHelper.requireNonNull(constants$157.glGetActiveUniform$MH,"glGetActiveUniform");
+    }
+    public static void glGetActiveUniform ( int program,  int index,  int bufSize,  Addressable length,  Addressable size,  Addressable type,  Addressable name) {
+        var mh$ = glGetActiveUniform$MH();
+        try {
+            mh$.invokeExact(program, index, bufSize, length, size, type, name);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle glGetAttachedShaders$MH() {
+        return RuntimeHelper.requireNonNull(constants$157.glGetAttachedShaders$MH,"glGetAttachedShaders");
+    }
+    public static void glGetAttachedShaders ( int program,  int maxCount,  Addressable count,  Addressable shaders) {
+        var mh$ = glGetAttachedShaders$MH();
+        try {
+            mh$.invokeExact(program, maxCount, count, shaders);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle glGetAttribLocation$MH() {
+        return RuntimeHelper.requireNonNull(constants$158.glGetAttribLocation$MH,"glGetAttribLocation");
+    }
+    public static int glGetAttribLocation ( int program,  Addressable name) {
+        var mh$ = glGetAttribLocation$MH();
+        try {
+            return (int)mh$.invokeExact(program, name);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle glGetProgramiv$MH() {
+        return RuntimeHelper.requireNonNull(constants$158.glGetProgramiv$MH,"glGetProgramiv");
+    }
+    public static void glGetProgramiv ( int program,  int pname,  Addressable params) {
+        var mh$ = glGetProgramiv$MH();
+        try {
+            mh$.invokeExact(program, pname, params);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle glGetProgramInfoLog$MH() {
+        return RuntimeHelper.requireNonNull(constants$158.glGetProgramInfoLog$MH,"glGetProgramInfoLog");
+    }
+    public static void glGetProgramInfoLog ( int program,  int bufSize,  Addressable length,  Addressable infoLog) {
+        var mh$ = glGetProgramInfoLog$MH();
+        try {
+            mh$.invokeExact(program, bufSize, length, infoLog);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle glGetShaderiv$MH() {
+        return RuntimeHelper.requireNonNull(constants$158.glGetShaderiv$MH,"glGetShaderiv");
+    }
+    public static void glGetShaderiv ( int shader,  int pname,  Addressable params) {
+        var mh$ = glGetShaderiv$MH();
+        try {
+            mh$.invokeExact(shader, pname, params);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle glGetShaderInfoLog$MH() {
+        return RuntimeHelper.requireNonNull(constants$158.glGetShaderInfoLog$MH,"glGetShaderInfoLog");
+    }
+    public static void glGetShaderInfoLog ( int shader,  int bufSize,  Addressable length,  Addressable infoLog) {
+        var mh$ = glGetShaderInfoLog$MH();
+        try {
+            mh$.invokeExact(shader, bufSize, length, infoLog);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle glGetShaderSource$MH() {
+        return RuntimeHelper.requireNonNull(constants$158.glGetShaderSource$MH,"glGetShaderSource");
+    }
+    public static void glGetShaderSource ( int shader,  int bufSize,  Addressable length,  Addressable source) {
+        var mh$ = glGetShaderSource$MH();
+        try {
+            mh$.invokeExact(shader, bufSize, length, source);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle glGetUniformLocation$MH() {
+        return RuntimeHelper.requireNonNull(constants$159.glGetUniformLocation$MH,"glGetUniformLocation");
+    }
+    public static int glGetUniformLocation ( int program,  Addressable name) {
+        var mh$ = glGetUniformLocation$MH();
+        try {
+            return (int)mh$.invokeExact(program, name);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle glGetUniformfv$MH() {
+        return RuntimeHelper.requireNonNull(constants$159.glGetUniformfv$MH,"glGetUniformfv");
+    }
+    public static void glGetUniformfv ( int program,  int location,  Addressable params) {
+        var mh$ = glGetUniformfv$MH();
+        try {
+            mh$.invokeExact(program, location, params);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle glGetUniformiv$MH() {
+        return RuntimeHelper.requireNonNull(constants$159.glGetUniformiv$MH,"glGetUniformiv");
+    }
+    public static void glGetUniformiv ( int program,  int location,  Addressable params) {
+        var mh$ = glGetUniformiv$MH();
+        try {
+            mh$.invokeExact(program, location, params);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle glGetVertexAttribdv$MH() {
+        return RuntimeHelper.requireNonNull(constants$159.glGetVertexAttribdv$MH,"glGetVertexAttribdv");
+    }
+    public static void glGetVertexAttribdv ( int index,  int pname,  Addressable params) {
+        var mh$ = glGetVertexAttribdv$MH();
+        try {
+            mh$.invokeExact(index, pname, params);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle glGetVertexAttribfv$MH() {
+        return RuntimeHelper.requireNonNull(constants$159.glGetVertexAttribfv$MH,"glGetVertexAttribfv");
+    }
+    public static void glGetVertexAttribfv ( int index,  int pname,  Addressable params) {
+        var mh$ = glGetVertexAttribfv$MH();
+        try {
+            mh$.invokeExact(index, pname, params);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle glGetVertexAttribiv$MH() {
+        return RuntimeHelper.requireNonNull(constants$159.glGetVertexAttribiv$MH,"glGetVertexAttribiv");
+    }
+    public static void glGetVertexAttribiv ( int index,  int pname,  Addressable params) {
+        var mh$ = glGetVertexAttribiv$MH();
+        try {
+            mh$.invokeExact(index, pname, params);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle glGetVertexAttribPointerv$MH() {
+        return RuntimeHelper.requireNonNull(constants$160.glGetVertexAttribPointerv$MH,"glGetVertexAttribPointerv");
+    }
+    public static void glGetVertexAttribPointerv ( int index,  int pname,  Addressable pointer) {
+        var mh$ = glGetVertexAttribPointerv$MH();
+        try {
+            mh$.invokeExact(index, pname, pointer);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle glIsProgram$MH() {
+        return RuntimeHelper.requireNonNull(constants$160.glIsProgram$MH,"glIsProgram");
+    }
+    public static byte glIsProgram ( int program) {
+        var mh$ = glIsProgram$MH();
+        try {
+            return (byte)mh$.invokeExact(program);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle glIsShader$MH() {
+        return RuntimeHelper.requireNonNull(constants$160.glIsShader$MH,"glIsShader");
+    }
+    public static byte glIsShader ( int shader) {
+        var mh$ = glIsShader$MH();
+        try {
+            return (byte)mh$.invokeExact(shader);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle glLinkProgram$MH() {
+        return RuntimeHelper.requireNonNull(constants$160.glLinkProgram$MH,"glLinkProgram");
+    }
+    public static void glLinkProgram ( int program) {
+        var mh$ = glLinkProgram$MH();
+        try {
+            mh$.invokeExact(program);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle glShaderSource$MH() {
+        return RuntimeHelper.requireNonNull(constants$160.glShaderSource$MH,"glShaderSource");
+    }
+    public static void glShaderSource ( int shader,  int count,  Addressable string,  Addressable length) {
+        var mh$ = glShaderSource$MH();
+        try {
+            mh$.invokeExact(shader, count, string, length);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle glUseProgram$MH() {
+        return RuntimeHelper.requireNonNull(constants$160.glUseProgram$MH,"glUseProgram");
+    }
+    public static void glUseProgram ( int program) {
+        var mh$ = glUseProgram$MH();
+        try {
+            mh$.invokeExact(program);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle glUniform1f$MH() {
+        return RuntimeHelper.requireNonNull(constants$161.glUniform1f$MH,"glUniform1f");
+    }
+    public static void glUniform1f ( int location,  float v0) {
+        var mh$ = glUniform1f$MH();
+        try {
+            mh$.invokeExact(location, v0);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle glUniform2f$MH() {
+        return RuntimeHelper.requireNonNull(constants$161.glUniform2f$MH,"glUniform2f");
+    }
+    public static void glUniform2f ( int location,  float v0,  float v1) {
+        var mh$ = glUniform2f$MH();
+        try {
+            mh$.invokeExact(location, v0, v1);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle glUniform3f$MH() {
+        return RuntimeHelper.requireNonNull(constants$161.glUniform3f$MH,"glUniform3f");
+    }
+    public static void glUniform3f ( int location,  float v0,  float v1,  float v2) {
+        var mh$ = glUniform3f$MH();
+        try {
+            mh$.invokeExact(location, v0, v1, v2);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle glUniform4f$MH() {
+        return RuntimeHelper.requireNonNull(constants$161.glUniform4f$MH,"glUniform4f");
+    }
+    public static void glUniform4f ( int location,  float v0,  float v1,  float v2,  float v3) {
+        var mh$ = glUniform4f$MH();
+        try {
+            mh$.invokeExact(location, v0, v1, v2, v3);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle glUniform1i$MH() {
+        return RuntimeHelper.requireNonNull(constants$161.glUniform1i$MH,"glUniform1i");
+    }
+    public static void glUniform1i ( int location,  int v0) {
+        var mh$ = glUniform1i$MH();
+        try {
+            mh$.invokeExact(location, v0);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle glUniform2i$MH() {
+        return RuntimeHelper.requireNonNull(constants$161.glUniform2i$MH,"glUniform2i");
+    }
+    public static void glUniform2i ( int location,  int v0,  int v1) {
+        var mh$ = glUniform2i$MH();
+        try {
+            mh$.invokeExact(location, v0, v1);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle glUniform3i$MH() {
+        return RuntimeHelper.requireNonNull(constants$162.glUniform3i$MH,"glUniform3i");
+    }
+    public static void glUniform3i ( int location,  int v0,  int v1,  int v2) {
+        var mh$ = glUniform3i$MH();
+        try {
+            mh$.invokeExact(location, v0, v1, v2);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle glUniform4i$MH() {
+        return RuntimeHelper.requireNonNull(constants$162.glUniform4i$MH,"glUniform4i");
+    }
+    public static void glUniform4i ( int location,  int v0,  int v1,  int v2,  int v3) {
+        var mh$ = glUniform4i$MH();
+        try {
+            mh$.invokeExact(location, v0, v1, v2, v3);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle glUniform1fv$MH() {
+        return RuntimeHelper.requireNonNull(constants$162.glUniform1fv$MH,"glUniform1fv");
+    }
+    public static void glUniform1fv ( int location,  int count,  Addressable value) {
+        var mh$ = glUniform1fv$MH();
+        try {
+            mh$.invokeExact(location, count, value);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle glUniform2fv$MH() {
+        return RuntimeHelper.requireNonNull(constants$162.glUniform2fv$MH,"glUniform2fv");
+    }
+    public static void glUniform2fv ( int location,  int count,  Addressable value) {
+        var mh$ = glUniform2fv$MH();
+        try {
+            mh$.invokeExact(location, count, value);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle glUniform3fv$MH() {
+        return RuntimeHelper.requireNonNull(constants$162.glUniform3fv$MH,"glUniform3fv");
+    }
+    public static void glUniform3fv ( int location,  int count,  Addressable value) {
+        var mh$ = glUniform3fv$MH();
+        try {
+            mh$.invokeExact(location, count, value);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle glUniform4fv$MH() {
+        return RuntimeHelper.requireNonNull(constants$162.glUniform4fv$MH,"glUniform4fv");
+    }
+    public static void glUniform4fv ( int location,  int count,  Addressable value) {
+        var mh$ = glUniform4fv$MH();
+        try {
+            mh$.invokeExact(location, count, value);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle glUniform1iv$MH() {
+        return RuntimeHelper.requireNonNull(constants$163.glUniform1iv$MH,"glUniform1iv");
+    }
+    public static void glUniform1iv ( int location,  int count,  Addressable value) {
+        var mh$ = glUniform1iv$MH();
+        try {
+            mh$.invokeExact(location, count, value);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle glUniform2iv$MH() {
+        return RuntimeHelper.requireNonNull(constants$163.glUniform2iv$MH,"glUniform2iv");
+    }
+    public static void glUniform2iv ( int location,  int count,  Addressable value) {
+        var mh$ = glUniform2iv$MH();
+        try {
+            mh$.invokeExact(location, count, value);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle glUniform3iv$MH() {
+        return RuntimeHelper.requireNonNull(constants$163.glUniform3iv$MH,"glUniform3iv");
+    }
+    public static void glUniform3iv ( int location,  int count,  Addressable value) {
+        var mh$ = glUniform3iv$MH();
+        try {
+            mh$.invokeExact(location, count, value);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle glUniform4iv$MH() {
+        return RuntimeHelper.requireNonNull(constants$163.glUniform4iv$MH,"glUniform4iv");
+    }
+    public static void glUniform4iv ( int location,  int count,  Addressable value) {
+        var mh$ = glUniform4iv$MH();
+        try {
+            mh$.invokeExact(location, count, value);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle glUniformMatrix2fv$MH() {
+        return RuntimeHelper.requireNonNull(constants$163.glUniformMatrix2fv$MH,"glUniformMatrix2fv");
+    }
+    public static void glUniformMatrix2fv ( int location,  int count,  byte transpose,  Addressable value) {
+        var mh$ = glUniformMatrix2fv$MH();
+        try {
+            mh$.invokeExact(location, count, transpose, value);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle glUniformMatrix3fv$MH() {
+        return RuntimeHelper.requireNonNull(constants$163.glUniformMatrix3fv$MH,"glUniformMatrix3fv");
+    }
+    public static void glUniformMatrix3fv ( int location,  int count,  byte transpose,  Addressable value) {
+        var mh$ = glUniformMatrix3fv$MH();
+        try {
+            mh$.invokeExact(location, count, transpose, value);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle glUniformMatrix4fv$MH() {
+        return RuntimeHelper.requireNonNull(constants$164.glUniformMatrix4fv$MH,"glUniformMatrix4fv");
+    }
+    public static void glUniformMatrix4fv ( int location,  int count,  byte transpose,  Addressable value) {
+        var mh$ = glUniformMatrix4fv$MH();
+        try {
+            mh$.invokeExact(location, count, transpose, value);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle glValidateProgram$MH() {
+        return RuntimeHelper.requireNonNull(constants$164.glValidateProgram$MH,"glValidateProgram");
+    }
+    public static void glValidateProgram ( int program) {
+        var mh$ = glValidateProgram$MH();
+        try {
+            mh$.invokeExact(program);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle glVertexAttrib1d$MH() {
+        return RuntimeHelper.requireNonNull(constants$164.glVertexAttrib1d$MH,"glVertexAttrib1d");
+    }
+    public static void glVertexAttrib1d ( int index,  double x) {
+        var mh$ = glVertexAttrib1d$MH();
+        try {
+            mh$.invokeExact(index, x);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle glVertexAttrib1dv$MH() {
+        return RuntimeHelper.requireNonNull(constants$164.glVertexAttrib1dv$MH,"glVertexAttrib1dv");
+    }
+    public static void glVertexAttrib1dv ( int index,  Addressable v) {
+        var mh$ = glVertexAttrib1dv$MH();
+        try {
+            mh$.invokeExact(index, v);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle glVertexAttrib1f$MH() {
+        return RuntimeHelper.requireNonNull(constants$164.glVertexAttrib1f$MH,"glVertexAttrib1f");
+    }
+    public static void glVertexAttrib1f ( int index,  float x) {
+        var mh$ = glVertexAttrib1f$MH();
+        try {
+            mh$.invokeExact(index, x);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle glVertexAttrib1fv$MH() {
+        return RuntimeHelper.requireNonNull(constants$164.glVertexAttrib1fv$MH,"glVertexAttrib1fv");
+    }
+    public static void glVertexAttrib1fv ( int index,  Addressable v) {
+        var mh$ = glVertexAttrib1fv$MH();
+        try {
+            mh$.invokeExact(index, v);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle glVertexAttrib1s$MH() {
+        return RuntimeHelper.requireNonNull(constants$165.glVertexAttrib1s$MH,"glVertexAttrib1s");
+    }
+    public static void glVertexAttrib1s ( int index,  short x) {
+        var mh$ = glVertexAttrib1s$MH();
+        try {
+            mh$.invokeExact(index, x);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle glVertexAttrib1sv$MH() {
+        return RuntimeHelper.requireNonNull(constants$165.glVertexAttrib1sv$MH,"glVertexAttrib1sv");
+    }
+    public static void glVertexAttrib1sv ( int index,  Addressable v) {
+        var mh$ = glVertexAttrib1sv$MH();
+        try {
+            mh$.invokeExact(index, v);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle glVertexAttrib2d$MH() {
+        return RuntimeHelper.requireNonNull(constants$165.glVertexAttrib2d$MH,"glVertexAttrib2d");
+    }
+    public static void glVertexAttrib2d ( int index,  double x,  double y) {
+        var mh$ = glVertexAttrib2d$MH();
+        try {
+            mh$.invokeExact(index, x, y);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle glVertexAttrib2dv$MH() {
+        return RuntimeHelper.requireNonNull(constants$165.glVertexAttrib2dv$MH,"glVertexAttrib2dv");
+    }
+    public static void glVertexAttrib2dv ( int index,  Addressable v) {
+        var mh$ = glVertexAttrib2dv$MH();
+        try {
+            mh$.invokeExact(index, v);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle glVertexAttrib2f$MH() {
+        return RuntimeHelper.requireNonNull(constants$165.glVertexAttrib2f$MH,"glVertexAttrib2f");
+    }
+    public static void glVertexAttrib2f ( int index,  float x,  float y) {
+        var mh$ = glVertexAttrib2f$MH();
+        try {
+            mh$.invokeExact(index, x, y);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle glVertexAttrib2fv$MH() {
+        return RuntimeHelper.requireNonNull(constants$165.glVertexAttrib2fv$MH,"glVertexAttrib2fv");
+    }
+    public static void glVertexAttrib2fv ( int index,  Addressable v) {
+        var mh$ = glVertexAttrib2fv$MH();
+        try {
+            mh$.invokeExact(index, v);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle glVertexAttrib2s$MH() {
+        return RuntimeHelper.requireNonNull(constants$166.glVertexAttrib2s$MH,"glVertexAttrib2s");
+    }
+    public static void glVertexAttrib2s ( int index,  short x,  short y) {
+        var mh$ = glVertexAttrib2s$MH();
+        try {
+            mh$.invokeExact(index, x, y);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle glVertexAttrib2sv$MH() {
+        return RuntimeHelper.requireNonNull(constants$166.glVertexAttrib2sv$MH,"glVertexAttrib2sv");
+    }
+    public static void glVertexAttrib2sv ( int index,  Addressable v) {
+        var mh$ = glVertexAttrib2sv$MH();
+        try {
+            mh$.invokeExact(index, v);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle glVertexAttrib3d$MH() {
+        return RuntimeHelper.requireNonNull(constants$166.glVertexAttrib3d$MH,"glVertexAttrib3d");
+    }
+    public static void glVertexAttrib3d ( int index,  double x,  double y,  double z) {
+        var mh$ = glVertexAttrib3d$MH();
+        try {
+            mh$.invokeExact(index, x, y, z);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle glVertexAttrib3dv$MH() {
+        return RuntimeHelper.requireNonNull(constants$166.glVertexAttrib3dv$MH,"glVertexAttrib3dv");
+    }
+    public static void glVertexAttrib3dv ( int index,  Addressable v) {
+        var mh$ = glVertexAttrib3dv$MH();
+        try {
+            mh$.invokeExact(index, v);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle glVertexAttrib3f$MH() {
+        return RuntimeHelper.requireNonNull(constants$166.glVertexAttrib3f$MH,"glVertexAttrib3f");
+    }
+    public static void glVertexAttrib3f ( int index,  float x,  float y,  float z) {
+        var mh$ = glVertexAttrib3f$MH();
+        try {
+            mh$.invokeExact(index, x, y, z);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle glVertexAttrib3fv$MH() {
+        return RuntimeHelper.requireNonNull(constants$166.glVertexAttrib3fv$MH,"glVertexAttrib3fv");
+    }
+    public static void glVertexAttrib3fv ( int index,  Addressable v) {
+        var mh$ = glVertexAttrib3fv$MH();
+        try {
+            mh$.invokeExact(index, v);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle glVertexAttrib3s$MH() {
+        return RuntimeHelper.requireNonNull(constants$167.glVertexAttrib3s$MH,"glVertexAttrib3s");
+    }
+    public static void glVertexAttrib3s ( int index,  short x,  short y,  short z) {
+        var mh$ = glVertexAttrib3s$MH();
+        try {
+            mh$.invokeExact(index, x, y, z);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle glVertexAttrib3sv$MH() {
+        return RuntimeHelper.requireNonNull(constants$167.glVertexAttrib3sv$MH,"glVertexAttrib3sv");
+    }
+    public static void glVertexAttrib3sv ( int index,  Addressable v) {
+        var mh$ = glVertexAttrib3sv$MH();
+        try {
+            mh$.invokeExact(index, v);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle glVertexAttrib4Nbv$MH() {
+        return RuntimeHelper.requireNonNull(constants$167.glVertexAttrib4Nbv$MH,"glVertexAttrib4Nbv");
+    }
+    public static void glVertexAttrib4Nbv ( int index,  Addressable v) {
+        var mh$ = glVertexAttrib4Nbv$MH();
+        try {
+            mh$.invokeExact(index, v);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle glVertexAttrib4Niv$MH() {
+        return RuntimeHelper.requireNonNull(constants$167.glVertexAttrib4Niv$MH,"glVertexAttrib4Niv");
+    }
+    public static void glVertexAttrib4Niv ( int index,  Addressable v) {
+        var mh$ = glVertexAttrib4Niv$MH();
+        try {
+            mh$.invokeExact(index, v);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle glVertexAttrib4Nsv$MH() {
+        return RuntimeHelper.requireNonNull(constants$167.glVertexAttrib4Nsv$MH,"glVertexAttrib4Nsv");
+    }
+    public static void glVertexAttrib4Nsv ( int index,  Addressable v) {
+        var mh$ = glVertexAttrib4Nsv$MH();
+        try {
+            mh$.invokeExact(index, v);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle glVertexAttrib4Nub$MH() {
+        return RuntimeHelper.requireNonNull(constants$167.glVertexAttrib4Nub$MH,"glVertexAttrib4Nub");
+    }
+    public static void glVertexAttrib4Nub ( int index,  byte x,  byte y,  byte z,  byte w) {
+        var mh$ = glVertexAttrib4Nub$MH();
+        try {
+            mh$.invokeExact(index, x, y, z, w);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle glVertexAttrib4Nubv$MH() {
+        return RuntimeHelper.requireNonNull(constants$168.glVertexAttrib4Nubv$MH,"glVertexAttrib4Nubv");
+    }
+    public static void glVertexAttrib4Nubv ( int index,  Addressable v) {
+        var mh$ = glVertexAttrib4Nubv$MH();
+        try {
+            mh$.invokeExact(index, v);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle glVertexAttrib4Nuiv$MH() {
+        return RuntimeHelper.requireNonNull(constants$168.glVertexAttrib4Nuiv$MH,"glVertexAttrib4Nuiv");
+    }
+    public static void glVertexAttrib4Nuiv ( int index,  Addressable v) {
+        var mh$ = glVertexAttrib4Nuiv$MH();
+        try {
+            mh$.invokeExact(index, v);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle glVertexAttrib4Nusv$MH() {
+        return RuntimeHelper.requireNonNull(constants$168.glVertexAttrib4Nusv$MH,"glVertexAttrib4Nusv");
+    }
+    public static void glVertexAttrib4Nusv ( int index,  Addressable v) {
+        var mh$ = glVertexAttrib4Nusv$MH();
+        try {
+            mh$.invokeExact(index, v);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle glVertexAttrib4bv$MH() {
+        return RuntimeHelper.requireNonNull(constants$168.glVertexAttrib4bv$MH,"glVertexAttrib4bv");
+    }
+    public static void glVertexAttrib4bv ( int index,  Addressable v) {
+        var mh$ = glVertexAttrib4bv$MH();
+        try {
+            mh$.invokeExact(index, v);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle glVertexAttrib4d$MH() {
+        return RuntimeHelper.requireNonNull(constants$168.glVertexAttrib4d$MH,"glVertexAttrib4d");
+    }
+    public static void glVertexAttrib4d ( int index,  double x,  double y,  double z,  double w) {
+        var mh$ = glVertexAttrib4d$MH();
+        try {
+            mh$.invokeExact(index, x, y, z, w);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle glVertexAttrib4dv$MH() {
+        return RuntimeHelper.requireNonNull(constants$168.glVertexAttrib4dv$MH,"glVertexAttrib4dv");
+    }
+    public static void glVertexAttrib4dv ( int index,  Addressable v) {
+        var mh$ = glVertexAttrib4dv$MH();
+        try {
+            mh$.invokeExact(index, v);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle glVertexAttrib4f$MH() {
+        return RuntimeHelper.requireNonNull(constants$169.glVertexAttrib4f$MH,"glVertexAttrib4f");
+    }
+    public static void glVertexAttrib4f ( int index,  float x,  float y,  float z,  float w) {
+        var mh$ = glVertexAttrib4f$MH();
+        try {
+            mh$.invokeExact(index, x, y, z, w);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle glVertexAttrib4fv$MH() {
+        return RuntimeHelper.requireNonNull(constants$169.glVertexAttrib4fv$MH,"glVertexAttrib4fv");
+    }
+    public static void glVertexAttrib4fv ( int index,  Addressable v) {
+        var mh$ = glVertexAttrib4fv$MH();
+        try {
+            mh$.invokeExact(index, v);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle glVertexAttrib4iv$MH() {
+        return RuntimeHelper.requireNonNull(constants$169.glVertexAttrib4iv$MH,"glVertexAttrib4iv");
+    }
+    public static void glVertexAttrib4iv ( int index,  Addressable v) {
+        var mh$ = glVertexAttrib4iv$MH();
+        try {
+            mh$.invokeExact(index, v);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle glVertexAttrib4s$MH() {
+        return RuntimeHelper.requireNonNull(constants$169.glVertexAttrib4s$MH,"glVertexAttrib4s");
+    }
+    public static void glVertexAttrib4s ( int index,  short x,  short y,  short z,  short w) {
+        var mh$ = glVertexAttrib4s$MH();
+        try {
+            mh$.invokeExact(index, x, y, z, w);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle glVertexAttrib4sv$MH() {
+        return RuntimeHelper.requireNonNull(constants$169.glVertexAttrib4sv$MH,"glVertexAttrib4sv");
+    }
+    public static void glVertexAttrib4sv ( int index,  Addressable v) {
+        var mh$ = glVertexAttrib4sv$MH();
+        try {
+            mh$.invokeExact(index, v);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle glVertexAttrib4ubv$MH() {
+        return RuntimeHelper.requireNonNull(constants$169.glVertexAttrib4ubv$MH,"glVertexAttrib4ubv");
+    }
+    public static void glVertexAttrib4ubv ( int index,  Addressable v) {
+        var mh$ = glVertexAttrib4ubv$MH();
+        try {
+            mh$.invokeExact(index, v);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle glVertexAttrib4uiv$MH() {
+        return RuntimeHelper.requireNonNull(constants$170.glVertexAttrib4uiv$MH,"glVertexAttrib4uiv");
+    }
+    public static void glVertexAttrib4uiv ( int index,  Addressable v) {
+        var mh$ = glVertexAttrib4uiv$MH();
+        try {
+            mh$.invokeExact(index, v);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle glVertexAttrib4usv$MH() {
+        return RuntimeHelper.requireNonNull(constants$170.glVertexAttrib4usv$MH,"glVertexAttrib4usv");
+    }
+    public static void glVertexAttrib4usv ( int index,  Addressable v) {
+        var mh$ = glVertexAttrib4usv$MH();
+        try {
+            mh$.invokeExact(index, v);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle glVertexAttribPointer$MH() {
+        return RuntimeHelper.requireNonNull(constants$170.glVertexAttribPointer$MH,"glVertexAttribPointer");
+    }
+    public static void glVertexAttribPointer ( int index,  int size,  int type,  byte normalized,  int stride,  Addressable pointer) {
+        var mh$ = glVertexAttribPointer$MH();
+        try {
+            mh$.invokeExact(index, size, type, normalized, stride, pointer);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle glUniformMatrix2x3fv$MH() {
+        return RuntimeHelper.requireNonNull(constants$172.glUniformMatrix2x3fv$MH,"glUniformMatrix2x3fv");
+    }
+    public static void glUniformMatrix2x3fv ( int location,  int count,  byte transpose,  Addressable value) {
+        var mh$ = glUniformMatrix2x3fv$MH();
+        try {
+            mh$.invokeExact(location, count, transpose, value);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle glUniformMatrix3x2fv$MH() {
+        return RuntimeHelper.requireNonNull(constants$172.glUniformMatrix3x2fv$MH,"glUniformMatrix3x2fv");
+    }
+    public static void glUniformMatrix3x2fv ( int location,  int count,  byte transpose,  Addressable value) {
+        var mh$ = glUniformMatrix3x2fv$MH();
+        try {
+            mh$.invokeExact(location, count, transpose, value);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle glUniformMatrix2x4fv$MH() {
+        return RuntimeHelper.requireNonNull(constants$172.glUniformMatrix2x4fv$MH,"glUniformMatrix2x4fv");
+    }
+    public static void glUniformMatrix2x4fv ( int location,  int count,  byte transpose,  Addressable value) {
+        var mh$ = glUniformMatrix2x4fv$MH();
+        try {
+            mh$.invokeExact(location, count, transpose, value);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle glUniformMatrix4x2fv$MH() {
+        return RuntimeHelper.requireNonNull(constants$173.glUniformMatrix4x2fv$MH,"glUniformMatrix4x2fv");
+    }
+    public static void glUniformMatrix4x2fv ( int location,  int count,  byte transpose,  Addressable value) {
+        var mh$ = glUniformMatrix4x2fv$MH();
+        try {
+            mh$.invokeExact(location, count, transpose, value);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle glUniformMatrix3x4fv$MH() {
+        return RuntimeHelper.requireNonNull(constants$173.glUniformMatrix3x4fv$MH,"glUniformMatrix3x4fv");
+    }
+    public static void glUniformMatrix3x4fv ( int location,  int count,  byte transpose,  Addressable value) {
+        var mh$ = glUniformMatrix3x4fv$MH();
+        try {
+            mh$.invokeExact(location, count, transpose, value);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle glUniformMatrix4x3fv$MH() {
+        return RuntimeHelper.requireNonNull(constants$173.glUniformMatrix4x3fv$MH,"glUniformMatrix4x3fv");
+    }
+    public static void glUniformMatrix4x3fv ( int location,  int count,  byte transpose,  Addressable value) {
+        var mh$ = glUniformMatrix4x3fv$MH();
+        try {
+            mh$.invokeExact(location, count, transpose, value);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle glColorMaski$MH() {
+        return RuntimeHelper.requireNonNull(constants$201.glColorMaski$MH,"glColorMaski");
+    }
+    public static void glColorMaski ( int index,  byte r,  byte g,  byte b,  byte a) {
+        var mh$ = glColorMaski$MH();
+        try {
+            mh$.invokeExact(index, r, g, b, a);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle glGetBooleani_v$MH() {
+        return RuntimeHelper.requireNonNull(constants$201.glGetBooleani_v$MH,"glGetBooleani_v");
+    }
+    public static void glGetBooleani_v ( int target,  int index,  Addressable data) {
+        var mh$ = glGetBooleani_v$MH();
+        try {
+            mh$.invokeExact(target, index, data);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle glGetIntegeri_v$MH() {
+        return RuntimeHelper.requireNonNull(constants$201.glGetIntegeri_v$MH,"glGetIntegeri_v");
+    }
+    public static void glGetIntegeri_v ( int target,  int index,  Addressable data) {
+        var mh$ = glGetIntegeri_v$MH();
+        try {
+            mh$.invokeExact(target, index, data);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle glEnablei$MH() {
+        return RuntimeHelper.requireNonNull(constants$202.glEnablei$MH,"glEnablei");
+    }
+    public static void glEnablei ( int target,  int index) {
+        var mh$ = glEnablei$MH();
+        try {
+            mh$.invokeExact(target, index);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle glDisablei$MH() {
+        return RuntimeHelper.requireNonNull(constants$202.glDisablei$MH,"glDisablei");
+    }
+    public static void glDisablei ( int target,  int index) {
+        var mh$ = glDisablei$MH();
+        try {
+            mh$.invokeExact(target, index);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle glIsEnabledi$MH() {
+        return RuntimeHelper.requireNonNull(constants$202.glIsEnabledi$MH,"glIsEnabledi");
+    }
+    public static byte glIsEnabledi ( int target,  int index) {
+        var mh$ = glIsEnabledi$MH();
+        try {
+            return (byte)mh$.invokeExact(target, index);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle glBeginTransformFeedback$MH() {
+        return RuntimeHelper.requireNonNull(constants$202.glBeginTransformFeedback$MH,"glBeginTransformFeedback");
+    }
+    public static void glBeginTransformFeedback ( int primitiveMode) {
+        var mh$ = glBeginTransformFeedback$MH();
+        try {
+            mh$.invokeExact(primitiveMode);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle glEndTransformFeedback$MH() {
+        return RuntimeHelper.requireNonNull(constants$202.glEndTransformFeedback$MH,"glEndTransformFeedback");
+    }
+    public static void glEndTransformFeedback () {
+        var mh$ = glEndTransformFeedback$MH();
+        try {
+            mh$.invokeExact();
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle glBindBufferRange$MH() {
+        return RuntimeHelper.requireNonNull(constants$202.glBindBufferRange$MH,"glBindBufferRange");
+    }
+    public static void glBindBufferRange ( int target,  int index,  int buffer,  long offset,  long size) {
+        var mh$ = glBindBufferRange$MH();
+        try {
+            mh$.invokeExact(target, index, buffer, offset, size);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle glBindBufferBase$MH() {
+        return RuntimeHelper.requireNonNull(constants$203.glBindBufferBase$MH,"glBindBufferBase");
+    }
+    public static void glBindBufferBase ( int target,  int index,  int buffer) {
+        var mh$ = glBindBufferBase$MH();
+        try {
+            mh$.invokeExact(target, index, buffer);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle glTransformFeedbackVaryings$MH() {
+        return RuntimeHelper.requireNonNull(constants$203.glTransformFeedbackVaryings$MH,"glTransformFeedbackVaryings");
+    }
+    public static void glTransformFeedbackVaryings ( int program,  int count,  Addressable varyings,  int bufferMode) {
+        var mh$ = glTransformFeedbackVaryings$MH();
+        try {
+            mh$.invokeExact(program, count, varyings, bufferMode);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle glGetTransformFeedbackVarying$MH() {
+        return RuntimeHelper.requireNonNull(constants$203.glGetTransformFeedbackVarying$MH,"glGetTransformFeedbackVarying");
+    }
+    public static void glGetTransformFeedbackVarying ( int program,  int index,  int bufSize,  Addressable length,  Addressable size,  Addressable type,  Addressable name) {
+        var mh$ = glGetTransformFeedbackVarying$MH();
+        try {
+            mh$.invokeExact(program, index, bufSize, length, size, type, name);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle glClampColor$MH() {
+        return RuntimeHelper.requireNonNull(constants$203.glClampColor$MH,"glClampColor");
+    }
+    public static void glClampColor ( int target,  int clamp) {
+        var mh$ = glClampColor$MH();
+        try {
+            mh$.invokeExact(target, clamp);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle glBeginConditionalRender$MH() {
+        return RuntimeHelper.requireNonNull(constants$203.glBeginConditionalRender$MH,"glBeginConditionalRender");
+    }
+    public static void glBeginConditionalRender ( int id,  int mode) {
+        var mh$ = glBeginConditionalRender$MH();
+        try {
+            mh$.invokeExact(id, mode);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle glEndConditionalRender$MH() {
+        return RuntimeHelper.requireNonNull(constants$203.glEndConditionalRender$MH,"glEndConditionalRender");
+    }
+    public static void glEndConditionalRender () {
+        var mh$ = glEndConditionalRender$MH();
+        try {
+            mh$.invokeExact();
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle glVertexAttribIPointer$MH() {
+        return RuntimeHelper.requireNonNull(constants$204.glVertexAttribIPointer$MH,"glVertexAttribIPointer");
+    }
+    public static void glVertexAttribIPointer ( int index,  int size,  int type,  int stride,  Addressable pointer) {
+        var mh$ = glVertexAttribIPointer$MH();
+        try {
+            mh$.invokeExact(index, size, type, stride, pointer);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle glGetVertexAttribIiv$MH() {
+        return RuntimeHelper.requireNonNull(constants$204.glGetVertexAttribIiv$MH,"glGetVertexAttribIiv");
+    }
+    public static void glGetVertexAttribIiv ( int index,  int pname,  Addressable params) {
+        var mh$ = glGetVertexAttribIiv$MH();
+        try {
+            mh$.invokeExact(index, pname, params);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle glGetVertexAttribIuiv$MH() {
+        return RuntimeHelper.requireNonNull(constants$204.glGetVertexAttribIuiv$MH,"glGetVertexAttribIuiv");
+    }
+    public static void glGetVertexAttribIuiv ( int index,  int pname,  Addressable params) {
+        var mh$ = glGetVertexAttribIuiv$MH();
+        try {
+            mh$.invokeExact(index, pname, params);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle glVertexAttribI1i$MH() {
+        return RuntimeHelper.requireNonNull(constants$204.glVertexAttribI1i$MH,"glVertexAttribI1i");
+    }
+    public static void glVertexAttribI1i ( int index,  int x) {
+        var mh$ = glVertexAttribI1i$MH();
+        try {
+            mh$.invokeExact(index, x);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle glVertexAttribI2i$MH() {
+        return RuntimeHelper.requireNonNull(constants$204.glVertexAttribI2i$MH,"glVertexAttribI2i");
+    }
+    public static void glVertexAttribI2i ( int index,  int x,  int y) {
+        var mh$ = glVertexAttribI2i$MH();
+        try {
+            mh$.invokeExact(index, x, y);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle glVertexAttribI3i$MH() {
+        return RuntimeHelper.requireNonNull(constants$204.glVertexAttribI3i$MH,"glVertexAttribI3i");
+    }
+    public static void glVertexAttribI3i ( int index,  int x,  int y,  int z) {
+        var mh$ = glVertexAttribI3i$MH();
+        try {
+            mh$.invokeExact(index, x, y, z);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle glVertexAttribI4i$MH() {
+        return RuntimeHelper.requireNonNull(constants$205.glVertexAttribI4i$MH,"glVertexAttribI4i");
+    }
+    public static void glVertexAttribI4i ( int index,  int x,  int y,  int z,  int w) {
+        var mh$ = glVertexAttribI4i$MH();
+        try {
+            mh$.invokeExact(index, x, y, z, w);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle glVertexAttribI1ui$MH() {
+        return RuntimeHelper.requireNonNull(constants$205.glVertexAttribI1ui$MH,"glVertexAttribI1ui");
+    }
+    public static void glVertexAttribI1ui ( int index,  int x) {
+        var mh$ = glVertexAttribI1ui$MH();
+        try {
+            mh$.invokeExact(index, x);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle glVertexAttribI2ui$MH() {
+        return RuntimeHelper.requireNonNull(constants$205.glVertexAttribI2ui$MH,"glVertexAttribI2ui");
+    }
+    public static void glVertexAttribI2ui ( int index,  int x,  int y) {
+        var mh$ = glVertexAttribI2ui$MH();
+        try {
+            mh$.invokeExact(index, x, y);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle glVertexAttribI3ui$MH() {
+        return RuntimeHelper.requireNonNull(constants$205.glVertexAttribI3ui$MH,"glVertexAttribI3ui");
+    }
+    public static void glVertexAttribI3ui ( int index,  int x,  int y,  int z) {
+        var mh$ = glVertexAttribI3ui$MH();
+        try {
+            mh$.invokeExact(index, x, y, z);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle glVertexAttribI4ui$MH() {
+        return RuntimeHelper.requireNonNull(constants$205.glVertexAttribI4ui$MH,"glVertexAttribI4ui");
+    }
+    public static void glVertexAttribI4ui ( int index,  int x,  int y,  int z,  int w) {
+        var mh$ = glVertexAttribI4ui$MH();
+        try {
+            mh$.invokeExact(index, x, y, z, w);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle glVertexAttribI1iv$MH() {
+        return RuntimeHelper.requireNonNull(constants$205.glVertexAttribI1iv$MH,"glVertexAttribI1iv");
+    }
+    public static void glVertexAttribI1iv ( int index,  Addressable v) {
+        var mh$ = glVertexAttribI1iv$MH();
+        try {
+            mh$.invokeExact(index, v);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle glVertexAttribI2iv$MH() {
+        return RuntimeHelper.requireNonNull(constants$206.glVertexAttribI2iv$MH,"glVertexAttribI2iv");
+    }
+    public static void glVertexAttribI2iv ( int index,  Addressable v) {
+        var mh$ = glVertexAttribI2iv$MH();
+        try {
+            mh$.invokeExact(index, v);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle glVertexAttribI3iv$MH() {
+        return RuntimeHelper.requireNonNull(constants$206.glVertexAttribI3iv$MH,"glVertexAttribI3iv");
+    }
+    public static void glVertexAttribI3iv ( int index,  Addressable v) {
+        var mh$ = glVertexAttribI3iv$MH();
+        try {
+            mh$.invokeExact(index, v);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle glVertexAttribI4iv$MH() {
+        return RuntimeHelper.requireNonNull(constants$206.glVertexAttribI4iv$MH,"glVertexAttribI4iv");
+    }
+    public static void glVertexAttribI4iv ( int index,  Addressable v) {
+        var mh$ = glVertexAttribI4iv$MH();
+        try {
+            mh$.invokeExact(index, v);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle glVertexAttribI1uiv$MH() {
+        return RuntimeHelper.requireNonNull(constants$206.glVertexAttribI1uiv$MH,"glVertexAttribI1uiv");
+    }
+    public static void glVertexAttribI1uiv ( int index,  Addressable v) {
+        var mh$ = glVertexAttribI1uiv$MH();
+        try {
+            mh$.invokeExact(index, v);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle glVertexAttribI2uiv$MH() {
+        return RuntimeHelper.requireNonNull(constants$206.glVertexAttribI2uiv$MH,"glVertexAttribI2uiv");
+    }
+    public static void glVertexAttribI2uiv ( int index,  Addressable v) {
+        var mh$ = glVertexAttribI2uiv$MH();
+        try {
+            mh$.invokeExact(index, v);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle glVertexAttribI3uiv$MH() {
+        return RuntimeHelper.requireNonNull(constants$206.glVertexAttribI3uiv$MH,"glVertexAttribI3uiv");
+    }
+    public static void glVertexAttribI3uiv ( int index,  Addressable v) {
+        var mh$ = glVertexAttribI3uiv$MH();
+        try {
+            mh$.invokeExact(index, v);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle glVertexAttribI4uiv$MH() {
+        return RuntimeHelper.requireNonNull(constants$207.glVertexAttribI4uiv$MH,"glVertexAttribI4uiv");
+    }
+    public static void glVertexAttribI4uiv ( int index,  Addressable v) {
+        var mh$ = glVertexAttribI4uiv$MH();
+        try {
+            mh$.invokeExact(index, v);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle glVertexAttribI4bv$MH() {
+        return RuntimeHelper.requireNonNull(constants$207.glVertexAttribI4bv$MH,"glVertexAttribI4bv");
+    }
+    public static void glVertexAttribI4bv ( int index,  Addressable v) {
+        var mh$ = glVertexAttribI4bv$MH();
+        try {
+            mh$.invokeExact(index, v);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle glVertexAttribI4sv$MH() {
+        return RuntimeHelper.requireNonNull(constants$207.glVertexAttribI4sv$MH,"glVertexAttribI4sv");
+    }
+    public static void glVertexAttribI4sv ( int index,  Addressable v) {
+        var mh$ = glVertexAttribI4sv$MH();
+        try {
+            mh$.invokeExact(index, v);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle glVertexAttribI4ubv$MH() {
+        return RuntimeHelper.requireNonNull(constants$207.glVertexAttribI4ubv$MH,"glVertexAttribI4ubv");
+    }
+    public static void glVertexAttribI4ubv ( int index,  Addressable v) {
+        var mh$ = glVertexAttribI4ubv$MH();
+        try {
+            mh$.invokeExact(index, v);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle glVertexAttribI4usv$MH() {
+        return RuntimeHelper.requireNonNull(constants$207.glVertexAttribI4usv$MH,"glVertexAttribI4usv");
+    }
+    public static void glVertexAttribI4usv ( int index,  Addressable v) {
+        var mh$ = glVertexAttribI4usv$MH();
+        try {
+            mh$.invokeExact(index, v);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle glGetUniformuiv$MH() {
+        return RuntimeHelper.requireNonNull(constants$207.glGetUniformuiv$MH,"glGetUniformuiv");
+    }
+    public static void glGetUniformuiv ( int program,  int location,  Addressable params) {
+        var mh$ = glGetUniformuiv$MH();
+        try {
+            mh$.invokeExact(program, location, params);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle glBindFragDataLocation$MH() {
+        return RuntimeHelper.requireNonNull(constants$208.glBindFragDataLocation$MH,"glBindFragDataLocation");
+    }
+    public static void glBindFragDataLocation ( int program,  int color,  Addressable name) {
+        var mh$ = glBindFragDataLocation$MH();
+        try {
+            mh$.invokeExact(program, color, name);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle glGetFragDataLocation$MH() {
+        return RuntimeHelper.requireNonNull(constants$208.glGetFragDataLocation$MH,"glGetFragDataLocation");
+    }
+    public static int glGetFragDataLocation ( int program,  Addressable name) {
+        var mh$ = glGetFragDataLocation$MH();
+        try {
+            return (int)mh$.invokeExact(program, name);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle glUniform1ui$MH() {
+        return RuntimeHelper.requireNonNull(constants$208.glUniform1ui$MH,"glUniform1ui");
+    }
+    public static void glUniform1ui ( int location,  int v0) {
+        var mh$ = glUniform1ui$MH();
+        try {
+            mh$.invokeExact(location, v0);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle glUniform2ui$MH() {
+        return RuntimeHelper.requireNonNull(constants$208.glUniform2ui$MH,"glUniform2ui");
+    }
+    public static void glUniform2ui ( int location,  int v0,  int v1) {
+        var mh$ = glUniform2ui$MH();
+        try {
+            mh$.invokeExact(location, v0, v1);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle glUniform3ui$MH() {
+        return RuntimeHelper.requireNonNull(constants$208.glUniform3ui$MH,"glUniform3ui");
+    }
+    public static void glUniform3ui ( int location,  int v0,  int v1,  int v2) {
+        var mh$ = glUniform3ui$MH();
+        try {
+            mh$.invokeExact(location, v0, v1, v2);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle glUniform4ui$MH() {
+        return RuntimeHelper.requireNonNull(constants$208.glUniform4ui$MH,"glUniform4ui");
+    }
+    public static void glUniform4ui ( int location,  int v0,  int v1,  int v2,  int v3) {
+        var mh$ = glUniform4ui$MH();
+        try {
+            mh$.invokeExact(location, v0, v1, v2, v3);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle glUniform1uiv$MH() {
+        return RuntimeHelper.requireNonNull(constants$209.glUniform1uiv$MH,"glUniform1uiv");
+    }
+    public static void glUniform1uiv ( int location,  int count,  Addressable value) {
+        var mh$ = glUniform1uiv$MH();
+        try {
+            mh$.invokeExact(location, count, value);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle glUniform2uiv$MH() {
+        return RuntimeHelper.requireNonNull(constants$209.glUniform2uiv$MH,"glUniform2uiv");
+    }
+    public static void glUniform2uiv ( int location,  int count,  Addressable value) {
+        var mh$ = glUniform2uiv$MH();
+        try {
+            mh$.invokeExact(location, count, value);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle glUniform3uiv$MH() {
+        return RuntimeHelper.requireNonNull(constants$209.glUniform3uiv$MH,"glUniform3uiv");
+    }
+    public static void glUniform3uiv ( int location,  int count,  Addressable value) {
+        var mh$ = glUniform3uiv$MH();
+        try {
+            mh$.invokeExact(location, count, value);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle glUniform4uiv$MH() {
+        return RuntimeHelper.requireNonNull(constants$209.glUniform4uiv$MH,"glUniform4uiv");
+    }
+    public static void glUniform4uiv ( int location,  int count,  Addressable value) {
+        var mh$ = glUniform4uiv$MH();
+        try {
+            mh$.invokeExact(location, count, value);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle glTexParameterIiv$MH() {
+        return RuntimeHelper.requireNonNull(constants$209.glTexParameterIiv$MH,"glTexParameterIiv");
+    }
+    public static void glTexParameterIiv ( int target,  int pname,  Addressable params) {
+        var mh$ = glTexParameterIiv$MH();
+        try {
+            mh$.invokeExact(target, pname, params);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle glTexParameterIuiv$MH() {
+        return RuntimeHelper.requireNonNull(constants$209.glTexParameterIuiv$MH,"glTexParameterIuiv");
+    }
+    public static void glTexParameterIuiv ( int target,  int pname,  Addressable params) {
+        var mh$ = glTexParameterIuiv$MH();
+        try {
+            mh$.invokeExact(target, pname, params);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle glGetTexParameterIiv$MH() {
+        return RuntimeHelper.requireNonNull(constants$210.glGetTexParameterIiv$MH,"glGetTexParameterIiv");
+    }
+    public static void glGetTexParameterIiv ( int target,  int pname,  Addressable params) {
+        var mh$ = glGetTexParameterIiv$MH();
+        try {
+            mh$.invokeExact(target, pname, params);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle glGetTexParameterIuiv$MH() {
+        return RuntimeHelper.requireNonNull(constants$210.glGetTexParameterIuiv$MH,"glGetTexParameterIuiv");
+    }
+    public static void glGetTexParameterIuiv ( int target,  int pname,  Addressable params) {
+        var mh$ = glGetTexParameterIuiv$MH();
+        try {
+            mh$.invokeExact(target, pname, params);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle glClearBufferiv$MH() {
+        return RuntimeHelper.requireNonNull(constants$210.glClearBufferiv$MH,"glClearBufferiv");
+    }
+    public static void glClearBufferiv ( int buffer,  int drawbuffer,  Addressable value) {
+        var mh$ = glClearBufferiv$MH();
+        try {
+            mh$.invokeExact(buffer, drawbuffer, value);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle glClearBufferuiv$MH() {
+        return RuntimeHelper.requireNonNull(constants$210.glClearBufferuiv$MH,"glClearBufferuiv");
+    }
+    public static void glClearBufferuiv ( int buffer,  int drawbuffer,  Addressable value) {
+        var mh$ = glClearBufferuiv$MH();
+        try {
+            mh$.invokeExact(buffer, drawbuffer, value);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle glClearBufferfv$MH() {
+        return RuntimeHelper.requireNonNull(constants$210.glClearBufferfv$MH,"glClearBufferfv");
+    }
+    public static void glClearBufferfv ( int buffer,  int drawbuffer,  Addressable value) {
+        var mh$ = glClearBufferfv$MH();
+        try {
+            mh$.invokeExact(buffer, drawbuffer, value);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle glClearBufferfi$MH() {
+        return RuntimeHelper.requireNonNull(constants$210.glClearBufferfi$MH,"glClearBufferfi");
+    }
+    public static void glClearBufferfi ( int buffer,  int drawbuffer,  float depth,  int stencil) {
+        var mh$ = glClearBufferfi$MH();
+        try {
+            mh$.invokeExact(buffer, drawbuffer, depth, stencil);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle glGetStringi$MH() {
+        return RuntimeHelper.requireNonNull(constants$211.glGetStringi$MH,"glGetStringi");
+    }
+    public static MemoryAddress glGetStringi ( int name,  int index) {
+        var mh$ = glGetStringi$MH();
+        try {
+            return (java.lang.foreign.MemoryAddress)mh$.invokeExact(name, index);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle glIsRenderbuffer$MH() {
+        return RuntimeHelper.requireNonNull(constants$211.glIsRenderbuffer$MH,"glIsRenderbuffer");
+    }
+    public static byte glIsRenderbuffer ( int renderbuffer) {
+        var mh$ = glIsRenderbuffer$MH();
+        try {
+            return (byte)mh$.invokeExact(renderbuffer);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle glBindRenderbuffer$MH() {
+        return RuntimeHelper.requireNonNull(constants$211.glBindRenderbuffer$MH,"glBindRenderbuffer");
+    }
+    public static void glBindRenderbuffer ( int target,  int renderbuffer) {
+        var mh$ = glBindRenderbuffer$MH();
+        try {
+            mh$.invokeExact(target, renderbuffer);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle glDeleteRenderbuffers$MH() {
+        return RuntimeHelper.requireNonNull(constants$211.glDeleteRenderbuffers$MH,"glDeleteRenderbuffers");
+    }
+    public static void glDeleteRenderbuffers ( int n,  Addressable renderbuffers) {
+        var mh$ = glDeleteRenderbuffers$MH();
+        try {
+            mh$.invokeExact(n, renderbuffers);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle glGenRenderbuffers$MH() {
+        return RuntimeHelper.requireNonNull(constants$211.glGenRenderbuffers$MH,"glGenRenderbuffers");
+    }
+    public static void glGenRenderbuffers ( int n,  Addressable renderbuffers) {
+        var mh$ = glGenRenderbuffers$MH();
+        try {
+            mh$.invokeExact(n, renderbuffers);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle glRenderbufferStorage$MH() {
+        return RuntimeHelper.requireNonNull(constants$211.glRenderbufferStorage$MH,"glRenderbufferStorage");
+    }
+    public static void glRenderbufferStorage ( int target,  int internalformat,  int width,  int height) {
+        var mh$ = glRenderbufferStorage$MH();
+        try {
+            mh$.invokeExact(target, internalformat, width, height);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle glGetRenderbufferParameteriv$MH() {
+        return RuntimeHelper.requireNonNull(constants$212.glGetRenderbufferParameteriv$MH,"glGetRenderbufferParameteriv");
+    }
+    public static void glGetRenderbufferParameteriv ( int target,  int pname,  Addressable params) {
+        var mh$ = glGetRenderbufferParameteriv$MH();
+        try {
+            mh$.invokeExact(target, pname, params);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle glIsFramebuffer$MH() {
+        return RuntimeHelper.requireNonNull(constants$212.glIsFramebuffer$MH,"glIsFramebuffer");
+    }
+    public static byte glIsFramebuffer ( int framebuffer) {
+        var mh$ = glIsFramebuffer$MH();
+        try {
+            return (byte)mh$.invokeExact(framebuffer);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle glBindFramebuffer$MH() {
+        return RuntimeHelper.requireNonNull(constants$212.glBindFramebuffer$MH,"glBindFramebuffer");
+    }
+    public static void glBindFramebuffer ( int target,  int framebuffer) {
+        var mh$ = glBindFramebuffer$MH();
+        try {
+            mh$.invokeExact(target, framebuffer);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle glDeleteFramebuffers$MH() {
+        return RuntimeHelper.requireNonNull(constants$212.glDeleteFramebuffers$MH,"glDeleteFramebuffers");
+    }
+    public static void glDeleteFramebuffers ( int n,  Addressable framebuffers) {
+        var mh$ = glDeleteFramebuffers$MH();
+        try {
+            mh$.invokeExact(n, framebuffers);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle glGenFramebuffers$MH() {
+        return RuntimeHelper.requireNonNull(constants$212.glGenFramebuffers$MH,"glGenFramebuffers");
+    }
+    public static void glGenFramebuffers ( int n,  Addressable framebuffers) {
+        var mh$ = glGenFramebuffers$MH();
+        try {
+            mh$.invokeExact(n, framebuffers);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle glCheckFramebufferStatus$MH() {
+        return RuntimeHelper.requireNonNull(constants$212.glCheckFramebufferStatus$MH,"glCheckFramebufferStatus");
+    }
+    public static int glCheckFramebufferStatus ( int target) {
+        var mh$ = glCheckFramebufferStatus$MH();
+        try {
+            return (int)mh$.invokeExact(target);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle glFramebufferTexture1D$MH() {
+        return RuntimeHelper.requireNonNull(constants$213.glFramebufferTexture1D$MH,"glFramebufferTexture1D");
+    }
+    public static void glFramebufferTexture1D ( int target,  int attachment,  int textarget,  int texture,  int level) {
+        var mh$ = glFramebufferTexture1D$MH();
+        try {
+            mh$.invokeExact(target, attachment, textarget, texture, level);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle glFramebufferTexture2D$MH() {
+        return RuntimeHelper.requireNonNull(constants$213.glFramebufferTexture2D$MH,"glFramebufferTexture2D");
+    }
+    public static void glFramebufferTexture2D ( int target,  int attachment,  int textarget,  int texture,  int level) {
+        var mh$ = glFramebufferTexture2D$MH();
+        try {
+            mh$.invokeExact(target, attachment, textarget, texture, level);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle glFramebufferTexture3D$MH() {
+        return RuntimeHelper.requireNonNull(constants$213.glFramebufferTexture3D$MH,"glFramebufferTexture3D");
+    }
+    public static void glFramebufferTexture3D ( int target,  int attachment,  int textarget,  int texture,  int level,  int zoffset) {
+        var mh$ = glFramebufferTexture3D$MH();
+        try {
+            mh$.invokeExact(target, attachment, textarget, texture, level, zoffset);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle glFramebufferRenderbuffer$MH() {
+        return RuntimeHelper.requireNonNull(constants$213.glFramebufferRenderbuffer$MH,"glFramebufferRenderbuffer");
+    }
+    public static void glFramebufferRenderbuffer ( int target,  int attachment,  int renderbuffertarget,  int renderbuffer) {
+        var mh$ = glFramebufferRenderbuffer$MH();
+        try {
+            mh$.invokeExact(target, attachment, renderbuffertarget, renderbuffer);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle glGetFramebufferAttachmentParameteriv$MH() {
+        return RuntimeHelper.requireNonNull(constants$213.glGetFramebufferAttachmentParameteriv$MH,"glGetFramebufferAttachmentParameteriv");
+    }
+    public static void glGetFramebufferAttachmentParameteriv ( int target,  int attachment,  int pname,  Addressable params) {
+        var mh$ = glGetFramebufferAttachmentParameteriv$MH();
+        try {
+            mh$.invokeExact(target, attachment, pname, params);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle glGenerateMipmap$MH() {
+        return RuntimeHelper.requireNonNull(constants$213.glGenerateMipmap$MH,"glGenerateMipmap");
+    }
+    public static void glGenerateMipmap ( int target) {
+        var mh$ = glGenerateMipmap$MH();
+        try {
+            mh$.invokeExact(target);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle glBlitFramebuffer$MH() {
+        return RuntimeHelper.requireNonNull(constants$214.glBlitFramebuffer$MH,"glBlitFramebuffer");
+    }
+    public static void glBlitFramebuffer ( int srcX0,  int srcY0,  int srcX1,  int srcY1,  int dstX0,  int dstY0,  int dstX1,  int dstY1,  int mask,  int filter) {
+        var mh$ = glBlitFramebuffer$MH();
+        try {
+            mh$.invokeExact(srcX0, srcY0, srcX1, srcY1, dstX0, dstY0, dstX1, dstY1, mask, filter);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle glRenderbufferStorageMultisample$MH() {
+        return RuntimeHelper.requireNonNull(constants$214.glRenderbufferStorageMultisample$MH,"glRenderbufferStorageMultisample");
+    }
+    public static void glRenderbufferStorageMultisample ( int target,  int samples,  int internalformat,  int width,  int height) {
+        var mh$ = glRenderbufferStorageMultisample$MH();
+        try {
+            mh$.invokeExact(target, samples, internalformat, width, height);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle glFramebufferTextureLayer$MH() {
+        return RuntimeHelper.requireNonNull(constants$214.glFramebufferTextureLayer$MH,"glFramebufferTextureLayer");
+    }
+    public static void glFramebufferTextureLayer ( int target,  int attachment,  int texture,  int level,  int layer) {
+        var mh$ = glFramebufferTextureLayer$MH();
+        try {
+            mh$.invokeExact(target, attachment, texture, level, layer);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle glMapBufferRange$MH() {
+        return RuntimeHelper.requireNonNull(constants$214.glMapBufferRange$MH,"glMapBufferRange");
+    }
+    public static MemoryAddress glMapBufferRange ( int target,  long offset,  long length,  int access) {
+        var mh$ = glMapBufferRange$MH();
+        try {
+            return (java.lang.foreign.MemoryAddress)mh$.invokeExact(target, offset, length, access);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle glFlushMappedBufferRange$MH() {
+        return RuntimeHelper.requireNonNull(constants$214.glFlushMappedBufferRange$MH,"glFlushMappedBufferRange");
+    }
+    public static void glFlushMappedBufferRange ( int target,  long offset,  long length) {
+        var mh$ = glFlushMappedBufferRange$MH();
+        try {
+            mh$.invokeExact(target, offset, length);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle glBindVertexArray$MH() {
+        return RuntimeHelper.requireNonNull(constants$214.glBindVertexArray$MH,"glBindVertexArray");
+    }
+    public static void glBindVertexArray ( int array) {
+        var mh$ = glBindVertexArray$MH();
+        try {
+            mh$.invokeExact(array);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle glDeleteVertexArrays$MH() {
+        return RuntimeHelper.requireNonNull(constants$215.glDeleteVertexArrays$MH,"glDeleteVertexArrays");
+    }
+    public static void glDeleteVertexArrays ( int n,  Addressable arrays) {
+        var mh$ = glDeleteVertexArrays$MH();
+        try {
+            mh$.invokeExact(n, arrays);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle glGenVertexArrays$MH() {
+        return RuntimeHelper.requireNonNull(constants$215.glGenVertexArrays$MH,"glGenVertexArrays");
+    }
+    public static void glGenVertexArrays ( int n,  Addressable arrays) {
+        var mh$ = glGenVertexArrays$MH();
+        try {
+            mh$.invokeExact(n, arrays);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle glIsVertexArray$MH() {
+        return RuntimeHelper.requireNonNull(constants$215.glIsVertexArray$MH,"glIsVertexArray");
+    }
+    public static byte glIsVertexArray ( int array) {
+        var mh$ = glIsVertexArray$MH();
+        try {
+            return (byte)mh$.invokeExact(array);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle glDrawArraysInstanced$MH() {
+        return RuntimeHelper.requireNonNull(constants$219.glDrawArraysInstanced$MH,"glDrawArraysInstanced");
+    }
+    public static void glDrawArraysInstanced ( int mode,  int first,  int count,  int instancecount) {
+        var mh$ = glDrawArraysInstanced$MH();
+        try {
+            mh$.invokeExact(mode, first, count, instancecount);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle glDrawElementsInstanced$MH() {
+        return RuntimeHelper.requireNonNull(constants$219.glDrawElementsInstanced$MH,"glDrawElementsInstanced");
+    }
+    public static void glDrawElementsInstanced ( int mode,  int count,  int type,  Addressable indices,  int instancecount) {
+        var mh$ = glDrawElementsInstanced$MH();
+        try {
+            mh$.invokeExact(mode, count, type, indices, instancecount);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle glTexBuffer$MH() {
+        return RuntimeHelper.requireNonNull(constants$219.glTexBuffer$MH,"glTexBuffer");
+    }
+    public static void glTexBuffer ( int target,  int internalformat,  int buffer) {
+        var mh$ = glTexBuffer$MH();
+        try {
+            mh$.invokeExact(target, internalformat, buffer);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle glPrimitiveRestartIndex$MH() {
+        return RuntimeHelper.requireNonNull(constants$220.glPrimitiveRestartIndex$MH,"glPrimitiveRestartIndex");
+    }
+    public static void glPrimitiveRestartIndex ( int index) {
+        var mh$ = glPrimitiveRestartIndex$MH();
+        try {
+            mh$.invokeExact(index);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle glCopyBufferSubData$MH() {
+        return RuntimeHelper.requireNonNull(constants$220.glCopyBufferSubData$MH,"glCopyBufferSubData");
+    }
+    public static void glCopyBufferSubData ( int readTarget,  int writeTarget,  long readOffset,  long writeOffset,  long size) {
+        var mh$ = glCopyBufferSubData$MH();
+        try {
+            mh$.invokeExact(readTarget, writeTarget, readOffset, writeOffset, size);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle glGetUniformIndices$MH() {
+        return RuntimeHelper.requireNonNull(constants$220.glGetUniformIndices$MH,"glGetUniformIndices");
+    }
+    public static void glGetUniformIndices ( int program,  int uniformCount,  Addressable uniformNames,  Addressable uniformIndices) {
+        var mh$ = glGetUniformIndices$MH();
+        try {
+            mh$.invokeExact(program, uniformCount, uniformNames, uniformIndices);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle glGetActiveUniformsiv$MH() {
+        return RuntimeHelper.requireNonNull(constants$220.glGetActiveUniformsiv$MH,"glGetActiveUniformsiv");
+    }
+    public static void glGetActiveUniformsiv ( int program,  int uniformCount,  Addressable uniformIndices,  int pname,  Addressable params) {
+        var mh$ = glGetActiveUniformsiv$MH();
+        try {
+            mh$.invokeExact(program, uniformCount, uniformIndices, pname, params);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle glGetActiveUniformName$MH() {
+        return RuntimeHelper.requireNonNull(constants$220.glGetActiveUniformName$MH,"glGetActiveUniformName");
+    }
+    public static void glGetActiveUniformName ( int program,  int uniformIndex,  int bufSize,  Addressable length,  Addressable uniformName) {
+        var mh$ = glGetActiveUniformName$MH();
+        try {
+            mh$.invokeExact(program, uniformIndex, bufSize, length, uniformName);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle glGetUniformBlockIndex$MH() {
+        return RuntimeHelper.requireNonNull(constants$220.glGetUniformBlockIndex$MH,"glGetUniformBlockIndex");
+    }
+    public static int glGetUniformBlockIndex ( int program,  Addressable uniformBlockName) {
+        var mh$ = glGetUniformBlockIndex$MH();
+        try {
+            return (int)mh$.invokeExact(program, uniformBlockName);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle glGetActiveUniformBlockiv$MH() {
+        return RuntimeHelper.requireNonNull(constants$221.glGetActiveUniformBlockiv$MH,"glGetActiveUniformBlockiv");
+    }
+    public static void glGetActiveUniformBlockiv ( int program,  int uniformBlockIndex,  int pname,  Addressable params) {
+        var mh$ = glGetActiveUniformBlockiv$MH();
+        try {
+            mh$.invokeExact(program, uniformBlockIndex, pname, params);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle glGetActiveUniformBlockName$MH() {
+        return RuntimeHelper.requireNonNull(constants$221.glGetActiveUniformBlockName$MH,"glGetActiveUniformBlockName");
+    }
+    public static void glGetActiveUniformBlockName ( int program,  int uniformBlockIndex,  int bufSize,  Addressable length,  Addressable uniformBlockName) {
+        var mh$ = glGetActiveUniformBlockName$MH();
+        try {
+            mh$.invokeExact(program, uniformBlockIndex, bufSize, length, uniformBlockName);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle glUniformBlockBinding$MH() {
+        return RuntimeHelper.requireNonNull(constants$221.glUniformBlockBinding$MH,"glUniformBlockBinding");
+    }
+    public static void glUniformBlockBinding ( int program,  int uniformBlockIndex,  int uniformBlockBinding) {
+        var mh$ = glUniformBlockBinding$MH();
+        try {
+            mh$.invokeExact(program, uniformBlockIndex, uniformBlockBinding);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
     public static OfAddress GLsync = Constants$root.C_POINTER$LAYOUT;
     public static OfLong GLint64 = Constants$root.C_LONG_LONG$LAYOUT;
-    public static OfByte GLcharARB = Constants$root.C_CHAR$LAYOUT;
-    public static OfLong GLsizeiptrARB = Constants$root.C_LONG_LONG$LAYOUT;
-    public static OfLong GLintptrARB = Constants$root.C_LONG_LONG$LAYOUT;
-    public static OfInt GLfixed = Constants$root.C_INT$LAYOUT;
-    public static OfLong GLint64EXT = Constants$root.C_LONG_LONG$LAYOUT;
-    public static OfAddress GLeglImageOES = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress GLeglClientBufferEXT = Constants$root.C_POINTER$LAYOUT;
-    public static OfLong GLvdpauSurfaceNV = Constants$root.C_LONG_LONG$LAYOUT;
-    public static MethodHandle glBlendEquationSeparateATI$MH() {
-        return RuntimeHelper.requireNonNull(constants$928.glBlendEquationSeparateATI$MH,"glBlendEquationSeparateATI");
+    public static MethodHandle glDrawElementsBaseVertex$MH() {
+        return RuntimeHelper.requireNonNull(constants$227.glDrawElementsBaseVertex$MH,"glDrawElementsBaseVertex");
     }
-    public static void glBlendEquationSeparateATI ( int modeRGB,  int modeA) {
-        var mh$ = glBlendEquationSeparateATI$MH();
+    public static void glDrawElementsBaseVertex ( int mode,  int count,  int type,  Addressable indices,  int basevertex) {
+        var mh$ = glDrawElementsBaseVertex$MH();
         try {
-            mh$.invokeExact(modeRGB, modeA);
+            mh$.invokeExact(mode, count, type, indices, basevertex);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
     }
-    public static MethodHandle gluBeginCurve$MH() {
-        return RuntimeHelper.requireNonNull(constants$930.gluBeginCurve$MH,"gluBeginCurve");
+    public static MethodHandle glDrawRangeElementsBaseVertex$MH() {
+        return RuntimeHelper.requireNonNull(constants$228.glDrawRangeElementsBaseVertex$MH,"glDrawRangeElementsBaseVertex");
     }
-    public static void gluBeginCurve ( Addressable nurb) {
-        var mh$ = gluBeginCurve$MH();
+    public static void glDrawRangeElementsBaseVertex ( int mode,  int start,  int end,  int count,  int type,  Addressable indices,  int basevertex) {
+        var mh$ = glDrawRangeElementsBaseVertex$MH();
         try {
-            mh$.invokeExact(nurb);
+            mh$.invokeExact(mode, start, end, count, type, indices, basevertex);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
     }
-    public static MethodHandle gluBeginPolygon$MH() {
-        return RuntimeHelper.requireNonNull(constants$930.gluBeginPolygon$MH,"gluBeginPolygon");
+    public static MethodHandle glDrawElementsInstancedBaseVertex$MH() {
+        return RuntimeHelper.requireNonNull(constants$228.glDrawElementsInstancedBaseVertex$MH,"glDrawElementsInstancedBaseVertex");
     }
-    public static void gluBeginPolygon ( Addressable tess) {
-        var mh$ = gluBeginPolygon$MH();
+    public static void glDrawElementsInstancedBaseVertex ( int mode,  int count,  int type,  Addressable indices,  int instancecount,  int basevertex) {
+        var mh$ = glDrawElementsInstancedBaseVertex$MH();
         try {
-            mh$.invokeExact(tess);
+            mh$.invokeExact(mode, count, type, indices, instancecount, basevertex);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
     }
-    public static MethodHandle gluBeginSurface$MH() {
-        return RuntimeHelper.requireNonNull(constants$930.gluBeginSurface$MH,"gluBeginSurface");
+    public static MethodHandle glMultiDrawElementsBaseVertex$MH() {
+        return RuntimeHelper.requireNonNull(constants$228.glMultiDrawElementsBaseVertex$MH,"glMultiDrawElementsBaseVertex");
     }
-    public static void gluBeginSurface ( Addressable nurb) {
-        var mh$ = gluBeginSurface$MH();
+    public static void glMultiDrawElementsBaseVertex ( int mode,  Addressable count,  int type,  Addressable indices,  int drawcount,  Addressable basevertex) {
+        var mh$ = glMultiDrawElementsBaseVertex$MH();
         try {
-            mh$.invokeExact(nurb);
+            mh$.invokeExact(mode, count, type, indices, drawcount, basevertex);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
     }
-    public static MethodHandle gluBeginTrim$MH() {
-        return RuntimeHelper.requireNonNull(constants$930.gluBeginTrim$MH,"gluBeginTrim");
+    public static MethodHandle glProvokingVertex$MH() {
+        return RuntimeHelper.requireNonNull(constants$228.glProvokingVertex$MH,"glProvokingVertex");
     }
-    public static void gluBeginTrim ( Addressable nurb) {
-        var mh$ = gluBeginTrim$MH();
+    public static void glProvokingVertex ( int mode) {
+        var mh$ = glProvokingVertex$MH();
         try {
-            mh$.invokeExact(nurb);
+            mh$.invokeExact(mode);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
     }
-    public static MethodHandle gluBuild1DMipmapLevels$MH() {
-        return RuntimeHelper.requireNonNull(constants$930.gluBuild1DMipmapLevels$MH,"gluBuild1DMipmapLevels");
+    public static MethodHandle glFenceSync$MH() {
+        return RuntimeHelper.requireNonNull(constants$228.glFenceSync$MH,"glFenceSync");
     }
-    public static int gluBuild1DMipmapLevels ( int target,  int internalFormat,  int width,  int format,  int type,  int level,  int base,  int max,  Addressable data) {
-        var mh$ = gluBuild1DMipmapLevels$MH();
+    public static MemoryAddress glFenceSync ( int condition,  int flags) {
+        var mh$ = glFenceSync$MH();
         try {
-            return (int)mh$.invokeExact(target, internalFormat, width, format, type, level, base, max, data);
+            return (java.lang.foreign.MemoryAddress)mh$.invokeExact(condition, flags);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
     }
-    public static MethodHandle gluBuild1DMipmaps$MH() {
-        return RuntimeHelper.requireNonNull(constants$931.gluBuild1DMipmaps$MH,"gluBuild1DMipmaps");
+    public static MethodHandle glIsSync$MH() {
+        return RuntimeHelper.requireNonNull(constants$228.glIsSync$MH,"glIsSync");
     }
-    public static int gluBuild1DMipmaps ( int target,  int internalFormat,  int width,  int format,  int type,  Addressable data) {
-        var mh$ = gluBuild1DMipmaps$MH();
+    public static byte glIsSync ( Addressable sync) {
+        var mh$ = glIsSync$MH();
         try {
-            return (int)mh$.invokeExact(target, internalFormat, width, format, type, data);
+            return (byte)mh$.invokeExact(sync);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
     }
-    public static MethodHandle gluBuild2DMipmapLevels$MH() {
-        return RuntimeHelper.requireNonNull(constants$931.gluBuild2DMipmapLevels$MH,"gluBuild2DMipmapLevels");
+    public static MethodHandle glDeleteSync$MH() {
+        return RuntimeHelper.requireNonNull(constants$229.glDeleteSync$MH,"glDeleteSync");
     }
-    public static int gluBuild2DMipmapLevels ( int target,  int internalFormat,  int width,  int height,  int format,  int type,  int level,  int base,  int max,  Addressable data) {
-        var mh$ = gluBuild2DMipmapLevels$MH();
+    public static void glDeleteSync ( Addressable sync) {
+        var mh$ = glDeleteSync$MH();
         try {
-            return (int)mh$.invokeExact(target, internalFormat, width, height, format, type, level, base, max, data);
+            mh$.invokeExact(sync);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
     }
-    public static MethodHandle gluBuild2DMipmaps$MH() {
-        return RuntimeHelper.requireNonNull(constants$931.gluBuild2DMipmaps$MH,"gluBuild2DMipmaps");
+    public static MethodHandle glClientWaitSync$MH() {
+        return RuntimeHelper.requireNonNull(constants$229.glClientWaitSync$MH,"glClientWaitSync");
     }
-    public static int gluBuild2DMipmaps ( int target,  int internalFormat,  int width,  int height,  int format,  int type,  Addressable data) {
-        var mh$ = gluBuild2DMipmaps$MH();
+    public static int glClientWaitSync ( Addressable sync,  int flags,  long timeout) {
+        var mh$ = glClientWaitSync$MH();
         try {
-            return (int)mh$.invokeExact(target, internalFormat, width, height, format, type, data);
+            return (int)mh$.invokeExact(sync, flags, timeout);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
     }
-    public static MethodHandle gluBuild3DMipmapLevels$MH() {
-        return RuntimeHelper.requireNonNull(constants$931.gluBuild3DMipmapLevels$MH,"gluBuild3DMipmapLevels");
+    public static MethodHandle glWaitSync$MH() {
+        return RuntimeHelper.requireNonNull(constants$229.glWaitSync$MH,"glWaitSync");
     }
-    public static int gluBuild3DMipmapLevels ( int target,  int internalFormat,  int width,  int height,  int depth,  int format,  int type,  int level,  int base,  int max,  Addressable data) {
-        var mh$ = gluBuild3DMipmapLevels$MH();
+    public static void glWaitSync ( Addressable sync,  int flags,  long timeout) {
+        var mh$ = glWaitSync$MH();
         try {
-            return (int)mh$.invokeExact(target, internalFormat, width, height, depth, format, type, level, base, max, data);
+            mh$.invokeExact(sync, flags, timeout);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
     }
-    public static MethodHandle gluBuild3DMipmaps$MH() {
-        return RuntimeHelper.requireNonNull(constants$931.gluBuild3DMipmaps$MH,"gluBuild3DMipmaps");
+    public static MethodHandle glGetInteger64v$MH() {
+        return RuntimeHelper.requireNonNull(constants$229.glGetInteger64v$MH,"glGetInteger64v");
     }
-    public static int gluBuild3DMipmaps ( int target,  int internalFormat,  int width,  int height,  int depth,  int format,  int type,  Addressable data) {
-        var mh$ = gluBuild3DMipmaps$MH();
+    public static void glGetInteger64v ( int pname,  Addressable data) {
+        var mh$ = glGetInteger64v$MH();
         try {
-            return (int)mh$.invokeExact(target, internalFormat, width, height, depth, format, type, data);
+            mh$.invokeExact(pname, data);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
     }
-    public static MethodHandle gluCheckExtension$MH() {
-        return RuntimeHelper.requireNonNull(constants$931.gluCheckExtension$MH,"gluCheckExtension");
+    public static MethodHandle glGetSynciv$MH() {
+        return RuntimeHelper.requireNonNull(constants$229.glGetSynciv$MH,"glGetSynciv");
     }
-    public static byte gluCheckExtension ( Addressable extName,  Addressable extString) {
-        var mh$ = gluCheckExtension$MH();
+    public static void glGetSynciv ( Addressable sync,  int pname,  int bufSize,  Addressable length,  Addressable values) {
+        var mh$ = glGetSynciv$MH();
         try {
-            return (byte)mh$.invokeExact(extName, extString);
+            mh$.invokeExact(sync, pname, bufSize, length, values);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
     }
-    public static MethodHandle gluCylinder$MH() {
-        return RuntimeHelper.requireNonNull(constants$932.gluCylinder$MH,"gluCylinder");
+    public static MethodHandle glGetInteger64i_v$MH() {
+        return RuntimeHelper.requireNonNull(constants$229.glGetInteger64i_v$MH,"glGetInteger64i_v");
     }
-    public static void gluCylinder ( Addressable quad,  double base,  double top,  double height,  int slices,  int stacks) {
-        var mh$ = gluCylinder$MH();
+    public static void glGetInteger64i_v ( int target,  int index,  Addressable data) {
+        var mh$ = glGetInteger64i_v$MH();
         try {
-            mh$.invokeExact(quad, base, top, height, slices, stacks);
+            mh$.invokeExact(target, index, data);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
     }
-    public static MethodHandle gluDeleteNurbsRenderer$MH() {
-        return RuntimeHelper.requireNonNull(constants$932.gluDeleteNurbsRenderer$MH,"gluDeleteNurbsRenderer");
+    public static MethodHandle glGetBufferParameteri64v$MH() {
+        return RuntimeHelper.requireNonNull(constants$230.glGetBufferParameteri64v$MH,"glGetBufferParameteri64v");
     }
-    public static void gluDeleteNurbsRenderer ( Addressable nurb) {
-        var mh$ = gluDeleteNurbsRenderer$MH();
+    public static void glGetBufferParameteri64v ( int target,  int pname,  Addressable params) {
+        var mh$ = glGetBufferParameteri64v$MH();
         try {
-            mh$.invokeExact(nurb);
+            mh$.invokeExact(target, pname, params);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
     }
-    public static MethodHandle gluDeleteQuadric$MH() {
-        return RuntimeHelper.requireNonNull(constants$932.gluDeleteQuadric$MH,"gluDeleteQuadric");
+    public static MethodHandle glFramebufferTexture$MH() {
+        return RuntimeHelper.requireNonNull(constants$230.glFramebufferTexture$MH,"glFramebufferTexture");
     }
-    public static void gluDeleteQuadric ( Addressable quad) {
-        var mh$ = gluDeleteQuadric$MH();
+    public static void glFramebufferTexture ( int target,  int attachment,  int texture,  int level) {
+        var mh$ = glFramebufferTexture$MH();
         try {
-            mh$.invokeExact(quad);
+            mh$.invokeExact(target, attachment, texture, level);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
     }
-    public static MethodHandle gluDeleteTess$MH() {
-        return RuntimeHelper.requireNonNull(constants$932.gluDeleteTess$MH,"gluDeleteTess");
+    public static MethodHandle glTexImage2DMultisample$MH() {
+        return RuntimeHelper.requireNonNull(constants$230.glTexImage2DMultisample$MH,"glTexImage2DMultisample");
     }
-    public static void gluDeleteTess ( Addressable tess) {
-        var mh$ = gluDeleteTess$MH();
+    public static void glTexImage2DMultisample ( int target,  int samples,  int internalformat,  int width,  int height,  byte fixedsamplelocations) {
+        var mh$ = glTexImage2DMultisample$MH();
         try {
-            mh$.invokeExact(tess);
+            mh$.invokeExact(target, samples, internalformat, width, height, fixedsamplelocations);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
     }
-    public static MethodHandle gluDisk$MH() {
-        return RuntimeHelper.requireNonNull(constants$932.gluDisk$MH,"gluDisk");
+    public static MethodHandle glTexImage3DMultisample$MH() {
+        return RuntimeHelper.requireNonNull(constants$230.glTexImage3DMultisample$MH,"glTexImage3DMultisample");
     }
-    public static void gluDisk ( Addressable quad,  double inner,  double outer,  int slices,  int loops) {
-        var mh$ = gluDisk$MH();
+    public static void glTexImage3DMultisample ( int target,  int samples,  int internalformat,  int width,  int height,  int depth,  byte fixedsamplelocations) {
+        var mh$ = glTexImage3DMultisample$MH();
         try {
-            mh$.invokeExact(quad, inner, outer, slices, loops);
+            mh$.invokeExact(target, samples, internalformat, width, height, depth, fixedsamplelocations);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
     }
-    public static MethodHandle gluEndCurve$MH() {
-        return RuntimeHelper.requireNonNull(constants$932.gluEndCurve$MH,"gluEndCurve");
+    public static MethodHandle glGetMultisamplefv$MH() {
+        return RuntimeHelper.requireNonNull(constants$230.glGetMultisamplefv$MH,"glGetMultisamplefv");
     }
-    public static void gluEndCurve ( Addressable nurb) {
-        var mh$ = gluEndCurve$MH();
+    public static void glGetMultisamplefv ( int pname,  int index,  Addressable val) {
+        var mh$ = glGetMultisamplefv$MH();
         try {
-            mh$.invokeExact(nurb);
+            mh$.invokeExact(pname, index, val);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
     }
-    public static MethodHandle gluEndPolygon$MH() {
-        return RuntimeHelper.requireNonNull(constants$933.gluEndPolygon$MH,"gluEndPolygon");
+    public static MethodHandle glSampleMaski$MH() {
+        return RuntimeHelper.requireNonNull(constants$230.glSampleMaski$MH,"glSampleMaski");
     }
-    public static void gluEndPolygon ( Addressable tess) {
-        var mh$ = gluEndPolygon$MH();
+    public static void glSampleMaski ( int maskNumber,  int mask) {
+        var mh$ = glSampleMaski$MH();
         try {
-            mh$.invokeExact(tess);
+            mh$.invokeExact(maskNumber, mask);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
     }
-    public static MethodHandle gluEndSurface$MH() {
-        return RuntimeHelper.requireNonNull(constants$933.gluEndSurface$MH,"gluEndSurface");
+    public static MethodHandle glBindFragDataLocationIndexed$MH() {
+        return RuntimeHelper.requireNonNull(constants$250.glBindFragDataLocationIndexed$MH,"glBindFragDataLocationIndexed");
     }
-    public static void gluEndSurface ( Addressable nurb) {
-        var mh$ = gluEndSurface$MH();
+    public static void glBindFragDataLocationIndexed ( int program,  int colorNumber,  int index,  Addressable name) {
+        var mh$ = glBindFragDataLocationIndexed$MH();
         try {
-            mh$.invokeExact(nurb);
+            mh$.invokeExact(program, colorNumber, index, name);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
     }
-    public static MethodHandle gluEndTrim$MH() {
-        return RuntimeHelper.requireNonNull(constants$933.gluEndTrim$MH,"gluEndTrim");
+    public static MethodHandle glGetFragDataIndex$MH() {
+        return RuntimeHelper.requireNonNull(constants$250.glGetFragDataIndex$MH,"glGetFragDataIndex");
     }
-    public static void gluEndTrim ( Addressable nurb) {
-        var mh$ = gluEndTrim$MH();
+    public static int glGetFragDataIndex ( int program,  Addressable name) {
+        var mh$ = glGetFragDataIndex$MH();
         try {
-            mh$.invokeExact(nurb);
+            return (int)mh$.invokeExact(program, name);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
     }
-    public static MethodHandle gluErrorString$MH() {
-        return RuntimeHelper.requireNonNull(constants$933.gluErrorString$MH,"gluErrorString");
+    public static MethodHandle glGenSamplers$MH() {
+        return RuntimeHelper.requireNonNull(constants$250.glGenSamplers$MH,"glGenSamplers");
     }
-    public static MemoryAddress gluErrorString ( int error) {
-        var mh$ = gluErrorString$MH();
+    public static void glGenSamplers ( int count,  Addressable samplers) {
+        var mh$ = glGenSamplers$MH();
         try {
-            return (java.lang.foreign.MemoryAddress)mh$.invokeExact(error);
+            mh$.invokeExact(count, samplers);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
     }
-    public static MethodHandle gluGetNurbsProperty$MH() {
-        return RuntimeHelper.requireNonNull(constants$933.gluGetNurbsProperty$MH,"gluGetNurbsProperty");
+    public static MethodHandle glDeleteSamplers$MH() {
+        return RuntimeHelper.requireNonNull(constants$250.glDeleteSamplers$MH,"glDeleteSamplers");
     }
-    public static void gluGetNurbsProperty ( Addressable nurb,  int property,  Addressable data) {
-        var mh$ = gluGetNurbsProperty$MH();
+    public static void glDeleteSamplers ( int count,  Addressable samplers) {
+        var mh$ = glDeleteSamplers$MH();
         try {
-            mh$.invokeExact(nurb, property, data);
+            mh$.invokeExact(count, samplers);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
     }
-    public static MethodHandle gluGetString$MH() {
-        return RuntimeHelper.requireNonNull(constants$933.gluGetString$MH,"gluGetString");
+    public static MethodHandle glIsSampler$MH() {
+        return RuntimeHelper.requireNonNull(constants$251.glIsSampler$MH,"glIsSampler");
     }
-    public static MemoryAddress gluGetString ( int name) {
-        var mh$ = gluGetString$MH();
+    public static byte glIsSampler ( int sampler) {
+        var mh$ = glIsSampler$MH();
         try {
-            return (java.lang.foreign.MemoryAddress)mh$.invokeExact(name);
+            return (byte)mh$.invokeExact(sampler);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
     }
-    public static MethodHandle gluGetTessProperty$MH() {
-        return RuntimeHelper.requireNonNull(constants$934.gluGetTessProperty$MH,"gluGetTessProperty");
+    public static MethodHandle glBindSampler$MH() {
+        return RuntimeHelper.requireNonNull(constants$251.glBindSampler$MH,"glBindSampler");
     }
-    public static void gluGetTessProperty ( Addressable tess,  int which,  Addressable data) {
-        var mh$ = gluGetTessProperty$MH();
+    public static void glBindSampler ( int unit,  int sampler) {
+        var mh$ = glBindSampler$MH();
         try {
-            mh$.invokeExact(tess, which, data);
+            mh$.invokeExact(unit, sampler);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
     }
-    public static MethodHandle gluLoadSamplingMatrices$MH() {
-        return RuntimeHelper.requireNonNull(constants$934.gluLoadSamplingMatrices$MH,"gluLoadSamplingMatrices");
+    public static MethodHandle glSamplerParameteri$MH() {
+        return RuntimeHelper.requireNonNull(constants$251.glSamplerParameteri$MH,"glSamplerParameteri");
     }
-    public static void gluLoadSamplingMatrices ( Addressable nurb,  Addressable model,  Addressable perspective,  Addressable view) {
-        var mh$ = gluLoadSamplingMatrices$MH();
+    public static void glSamplerParameteri ( int sampler,  int pname,  int param) {
+        var mh$ = glSamplerParameteri$MH();
         try {
-            mh$.invokeExact(nurb, model, perspective, view);
+            mh$.invokeExact(sampler, pname, param);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
     }
-    public static MethodHandle gluLookAt$MH() {
-        return RuntimeHelper.requireNonNull(constants$934.gluLookAt$MH,"gluLookAt");
+    public static MethodHandle glSamplerParameteriv$MH() {
+        return RuntimeHelper.requireNonNull(constants$251.glSamplerParameteriv$MH,"glSamplerParameteriv");
     }
-    public static void gluLookAt ( double eyeX,  double eyeY,  double eyeZ,  double centerX,  double centerY,  double centerZ,  double upX,  double upY,  double upZ) {
-        var mh$ = gluLookAt$MH();
+    public static void glSamplerParameteriv ( int sampler,  int pname,  Addressable param) {
+        var mh$ = glSamplerParameteriv$MH();
         try {
-            mh$.invokeExact(eyeX, eyeY, eyeZ, centerX, centerY, centerZ, upX, upY, upZ);
+            mh$.invokeExact(sampler, pname, param);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
     }
-    public static MethodHandle gluNewNurbsRenderer$MH() {
-        return RuntimeHelper.requireNonNull(constants$934.gluNewNurbsRenderer$MH,"gluNewNurbsRenderer");
+    public static MethodHandle glSamplerParameterf$MH() {
+        return RuntimeHelper.requireNonNull(constants$251.glSamplerParameterf$MH,"glSamplerParameterf");
     }
-    public static MemoryAddress gluNewNurbsRenderer () {
-        var mh$ = gluNewNurbsRenderer$MH();
+    public static void glSamplerParameterf ( int sampler,  int pname,  float param) {
+        var mh$ = glSamplerParameterf$MH();
         try {
-            return (java.lang.foreign.MemoryAddress)mh$.invokeExact();
+            mh$.invokeExact(sampler, pname, param);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
     }
-    public static MethodHandle gluNewQuadric$MH() {
-        return RuntimeHelper.requireNonNull(constants$934.gluNewQuadric$MH,"gluNewQuadric");
+    public static MethodHandle glSamplerParameterfv$MH() {
+        return RuntimeHelper.requireNonNull(constants$251.glSamplerParameterfv$MH,"glSamplerParameterfv");
     }
-    public static MemoryAddress gluNewQuadric () {
-        var mh$ = gluNewQuadric$MH();
+    public static void glSamplerParameterfv ( int sampler,  int pname,  Addressable param) {
+        var mh$ = glSamplerParameterfv$MH();
         try {
-            return (java.lang.foreign.MemoryAddress)mh$.invokeExact();
+            mh$.invokeExact(sampler, pname, param);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
     }
-    public static MethodHandle gluNewTess$MH() {
-        return RuntimeHelper.requireNonNull(constants$934.gluNewTess$MH,"gluNewTess");
+    public static MethodHandle glSamplerParameterIiv$MH() {
+        return RuntimeHelper.requireNonNull(constants$252.glSamplerParameterIiv$MH,"glSamplerParameterIiv");
     }
-    public static MemoryAddress gluNewTess () {
-        var mh$ = gluNewTess$MH();
+    public static void glSamplerParameterIiv ( int sampler,  int pname,  Addressable param) {
+        var mh$ = glSamplerParameterIiv$MH();
         try {
-            return (java.lang.foreign.MemoryAddress)mh$.invokeExact();
+            mh$.invokeExact(sampler, pname, param);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
     }
-    public static MethodHandle gluNextContour$MH() {
-        return RuntimeHelper.requireNonNull(constants$935.gluNextContour$MH,"gluNextContour");
+    public static MethodHandle glSamplerParameterIuiv$MH() {
+        return RuntimeHelper.requireNonNull(constants$252.glSamplerParameterIuiv$MH,"glSamplerParameterIuiv");
     }
-    public static void gluNextContour ( Addressable tess,  int type) {
-        var mh$ = gluNextContour$MH();
+    public static void glSamplerParameterIuiv ( int sampler,  int pname,  Addressable param) {
+        var mh$ = glSamplerParameterIuiv$MH();
         try {
-            mh$.invokeExact(tess, type);
+            mh$.invokeExact(sampler, pname, param);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
     }
-    public static MethodHandle gluNurbsCallback$MH() {
-        return RuntimeHelper.requireNonNull(constants$935.gluNurbsCallback$MH,"gluNurbsCallback");
+    public static MethodHandle glGetSamplerParameteriv$MH() {
+        return RuntimeHelper.requireNonNull(constants$252.glGetSamplerParameteriv$MH,"glGetSamplerParameteriv");
     }
-    public static void gluNurbsCallback ( Addressable nurb,  int which,  Addressable CallBackFunc) {
-        var mh$ = gluNurbsCallback$MH();
+    public static void glGetSamplerParameteriv ( int sampler,  int pname,  Addressable params) {
+        var mh$ = glGetSamplerParameteriv$MH();
         try {
-            mh$.invokeExact(nurb, which, CallBackFunc);
+            mh$.invokeExact(sampler, pname, params);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
     }
-    public static MethodHandle gluNurbsCallbackData$MH() {
-        return RuntimeHelper.requireNonNull(constants$935.gluNurbsCallbackData$MH,"gluNurbsCallbackData");
+    public static MethodHandle glGetSamplerParameterIiv$MH() {
+        return RuntimeHelper.requireNonNull(constants$252.glGetSamplerParameterIiv$MH,"glGetSamplerParameterIiv");
     }
-    public static void gluNurbsCallbackData ( Addressable nurb,  Addressable userData) {
-        var mh$ = gluNurbsCallbackData$MH();
+    public static void glGetSamplerParameterIiv ( int sampler,  int pname,  Addressable params) {
+        var mh$ = glGetSamplerParameterIiv$MH();
         try {
-            mh$.invokeExact(nurb, userData);
+            mh$.invokeExact(sampler, pname, params);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
     }
-    public static MethodHandle gluNurbsCallbackDataEXT$MH() {
-        return RuntimeHelper.requireNonNull(constants$935.gluNurbsCallbackDataEXT$MH,"gluNurbsCallbackDataEXT");
+    public static MethodHandle glGetSamplerParameterfv$MH() {
+        return RuntimeHelper.requireNonNull(constants$252.glGetSamplerParameterfv$MH,"glGetSamplerParameterfv");
     }
-    public static void gluNurbsCallbackDataEXT ( Addressable nurb,  Addressable userData) {
-        var mh$ = gluNurbsCallbackDataEXT$MH();
+    public static void glGetSamplerParameterfv ( int sampler,  int pname,  Addressable params) {
+        var mh$ = glGetSamplerParameterfv$MH();
         try {
-            mh$.invokeExact(nurb, userData);
+            mh$.invokeExact(sampler, pname, params);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
     }
-    public static MethodHandle gluNurbsCurve$MH() {
-        return RuntimeHelper.requireNonNull(constants$935.gluNurbsCurve$MH,"gluNurbsCurve");
+    public static MethodHandle glGetSamplerParameterIuiv$MH() {
+        return RuntimeHelper.requireNonNull(constants$252.glGetSamplerParameterIuiv$MH,"glGetSamplerParameterIuiv");
     }
-    public static void gluNurbsCurve ( Addressable nurb,  int knotCount,  Addressable knots,  int stride,  Addressable control,  int order,  int type) {
-        var mh$ = gluNurbsCurve$MH();
+    public static void glGetSamplerParameterIuiv ( int sampler,  int pname,  Addressable params) {
+        var mh$ = glGetSamplerParameterIuiv$MH();
         try {
-            mh$.invokeExact(nurb, knotCount, knots, stride, control, order, type);
+            mh$.invokeExact(sampler, pname, params);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
     }
-    public static MethodHandle gluNurbsProperty$MH() {
-        return RuntimeHelper.requireNonNull(constants$935.gluNurbsProperty$MH,"gluNurbsProperty");
+    public static MethodHandle glQueryCounter$MH() {
+        return RuntimeHelper.requireNonNull(constants$253.glQueryCounter$MH,"glQueryCounter");
     }
-    public static void gluNurbsProperty ( Addressable nurb,  int property,  float value) {
-        var mh$ = gluNurbsProperty$MH();
+    public static void glQueryCounter ( int id,  int target) {
+        var mh$ = glQueryCounter$MH();
         try {
-            mh$.invokeExact(nurb, property, value);
+            mh$.invokeExact(id, target);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
     }
-    public static MethodHandle gluNurbsSurface$MH() {
-        return RuntimeHelper.requireNonNull(constants$936.gluNurbsSurface$MH,"gluNurbsSurface");
+    public static MethodHandle glGetQueryObjecti64v$MH() {
+        return RuntimeHelper.requireNonNull(constants$253.glGetQueryObjecti64v$MH,"glGetQueryObjecti64v");
     }
-    public static void gluNurbsSurface ( Addressable nurb,  int sKnotCount,  Addressable sKnots,  int tKnotCount,  Addressable tKnots,  int sStride,  int tStride,  Addressable control,  int sOrder,  int tOrder,  int type) {
-        var mh$ = gluNurbsSurface$MH();
+    public static void glGetQueryObjecti64v ( int id,  int pname,  Addressable params) {
+        var mh$ = glGetQueryObjecti64v$MH();
         try {
-            mh$.invokeExact(nurb, sKnotCount, sKnots, tKnotCount, tKnots, sStride, tStride, control, sOrder, tOrder, type);
+            mh$.invokeExact(id, pname, params);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
     }
-    public static MethodHandle gluOrtho2D$MH() {
-        return RuntimeHelper.requireNonNull(constants$936.gluOrtho2D$MH,"gluOrtho2D");
+    public static MethodHandle glGetQueryObjectui64v$MH() {
+        return RuntimeHelper.requireNonNull(constants$253.glGetQueryObjectui64v$MH,"glGetQueryObjectui64v");
     }
-    public static void gluOrtho2D ( double left,  double right,  double bottom,  double top) {
-        var mh$ = gluOrtho2D$MH();
+    public static void glGetQueryObjectui64v ( int id,  int pname,  Addressable params) {
+        var mh$ = glGetQueryObjectui64v$MH();
         try {
-            mh$.invokeExact(left, right, bottom, top);
+            mh$.invokeExact(id, pname, params);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
     }
-    public static MethodHandle gluPartialDisk$MH() {
-        return RuntimeHelper.requireNonNull(constants$936.gluPartialDisk$MH,"gluPartialDisk");
+    public static MethodHandle glVertexAttribDivisor$MH() {
+        return RuntimeHelper.requireNonNull(constants$253.glVertexAttribDivisor$MH,"glVertexAttribDivisor");
     }
-    public static void gluPartialDisk ( Addressable quad,  double inner,  double outer,  int slices,  int loops,  double start,  double sweep) {
-        var mh$ = gluPartialDisk$MH();
+    public static void glVertexAttribDivisor ( int index,  int divisor) {
+        var mh$ = glVertexAttribDivisor$MH();
         try {
-            mh$.invokeExact(quad, inner, outer, slices, loops, start, sweep);
+            mh$.invokeExact(index, divisor);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
     }
-    public static MethodHandle gluPerspective$MH() {
-        return RuntimeHelper.requireNonNull(constants$936.gluPerspective$MH,"gluPerspective");
+    public static MethodHandle glVertexAttribP1ui$MH() {
+        return RuntimeHelper.requireNonNull(constants$253.glVertexAttribP1ui$MH,"glVertexAttribP1ui");
     }
-    public static void gluPerspective ( double fovy,  double aspect,  double zNear,  double zFar) {
-        var mh$ = gluPerspective$MH();
+    public static void glVertexAttribP1ui ( int index,  int type,  byte normalized,  int value) {
+        var mh$ = glVertexAttribP1ui$MH();
         try {
-            mh$.invokeExact(fovy, aspect, zNear, zFar);
+            mh$.invokeExact(index, type, normalized, value);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
     }
-    public static MethodHandle gluPickMatrix$MH() {
-        return RuntimeHelper.requireNonNull(constants$936.gluPickMatrix$MH,"gluPickMatrix");
+    public static MethodHandle glVertexAttribP1uiv$MH() {
+        return RuntimeHelper.requireNonNull(constants$253.glVertexAttribP1uiv$MH,"glVertexAttribP1uiv");
     }
-    public static void gluPickMatrix ( double x,  double y,  double delX,  double delY,  Addressable viewport) {
-        var mh$ = gluPickMatrix$MH();
+    public static void glVertexAttribP1uiv ( int index,  int type,  byte normalized,  Addressable value) {
+        var mh$ = glVertexAttribP1uiv$MH();
         try {
-            mh$.invokeExact(x, y, delX, delY, viewport);
+            mh$.invokeExact(index, type, normalized, value);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
     }
-    public static MethodHandle gluProject$MH() {
-        return RuntimeHelper.requireNonNull(constants$936.gluProject$MH,"gluProject");
+    public static MethodHandle glVertexAttribP2ui$MH() {
+        return RuntimeHelper.requireNonNull(constants$254.glVertexAttribP2ui$MH,"glVertexAttribP2ui");
     }
-    public static int gluProject ( double objX,  double objY,  double objZ,  Addressable model,  Addressable proj,  Addressable view,  Addressable winX,  Addressable winY,  Addressable winZ) {
-        var mh$ = gluProject$MH();
+    public static void glVertexAttribP2ui ( int index,  int type,  byte normalized,  int value) {
+        var mh$ = glVertexAttribP2ui$MH();
         try {
-            return (int)mh$.invokeExact(objX, objY, objZ, model, proj, view, winX, winY, winZ);
+            mh$.invokeExact(index, type, normalized, value);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
     }
-    public static MethodHandle gluPwlCurve$MH() {
-        return RuntimeHelper.requireNonNull(constants$937.gluPwlCurve$MH,"gluPwlCurve");
+    public static MethodHandle glVertexAttribP2uiv$MH() {
+        return RuntimeHelper.requireNonNull(constants$254.glVertexAttribP2uiv$MH,"glVertexAttribP2uiv");
     }
-    public static void gluPwlCurve ( Addressable nurb,  int count,  Addressable data,  int stride,  int type) {
-        var mh$ = gluPwlCurve$MH();
+    public static void glVertexAttribP2uiv ( int index,  int type,  byte normalized,  Addressable value) {
+        var mh$ = glVertexAttribP2uiv$MH();
         try {
-            mh$.invokeExact(nurb, count, data, stride, type);
+            mh$.invokeExact(index, type, normalized, value);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
     }
-    public static MethodHandle gluQuadricCallback$MH() {
-        return RuntimeHelper.requireNonNull(constants$937.gluQuadricCallback$MH,"gluQuadricCallback");
+    public static MethodHandle glVertexAttribP3ui$MH() {
+        return RuntimeHelper.requireNonNull(constants$254.glVertexAttribP3ui$MH,"glVertexAttribP3ui");
     }
-    public static void gluQuadricCallback ( Addressable quad,  int which,  Addressable CallBackFunc) {
-        var mh$ = gluQuadricCallback$MH();
+    public static void glVertexAttribP3ui ( int index,  int type,  byte normalized,  int value) {
+        var mh$ = glVertexAttribP3ui$MH();
         try {
-            mh$.invokeExact(quad, which, CallBackFunc);
+            mh$.invokeExact(index, type, normalized, value);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
     }
-    public static MethodHandle gluQuadricDrawStyle$MH() {
-        return RuntimeHelper.requireNonNull(constants$937.gluQuadricDrawStyle$MH,"gluQuadricDrawStyle");
+    public static MethodHandle glVertexAttribP3uiv$MH() {
+        return RuntimeHelper.requireNonNull(constants$254.glVertexAttribP3uiv$MH,"glVertexAttribP3uiv");
     }
-    public static void gluQuadricDrawStyle ( Addressable quad,  int draw) {
-        var mh$ = gluQuadricDrawStyle$MH();
+    public static void glVertexAttribP3uiv ( int index,  int type,  byte normalized,  Addressable value) {
+        var mh$ = glVertexAttribP3uiv$MH();
         try {
-            mh$.invokeExact(quad, draw);
+            mh$.invokeExact(index, type, normalized, value);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
     }
-    public static MethodHandle gluQuadricNormals$MH() {
-        return RuntimeHelper.requireNonNull(constants$937.gluQuadricNormals$MH,"gluQuadricNormals");
+    public static MethodHandle glVertexAttribP4ui$MH() {
+        return RuntimeHelper.requireNonNull(constants$254.glVertexAttribP4ui$MH,"glVertexAttribP4ui");
     }
-    public static void gluQuadricNormals ( Addressable quad,  int normal) {
-        var mh$ = gluQuadricNormals$MH();
+    public static void glVertexAttribP4ui ( int index,  int type,  byte normalized,  int value) {
+        var mh$ = glVertexAttribP4ui$MH();
         try {
-            mh$.invokeExact(quad, normal);
+            mh$.invokeExact(index, type, normalized, value);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
     }
-    public static MethodHandle gluQuadricOrientation$MH() {
-        return RuntimeHelper.requireNonNull(constants$937.gluQuadricOrientation$MH,"gluQuadricOrientation");
+    public static MethodHandle glVertexAttribP4uiv$MH() {
+        return RuntimeHelper.requireNonNull(constants$254.glVertexAttribP4uiv$MH,"glVertexAttribP4uiv");
     }
-    public static void gluQuadricOrientation ( Addressable quad,  int orientation) {
-        var mh$ = gluQuadricOrientation$MH();
+    public static void glVertexAttribP4uiv ( int index,  int type,  byte normalized,  Addressable value) {
+        var mh$ = glVertexAttribP4uiv$MH();
         try {
-            mh$.invokeExact(quad, orientation);
+            mh$.invokeExact(index, type, normalized, value);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
     }
-    public static MethodHandle gluQuadricTexture$MH() {
-        return RuntimeHelper.requireNonNull(constants$937.gluQuadricTexture$MH,"gluQuadricTexture");
+    public static MethodHandle glVertexP2ui$MH() {
+        return RuntimeHelper.requireNonNull(constants$255.glVertexP2ui$MH,"glVertexP2ui");
     }
-    public static void gluQuadricTexture ( Addressable quad,  byte texture) {
-        var mh$ = gluQuadricTexture$MH();
+    public static void glVertexP2ui ( int type,  int value) {
+        var mh$ = glVertexP2ui$MH();
         try {
-            mh$.invokeExact(quad, texture);
+            mh$.invokeExact(type, value);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
     }
-    public static MethodHandle gluScaleImage$MH() {
-        return RuntimeHelper.requireNonNull(constants$938.gluScaleImage$MH,"gluScaleImage");
+    public static MethodHandle glVertexP2uiv$MH() {
+        return RuntimeHelper.requireNonNull(constants$255.glVertexP2uiv$MH,"glVertexP2uiv");
     }
-    public static int gluScaleImage ( int format,  int wIn,  int hIn,  int typeIn,  Addressable dataIn,  int wOut,  int hOut,  int typeOut,  Addressable dataOut) {
-        var mh$ = gluScaleImage$MH();
+    public static void glVertexP2uiv ( int type,  Addressable value) {
+        var mh$ = glVertexP2uiv$MH();
         try {
-            return (int)mh$.invokeExact(format, wIn, hIn, typeIn, dataIn, wOut, hOut, typeOut, dataOut);
+            mh$.invokeExact(type, value);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
     }
-    public static MethodHandle gluSphere$MH() {
-        return RuntimeHelper.requireNonNull(constants$938.gluSphere$MH,"gluSphere");
+    public static MethodHandle glVertexP3ui$MH() {
+        return RuntimeHelper.requireNonNull(constants$255.glVertexP3ui$MH,"glVertexP3ui");
     }
-    public static void gluSphere ( Addressable quad,  double radius,  int slices,  int stacks) {
-        var mh$ = gluSphere$MH();
+    public static void glVertexP3ui ( int type,  int value) {
+        var mh$ = glVertexP3ui$MH();
         try {
-            mh$.invokeExact(quad, radius, slices, stacks);
+            mh$.invokeExact(type, value);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
     }
-    public static MethodHandle gluTessBeginContour$MH() {
-        return RuntimeHelper.requireNonNull(constants$938.gluTessBeginContour$MH,"gluTessBeginContour");
+    public static MethodHandle glVertexP3uiv$MH() {
+        return RuntimeHelper.requireNonNull(constants$255.glVertexP3uiv$MH,"glVertexP3uiv");
     }
-    public static void gluTessBeginContour ( Addressable tess) {
-        var mh$ = gluTessBeginContour$MH();
+    public static void glVertexP3uiv ( int type,  Addressable value) {
+        var mh$ = glVertexP3uiv$MH();
         try {
-            mh$.invokeExact(tess);
+            mh$.invokeExact(type, value);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
     }
-    public static MethodHandle gluTessBeginPolygon$MH() {
-        return RuntimeHelper.requireNonNull(constants$938.gluTessBeginPolygon$MH,"gluTessBeginPolygon");
+    public static MethodHandle glVertexP4ui$MH() {
+        return RuntimeHelper.requireNonNull(constants$255.glVertexP4ui$MH,"glVertexP4ui");
     }
-    public static void gluTessBeginPolygon ( Addressable tess,  Addressable data) {
-        var mh$ = gluTessBeginPolygon$MH();
+    public static void glVertexP4ui ( int type,  int value) {
+        var mh$ = glVertexP4ui$MH();
         try {
-            mh$.invokeExact(tess, data);
+            mh$.invokeExact(type, value);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
     }
-    public static MethodHandle gluTessCallback$MH() {
-        return RuntimeHelper.requireNonNull(constants$938.gluTessCallback$MH,"gluTessCallback");
+    public static MethodHandle glVertexP4uiv$MH() {
+        return RuntimeHelper.requireNonNull(constants$255.glVertexP4uiv$MH,"glVertexP4uiv");
     }
-    public static void gluTessCallback ( Addressable tess,  int which,  Addressable CallBackFunc) {
-        var mh$ = gluTessCallback$MH();
+    public static void glVertexP4uiv ( int type,  Addressable value) {
+        var mh$ = glVertexP4uiv$MH();
         try {
-            mh$.invokeExact(tess, which, CallBackFunc);
+            mh$.invokeExact(type, value);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
     }
-    public static MethodHandle gluTessEndContour$MH() {
-        return RuntimeHelper.requireNonNull(constants$938.gluTessEndContour$MH,"gluTessEndContour");
+    public static MethodHandle glTexCoordP1ui$MH() {
+        return RuntimeHelper.requireNonNull(constants$256.glTexCoordP1ui$MH,"glTexCoordP1ui");
     }
-    public static void gluTessEndContour ( Addressable tess) {
-        var mh$ = gluTessEndContour$MH();
+    public static void glTexCoordP1ui ( int type,  int coords) {
+        var mh$ = glTexCoordP1ui$MH();
         try {
-            mh$.invokeExact(tess);
+            mh$.invokeExact(type, coords);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
     }
-    public static MethodHandle gluTessEndPolygon$MH() {
-        return RuntimeHelper.requireNonNull(constants$939.gluTessEndPolygon$MH,"gluTessEndPolygon");
+    public static MethodHandle glTexCoordP1uiv$MH() {
+        return RuntimeHelper.requireNonNull(constants$256.glTexCoordP1uiv$MH,"glTexCoordP1uiv");
     }
-    public static void gluTessEndPolygon ( Addressable tess) {
-        var mh$ = gluTessEndPolygon$MH();
+    public static void glTexCoordP1uiv ( int type,  Addressable coords) {
+        var mh$ = glTexCoordP1uiv$MH();
         try {
-            mh$.invokeExact(tess);
+            mh$.invokeExact(type, coords);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
     }
-    public static MethodHandle gluTessNormal$MH() {
-        return RuntimeHelper.requireNonNull(constants$939.gluTessNormal$MH,"gluTessNormal");
+    public static MethodHandle glTexCoordP2ui$MH() {
+        return RuntimeHelper.requireNonNull(constants$256.glTexCoordP2ui$MH,"glTexCoordP2ui");
     }
-    public static void gluTessNormal ( Addressable tess,  double valueX,  double valueY,  double valueZ) {
-        var mh$ = gluTessNormal$MH();
+    public static void glTexCoordP2ui ( int type,  int coords) {
+        var mh$ = glTexCoordP2ui$MH();
         try {
-            mh$.invokeExact(tess, valueX, valueY, valueZ);
+            mh$.invokeExact(type, coords);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
     }
-    public static MethodHandle gluTessProperty$MH() {
-        return RuntimeHelper.requireNonNull(constants$939.gluTessProperty$MH,"gluTessProperty");
+    public static MethodHandle glTexCoordP2uiv$MH() {
+        return RuntimeHelper.requireNonNull(constants$256.glTexCoordP2uiv$MH,"glTexCoordP2uiv");
     }
-    public static void gluTessProperty ( Addressable tess,  int which,  double data) {
-        var mh$ = gluTessProperty$MH();
+    public static void glTexCoordP2uiv ( int type,  Addressable coords) {
+        var mh$ = glTexCoordP2uiv$MH();
         try {
-            mh$.invokeExact(tess, which, data);
+            mh$.invokeExact(type, coords);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
     }
-    public static MethodHandle gluTessVertex$MH() {
-        return RuntimeHelper.requireNonNull(constants$939.gluTessVertex$MH,"gluTessVertex");
+    public static MethodHandle glTexCoordP3ui$MH() {
+        return RuntimeHelper.requireNonNull(constants$256.glTexCoordP3ui$MH,"glTexCoordP3ui");
     }
-    public static void gluTessVertex ( Addressable tess,  Addressable location,  Addressable data) {
-        var mh$ = gluTessVertex$MH();
+    public static void glTexCoordP3ui ( int type,  int coords) {
+        var mh$ = glTexCoordP3ui$MH();
         try {
-            mh$.invokeExact(tess, location, data);
+            mh$.invokeExact(type, coords);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
     }
-    public static MethodHandle gluUnProject$MH() {
-        return RuntimeHelper.requireNonNull(constants$939.gluUnProject$MH,"gluUnProject");
+    public static MethodHandle glTexCoordP3uiv$MH() {
+        return RuntimeHelper.requireNonNull(constants$256.glTexCoordP3uiv$MH,"glTexCoordP3uiv");
     }
-    public static int gluUnProject ( double winX,  double winY,  double winZ,  Addressable model,  Addressable proj,  Addressable view,  Addressable objX,  Addressable objY,  Addressable objZ) {
-        var mh$ = gluUnProject$MH();
+    public static void glTexCoordP3uiv ( int type,  Addressable coords) {
+        var mh$ = glTexCoordP3uiv$MH();
         try {
-            return (int)mh$.invokeExact(winX, winY, winZ, model, proj, view, objX, objY, objZ);
+            mh$.invokeExact(type, coords);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
     }
-    public static MethodHandle gluUnProject4$MH() {
-        return RuntimeHelper.requireNonNull(constants$939.gluUnProject4$MH,"gluUnProject4");
+    public static MethodHandle glTexCoordP4ui$MH() {
+        return RuntimeHelper.requireNonNull(constants$257.glTexCoordP4ui$MH,"glTexCoordP4ui");
     }
-    public static int gluUnProject4 ( double winX,  double winY,  double winZ,  double clipW,  Addressable model,  Addressable proj,  Addressable view,  double nearVal,  double farVal,  Addressable objX,  Addressable objY,  Addressable objZ,  Addressable objW) {
-        var mh$ = gluUnProject4$MH();
+    public static void glTexCoordP4ui ( int type,  int coords) {
+        var mh$ = glTexCoordP4ui$MH();
         try {
-            return (int)mh$.invokeExact(winX, winY, winZ, clipW, model, proj, view, nearVal, farVal, objX, objY, objZ, objW);
+            mh$.invokeExact(type, coords);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
     }
-    public static MemoryLayout glutStrokeRoman$LAYOUT() {
-        return constants$940.glutStrokeRoman$LAYOUT;
+    public static MethodHandle glTexCoordP4uiv$MH() {
+        return RuntimeHelper.requireNonNull(constants$257.glTexCoordP4uiv$MH,"glTexCoordP4uiv");
     }
-    public static VarHandle glutStrokeRoman$VH() {
-        return constants$940.glutStrokeRoman$VH;
+    public static void glTexCoordP4uiv ( int type,  Addressable coords) {
+        var mh$ = glTexCoordP4uiv$MH();
+        try {
+            mh$.invokeExact(type, coords);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle glMultiTexCoordP1ui$MH() {
+        return RuntimeHelper.requireNonNull(constants$257.glMultiTexCoordP1ui$MH,"glMultiTexCoordP1ui");
+    }
+    public static void glMultiTexCoordP1ui ( int texture,  int type,  int coords) {
+        var mh$ = glMultiTexCoordP1ui$MH();
+        try {
+            mh$.invokeExact(texture, type, coords);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle glMultiTexCoordP1uiv$MH() {
+        return RuntimeHelper.requireNonNull(constants$257.glMultiTexCoordP1uiv$MH,"glMultiTexCoordP1uiv");
+    }
+    public static void glMultiTexCoordP1uiv ( int texture,  int type,  Addressable coords) {
+        var mh$ = glMultiTexCoordP1uiv$MH();
+        try {
+            mh$.invokeExact(texture, type, coords);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle glMultiTexCoordP2ui$MH() {
+        return RuntimeHelper.requireNonNull(constants$257.glMultiTexCoordP2ui$MH,"glMultiTexCoordP2ui");
+    }
+    public static void glMultiTexCoordP2ui ( int texture,  int type,  int coords) {
+        var mh$ = glMultiTexCoordP2ui$MH();
+        try {
+            mh$.invokeExact(texture, type, coords);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle glMultiTexCoordP2uiv$MH() {
+        return RuntimeHelper.requireNonNull(constants$257.glMultiTexCoordP2uiv$MH,"glMultiTexCoordP2uiv");
+    }
+    public static void glMultiTexCoordP2uiv ( int texture,  int type,  Addressable coords) {
+        var mh$ = glMultiTexCoordP2uiv$MH();
+        try {
+            mh$.invokeExact(texture, type, coords);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle glMultiTexCoordP3ui$MH() {
+        return RuntimeHelper.requireNonNull(constants$258.glMultiTexCoordP3ui$MH,"glMultiTexCoordP3ui");
+    }
+    public static void glMultiTexCoordP3ui ( int texture,  int type,  int coords) {
+        var mh$ = glMultiTexCoordP3ui$MH();
+        try {
+            mh$.invokeExact(texture, type, coords);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle glMultiTexCoordP3uiv$MH() {
+        return RuntimeHelper.requireNonNull(constants$258.glMultiTexCoordP3uiv$MH,"glMultiTexCoordP3uiv");
+    }
+    public static void glMultiTexCoordP3uiv ( int texture,  int type,  Addressable coords) {
+        var mh$ = glMultiTexCoordP3uiv$MH();
+        try {
+            mh$.invokeExact(texture, type, coords);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle glMultiTexCoordP4ui$MH() {
+        return RuntimeHelper.requireNonNull(constants$258.glMultiTexCoordP4ui$MH,"glMultiTexCoordP4ui");
+    }
+    public static void glMultiTexCoordP4ui ( int texture,  int type,  int coords) {
+        var mh$ = glMultiTexCoordP4ui$MH();
+        try {
+            mh$.invokeExact(texture, type, coords);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle glMultiTexCoordP4uiv$MH() {
+        return RuntimeHelper.requireNonNull(constants$258.glMultiTexCoordP4uiv$MH,"glMultiTexCoordP4uiv");
+    }
+    public static void glMultiTexCoordP4uiv ( int texture,  int type,  Addressable coords) {
+        var mh$ = glMultiTexCoordP4uiv$MH();
+        try {
+            mh$.invokeExact(texture, type, coords);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle glNormalP3ui$MH() {
+        return RuntimeHelper.requireNonNull(constants$258.glNormalP3ui$MH,"glNormalP3ui");
+    }
+    public static void glNormalP3ui ( int type,  int coords) {
+        var mh$ = glNormalP3ui$MH();
+        try {
+            mh$.invokeExact(type, coords);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle glNormalP3uiv$MH() {
+        return RuntimeHelper.requireNonNull(constants$258.glNormalP3uiv$MH,"glNormalP3uiv");
+    }
+    public static void glNormalP3uiv ( int type,  Addressable coords) {
+        var mh$ = glNormalP3uiv$MH();
+        try {
+            mh$.invokeExact(type, coords);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle glColorP3ui$MH() {
+        return RuntimeHelper.requireNonNull(constants$259.glColorP3ui$MH,"glColorP3ui");
+    }
+    public static void glColorP3ui ( int type,  int color) {
+        var mh$ = glColorP3ui$MH();
+        try {
+            mh$.invokeExact(type, color);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle glColorP3uiv$MH() {
+        return RuntimeHelper.requireNonNull(constants$259.glColorP3uiv$MH,"glColorP3uiv");
+    }
+    public static void glColorP3uiv ( int type,  Addressable color) {
+        var mh$ = glColorP3uiv$MH();
+        try {
+            mh$.invokeExact(type, color);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle glColorP4ui$MH() {
+        return RuntimeHelper.requireNonNull(constants$259.glColorP4ui$MH,"glColorP4ui");
+    }
+    public static void glColorP4ui ( int type,  int color) {
+        var mh$ = glColorP4ui$MH();
+        try {
+            mh$.invokeExact(type, color);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle glColorP4uiv$MH() {
+        return RuntimeHelper.requireNonNull(constants$259.glColorP4uiv$MH,"glColorP4uiv");
+    }
+    public static void glColorP4uiv ( int type,  Addressable color) {
+        var mh$ = glColorP4uiv$MH();
+        try {
+            mh$.invokeExact(type, color);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle glSecondaryColorP3ui$MH() {
+        return RuntimeHelper.requireNonNull(constants$259.glSecondaryColorP3ui$MH,"glSecondaryColorP3ui");
+    }
+    public static void glSecondaryColorP3ui ( int type,  int color) {
+        var mh$ = glSecondaryColorP3ui$MH();
+        try {
+            mh$.invokeExact(type, color);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle glSecondaryColorP3uiv$MH() {
+        return RuntimeHelper.requireNonNull(constants$259.glSecondaryColorP3uiv$MH,"glSecondaryColorP3uiv");
+    }
+    public static void glSecondaryColorP3uiv ( int type,  Addressable color) {
+        var mh$ = glSecondaryColorP3uiv$MH();
+        try {
+            mh$.invokeExact(type, color);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle glMinSampleShading$MH() {
+        return RuntimeHelper.requireNonNull(constants$275.glMinSampleShading$MH,"glMinSampleShading");
+    }
+    public static void glMinSampleShading ( float value) {
+        var mh$ = glMinSampleShading$MH();
+        try {
+            mh$.invokeExact(value);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle glBlendEquationi$MH() {
+        return RuntimeHelper.requireNonNull(constants$275.glBlendEquationi$MH,"glBlendEquationi");
+    }
+    public static void glBlendEquationi ( int buf,  int mode) {
+        var mh$ = glBlendEquationi$MH();
+        try {
+            mh$.invokeExact(buf, mode);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle glBlendEquationSeparatei$MH() {
+        return RuntimeHelper.requireNonNull(constants$275.glBlendEquationSeparatei$MH,"glBlendEquationSeparatei");
+    }
+    public static void glBlendEquationSeparatei ( int buf,  int modeRGB,  int modeAlpha) {
+        var mh$ = glBlendEquationSeparatei$MH();
+        try {
+            mh$.invokeExact(buf, modeRGB, modeAlpha);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle glBlendFunci$MH() {
+        return RuntimeHelper.requireNonNull(constants$275.glBlendFunci$MH,"glBlendFunci");
+    }
+    public static void glBlendFunci ( int buf,  int src,  int dst) {
+        var mh$ = glBlendFunci$MH();
+        try {
+            mh$.invokeExact(buf, src, dst);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle glBlendFuncSeparatei$MH() {
+        return RuntimeHelper.requireNonNull(constants$276.glBlendFuncSeparatei$MH,"glBlendFuncSeparatei");
+    }
+    public static void glBlendFuncSeparatei ( int buf,  int srcRGB,  int dstRGB,  int srcAlpha,  int dstAlpha) {
+        var mh$ = glBlendFuncSeparatei$MH();
+        try {
+            mh$.invokeExact(buf, srcRGB, dstRGB, srcAlpha, dstAlpha);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
     }
-    public static MemorySegment glutStrokeRoman$SEGMENT() {
-        return RuntimeHelper.requireNonNull(constants$940.glutStrokeRoman$SEGMENT,"glutStrokeRoman");
+    public static MethodHandle glDrawArraysIndirect$MH() {
+        return RuntimeHelper.requireNonNull(constants$276.glDrawArraysIndirect$MH,"glDrawArraysIndirect");
     }
-    public static MemoryAddress glutStrokeRoman$get() {
-        return (java.lang.foreign.MemoryAddress) constants$940.glutStrokeRoman$VH.get(RuntimeHelper.requireNonNull(constants$940.glutStrokeRoman$SEGMENT, "glutStrokeRoman"));
+    public static void glDrawArraysIndirect ( int mode,  Addressable indirect) {
+        var mh$ = glDrawArraysIndirect$MH();
+        try {
+            mh$.invokeExact(mode, indirect);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle glDrawElementsIndirect$MH() {
+        return RuntimeHelper.requireNonNull(constants$276.glDrawElementsIndirect$MH,"glDrawElementsIndirect");
+    }
+    public static void glDrawElementsIndirect ( int mode,  int type,  Addressable indirect) {
+        var mh$ = glDrawElementsIndirect$MH();
+        try {
+            mh$.invokeExact(mode, type, indirect);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle glUniform1d$MH() {
+        return RuntimeHelper.requireNonNull(constants$276.glUniform1d$MH,"glUniform1d");
+    }
+    public static void glUniform1d ( int location,  double x) {
+        var mh$ = glUniform1d$MH();
+        try {
+            mh$.invokeExact(location, x);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle glUniform2d$MH() {
+        return RuntimeHelper.requireNonNull(constants$276.glUniform2d$MH,"glUniform2d");
+    }
+    public static void glUniform2d ( int location,  double x,  double y) {
+        var mh$ = glUniform2d$MH();
+        try {
+            mh$.invokeExact(location, x, y);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle glUniform3d$MH() {
+        return RuntimeHelper.requireNonNull(constants$276.glUniform3d$MH,"glUniform3d");
+    }
+    public static void glUniform3d ( int location,  double x,  double y,  double z) {
+        var mh$ = glUniform3d$MH();
+        try {
+            mh$.invokeExact(location, x, y, z);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle glUniform4d$MH() {
+        return RuntimeHelper.requireNonNull(constants$277.glUniform4d$MH,"glUniform4d");
+    }
+    public static void glUniform4d ( int location,  double x,  double y,  double z,  double w) {
+        var mh$ = glUniform4d$MH();
+        try {
+            mh$.invokeExact(location, x, y, z, w);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle glUniform1dv$MH() {
+        return RuntimeHelper.requireNonNull(constants$277.glUniform1dv$MH,"glUniform1dv");
+    }
+    public static void glUniform1dv ( int location,  int count,  Addressable value) {
+        var mh$ = glUniform1dv$MH();
+        try {
+            mh$.invokeExact(location, count, value);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
     }
-    public static void glutStrokeRoman$set( MemoryAddress x) {
-        constants$940.glutStrokeRoman$VH.set(RuntimeHelper.requireNonNull(constants$940.glutStrokeRoman$SEGMENT, "glutStrokeRoman"), x);
+    public static MethodHandle glUniform2dv$MH() {
+        return RuntimeHelper.requireNonNull(constants$277.glUniform2dv$MH,"glUniform2dv");
+    }
+    public static void glUniform2dv ( int location,  int count,  Addressable value) {
+        var mh$ = glUniform2dv$MH();
+        try {
+            mh$.invokeExact(location, count, value);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle glUniform3dv$MH() {
+        return RuntimeHelper.requireNonNull(constants$277.glUniform3dv$MH,"glUniform3dv");
+    }
+    public static void glUniform3dv ( int location,  int count,  Addressable value) {
+        var mh$ = glUniform3dv$MH();
+        try {
+            mh$.invokeExact(location, count, value);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
     }
-    public static MemoryLayout glutStrokeMonoRoman$LAYOUT() {
-        return constants$940.glutStrokeMonoRoman$LAYOUT;
+    public static MethodHandle glUniform4dv$MH() {
+        return RuntimeHelper.requireNonNull(constants$277.glUniform4dv$MH,"glUniform4dv");
     }
-    public static VarHandle glutStrokeMonoRoman$VH() {
-        return constants$940.glutStrokeMonoRoman$VH;
+    public static void glUniform4dv ( int location,  int count,  Addressable value) {
+        var mh$ = glUniform4dv$MH();
+        try {
+            mh$.invokeExact(location, count, value);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
     }
-    public static MemorySegment glutStrokeMonoRoman$SEGMENT() {
-        return RuntimeHelper.requireNonNull(constants$940.glutStrokeMonoRoman$SEGMENT,"glutStrokeMonoRoman");
+    public static MethodHandle glUniformMatrix2dv$MH() {
+        return RuntimeHelper.requireNonNull(constants$277.glUniformMatrix2dv$MH,"glUniformMatrix2dv");
     }
-    public static MemoryAddress glutStrokeMonoRoman$get() {
-        return (java.lang.foreign.MemoryAddress) constants$940.glutStrokeMonoRoman$VH.get(RuntimeHelper.requireNonNull(constants$940.glutStrokeMonoRoman$SEGMENT, "glutStrokeMonoRoman"));
+    public static void glUniformMatrix2dv ( int location,  int count,  byte transpose,  Addressable value) {
+        var mh$ = glUniformMatrix2dv$MH();
+        try {
+            mh$.invokeExact(location, count, transpose, value);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
     }
-    public static void glutStrokeMonoRoman$set( MemoryAddress x) {
-        constants$940.glutStrokeMonoRoman$VH.set(RuntimeHelper.requireNonNull(constants$940.glutStrokeMonoRoman$SEGMENT, "glutStrokeMonoRoman"), x);
+    public static MethodHandle glUniformMatrix3dv$MH() {
+        return RuntimeHelper.requireNonNull(constants$278.glUniformMatrix3dv$MH,"glUniformMatrix3dv");
     }
-    public static MemoryLayout glutBitmap9By15$LAYOUT() {
-        return constants$940.glutBitmap9By15$LAYOUT;
+    public static void glUniformMatrix3dv ( int location,  int count,  byte transpose,  Addressable value) {
+        var mh$ = glUniformMatrix3dv$MH();
+        try {
+            mh$.invokeExact(location, count, transpose, value);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
     }
-    public static VarHandle glutBitmap9By15$VH() {
-        return constants$940.glutBitmap9By15$VH;
+    public static MethodHandle glUniformMatrix4dv$MH() {
+        return RuntimeHelper.requireNonNull(constants$278.glUniformMatrix4dv$MH,"glUniformMatrix4dv");
     }
-    public static MemorySegment glutBitmap9By15$SEGMENT() {
-        return RuntimeHelper.requireNonNull(constants$940.glutBitmap9By15$SEGMENT,"glutBitmap9By15");
+    public static void glUniformMatrix4dv ( int location,  int count,  byte transpose,  Addressable value) {
+        var mh$ = glUniformMatrix4dv$MH();
+        try {
+            mh$.invokeExact(location, count, transpose, value);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
     }
-    public static MemoryAddress glutBitmap9By15$get() {
-        return (java.lang.foreign.MemoryAddress) constants$940.glutBitmap9By15$VH.get(RuntimeHelper.requireNonNull(constants$940.glutBitmap9By15$SEGMENT, "glutBitmap9By15"));
+    public static MethodHandle glUniformMatrix2x3dv$MH() {
+        return RuntimeHelper.requireNonNull(constants$278.glUniformMatrix2x3dv$MH,"glUniformMatrix2x3dv");
     }
-    public static void glutBitmap9By15$set( MemoryAddress x) {
-        constants$940.glutBitmap9By15$VH.set(RuntimeHelper.requireNonNull(constants$940.glutBitmap9By15$SEGMENT, "glutBitmap9By15"), x);
+    public static void glUniformMatrix2x3dv ( int location,  int count,  byte transpose,  Addressable value) {
+        var mh$ = glUniformMatrix2x3dv$MH();
+        try {
+            mh$.invokeExact(location, count, transpose, value);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
     }
-    public static MemoryLayout glutBitmap8By13$LAYOUT() {
-        return constants$940.glutBitmap8By13$LAYOUT;
+    public static MethodHandle glUniformMatrix2x4dv$MH() {
+        return RuntimeHelper.requireNonNull(constants$278.glUniformMatrix2x4dv$MH,"glUniformMatrix2x4dv");
     }
-    public static VarHandle glutBitmap8By13$VH() {
-        return constants$940.glutBitmap8By13$VH;
+    public static void glUniformMatrix2x4dv ( int location,  int count,  byte transpose,  Addressable value) {
+        var mh$ = glUniformMatrix2x4dv$MH();
+        try {
+            mh$.invokeExact(location, count, transpose, value);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
     }
-    public static MemorySegment glutBitmap8By13$SEGMENT() {
-        return RuntimeHelper.requireNonNull(constants$940.glutBitmap8By13$SEGMENT,"glutBitmap8By13");
+    public static MethodHandle glUniformMatrix3x2dv$MH() {
+        return RuntimeHelper.requireNonNull(constants$278.glUniformMatrix3x2dv$MH,"glUniformMatrix3x2dv");
     }
-    public static MemoryAddress glutBitmap8By13$get() {
-        return (java.lang.foreign.MemoryAddress) constants$940.glutBitmap8By13$VH.get(RuntimeHelper.requireNonNull(constants$940.glutBitmap8By13$SEGMENT, "glutBitmap8By13"));
+    public static void glUniformMatrix3x2dv ( int location,  int count,  byte transpose,  Addressable value) {
+        var mh$ = glUniformMatrix3x2dv$MH();
+        try {
+            mh$.invokeExact(location, count, transpose, value);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
     }
-    public static void glutBitmap8By13$set( MemoryAddress x) {
-        constants$940.glutBitmap8By13$VH.set(RuntimeHelper.requireNonNull(constants$940.glutBitmap8By13$SEGMENT, "glutBitmap8By13"), x);
+    public static MethodHandle glUniformMatrix3x4dv$MH() {
+        return RuntimeHelper.requireNonNull(constants$278.glUniformMatrix3x4dv$MH,"glUniformMatrix3x4dv");
     }
-    public static MemoryLayout glutBitmapTimesRoman10$LAYOUT() {
-        return constants$940.glutBitmapTimesRoman10$LAYOUT;
+    public static void glUniformMatrix3x4dv ( int location,  int count,  byte transpose,  Addressable value) {
+        var mh$ = glUniformMatrix3x4dv$MH();
+        try {
+            mh$.invokeExact(location, count, transpose, value);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
     }
-    public static VarHandle glutBitmapTimesRoman10$VH() {
-        return constants$940.glutBitmapTimesRoman10$VH;
+    public static MethodHandle glUniformMatrix4x2dv$MH() {
+        return RuntimeHelper.requireNonNull(constants$279.glUniformMatrix4x2dv$MH,"glUniformMatrix4x2dv");
     }
-    public static MemorySegment glutBitmapTimesRoman10$SEGMENT() {
-        return RuntimeHelper.requireNonNull(constants$940.glutBitmapTimesRoman10$SEGMENT,"glutBitmapTimesRoman10");
+    public static void glUniformMatrix4x2dv ( int location,  int count,  byte transpose,  Addressable value) {
+        var mh$ = glUniformMatrix4x2dv$MH();
+        try {
+            mh$.invokeExact(location, count, transpose, value);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
     }
-    public static MemoryAddress glutBitmapTimesRoman10$get() {
-        return (java.lang.foreign.MemoryAddress) constants$940.glutBitmapTimesRoman10$VH.get(RuntimeHelper.requireNonNull(constants$940.glutBitmapTimesRoman10$SEGMENT, "glutBitmapTimesRoman10"));
+    public static MethodHandle glUniformMatrix4x3dv$MH() {
+        return RuntimeHelper.requireNonNull(constants$279.glUniformMatrix4x3dv$MH,"glUniformMatrix4x3dv");
     }
-    public static void glutBitmapTimesRoman10$set( MemoryAddress x) {
-        constants$940.glutBitmapTimesRoman10$VH.set(RuntimeHelper.requireNonNull(constants$940.glutBitmapTimesRoman10$SEGMENT, "glutBitmapTimesRoman10"), x);
+    public static void glUniformMatrix4x3dv ( int location,  int count,  byte transpose,  Addressable value) {
+        var mh$ = glUniformMatrix4x3dv$MH();
+        try {
+            mh$.invokeExact(location, count, transpose, value);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
     }
-    public static MemoryLayout glutBitmapTimesRoman24$LAYOUT() {
-        return constants$940.glutBitmapTimesRoman24$LAYOUT;
+    public static MethodHandle glGetUniformdv$MH() {
+        return RuntimeHelper.requireNonNull(constants$279.glGetUniformdv$MH,"glGetUniformdv");
     }
-    public static VarHandle glutBitmapTimesRoman24$VH() {
-        return constants$940.glutBitmapTimesRoman24$VH;
+    public static void glGetUniformdv ( int program,  int location,  Addressable params) {
+        var mh$ = glGetUniformdv$MH();
+        try {
+            mh$.invokeExact(program, location, params);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
     }
-    public static MemorySegment glutBitmapTimesRoman24$SEGMENT() {
-        return RuntimeHelper.requireNonNull(constants$940.glutBitmapTimesRoman24$SEGMENT,"glutBitmapTimesRoman24");
+    public static MethodHandle glGetSubroutineUniformLocation$MH() {
+        return RuntimeHelper.requireNonNull(constants$279.glGetSubroutineUniformLocation$MH,"glGetSubroutineUniformLocation");
     }
-    public static MemoryAddress glutBitmapTimesRoman24$get() {
-        return (java.lang.foreign.MemoryAddress) constants$940.glutBitmapTimesRoman24$VH.get(RuntimeHelper.requireNonNull(constants$940.glutBitmapTimesRoman24$SEGMENT, "glutBitmapTimesRoman24"));
+    public static int glGetSubroutineUniformLocation ( int program,  int shadertype,  Addressable name) {
+        var mh$ = glGetSubroutineUniformLocation$MH();
+        try {
+            return (int)mh$.invokeExact(program, shadertype, name);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
     }
-    public static void glutBitmapTimesRoman24$set( MemoryAddress x) {
-        constants$940.glutBitmapTimesRoman24$VH.set(RuntimeHelper.requireNonNull(constants$940.glutBitmapTimesRoman24$SEGMENT, "glutBitmapTimesRoman24"), x);
+    public static MethodHandle glGetSubroutineIndex$MH() {
+        return RuntimeHelper.requireNonNull(constants$279.glGetSubroutineIndex$MH,"glGetSubroutineIndex");
     }
-    public static MemoryLayout glutBitmapHelvetica10$LAYOUT() {
-        return constants$941.glutBitmapHelvetica10$LAYOUT;
+    public static int glGetSubroutineIndex ( int program,  int shadertype,  Addressable name) {
+        var mh$ = glGetSubroutineIndex$MH();
+        try {
+            return (int)mh$.invokeExact(program, shadertype, name);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
     }
-    public static VarHandle glutBitmapHelvetica10$VH() {
-        return constants$941.glutBitmapHelvetica10$VH;
+    public static MethodHandle glGetActiveSubroutineUniformiv$MH() {
+        return RuntimeHelper.requireNonNull(constants$279.glGetActiveSubroutineUniformiv$MH,"glGetActiveSubroutineUniformiv");
     }
-    public static MemorySegment glutBitmapHelvetica10$SEGMENT() {
-        return RuntimeHelper.requireNonNull(constants$941.glutBitmapHelvetica10$SEGMENT,"glutBitmapHelvetica10");
+    public static void glGetActiveSubroutineUniformiv ( int program,  int shadertype,  int index,  int pname,  Addressable values) {
+        var mh$ = glGetActiveSubroutineUniformiv$MH();
+        try {
+            mh$.invokeExact(program, shadertype, index, pname, values);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
     }
-    public static MemoryAddress glutBitmapHelvetica10$get() {
-        return (java.lang.foreign.MemoryAddress) constants$941.glutBitmapHelvetica10$VH.get(RuntimeHelper.requireNonNull(constants$941.glutBitmapHelvetica10$SEGMENT, "glutBitmapHelvetica10"));
+    public static MethodHandle glGetActiveSubroutineUniformName$MH() {
+        return RuntimeHelper.requireNonNull(constants$280.glGetActiveSubroutineUniformName$MH,"glGetActiveSubroutineUniformName");
     }
-    public static void glutBitmapHelvetica10$set( MemoryAddress x) {
-        constants$941.glutBitmapHelvetica10$VH.set(RuntimeHelper.requireNonNull(constants$941.glutBitmapHelvetica10$SEGMENT, "glutBitmapHelvetica10"), x);
+    public static void glGetActiveSubroutineUniformName ( int program,  int shadertype,  int index,  int bufsize,  Addressable length,  Addressable name) {
+        var mh$ = glGetActiveSubroutineUniformName$MH();
+        try {
+            mh$.invokeExact(program, shadertype, index, bufsize, length, name);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
     }
-    public static MemoryLayout glutBitmapHelvetica12$LAYOUT() {
-        return constants$941.glutBitmapHelvetica12$LAYOUT;
+    public static MethodHandle glGetActiveSubroutineName$MH() {
+        return RuntimeHelper.requireNonNull(constants$280.glGetActiveSubroutineName$MH,"glGetActiveSubroutineName");
     }
-    public static VarHandle glutBitmapHelvetica12$VH() {
-        return constants$941.glutBitmapHelvetica12$VH;
+    public static void glGetActiveSubroutineName ( int program,  int shadertype,  int index,  int bufsize,  Addressable length,  Addressable name) {
+        var mh$ = glGetActiveSubroutineName$MH();
+        try {
+            mh$.invokeExact(program, shadertype, index, bufsize, length, name);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
     }
-    public static MemorySegment glutBitmapHelvetica12$SEGMENT() {
-        return RuntimeHelper.requireNonNull(constants$941.glutBitmapHelvetica12$SEGMENT,"glutBitmapHelvetica12");
+    public static MethodHandle glUniformSubroutinesuiv$MH() {
+        return RuntimeHelper.requireNonNull(constants$280.glUniformSubroutinesuiv$MH,"glUniformSubroutinesuiv");
     }
-    public static MemoryAddress glutBitmapHelvetica12$get() {
-        return (java.lang.foreign.MemoryAddress) constants$941.glutBitmapHelvetica12$VH.get(RuntimeHelper.requireNonNull(constants$941.glutBitmapHelvetica12$SEGMENT, "glutBitmapHelvetica12"));
+    public static void glUniformSubroutinesuiv ( int shadertype,  int count,  Addressable indices) {
+        var mh$ = glUniformSubroutinesuiv$MH();
+        try {
+            mh$.invokeExact(shadertype, count, indices);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
     }
-    public static void glutBitmapHelvetica12$set( MemoryAddress x) {
-        constants$941.glutBitmapHelvetica12$VH.set(RuntimeHelper.requireNonNull(constants$941.glutBitmapHelvetica12$SEGMENT, "glutBitmapHelvetica12"), x);
+    public static MethodHandle glGetUniformSubroutineuiv$MH() {
+        return RuntimeHelper.requireNonNull(constants$280.glGetUniformSubroutineuiv$MH,"glGetUniformSubroutineuiv");
     }
-    public static MemoryLayout glutBitmapHelvetica18$LAYOUT() {
-        return constants$941.glutBitmapHelvetica18$LAYOUT;
+    public static void glGetUniformSubroutineuiv ( int shadertype,  int location,  Addressable params) {
+        var mh$ = glGetUniformSubroutineuiv$MH();
+        try {
+            mh$.invokeExact(shadertype, location, params);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
     }
-    public static VarHandle glutBitmapHelvetica18$VH() {
-        return constants$941.glutBitmapHelvetica18$VH;
+    public static MethodHandle glGetProgramStageiv$MH() {
+        return RuntimeHelper.requireNonNull(constants$280.glGetProgramStageiv$MH,"glGetProgramStageiv");
     }
-    public static MemorySegment glutBitmapHelvetica18$SEGMENT() {
-        return RuntimeHelper.requireNonNull(constants$941.glutBitmapHelvetica18$SEGMENT,"glutBitmapHelvetica18");
+    public static void glGetProgramStageiv ( int program,  int shadertype,  int pname,  Addressable values) {
+        var mh$ = glGetProgramStageiv$MH();
+        try {
+            mh$.invokeExact(program, shadertype, pname, values);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
     }
-    public static MemoryAddress glutBitmapHelvetica18$get() {
-        return (java.lang.foreign.MemoryAddress) constants$941.glutBitmapHelvetica18$VH.get(RuntimeHelper.requireNonNull(constants$941.glutBitmapHelvetica18$SEGMENT, "glutBitmapHelvetica18"));
+    public static MethodHandle glPatchParameteri$MH() {
+        return RuntimeHelper.requireNonNull(constants$280.glPatchParameteri$MH,"glPatchParameteri");
     }
-    public static void glutBitmapHelvetica18$set( MemoryAddress x) {
-        constants$941.glutBitmapHelvetica18$VH.set(RuntimeHelper.requireNonNull(constants$941.glutBitmapHelvetica18$SEGMENT, "glutBitmapHelvetica18"), x);
+    public static void glPatchParameteri ( int pname,  int value) {
+        var mh$ = glPatchParameteri$MH();
+        try {
+            mh$.invokeExact(pname, value);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
     }
-    public static MethodHandle glutInit$MH() {
-        return RuntimeHelper.requireNonNull(constants$941.glutInit$MH,"glutInit");
+    public static MethodHandle glPatchParameterfv$MH() {
+        return RuntimeHelper.requireNonNull(constants$281.glPatchParameterfv$MH,"glPatchParameterfv");
     }
-    public static void glutInit ( Addressable pargc,  Addressable argv) {
-        var mh$ = glutInit$MH();
+    public static void glPatchParameterfv ( int pname,  Addressable values) {
+        var mh$ = glPatchParameterfv$MH();
         try {
-            mh$.invokeExact(pargc, argv);
+            mh$.invokeExact(pname, values);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
     }
-    public static MethodHandle glutInitWindowPosition$MH() {
-        return RuntimeHelper.requireNonNull(constants$941.glutInitWindowPosition$MH,"glutInitWindowPosition");
+    public static MethodHandle glBindTransformFeedback$MH() {
+        return RuntimeHelper.requireNonNull(constants$281.glBindTransformFeedback$MH,"glBindTransformFeedback");
     }
-    public static void glutInitWindowPosition ( int x,  int y) {
-        var mh$ = glutInitWindowPosition$MH();
+    public static void glBindTransformFeedback ( int target,  int id) {
+        var mh$ = glBindTransformFeedback$MH();
         try {
-            mh$.invokeExact(x, y);
+            mh$.invokeExact(target, id);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
     }
-    public static MethodHandle glutInitWindowSize$MH() {
-        return RuntimeHelper.requireNonNull(constants$941.glutInitWindowSize$MH,"glutInitWindowSize");
+    public static MethodHandle glDeleteTransformFeedbacks$MH() {
+        return RuntimeHelper.requireNonNull(constants$281.glDeleteTransformFeedbacks$MH,"glDeleteTransformFeedbacks");
     }
-    public static void glutInitWindowSize ( int width,  int height) {
-        var mh$ = glutInitWindowSize$MH();
+    public static void glDeleteTransformFeedbacks ( int n,  Addressable ids) {
+        var mh$ = glDeleteTransformFeedbacks$MH();
         try {
-            mh$.invokeExact(width, height);
+            mh$.invokeExact(n, ids);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
     }
-    public static MethodHandle glutInitDisplayMode$MH() {
-        return RuntimeHelper.requireNonNull(constants$942.glutInitDisplayMode$MH,"glutInitDisplayMode");
+    public static MethodHandle glGenTransformFeedbacks$MH() {
+        return RuntimeHelper.requireNonNull(constants$281.glGenTransformFeedbacks$MH,"glGenTransformFeedbacks");
     }
-    public static void glutInitDisplayMode ( int displayMode) {
-        var mh$ = glutInitDisplayMode$MH();
+    public static void glGenTransformFeedbacks ( int n,  Addressable ids) {
+        var mh$ = glGenTransformFeedbacks$MH();
         try {
-            mh$.invokeExact(displayMode);
+            mh$.invokeExact(n, ids);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
     }
-    public static MethodHandle glutInitDisplayString$MH() {
-        return RuntimeHelper.requireNonNull(constants$942.glutInitDisplayString$MH,"glutInitDisplayString");
+    public static MethodHandle glIsTransformFeedback$MH() {
+        return RuntimeHelper.requireNonNull(constants$281.glIsTransformFeedback$MH,"glIsTransformFeedback");
     }
-    public static void glutInitDisplayString ( Addressable displayMode) {
-        var mh$ = glutInitDisplayString$MH();
+    public static byte glIsTransformFeedback ( int id) {
+        var mh$ = glIsTransformFeedback$MH();
         try {
-            mh$.invokeExact(displayMode);
+            return (byte)mh$.invokeExact(id);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
     }
-    public static MethodHandle glutMainLoop$MH() {
-        return RuntimeHelper.requireNonNull(constants$942.glutMainLoop$MH,"glutMainLoop");
+    public static MethodHandle glPauseTransformFeedback$MH() {
+        return RuntimeHelper.requireNonNull(constants$281.glPauseTransformFeedback$MH,"glPauseTransformFeedback");
     }
-    public static void glutMainLoop () {
-        var mh$ = glutMainLoop$MH();
+    public static void glPauseTransformFeedback () {
+        var mh$ = glPauseTransformFeedback$MH();
         try {
             mh$.invokeExact();
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
     }
-    public static MethodHandle glutCreateWindow$MH() {
-        return RuntimeHelper.requireNonNull(constants$942.glutCreateWindow$MH,"glutCreateWindow");
+    public static MethodHandle glResumeTransformFeedback$MH() {
+        return RuntimeHelper.requireNonNull(constants$282.glResumeTransformFeedback$MH,"glResumeTransformFeedback");
     }
-    public static int glutCreateWindow ( Addressable title) {
-        var mh$ = glutCreateWindow$MH();
-        try {
-            return (int)mh$.invokeExact(title);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glutCreateSubWindow$MH() {
-        return RuntimeHelper.requireNonNull(constants$942.glutCreateSubWindow$MH,"glutCreateSubWindow");
-    }
-    public static int glutCreateSubWindow ( int window,  int x,  int y,  int width,  int height) {
-        var mh$ = glutCreateSubWindow$MH();
-        try {
-            return (int)mh$.invokeExact(window, x, y, width, height);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glutDestroyWindow$MH() {
-        return RuntimeHelper.requireNonNull(constants$942.glutDestroyWindow$MH,"glutDestroyWindow");
-    }
-    public static void glutDestroyWindow ( int window) {
-        var mh$ = glutDestroyWindow$MH();
-        try {
-            mh$.invokeExact(window);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glutSetWindow$MH() {
-        return RuntimeHelper.requireNonNull(constants$943.glutSetWindow$MH,"glutSetWindow");
-    }
-    public static void glutSetWindow ( int window) {
-        var mh$ = glutSetWindow$MH();
-        try {
-            mh$.invokeExact(window);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glutGetWindow$MH() {
-        return RuntimeHelper.requireNonNull(constants$943.glutGetWindow$MH,"glutGetWindow");
-    }
-    public static int glutGetWindow () {
-        var mh$ = glutGetWindow$MH();
-        try {
-            return (int)mh$.invokeExact();
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glutSetWindowTitle$MH() {
-        return RuntimeHelper.requireNonNull(constants$943.glutSetWindowTitle$MH,"glutSetWindowTitle");
-    }
-    public static void glutSetWindowTitle ( Addressable title) {
-        var mh$ = glutSetWindowTitle$MH();
-        try {
-            mh$.invokeExact(title);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glutSetIconTitle$MH() {
-        return RuntimeHelper.requireNonNull(constants$943.glutSetIconTitle$MH,"glutSetIconTitle");
-    }
-    public static void glutSetIconTitle ( Addressable title) {
-        var mh$ = glutSetIconTitle$MH();
-        try {
-            mh$.invokeExact(title);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glutReshapeWindow$MH() {
-        return RuntimeHelper.requireNonNull(constants$943.glutReshapeWindow$MH,"glutReshapeWindow");
-    }
-    public static void glutReshapeWindow ( int width,  int height) {
-        var mh$ = glutReshapeWindow$MH();
-        try {
-            mh$.invokeExact(width, height);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glutPositionWindow$MH() {
-        return RuntimeHelper.requireNonNull(constants$943.glutPositionWindow$MH,"glutPositionWindow");
-    }
-    public static void glutPositionWindow ( int x,  int y) {
-        var mh$ = glutPositionWindow$MH();
-        try {
-            mh$.invokeExact(x, y);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glutShowWindow$MH() {
-        return RuntimeHelper.requireNonNull(constants$944.glutShowWindow$MH,"glutShowWindow");
-    }
-    public static void glutShowWindow () {
-        var mh$ = glutShowWindow$MH();
+    public static void glResumeTransformFeedback () {
+        var mh$ = glResumeTransformFeedback$MH();
         try {
             mh$.invokeExact();
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
     }
-    public static MethodHandle glutHideWindow$MH() {
-        return RuntimeHelper.requireNonNull(constants$944.glutHideWindow$MH,"glutHideWindow");
+    public static MethodHandle glDrawTransformFeedback$MH() {
+        return RuntimeHelper.requireNonNull(constants$282.glDrawTransformFeedback$MH,"glDrawTransformFeedback");
     }
-    public static void glutHideWindow () {
-        var mh$ = glutHideWindow$MH();
+    public static void glDrawTransformFeedback ( int mode,  int id) {
+        var mh$ = glDrawTransformFeedback$MH();
+        try {
+            mh$.invokeExact(mode, id);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle glDrawTransformFeedbackStream$MH() {
+        return RuntimeHelper.requireNonNull(constants$282.glDrawTransformFeedbackStream$MH,"glDrawTransformFeedbackStream");
+    }
+    public static void glDrawTransformFeedbackStream ( int mode,  int id,  int stream) {
+        var mh$ = glDrawTransformFeedbackStream$MH();
+        try {
+            mh$.invokeExact(mode, id, stream);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle glBeginQueryIndexed$MH() {
+        return RuntimeHelper.requireNonNull(constants$282.glBeginQueryIndexed$MH,"glBeginQueryIndexed");
+    }
+    public static void glBeginQueryIndexed ( int target,  int index,  int id) {
+        var mh$ = glBeginQueryIndexed$MH();
+        try {
+            mh$.invokeExact(target, index, id);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle glEndQueryIndexed$MH() {
+        return RuntimeHelper.requireNonNull(constants$282.glEndQueryIndexed$MH,"glEndQueryIndexed");
+    }
+    public static void glEndQueryIndexed ( int target,  int index) {
+        var mh$ = glEndQueryIndexed$MH();
+        try {
+            mh$.invokeExact(target, index);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle glGetQueryIndexediv$MH() {
+        return RuntimeHelper.requireNonNull(constants$282.glGetQueryIndexediv$MH,"glGetQueryIndexediv");
+    }
+    public static void glGetQueryIndexediv ( int target,  int index,  int pname,  Addressable params) {
+        var mh$ = glGetQueryIndexediv$MH();
+        try {
+            mh$.invokeExact(target, index, pname, params);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+    public static MethodHandle glReleaseShaderCompiler$MH() {
+        return RuntimeHelper.requireNonNull(constants$312.glReleaseShaderCompiler$MH,"glReleaseShaderCompiler");
+    }
+    public static void glReleaseShaderCompiler () {
+        var mh$ = glReleaseShaderCompiler$MH();
         try {
             mh$.invokeExact();
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
     }
-    public static MethodHandle glutIconifyWindow$MH() {
-        return RuntimeHelper.requireNonNull(constants$944.glutIconifyWindow$MH,"glutIconifyWindow");
+    public static MethodHandle glShaderBinary$MH() {
+        return RuntimeHelper.requireNonNull(constants$312.glShaderBinary$MH,"glShaderBinary");
     }
-    public static void glutIconifyWindow () {
-        var mh$ = glutIconifyWindow$MH();
+    public static void glShaderBinary ( int count,  Addressable shaders,  int binaryformat,  Addressable binary,  int length) {
+        var mh$ = glShaderBinary$MH();
         try {
-            mh$.invokeExact();
+            mh$.invokeExact(count, shaders, binaryformat, binary, length);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
     }
-    public static MethodHandle glutPushWindow$MH() {
-        return RuntimeHelper.requireNonNull(constants$944.glutPushWindow$MH,"glutPushWindow");
+    public static MethodHandle glGetShaderPrecisionFormat$MH() {
+        return RuntimeHelper.requireNonNull(constants$312.glGetShaderPrecisionFormat$MH,"glGetShaderPrecisionFormat");
     }
-    public static void glutPushWindow () {
-        var mh$ = glutPushWindow$MH();
+    public static void glGetShaderPrecisionFormat ( int shadertype,  int precisiontype,  Addressable range,  Addressable precision) {
+        var mh$ = glGetShaderPrecisionFormat$MH();
         try {
-            mh$.invokeExact();
+            mh$.invokeExact(shadertype, precisiontype, range, precision);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
     }
-    public static MethodHandle glutPopWindow$MH() {
-        return RuntimeHelper.requireNonNull(constants$944.glutPopWindow$MH,"glutPopWindow");
+    public static MethodHandle glDepthRangef$MH() {
+        return RuntimeHelper.requireNonNull(constants$312.glDepthRangef$MH,"glDepthRangef");
     }
-    public static void glutPopWindow () {
-        var mh$ = glutPopWindow$MH();
+    public static void glDepthRangef ( float n,  float f) {
+        var mh$ = glDepthRangef$MH();
         try {
-            mh$.invokeExact();
+            mh$.invokeExact(n, f);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
     }
-    public static MethodHandle glutFullScreen$MH() {
-        return RuntimeHelper.requireNonNull(constants$944.glutFullScreen$MH,"glutFullScreen");
+    public static MethodHandle glClearDepthf$MH() {
+        return RuntimeHelper.requireNonNull(constants$313.glClearDepthf$MH,"glClearDepthf");
     }
-    public static void glutFullScreen () {
-        var mh$ = glutFullScreen$MH();
+    public static void glClearDepthf ( float d) {
+        var mh$ = glClearDepthf$MH();
         try {
-            mh$.invokeExact();
+            mh$.invokeExact(d);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
     }
-    public static MethodHandle glutPostWindowRedisplay$MH() {
-        return RuntimeHelper.requireNonNull(constants$945.glutPostWindowRedisplay$MH,"glutPostWindowRedisplay");
+    public static MethodHandle glGetProgramBinary$MH() {
+        return RuntimeHelper.requireNonNull(constants$313.glGetProgramBinary$MH,"glGetProgramBinary");
     }
-    public static void glutPostWindowRedisplay ( int window) {
-        var mh$ = glutPostWindowRedisplay$MH();
+    public static void glGetProgramBinary ( int program,  int bufSize,  Addressable length,  Addressable binaryFormat,  Addressable binary) {
+        var mh$ = glGetProgramBinary$MH();
         try {
-            mh$.invokeExact(window);
+            mh$.invokeExact(program, bufSize, length, binaryFormat, binary);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
     }
-    public static MethodHandle glutPostRedisplay$MH() {
-        return RuntimeHelper.requireNonNull(constants$945.glutPostRedisplay$MH,"glutPostRedisplay");
+    public static MethodHandle glProgramBinary$MH() {
+        return RuntimeHelper.requireNonNull(constants$313.glProgramBinary$MH,"glProgramBinary");
     }
-    public static void glutPostRedisplay () {
-        var mh$ = glutPostRedisplay$MH();
+    public static void glProgramBinary ( int program,  int binaryFormat,  Addressable binary,  int length) {
+        var mh$ = glProgramBinary$MH();
         try {
-            mh$.invokeExact();
+            mh$.invokeExact(program, binaryFormat, binary, length);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
     }
-    public static MethodHandle glutSwapBuffers$MH() {
-        return RuntimeHelper.requireNonNull(constants$945.glutSwapBuffers$MH,"glutSwapBuffers");
+    public static MethodHandle glProgramParameteri$MH() {
+        return RuntimeHelper.requireNonNull(constants$313.glProgramParameteri$MH,"glProgramParameteri");
     }
-    public static void glutSwapBuffers () {
-        var mh$ = glutSwapBuffers$MH();
+    public static void glProgramParameteri ( int program,  int pname,  int value) {
+        var mh$ = glProgramParameteri$MH();
         try {
-            mh$.invokeExact();
+            mh$.invokeExact(program, pname, value);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
     }
-    public static MethodHandle glutWarpPointer$MH() {
-        return RuntimeHelper.requireNonNull(constants$945.glutWarpPointer$MH,"glutWarpPointer");
+    public static MethodHandle glUseProgramStages$MH() {
+        return RuntimeHelper.requireNonNull(constants$313.glUseProgramStages$MH,"glUseProgramStages");
     }
-    public static void glutWarpPointer ( int x,  int y) {
-        var mh$ = glutWarpPointer$MH();
+    public static void glUseProgramStages ( int pipeline,  int stages,  int program) {
+        var mh$ = glUseProgramStages$MH();
         try {
-            mh$.invokeExact(x, y);
+            mh$.invokeExact(pipeline, stages, program);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
     }
-    public static MethodHandle glutSetCursor$MH() {
-        return RuntimeHelper.requireNonNull(constants$945.glutSetCursor$MH,"glutSetCursor");
+    public static MethodHandle glActiveShaderProgram$MH() {
+        return RuntimeHelper.requireNonNull(constants$313.glActiveShaderProgram$MH,"glActiveShaderProgram");
     }
-    public static void glutSetCursor ( int cursor) {
-        var mh$ = glutSetCursor$MH();
+    public static void glActiveShaderProgram ( int pipeline,  int program) {
+        var mh$ = glActiveShaderProgram$MH();
         try {
-            mh$.invokeExact(cursor);
+            mh$.invokeExact(pipeline, program);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
     }
-    public static MethodHandle glutEstablishOverlay$MH() {
-        return RuntimeHelper.requireNonNull(constants$945.glutEstablishOverlay$MH,"glutEstablishOverlay");
+    public static MethodHandle glCreateShaderProgramv$MH() {
+        return RuntimeHelper.requireNonNull(constants$314.glCreateShaderProgramv$MH,"glCreateShaderProgramv");
     }
-    public static void glutEstablishOverlay () {
-        var mh$ = glutEstablishOverlay$MH();
+    public static int glCreateShaderProgramv ( int type,  int count,  Addressable strings) {
+        var mh$ = glCreateShaderProgramv$MH();
         try {
-            mh$.invokeExact();
+            return (int)mh$.invokeExact(type, count, strings);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
     }
-    public static MethodHandle glutRemoveOverlay$MH() {
-        return RuntimeHelper.requireNonNull(constants$946.glutRemoveOverlay$MH,"glutRemoveOverlay");
+    public static MethodHandle glBindProgramPipeline$MH() {
+        return RuntimeHelper.requireNonNull(constants$314.glBindProgramPipeline$MH,"glBindProgramPipeline");
     }
-    public static void glutRemoveOverlay () {
-        var mh$ = glutRemoveOverlay$MH();
+    public static void glBindProgramPipeline ( int pipeline) {
+        var mh$ = glBindProgramPipeline$MH();
         try {
-            mh$.invokeExact();
+            mh$.invokeExact(pipeline);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
     }
-    public static MethodHandle glutUseLayer$MH() {
-        return RuntimeHelper.requireNonNull(constants$946.glutUseLayer$MH,"glutUseLayer");
+    public static MethodHandle glDeleteProgramPipelines$MH() {
+        return RuntimeHelper.requireNonNull(constants$314.glDeleteProgramPipelines$MH,"glDeleteProgramPipelines");
     }
-    public static void glutUseLayer ( int layer) {
-        var mh$ = glutUseLayer$MH();
+    public static void glDeleteProgramPipelines ( int n,  Addressable pipelines) {
+        var mh$ = glDeleteProgramPipelines$MH();
         try {
-            mh$.invokeExact(layer);
+            mh$.invokeExact(n, pipelines);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
     }
-    public static MethodHandle glutPostOverlayRedisplay$MH() {
-        return RuntimeHelper.requireNonNull(constants$946.glutPostOverlayRedisplay$MH,"glutPostOverlayRedisplay");
+    public static MethodHandle glGenProgramPipelines$MH() {
+        return RuntimeHelper.requireNonNull(constants$314.glGenProgramPipelines$MH,"glGenProgramPipelines");
     }
-    public static void glutPostOverlayRedisplay () {
-        var mh$ = glutPostOverlayRedisplay$MH();
+    public static void glGenProgramPipelines ( int n,  Addressable pipelines) {
+        var mh$ = glGenProgramPipelines$MH();
         try {
-            mh$.invokeExact();
+            mh$.invokeExact(n, pipelines);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
     }
-    public static MethodHandle glutPostWindowOverlayRedisplay$MH() {
-        return RuntimeHelper.requireNonNull(constants$946.glutPostWindowOverlayRedisplay$MH,"glutPostWindowOverlayRedisplay");
+    public static MethodHandle glIsProgramPipeline$MH() {
+        return RuntimeHelper.requireNonNull(constants$314.glIsProgramPipeline$MH,"glIsProgramPipeline");
     }
-    public static void glutPostWindowOverlayRedisplay ( int window) {
-        var mh$ = glutPostWindowOverlayRedisplay$MH();
+    public static byte glIsProgramPipeline ( int pipeline) {
+        var mh$ = glIsProgramPipeline$MH();
         try {
-            mh$.invokeExact(window);
+            return (byte)mh$.invokeExact(pipeline);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
     }
-    public static MethodHandle glutShowOverlay$MH() {
-        return RuntimeHelper.requireNonNull(constants$946.glutShowOverlay$MH,"glutShowOverlay");
+    public static MethodHandle glGetProgramPipelineiv$MH() {
+        return RuntimeHelper.requireNonNull(constants$314.glGetProgramPipelineiv$MH,"glGetProgramPipelineiv");
     }
-    public static void glutShowOverlay () {
-        var mh$ = glutShowOverlay$MH();
+    public static void glGetProgramPipelineiv ( int pipeline,  int pname,  Addressable params) {
+        var mh$ = glGetProgramPipelineiv$MH();
         try {
-            mh$.invokeExact();
+            mh$.invokeExact(pipeline, pname, params);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
     }
-    public static MethodHandle glutHideOverlay$MH() {
-        return RuntimeHelper.requireNonNull(constants$946.glutHideOverlay$MH,"glutHideOverlay");
+    public static MethodHandle glProgramUniform1i$MH() {
+        return RuntimeHelper.requireNonNull(constants$315.glProgramUniform1i$MH,"glProgramUniform1i");
     }
-    public static void glutHideOverlay () {
-        var mh$ = glutHideOverlay$MH();
+    public static void glProgramUniform1i ( int program,  int location,  int v0) {
+        var mh$ = glProgramUniform1i$MH();
         try {
-            mh$.invokeExact();
+            mh$.invokeExact(program, location, v0);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
     }
-    public static MethodHandle glutCreateMenu$MH() {
-        return RuntimeHelper.requireNonNull(constants$947.glutCreateMenu$MH,"glutCreateMenu");
+    public static MethodHandle glProgramUniform1iv$MH() {
+        return RuntimeHelper.requireNonNull(constants$315.glProgramUniform1iv$MH,"glProgramUniform1iv");
     }
-    public static int glutCreateMenu ( Addressable callback) {
-        var mh$ = glutCreateMenu$MH();
+    public static void glProgramUniform1iv ( int program,  int location,  int count,  Addressable value) {
+        var mh$ = glProgramUniform1iv$MH();
         try {
-            return (int)mh$.invokeExact(callback);
+            mh$.invokeExact(program, location, count, value);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
     }
-    public static MethodHandle glutDestroyMenu$MH() {
-        return RuntimeHelper.requireNonNull(constants$947.glutDestroyMenu$MH,"glutDestroyMenu");
+    public static MethodHandle glProgramUniform1f$MH() {
+        return RuntimeHelper.requireNonNull(constants$315.glProgramUniform1f$MH,"glProgramUniform1f");
     }
-    public static void glutDestroyMenu ( int menu) {
-        var mh$ = glutDestroyMenu$MH();
+    public static void glProgramUniform1f ( int program,  int location,  float v0) {
+        var mh$ = glProgramUniform1f$MH();
         try {
-            mh$.invokeExact(menu);
+            mh$.invokeExact(program, location, v0);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
     }
-    public static MethodHandle glutGetMenu$MH() {
-        return RuntimeHelper.requireNonNull(constants$947.glutGetMenu$MH,"glutGetMenu");
+    public static MethodHandle glProgramUniform1fv$MH() {
+        return RuntimeHelper.requireNonNull(constants$315.glProgramUniform1fv$MH,"glProgramUniform1fv");
     }
-    public static int glutGetMenu () {
-        var mh$ = glutGetMenu$MH();
+    public static void glProgramUniform1fv ( int program,  int location,  int count,  Addressable value) {
+        var mh$ = glProgramUniform1fv$MH();
         try {
-            return (int)mh$.invokeExact();
+            mh$.invokeExact(program, location, count, value);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
     }
-    public static MethodHandle glutSetMenu$MH() {
-        return RuntimeHelper.requireNonNull(constants$947.glutSetMenu$MH,"glutSetMenu");
+    public static MethodHandle glProgramUniform1d$MH() {
+        return RuntimeHelper.requireNonNull(constants$315.glProgramUniform1d$MH,"glProgramUniform1d");
     }
-    public static void glutSetMenu ( int menu) {
-        var mh$ = glutSetMenu$MH();
+    public static void glProgramUniform1d ( int program,  int location,  double v0) {
+        var mh$ = glProgramUniform1d$MH();
         try {
-            mh$.invokeExact(menu);
+            mh$.invokeExact(program, location, v0);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
     }
-    public static MethodHandle glutAddMenuEntry$MH() {
-        return RuntimeHelper.requireNonNull(constants$948.glutAddMenuEntry$MH,"glutAddMenuEntry");
+    public static MethodHandle glProgramUniform1dv$MH() {
+        return RuntimeHelper.requireNonNull(constants$315.glProgramUniform1dv$MH,"glProgramUniform1dv");
     }
-    public static void glutAddMenuEntry ( Addressable label,  int value) {
-        var mh$ = glutAddMenuEntry$MH();
+    public static void glProgramUniform1dv ( int program,  int location,  int count,  Addressable value) {
+        var mh$ = glProgramUniform1dv$MH();
         try {
-            mh$.invokeExact(label, value);
+            mh$.invokeExact(program, location, count, value);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
     }
-    public static MethodHandle glutAddSubMenu$MH() {
-        return RuntimeHelper.requireNonNull(constants$948.glutAddSubMenu$MH,"glutAddSubMenu");
+    public static MethodHandle glProgramUniform1ui$MH() {
+        return RuntimeHelper.requireNonNull(constants$316.glProgramUniform1ui$MH,"glProgramUniform1ui");
     }
-    public static void glutAddSubMenu ( Addressable label,  int subMenu) {
-        var mh$ = glutAddSubMenu$MH();
+    public static void glProgramUniform1ui ( int program,  int location,  int v0) {
+        var mh$ = glProgramUniform1ui$MH();
         try {
-            mh$.invokeExact(label, subMenu);
+            mh$.invokeExact(program, location, v0);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
     }
-    public static MethodHandle glutChangeToMenuEntry$MH() {
-        return RuntimeHelper.requireNonNull(constants$948.glutChangeToMenuEntry$MH,"glutChangeToMenuEntry");
+    public static MethodHandle glProgramUniform1uiv$MH() {
+        return RuntimeHelper.requireNonNull(constants$316.glProgramUniform1uiv$MH,"glProgramUniform1uiv");
     }
-    public static void glutChangeToMenuEntry ( int item,  Addressable label,  int value) {
-        var mh$ = glutChangeToMenuEntry$MH();
+    public static void glProgramUniform1uiv ( int program,  int location,  int count,  Addressable value) {
+        var mh$ = glProgramUniform1uiv$MH();
         try {
-            mh$.invokeExact(item, label, value);
+            mh$.invokeExact(program, location, count, value);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
     }
-    public static MethodHandle glutChangeToSubMenu$MH() {
-        return RuntimeHelper.requireNonNull(constants$948.glutChangeToSubMenu$MH,"glutChangeToSubMenu");
+    public static MethodHandle glProgramUniform2i$MH() {
+        return RuntimeHelper.requireNonNull(constants$316.glProgramUniform2i$MH,"glProgramUniform2i");
     }
-    public static void glutChangeToSubMenu ( int item,  Addressable label,  int value) {
-        var mh$ = glutChangeToSubMenu$MH();
+    public static void glProgramUniform2i ( int program,  int location,  int v0,  int v1) {
+        var mh$ = glProgramUniform2i$MH();
         try {
-            mh$.invokeExact(item, label, value);
+            mh$.invokeExact(program, location, v0, v1);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
     }
-    public static MethodHandle glutRemoveMenuItem$MH() {
-        return RuntimeHelper.requireNonNull(constants$948.glutRemoveMenuItem$MH,"glutRemoveMenuItem");
+    public static MethodHandle glProgramUniform2iv$MH() {
+        return RuntimeHelper.requireNonNull(constants$316.glProgramUniform2iv$MH,"glProgramUniform2iv");
     }
-    public static void glutRemoveMenuItem ( int item) {
-        var mh$ = glutRemoveMenuItem$MH();
+    public static void glProgramUniform2iv ( int program,  int location,  int count,  Addressable value) {
+        var mh$ = glProgramUniform2iv$MH();
         try {
-            mh$.invokeExact(item);
+            mh$.invokeExact(program, location, count, value);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
     }
-    public static MethodHandle glutAttachMenu$MH() {
-        return RuntimeHelper.requireNonNull(constants$948.glutAttachMenu$MH,"glutAttachMenu");
+    public static MethodHandle glProgramUniform2f$MH() {
+        return RuntimeHelper.requireNonNull(constants$316.glProgramUniform2f$MH,"glProgramUniform2f");
     }
-    public static void glutAttachMenu ( int button) {
-        var mh$ = glutAttachMenu$MH();
+    public static void glProgramUniform2f ( int program,  int location,  float v0,  float v1) {
+        var mh$ = glProgramUniform2f$MH();
         try {
-            mh$.invokeExact(button);
+            mh$.invokeExact(program, location, v0, v1);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
     }
-    public static MethodHandle glutDetachMenu$MH() {
-        return RuntimeHelper.requireNonNull(constants$949.glutDetachMenu$MH,"glutDetachMenu");
+    public static MethodHandle glProgramUniform2fv$MH() {
+        return RuntimeHelper.requireNonNull(constants$316.glProgramUniform2fv$MH,"glProgramUniform2fv");
     }
-    public static void glutDetachMenu ( int button) {
-        var mh$ = glutDetachMenu$MH();
+    public static void glProgramUniform2fv ( int program,  int location,  int count,  Addressable value) {
+        var mh$ = glProgramUniform2fv$MH();
         try {
-            mh$.invokeExact(button);
+            mh$.invokeExact(program, location, count, value);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
     }
-    public static MethodHandle glutTimerFunc$MH() {
-        return RuntimeHelper.requireNonNull(constants$949.glutTimerFunc$MH,"glutTimerFunc");
+    public static MethodHandle glProgramUniform2d$MH() {
+        return RuntimeHelper.requireNonNull(constants$317.glProgramUniform2d$MH,"glProgramUniform2d");
     }
-    public static void glutTimerFunc ( int time,  Addressable callback,  int value) {
-        var mh$ = glutTimerFunc$MH();
+    public static void glProgramUniform2d ( int program,  int location,  double v0,  double v1) {
+        var mh$ = glProgramUniform2d$MH();
         try {
-            mh$.invokeExact(time, callback, value);
+            mh$.invokeExact(program, location, v0, v1);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
     }
-    public static MethodHandle glutIdleFunc$MH() {
-        return RuntimeHelper.requireNonNull(constants$950.glutIdleFunc$MH,"glutIdleFunc");
+    public static MethodHandle glProgramUniform2dv$MH() {
+        return RuntimeHelper.requireNonNull(constants$317.glProgramUniform2dv$MH,"glProgramUniform2dv");
     }
-    public static void glutIdleFunc ( Addressable callback) {
-        var mh$ = glutIdleFunc$MH();
+    public static void glProgramUniform2dv ( int program,  int location,  int count,  Addressable value) {
+        var mh$ = glProgramUniform2dv$MH();
         try {
-            mh$.invokeExact(callback);
+            mh$.invokeExact(program, location, count, value);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
     }
-    public static MethodHandle glutKeyboardFunc$MH() {
-        return RuntimeHelper.requireNonNull(constants$950.glutKeyboardFunc$MH,"glutKeyboardFunc");
+    public static MethodHandle glProgramUniform2ui$MH() {
+        return RuntimeHelper.requireNonNull(constants$317.glProgramUniform2ui$MH,"glProgramUniform2ui");
     }
-    public static void glutKeyboardFunc ( Addressable callback) {
-        var mh$ = glutKeyboardFunc$MH();
+    public static void glProgramUniform2ui ( int program,  int location,  int v0,  int v1) {
+        var mh$ = glProgramUniform2ui$MH();
         try {
-            mh$.invokeExact(callback);
+            mh$.invokeExact(program, location, v0, v1);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
     }
-    public static MethodHandle glutSpecialFunc$MH() {
-        return RuntimeHelper.requireNonNull(constants$951.glutSpecialFunc$MH,"glutSpecialFunc");
+    public static MethodHandle glProgramUniform2uiv$MH() {
+        return RuntimeHelper.requireNonNull(constants$317.glProgramUniform2uiv$MH,"glProgramUniform2uiv");
     }
-    public static void glutSpecialFunc ( Addressable callback) {
-        var mh$ = glutSpecialFunc$MH();
+    public static void glProgramUniform2uiv ( int program,  int location,  int count,  Addressable value) {
+        var mh$ = glProgramUniform2uiv$MH();
         try {
-            mh$.invokeExact(callback);
+            mh$.invokeExact(program, location, count, value);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
     }
-    public static MethodHandle glutReshapeFunc$MH() {
-        return RuntimeHelper.requireNonNull(constants$951.glutReshapeFunc$MH,"glutReshapeFunc");
+    public static MethodHandle glProgramUniform3i$MH() {
+        return RuntimeHelper.requireNonNull(constants$317.glProgramUniform3i$MH,"glProgramUniform3i");
     }
-    public static void glutReshapeFunc ( Addressable callback) {
-        var mh$ = glutReshapeFunc$MH();
+    public static void glProgramUniform3i ( int program,  int location,  int v0,  int v1,  int v2) {
+        var mh$ = glProgramUniform3i$MH();
         try {
-            mh$.invokeExact(callback);
+            mh$.invokeExact(program, location, v0, v1, v2);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
     }
-    public static MethodHandle glutVisibilityFunc$MH() {
-        return RuntimeHelper.requireNonNull(constants$952.glutVisibilityFunc$MH,"glutVisibilityFunc");
+    public static MethodHandle glProgramUniform3iv$MH() {
+        return RuntimeHelper.requireNonNull(constants$317.glProgramUniform3iv$MH,"glProgramUniform3iv");
     }
-    public static void glutVisibilityFunc ( Addressable callback) {
-        var mh$ = glutVisibilityFunc$MH();
+    public static void glProgramUniform3iv ( int program,  int location,  int count,  Addressable value) {
+        var mh$ = glProgramUniform3iv$MH();
         try {
-            mh$.invokeExact(callback);
+            mh$.invokeExact(program, location, count, value);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
     }
-    public static MethodHandle glutDisplayFunc$MH() {
-        return RuntimeHelper.requireNonNull(constants$952.glutDisplayFunc$MH,"glutDisplayFunc");
+    public static MethodHandle glProgramUniform3f$MH() {
+        return RuntimeHelper.requireNonNull(constants$318.glProgramUniform3f$MH,"glProgramUniform3f");
     }
-    public static void glutDisplayFunc ( Addressable callback) {
-        var mh$ = glutDisplayFunc$MH();
+    public static void glProgramUniform3f ( int program,  int location,  float v0,  float v1,  float v2) {
+        var mh$ = glProgramUniform3f$MH();
         try {
-            mh$.invokeExact(callback);
+            mh$.invokeExact(program, location, v0, v1, v2);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
     }
-    public static MethodHandle glutMouseFunc$MH() {
-        return RuntimeHelper.requireNonNull(constants$953.glutMouseFunc$MH,"glutMouseFunc");
+    public static MethodHandle glProgramUniform3fv$MH() {
+        return RuntimeHelper.requireNonNull(constants$318.glProgramUniform3fv$MH,"glProgramUniform3fv");
     }
-    public static void glutMouseFunc ( Addressable callback) {
-        var mh$ = glutMouseFunc$MH();
+    public static void glProgramUniform3fv ( int program,  int location,  int count,  Addressable value) {
+        var mh$ = glProgramUniform3fv$MH();
         try {
-            mh$.invokeExact(callback);
+            mh$.invokeExact(program, location, count, value);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
     }
-    public static MethodHandle glutMotionFunc$MH() {
-        return RuntimeHelper.requireNonNull(constants$953.glutMotionFunc$MH,"glutMotionFunc");
+    public static MethodHandle glProgramUniform3d$MH() {
+        return RuntimeHelper.requireNonNull(constants$318.glProgramUniform3d$MH,"glProgramUniform3d");
     }
-    public static void glutMotionFunc ( Addressable callback) {
-        var mh$ = glutMotionFunc$MH();
+    public static void glProgramUniform3d ( int program,  int location,  double v0,  double v1,  double v2) {
+        var mh$ = glProgramUniform3d$MH();
         try {
-            mh$.invokeExact(callback);
+            mh$.invokeExact(program, location, v0, v1, v2);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
     }
-    public static MethodHandle glutPassiveMotionFunc$MH() {
-        return RuntimeHelper.requireNonNull(constants$954.glutPassiveMotionFunc$MH,"glutPassiveMotionFunc");
+    public static MethodHandle glProgramUniform3dv$MH() {
+        return RuntimeHelper.requireNonNull(constants$318.glProgramUniform3dv$MH,"glProgramUniform3dv");
     }
-    public static void glutPassiveMotionFunc ( Addressable callback) {
-        var mh$ = glutPassiveMotionFunc$MH();
+    public static void glProgramUniform3dv ( int program,  int location,  int count,  Addressable value) {
+        var mh$ = glProgramUniform3dv$MH();
         try {
-            mh$.invokeExact(callback);
+            mh$.invokeExact(program, location, count, value);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
     }
-    public static MethodHandle glutEntryFunc$MH() {
-        return RuntimeHelper.requireNonNull(constants$954.glutEntryFunc$MH,"glutEntryFunc");
+    public static MethodHandle glProgramUniform3ui$MH() {
+        return RuntimeHelper.requireNonNull(constants$318.glProgramUniform3ui$MH,"glProgramUniform3ui");
     }
-    public static void glutEntryFunc ( Addressable callback) {
-        var mh$ = glutEntryFunc$MH();
+    public static void glProgramUniform3ui ( int program,  int location,  int v0,  int v1,  int v2) {
+        var mh$ = glProgramUniform3ui$MH();
         try {
-            mh$.invokeExact(callback);
+            mh$.invokeExact(program, location, v0, v1, v2);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
     }
-    public static MethodHandle glutKeyboardUpFunc$MH() {
-        return RuntimeHelper.requireNonNull(constants$955.glutKeyboardUpFunc$MH,"glutKeyboardUpFunc");
+    public static MethodHandle glProgramUniform3uiv$MH() {
+        return RuntimeHelper.requireNonNull(constants$318.glProgramUniform3uiv$MH,"glProgramUniform3uiv");
     }
-    public static void glutKeyboardUpFunc ( Addressable callback) {
-        var mh$ = glutKeyboardUpFunc$MH();
+    public static void glProgramUniform3uiv ( int program,  int location,  int count,  Addressable value) {
+        var mh$ = glProgramUniform3uiv$MH();
         try {
-            mh$.invokeExact(callback);
+            mh$.invokeExact(program, location, count, value);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
     }
-    public static MethodHandle glutSpecialUpFunc$MH() {
-        return RuntimeHelper.requireNonNull(constants$955.glutSpecialUpFunc$MH,"glutSpecialUpFunc");
+    public static MethodHandle glProgramUniform4i$MH() {
+        return RuntimeHelper.requireNonNull(constants$319.glProgramUniform4i$MH,"glProgramUniform4i");
     }
-    public static void glutSpecialUpFunc ( Addressable callback) {
-        var mh$ = glutSpecialUpFunc$MH();
+    public static void glProgramUniform4i ( int program,  int location,  int v0,  int v1,  int v2,  int v3) {
+        var mh$ = glProgramUniform4i$MH();
         try {
-            mh$.invokeExact(callback);
+            mh$.invokeExact(program, location, v0, v1, v2, v3);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
     }
-    public static MethodHandle glutJoystickFunc$MH() {
-        return RuntimeHelper.requireNonNull(constants$956.glutJoystickFunc$MH,"glutJoystickFunc");
+    public static MethodHandle glProgramUniform4iv$MH() {
+        return RuntimeHelper.requireNonNull(constants$319.glProgramUniform4iv$MH,"glProgramUniform4iv");
     }
-    public static void glutJoystickFunc ( Addressable callback,  int pollInterval) {
-        var mh$ = glutJoystickFunc$MH();
+    public static void glProgramUniform4iv ( int program,  int location,  int count,  Addressable value) {
+        var mh$ = glProgramUniform4iv$MH();
         try {
-            mh$.invokeExact(callback, pollInterval);
+            mh$.invokeExact(program, location, count, value);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
     }
-    public static MethodHandle glutMenuStateFunc$MH() {
-        return RuntimeHelper.requireNonNull(constants$956.glutMenuStateFunc$MH,"glutMenuStateFunc");
+    public static MethodHandle glProgramUniform4f$MH() {
+        return RuntimeHelper.requireNonNull(constants$319.glProgramUniform4f$MH,"glProgramUniform4f");
     }
-    public static void glutMenuStateFunc ( Addressable callback) {
-        var mh$ = glutMenuStateFunc$MH();
+    public static void glProgramUniform4f ( int program,  int location,  float v0,  float v1,  float v2,  float v3) {
+        var mh$ = glProgramUniform4f$MH();
         try {
-            mh$.invokeExact(callback);
+            mh$.invokeExact(program, location, v0, v1, v2, v3);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
     }
-    public static MethodHandle glutMenuStatusFunc$MH() {
-        return RuntimeHelper.requireNonNull(constants$957.glutMenuStatusFunc$MH,"glutMenuStatusFunc");
+    public static MethodHandle glProgramUniform4fv$MH() {
+        return RuntimeHelper.requireNonNull(constants$319.glProgramUniform4fv$MH,"glProgramUniform4fv");
     }
-    public static void glutMenuStatusFunc ( Addressable callback) {
-        var mh$ = glutMenuStatusFunc$MH();
+    public static void glProgramUniform4fv ( int program,  int location,  int count,  Addressable value) {
+        var mh$ = glProgramUniform4fv$MH();
         try {
-            mh$.invokeExact(callback);
+            mh$.invokeExact(program, location, count, value);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
     }
-    public static MethodHandle glutOverlayDisplayFunc$MH() {
-        return RuntimeHelper.requireNonNull(constants$957.glutOverlayDisplayFunc$MH,"glutOverlayDisplayFunc");
+    public static MethodHandle glProgramUniform4d$MH() {
+        return RuntimeHelper.requireNonNull(constants$319.glProgramUniform4d$MH,"glProgramUniform4d");
     }
-    public static void glutOverlayDisplayFunc ( Addressable callback) {
-        var mh$ = glutOverlayDisplayFunc$MH();
+    public static void glProgramUniform4d ( int program,  int location,  double v0,  double v1,  double v2,  double v3) {
+        var mh$ = glProgramUniform4d$MH();
         try {
-            mh$.invokeExact(callback);
+            mh$.invokeExact(program, location, v0, v1, v2, v3);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
     }
-    public static MethodHandle glutWindowStatusFunc$MH() {
-        return RuntimeHelper.requireNonNull(constants$958.glutWindowStatusFunc$MH,"glutWindowStatusFunc");
+    public static MethodHandle glProgramUniform4dv$MH() {
+        return RuntimeHelper.requireNonNull(constants$319.glProgramUniform4dv$MH,"glProgramUniform4dv");
     }
-    public static void glutWindowStatusFunc ( Addressable callback) {
-        var mh$ = glutWindowStatusFunc$MH();
+    public static void glProgramUniform4dv ( int program,  int location,  int count,  Addressable value) {
+        var mh$ = glProgramUniform4dv$MH();
         try {
-            mh$.invokeExact(callback);
+            mh$.invokeExact(program, location, count, value);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
     }
-    public static MethodHandle glutSpaceballMotionFunc$MH() {
-        return RuntimeHelper.requireNonNull(constants$958.glutSpaceballMotionFunc$MH,"glutSpaceballMotionFunc");
+    public static MethodHandle glProgramUniform4ui$MH() {
+        return RuntimeHelper.requireNonNull(constants$320.glProgramUniform4ui$MH,"glProgramUniform4ui");
     }
-    public static void glutSpaceballMotionFunc ( Addressable callback) {
-        var mh$ = glutSpaceballMotionFunc$MH();
+    public static void glProgramUniform4ui ( int program,  int location,  int v0,  int v1,  int v2,  int v3) {
+        var mh$ = glProgramUniform4ui$MH();
         try {
-            mh$.invokeExact(callback);
+            mh$.invokeExact(program, location, v0, v1, v2, v3);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
     }
-    public static MethodHandle glutSpaceballRotateFunc$MH() {
-        return RuntimeHelper.requireNonNull(constants$959.glutSpaceballRotateFunc$MH,"glutSpaceballRotateFunc");
+    public static MethodHandle glProgramUniform4uiv$MH() {
+        return RuntimeHelper.requireNonNull(constants$320.glProgramUniform4uiv$MH,"glProgramUniform4uiv");
     }
-    public static void glutSpaceballRotateFunc ( Addressable callback) {
-        var mh$ = glutSpaceballRotateFunc$MH();
+    public static void glProgramUniform4uiv ( int program,  int location,  int count,  Addressable value) {
+        var mh$ = glProgramUniform4uiv$MH();
         try {
-            mh$.invokeExact(callback);
+            mh$.invokeExact(program, location, count, value);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
     }
-    public static MethodHandle glutSpaceballButtonFunc$MH() {
-        return RuntimeHelper.requireNonNull(constants$959.glutSpaceballButtonFunc$MH,"glutSpaceballButtonFunc");
+    public static MethodHandle glProgramUniformMatrix2fv$MH() {
+        return RuntimeHelper.requireNonNull(constants$320.glProgramUniformMatrix2fv$MH,"glProgramUniformMatrix2fv");
     }
-    public static void glutSpaceballButtonFunc ( Addressable callback) {
-        var mh$ = glutSpaceballButtonFunc$MH();
+    public static void glProgramUniformMatrix2fv ( int program,  int location,  int count,  byte transpose,  Addressable value) {
+        var mh$ = glProgramUniformMatrix2fv$MH();
         try {
-            mh$.invokeExact(callback);
+            mh$.invokeExact(program, location, count, transpose, value);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
     }
-    public static MethodHandle glutButtonBoxFunc$MH() {
-        return RuntimeHelper.requireNonNull(constants$960.glutButtonBoxFunc$MH,"glutButtonBoxFunc");
+    public static MethodHandle glProgramUniformMatrix3fv$MH() {
+        return RuntimeHelper.requireNonNull(constants$320.glProgramUniformMatrix3fv$MH,"glProgramUniformMatrix3fv");
     }
-    public static void glutButtonBoxFunc ( Addressable callback) {
-        var mh$ = glutButtonBoxFunc$MH();
+    public static void glProgramUniformMatrix3fv ( int program,  int location,  int count,  byte transpose,  Addressable value) {
+        var mh$ = glProgramUniformMatrix3fv$MH();
         try {
-            mh$.invokeExact(callback);
+            mh$.invokeExact(program, location, count, transpose, value);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
     }
-    public static MethodHandle glutDialsFunc$MH() {
-        return RuntimeHelper.requireNonNull(constants$960.glutDialsFunc$MH,"glutDialsFunc");
+    public static MethodHandle glProgramUniformMatrix4fv$MH() {
+        return RuntimeHelper.requireNonNull(constants$320.glProgramUniformMatrix4fv$MH,"glProgramUniformMatrix4fv");
     }
-    public static void glutDialsFunc ( Addressable callback) {
-        var mh$ = glutDialsFunc$MH();
+    public static void glProgramUniformMatrix4fv ( int program,  int location,  int count,  byte transpose,  Addressable value) {
+        var mh$ = glProgramUniformMatrix4fv$MH();
         try {
-            mh$.invokeExact(callback);
+            mh$.invokeExact(program, location, count, transpose, value);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
     }
-    public static MethodHandle glutTabletMotionFunc$MH() {
-        return RuntimeHelper.requireNonNull(constants$961.glutTabletMotionFunc$MH,"glutTabletMotionFunc");
+    public static MethodHandle glProgramUniformMatrix2dv$MH() {
+        return RuntimeHelper.requireNonNull(constants$320.glProgramUniformMatrix2dv$MH,"glProgramUniformMatrix2dv");
     }
-    public static void glutTabletMotionFunc ( Addressable callback) {
-        var mh$ = glutTabletMotionFunc$MH();
+    public static void glProgramUniformMatrix2dv ( int program,  int location,  int count,  byte transpose,  Addressable value) {
+        var mh$ = glProgramUniformMatrix2dv$MH();
         try {
-            mh$.invokeExact(callback);
+            mh$.invokeExact(program, location, count, transpose, value);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
     }
-    public static MethodHandle glutTabletButtonFunc$MH() {
-        return RuntimeHelper.requireNonNull(constants$961.glutTabletButtonFunc$MH,"glutTabletButtonFunc");
+    public static MethodHandle glProgramUniformMatrix3dv$MH() {
+        return RuntimeHelper.requireNonNull(constants$321.glProgramUniformMatrix3dv$MH,"glProgramUniformMatrix3dv");
     }
-    public static void glutTabletButtonFunc ( Addressable callback) {
-        var mh$ = glutTabletButtonFunc$MH();
+    public static void glProgramUniformMatrix3dv ( int program,  int location,  int count,  byte transpose,  Addressable value) {
+        var mh$ = glProgramUniformMatrix3dv$MH();
         try {
-            mh$.invokeExact(callback);
+            mh$.invokeExact(program, location, count, transpose, value);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
     }
-    public static MethodHandle glutGet$MH() {
-        return RuntimeHelper.requireNonNull(constants$961.glutGet$MH,"glutGet");
+    public static MethodHandle glProgramUniformMatrix4dv$MH() {
+        return RuntimeHelper.requireNonNull(constants$321.glProgramUniformMatrix4dv$MH,"glProgramUniformMatrix4dv");
     }
-    public static int glutGet ( int query) {
-        var mh$ = glutGet$MH();
+    public static void glProgramUniformMatrix4dv ( int program,  int location,  int count,  byte transpose,  Addressable value) {
+        var mh$ = glProgramUniformMatrix4dv$MH();
         try {
-            return (int)mh$.invokeExact(query);
+            mh$.invokeExact(program, location, count, transpose, value);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
     }
-    public static MethodHandle glutDeviceGet$MH() {
-        return RuntimeHelper.requireNonNull(constants$961.glutDeviceGet$MH,"glutDeviceGet");
+    public static MethodHandle glProgramUniformMatrix2x3fv$MH() {
+        return RuntimeHelper.requireNonNull(constants$321.glProgramUniformMatrix2x3fv$MH,"glProgramUniformMatrix2x3fv");
     }
-    public static int glutDeviceGet ( int query) {
-        var mh$ = glutDeviceGet$MH();
+    public static void glProgramUniformMatrix2x3fv ( int program,  int location,  int count,  byte transpose,  Addressable value) {
+        var mh$ = glProgramUniformMatrix2x3fv$MH();
         try {
-            return (int)mh$.invokeExact(query);
+            mh$.invokeExact(program, location, count, transpose, value);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
     }
-    public static MethodHandle glutGetModifiers$MH() {
-        return RuntimeHelper.requireNonNull(constants$962.glutGetModifiers$MH,"glutGetModifiers");
+    public static MethodHandle glProgramUniformMatrix3x2fv$MH() {
+        return RuntimeHelper.requireNonNull(constants$321.glProgramUniformMatrix3x2fv$MH,"glProgramUniformMatrix3x2fv");
     }
-    public static int glutGetModifiers () {
-        var mh$ = glutGetModifiers$MH();
+    public static void glProgramUniformMatrix3x2fv ( int program,  int location,  int count,  byte transpose,  Addressable value) {
+        var mh$ = glProgramUniformMatrix3x2fv$MH();
         try {
-            return (int)mh$.invokeExact();
+            mh$.invokeExact(program, location, count, transpose, value);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
     }
-    public static MethodHandle glutLayerGet$MH() {
-        return RuntimeHelper.requireNonNull(constants$962.glutLayerGet$MH,"glutLayerGet");
+    public static MethodHandle glProgramUniformMatrix2x4fv$MH() {
+        return RuntimeHelper.requireNonNull(constants$321.glProgramUniformMatrix2x4fv$MH,"glProgramUniformMatrix2x4fv");
     }
-    public static int glutLayerGet ( int query) {
-        var mh$ = glutLayerGet$MH();
+    public static void glProgramUniformMatrix2x4fv ( int program,  int location,  int count,  byte transpose,  Addressable value) {
+        var mh$ = glProgramUniformMatrix2x4fv$MH();
         try {
-            return (int)mh$.invokeExact(query);
+            mh$.invokeExact(program, location, count, transpose, value);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
     }
-    public static MethodHandle glutBitmapCharacter$MH() {
-        return RuntimeHelper.requireNonNull(constants$962.glutBitmapCharacter$MH,"glutBitmapCharacter");
+    public static MethodHandle glProgramUniformMatrix4x2fv$MH() {
+        return RuntimeHelper.requireNonNull(constants$321.glProgramUniformMatrix4x2fv$MH,"glProgramUniformMatrix4x2fv");
     }
-    public static void glutBitmapCharacter ( Addressable font,  int character) {
-        var mh$ = glutBitmapCharacter$MH();
+    public static void glProgramUniformMatrix4x2fv ( int program,  int location,  int count,  byte transpose,  Addressable value) {
+        var mh$ = glProgramUniformMatrix4x2fv$MH();
         try {
-            mh$.invokeExact(font, character);
+            mh$.invokeExact(program, location, count, transpose, value);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
     }
-    public static MethodHandle glutBitmapWidth$MH() {
-        return RuntimeHelper.requireNonNull(constants$962.glutBitmapWidth$MH,"glutBitmapWidth");
+    public static MethodHandle glProgramUniformMatrix3x4fv$MH() {
+        return RuntimeHelper.requireNonNull(constants$322.glProgramUniformMatrix3x4fv$MH,"glProgramUniformMatrix3x4fv");
     }
-    public static int glutBitmapWidth ( Addressable font,  int character) {
-        var mh$ = glutBitmapWidth$MH();
+    public static void glProgramUniformMatrix3x4fv ( int program,  int location,  int count,  byte transpose,  Addressable value) {
+        var mh$ = glProgramUniformMatrix3x4fv$MH();
         try {
-            return (int)mh$.invokeExact(font, character);
+            mh$.invokeExact(program, location, count, transpose, value);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
     }
-    public static MethodHandle glutStrokeCharacter$MH() {
-        return RuntimeHelper.requireNonNull(constants$962.glutStrokeCharacter$MH,"glutStrokeCharacter");
+    public static MethodHandle glProgramUniformMatrix4x3fv$MH() {
+        return RuntimeHelper.requireNonNull(constants$322.glProgramUniformMatrix4x3fv$MH,"glProgramUniformMatrix4x3fv");
     }
-    public static void glutStrokeCharacter ( Addressable font,  int character) {
-        var mh$ = glutStrokeCharacter$MH();
+    public static void glProgramUniformMatrix4x3fv ( int program,  int location,  int count,  byte transpose,  Addressable value) {
+        var mh$ = glProgramUniformMatrix4x3fv$MH();
         try {
-            mh$.invokeExact(font, character);
+            mh$.invokeExact(program, location, count, transpose, value);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
     }
-    public static MethodHandle glutStrokeWidth$MH() {
-        return RuntimeHelper.requireNonNull(constants$962.glutStrokeWidth$MH,"glutStrokeWidth");
+    public static MethodHandle glProgramUniformMatrix2x3dv$MH() {
+        return RuntimeHelper.requireNonNull(constants$322.glProgramUniformMatrix2x3dv$MH,"glProgramUniformMatrix2x3dv");
     }
-    public static int glutStrokeWidth ( Addressable font,  int character) {
-        var mh$ = glutStrokeWidth$MH();
+    public static void glProgramUniformMatrix2x3dv ( int program,  int location,  int count,  byte transpose,  Addressable value) {
+        var mh$ = glProgramUniformMatrix2x3dv$MH();
         try {
-            return (int)mh$.invokeExact(font, character);
+            mh$.invokeExact(program, location, count, transpose, value);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
     }
-    public static MethodHandle glutBitmapLength$MH() {
-        return RuntimeHelper.requireNonNull(constants$963.glutBitmapLength$MH,"glutBitmapLength");
+    public static MethodHandle glProgramUniformMatrix3x2dv$MH() {
+        return RuntimeHelper.requireNonNull(constants$322.glProgramUniformMatrix3x2dv$MH,"glProgramUniformMatrix3x2dv");
     }
-    public static int glutBitmapLength ( Addressable font,  Addressable string) {
-        var mh$ = glutBitmapLength$MH();
+    public static void glProgramUniformMatrix3x2dv ( int program,  int location,  int count,  byte transpose,  Addressable value) {
+        var mh$ = glProgramUniformMatrix3x2dv$MH();
         try {
-            return (int)mh$.invokeExact(font, string);
+            mh$.invokeExact(program, location, count, transpose, value);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
     }
-    public static MethodHandle glutStrokeLength$MH() {
-        return RuntimeHelper.requireNonNull(constants$963.glutStrokeLength$MH,"glutStrokeLength");
+    public static MethodHandle glProgramUniformMatrix2x4dv$MH() {
+        return RuntimeHelper.requireNonNull(constants$322.glProgramUniformMatrix2x4dv$MH,"glProgramUniformMatrix2x4dv");
     }
-    public static int glutStrokeLength ( Addressable font,  Addressable string) {
-        var mh$ = glutStrokeLength$MH();
+    public static void glProgramUniformMatrix2x4dv ( int program,  int location,  int count,  byte transpose,  Addressable value) {
+        var mh$ = glProgramUniformMatrix2x4dv$MH();
         try {
-            return (int)mh$.invokeExact(font, string);
+            mh$.invokeExact(program, location, count, transpose, value);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
     }
-    public static MethodHandle glutWireCube$MH() {
-        return RuntimeHelper.requireNonNull(constants$963.glutWireCube$MH,"glutWireCube");
+    public static MethodHandle glProgramUniformMatrix4x2dv$MH() {
+        return RuntimeHelper.requireNonNull(constants$322.glProgramUniformMatrix4x2dv$MH,"glProgramUniformMatrix4x2dv");
     }
-    public static void glutWireCube ( double size) {
-        var mh$ = glutWireCube$MH();
+    public static void glProgramUniformMatrix4x2dv ( int program,  int location,  int count,  byte transpose,  Addressable value) {
+        var mh$ = glProgramUniformMatrix4x2dv$MH();
         try {
-            mh$.invokeExact(size);
+            mh$.invokeExact(program, location, count, transpose, value);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
     }
-    public static MethodHandle glutSolidCube$MH() {
-        return RuntimeHelper.requireNonNull(constants$963.glutSolidCube$MH,"glutSolidCube");
+    public static MethodHandle glProgramUniformMatrix3x4dv$MH() {
+        return RuntimeHelper.requireNonNull(constants$323.glProgramUniformMatrix3x4dv$MH,"glProgramUniformMatrix3x4dv");
     }
-    public static void glutSolidCube ( double size) {
-        var mh$ = glutSolidCube$MH();
+    public static void glProgramUniformMatrix3x4dv ( int program,  int location,  int count,  byte transpose,  Addressable value) {
+        var mh$ = glProgramUniformMatrix3x4dv$MH();
         try {
-            mh$.invokeExact(size);
+            mh$.invokeExact(program, location, count, transpose, value);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
     }
-    public static MethodHandle glutWireSphere$MH() {
-        return RuntimeHelper.requireNonNull(constants$963.glutWireSphere$MH,"glutWireSphere");
+    public static MethodHandle glProgramUniformMatrix4x3dv$MH() {
+        return RuntimeHelper.requireNonNull(constants$323.glProgramUniformMatrix4x3dv$MH,"glProgramUniformMatrix4x3dv");
     }
-    public static void glutWireSphere ( double radius,  int slices,  int stacks) {
-        var mh$ = glutWireSphere$MH();
+    public static void glProgramUniformMatrix4x3dv ( int program,  int location,  int count,  byte transpose,  Addressable value) {
+        var mh$ = glProgramUniformMatrix4x3dv$MH();
         try {
-            mh$.invokeExact(radius, slices, stacks);
+            mh$.invokeExact(program, location, count, transpose, value);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
     }
-    public static MethodHandle glutSolidSphere$MH() {
-        return RuntimeHelper.requireNonNull(constants$963.glutSolidSphere$MH,"glutSolidSphere");
+    public static MethodHandle glValidateProgramPipeline$MH() {
+        return RuntimeHelper.requireNonNull(constants$323.glValidateProgramPipeline$MH,"glValidateProgramPipeline");
     }
-    public static void glutSolidSphere ( double radius,  int slices,  int stacks) {
-        var mh$ = glutSolidSphere$MH();
+    public static void glValidateProgramPipeline ( int pipeline) {
+        var mh$ = glValidateProgramPipeline$MH();
         try {
-            mh$.invokeExact(radius, slices, stacks);
+            mh$.invokeExact(pipeline);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
     }
-    public static MethodHandle glutWireCone$MH() {
-        return RuntimeHelper.requireNonNull(constants$964.glutWireCone$MH,"glutWireCone");
+    public static MethodHandle glGetProgramPipelineInfoLog$MH() {
+        return RuntimeHelper.requireNonNull(constants$323.glGetProgramPipelineInfoLog$MH,"glGetProgramPipelineInfoLog");
     }
-    public static void glutWireCone ( double base,  double height,  int slices,  int stacks) {
-        var mh$ = glutWireCone$MH();
+    public static void glGetProgramPipelineInfoLog ( int pipeline,  int bufSize,  Addressable length,  Addressable infoLog) {
+        var mh$ = glGetProgramPipelineInfoLog$MH();
         try {
-            mh$.invokeExact(base, height, slices, stacks);
+            mh$.invokeExact(pipeline, bufSize, length, infoLog);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
     }
-    public static MethodHandle glutSolidCone$MH() {
-        return RuntimeHelper.requireNonNull(constants$964.glutSolidCone$MH,"glutSolidCone");
+    public static MethodHandle glVertexAttribL1d$MH() {
+        return RuntimeHelper.requireNonNull(constants$323.glVertexAttribL1d$MH,"glVertexAttribL1d");
     }
-    public static void glutSolidCone ( double base,  double height,  int slices,  int stacks) {
-        var mh$ = glutSolidCone$MH();
+    public static void glVertexAttribL1d ( int index,  double x) {
+        var mh$ = glVertexAttribL1d$MH();
         try {
-            mh$.invokeExact(base, height, slices, stacks);
+            mh$.invokeExact(index, x);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
     }
-    public static MethodHandle glutWireTorus$MH() {
-        return RuntimeHelper.requireNonNull(constants$964.glutWireTorus$MH,"glutWireTorus");
+    public static MethodHandle glVertexAttribL2d$MH() {
+        return RuntimeHelper.requireNonNull(constants$323.glVertexAttribL2d$MH,"glVertexAttribL2d");
     }
-    public static void glutWireTorus ( double innerRadius,  double outerRadius,  int sides,  int rings) {
-        var mh$ = glutWireTorus$MH();
+    public static void glVertexAttribL2d ( int index,  double x,  double y) {
+        var mh$ = glVertexAttribL2d$MH();
         try {
-            mh$.invokeExact(innerRadius, outerRadius, sides, rings);
+            mh$.invokeExact(index, x, y);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
     }
-    public static MethodHandle glutSolidTorus$MH() {
-        return RuntimeHelper.requireNonNull(constants$964.glutSolidTorus$MH,"glutSolidTorus");
+    public static MethodHandle glVertexAttribL3d$MH() {
+        return RuntimeHelper.requireNonNull(constants$324.glVertexAttribL3d$MH,"glVertexAttribL3d");
     }
-    public static void glutSolidTorus ( double innerRadius,  double outerRadius,  int sides,  int rings) {
-        var mh$ = glutSolidTorus$MH();
+    public static void glVertexAttribL3d ( int index,  double x,  double y,  double z) {
+        var mh$ = glVertexAttribL3d$MH();
         try {
-            mh$.invokeExact(innerRadius, outerRadius, sides, rings);
+            mh$.invokeExact(index, x, y, z);
         } catch (Throwable ex$) {
             throw new AssertionError("should not reach here", ex$);
         }
-    }
-    public static MethodHandle glutWireDodecahedron$MH() {
-        return RuntimeHelper.requireNonNull(constants$964.glutWireDodecahedron$MH,"glutWireDodecahedron");
-    }
-    public static void glutWireDodecahedron () {
-        var mh$ = glutWireDodecahedron$MH();
-        try {
-            mh$.invokeExact();
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glutSolidDodecahedron$MH() {
-        return RuntimeHelper.requireNonNull(constants$964.glutSolidDodecahedron$MH,"glutSolidDodecahedron");
-    }
-    public static void glutSolidDodecahedron () {
-        var mh$ = glutSolidDodecahedron$MH();
-        try {
-            mh$.invokeExact();
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glutWireOctahedron$MH() {
-        return RuntimeHelper.requireNonNull(constants$965.glutWireOctahedron$MH,"glutWireOctahedron");
-    }
-    public static void glutWireOctahedron () {
-        var mh$ = glutWireOctahedron$MH();
-        try {
-            mh$.invokeExact();
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glutSolidOctahedron$MH() {
-        return RuntimeHelper.requireNonNull(constants$965.glutSolidOctahedron$MH,"glutSolidOctahedron");
-    }
-    public static void glutSolidOctahedron () {
-        var mh$ = glutSolidOctahedron$MH();
-        try {
-            mh$.invokeExact();
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glutWireTetrahedron$MH() {
-        return RuntimeHelper.requireNonNull(constants$965.glutWireTetrahedron$MH,"glutWireTetrahedron");
-    }
-    public static void glutWireTetrahedron () {
-        var mh$ = glutWireTetrahedron$MH();
-        try {
-            mh$.invokeExact();
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glutSolidTetrahedron$MH() {
-        return RuntimeHelper.requireNonNull(constants$965.glutSolidTetrahedron$MH,"glutSolidTetrahedron");
-    }
-    public static void glutSolidTetrahedron () {
-        var mh$ = glutSolidTetrahedron$MH();
-        try {
-            mh$.invokeExact();
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glutWireIcosahedron$MH() {
-        return RuntimeHelper.requireNonNull(constants$965.glutWireIcosahedron$MH,"glutWireIcosahedron");
-    }
-    public static void glutWireIcosahedron () {
-        var mh$ = glutWireIcosahedron$MH();
-        try {
-            mh$.invokeExact();
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glutSolidIcosahedron$MH() {
-        return RuntimeHelper.requireNonNull(constants$965.glutSolidIcosahedron$MH,"glutSolidIcosahedron");
-    }
-    public static void glutSolidIcosahedron () {
-        var mh$ = glutSolidIcosahedron$MH();
-        try {
-            mh$.invokeExact();
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glutWireTeapot$MH() {
-        return RuntimeHelper.requireNonNull(constants$966.glutWireTeapot$MH,"glutWireTeapot");
-    }
-    public static void glutWireTeapot ( double size) {
-        var mh$ = glutWireTeapot$MH();
-        try {
-            mh$.invokeExact(size);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glutSolidTeapot$MH() {
-        return RuntimeHelper.requireNonNull(constants$966.glutSolidTeapot$MH,"glutSolidTeapot");
-    }
-    public static void glutSolidTeapot ( double size) {
-        var mh$ = glutSolidTeapot$MH();
-        try {
-            mh$.invokeExact(size);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glutGameModeString$MH() {
-        return RuntimeHelper.requireNonNull(constants$966.glutGameModeString$MH,"glutGameModeString");
-    }
-    public static void glutGameModeString ( Addressable string) {
-        var mh$ = glutGameModeString$MH();
-        try {
-            mh$.invokeExact(string);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glutEnterGameMode$MH() {
-        return RuntimeHelper.requireNonNull(constants$966.glutEnterGameMode$MH,"glutEnterGameMode");
-    }
-    public static int glutEnterGameMode () {
-        var mh$ = glutEnterGameMode$MH();
-        try {
-            return (int)mh$.invokeExact();
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glutLeaveGameMode$MH() {
-        return RuntimeHelper.requireNonNull(constants$966.glutLeaveGameMode$MH,"glutLeaveGameMode");
-    }
-    public static void glutLeaveGameMode () {
-        var mh$ = glutLeaveGameMode$MH();
-        try {
-            mh$.invokeExact();
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glutGameModeGet$MH() {
-        return RuntimeHelper.requireNonNull(constants$966.glutGameModeGet$MH,"glutGameModeGet");
-    }
-    public static int glutGameModeGet ( int query) {
-        var mh$ = glutGameModeGet$MH();
-        try {
-            return (int)mh$.invokeExact(query);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glutVideoResizeGet$MH() {
-        return RuntimeHelper.requireNonNull(constants$967.glutVideoResizeGet$MH,"glutVideoResizeGet");
-    }
-    public static int glutVideoResizeGet ( int query) {
-        var mh$ = glutVideoResizeGet$MH();
-        try {
-            return (int)mh$.invokeExact(query);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glutSetupVideoResizing$MH() {
-        return RuntimeHelper.requireNonNull(constants$967.glutSetupVideoResizing$MH,"glutSetupVideoResizing");
-    }
-    public static void glutSetupVideoResizing () {
-        var mh$ = glutSetupVideoResizing$MH();
-        try {
-            mh$.invokeExact();
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glutStopVideoResizing$MH() {
-        return RuntimeHelper.requireNonNull(constants$967.glutStopVideoResizing$MH,"glutStopVideoResizing");
-    }
-    public static void glutStopVideoResizing () {
-        var mh$ = glutStopVideoResizing$MH();
-        try {
-            mh$.invokeExact();
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glutVideoResize$MH() {
-        return RuntimeHelper.requireNonNull(constants$967.glutVideoResize$MH,"glutVideoResize");
-    }
-    public static void glutVideoResize ( int x,  int y,  int width,  int height) {
-        var mh$ = glutVideoResize$MH();
-        try {
-            mh$.invokeExact(x, y, width, height);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glutVideoPan$MH() {
-        return RuntimeHelper.requireNonNull(constants$967.glutVideoPan$MH,"glutVideoPan");
-    }
-    public static void glutVideoPan ( int x,  int y,  int width,  int height) {
-        var mh$ = glutVideoPan$MH();
-        try {
-            mh$.invokeExact(x, y, width, height);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glutSetColor$MH() {
-        return RuntimeHelper.requireNonNull(constants$967.glutSetColor$MH,"glutSetColor");
-    }
-    public static void glutSetColor ( int color,  float red,  float green,  float blue) {
-        var mh$ = glutSetColor$MH();
-        try {
-            mh$.invokeExact(color, red, green, blue);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glutGetColor$MH() {
-        return RuntimeHelper.requireNonNull(constants$968.glutGetColor$MH,"glutGetColor");
-    }
-    public static float glutGetColor ( int color,  int component) {
-        var mh$ = glutGetColor$MH();
-        try {
-            return (float)mh$.invokeExact(color, component);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glutCopyColormap$MH() {
-        return RuntimeHelper.requireNonNull(constants$968.glutCopyColormap$MH,"glutCopyColormap");
-    }
-    public static void glutCopyColormap ( int window) {
-        var mh$ = glutCopyColormap$MH();
-        try {
-            mh$.invokeExact(window);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glutIgnoreKeyRepeat$MH() {
-        return RuntimeHelper.requireNonNull(constants$968.glutIgnoreKeyRepeat$MH,"glutIgnoreKeyRepeat");
-    }
-    public static void glutIgnoreKeyRepeat ( int ignore) {
-        var mh$ = glutIgnoreKeyRepeat$MH();
-        try {
-            mh$.invokeExact(ignore);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glutSetKeyRepeat$MH() {
-        return RuntimeHelper.requireNonNull(constants$968.glutSetKeyRepeat$MH,"glutSetKeyRepeat");
-    }
-    public static void glutSetKeyRepeat ( int repeatMode) {
-        var mh$ = glutSetKeyRepeat$MH();
-        try {
-            mh$.invokeExact(repeatMode);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glutForceJoystickFunc$MH() {
-        return RuntimeHelper.requireNonNull(constants$968.glutForceJoystickFunc$MH,"glutForceJoystickFunc");
-    }
-    public static void glutForceJoystickFunc () {
-        var mh$ = glutForceJoystickFunc$MH();
-        try {
-            mh$.invokeExact();
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glutExtensionSupported$MH() {
-        return RuntimeHelper.requireNonNull(constants$968.glutExtensionSupported$MH,"glutExtensionSupported");
-    }
-    public static int glutExtensionSupported ( Addressable extension) {
-        var mh$ = glutExtensionSupported$MH();
-        try {
-            return (int)mh$.invokeExact(extension);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glutReportErrors$MH() {
-        return RuntimeHelper.requireNonNull(constants$969.glutReportErrors$MH,"glutReportErrors");
-    }
-    public static void glutReportErrors () {
-        var mh$ = glutReportErrors$MH();
-        try {
-            mh$.invokeExact();
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static OfInt wchar_t = Constants$root.C_INT$LAYOUT;
-    public static int P_ALL() {
-        return (int)0L;
-    }
-    public static int P_PID() {
-        return (int)1L;
-    }
-    public static int P_PGID() {
-        return (int)2L;
-    }
-    public static OfFloat _Float32 = Constants$root.C_FLOAT$LAYOUT;
-    public static OfDouble _Float64 = Constants$root.C_DOUBLE$LAYOUT;
-    public static OfDouble _Float32x = Constants$root.C_DOUBLE$LAYOUT;
-    public static MethodHandle __ctype_get_mb_cur_max$MH() {
-        return RuntimeHelper.requireNonNull(constants$969.__ctype_get_mb_cur_max$MH,"__ctype_get_mb_cur_max");
-    }
-    public static long __ctype_get_mb_cur_max () {
-        var mh$ = __ctype_get_mb_cur_max$MH();
-        try {
-            return (long)mh$.invokeExact();
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle atof$MH() {
-        return RuntimeHelper.requireNonNull(constants$969.atof$MH,"atof");
-    }
-    public static double atof ( Addressable __nptr) {
-        var mh$ = atof$MH();
-        try {
-            return (double)mh$.invokeExact(__nptr);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle atoi$MH() {
-        return RuntimeHelper.requireNonNull(constants$969.atoi$MH,"atoi");
-    }
-    public static int atoi ( Addressable __nptr) {
-        var mh$ = atoi$MH();
-        try {
-            return (int)mh$.invokeExact(__nptr);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle atol$MH() {
-        return RuntimeHelper.requireNonNull(constants$969.atol$MH,"atol");
-    }
-    public static long atol ( Addressable __nptr) {
-        var mh$ = atol$MH();
-        try {
-            return (long)mh$.invokeExact(__nptr);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle atoll$MH() {
-        return RuntimeHelper.requireNonNull(constants$969.atoll$MH,"atoll");
-    }
-    public static long atoll ( Addressable __nptr) {
-        var mh$ = atoll$MH();
-        try {
-            return (long)mh$.invokeExact(__nptr);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle strtod$MH() {
-        return RuntimeHelper.requireNonNull(constants$970.strtod$MH,"strtod");
-    }
-    public static double strtod ( Addressable __nptr,  Addressable __endptr) {
-        var mh$ = strtod$MH();
-        try {
-            return (double)mh$.invokeExact(__nptr, __endptr);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle strtof$MH() {
-        return RuntimeHelper.requireNonNull(constants$970.strtof$MH,"strtof");
-    }
-    public static float strtof ( Addressable __nptr,  Addressable __endptr) {
-        var mh$ = strtof$MH();
-        try {
-            return (float)mh$.invokeExact(__nptr, __endptr);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle strtol$MH() {
-        return RuntimeHelper.requireNonNull(constants$970.strtol$MH,"strtol");
-    }
-    public static long strtol ( Addressable __nptr,  Addressable __endptr,  int __base) {
-        var mh$ = strtol$MH();
-        try {
-            return (long)mh$.invokeExact(__nptr, __endptr, __base);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle strtoul$MH() {
-        return RuntimeHelper.requireNonNull(constants$970.strtoul$MH,"strtoul");
-    }
-    public static long strtoul ( Addressable __nptr,  Addressable __endptr,  int __base) {
-        var mh$ = strtoul$MH();
-        try {
-            return (long)mh$.invokeExact(__nptr, __endptr, __base);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle strtoq$MH() {
-        return RuntimeHelper.requireNonNull(constants$970.strtoq$MH,"strtoq");
-    }
-    public static long strtoq ( Addressable __nptr,  Addressable __endptr,  int __base) {
-        var mh$ = strtoq$MH();
-        try {
-            return (long)mh$.invokeExact(__nptr, __endptr, __base);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle strtouq$MH() {
-        return RuntimeHelper.requireNonNull(constants$970.strtouq$MH,"strtouq");
-    }
-    public static long strtouq ( Addressable __nptr,  Addressable __endptr,  int __base) {
-        var mh$ = strtouq$MH();
-        try {
-            return (long)mh$.invokeExact(__nptr, __endptr, __base);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle strtoll$MH() {
-        return RuntimeHelper.requireNonNull(constants$971.strtoll$MH,"strtoll");
-    }
-    public static long strtoll ( Addressable __nptr,  Addressable __endptr,  int __base) {
-        var mh$ = strtoll$MH();
-        try {
-            return (long)mh$.invokeExact(__nptr, __endptr, __base);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle strtoull$MH() {
-        return RuntimeHelper.requireNonNull(constants$971.strtoull$MH,"strtoull");
-    }
-    public static long strtoull ( Addressable __nptr,  Addressable __endptr,  int __base) {
-        var mh$ = strtoull$MH();
-        try {
-            return (long)mh$.invokeExact(__nptr, __endptr, __base);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle l64a$MH() {
-        return RuntimeHelper.requireNonNull(constants$971.l64a$MH,"l64a");
-    }
-    public static MemoryAddress l64a ( long __n) {
-        var mh$ = l64a$MH();
-        try {
-            return (java.lang.foreign.MemoryAddress)mh$.invokeExact(__n);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle a64l$MH() {
-        return RuntimeHelper.requireNonNull(constants$971.a64l$MH,"a64l");
-    }
-    public static long a64l ( Addressable __s) {
-        var mh$ = a64l$MH();
-        try {
-            return (long)mh$.invokeExact(__s);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static OfLong quad_t = Constants$root.C_LONG_LONG$LAYOUT;
-    public static OfLong loff_t = Constants$root.C_LONG_LONG$LAYOUT;
-    public static OfLong off_t = Constants$root.C_LONG_LONG$LAYOUT;
-    public static OfInt pid_t = Constants$root.C_INT$LAYOUT;
-    public static OfLong ssize_t = Constants$root.C_LONG_LONG$LAYOUT;
-    public static OfInt daddr_t = Constants$root.C_INT$LAYOUT;
-    public static OfAddress caddr_t = Constants$root.C_POINTER$LAYOUT;
-    public static OfInt key_t = Constants$root.C_INT$LAYOUT;
-    public static OfLong clock_t = Constants$root.C_LONG_LONG$LAYOUT;
-    public static OfInt clockid_t = Constants$root.C_INT$LAYOUT;
-    public static OfLong time_t = Constants$root.C_LONG_LONG$LAYOUT;
-    public static OfAddress timer_t = Constants$root.C_POINTER$LAYOUT;
-    public static OfLong register_t = Constants$root.C_LONG_LONG$LAYOUT;
-    public static MethodHandle __bswap_16$MH() {
-        return RuntimeHelper.requireNonNull(constants$971.__bswap_16$MH,"__bswap_16");
-    }
-    public static short __bswap_16 ( short __bsx) {
-        var mh$ = __bswap_16$MH();
-        try {
-            return (short)mh$.invokeExact(__bsx);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle __bswap_32$MH() {
-        return RuntimeHelper.requireNonNull(constants$971.__bswap_32$MH,"__bswap_32");
-    }
-    public static int __bswap_32 ( int __bsx) {
-        var mh$ = __bswap_32$MH();
-        try {
-            return (int)mh$.invokeExact(__bsx);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle __bswap_64$MH() {
-        return RuntimeHelper.requireNonNull(constants$972.__bswap_64$MH,"__bswap_64");
-    }
-    public static long __bswap_64 ( long __bsx) {
-        var mh$ = __bswap_64$MH();
-        try {
-            return (long)mh$.invokeExact(__bsx);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle __uint16_identity$MH() {
-        return RuntimeHelper.requireNonNull(constants$972.__uint16_identity$MH,"__uint16_identity");
-    }
-    public static short __uint16_identity ( short __x) {
-        var mh$ = __uint16_identity$MH();
-        try {
-            return (short)mh$.invokeExact(__x);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle __uint32_identity$MH() {
-        return RuntimeHelper.requireNonNull(constants$972.__uint32_identity$MH,"__uint32_identity");
-    }
-    public static int __uint32_identity ( int __x) {
-        var mh$ = __uint32_identity$MH();
-        try {
-            return (int)mh$.invokeExact(__x);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle __uint64_identity$MH() {
-        return RuntimeHelper.requireNonNull(constants$972.__uint64_identity$MH,"__uint64_identity");
-    }
-    public static long __uint64_identity ( long __x) {
-        var mh$ = __uint64_identity$MH();
-        try {
-            return (long)mh$.invokeExact(__x);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static OfLong suseconds_t = Constants$root.C_LONG_LONG$LAYOUT;
-    public static OfLong __fd_mask = Constants$root.C_LONG_LONG$LAYOUT;
-    public static OfLong fd_mask = Constants$root.C_LONG_LONG$LAYOUT;
-    public static MethodHandle select$MH() {
-        return RuntimeHelper.requireNonNull(constants$972.select$MH,"select");
-    }
-    public static int select ( int __nfds,  Addressable __readfds,  Addressable __writefds,  Addressable __exceptfds,  Addressable __timeout) {
-        var mh$ = select$MH();
-        try {
-            return (int)mh$.invokeExact(__nfds, __readfds, __writefds, __exceptfds, __timeout);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle pselect$MH() {
-        return RuntimeHelper.requireNonNull(constants$972.pselect$MH,"pselect");
-    }
-    public static int pselect ( int __nfds,  Addressable __readfds,  Addressable __writefds,  Addressable __exceptfds,  Addressable __timeout,  Addressable __sigmask) {
-        var mh$ = pselect$MH();
-        try {
-            return (int)mh$.invokeExact(__nfds, __readfds, __writefds, __exceptfds, __timeout, __sigmask);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static OfLong blksize_t = Constants$root.C_LONG_LONG$LAYOUT;
-    public static OfLong blkcnt_t = Constants$root.C_LONG_LONG$LAYOUT;
-    public static OfInt pthread_once_t = Constants$root.C_INT$LAYOUT;
-    public static OfInt pthread_spinlock_t = Constants$root.C_INT$LAYOUT;
-    public static MethodHandle random$MH() {
-        return RuntimeHelper.requireNonNull(constants$973.random$MH,"random");
-    }
-    public static long random () {
-        var mh$ = random$MH();
-        try {
-            return (long)mh$.invokeExact();
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle srandom$MH() {
-        return RuntimeHelper.requireNonNull(constants$973.srandom$MH,"srandom");
-    }
-    public static void srandom ( int __seed) {
-        var mh$ = srandom$MH();
-        try {
-            mh$.invokeExact(__seed);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle initstate$MH() {
-        return RuntimeHelper.requireNonNull(constants$973.initstate$MH,"initstate");
-    }
-    public static MemoryAddress initstate ( int __seed,  Addressable __statebuf,  long __statelen) {
-        var mh$ = initstate$MH();
-        try {
-            return (java.lang.foreign.MemoryAddress)mh$.invokeExact(__seed, __statebuf, __statelen);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle setstate$MH() {
-        return RuntimeHelper.requireNonNull(constants$973.setstate$MH,"setstate");
-    }
-    public static MemoryAddress setstate ( Addressable __statebuf) {
-        var mh$ = setstate$MH();
-        try {
-            return (java.lang.foreign.MemoryAddress)mh$.invokeExact(__statebuf);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle random_r$MH() {
-        return RuntimeHelper.requireNonNull(constants$973.random_r$MH,"random_r");
-    }
-    public static int random_r ( Addressable __buf,  Addressable __result) {
-        var mh$ = random_r$MH();
-        try {
-            return (int)mh$.invokeExact(__buf, __result);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle srandom_r$MH() {
-        return RuntimeHelper.requireNonNull(constants$973.srandom_r$MH,"srandom_r");
-    }
-    public static int srandom_r ( int __seed,  Addressable __buf) {
-        var mh$ = srandom_r$MH();
-        try {
-            return (int)mh$.invokeExact(__seed, __buf);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle initstate_r$MH() {
-        return RuntimeHelper.requireNonNull(constants$974.initstate_r$MH,"initstate_r");
-    }
-    public static int initstate_r ( int __seed,  Addressable __statebuf,  long __statelen,  Addressable __buf) {
-        var mh$ = initstate_r$MH();
-        try {
-            return (int)mh$.invokeExact(__seed, __statebuf, __statelen, __buf);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle setstate_r$MH() {
-        return RuntimeHelper.requireNonNull(constants$974.setstate_r$MH,"setstate_r");
-    }
-    public static int setstate_r ( Addressable __statebuf,  Addressable __buf) {
-        var mh$ = setstate_r$MH();
-        try {
-            return (int)mh$.invokeExact(__statebuf, __buf);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle rand$MH() {
-        return RuntimeHelper.requireNonNull(constants$974.rand$MH,"rand");
-    }
-    public static int rand () {
-        var mh$ = rand$MH();
-        try {
-            return (int)mh$.invokeExact();
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle srand$MH() {
-        return RuntimeHelper.requireNonNull(constants$974.srand$MH,"srand");
-    }
-    public static void srand ( int __seed) {
-        var mh$ = srand$MH();
-        try {
-            mh$.invokeExact(__seed);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle rand_r$MH() {
-        return RuntimeHelper.requireNonNull(constants$974.rand_r$MH,"rand_r");
-    }
-    public static int rand_r ( Addressable __seed) {
-        var mh$ = rand_r$MH();
-        try {
-            return (int)mh$.invokeExact(__seed);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle drand48$MH() {
-        return RuntimeHelper.requireNonNull(constants$974.drand48$MH,"drand48");
-    }
-    public static double drand48 () {
-        var mh$ = drand48$MH();
-        try {
-            return (double)mh$.invokeExact();
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle erand48$MH() {
-        return RuntimeHelper.requireNonNull(constants$975.erand48$MH,"erand48");
-    }
-    public static double erand48 ( Addressable __xsubi) {
-        var mh$ = erand48$MH();
-        try {
-            return (double)mh$.invokeExact(__xsubi);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle lrand48$MH() {
-        return RuntimeHelper.requireNonNull(constants$975.lrand48$MH,"lrand48");
-    }
-    public static long lrand48 () {
-        var mh$ = lrand48$MH();
-        try {
-            return (long)mh$.invokeExact();
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle nrand48$MH() {
-        return RuntimeHelper.requireNonNull(constants$975.nrand48$MH,"nrand48");
-    }
-    public static long nrand48 ( Addressable __xsubi) {
-        var mh$ = nrand48$MH();
-        try {
-            return (long)mh$.invokeExact(__xsubi);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle mrand48$MH() {
-        return RuntimeHelper.requireNonNull(constants$975.mrand48$MH,"mrand48");
-    }
-    public static long mrand48 () {
-        var mh$ = mrand48$MH();
-        try {
-            return (long)mh$.invokeExact();
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle jrand48$MH() {
-        return RuntimeHelper.requireNonNull(constants$975.jrand48$MH,"jrand48");
-    }
-    public static long jrand48 ( Addressable __xsubi) {
-        var mh$ = jrand48$MH();
-        try {
-            return (long)mh$.invokeExact(__xsubi);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle srand48$MH() {
-        return RuntimeHelper.requireNonNull(constants$975.srand48$MH,"srand48");
-    }
-    public static void srand48 ( long __seedval) {
-        var mh$ = srand48$MH();
-        try {
-            mh$.invokeExact(__seedval);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle seed48$MH() {
-        return RuntimeHelper.requireNonNull(constants$976.seed48$MH,"seed48");
-    }
-    public static MemoryAddress seed48 ( Addressable __seed16v) {
-        var mh$ = seed48$MH();
-        try {
-            return (java.lang.foreign.MemoryAddress)mh$.invokeExact(__seed16v);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle lcong48$MH() {
-        return RuntimeHelper.requireNonNull(constants$976.lcong48$MH,"lcong48");
-    }
-    public static void lcong48 ( Addressable __param) {
-        var mh$ = lcong48$MH();
-        try {
-            mh$.invokeExact(__param);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle drand48_r$MH() {
-        return RuntimeHelper.requireNonNull(constants$976.drand48_r$MH,"drand48_r");
-    }
-    public static int drand48_r ( Addressable __buffer,  Addressable __result) {
-        var mh$ = drand48_r$MH();
-        try {
-            return (int)mh$.invokeExact(__buffer, __result);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle erand48_r$MH() {
-        return RuntimeHelper.requireNonNull(constants$976.erand48_r$MH,"erand48_r");
-    }
-    public static int erand48_r ( Addressable __xsubi,  Addressable __buffer,  Addressable __result) {
-        var mh$ = erand48_r$MH();
-        try {
-            return (int)mh$.invokeExact(__xsubi, __buffer, __result);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle lrand48_r$MH() {
-        return RuntimeHelper.requireNonNull(constants$976.lrand48_r$MH,"lrand48_r");
-    }
-    public static int lrand48_r ( Addressable __buffer,  Addressable __result) {
-        var mh$ = lrand48_r$MH();
-        try {
-            return (int)mh$.invokeExact(__buffer, __result);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle nrand48_r$MH() {
-        return RuntimeHelper.requireNonNull(constants$976.nrand48_r$MH,"nrand48_r");
-    }
-    public static int nrand48_r ( Addressable __xsubi,  Addressable __buffer,  Addressable __result) {
-        var mh$ = nrand48_r$MH();
-        try {
-            return (int)mh$.invokeExact(__xsubi, __buffer, __result);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle mrand48_r$MH() {
-        return RuntimeHelper.requireNonNull(constants$977.mrand48_r$MH,"mrand48_r");
-    }
-    public static int mrand48_r ( Addressable __buffer,  Addressable __result) {
-        var mh$ = mrand48_r$MH();
-        try {
-            return (int)mh$.invokeExact(__buffer, __result);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle jrand48_r$MH() {
-        return RuntimeHelper.requireNonNull(constants$977.jrand48_r$MH,"jrand48_r");
-    }
-    public static int jrand48_r ( Addressable __xsubi,  Addressable __buffer,  Addressable __result) {
-        var mh$ = jrand48_r$MH();
-        try {
-            return (int)mh$.invokeExact(__xsubi, __buffer, __result);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle srand48_r$MH() {
-        return RuntimeHelper.requireNonNull(constants$977.srand48_r$MH,"srand48_r");
-    }
-    public static int srand48_r ( long __seedval,  Addressable __buffer) {
-        var mh$ = srand48_r$MH();
-        try {
-            return (int)mh$.invokeExact(__seedval, __buffer);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle seed48_r$MH() {
-        return RuntimeHelper.requireNonNull(constants$977.seed48_r$MH,"seed48_r");
-    }
-    public static int seed48_r ( Addressable __seed16v,  Addressable __buffer) {
-        var mh$ = seed48_r$MH();
-        try {
-            return (int)mh$.invokeExact(__seed16v, __buffer);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle lcong48_r$MH() {
-        return RuntimeHelper.requireNonNull(constants$977.lcong48_r$MH,"lcong48_r");
-    }
-    public static int lcong48_r ( Addressable __param,  Addressable __buffer) {
-        var mh$ = lcong48_r$MH();
-        try {
-            return (int)mh$.invokeExact(__param, __buffer);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle malloc$MH() {
-        return RuntimeHelper.requireNonNull(constants$977.malloc$MH,"malloc");
-    }
-    public static MemoryAddress malloc ( long __size) {
-        var mh$ = malloc$MH();
-        try {
-            return (java.lang.foreign.MemoryAddress)mh$.invokeExact(__size);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle calloc$MH() {
-        return RuntimeHelper.requireNonNull(constants$978.calloc$MH,"calloc");
-    }
-    public static MemoryAddress calloc ( long __nmemb,  long __size) {
-        var mh$ = calloc$MH();
-        try {
-            return (java.lang.foreign.MemoryAddress)mh$.invokeExact(__nmemb, __size);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle realloc$MH() {
-        return RuntimeHelper.requireNonNull(constants$978.realloc$MH,"realloc");
-    }
-    public static MemoryAddress realloc ( Addressable __ptr,  long __size) {
-        var mh$ = realloc$MH();
-        try {
-            return (java.lang.foreign.MemoryAddress)mh$.invokeExact(__ptr, __size);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle reallocarray$MH() {
-        return RuntimeHelper.requireNonNull(constants$978.reallocarray$MH,"reallocarray");
-    }
-    public static MemoryAddress reallocarray ( Addressable __ptr,  long __nmemb,  long __size) {
-        var mh$ = reallocarray$MH();
-        try {
-            return (java.lang.foreign.MemoryAddress)mh$.invokeExact(__ptr, __nmemb, __size);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle free$MH() {
-        return RuntimeHelper.requireNonNull(constants$978.free$MH,"free");
-    }
-    public static void free ( Addressable __ptr) {
-        var mh$ = free$MH();
-        try {
-            mh$.invokeExact(__ptr);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle alloca$MH() {
-        return RuntimeHelper.requireNonNull(constants$978.alloca$MH,"alloca");
-    }
-    public static MemoryAddress alloca ( long __size) {
-        var mh$ = alloca$MH();
-        try {
-            return (java.lang.foreign.MemoryAddress)mh$.invokeExact(__size);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle valloc$MH() {
-        return RuntimeHelper.requireNonNull(constants$978.valloc$MH,"valloc");
-    }
-    public static MemoryAddress valloc ( long __size) {
-        var mh$ = valloc$MH();
-        try {
-            return (java.lang.foreign.MemoryAddress)mh$.invokeExact(__size);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle posix_memalign$MH() {
-        return RuntimeHelper.requireNonNull(constants$979.posix_memalign$MH,"posix_memalign");
-    }
-    public static int posix_memalign ( Addressable __memptr,  long __alignment,  long __size) {
-        var mh$ = posix_memalign$MH();
-        try {
-            return (int)mh$.invokeExact(__memptr, __alignment, __size);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle aligned_alloc$MH() {
-        return RuntimeHelper.requireNonNull(constants$979.aligned_alloc$MH,"aligned_alloc");
-    }
-    public static MemoryAddress aligned_alloc ( long __alignment,  long __size) {
-        var mh$ = aligned_alloc$MH();
-        try {
-            return (java.lang.foreign.MemoryAddress)mh$.invokeExact(__alignment, __size);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle abort$MH() {
-        return RuntimeHelper.requireNonNull(constants$979.abort$MH,"abort");
-    }
-    public static void abort () {
-        var mh$ = abort$MH();
-        try {
-            mh$.invokeExact();
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle atexit$MH() {
-        return RuntimeHelper.requireNonNull(constants$979.atexit$MH,"atexit");
-    }
-    public static int atexit ( Addressable __func) {
-        var mh$ = atexit$MH();
-        try {
-            return (int)mh$.invokeExact(__func);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle at_quick_exit$MH() {
-        return RuntimeHelper.requireNonNull(constants$980.at_quick_exit$MH,"at_quick_exit");
-    }
-    public static int at_quick_exit ( Addressable __func) {
-        var mh$ = at_quick_exit$MH();
-        try {
-            return (int)mh$.invokeExact(__func);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle on_exit$MH() {
-        return RuntimeHelper.requireNonNull(constants$980.on_exit$MH,"on_exit");
-    }
-    public static int on_exit ( Addressable __func,  Addressable __arg) {
-        var mh$ = on_exit$MH();
-        try {
-            return (int)mh$.invokeExact(__func, __arg);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle exit$MH() {
-        return RuntimeHelper.requireNonNull(constants$981.exit$MH,"exit");
-    }
-    public static void exit ( int __status) {
-        var mh$ = exit$MH();
-        try {
-            mh$.invokeExact(__status);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle quick_exit$MH() {
-        return RuntimeHelper.requireNonNull(constants$981.quick_exit$MH,"quick_exit");
-    }
-    public static void quick_exit ( int __status) {
-        var mh$ = quick_exit$MH();
-        try {
-            mh$.invokeExact(__status);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle _Exit$MH() {
-        return RuntimeHelper.requireNonNull(constants$981._Exit$MH,"_Exit");
-    }
-    public static void _Exit ( int __status) {
-        var mh$ = _Exit$MH();
-        try {
-            mh$.invokeExact(__status);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle getenv$MH() {
-        return RuntimeHelper.requireNonNull(constants$981.getenv$MH,"getenv");
-    }
-    public static MemoryAddress getenv ( Addressable __name) {
-        var mh$ = getenv$MH();
-        try {
-            return (java.lang.foreign.MemoryAddress)mh$.invokeExact(__name);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle putenv$MH() {
-        return RuntimeHelper.requireNonNull(constants$981.putenv$MH,"putenv");
-    }
-    public static int putenv ( Addressable __string) {
-        var mh$ = putenv$MH();
-        try {
-            return (int)mh$.invokeExact(__string);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle setenv$MH() {
-        return RuntimeHelper.requireNonNull(constants$981.setenv$MH,"setenv");
-    }
-    public static int setenv ( Addressable __name,  Addressable __value,  int __replace) {
-        var mh$ = setenv$MH();
-        try {
-            return (int)mh$.invokeExact(__name, __value, __replace);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle unsetenv$MH() {
-        return RuntimeHelper.requireNonNull(constants$982.unsetenv$MH,"unsetenv");
-    }
-    public static int unsetenv ( Addressable __name) {
-        var mh$ = unsetenv$MH();
-        try {
-            return (int)mh$.invokeExact(__name);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle clearenv$MH() {
-        return RuntimeHelper.requireNonNull(constants$982.clearenv$MH,"clearenv");
-    }
-    public static int clearenv () {
-        var mh$ = clearenv$MH();
-        try {
-            return (int)mh$.invokeExact();
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle mktemp$MH() {
-        return RuntimeHelper.requireNonNull(constants$982.mktemp$MH,"mktemp");
-    }
-    public static MemoryAddress mktemp ( Addressable __template) {
-        var mh$ = mktemp$MH();
-        try {
-            return (java.lang.foreign.MemoryAddress)mh$.invokeExact(__template);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle mkstemp$MH() {
-        return RuntimeHelper.requireNonNull(constants$982.mkstemp$MH,"mkstemp");
-    }
-    public static int mkstemp ( Addressable __template) {
-        var mh$ = mkstemp$MH();
-        try {
-            return (int)mh$.invokeExact(__template);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle mkstemps$MH() {
-        return RuntimeHelper.requireNonNull(constants$982.mkstemps$MH,"mkstemps");
-    }
-    public static int mkstemps ( Addressable __template,  int __suffixlen) {
-        var mh$ = mkstemps$MH();
-        try {
-            return (int)mh$.invokeExact(__template, __suffixlen);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle mkdtemp$MH() {
-        return RuntimeHelper.requireNonNull(constants$982.mkdtemp$MH,"mkdtemp");
-    }
-    public static MemoryAddress mkdtemp ( Addressable __template) {
-        var mh$ = mkdtemp$MH();
-        try {
-            return (java.lang.foreign.MemoryAddress)mh$.invokeExact(__template);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle system$MH() {
-        return RuntimeHelper.requireNonNull(constants$983.system$MH,"system");
-    }
-    public static int system ( Addressable __command) {
-        var mh$ = system$MH();
-        try {
-            return (int)mh$.invokeExact(__command);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle realpath$MH() {
-        return RuntimeHelper.requireNonNull(constants$983.realpath$MH,"realpath");
-    }
-    public static MemoryAddress realpath ( Addressable __name,  Addressable __resolved) {
-        var mh$ = realpath$MH();
-        try {
-            return (java.lang.foreign.MemoryAddress)mh$.invokeExact(__name, __resolved);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle bsearch$MH() {
-        return RuntimeHelper.requireNonNull(constants$983.bsearch$MH,"bsearch");
-    }
-    public static MemoryAddress bsearch ( Addressable __key,  Addressable __base,  long __nmemb,  long __size,  Addressable __compar) {
-        var mh$ = bsearch$MH();
-        try {
-            return (java.lang.foreign.MemoryAddress)mh$.invokeExact(__key, __base, __nmemb, __size, __compar);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle qsort$MH() {
-        return RuntimeHelper.requireNonNull(constants$983.qsort$MH,"qsort");
-    }
-    public static void qsort ( Addressable __base,  long __nmemb,  long __size,  Addressable __compar) {
-        var mh$ = qsort$MH();
-        try {
-            mh$.invokeExact(__base, __nmemb, __size, __compar);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle abs$MH() {
-        return RuntimeHelper.requireNonNull(constants$984.abs$MH,"abs");
-    }
-    public static int abs ( int __x) {
-        var mh$ = abs$MH();
-        try {
-            return (int)mh$.invokeExact(__x);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle labs$MH() {
-        return RuntimeHelper.requireNonNull(constants$984.labs$MH,"labs");
-    }
-    public static long labs ( long __x) {
-        var mh$ = labs$MH();
-        try {
-            return (long)mh$.invokeExact(__x);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle llabs$MH() {
-        return RuntimeHelper.requireNonNull(constants$984.llabs$MH,"llabs");
-    }
-    public static long llabs ( long __x) {
-        var mh$ = llabs$MH();
-        try {
-            return (long)mh$.invokeExact(__x);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle div$MH() {
-        return RuntimeHelper.requireNonNull(constants$984.div$MH,"div");
-    }
-    public static MemorySegment div ( SegmentAllocator allocator,  int __numer,  int __denom) {
-        var mh$ = div$MH();
-        try {
-            return (java.lang.foreign.MemorySegment)mh$.invokeExact(allocator, __numer, __denom);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle ldiv$MH() {
-        return RuntimeHelper.requireNonNull(constants$984.ldiv$MH,"ldiv");
-    }
-    public static MemorySegment ldiv ( SegmentAllocator allocator,  long __numer,  long __denom) {
-        var mh$ = ldiv$MH();
-        try {
-            return (java.lang.foreign.MemorySegment)mh$.invokeExact(allocator, __numer, __denom);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle lldiv$MH() {
-        return RuntimeHelper.requireNonNull(constants$984.lldiv$MH,"lldiv");
-    }
-    public static MemorySegment lldiv ( SegmentAllocator allocator,  long __numer,  long __denom) {
-        var mh$ = lldiv$MH();
-        try {
-            return (java.lang.foreign.MemorySegment)mh$.invokeExact(allocator, __numer, __denom);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle ecvt$MH() {
-        return RuntimeHelper.requireNonNull(constants$985.ecvt$MH,"ecvt");
-    }
-    public static MemoryAddress ecvt ( double __value,  int __ndigit,  Addressable __decpt,  Addressable __sign) {
-        var mh$ = ecvt$MH();
-        try {
-            return (java.lang.foreign.MemoryAddress)mh$.invokeExact(__value, __ndigit, __decpt, __sign);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle fcvt$MH() {
-        return RuntimeHelper.requireNonNull(constants$985.fcvt$MH,"fcvt");
-    }
-    public static MemoryAddress fcvt ( double __value,  int __ndigit,  Addressable __decpt,  Addressable __sign) {
-        var mh$ = fcvt$MH();
-        try {
-            return (java.lang.foreign.MemoryAddress)mh$.invokeExact(__value, __ndigit, __decpt, __sign);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle gcvt$MH() {
-        return RuntimeHelper.requireNonNull(constants$985.gcvt$MH,"gcvt");
-    }
-    public static MemoryAddress gcvt ( double __value,  int __ndigit,  Addressable __buf) {
-        var mh$ = gcvt$MH();
-        try {
-            return (java.lang.foreign.MemoryAddress)mh$.invokeExact(__value, __ndigit, __buf);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle ecvt_r$MH() {
-        return RuntimeHelper.requireNonNull(constants$985.ecvt_r$MH,"ecvt_r");
-    }
-    public static int ecvt_r ( double __value,  int __ndigit,  Addressable __decpt,  Addressable __sign,  Addressable __buf,  long __len) {
-        var mh$ = ecvt_r$MH();
-        try {
-            return (int)mh$.invokeExact(__value, __ndigit, __decpt, __sign, __buf, __len);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle fcvt_r$MH() {
-        return RuntimeHelper.requireNonNull(constants$985.fcvt_r$MH,"fcvt_r");
-    }
-    public static int fcvt_r ( double __value,  int __ndigit,  Addressable __decpt,  Addressable __sign,  Addressable __buf,  long __len) {
-        var mh$ = fcvt_r$MH();
-        try {
-            return (int)mh$.invokeExact(__value, __ndigit, __decpt, __sign, __buf, __len);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle mblen$MH() {
-        return RuntimeHelper.requireNonNull(constants$985.mblen$MH,"mblen");
-    }
-    public static int mblen ( Addressable __s,  long __n) {
-        var mh$ = mblen$MH();
-        try {
-            return (int)mh$.invokeExact(__s, __n);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle mbtowc$MH() {
-        return RuntimeHelper.requireNonNull(constants$986.mbtowc$MH,"mbtowc");
-    }
-    public static int mbtowc ( Addressable __pwc,  Addressable __s,  long __n) {
-        var mh$ = mbtowc$MH();
-        try {
-            return (int)mh$.invokeExact(__pwc, __s, __n);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle wctomb$MH() {
-        return RuntimeHelper.requireNonNull(constants$986.wctomb$MH,"wctomb");
-    }
-    public static int wctomb ( Addressable __s,  int __wchar) {
-        var mh$ = wctomb$MH();
-        try {
-            return (int)mh$.invokeExact(__s, __wchar);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle mbstowcs$MH() {
-        return RuntimeHelper.requireNonNull(constants$986.mbstowcs$MH,"mbstowcs");
-    }
-    public static long mbstowcs ( Addressable __pwcs,  Addressable __s,  long __n) {
-        var mh$ = mbstowcs$MH();
-        try {
-            return (long)mh$.invokeExact(__pwcs, __s, __n);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle wcstombs$MH() {
-        return RuntimeHelper.requireNonNull(constants$986.wcstombs$MH,"wcstombs");
-    }
-    public static long wcstombs ( Addressable __s,  Addressable __pwcs,  long __n) {
-        var mh$ = wcstombs$MH();
-        try {
-            return (long)mh$.invokeExact(__s, __pwcs, __n);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle rpmatch$MH() {
-        return RuntimeHelper.requireNonNull(constants$986.rpmatch$MH,"rpmatch");
-    }
-    public static int rpmatch ( Addressable __response) {
-        var mh$ = rpmatch$MH();
-        try {
-            return (int)mh$.invokeExact(__response);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle getsubopt$MH() {
-        return RuntimeHelper.requireNonNull(constants$986.getsubopt$MH,"getsubopt");
-    }
-    public static int getsubopt ( Addressable __optionp,  Addressable __tokens,  Addressable __valuep) {
-        var mh$ = getsubopt$MH();
-        try {
-            return (int)mh$.invokeExact(__optionp, __tokens, __valuep);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle getloadavg$MH() {
-        return RuntimeHelper.requireNonNull(constants$987.getloadavg$MH,"getloadavg");
-    }
-    public static int getloadavg ( Addressable __loadavg,  int __nelem) {
-        var mh$ = getloadavg$MH();
-        try {
-            return (int)mh$.invokeExact(__loadavg, __nelem);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static int GL_ALL_ATTRIB_BITS() {
-        return (int)4294967295L;
-    }
-    public static int GL_ALL_CLIENT_ATTRIB_BITS() {
-        return (int)4294967295L;
-    }
-    public static int GL_CLIENT_ALL_ATTRIB_BITS() {
-        return (int)4294967295L;
-    }
-    public static long _POSIX_C_SOURCE() {
-        return 200809L;
-    }
-    public static long __STDC_ISO_10646__() {
-        return 201706L;
-    }
-    public static int __TIMESIZE() {
-        return (int)64L;
-    }
-    public static int __WCHAR_MAX() {
-        return (int)2147483647L;
-    }
-    public static int __WCHAR_MIN() {
-        return (int)-2147483648L;
-    }
-    public static int INT8_MIN() {
-        return (int)-128L;
-    }
-    public static int INT16_MIN() {
-        return (int)-32768L;
-    }
-    public static int INT32_MIN() {
-        return (int)-2147483648L;
-    }
-    public static long INT64_MIN() {
-        return -9223372036854775808L;
-    }
-    public static int INT8_MAX() {
-        return (int)127L;
-    }
-    public static int INT16_MAX() {
-        return (int)32767L;
-    }
-    public static int INT32_MAX() {
-        return (int)2147483647L;
-    }
-    public static long INT64_MAX() {
-        return 9223372036854775807L;
-    }
-    public static int UINT8_MAX() {
-        return (int)255L;
-    }
-    public static int UINT16_MAX() {
-        return (int)65535L;
-    }
-    public static int UINT32_MAX() {
-        return (int)4294967295L;
-    }
-    public static long UINT64_MAX() {
-        return -1L;
-    }
-    public static int INT_LEAST8_MIN() {
-        return (int)-128L;
-    }
-    public static int INT_LEAST16_MIN() {
-        return (int)-32768L;
-    }
-    public static int INT_LEAST32_MIN() {
-        return (int)-2147483648L;
-    }
-    public static long INT_LEAST64_MIN() {
-        return -9223372036854775808L;
-    }
-    public static int INT_LEAST8_MAX() {
-        return (int)127L;
-    }
-    public static int INT_LEAST16_MAX() {
-        return (int)32767L;
-    }
-    public static int INT_LEAST32_MAX() {
-        return (int)2147483647L;
-    }
-    public static long INT_LEAST64_MAX() {
-        return 9223372036854775807L;
-    }
-    public static int UINT_LEAST8_MAX() {
-        return (int)255L;
-    }
-    public static int UINT_LEAST16_MAX() {
-        return (int)65535L;
-    }
-    public static int UINT_LEAST32_MAX() {
-        return (int)4294967295L;
-    }
-    public static long UINT_LEAST64_MAX() {
-        return -1L;
-    }
-    public static int INT_FAST8_MIN() {
-        return (int)-128L;
-    }
-    public static long INT_FAST16_MIN() {
-        return -9223372036854775808L;
-    }
-    public static long INT_FAST32_MIN() {
-        return -9223372036854775808L;
-    }
-    public static long INT_FAST64_MIN() {
-        return -9223372036854775808L;
-    }
-    public static int INT_FAST8_MAX() {
-        return (int)127L;
-    }
-    public static long INT_FAST16_MAX() {
-        return 9223372036854775807L;
-    }
-    public static long INT_FAST32_MAX() {
-        return 9223372036854775807L;
-    }
-    public static long INT_FAST64_MAX() {
-        return 9223372036854775807L;
-    }
-    public static int UINT_FAST8_MAX() {
-        return (int)255L;
-    }
-    public static long UINT_FAST16_MAX() {
-        return -1L;
-    }
-    public static long UINT_FAST32_MAX() {
-        return -1L;
-    }
-    public static long UINT_FAST64_MAX() {
-        return -1L;
-    }
-    public static long INTPTR_MIN() {
-        return -9223372036854775808L;
-    }
-    public static long INTPTR_MAX() {
-        return 9223372036854775807L;
-    }
-    public static long UINTPTR_MAX() {
-        return -1L;
-    }
-    public static long INTMAX_MIN() {
-        return -9223372036854775808L;
-    }
-    public static long INTMAX_MAX() {
-        return 9223372036854775807L;
-    }
-    public static long UINTMAX_MAX() {
-        return -1L;
-    }
-    public static long PTRDIFF_MIN() {
-        return -9223372036854775808L;
-    }
-    public static long PTRDIFF_MAX() {
-        return 9223372036854775807L;
-    }
-    public static int SIG_ATOMIC_MIN() {
-        return (int)-2147483648L;
-    }
-    public static int SIG_ATOMIC_MAX() {
-        return (int)2147483647L;
-    }
-    public static long SIZE_MAX() {
-        return -1L;
-    }
-    public static int WCHAR_MIN() {
-        return (int)-2147483648L;
-    }
-    public static int WCHAR_MAX() {
-        return (int)2147483647L;
-    }
-    public static int WINT_MIN() {
-        return (int)0L;
-    }
-    public static int WINT_MAX() {
-        return (int)4294967295L;
-    }
-    public static int GL_INVALID_INDEX() {
-        return (int)4294967295L;
-    }
-    public static long GL_TIMEOUT_IGNORED() {
-        return -1L;
-    }
-    public static int GL_ALL_SHADER_BITS() {
-        return (int)4294967295L;
-    }
-    public static int GL_ALL_BARRIER_BITS() {
-        return (int)4294967295L;
-    }
-    public static int GL_ALL_PIXELS_AMD() {
-        return (int)4294967295L;
-    }
-    public static int GL_QUERY_ALL_EVENT_BITS_AMD() {
-        return (int)4294967295L;
-    }
-    public static int GL_ALL_BARRIER_BITS_EXT() {
-        return (int)4294967295L;
-    }
-    public static int GL_NEXT_BUFFER_NV() {
-        return (int)-2L;
-    }
-    public static int GL_SKIP_COMPONENTS4_NV() {
-        return (int)-3L;
-    }
-    public static int GL_SKIP_COMPONENTS3_NV() {
-        return (int)-4L;
-    }
-    public static int GL_SKIP_COMPONENTS2_NV() {
-        return (int)-5L;
-    }
-    public static int GL_SKIP_COMPONENTS1_NV() {
-        return (int)-6L;
-    }
-    public static int GL_TEXCOORD4_BIT_PGI() {
-        return (int)2147483648L;
-    }
-    public static double GLU_TESS_MAX_COORD() {
-        return 1.0E150d;
-    }
-    public static MemoryAddress NULL() {
-        return constants$987.NULL$ADDR;
-    }
-    public static int __WCLONE() {
-        return (int)2147483648L;
-    }
-    public static int __HAVE_DISTINCT_FLOAT16() {
-        return (int)0L;
-    }
-    public static int __HAVE_DISTINCT_FLOAT128X() {
-        return (int)0L;
-    }
-    public static int __HAVE_FLOAT128_UNLIKE_LDBL() {
-        return (int)0L;
-    }
-    public static int __BYTE_ORDER() {
-        return (int)1234L;
-    }
-    public static int __FLOAT_WORD_ORDER() {
-        return (int)1234L;
-    }
-    public static int LITTLE_ENDIAN() {
-        return (int)1234L;
-    }
-    public static int BIG_ENDIAN() {
-        return (int)4321L;
-    }
-    public static int PDP_ENDIAN() {
-        return (int)3412L;
-    }
-    public static int BYTE_ORDER() {
-        return (int)1234L;
-    }
-    public static MemorySegment __FD_ZERO_STOS() {
-        return constants$987.__FD_ZERO_STOS$SEGMENT;
-    }
-    public static long _SIGSET_NWORDS() {
-        return 16L;
-    }
-    public static int __NFDBITS() {
-        return (int)64L;
-    }
-    public static int FD_SETSIZE() {
-        return (int)1024L;
-    }
-    public static int NFDBITS() {
-        return (int)64L;
-    }
-    public static int __PTHREAD_RWLOCK_ELISION_EXTRA() {
-        return (int)0L;
     }
 }
 

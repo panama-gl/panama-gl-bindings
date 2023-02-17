@@ -11,13 +11,13 @@ public interface PFNGLPATHTEXGENNVPROC {
 
     void apply(int texCoordSet, int genMode, int components, java.lang.foreign.MemoryAddress coeffs);
     static MemorySegment allocate(PFNGLPATHTEXGENNVPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLPATHTEXGENNVPROC.class, fi, constants$805.PFNGLPATHTEXGENNVPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLPATHTEXGENNVPROC.class, fi, constants$1152.PFNGLPATHTEXGENNVPROC$FUNC, session);
     }
     static PFNGLPATHTEXGENNVPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _texCoordSet, int _genMode, int _components, java.lang.foreign.MemoryAddress _coeffs) -> {
             try {
-                constants$805.PFNGLPATHTEXGENNVPROC$MH.invokeExact((Addressable)symbol, _texCoordSet, _genMode, _components, (java.lang.foreign.Addressable)_coeffs);
+                constants$1152.PFNGLPATHTEXGENNVPROC$MH.invokeExact((Addressable)symbol, _texCoordSet, _genMode, _components, (java.lang.foreign.Addressable)_coeffs);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

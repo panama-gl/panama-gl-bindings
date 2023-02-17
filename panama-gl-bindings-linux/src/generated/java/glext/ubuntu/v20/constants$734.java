@@ -9,35 +9,38 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$734 {
 
-    static final FunctionDescriptor PFNGLDRAWCOMMANDSNVPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLCONVOLUTIONFILTER2DEXTPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle PFNGLCONVOLUTIONFILTER2DEXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$734.PFNGLCONVOLUTIONFILTER2DEXTPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLCONVOLUTIONPARAMETERFEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT
+    );
+    static final MethodHandle PFNGLCONVOLUTIONPARAMETERFEXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$734.PFNGLCONVOLUTIONPARAMETERFEXTPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLCONVOLUTIONPARAMETERFVEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle PFNGLCONVOLUTIONPARAMETERFVEXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$734.PFNGLCONVOLUTIONPARAMETERFVEXTPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLCONVOLUTIONPARAMETERIEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT
-    );
-    static final MethodHandle PFNGLDRAWCOMMANDSNVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$734.PFNGLDRAWCOMMANDSNVPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLDRAWCOMMANDSADDRESSNVPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_INT$LAYOUT
-    );
-    static final MethodHandle PFNGLDRAWCOMMANDSADDRESSNVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$734.PFNGLDRAWCOMMANDSADDRESSNVPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLDRAWCOMMANDSSTATESNVPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_INT$LAYOUT
-    );
-    static final MethodHandle PFNGLDRAWCOMMANDSSTATESNVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$734.PFNGLDRAWCOMMANDSSTATESNVPROC$FUNC
     );
 }
 

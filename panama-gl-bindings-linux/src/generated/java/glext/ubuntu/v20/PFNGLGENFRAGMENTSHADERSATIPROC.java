@@ -11,13 +11,13 @@ public interface PFNGLGENFRAGMENTSHADERSATIPROC {
 
     int apply(int range);
     static MemorySegment allocate(PFNGLGENFRAGMENTSHADERSATIPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLGENFRAGMENTSHADERSATIPROC.class, fi, constants$489.PFNGLGENFRAGMENTSHADERSATIPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLGENFRAGMENTSHADERSATIPROC.class, fi, constants$687.PFNGLGENFRAGMENTSHADERSATIPROC$FUNC, session);
     }
     static PFNGLGENFRAGMENTSHADERSATIPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _range) -> {
             try {
-                return (int)constants$489.PFNGLGENFRAGMENTSHADERSATIPROC$MH.invokeExact((Addressable)symbol, _range);
+                return (int)constants$687.PFNGLGENFRAGMENTSHADERSATIPROC$MH.invokeExact((Addressable)symbol, _range);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

@@ -11,13 +11,13 @@ public interface PFNGLIMPORTMEMORYFDEXTPROC {
 
     void apply(int memory, long size, int handleType, int fd);
     static MemorySegment allocate(PFNGLIMPORTMEMORYFDEXTPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLIMPORTMEMORYFDEXTPROC.class, fi, constants$647.PFNGLIMPORTMEMORYFDEXTPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLIMPORTMEMORYFDEXTPROC.class, fi, constants$924.PFNGLIMPORTMEMORYFDEXTPROC$FUNC, session);
     }
     static PFNGLIMPORTMEMORYFDEXTPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _memory, long _size, int _handleType, int _fd) -> {
             try {
-                constants$647.PFNGLIMPORTMEMORYFDEXTPROC$MH.invokeExact((Addressable)symbol, _memory, _size, _handleType, _fd);
+                constants$924.PFNGLIMPORTMEMORYFDEXTPROC$MH.invokeExact((Addressable)symbol, _memory, _size, _handleType, _fd);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

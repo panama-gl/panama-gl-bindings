@@ -11,13 +11,13 @@ public interface PFNGLUNIFORM4FPROC {
 
     void apply(int location, float v0, float v1, float v2, float v3);
     static MemorySegment allocate(PFNGLUNIFORM4FPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLUNIFORM4FPROC.class, fi, constants$126.PFNGLUNIFORM4FPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLUNIFORM4FPROC.class, fi, constants$137.PFNGLUNIFORM4FPROC$FUNC, session);
     }
     static PFNGLUNIFORM4FPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _location, float _v0, float _v1, float _v2, float _v3) -> {
             try {
-                constants$126.PFNGLUNIFORM4FPROC$MH.invokeExact((Addressable)symbol, _location, _v0, _v1, _v2, _v3);
+                constants$137.PFNGLUNIFORM4FPROC$MH.invokeExact((Addressable)symbol, _location, _v0, _v1, _v2, _v3);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

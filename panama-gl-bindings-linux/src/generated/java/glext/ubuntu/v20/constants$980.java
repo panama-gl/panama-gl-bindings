@@ -9,31 +9,35 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$980 {
 
-    static final FunctionDescriptor at_quick_exit$__func$FUNC = FunctionDescriptor.ofVoid();
-    static final MethodHandle at_quick_exit$__func$MH = RuntimeHelper.downcallHandle(
-        constants$980.at_quick_exit$__func$FUNC
+    static final FunctionDescriptor PFNGLINSERTCOMPONENTEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
-    static final FunctionDescriptor at_quick_exit$FUNC = FunctionDescriptor.of(Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
+    static final MethodHandle PFNGLINSERTCOMPONENTEXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$980.PFNGLINSERTCOMPONENTEXTPROC$FUNC
     );
-    static final MethodHandle at_quick_exit$MH = RuntimeHelper.downcallHandle(
-        "at_quick_exit",
-        constants$980.at_quick_exit$FUNC
+    static final FunctionDescriptor PFNGLEXTRACTCOMPONENTEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
-    static final FunctionDescriptor on_exit$__func$FUNC = FunctionDescriptor.ofVoid(
+    static final MethodHandle PFNGLEXTRACTCOMPONENTEXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$980.PFNGLEXTRACTCOMPONENTEXTPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLGENSYMBOLSEXTPROC$FUNC = FunctionDescriptor.of(Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle PFNGLGENSYMBOLSEXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$980.PFNGLGENSYMBOLSEXTPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLSETINVARIANTEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle on_exit$__func$MH = RuntimeHelper.downcallHandle(
-        constants$980.on_exit$__func$FUNC
-    );
-    static final FunctionDescriptor on_exit$FUNC = FunctionDescriptor.of(Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle on_exit$MH = RuntimeHelper.downcallHandle(
-        "on_exit",
-        constants$980.on_exit$FUNC
     );
 }
 

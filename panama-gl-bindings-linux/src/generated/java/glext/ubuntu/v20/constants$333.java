@@ -9,28 +9,39 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$333 {
 
-    static final FunctionDescriptor PFNGLUNIFORM3I64VARBPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor GLDEBUGPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle GLDEBUGPROC$MH = RuntimeHelper.downcallHandle(
+        constants$333.GLDEBUGPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLCLEARBUFFERDATAPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLUNIFORM3I64VARBPROC$MH = RuntimeHelper.downcallHandle(
-        constants$333.PFNGLUNIFORM3I64VARBPROC$FUNC
+    static final MethodHandle PFNGLCLEARBUFFERDATAPROC$MH = RuntimeHelper.downcallHandle(
+        constants$333.PFNGLCLEARBUFFERDATAPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLUNIFORM4I64VARBPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLCLEARBUFFERSUBDATAPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLUNIFORM4I64VARBPROC$MH = RuntimeHelper.downcallHandle(
-        constants$333.PFNGLUNIFORM4I64VARBPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLUNIFORM1UI64ARBPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_LONG_LONG$LAYOUT
-    );
-    static final MethodHandle PFNGLUNIFORM1UI64ARBPROC$MH = RuntimeHelper.downcallHandle(
-        constants$333.PFNGLUNIFORM1UI64ARBPROC$FUNC
+    static final MethodHandle PFNGLCLEARBUFFERSUBDATAPROC$MH = RuntimeHelper.downcallHandle(
+        constants$333.PFNGLCLEARBUFFERSUBDATAPROC$FUNC
     );
 }
 

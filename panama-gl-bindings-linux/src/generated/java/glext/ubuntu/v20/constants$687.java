@@ -9,26 +9,23 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$687 {
 
-    static final FunctionDescriptor PFNGLVARIANTBVEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
+    static final FunctionDescriptor PFNGLGENFRAGMENTSHADERSATIPROC$FUNC = FunctionDescriptor.of(Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLVARIANTBVEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$687.PFNGLVARIANTBVEXTPROC$FUNC
+    static final MethodHandle PFNGLGENFRAGMENTSHADERSATIPROC$MH = RuntimeHelper.downcallHandle(
+        constants$687.PFNGLGENFRAGMENTSHADERSATIPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLVARIANTSVEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
+    static final FunctionDescriptor PFNGLBINDFRAGMENTSHADERATIPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLVARIANTSVEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$687.PFNGLVARIANTSVEXTPROC$FUNC
+    static final MethodHandle PFNGLBINDFRAGMENTSHADERATIPROC$MH = RuntimeHelper.downcallHandle(
+        constants$687.PFNGLBINDFRAGMENTSHADERATIPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLVARIANTIVEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
+    static final FunctionDescriptor PFNGLDELETEFRAGMENTSHADERATIPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLVARIANTIVEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$687.PFNGLVARIANTIVEXTPROC$FUNC
+    static final MethodHandle PFNGLDELETEFRAGMENTSHADERATIPROC$MH = RuntimeHelper.downcallHandle(
+        constants$687.PFNGLDELETEFRAGMENTSHADERATIPROC$FUNC
     );
 }
 

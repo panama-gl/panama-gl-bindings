@@ -9,35 +9,53 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$615 {
 
-    static final FunctionDescriptor PFNGLPROGRAMUNIFORMMATRIX3X4DVEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glColor3xOES$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_CHAR$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle glColor3xOES$MH = RuntimeHelper.downcallHandle(
+        "glColor3xOES",
+        constants$615.glColor3xOES$FUNC
+    );
+    static final FunctionDescriptor glColor3xvOES$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLPROGRAMUNIFORMMATRIX3X4DVEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$615.PFNGLPROGRAMUNIFORMMATRIX3X4DVEXTPROC$FUNC
+    static final MethodHandle glColor3xvOES$MH = RuntimeHelper.downcallHandle(
+        "glColor3xvOES",
+        constants$615.glColor3xvOES$FUNC
     );
-    static final FunctionDescriptor PFNGLPROGRAMUNIFORMMATRIX4X2DVEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_CHAR$LAYOUT,
+    static final FunctionDescriptor glColor4xvOES$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLPROGRAMUNIFORMMATRIX4X2DVEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$615.PFNGLPROGRAMUNIFORMMATRIX4X2DVEXTPROC$FUNC
+    static final MethodHandle glColor4xvOES$MH = RuntimeHelper.downcallHandle(
+        "glColor4xvOES",
+        constants$615.glColor4xvOES$FUNC
     );
-    static final FunctionDescriptor PFNGLPROGRAMUNIFORMMATRIX4X3DVEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glConvolutionParameterxOES$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle glConvolutionParameterxOES$MH = RuntimeHelper.downcallHandle(
+        "glConvolutionParameterxOES",
+        constants$615.glConvolutionParameterxOES$FUNC
+    );
+    static final FunctionDescriptor glConvolutionParameterxvOES$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_CHAR$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLPROGRAMUNIFORMMATRIX4X3DVEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$615.PFNGLPROGRAMUNIFORMMATRIX4X3DVEXTPROC$FUNC
+    static final MethodHandle glConvolutionParameterxvOES$MH = RuntimeHelper.downcallHandle(
+        "glConvolutionParameterxvOES",
+        constants$615.glConvolutionParameterxvOES$FUNC
+    );
+    static final FunctionDescriptor glEvalCoord1xOES$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle glEvalCoord1xOES$MH = RuntimeHelper.downcallHandle(
+        "glEvalCoord1xOES",
+        constants$615.glEvalCoord1xOES$FUNC
     );
 }
 

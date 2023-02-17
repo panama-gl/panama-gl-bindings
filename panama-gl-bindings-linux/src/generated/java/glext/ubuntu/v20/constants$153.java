@@ -9,31 +9,29 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$153 {
 
-    static final FunctionDescriptor PFNGLVERTEXATTRIBI3IPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLVERTEXATTRIB4SPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT
+        Constants$root.C_SHORT$LAYOUT,
+        Constants$root.C_SHORT$LAYOUT,
+        Constants$root.C_SHORT$LAYOUT,
+        Constants$root.C_SHORT$LAYOUT
     );
-    static final MethodHandle PFNGLVERTEXATTRIBI3IPROC$MH = RuntimeHelper.downcallHandle(
-        constants$153.PFNGLVERTEXATTRIBI3IPROC$FUNC
+    static final MethodHandle PFNGLVERTEXATTRIB4SPROC$MH = RuntimeHelper.downcallHandle(
+        constants$153.PFNGLVERTEXATTRIB4SPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLVERTEXATTRIBI4IPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLVERTEXATTRIB4SVPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT
+        Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLVERTEXATTRIBI4IPROC$MH = RuntimeHelper.downcallHandle(
-        constants$153.PFNGLVERTEXATTRIBI4IPROC$FUNC
+    static final MethodHandle PFNGLVERTEXATTRIB4SVPROC$MH = RuntimeHelper.downcallHandle(
+        constants$153.PFNGLVERTEXATTRIB4SVPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLVERTEXATTRIBI1UIPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLVERTEXATTRIB4UBVPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT
+        Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLVERTEXATTRIBI1UIPROC$MH = RuntimeHelper.downcallHandle(
-        constants$153.PFNGLVERTEXATTRIBI1UIPROC$FUNC
+    static final MethodHandle PFNGLVERTEXATTRIB4UBVPROC$MH = RuntimeHelper.downcallHandle(
+        constants$153.PFNGLVERTEXATTRIB4UBVPROC$FUNC
     );
 }
 

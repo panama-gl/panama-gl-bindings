@@ -11,13 +11,13 @@ public interface PFNGLVERTEXSTREAM1IATIPROC {
 
     void apply(int stream, int x);
     static MemorySegment allocate(PFNGLVERTEXSTREAM1IATIPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLVERTEXSTREAM1IATIPROC.class, fi, constants$501.PFNGLVERTEXSTREAM1IATIPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLVERTEXSTREAM1IATIPROC.class, fi, constants$705.PFNGLVERTEXSTREAM1IATIPROC$FUNC, session);
     }
     static PFNGLVERTEXSTREAM1IATIPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _stream, int _x) -> {
             try {
-                constants$501.PFNGLVERTEXSTREAM1IATIPROC$MH.invokeExact((Addressable)symbol, _stream, _x);
+                constants$705.PFNGLVERTEXSTREAM1IATIPROC$MH.invokeExact((Addressable)symbol, _stream, _x);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

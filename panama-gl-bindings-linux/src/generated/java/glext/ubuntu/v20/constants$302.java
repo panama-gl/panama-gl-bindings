@@ -9,32 +9,35 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$302 {
 
-    static final FunctionDescriptor PFNGLGETQUERYBUFFEROBJECTIVPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLPROGRAMUNIFORMMATRIX4X2FVPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_LONG_LONG$LAYOUT
+        Constants$root.C_CHAR$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLGETQUERYBUFFEROBJECTIVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$302.PFNGLGETQUERYBUFFEROBJECTIVPROC$FUNC
+    static final MethodHandle PFNGLPROGRAMUNIFORMMATRIX4X2FVPROC$MH = RuntimeHelper.downcallHandle(
+        constants$302.PFNGLPROGRAMUNIFORMMATRIX4X2FVPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLGETQUERYBUFFEROBJECTUI64VPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLPROGRAMUNIFORMMATRIX3X4FVPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_LONG_LONG$LAYOUT
+        Constants$root.C_CHAR$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLGETQUERYBUFFEROBJECTUI64VPROC$MH = RuntimeHelper.downcallHandle(
-        constants$302.PFNGLGETQUERYBUFFEROBJECTUI64VPROC$FUNC
+    static final MethodHandle PFNGLPROGRAMUNIFORMMATRIX3X4FVPROC$MH = RuntimeHelper.downcallHandle(
+        constants$302.PFNGLPROGRAMUNIFORMMATRIX3X4FVPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLGETQUERYBUFFEROBJECTUIVPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLPROGRAMUNIFORMMATRIX4X3FVPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_LONG_LONG$LAYOUT
+        Constants$root.C_CHAR$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLGETQUERYBUFFEROBJECTUIVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$302.PFNGLGETQUERYBUFFEROBJECTUIVPROC$FUNC
+    static final MethodHandle PFNGLPROGRAMUNIFORMMATRIX4X3FVPROC$MH = RuntimeHelper.downcallHandle(
+        constants$302.PFNGLPROGRAMUNIFORMMATRIX4X3FVPROC$FUNC
     );
 }
 

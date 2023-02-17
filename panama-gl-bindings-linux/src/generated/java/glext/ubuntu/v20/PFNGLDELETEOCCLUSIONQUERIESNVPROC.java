@@ -11,13 +11,13 @@ public interface PFNGLDELETEOCCLUSIONQUERIESNVPROC {
 
     void apply(int n, java.lang.foreign.MemoryAddress ids);
     static MemorySegment allocate(PFNGLDELETEOCCLUSIONQUERIESNVPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLDELETEOCCLUSIONQUERIESNVPROC.class, fi, constants$783.PFNGLDELETEOCCLUSIONQUERIESNVPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLDELETEOCCLUSIONQUERIESNVPROC.class, fi, constants$1128.PFNGLDELETEOCCLUSIONQUERIESNVPROC$FUNC, session);
     }
     static PFNGLDELETEOCCLUSIONQUERIESNVPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _n, java.lang.foreign.MemoryAddress _ids) -> {
             try {
-                constants$783.PFNGLDELETEOCCLUSIONQUERIESNVPROC$MH.invokeExact((Addressable)symbol, _n, (java.lang.foreign.Addressable)_ids);
+                constants$1128.PFNGLDELETEOCCLUSIONQUERIESNVPROC$MH.invokeExact((Addressable)symbol, _n, (java.lang.foreign.Addressable)_ids);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

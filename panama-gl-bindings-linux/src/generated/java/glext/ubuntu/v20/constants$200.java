@@ -9,29 +9,30 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$200 {
 
-    static final FunctionDescriptor PFNGLMULTITEXCOORDP3UIPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLFLUSHMAPPEDBUFFERRANGEPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT
+    );
+    static final MethodHandle PFNGLFLUSHMAPPEDBUFFERRANGEPROC$MH = RuntimeHelper.downcallHandle(
+        constants$200.PFNGLFLUSHMAPPEDBUFFERRANGEPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLBINDVERTEXARRAYPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLMULTITEXCOORDP3UIPROC$MH = RuntimeHelper.downcallHandle(
-        constants$200.PFNGLMULTITEXCOORDP3UIPROC$FUNC
+    static final MethodHandle PFNGLBINDVERTEXARRAYPROC$MH = RuntimeHelper.downcallHandle(
+        constants$200.PFNGLBINDVERTEXARRAYPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLMULTITEXCOORDP3UIVPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
+    static final FunctionDescriptor PFNGLDELETEVERTEXARRAYSPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLMULTITEXCOORDP3UIVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$200.PFNGLMULTITEXCOORDP3UIVPROC$FUNC
+    static final MethodHandle PFNGLDELETEVERTEXARRAYSPROC$MH = RuntimeHelper.downcallHandle(
+        constants$200.PFNGLDELETEVERTEXARRAYSPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLMULTITEXCOORDP4UIPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLGENVERTEXARRAYSPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT
-    );
-    static final MethodHandle PFNGLMULTITEXCOORDP4UIPROC$MH = RuntimeHelper.downcallHandle(
-        constants$200.PFNGLMULTITEXCOORDP4UIPROC$FUNC
+        Constants$root.C_POINTER$LAYOUT
     );
 }
 

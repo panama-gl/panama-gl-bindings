@@ -9,26 +9,53 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$256 {
 
-    static final FunctionDescriptor PFNGLINVALIDATETEXIMAGEPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glTexCoordP1ui$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLINVALIDATETEXIMAGEPROC$MH = RuntimeHelper.downcallHandle(
-        constants$256.PFNGLINVALIDATETEXIMAGEPROC$FUNC
+    static final MethodHandle glTexCoordP1ui$MH = RuntimeHelper.downcallHandle(
+        "glTexCoordP1ui",
+        constants$256.glTexCoordP1ui$FUNC
     );
-    static final FunctionDescriptor PFNGLINVALIDATEBUFFERSUBDATAPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glTexCoordP1uiv$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_LONG_LONG$LAYOUT,
-        Constants$root.C_LONG_LONG$LAYOUT
+        Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLINVALIDATEBUFFERSUBDATAPROC$MH = RuntimeHelper.downcallHandle(
-        constants$256.PFNGLINVALIDATEBUFFERSUBDATAPROC$FUNC
+    static final MethodHandle glTexCoordP1uiv$MH = RuntimeHelper.downcallHandle(
+        "glTexCoordP1uiv",
+        constants$256.glTexCoordP1uiv$FUNC
     );
-    static final FunctionDescriptor PFNGLINVALIDATEBUFFERDATAPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glTexCoordP2ui$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLINVALIDATEBUFFERDATAPROC$MH = RuntimeHelper.downcallHandle(
-        constants$256.PFNGLINVALIDATEBUFFERDATAPROC$FUNC
+    static final MethodHandle glTexCoordP2ui$MH = RuntimeHelper.downcallHandle(
+        "glTexCoordP2ui",
+        constants$256.glTexCoordP2ui$FUNC
+    );
+    static final FunctionDescriptor glTexCoordP2uiv$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glTexCoordP2uiv$MH = RuntimeHelper.downcallHandle(
+        "glTexCoordP2uiv",
+        constants$256.glTexCoordP2uiv$FUNC
+    );
+    static final FunctionDescriptor glTexCoordP3ui$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle glTexCoordP3ui$MH = RuntimeHelper.downcallHandle(
+        "glTexCoordP3ui",
+        constants$256.glTexCoordP3ui$FUNC
+    );
+    static final FunctionDescriptor glTexCoordP3uiv$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glTexCoordP3uiv$MH = RuntimeHelper.downcallHandle(
+        "glTexCoordP3uiv",
+        constants$256.glTexCoordP3uiv$FUNC
     );
 }
 

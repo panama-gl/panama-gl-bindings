@@ -9,27 +9,30 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$606 {
 
-    static final FunctionDescriptor PFNGLENABLEVERTEXARRAYATTRIBEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLTEXGENXOESPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLENABLEVERTEXARRAYATTRIBEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$606.PFNGLENABLEVERTEXARRAYATTRIBEXTPROC$FUNC
+    static final MethodHandle PFNGLTEXGENXOESPROC$MH = RuntimeHelper.downcallHandle(
+        constants$606.PFNGLTEXGENXOESPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLDISABLEVERTEXARRAYATTRIBEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT
-    );
-    static final MethodHandle PFNGLDISABLEVERTEXARRAYATTRIBEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$606.PFNGLDISABLEVERTEXARRAYATTRIBEXTPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLGETVERTEXARRAYINTEGERVEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLTEXGENXVOESPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLGETVERTEXARRAYINTEGERVEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$606.PFNGLGETVERTEXARRAYINTEGERVEXTPROC$FUNC
+    static final MethodHandle PFNGLTEXGENXVOESPROC$MH = RuntimeHelper.downcallHandle(
+        constants$606.PFNGLTEXGENXVOESPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLVERTEX2XOESPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle PFNGLVERTEX2XOESPROC$MH = RuntimeHelper.downcallHandle(
+        constants$606.PFNGLVERTEX2XOESPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLVERTEX2XVOESPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_POINTER$LAYOUT
     );
 }
 

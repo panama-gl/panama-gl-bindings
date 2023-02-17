@@ -9,28 +9,39 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$371 {
 
-    static final FunctionDescriptor PFNGLDELETENAMEDSTRINGARBPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle PFNGLDELETENAMEDSTRINGARBPROC$MH = RuntimeHelper.downcallHandle(
-        constants$371.PFNGLDELETENAMEDSTRINGARBPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLCOMPILESHADERINCLUDEARBPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLCLEARNAMEDFRAMEBUFFERFIPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle PFNGLCOMPILESHADERINCLUDEARBPROC$MH = RuntimeHelper.downcallHandle(
-        constants$371.PFNGLCOMPILESHADERINCLUDEARBPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLISNAMEDSTRINGARBPROC$FUNC = FunctionDescriptor.of(Constants$root.C_CHAR$LAYOUT,
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
+        Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLISNAMEDSTRINGARBPROC$MH = RuntimeHelper.downcallHandle(
-        constants$371.PFNGLISNAMEDSTRINGARBPROC$FUNC
+    static final MethodHandle PFNGLCLEARNAMEDFRAMEBUFFERFIPROC$MH = RuntimeHelper.downcallHandle(
+        constants$371.PFNGLCLEARNAMEDFRAMEBUFFERFIPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLBLITNAMEDFRAMEBUFFERPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle PFNGLBLITNAMEDFRAMEBUFFERPROC$MH = RuntimeHelper.downcallHandle(
+        constants$371.PFNGLBLITNAMEDFRAMEBUFFERPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLCHECKNAMEDFRAMEBUFFERSTATUSPROC$FUNC = FunctionDescriptor.of(Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle PFNGLCHECKNAMEDFRAMEBUFFERSTATUSPROC$MH = RuntimeHelper.downcallHandle(
+        constants$371.PFNGLCHECKNAMEDFRAMEBUFFERSTATUSPROC$FUNC
     );
 }
 

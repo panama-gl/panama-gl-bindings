@@ -9,35 +9,64 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$614 {
 
-    static final FunctionDescriptor PFNGLPROGRAMUNIFORMMATRIX2X3DVEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glTexParameterxvOES$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_CHAR$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLPROGRAMUNIFORMMATRIX2X3DVEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$614.PFNGLPROGRAMUNIFORMMATRIX2X3DVEXTPROC$FUNC
+    static final MethodHandle glTexParameterxvOES$MH = RuntimeHelper.downcallHandle(
+        "glTexParameterxvOES",
+        constants$614.glTexParameterxvOES$FUNC
     );
-    static final FunctionDescriptor PFNGLPROGRAMUNIFORMMATRIX2X4DVEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glTranslatexOES$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle glTranslatexOES$MH = RuntimeHelper.downcallHandle(
+        "glTranslatexOES",
+        constants$614.glTranslatexOES$FUNC
+    );
+    static final FunctionDescriptor glAccumxOES$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle glAccumxOES$MH = RuntimeHelper.downcallHandle(
+        "glAccumxOES",
+        constants$614.glAccumxOES$FUNC
+    );
+    static final FunctionDescriptor glBitmapxOES$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_CHAR$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLPROGRAMUNIFORMMATRIX2X4DVEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$614.PFNGLPROGRAMUNIFORMMATRIX2X4DVEXTPROC$FUNC
+    static final MethodHandle glBitmapxOES$MH = RuntimeHelper.downcallHandle(
+        "glBitmapxOES",
+        constants$614.glBitmapxOES$FUNC
     );
-    static final FunctionDescriptor PFNGLPROGRAMUNIFORMMATRIX3X2DVEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glBlendColorxOES$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_CHAR$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
+        Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLPROGRAMUNIFORMMATRIX3X2DVEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$614.PFNGLPROGRAMUNIFORMMATRIX3X2DVEXTPROC$FUNC
+    static final MethodHandle glBlendColorxOES$MH = RuntimeHelper.downcallHandle(
+        "glBlendColorxOES",
+        constants$614.glBlendColorxOES$FUNC
+    );
+    static final FunctionDescriptor glClearAccumxOES$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle glClearAccumxOES$MH = RuntimeHelper.downcallHandle(
+        "glClearAccumxOES",
+        constants$614.glClearAccumxOES$FUNC
     );
 }
 

@@ -9,36 +9,35 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$646 {
 
-    static final FunctionDescriptor PFNGLNAMEDBUFFERSTORAGEMEMEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLPROGRAMUNIFORM2UI64NVPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_LONG_LONG$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
         Constants$root.C_LONG_LONG$LAYOUT
     );
-    static final MethodHandle PFNGLNAMEDBUFFERSTORAGEMEMEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$646.PFNGLNAMEDBUFFERSTORAGEMEMEXTPROC$FUNC
+    static final MethodHandle PFNGLPROGRAMUNIFORM2UI64NVPROC$MH = RuntimeHelper.downcallHandle(
+        constants$646.PFNGLPROGRAMUNIFORM2UI64NVPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLTEXSTORAGEMEM1DEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLPROGRAMUNIFORM3UI64NVPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT,
         Constants$root.C_LONG_LONG$LAYOUT
     );
-    static final MethodHandle PFNGLTEXSTORAGEMEM1DEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$646.PFNGLTEXSTORAGEMEM1DEXTPROC$FUNC
+    static final MethodHandle PFNGLPROGRAMUNIFORM3UI64NVPROC$MH = RuntimeHelper.downcallHandle(
+        constants$646.PFNGLPROGRAMUNIFORM3UI64NVPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLTEXTURESTORAGEMEM1DEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLPROGRAMUNIFORM4UI64NVPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT,
         Constants$root.C_LONG_LONG$LAYOUT
     );
-    static final MethodHandle PFNGLTEXTURESTORAGEMEM1DEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$646.PFNGLTEXTURESTORAGEMEM1DEXTPROC$FUNC
+    static final MethodHandle PFNGLPROGRAMUNIFORM4UI64NVPROC$MH = RuntimeHelper.downcallHandle(
+        constants$646.PFNGLPROGRAMUNIFORM4UI64NVPROC$FUNC
     );
 }
 

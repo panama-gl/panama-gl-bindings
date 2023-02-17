@@ -11,13 +11,13 @@ public interface PFNGLMAP2XOESPROC {
 
     void apply(int target, int u1, int u2, int ustride, int uorder, int v1, int v2, int vstride, int vorder, int points);
     static MemorySegment allocate(PFNGLMAP2XOESPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLMAP2XOESPROC.class, fi, constants$434.PFNGLMAP2XOESPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLMAP2XOESPROC.class, fi, constants$594.PFNGLMAP2XOESPROC$FUNC, session);
     }
     static PFNGLMAP2XOESPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _target, int _u1, int _u2, int _ustride, int _uorder, int _v1, int _v2, int _vstride, int _vorder, int _points) -> {
             try {
-                constants$434.PFNGLMAP2XOESPROC$MH.invokeExact((Addressable)symbol, _target, _u1, _u2, _ustride, _uorder, _v1, _v2, _vstride, _vorder, _points);
+                constants$594.PFNGLMAP2XOESPROC$MH.invokeExact((Addressable)symbol, _target, _u1, _u2, _ustride, _uorder, _v1, _v2, _vstride, _vorder, _points);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

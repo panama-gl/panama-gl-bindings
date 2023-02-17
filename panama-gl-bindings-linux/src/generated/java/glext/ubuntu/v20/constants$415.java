@@ -9,28 +9,60 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$415 {
 
-    static final FunctionDescriptor PFNGLCOLOR4XOESPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glGetVertexArrayIndexed64iv$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT
+        Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLCOLOR4XOESPROC$MH = RuntimeHelper.downcallHandle(
-        constants$415.PFNGLCOLOR4XOESPROC$FUNC
+    static final MethodHandle glGetVertexArrayIndexed64iv$MH = RuntimeHelper.downcallHandle(
+        "glGetVertexArrayIndexed64iv",
+        constants$415.glGetVertexArrayIndexed64iv$FUNC
     );
-    static final FunctionDescriptor PFNGLDEPTHRANGEXOESPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glCreateSamplers$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT
+        Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLDEPTHRANGEXOESPROC$MH = RuntimeHelper.downcallHandle(
-        constants$415.PFNGLDEPTHRANGEXOESPROC$FUNC
+    static final MethodHandle glCreateSamplers$MH = RuntimeHelper.downcallHandle(
+        "glCreateSamplers",
+        constants$415.glCreateSamplers$FUNC
     );
-    static final FunctionDescriptor PFNGLFOGXOESPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glCreateProgramPipelines$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT
+        Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLFOGXOESPROC$MH = RuntimeHelper.downcallHandle(
-        constants$415.PFNGLFOGXOESPROC$FUNC
+    static final MethodHandle glCreateProgramPipelines$MH = RuntimeHelper.downcallHandle(
+        "glCreateProgramPipelines",
+        constants$415.glCreateProgramPipelines$FUNC
+    );
+    static final FunctionDescriptor glCreateQueries$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glCreateQueries$MH = RuntimeHelper.downcallHandle(
+        "glCreateQueries",
+        constants$415.glCreateQueries$FUNC
+    );
+    static final FunctionDescriptor glGetQueryBufferObjecti64v$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT
+    );
+    static final MethodHandle glGetQueryBufferObjecti64v$MH = RuntimeHelper.downcallHandle(
+        "glGetQueryBufferObjecti64v",
+        constants$415.glGetQueryBufferObjecti64v$FUNC
+    );
+    static final FunctionDescriptor glGetQueryBufferObjectiv$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT
+    );
+    static final MethodHandle glGetQueryBufferObjectiv$MH = RuntimeHelper.downcallHandle(
+        "glGetQueryBufferObjectiv",
+        constants$415.glGetQueryBufferObjectiv$FUNC
     );
 }
 

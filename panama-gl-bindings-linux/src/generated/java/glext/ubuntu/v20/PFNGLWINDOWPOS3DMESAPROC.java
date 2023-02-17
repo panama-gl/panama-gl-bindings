@@ -11,13 +11,13 @@ public interface PFNGLWINDOWPOS3DMESAPROC {
 
     void apply(double x, double y, double z);
     static MemorySegment allocate(PFNGLWINDOWPOS3DMESAPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLWINDOWPOS3DMESAPROC.class, fi, constants$714.PFNGLWINDOWPOS3DMESAPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLWINDOWPOS3DMESAPROC.class, fi, constants$1024.PFNGLWINDOWPOS3DMESAPROC$FUNC, session);
     }
     static PFNGLWINDOWPOS3DMESAPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (double _x, double _y, double _z) -> {
             try {
-                constants$714.PFNGLWINDOWPOS3DMESAPROC$MH.invokeExact((Addressable)symbol, _x, _y, _z);
+                constants$1024.PFNGLWINDOWPOS3DMESAPROC$MH.invokeExact((Addressable)symbol, _x, _y, _z);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

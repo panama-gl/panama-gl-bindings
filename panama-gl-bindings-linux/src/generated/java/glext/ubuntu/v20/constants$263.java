@@ -9,28 +9,32 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$263 {
 
-    static final FunctionDescriptor PFNGLVERTEXATTRIBLFORMATPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLUNIFORM3DPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_DOUBLE$LAYOUT,
+        Constants$root.C_DOUBLE$LAYOUT,
+        Constants$root.C_DOUBLE$LAYOUT
+    );
+    static final MethodHandle PFNGLUNIFORM3DPROC$MH = RuntimeHelper.downcallHandle(
+        constants$263.PFNGLUNIFORM3DPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLUNIFORM4DPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_DOUBLE$LAYOUT,
+        Constants$root.C_DOUBLE$LAYOUT,
+        Constants$root.C_DOUBLE$LAYOUT,
+        Constants$root.C_DOUBLE$LAYOUT
+    );
+    static final MethodHandle PFNGLUNIFORM4DPROC$MH = RuntimeHelper.downcallHandle(
+        constants$263.PFNGLUNIFORM4DPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLUNIFORM1DVPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT
+        Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLVERTEXATTRIBLFORMATPROC$MH = RuntimeHelper.downcallHandle(
-        constants$263.PFNGLVERTEXATTRIBLFORMATPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLVERTEXATTRIBBINDINGPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT
-    );
-    static final MethodHandle PFNGLVERTEXATTRIBBINDINGPROC$MH = RuntimeHelper.downcallHandle(
-        constants$263.PFNGLVERTEXATTRIBBINDINGPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLVERTEXBINDINGDIVISORPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT
-    );
-    static final MethodHandle PFNGLVERTEXBINDINGDIVISORPROC$MH = RuntimeHelper.downcallHandle(
-        constants$263.PFNGLVERTEXBINDINGDIVISORPROC$FUNC
+    static final MethodHandle PFNGLUNIFORM1DVPROC$MH = RuntimeHelper.downcallHandle(
+        constants$263.PFNGLUNIFORM1DVPROC$FUNC
     );
 }
 

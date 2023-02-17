@@ -11,13 +11,13 @@ public interface PFNGLNAMEDPROGRAMLOCALPARAMETER4DVEXTPROC {
 
     void apply(int program, int target, int index, java.lang.foreign.MemoryAddress params);
     static MemorySegment allocate(PFNGLNAMEDPROGRAMLOCALPARAMETER4DVEXTPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLNAMEDPROGRAMLOCALPARAMETER4DVEXTPROC.class, fi, constants$592.PFNGLNAMEDPROGRAMLOCALPARAMETER4DVEXTPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLNAMEDPROGRAMLOCALPARAMETER4DVEXTPROC.class, fi, constants$813.PFNGLNAMEDPROGRAMLOCALPARAMETER4DVEXTPROC$FUNC, session);
     }
     static PFNGLNAMEDPROGRAMLOCALPARAMETER4DVEXTPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _program, int _target, int _index, java.lang.foreign.MemoryAddress _params) -> {
             try {
-                constants$592.PFNGLNAMEDPROGRAMLOCALPARAMETER4DVEXTPROC$MH.invokeExact((Addressable)symbol, _program, _target, _index, (java.lang.foreign.Addressable)_params);
+                constants$813.PFNGLNAMEDPROGRAMLOCALPARAMETER4DVEXTPROC$MH.invokeExact((Addressable)symbol, _program, _target, _index, (java.lang.foreign.Addressable)_params);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

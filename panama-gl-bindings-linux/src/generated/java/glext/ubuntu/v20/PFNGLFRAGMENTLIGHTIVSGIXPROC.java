@@ -11,13 +11,13 @@ public interface PFNGLFRAGMENTLIGHTIVSGIXPROC {
 
     void apply(int light, int pname, java.lang.foreign.MemoryAddress params);
     static MemorySegment allocate(PFNGLFRAGMENTLIGHTIVSGIXPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLFRAGMENTLIGHTIVSGIXPROC.class, fi, constants$894.PFNGLFRAGMENTLIGHTIVSGIXPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLFRAGMENTLIGHTIVSGIXPROC.class, fi, constants$1294.PFNGLFRAGMENTLIGHTIVSGIXPROC$FUNC, session);
     }
     static PFNGLFRAGMENTLIGHTIVSGIXPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _light, int _pname, java.lang.foreign.MemoryAddress _params) -> {
             try {
-                constants$894.PFNGLFRAGMENTLIGHTIVSGIXPROC$MH.invokeExact((Addressable)symbol, _light, _pname, (java.lang.foreign.Addressable)_params);
+                constants$1294.PFNGLFRAGMENTLIGHTIVSGIXPROC$MH.invokeExact((Addressable)symbol, _light, _pname, (java.lang.foreign.Addressable)_params);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

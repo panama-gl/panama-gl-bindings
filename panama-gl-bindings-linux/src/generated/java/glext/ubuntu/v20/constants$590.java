@@ -9,28 +9,32 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$590 {
 
-    static final FunctionDescriptor PFNGLDISABLECLIENTSTATEIEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT
+    static final FunctionDescriptor PFNGLEVALCOORD2XVOESPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLDISABLECLIENTSTATEIEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$590.PFNGLDISABLECLIENTSTATEIEXTPROC$FUNC
+    static final MethodHandle PFNGLEVALCOORD2XVOESPROC$MH = RuntimeHelper.downcallHandle(
+        constants$590.PFNGLEVALCOORD2XVOESPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLGETFLOATI_VEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLFEEDBACKBUFFERXOESPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLGETFLOATI_VEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$590.PFNGLGETFLOATI_VEXTPROC$FUNC
+    static final MethodHandle PFNGLFEEDBACKBUFFERXOESPROC$MH = RuntimeHelper.downcallHandle(
+        constants$590.PFNGLFEEDBACKBUFFERXOESPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLGETDOUBLEI_VEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLGETCONVOLUTIONPARAMETERXVOESPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLGETDOUBLEI_VEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$590.PFNGLGETDOUBLEI_VEXTPROC$FUNC
+    static final MethodHandle PFNGLGETCONVOLUTIONPARAMETERXVOESPROC$MH = RuntimeHelper.downcallHandle(
+        constants$590.PFNGLGETCONVOLUTIONPARAMETERXVOESPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLGETHISTOGRAMPARAMETERXVOESPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
 }
 

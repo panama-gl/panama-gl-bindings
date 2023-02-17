@@ -11,13 +11,13 @@ public interface PFNGLGENPERFMONITORSAMDPROC {
 
     void apply(int n, java.lang.foreign.MemoryAddress monitors);
     static MemorySegment allocate(PFNGLGENPERFMONITORSAMDPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLGENPERFMONITORSAMDPROC.class, fi, constants$471.PFNGLGENPERFMONITORSAMDPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLGENPERFMONITORSAMDPROC.class, fi, constants$659.PFNGLGENPERFMONITORSAMDPROC$FUNC, session);
     }
     static PFNGLGENPERFMONITORSAMDPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _n, java.lang.foreign.MemoryAddress _monitors) -> {
             try {
-                constants$471.PFNGLGENPERFMONITORSAMDPROC$MH.invokeExact((Addressable)symbol, _n, (java.lang.foreign.Addressable)_monitors);
+                constants$659.PFNGLGENPERFMONITORSAMDPROC$MH.invokeExact((Addressable)symbol, _n, (java.lang.foreign.Addressable)_monitors);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

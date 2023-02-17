@@ -11,13 +11,13 @@ public interface PFNGLMULTITEXCOORD4HNVPROC {
 
     void apply(int target, short s, short t, short r, short q);
     static MemorySegment allocate(PFNGLMULTITEXCOORD4HNVPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLMULTITEXCOORD4HNVPROC.class, fi, constants$772.PFNGLMULTITEXCOORD4HNVPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLMULTITEXCOORD4HNVPROC.class, fi, constants$1108.PFNGLMULTITEXCOORD4HNVPROC$FUNC, session);
     }
     static PFNGLMULTITEXCOORD4HNVPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _target, short _s, short _t, short _r, short _q) -> {
             try {
-                constants$772.PFNGLMULTITEXCOORD4HNVPROC$MH.invokeExact((Addressable)symbol, _target, _s, _t, _r, _q);
+                constants$1108.PFNGLMULTITEXCOORD4HNVPROC$MH.invokeExact((Addressable)symbol, _target, _s, _t, _r, _q);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

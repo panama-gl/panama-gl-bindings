@@ -9,25 +9,40 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$833 {
 
-    static final FunctionDescriptor PFNGLDELETETRANSFORMFEEDBACKSNVPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLPROGRAMUNIFORM4DEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_DOUBLE$LAYOUT,
+        Constants$root.C_DOUBLE$LAYOUT,
+        Constants$root.C_DOUBLE$LAYOUT,
+        Constants$root.C_DOUBLE$LAYOUT
+    );
+    static final MethodHandle PFNGLPROGRAMUNIFORM4DEXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$833.PFNGLPROGRAMUNIFORM4DEXTPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLPROGRAMUNIFORM1DVEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLDELETETRANSFORMFEEDBACKSNVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$833.PFNGLDELETETRANSFORMFEEDBACKSNVPROC$FUNC
+    static final MethodHandle PFNGLPROGRAMUNIFORM1DVEXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$833.PFNGLPROGRAMUNIFORM1DVEXTPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLGENTRANSFORMFEEDBACKSNVPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLPROGRAMUNIFORM2DVEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLGENTRANSFORMFEEDBACKSNVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$833.PFNGLGENTRANSFORMFEEDBACKSNVPROC$FUNC
+    static final MethodHandle PFNGLPROGRAMUNIFORM2DVEXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$833.PFNGLPROGRAMUNIFORM2DVEXTPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLISTRANSFORMFEEDBACKNVPROC$FUNC = FunctionDescriptor.of(Constants$root.C_CHAR$LAYOUT,
-        Constants$root.C_INT$LAYOUT
-    );
-    static final MethodHandle PFNGLISTRANSFORMFEEDBACKNVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$833.PFNGLISTRANSFORMFEEDBACKNVPROC$FUNC
+    static final FunctionDescriptor PFNGLPROGRAMUNIFORM3DVEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
 }
 

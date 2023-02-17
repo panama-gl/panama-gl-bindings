@@ -11,13 +11,13 @@ public interface PFNGLGLOBALALPHAFACTORUBSUNPROC {
 
     void apply(byte factor);
     static MemorySegment allocate(PFNGLGLOBALALPHAFACTORUBSUNPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLGLOBALALPHAFACTORUBSUNPROC.class, fi, constants$911.PFNGLGLOBALALPHAFACTORUBSUNPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLGLOBALALPHAFACTORUBSUNPROC.class, fi, constants$1320.PFNGLGLOBALALPHAFACTORUBSUNPROC$FUNC, session);
     }
     static PFNGLGLOBALALPHAFACTORUBSUNPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (byte _factor) -> {
             try {
-                constants$911.PFNGLGLOBALALPHAFACTORUBSUNPROC$MH.invokeExact((Addressable)symbol, _factor);
+                constants$1320.PFNGLGLOBALALPHAFACTORUBSUNPROC$MH.invokeExact((Addressable)symbol, _factor);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

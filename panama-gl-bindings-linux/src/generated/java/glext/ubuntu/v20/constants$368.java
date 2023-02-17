@@ -9,31 +9,30 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$368 {
 
-    static final FunctionDescriptor PFNGLGETOBJECTPARAMETERIVARBPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLNAMEDFRAMEBUFFERTEXTURELAYERPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle PFNGLNAMEDFRAMEBUFFERTEXTURELAYERPROC$MH = RuntimeHelper.downcallHandle(
+        constants$368.PFNGLNAMEDFRAMEBUFFERTEXTURELAYERPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLNAMEDFRAMEBUFFERDRAWBUFFERPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle PFNGLNAMEDFRAMEBUFFERDRAWBUFFERPROC$MH = RuntimeHelper.downcallHandle(
+        constants$368.PFNGLNAMEDFRAMEBUFFERDRAWBUFFERPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLNAMEDFRAMEBUFFERDRAWBUFFERSPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLGETOBJECTPARAMETERIVARBPROC$MH = RuntimeHelper.downcallHandle(
-        constants$368.PFNGLGETOBJECTPARAMETERIVARBPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLGETINFOLOGARBPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle PFNGLGETINFOLOGARBPROC$MH = RuntimeHelper.downcallHandle(
-        constants$368.PFNGLGETINFOLOGARBPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLGETATTACHEDOBJECTSARBPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle PFNGLGETATTACHEDOBJECTSARBPROC$MH = RuntimeHelper.downcallHandle(
-        constants$368.PFNGLGETATTACHEDOBJECTSARBPROC$FUNC
+    static final MethodHandle PFNGLNAMEDFRAMEBUFFERDRAWBUFFERSPROC$MH = RuntimeHelper.downcallHandle(
+        constants$368.PFNGLNAMEDFRAMEBUFFERDRAWBUFFERSPROC$FUNC
     );
 }
 

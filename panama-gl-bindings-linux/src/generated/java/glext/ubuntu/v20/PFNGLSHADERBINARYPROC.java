@@ -11,13 +11,13 @@ public interface PFNGLSHADERBINARYPROC {
 
     void apply(int count, java.lang.foreign.MemoryAddress shaders, int binaryformat, java.lang.foreign.MemoryAddress binary, int length);
     static MemorySegment allocate(PFNGLSHADERBINARYPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLSHADERBINARYPROC.class, fi, constants$219.PFNGLSHADERBINARYPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLSHADERBINARYPROC.class, fi, constants$283.PFNGLSHADERBINARYPROC$FUNC, session);
     }
     static PFNGLSHADERBINARYPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _count, java.lang.foreign.MemoryAddress _shaders, int _binaryformat, java.lang.foreign.MemoryAddress _binary, int _length) -> {
             try {
-                constants$219.PFNGLSHADERBINARYPROC$MH.invokeExact((Addressable)symbol, _count, (java.lang.foreign.Addressable)_shaders, _binaryformat, (java.lang.foreign.Addressable)_binary, _length);
+                constants$283.PFNGLSHADERBINARYPROC$MH.invokeExact((Addressable)symbol, _count, (java.lang.foreign.Addressable)_shaders, _binaryformat, (java.lang.foreign.Addressable)_binary, _length);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

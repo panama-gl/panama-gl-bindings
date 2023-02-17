@@ -9,29 +9,49 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$668 {
 
-    static final FunctionDescriptor PFNGLTEXBUFFEREXTPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glDrawRangeElementArrayAPPLE$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLTEXBUFFEREXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$668.PFNGLTEXBUFFEREXTPROC$FUNC
+    static final MethodHandle glDrawRangeElementArrayAPPLE$MH = RuntimeHelper.downcallHandle(
+        "glDrawRangeElementArrayAPPLE",
+        constants$668.glDrawRangeElementArrayAPPLE$FUNC
     );
-    static final FunctionDescriptor PFNGLTEXPARAMETERIIVEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glMultiDrawElementArrayAPPLE$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle glMultiDrawElementArrayAPPLE$MH = RuntimeHelper.downcallHandle(
+        "glMultiDrawElementArrayAPPLE",
+        constants$668.glMultiDrawElementArrayAPPLE$FUNC
+    );
+    static final FunctionDescriptor glMultiDrawRangeElementArrayAPPLE$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle glMultiDrawRangeElementArrayAPPLE$MH = RuntimeHelper.downcallHandle(
+        "glMultiDrawRangeElementArrayAPPLE",
+        constants$668.glMultiDrawRangeElementArrayAPPLE$FUNC
+    );
+    static final FunctionDescriptor PFNGLGENFENCESAPPLEPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLTEXPARAMETERIIVEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$668.PFNGLTEXPARAMETERIIVEXTPROC$FUNC
+    static final MethodHandle PFNGLGENFENCESAPPLEPROC$MH = RuntimeHelper.downcallHandle(
+        constants$668.PFNGLGENFENCESAPPLEPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLTEXPARAMETERIUIVEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
+    static final FunctionDescriptor PFNGLDELETEFENCESAPPLEPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle PFNGLTEXPARAMETERIUIVEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$668.PFNGLTEXPARAMETERIUIVEXTPROC$FUNC
     );
 }
 

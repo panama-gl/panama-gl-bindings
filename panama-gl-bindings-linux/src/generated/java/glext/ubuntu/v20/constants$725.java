@@ -9,32 +9,59 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$725 {
 
-    static final FunctionDescriptor PFNGLALPHATOCOVERAGEDITHERCONTROLNVPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glNormalStream3bvATI$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glNormalStream3bvATI$MH = RuntimeHelper.downcallHandle(
+        "glNormalStream3bvATI",
+        constants$725.glNormalStream3bvATI$FUNC
+    );
+    static final FunctionDescriptor glNormalStream3sATI$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_SHORT$LAYOUT,
+        Constants$root.C_SHORT$LAYOUT,
+        Constants$root.C_SHORT$LAYOUT
+    );
+    static final MethodHandle glNormalStream3sATI$MH = RuntimeHelper.downcallHandle(
+        "glNormalStream3sATI",
+        constants$725.glNormalStream3sATI$FUNC
+    );
+    static final FunctionDescriptor glNormalStream3svATI$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glNormalStream3svATI$MH = RuntimeHelper.downcallHandle(
+        "glNormalStream3svATI",
+        constants$725.glNormalStream3svATI$FUNC
+    );
+    static final FunctionDescriptor glNormalStream3iATI$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLALPHATOCOVERAGEDITHERCONTROLNVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$725.PFNGLALPHATOCOVERAGEDITHERCONTROLNVPROC$FUNC
+    static final MethodHandle glNormalStream3iATI$MH = RuntimeHelper.downcallHandle(
+        "glNormalStream3iATI",
+        constants$725.glNormalStream3iATI$FUNC
     );
-    static final FunctionDescriptor PFNGLMULTIDRAWARRAYSINDIRECTBINDLESSNVPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glNormalStream3ivATI$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT
+        Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLMULTIDRAWARRAYSINDIRECTBINDLESSNVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$725.PFNGLMULTIDRAWARRAYSINDIRECTBINDLESSNVPROC$FUNC
+    static final MethodHandle glNormalStream3ivATI$MH = RuntimeHelper.downcallHandle(
+        "glNormalStream3ivATI",
+        constants$725.glNormalStream3ivATI$FUNC
     );
-    static final FunctionDescriptor PFNGLMULTIDRAWELEMENTSINDIRECTBINDLESSNVPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glNormalStream3fATI$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT
+        Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT
     );
-    static final MethodHandle PFNGLMULTIDRAWELEMENTSINDIRECTBINDLESSNVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$725.PFNGLMULTIDRAWELEMENTSINDIRECTBINDLESSNVPROC$FUNC
+    static final MethodHandle glNormalStream3fATI$MH = RuntimeHelper.downcallHandle(
+        "glNormalStream3fATI",
+        constants$725.glNormalStream3fATI$FUNC
     );
 }
 

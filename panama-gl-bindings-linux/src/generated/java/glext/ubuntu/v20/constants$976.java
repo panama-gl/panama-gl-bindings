@@ -9,54 +9,39 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$976 {
 
-    static final FunctionDescriptor seed48$FUNC = FunctionDescriptor.of(Constants$root.C_POINTER$LAYOUT,
+    static final FunctionDescriptor glVertexAttribL4dvEXT$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle seed48$MH = RuntimeHelper.downcallHandle(
-        "seed48",
-        constants$976.seed48$FUNC
+    static final MethodHandle glVertexAttribL4dvEXT$MH = RuntimeHelper.downcallHandle(
+        "glVertexAttribL4dvEXT",
+        constants$976.glVertexAttribL4dvEXT$FUNC
     );
-    static final FunctionDescriptor lcong48$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glVertexAttribLPointerEXT$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle lcong48$MH = RuntimeHelper.downcallHandle(
-        "lcong48",
-        constants$976.lcong48$FUNC
+    static final MethodHandle glVertexAttribLPointerEXT$MH = RuntimeHelper.downcallHandle(
+        "glVertexAttribLPointerEXT",
+        constants$976.glVertexAttribLPointerEXT$FUNC
     );
-    static final FunctionDescriptor drand48_r$FUNC = FunctionDescriptor.of(Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
+    static final FunctionDescriptor glGetVertexAttribLdvEXT$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle drand48_r$MH = RuntimeHelper.downcallHandle(
-        "drand48_r",
-        constants$976.drand48_r$FUNC
+    static final MethodHandle glGetVertexAttribLdvEXT$MH = RuntimeHelper.downcallHandle(
+        "glGetVertexAttribLdvEXT",
+        constants$976.glGetVertexAttribLdvEXT$FUNC
     );
-    static final FunctionDescriptor erand48_r$FUNC = FunctionDescriptor.of(Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
+    static final FunctionDescriptor PFNGLBEGINVERTEXSHADEREXTPROC$FUNC = FunctionDescriptor.ofVoid();
+    static final MethodHandle PFNGLBEGINVERTEXSHADEREXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$976.PFNGLBEGINVERTEXSHADEREXTPROC$FUNC
     );
-    static final MethodHandle erand48_r$MH = RuntimeHelper.downcallHandle(
-        "erand48_r",
-        constants$976.erand48_r$FUNC
-    );
-    static final FunctionDescriptor lrand48_r$FUNC = FunctionDescriptor.of(Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle lrand48_r$MH = RuntimeHelper.downcallHandle(
-        "lrand48_r",
-        constants$976.lrand48_r$FUNC
-    );
-    static final FunctionDescriptor nrand48_r$FUNC = FunctionDescriptor.of(Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle nrand48_r$MH = RuntimeHelper.downcallHandle(
-        "nrand48_r",
-        constants$976.nrand48_r$FUNC
-    );
+    static final FunctionDescriptor PFNGLENDVERTEXSHADEREXTPROC$FUNC = FunctionDescriptor.ofVoid();
 }
 
 

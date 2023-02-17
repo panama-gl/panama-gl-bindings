@@ -9,33 +9,27 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$744 {
 
-    static final FunctionDescriptor PFNGLGETMAPCONTROLPOINTSNVPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_CHAR$LAYOUT,
+    static final FunctionDescriptor PFNGLBINORMAL3DEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_DOUBLE$LAYOUT,
+        Constants$root.C_DOUBLE$LAYOUT,
+        Constants$root.C_DOUBLE$LAYOUT
+    );
+    static final MethodHandle PFNGLBINORMAL3DEXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$744.PFNGLBINORMAL3DEXTPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLBINORMAL3DVEXTPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLGETMAPCONTROLPOINTSNVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$744.PFNGLGETMAPCONTROLPOINTSNVPROC$FUNC
+    static final MethodHandle PFNGLBINORMAL3DVEXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$744.PFNGLBINORMAL3DVEXTPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLGETMAPPARAMETERIVNVPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
+    static final FunctionDescriptor PFNGLBINORMAL3FEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT
     );
-    static final MethodHandle PFNGLGETMAPPARAMETERIVNVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$744.PFNGLGETMAPPARAMETERIVNVPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLGETMAPPARAMETERFVNVPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle PFNGLGETMAPPARAMETERFVNVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$744.PFNGLGETMAPPARAMETERFVNVPROC$FUNC
+    static final MethodHandle PFNGLBINORMAL3FEXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$744.PFNGLBINORMAL3FEXTPROC$FUNC
     );
 }
 

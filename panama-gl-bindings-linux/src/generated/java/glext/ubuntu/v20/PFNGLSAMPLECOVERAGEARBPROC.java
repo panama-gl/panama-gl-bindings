@@ -11,13 +11,13 @@ public interface PFNGLSAMPLECOVERAGEARBPROC {
 
     void apply(float value, byte invert);
     static MemorySegment allocate(PFNGLSAMPLECOVERAGEARBPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLSAMPLECOVERAGEARBPROC.class, fi, constants$345.PFNGLSAMPLECOVERAGEARBPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLSAMPLECOVERAGEARBPROC.class, fi, constants$472.PFNGLSAMPLECOVERAGEARBPROC$FUNC, session);
     }
     static PFNGLSAMPLECOVERAGEARBPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (float _value, byte _invert) -> {
             try {
-                constants$345.PFNGLSAMPLECOVERAGEARBPROC$MH.invokeExact((Addressable)symbol, _value, _invert);
+                constants$472.PFNGLSAMPLECOVERAGEARBPROC$MH.invokeExact((Addressable)symbol, _value, _invert);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

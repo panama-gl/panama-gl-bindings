@@ -9,32 +9,57 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$258 {
 
-    static final FunctionDescriptor PFNGLMULTIDRAWELEMENTSINDIRECTPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glMultiTexCoordP3ui$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLMULTIDRAWELEMENTSINDIRECTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$258.PFNGLMULTIDRAWELEMENTSINDIRECTPROC$FUNC
+    static final MethodHandle glMultiTexCoordP3ui$MH = RuntimeHelper.downcallHandle(
+        "glMultiTexCoordP3ui",
+        constants$258.glMultiTexCoordP3ui$FUNC
     );
-    static final FunctionDescriptor PFNGLGETPROGRAMINTERFACEIVPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
+    static final FunctionDescriptor glMultiTexCoordP3uiv$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLGETPROGRAMINTERFACEIVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$258.PFNGLGETPROGRAMINTERFACEIVPROC$FUNC
+    static final MethodHandle glMultiTexCoordP3uiv$MH = RuntimeHelper.downcallHandle(
+        "glMultiTexCoordP3uiv",
+        constants$258.glMultiTexCoordP3uiv$FUNC
     );
-    static final FunctionDescriptor PFNGLGETPROGRAMRESOURCEINDEXPROC$FUNC = FunctionDescriptor.of(Constants$root.C_INT$LAYOUT,
+    static final FunctionDescriptor glMultiTexCoordP4ui$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle glMultiTexCoordP4ui$MH = RuntimeHelper.downcallHandle(
+        "glMultiTexCoordP4ui",
+        constants$258.glMultiTexCoordP4ui$FUNC
+    );
+    static final FunctionDescriptor glMultiTexCoordP4uiv$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLGETPROGRAMRESOURCEINDEXPROC$MH = RuntimeHelper.downcallHandle(
-        constants$258.PFNGLGETPROGRAMRESOURCEINDEXPROC$FUNC
+    static final MethodHandle glMultiTexCoordP4uiv$MH = RuntimeHelper.downcallHandle(
+        "glMultiTexCoordP4uiv",
+        constants$258.glMultiTexCoordP4uiv$FUNC
+    );
+    static final FunctionDescriptor glNormalP3ui$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle glNormalP3ui$MH = RuntimeHelper.downcallHandle(
+        "glNormalP3ui",
+        constants$258.glNormalP3ui$FUNC
+    );
+    static final FunctionDescriptor glNormalP3uiv$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glNormalP3uiv$MH = RuntimeHelper.downcallHandle(
+        "glNormalP3uiv",
+        constants$258.glNormalP3uiv$FUNC
     );
 }
 

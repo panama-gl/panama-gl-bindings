@@ -9,25 +9,25 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$526 {
 
-    static final FunctionDescriptor PFNGLTANGENT3FVEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLDELETEBUFFERSARBPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLTANGENT3FVEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$526.PFNGLTANGENT3FVEXTPROC$FUNC
+    static final MethodHandle PFNGLDELETEBUFFERSARBPROC$MH = RuntimeHelper.downcallHandle(
+        constants$526.PFNGLDELETEBUFFERSARBPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLTANGENT3IEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLGENBUFFERSARBPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle PFNGLGENBUFFERSARBPROC$MH = RuntimeHelper.downcallHandle(
+        constants$526.PFNGLGENBUFFERSARBPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLISBUFFERARBPROC$FUNC = FunctionDescriptor.of(Constants$root.C_CHAR$LAYOUT,
         Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLTANGENT3IEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$526.PFNGLTANGENT3IEXTPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLTANGENT3IVEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle PFNGLTANGENT3IVEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$526.PFNGLTANGENT3IVEXTPROC$FUNC
+    static final MethodHandle PFNGLISBUFFERARBPROC$MH = RuntimeHelper.downcallHandle(
+        constants$526.PFNGLISBUFFERARBPROC$FUNC
     );
 }
 

@@ -9,29 +9,31 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$335 {
 
-    static final FunctionDescriptor PFNGLUNIFORM1UI64VARBPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLFRAMEBUFFERPARAMETERIPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle PFNGLFRAMEBUFFERPARAMETERIPROC$MH = RuntimeHelper.downcallHandle(
+        constants$335.PFNGLFRAMEBUFFERPARAMETERIPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLGETFRAMEBUFFERPARAMETERIVPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLUNIFORM1UI64VARBPROC$MH = RuntimeHelper.downcallHandle(
-        constants$335.PFNGLUNIFORM1UI64VARBPROC$FUNC
+    static final MethodHandle PFNGLGETFRAMEBUFFERPARAMETERIVPROC$MH = RuntimeHelper.downcallHandle(
+        constants$335.PFNGLGETFRAMEBUFFERPARAMETERIVPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLUNIFORM2UI64VARBPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLGETINTERNALFORMATI64VPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLUNIFORM2UI64VARBPROC$MH = RuntimeHelper.downcallHandle(
-        constants$335.PFNGLUNIFORM2UI64VARBPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLUNIFORM3UI64VARBPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle PFNGLUNIFORM3UI64VARBPROC$MH = RuntimeHelper.downcallHandle(
-        constants$335.PFNGLUNIFORM3UI64VARBPROC$FUNC
+    static final MethodHandle PFNGLGETINTERNALFORMATI64VPROC$MH = RuntimeHelper.downcallHandle(
+        constants$335.PFNGLGETINTERNALFORMATI64VPROC$FUNC
     );
 }
 

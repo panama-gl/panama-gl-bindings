@@ -9,29 +9,56 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$509 {
 
-    static final FunctionDescriptor PFNGLVERTEXSTREAM4SVATIPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glGetActiveUniformARB$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glGetActiveUniformARB$MH = RuntimeHelper.downcallHandle(
+        "glGetActiveUniformARB",
+        constants$509.glGetActiveUniformARB$FUNC
+    );
+    static final FunctionDescriptor glGetUniformfvARB$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLVERTEXSTREAM4SVATIPROC$MH = RuntimeHelper.downcallHandle(
-        constants$509.PFNGLVERTEXSTREAM4SVATIPROC$FUNC
+    static final MethodHandle glGetUniformfvARB$MH = RuntimeHelper.downcallHandle(
+        "glGetUniformfvARB",
+        constants$509.glGetUniformfvARB$FUNC
     );
-    static final FunctionDescriptor PFNGLVERTEXSTREAM4IATIPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glGetUniformivARB$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT
-    );
-    static final MethodHandle PFNGLVERTEXSTREAM4IATIPROC$MH = RuntimeHelper.downcallHandle(
-        constants$509.PFNGLVERTEXSTREAM4IATIPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLVERTEXSTREAM4IVATIPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLVERTEXSTREAM4IVATIPROC$MH = RuntimeHelper.downcallHandle(
-        constants$509.PFNGLVERTEXSTREAM4IVATIPROC$FUNC
+    static final MethodHandle glGetUniformivARB$MH = RuntimeHelper.downcallHandle(
+        "glGetUniformivARB",
+        constants$509.glGetUniformivARB$FUNC
+    );
+    static final FunctionDescriptor glGetShaderSourceARB$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glGetShaderSourceARB$MH = RuntimeHelper.downcallHandle(
+        "glGetShaderSourceARB",
+        constants$509.glGetShaderSourceARB$FUNC
+    );
+    static final FunctionDescriptor PFNGLNAMEDSTRINGARBPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle PFNGLNAMEDSTRINGARBPROC$MH = RuntimeHelper.downcallHandle(
+        constants$509.PFNGLNAMEDSTRINGARBPROC$FUNC
     );
 }
 

@@ -11,13 +11,13 @@ public interface PFNGLFRAMETERMINATORGREMEDYPROC {
 
     void apply();
     static MemorySegment allocate(PFNGLFRAMETERMINATORGREMEDYPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLFRAMETERMINATORGREMEDYPROC.class, fi, constants$698.PFNGLFRAMETERMINATORGREMEDYPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLFRAMETERMINATORGREMEDYPROC.class, fi, constants$1001.PFNGLFRAMETERMINATORGREMEDYPROC$FUNC, session);
     }
     static PFNGLFRAMETERMINATORGREMEDYPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return () -> {
             try {
-                constants$698.PFNGLFRAMETERMINATORGREMEDYPROC$MH.invokeExact((Addressable)symbol);
+                constants$1001.PFNGLFRAMETERMINATORGREMEDYPROC$MH.invokeExact((Addressable)symbol);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

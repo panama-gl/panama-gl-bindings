@@ -11,13 +11,13 @@ public interface PFNGLMATRIXLOADTRANSPOSEDEXTPROC {
 
     void apply(int mode, java.lang.foreign.MemoryAddress m);
     static MemorySegment allocate(PFNGLMATRIXLOADTRANSPOSEDEXTPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLMATRIXLOADTRANSPOSEDEXTPROC.class, fi, constants$569.PFNGLMATRIXLOADTRANSPOSEDEXTPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLMATRIXLOADTRANSPOSEDEXTPROC.class, fi, constants$790.PFNGLMATRIXLOADTRANSPOSEDEXTPROC$FUNC, session);
     }
     static PFNGLMATRIXLOADTRANSPOSEDEXTPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _mode, java.lang.foreign.MemoryAddress _m) -> {
             try {
-                constants$569.PFNGLMATRIXLOADTRANSPOSEDEXTPROC$MH.invokeExact((Addressable)symbol, _mode, (java.lang.foreign.Addressable)_m);
+                constants$790.PFNGLMATRIXLOADTRANSPOSEDEXTPROC$MH.invokeExact((Addressable)symbol, _mode, (java.lang.foreign.Addressable)_m);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

@@ -9,30 +9,41 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$677 {
 
-    static final FunctionDescriptor PFNGLGETPOINTERVEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLISVERTEXARRAYAPPLEPROC$FUNC = FunctionDescriptor.of(Constants$root.C_CHAR$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle PFNGLISVERTEXARRAYAPPLEPROC$MH = RuntimeHelper.downcallHandle(
+        constants$677.PFNGLISVERTEXARRAYAPPLEPROC$FUNC
+    );
+    static final FunctionDescriptor glBindVertexArrayAPPLE$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle glBindVertexArrayAPPLE$MH = RuntimeHelper.downcallHandle(
+        "glBindVertexArrayAPPLE",
+        constants$677.glBindVertexArrayAPPLE$FUNC
+    );
+    static final FunctionDescriptor glDeleteVertexArraysAPPLE$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLGETPOINTERVEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$677.PFNGLGETPOINTERVEXTPROC$FUNC
+    static final MethodHandle glDeleteVertexArraysAPPLE$MH = RuntimeHelper.downcallHandle(
+        "glDeleteVertexArraysAPPLE",
+        constants$677.glDeleteVertexArraysAPPLE$FUNC
     );
-    static final FunctionDescriptor PFNGLINDEXPOINTEREXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
+    static final FunctionDescriptor glGenVertexArraysAPPLE$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLINDEXPOINTEREXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$677.PFNGLINDEXPOINTEREXTPROC$FUNC
+    static final MethodHandle glGenVertexArraysAPPLE$MH = RuntimeHelper.downcallHandle(
+        "glGenVertexArraysAPPLE",
+        constants$677.glGenVertexArraysAPPLE$FUNC
     );
-    static final FunctionDescriptor PFNGLNORMALPOINTEREXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
+    static final FunctionDescriptor glIsVertexArrayAPPLE$FUNC = FunctionDescriptor.of(Constants$root.C_CHAR$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLNORMALPOINTEREXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$677.PFNGLNORMALPOINTEREXTPROC$FUNC
+    static final MethodHandle glIsVertexArrayAPPLE$MH = RuntimeHelper.downcallHandle(
+        "glIsVertexArrayAPPLE",
+        constants$677.glIsVertexArrayAPPLE$FUNC
     );
 }
 

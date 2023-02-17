@@ -11,13 +11,13 @@ public interface PFNGLREPLACEMENTCODEUINORMAL3FVERTEX3FSUNPROC {
 
     void apply(int rc, float nx, float ny, float nz, float x, float y, float z);
     static MemorySegment allocate(PFNGLREPLACEMENTCODEUINORMAL3FVERTEX3FSUNPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLREPLACEMENTCODEUINORMAL3FVERTEX3FSUNPROC.class, fi, constants$925.PFNGLREPLACEMENTCODEUINORMAL3FVERTEX3FSUNPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLREPLACEMENTCODEUINORMAL3FVERTEX3FSUNPROC.class, fi, constants$1336.PFNGLREPLACEMENTCODEUINORMAL3FVERTEX3FSUNPROC$FUNC, session);
     }
     static PFNGLREPLACEMENTCODEUINORMAL3FVERTEX3FSUNPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _rc, float _nx, float _ny, float _nz, float _x, float _y, float _z) -> {
             try {
-                constants$925.PFNGLREPLACEMENTCODEUINORMAL3FVERTEX3FSUNPROC$MH.invokeExact((Addressable)symbol, _rc, _nx, _ny, _nz, _x, _y, _z);
+                constants$1336.PFNGLREPLACEMENTCODEUINORMAL3FVERTEX3FSUNPROC$MH.invokeExact((Addressable)symbol, _rc, _nx, _ny, _nz, _x, _y, _z);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

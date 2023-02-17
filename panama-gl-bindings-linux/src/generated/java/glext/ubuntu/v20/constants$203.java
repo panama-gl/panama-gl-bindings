@@ -9,26 +9,58 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$203 {
 
-    static final FunctionDescriptor PFNGLCOLORP4UIVPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glBindBufferBase$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle PFNGLCOLORP4UIVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$203.PFNGLCOLORP4UIVPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLSECONDARYCOLORP3UIPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLSECONDARYCOLORP3UIPROC$MH = RuntimeHelper.downcallHandle(
-        constants$203.PFNGLSECONDARYCOLORP3UIPROC$FUNC
+    static final MethodHandle glBindBufferBase$MH = RuntimeHelper.downcallHandle(
+        "glBindBufferBase",
+        constants$203.glBindBufferBase$FUNC
     );
-    static final FunctionDescriptor PFNGLSECONDARYCOLORP3UIVPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glTransformFeedbackVaryings$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle glTransformFeedbackVaryings$MH = RuntimeHelper.downcallHandle(
+        "glTransformFeedbackVaryings",
+        constants$203.glTransformFeedbackVaryings$FUNC
+    );
+    static final FunctionDescriptor glGetTransformFeedbackVarying$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLSECONDARYCOLORP3UIVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$203.PFNGLSECONDARYCOLORP3UIVPROC$FUNC
+    static final MethodHandle glGetTransformFeedbackVarying$MH = RuntimeHelper.downcallHandle(
+        "glGetTransformFeedbackVarying",
+        constants$203.glGetTransformFeedbackVarying$FUNC
+    );
+    static final FunctionDescriptor glClampColor$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle glClampColor$MH = RuntimeHelper.downcallHandle(
+        "glClampColor",
+        constants$203.glClampColor$FUNC
+    );
+    static final FunctionDescriptor glBeginConditionalRender$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle glBeginConditionalRender$MH = RuntimeHelper.downcallHandle(
+        "glBeginConditionalRender",
+        constants$203.glBeginConditionalRender$FUNC
+    );
+    static final FunctionDescriptor glEndConditionalRender$FUNC = FunctionDescriptor.ofVoid();
+    static final MethodHandle glEndConditionalRender$MH = RuntimeHelper.downcallHandle(
+        "glEndConditionalRender",
+        constants$203.glEndConditionalRender$FUNC
     );
 }
 

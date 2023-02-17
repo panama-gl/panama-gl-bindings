@@ -11,13 +11,13 @@ public interface PFNGLROTATEXOESPROC {
 
     void apply(int angle, int x, int y, int z);
     static MemorySegment allocate(PFNGLROTATEXOESPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLROTATEXOESPROC.class, fi, constants$423.PFNGLROTATEXOESPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLROTATEXOESPROC.class, fi, constants$583.PFNGLROTATEXOESPROC$FUNC, session);
     }
     static PFNGLROTATEXOESPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _angle, int _x, int _y, int _z) -> {
             try {
-                constants$423.PFNGLROTATEXOESPROC$MH.invokeExact((Addressable)symbol, _angle, _x, _y, _z);
+                constants$583.PFNGLROTATEXOESPROC$MH.invokeExact((Addressable)symbol, _angle, _x, _y, _z);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

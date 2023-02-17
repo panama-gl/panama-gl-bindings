@@ -11,13 +11,13 @@ public interface PFNGLBLENDCOLOREXTPROC {
 
     void apply(float red, float green, float blue, float alpha);
     static MemorySegment allocate(PFNGLBLENDCOLOREXTPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLBLENDCOLOREXTPROC.class, fi, constants$517.PFNGLBLENDCOLOREXTPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLBLENDCOLOREXTPROC.class, fi, constants$729.PFNGLBLENDCOLOREXTPROC$FUNC, session);
     }
     static PFNGLBLENDCOLOREXTPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (float _red, float _green, float _blue, float _alpha) -> {
             try {
-                constants$517.PFNGLBLENDCOLOREXTPROC$MH.invokeExact((Addressable)symbol, _red, _green, _blue, _alpha);
+                constants$729.PFNGLBLENDCOLOREXTPROC$MH.invokeExact((Addressable)symbol, _red, _green, _blue, _alpha);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

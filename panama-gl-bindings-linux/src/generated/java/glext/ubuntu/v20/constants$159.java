@@ -9,28 +9,58 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$159 {
 
-    static final FunctionDescriptor PFNGLGETUNIFORMUIVPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glGetUniformLocation$FUNC = FunctionDescriptor.of(Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glGetUniformLocation$MH = RuntimeHelper.downcallHandle(
+        "glGetUniformLocation",
+        constants$159.glGetUniformLocation$FUNC
+    );
+    static final FunctionDescriptor glGetUniformfv$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLGETUNIFORMUIVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$159.PFNGLGETUNIFORMUIVPROC$FUNC
+    static final MethodHandle glGetUniformfv$MH = RuntimeHelper.downcallHandle(
+        "glGetUniformfv",
+        constants$159.glGetUniformfv$FUNC
     );
-    static final FunctionDescriptor PFNGLBINDFRAGDATALOCATIONPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glGetUniformiv$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLBINDFRAGDATALOCATIONPROC$MH = RuntimeHelper.downcallHandle(
-        constants$159.PFNGLBINDFRAGDATALOCATIONPROC$FUNC
+    static final MethodHandle glGetUniformiv$MH = RuntimeHelper.downcallHandle(
+        "glGetUniformiv",
+        constants$159.glGetUniformiv$FUNC
     );
-    static final FunctionDescriptor PFNGLGETFRAGDATALOCATIONPROC$FUNC = FunctionDescriptor.of(Constants$root.C_INT$LAYOUT,
+    static final FunctionDescriptor glGetVertexAttribdv$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLGETFRAGDATALOCATIONPROC$MH = RuntimeHelper.downcallHandle(
-        constants$159.PFNGLGETFRAGDATALOCATIONPROC$FUNC
+    static final MethodHandle glGetVertexAttribdv$MH = RuntimeHelper.downcallHandle(
+        "glGetVertexAttribdv",
+        constants$159.glGetVertexAttribdv$FUNC
+    );
+    static final FunctionDescriptor glGetVertexAttribfv$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glGetVertexAttribfv$MH = RuntimeHelper.downcallHandle(
+        "glGetVertexAttribfv",
+        constants$159.glGetVertexAttribfv$FUNC
+    );
+    static final FunctionDescriptor glGetVertexAttribiv$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glGetVertexAttribiv$MH = RuntimeHelper.downcallHandle(
+        "glGetVertexAttribiv",
+        constants$159.glGetVertexAttribiv$FUNC
     );
 }
 

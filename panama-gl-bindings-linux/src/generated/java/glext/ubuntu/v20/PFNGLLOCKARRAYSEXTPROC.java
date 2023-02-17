@@ -11,13 +11,13 @@ public interface PFNGLLOCKARRAYSEXTPROC {
 
     void apply(int first, int count);
     static MemorySegment allocate(PFNGLLOCKARRAYSEXTPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLLOCKARRAYSEXTPROC.class, fi, constants$519.PFNGLLOCKARRAYSEXTPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLLOCKARRAYSEXTPROC.class, fi, constants$732.PFNGLLOCKARRAYSEXTPROC$FUNC, session);
     }
     static PFNGLLOCKARRAYSEXTPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _first, int _count) -> {
             try {
-                constants$519.PFNGLLOCKARRAYSEXTPROC$MH.invokeExact((Addressable)symbol, _first, _count);
+                constants$732.PFNGLLOCKARRAYSEXTPROC$MH.invokeExact((Addressable)symbol, _first, _count);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

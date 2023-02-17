@@ -11,13 +11,13 @@ public interface PFNGLSHADINGRATEIMAGEPALETTENVPROC {
 
     void apply(int viewport, int first, int count, java.lang.foreign.MemoryAddress rates);
     static MemorySegment allocate(PFNGLSHADINGRATEIMAGEPALETTENVPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLSHADINGRATEIMAGEPALETTENVPROC.class, fi, constants$825.PFNGLSHADINGRATEIMAGEPALETTENVPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLSHADINGRATEIMAGEPALETTENVPROC.class, fi, constants$1190.PFNGLSHADINGRATEIMAGEPALETTENVPROC$FUNC, session);
     }
     static PFNGLSHADINGRATEIMAGEPALETTENVPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _viewport, int _first, int _count, java.lang.foreign.MemoryAddress _rates) -> {
             try {
-                constants$825.PFNGLSHADINGRATEIMAGEPALETTENVPROC$MH.invokeExact((Addressable)symbol, _viewport, _first, _count, (java.lang.foreign.Addressable)_rates);
+                constants$1190.PFNGLSHADINGRATEIMAGEPALETTENVPROC$MH.invokeExact((Addressable)symbol, _viewport, _first, _count, (java.lang.foreign.Addressable)_rates);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

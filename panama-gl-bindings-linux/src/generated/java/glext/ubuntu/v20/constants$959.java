@@ -9,33 +9,27 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$959 {
 
-    static final FunctionDescriptor glutSpaceballRotateFunc$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLARETEXTURESRESIDENTEXTPROC$FUNC = FunctionDescriptor.of(Constants$root.C_CHAR$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle glutSpaceballRotateFunc$MH = RuntimeHelper.downcallHandle(
-        "glutSpaceballRotateFunc",
-        constants$959.glutSpaceballRotateFunc$FUNC
+    static final MethodHandle PFNGLARETEXTURESRESIDENTEXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$959.PFNGLARETEXTURESRESIDENTEXTPROC$FUNC
     );
-    static final FunctionDescriptor glutSpaceballButtonFunc$callback$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLBINDTEXTUREEXTPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle glutSpaceballButtonFunc$callback$MH = RuntimeHelper.downcallHandle(
-        constants$959.glutSpaceballButtonFunc$callback$FUNC
+    static final MethodHandle PFNGLBINDTEXTUREEXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$959.PFNGLBINDTEXTUREEXTPROC$FUNC
     );
-    static final FunctionDescriptor glutSpaceballButtonFunc$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLDELETETEXTURESEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle glutSpaceballButtonFunc$MH = RuntimeHelper.downcallHandle(
-        "glutSpaceballButtonFunc",
-        constants$959.glutSpaceballButtonFunc$FUNC
-    );
-    static final FunctionDescriptor glutButtonBoxFunc$callback$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT
-    );
-    static final MethodHandle glutButtonBoxFunc$callback$MH = RuntimeHelper.downcallHandle(
-        constants$959.glutButtonBoxFunc$callback$FUNC
+    static final MethodHandle PFNGLDELETETEXTURESEXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$959.PFNGLDELETETEXTURESEXTPROC$FUNC
     );
 }
 

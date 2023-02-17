@@ -11,13 +11,13 @@ public interface PFNGLDRAWELEMENTARRAYATIPROC {
 
     void apply(int mode, int count);
     static MemorySegment allocate(PFNGLDRAWELEMENTARRAYATIPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLDRAWELEMENTARRAYATIPROC.class, fi, constants$487.PFNGLDRAWELEMENTARRAYATIPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLDRAWELEMENTARRAYATIPROC.class, fi, constants$683.PFNGLDRAWELEMENTARRAYATIPROC$FUNC, session);
     }
     static PFNGLDRAWELEMENTARRAYATIPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _mode, int _count) -> {
             try {
-                constants$487.PFNGLDRAWELEMENTARRAYATIPROC$MH.invokeExact((Addressable)symbol, _mode, _count);
+                constants$684.PFNGLDRAWELEMENTARRAYATIPROC$MH.invokeExact((Addressable)symbol, _mode, _count);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

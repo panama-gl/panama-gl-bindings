@@ -9,25 +9,30 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$427 {
 
-    static final FunctionDescriptor PFNGLCOLOR3XVOESPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLISIMAGEHANDLERESIDENTARBPROC$FUNC = FunctionDescriptor.of(Constants$root.C_CHAR$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT
+    );
+    static final MethodHandle PFNGLISIMAGEHANDLERESIDENTARBPROC$MH = RuntimeHelper.downcallHandle(
+        constants$427.PFNGLISIMAGEHANDLERESIDENTARBPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLVERTEXATTRIBL1UI64ARBPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT
+    );
+    static final MethodHandle PFNGLVERTEXATTRIBL1UI64ARBPROC$MH = RuntimeHelper.downcallHandle(
+        constants$427.PFNGLVERTEXATTRIBL1UI64ARBPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLVERTEXATTRIBL1UI64VARBPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLCOLOR3XVOESPROC$MH = RuntimeHelper.downcallHandle(
-        constants$427.PFNGLCOLOR3XVOESPROC$FUNC
+    static final MethodHandle PFNGLVERTEXATTRIBL1UI64VARBPROC$MH = RuntimeHelper.downcallHandle(
+        constants$427.PFNGLVERTEXATTRIBL1UI64VARBPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLCOLOR4XVOESPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLGETVERTEXATTRIBLUI64VARBPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle PFNGLCOLOR4XVOESPROC$MH = RuntimeHelper.downcallHandle(
-        constants$427.PFNGLCOLOR4XVOESPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLCONVOLUTIONPARAMETERXOESPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT
-    );
-    static final MethodHandle PFNGLCONVOLUTIONPARAMETERXOESPROC$MH = RuntimeHelper.downcallHandle(
-        constants$427.PFNGLCONVOLUTIONPARAMETERXOESPROC$FUNC
     );
 }
 

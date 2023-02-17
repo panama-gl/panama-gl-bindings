@@ -9,28 +9,49 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$729 {
 
-    static final FunctionDescriptor PFNGLUNIFORMHANDLEUI64NVPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_LONG_LONG$LAYOUT
-    );
-    static final MethodHandle PFNGLUNIFORMHANDLEUI64NVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$729.PFNGLUNIFORMHANDLEUI64NVPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLUNIFORMHANDLEUI64VNVPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glUniformBufferEXT$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
+        Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLUNIFORMHANDLEUI64VNVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$729.PFNGLUNIFORMHANDLEUI64VNVPROC$FUNC
+    static final MethodHandle glUniformBufferEXT$MH = RuntimeHelper.downcallHandle(
+        "glUniformBufferEXT",
+        constants$729.glUniformBufferEXT$FUNC
     );
-    static final FunctionDescriptor PFNGLPROGRAMUNIFORMHANDLEUI64NVPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glGetUniformBufferSizeEXT$FUNC = FunctionDescriptor.of(Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_LONG_LONG$LAYOUT
+        Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLPROGRAMUNIFORMHANDLEUI64NVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$729.PFNGLPROGRAMUNIFORMHANDLEUI64NVPROC$FUNC
+    static final MethodHandle glGetUniformBufferSizeEXT$MH = RuntimeHelper.downcallHandle(
+        "glGetUniformBufferSizeEXT",
+        constants$729.glGetUniformBufferSizeEXT$FUNC
+    );
+    static final FunctionDescriptor glGetUniformOffsetEXT$FUNC = FunctionDescriptor.of(Constants$root.C_LONG_LONG$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle glGetUniformOffsetEXT$MH = RuntimeHelper.downcallHandle(
+        "glGetUniformOffsetEXT",
+        constants$729.glGetUniformOffsetEXT$FUNC
+    );
+    static final FunctionDescriptor PFNGLBLENDCOLOREXTPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT
+    );
+    static final MethodHandle PFNGLBLENDCOLOREXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$729.PFNGLBLENDCOLOREXTPROC$FUNC
+    );
+    static final FunctionDescriptor glBlendColorEXT$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT
+    );
+    static final MethodHandle glBlendColorEXT$MH = RuntimeHelper.downcallHandle(
+        "glBlendColorEXT",
+        constants$729.glBlendColorEXT$FUNC
     );
 }
 

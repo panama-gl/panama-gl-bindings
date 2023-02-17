@@ -11,13 +11,13 @@ public interface PFNGLTEXCOORD4FCOLOR4FNORMAL3FVERTEX4FSUNPROC {
 
     void apply(float s, float t, float p, float q, float r, float g, float b, float a, float nx, float ny, float nz, float x, float y, float z, float w);
     static MemorySegment allocate(PFNGLTEXCOORD4FCOLOR4FNORMAL3FVERTEX4FSUNPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLTEXCOORD4FCOLOR4FNORMAL3FVERTEX4FSUNPROC.class, fi, constants$922.PFNGLTEXCOORD4FCOLOR4FNORMAL3FVERTEX4FSUNPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLTEXCOORD4FCOLOR4FNORMAL3FVERTEX4FSUNPROC.class, fi, constants$1333.PFNGLTEXCOORD4FCOLOR4FNORMAL3FVERTEX4FSUNPROC$FUNC, session);
     }
     static PFNGLTEXCOORD4FCOLOR4FNORMAL3FVERTEX4FSUNPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (float _s, float _t, float _p, float _q, float _r, float _g, float _b, float _a, float _nx, float _ny, float _nz, float _x, float _y, float _z, float _w) -> {
             try {
-                constants$922.PFNGLTEXCOORD4FCOLOR4FNORMAL3FVERTEX4FSUNPROC$MH.invokeExact((Addressable)symbol, _s, _t, _p, _q, _r, _g, _b, _a, _nx, _ny, _nz, _x, _y, _z, _w);
+                constants$1333.PFNGLTEXCOORD4FCOLOR4FNORMAL3FVERTEX4FSUNPROC$MH.invokeExact((Addressable)symbol, _s, _t, _p, _q, _r, _g, _b, _a, _nx, _ny, _nz, _x, _y, _z, _w);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

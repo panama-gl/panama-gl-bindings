@@ -9,30 +9,26 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$241 {
 
-    static final FunctionDescriptor PFNGLPROGRAMUNIFORMMATRIX4X3DVPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLVERTEXP3UIPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_CHAR$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle PFNGLPROGRAMUNIFORMMATRIX4X3DVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$241.PFNGLPROGRAMUNIFORMMATRIX4X3DVPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLVALIDATEPROGRAMPIPELINEPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLVALIDATEPROGRAMPIPELINEPROC$MH = RuntimeHelper.downcallHandle(
-        constants$241.PFNGLVALIDATEPROGRAMPIPELINEPROC$FUNC
+    static final MethodHandle PFNGLVERTEXP3UIPROC$MH = RuntimeHelper.downcallHandle(
+        constants$241.PFNGLVERTEXP3UIPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLGETPROGRAMPIPELINEINFOLOGPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLVERTEXP3UIVPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLGETPROGRAMPIPELINEINFOLOGPROC$MH = RuntimeHelper.downcallHandle(
-        constants$241.PFNGLGETPROGRAMPIPELINEINFOLOGPROC$FUNC
+    static final MethodHandle PFNGLVERTEXP3UIVPROC$MH = RuntimeHelper.downcallHandle(
+        constants$241.PFNGLVERTEXP3UIVPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLVERTEXP4UIPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle PFNGLVERTEXP4UIPROC$MH = RuntimeHelper.downcallHandle(
+        constants$241.PFNGLVERTEXP4UIPROC$FUNC
     );
 }
 

@@ -9,27 +9,37 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$481 {
 
-    static final FunctionDescriptor PFNGLTEXTURERANGEAPPLEPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLGETNMAPDVARBPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle PFNGLTEXTURERANGEAPPLEPROC$MH = RuntimeHelper.downcallHandle(
-        constants$481.PFNGLTEXTURERANGEAPPLEPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLGETTEXPARAMETERPOINTERVAPPLEPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLGETTEXPARAMETERPOINTERVAPPLEPROC$MH = RuntimeHelper.downcallHandle(
-        constants$481.PFNGLGETTEXPARAMETERPOINTERVAPPLEPROC$FUNC
+    static final MethodHandle PFNGLGETNMAPDVARBPROC$MH = RuntimeHelper.downcallHandle(
+        constants$481.PFNGLGETNMAPDVARBPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLBINDVERTEXARRAYAPPLEPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT
+    static final FunctionDescriptor PFNGLGETNMAPFVARBPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLBINDVERTEXARRAYAPPLEPROC$MH = RuntimeHelper.downcallHandle(
-        constants$481.PFNGLBINDVERTEXARRAYAPPLEPROC$FUNC
+    static final MethodHandle PFNGLGETNMAPFVARBPROC$MH = RuntimeHelper.downcallHandle(
+        constants$481.PFNGLGETNMAPFVARBPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLGETNMAPIVARBPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle PFNGLGETNMAPIVARBPROC$MH = RuntimeHelper.downcallHandle(
+        constants$481.PFNGLGETNMAPIVARBPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLGETNPIXELMAPFVARBPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
 }
 

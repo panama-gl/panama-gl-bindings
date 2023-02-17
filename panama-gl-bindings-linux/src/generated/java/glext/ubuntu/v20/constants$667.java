@@ -9,46 +9,42 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$667 {
 
-    static final FunctionDescriptor PFNGLTEXIMAGE3DEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLMULTIDRAWELEMENTARRAYAPPLEPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle PFNGLMULTIDRAWELEMENTARRAYAPPLEPROC$MH = RuntimeHelper.downcallHandle(
+        constants$667.PFNGLMULTIDRAWELEMENTARRAYAPPLEPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLMULTIDRAWRANGEELEMENTARRAYAPPLEPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle PFNGLMULTIDRAWRANGEELEMENTARRAYAPPLEPROC$MH = RuntimeHelper.downcallHandle(
+        constants$667.PFNGLMULTIDRAWRANGEELEMENTARRAYAPPLEPROC$FUNC
+    );
+    static final FunctionDescriptor glElementPointerAPPLE$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLTEXIMAGE3DEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$667.PFNGLTEXIMAGE3DEXTPROC$FUNC
+    static final MethodHandle glElementPointerAPPLE$MH = RuntimeHelper.downcallHandle(
+        "glElementPointerAPPLE",
+        constants$667.glElementPointerAPPLE$FUNC
     );
-    static final FunctionDescriptor PFNGLTEXSUBIMAGE3DEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle PFNGLTEXSUBIMAGE3DEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$667.PFNGLTEXSUBIMAGE3DEXTPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLFRAMEBUFFERTEXTURELAYEREXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
+    static final FunctionDescriptor glDrawElementArrayAPPLE$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLFRAMEBUFFERTEXTURELAYEREXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$667.PFNGLFRAMEBUFFERTEXTURELAYEREXTPROC$FUNC
+    static final MethodHandle glDrawElementArrayAPPLE$MH = RuntimeHelper.downcallHandle(
+        "glDrawElementArrayAPPLE",
+        constants$667.glDrawElementArrayAPPLE$FUNC
     );
 }
 

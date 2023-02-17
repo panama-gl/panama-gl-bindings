@@ -11,13 +11,13 @@ public interface PFNGLFRUSTUMFOESPROC {
 
     void apply(float l, float r, float b, float t, float n, float f);
     static MemorySegment allocate(PFNGLFRUSTUMFOESPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLFRUSTUMFOESPROC.class, fi, constants$449.PFNGLFRUSTUMFOESPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLFRUSTUMFOESPROC.class, fi, constants$627.PFNGLFRUSTUMFOESPROC$FUNC, session);
     }
     static PFNGLFRUSTUMFOESPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (float _l, float _r, float _b, float _t, float _n, float _f) -> {
             try {
-                constants$449.PFNGLFRUSTUMFOESPROC$MH.invokeExact((Addressable)symbol, _l, _r, _b, _t, _n, _f);
+                constants$627.PFNGLFRUSTUMFOESPROC$MH.invokeExact((Addressable)symbol, _l, _r, _b, _t, _n, _f);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

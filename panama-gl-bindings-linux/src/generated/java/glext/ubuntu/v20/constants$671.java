@@ -9,25 +9,49 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$671 {
 
-    static final FunctionDescriptor PFNGLDELETETEXTURESEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLFINISHOBJECTAPPLEPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle PFNGLDELETETEXTURESEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$671.PFNGLDELETETEXTURESEXTPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLGENTEXTURESEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle PFNGLGENTEXTURESEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$671.PFNGLGENTEXTURESEXTPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLISTEXTUREEXTPROC$FUNC = FunctionDescriptor.of(Constants$root.C_CHAR$LAYOUT,
         Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLISTEXTUREEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$671.PFNGLISTEXTUREEXTPROC$FUNC
+    static final MethodHandle PFNGLFINISHOBJECTAPPLEPROC$MH = RuntimeHelper.downcallHandle(
+        constants$671.PFNGLFINISHOBJECTAPPLEPROC$FUNC
+    );
+    static final FunctionDescriptor glGenFencesAPPLE$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glGenFencesAPPLE$MH = RuntimeHelper.downcallHandle(
+        "glGenFencesAPPLE",
+        constants$671.glGenFencesAPPLE$FUNC
+    );
+    static final FunctionDescriptor glDeleteFencesAPPLE$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glDeleteFencesAPPLE$MH = RuntimeHelper.downcallHandle(
+        "glDeleteFencesAPPLE",
+        constants$671.glDeleteFencesAPPLE$FUNC
+    );
+    static final FunctionDescriptor glSetFenceAPPLE$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle glSetFenceAPPLE$MH = RuntimeHelper.downcallHandle(
+        "glSetFenceAPPLE",
+        constants$671.glSetFenceAPPLE$FUNC
+    );
+    static final FunctionDescriptor glIsFenceAPPLE$FUNC = FunctionDescriptor.of(Constants$root.C_CHAR$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle glIsFenceAPPLE$MH = RuntimeHelper.downcallHandle(
+        "glIsFenceAPPLE",
+        constants$671.glIsFenceAPPLE$FUNC
+    );
+    static final FunctionDescriptor glTestFenceAPPLE$FUNC = FunctionDescriptor.of(Constants$root.C_CHAR$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle glTestFenceAPPLE$MH = RuntimeHelper.downcallHandle(
+        "glTestFenceAPPLE",
+        constants$671.glTestFenceAPPLE$FUNC
     );
 }
 

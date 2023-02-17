@@ -11,13 +11,13 @@ public interface PFNGLCURRENTPALETTEMATRIXARBPROC {
 
     void apply(int index);
     static MemorySegment allocate(PFNGLCURRENTPALETTEMATRIXARBPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLCURRENTPALETTEMATRIXARBPROC.class, fi, constants$344.PFNGLCURRENTPALETTEMATRIXARBPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLCURRENTPALETTEMATRIXARBPROC.class, fi, constants$469.PFNGLCURRENTPALETTEMATRIXARBPROC$FUNC, session);
     }
     static PFNGLCURRENTPALETTEMATRIXARBPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _index) -> {
             try {
-                constants$344.PFNGLCURRENTPALETTEMATRIXARBPROC$MH.invokeExact((Addressable)symbol, _index);
+                constants$469.PFNGLCURRENTPALETTEMATRIXARBPROC$MH.invokeExact((Addressable)symbol, _index);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

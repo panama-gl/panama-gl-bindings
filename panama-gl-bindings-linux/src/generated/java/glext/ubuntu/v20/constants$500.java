@@ -9,28 +9,36 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$500 {
 
-    static final FunctionDescriptor PFNGLGETVERTEXATTRIBARRAYOBJECTFVATIPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLUNIFORMMATRIX4FVARBPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_CHAR$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle PFNGLUNIFORMMATRIX4FVARBPROC$MH = RuntimeHelper.downcallHandle(
+        constants$500.PFNGLUNIFORMMATRIX4FVARBPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLGETOBJECTPARAMETERFVARBPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLGETVERTEXATTRIBARRAYOBJECTFVATIPROC$MH = RuntimeHelper.downcallHandle(
-        constants$500.PFNGLGETVERTEXATTRIBARRAYOBJECTFVATIPROC$FUNC
+    static final MethodHandle PFNGLGETOBJECTPARAMETERFVARBPROC$MH = RuntimeHelper.downcallHandle(
+        constants$500.PFNGLGETOBJECTPARAMETERFVARBPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLGETVERTEXATTRIBARRAYOBJECTIVATIPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLGETOBJECTPARAMETERIVARBPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLGETVERTEXATTRIBARRAYOBJECTIVATIPROC$MH = RuntimeHelper.downcallHandle(
-        constants$500.PFNGLGETVERTEXATTRIBARRAYOBJECTIVATIPROC$FUNC
+    static final MethodHandle PFNGLGETOBJECTPARAMETERIVARBPROC$MH = RuntimeHelper.downcallHandle(
+        constants$500.PFNGLGETOBJECTPARAMETERIVARBPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLVERTEXSTREAM1SATIPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLGETINFOLOGARBPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_SHORT$LAYOUT
-    );
-    static final MethodHandle PFNGLVERTEXSTREAM1SATIPROC$MH = RuntimeHelper.downcallHandle(
-        constants$500.PFNGLVERTEXSTREAM1SATIPROC$FUNC
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
 }
 

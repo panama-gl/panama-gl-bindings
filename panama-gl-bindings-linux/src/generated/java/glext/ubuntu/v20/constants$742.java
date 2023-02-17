@@ -9,23 +9,27 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$742 {
 
-    static final FunctionDescriptor PFNGLWAITVKSEMAPHORENVPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_LONG_LONG$LAYOUT
+    static final FunctionDescriptor PFNGLTANGENT3IEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLWAITVKSEMAPHORENVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$742.PFNGLWAITVKSEMAPHORENVPROC$FUNC
+    static final MethodHandle PFNGLTANGENT3IEXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$742.PFNGLTANGENT3IEXTPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLSIGNALVKSEMAPHORENVPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_LONG_LONG$LAYOUT
+    static final FunctionDescriptor PFNGLTANGENT3IVEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLSIGNALVKSEMAPHORENVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$742.PFNGLSIGNALVKSEMAPHORENVPROC$FUNC
+    static final MethodHandle PFNGLTANGENT3IVEXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$742.PFNGLTANGENT3IVEXTPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLSIGNALVKFENCENVPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_LONG_LONG$LAYOUT
+    static final FunctionDescriptor PFNGLTANGENT3SEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_SHORT$LAYOUT,
+        Constants$root.C_SHORT$LAYOUT,
+        Constants$root.C_SHORT$LAYOUT
     );
-    static final MethodHandle PFNGLSIGNALVKFENCENVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$742.PFNGLSIGNALVKFENCENVPROC$FUNC
+    static final MethodHandle PFNGLTANGENT3SEXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$742.PFNGLTANGENT3SEXTPROC$FUNC
     );
 }
 

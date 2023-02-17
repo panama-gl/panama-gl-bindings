@@ -11,13 +11,13 @@ public interface PFNGLINVALIDATETEXIMAGEPROC {
 
     void apply(int texture, int level);
     static MemorySegment allocate(PFNGLINVALIDATETEXIMAGEPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLINVALIDATETEXIMAGEPROC.class, fi, constants$256.PFNGLINVALIDATETEXIMAGEPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLINVALIDATETEXIMAGEPROC.class, fi, constants$336.PFNGLINVALIDATETEXIMAGEPROC$FUNC, session);
     }
     static PFNGLINVALIDATETEXIMAGEPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _texture, int _level) -> {
             try {
-                constants$256.PFNGLINVALIDATETEXIMAGEPROC$MH.invokeExact((Addressable)symbol, _texture, _level);
+                constants$336.PFNGLINVALIDATETEXIMAGEPROC$MH.invokeExact((Addressable)symbol, _texture, _level);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

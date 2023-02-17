@@ -9,29 +9,38 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$327 {
 
-    static final FunctionDescriptor PFNGLGETPROGRAMENVPARAMETERDVARBPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLDRAWARRAYSINSTANCEDBASEINSTANCEPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLGETPROGRAMENVPARAMETERDVARBPROC$MH = RuntimeHelper.downcallHandle(
-        constants$327.PFNGLGETPROGRAMENVPARAMETERDVARBPROC$FUNC
+    static final MethodHandle PFNGLDRAWARRAYSINSTANCEDBASEINSTANCEPROC$MH = RuntimeHelper.downcallHandle(
+        constants$327.PFNGLDRAWARRAYSINSTANCEDBASEINSTANCEPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLGETPROGRAMENVPARAMETERFVARBPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLDRAWELEMENTSINSTANCEDBASEINSTANCEPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLGETPROGRAMENVPARAMETERFVARBPROC$MH = RuntimeHelper.downcallHandle(
-        constants$327.PFNGLGETPROGRAMENVPARAMETERFVARBPROC$FUNC
+    static final MethodHandle PFNGLDRAWELEMENTSINSTANCEDBASEINSTANCEPROC$MH = RuntimeHelper.downcallHandle(
+        constants$327.PFNGLDRAWELEMENTSINSTANCEDBASEINSTANCEPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLGETPROGRAMLOCALPARAMETERDVARBPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLDRAWELEMENTSINSTANCEDBASEVERTEXBASEINSTANCEPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLGETPROGRAMLOCALPARAMETERDVARBPROC$MH = RuntimeHelper.downcallHandle(
-        constants$327.PFNGLGETPROGRAMLOCALPARAMETERDVARBPROC$FUNC
+    static final MethodHandle PFNGLDRAWELEMENTSINSTANCEDBASEVERTEXBASEINSTANCEPROC$MH = RuntimeHelper.downcallHandle(
+        constants$327.PFNGLDRAWELEMENTSINSTANCEDBASEVERTEXBASEINSTANCEPROC$FUNC
     );
 }
 

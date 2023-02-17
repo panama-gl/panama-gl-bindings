@@ -11,13 +11,13 @@ public interface PFNGLBLENDEQUATIONEXTPROC {
 
     void apply(int mode);
     static MemorySegment allocate(PFNGLBLENDEQUATIONEXTPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLBLENDEQUATIONEXTPROC.class, fi, constants$518.PFNGLBLENDEQUATIONEXTPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLBLENDEQUATIONEXTPROC.class, fi, constants$731.PFNGLBLENDEQUATIONEXTPROC$FUNC, session);
     }
     static PFNGLBLENDEQUATIONEXTPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _mode) -> {
             try {
-                constants$518.PFNGLBLENDEQUATIONEXTPROC$MH.invokeExact((Addressable)symbol, _mode);
+                constants$731.PFNGLBLENDEQUATIONEXTPROC$MH.invokeExact((Addressable)symbol, _mode);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

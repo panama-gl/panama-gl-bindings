@@ -9,28 +9,43 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$511 {
 
-    static final FunctionDescriptor PFNGLVERTEXSTREAM4DVATIPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLGETNAMEDSTRINGARBPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle PFNGLGETNAMEDSTRINGARBPROC$MH = RuntimeHelper.downcallHandle(
+        constants$511.PFNGLGETNAMEDSTRINGARBPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLGETNAMEDSTRINGIVARBPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLVERTEXSTREAM4DVATIPROC$MH = RuntimeHelper.downcallHandle(
-        constants$511.PFNGLVERTEXSTREAM4DVATIPROC$FUNC
+    static final MethodHandle PFNGLGETNAMEDSTRINGIVARBPROC$MH = RuntimeHelper.downcallHandle(
+        constants$511.PFNGLGETNAMEDSTRINGIVARBPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLNORMALSTREAM3BATIPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glNamedStringARB$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_CHAR$LAYOUT,
-        Constants$root.C_CHAR$LAYOUT,
-        Constants$root.C_CHAR$LAYOUT
-    );
-    static final MethodHandle PFNGLNORMALSTREAM3BATIPROC$MH = RuntimeHelper.downcallHandle(
-        constants$511.PFNGLNORMALSTREAM3BATIPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLNORMALSTREAM3BVATIPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLNORMALSTREAM3BVATIPROC$MH = RuntimeHelper.downcallHandle(
-        constants$511.PFNGLNORMALSTREAM3BVATIPROC$FUNC
+    static final MethodHandle glNamedStringARB$MH = RuntimeHelper.downcallHandle(
+        "glNamedStringARB",
+        constants$511.glNamedStringARB$FUNC
+    );
+    static final FunctionDescriptor glDeleteNamedStringARB$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glDeleteNamedStringARB$MH = RuntimeHelper.downcallHandle(
+        "glDeleteNamedStringARB",
+        constants$511.glDeleteNamedStringARB$FUNC
     );
 }
 

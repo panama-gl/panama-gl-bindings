@@ -9,29 +9,38 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$398 {
 
-    static final FunctionDescriptor PFNGLGETVERTEXATTRIBDVARBPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLGETNCOLORTABLEPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLGETVERTEXATTRIBDVARBPROC$MH = RuntimeHelper.downcallHandle(
-        constants$398.PFNGLGETVERTEXATTRIBDVARBPROC$FUNC
+    static final MethodHandle PFNGLGETNCOLORTABLEPROC$MH = RuntimeHelper.downcallHandle(
+        constants$398.PFNGLGETNCOLORTABLEPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLGETVERTEXATTRIBFVARBPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLGETNCONVOLUTIONFILTERPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLGETVERTEXATTRIBFVARBPROC$MH = RuntimeHelper.downcallHandle(
-        constants$398.PFNGLGETVERTEXATTRIBFVARBPROC$FUNC
+    static final MethodHandle PFNGLGETNCONVOLUTIONFILTERPROC$MH = RuntimeHelper.downcallHandle(
+        constants$398.PFNGLGETNCONVOLUTIONFILTERPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLGETVERTEXATTRIBIVARBPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLGETNSEPARABLEFILTERPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLGETVERTEXATTRIBIVARBPROC$MH = RuntimeHelper.downcallHandle(
-        constants$398.PFNGLGETVERTEXATTRIBIVARBPROC$FUNC
+    static final MethodHandle PFNGLGETNSEPARABLEFILTERPROC$MH = RuntimeHelper.downcallHandle(
+        constants$398.PFNGLGETNSEPARABLEFILTERPROC$FUNC
     );
 }
 

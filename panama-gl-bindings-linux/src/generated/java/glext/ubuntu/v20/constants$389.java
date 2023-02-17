@@ -9,30 +9,30 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$389 {
 
-    static final FunctionDescriptor PFNGLVERTEXATTRIB3DARBPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLGETVERTEXARRAYINDEXEDIVPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_DOUBLE$LAYOUT,
-        Constants$root.C_DOUBLE$LAYOUT,
-        Constants$root.C_DOUBLE$LAYOUT
-    );
-    static final MethodHandle PFNGLVERTEXATTRIB3DARBPROC$MH = RuntimeHelper.downcallHandle(
-        constants$389.PFNGLVERTEXATTRIB3DARBPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLVERTEXATTRIB3DVARBPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLVERTEXATTRIB3DVARBPROC$MH = RuntimeHelper.downcallHandle(
-        constants$389.PFNGLVERTEXATTRIB3DVARBPROC$FUNC
+    static final MethodHandle PFNGLGETVERTEXARRAYINDEXEDIVPROC$MH = RuntimeHelper.downcallHandle(
+        constants$389.PFNGLGETVERTEXARRAYINDEXEDIVPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLVERTEXATTRIB3FARBPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLGETVERTEXARRAYINDEXED64IVPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLVERTEXATTRIB3FARBPROC$MH = RuntimeHelper.downcallHandle(
-        constants$389.PFNGLVERTEXATTRIB3FARBPROC$FUNC
+    static final MethodHandle PFNGLGETVERTEXARRAYINDEXED64IVPROC$MH = RuntimeHelper.downcallHandle(
+        constants$389.PFNGLGETVERTEXARRAYINDEXED64IVPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLCREATESAMPLERSPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle PFNGLCREATESAMPLERSPROC$MH = RuntimeHelper.downcallHandle(
+        constants$389.PFNGLCREATESAMPLERSPROC$FUNC
     );
 }
 

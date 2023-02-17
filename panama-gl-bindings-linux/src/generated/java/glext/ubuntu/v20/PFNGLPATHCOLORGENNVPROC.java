@@ -11,13 +11,13 @@ public interface PFNGLPATHCOLORGENNVPROC {
 
     void apply(int color, int genMode, int colorFormat, java.lang.foreign.MemoryAddress coeffs);
     static MemorySegment allocate(PFNGLPATHCOLORGENNVPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLPATHCOLORGENNVPROC.class, fi, constants$805.PFNGLPATHCOLORGENNVPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLPATHCOLORGENNVPROC.class, fi, constants$1151.PFNGLPATHCOLORGENNVPROC$FUNC, session);
     }
     static PFNGLPATHCOLORGENNVPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _color, int _genMode, int _colorFormat, java.lang.foreign.MemoryAddress _coeffs) -> {
             try {
-                constants$805.PFNGLPATHCOLORGENNVPROC$MH.invokeExact((Addressable)symbol, _color, _genMode, _colorFormat, (java.lang.foreign.Addressable)_coeffs);
+                constants$1152.PFNGLPATHCOLORGENNVPROC$MH.invokeExact((Addressable)symbol, _color, _genMode, _colorFormat, (java.lang.foreign.Addressable)_coeffs);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

@@ -9,33 +9,38 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$760 {
 
-    static final FunctionDescriptor PFNGLPROGRAMENVPARAMETERI4INVPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLMATRIXSCALEFEXTPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT
+        Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT
     );
-    static final MethodHandle PFNGLPROGRAMENVPARAMETERI4INVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$760.PFNGLPROGRAMENVPARAMETERI4INVPROC$FUNC
+    static final MethodHandle PFNGLMATRIXSCALEFEXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$760.PFNGLMATRIXSCALEFEXTPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLPROGRAMENVPARAMETERI4IVNVPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLMATRIXSCALEDEXTPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
+        Constants$root.C_DOUBLE$LAYOUT,
+        Constants$root.C_DOUBLE$LAYOUT,
+        Constants$root.C_DOUBLE$LAYOUT
     );
-    static final MethodHandle PFNGLPROGRAMENVPARAMETERI4IVNVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$760.PFNGLPROGRAMENVPARAMETERI4IVNVPROC$FUNC
+    static final MethodHandle PFNGLMATRIXSCALEDEXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$760.PFNGLMATRIXSCALEDEXTPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLPROGRAMENVPARAMETERSI4IVNVPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLMATRIXTRANSLATEFEXTPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
+        Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT
     );
-    static final MethodHandle PFNGLPROGRAMENVPARAMETERSI4IVNVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$760.PFNGLPROGRAMENVPARAMETERSI4IVNVPROC$FUNC
+    static final MethodHandle PFNGLMATRIXTRANSLATEFEXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$760.PFNGLMATRIXTRANSLATEFEXTPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLMATRIXTRANSLATEDEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_DOUBLE$LAYOUT,
+        Constants$root.C_DOUBLE$LAYOUT,
+        Constants$root.C_DOUBLE$LAYOUT
     );
 }
 

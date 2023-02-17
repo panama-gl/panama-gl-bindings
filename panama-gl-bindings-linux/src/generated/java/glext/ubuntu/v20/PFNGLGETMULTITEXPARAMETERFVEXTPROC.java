@@ -11,13 +11,13 @@ public interface PFNGLGETMULTITEXPARAMETERFVEXTPROC {
 
     void apply(int texunit, int target, int pname, java.lang.foreign.MemoryAddress params);
     static MemorySegment allocate(PFNGLGETMULTITEXPARAMETERFVEXTPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLGETMULTITEXPARAMETERFVEXTPROC.class, fi, constants$558.PFNGLGETMULTITEXPARAMETERFVEXTPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLGETMULTITEXPARAMETERFVEXTPROC.class, fi, constants$779.PFNGLGETMULTITEXPARAMETERFVEXTPROC$FUNC, session);
     }
     static PFNGLGETMULTITEXPARAMETERFVEXTPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _texunit, int _target, int _pname, java.lang.foreign.MemoryAddress _params) -> {
             try {
-                constants$558.PFNGLGETMULTITEXPARAMETERFVEXTPROC$MH.invokeExact((Addressable)symbol, _texunit, _target, _pname, (java.lang.foreign.Addressable)_params);
+                constants$780.PFNGLGETMULTITEXPARAMETERFVEXTPROC$MH.invokeExact((Addressable)symbol, _texunit, _target, _pname, (java.lang.foreign.Addressable)_params);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

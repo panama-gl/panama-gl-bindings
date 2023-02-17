@@ -11,13 +11,13 @@ public interface PFNGLENABLECLIENTSTATEINDEXEDEXTPROC {
 
     void apply(int array, int index);
     static MemorySegment allocate(PFNGLENABLECLIENTSTATEINDEXEDEXTPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLENABLECLIENTSTATEINDEXEDEXTPROC.class, fi, constants$560.PFNGLENABLECLIENTSTATEINDEXEDEXTPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLENABLECLIENTSTATEINDEXEDEXTPROC.class, fi, constants$782.PFNGLENABLECLIENTSTATEINDEXEDEXTPROC$FUNC, session);
     }
     static PFNGLENABLECLIENTSTATEINDEXEDEXTPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _array, int _index) -> {
             try {
-                constants$560.PFNGLENABLECLIENTSTATEINDEXEDEXTPROC$MH.invokeExact((Addressable)symbol, _array, _index);
+                constants$782.PFNGLENABLECLIENTSTATEINDEXEDEXTPROC$MH.invokeExact((Addressable)symbol, _array, _index);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

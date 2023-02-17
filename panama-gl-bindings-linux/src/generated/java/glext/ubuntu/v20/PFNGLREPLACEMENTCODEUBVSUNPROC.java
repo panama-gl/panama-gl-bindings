@@ -11,13 +11,13 @@ public interface PFNGLREPLACEMENTCODEUBVSUNPROC {
 
     void apply(java.lang.foreign.MemoryAddress code);
     static MemorySegment allocate(PFNGLREPLACEMENTCODEUBVSUNPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLREPLACEMENTCODEUBVSUNPROC.class, fi, constants$914.PFNGLREPLACEMENTCODEUBVSUNPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLREPLACEMENTCODEUBVSUNPROC.class, fi, constants$1324.PFNGLREPLACEMENTCODEUBVSUNPROC$FUNC, session);
     }
     static PFNGLREPLACEMENTCODEUBVSUNPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (java.lang.foreign.MemoryAddress _code) -> {
             try {
-                constants$914.PFNGLREPLACEMENTCODEUBVSUNPROC$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)_code);
+                constants$1324.PFNGLREPLACEMENTCODEUBVSUNPROC$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)_code);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

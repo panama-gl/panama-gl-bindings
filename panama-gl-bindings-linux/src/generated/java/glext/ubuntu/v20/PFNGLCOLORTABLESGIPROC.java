@@ -11,13 +11,13 @@ public interface PFNGLCOLORTABLESGIPROC {
 
     void apply(int target, int internalformat, int width, int format, int type, java.lang.foreign.MemoryAddress table);
     static MemorySegment allocate(PFNGLCOLORTABLESGIPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLCOLORTABLESGIPROC.class, fi, constants$907.PFNGLCOLORTABLESGIPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLCOLORTABLESGIPROC.class, fi, constants$1314.PFNGLCOLORTABLESGIPROC$FUNC, session);
     }
     static PFNGLCOLORTABLESGIPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _target, int _internalformat, int _width, int _format, int _type, java.lang.foreign.MemoryAddress _table) -> {
             try {
-                constants$907.PFNGLCOLORTABLESGIPROC$MH.invokeExact((Addressable)symbol, _target, _internalformat, _width, _format, _type, (java.lang.foreign.Addressable)_table);
+                constants$1314.PFNGLCOLORTABLESGIPROC$MH.invokeExact((Addressable)symbol, _target, _internalformat, _width, _format, _type, (java.lang.foreign.Addressable)_table);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

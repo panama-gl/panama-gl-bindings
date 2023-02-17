@@ -9,25 +9,45 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$437 {
 
-    static final FunctionDescriptor PFNGLMULTITEXCOORD3XVOESPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glBlendFuncSeparateiARB$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle PFNGLMULTITEXCOORD3XVOESPROC$MH = RuntimeHelper.downcallHandle(
-        constants$437.PFNGLMULTITEXCOORD3XVOESPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLMULTITEXCOORD4XVOESPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLMULTITEXCOORD4XVOESPROC$MH = RuntimeHelper.downcallHandle(
-        constants$437.PFNGLMULTITEXCOORD4XVOESPROC$FUNC
+    static final MethodHandle glBlendFuncSeparateiARB$MH = RuntimeHelper.downcallHandle(
+        "glBlendFuncSeparateiARB",
+        constants$437.glBlendFuncSeparateiARB$FUNC
     );
-    static final FunctionDescriptor PFNGLNORMAL3XVOESPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_POINTER$LAYOUT
+    static final FunctionDescriptor PFNGLDRAWARRAYSINSTANCEDARBPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLNORMAL3XVOESPROC$MH = RuntimeHelper.downcallHandle(
-        constants$437.PFNGLNORMAL3XVOESPROC$FUNC
+    static final MethodHandle PFNGLDRAWARRAYSINSTANCEDARBPROC$MH = RuntimeHelper.downcallHandle(
+        constants$437.PFNGLDRAWARRAYSINSTANCEDARBPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLDRAWELEMENTSINSTANCEDARBPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle PFNGLDRAWELEMENTSINSTANCEDARBPROC$MH = RuntimeHelper.downcallHandle(
+        constants$437.PFNGLDRAWELEMENTSINSTANCEDARBPROC$FUNC
+    );
+    static final FunctionDescriptor glDrawArraysInstancedARB$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle glDrawArraysInstancedARB$MH = RuntimeHelper.downcallHandle(
+        "glDrawArraysInstancedARB",
+        constants$437.glDrawArraysInstancedARB$FUNC
     );
 }
 

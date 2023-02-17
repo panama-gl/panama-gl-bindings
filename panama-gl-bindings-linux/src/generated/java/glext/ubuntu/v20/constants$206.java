@@ -9,28 +9,53 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$206 {
 
-    static final FunctionDescriptor PFNGLDRAWELEMENTSINDIRECTPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
+    static final FunctionDescriptor glVertexAttribI2iv$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLDRAWELEMENTSINDIRECTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$206.PFNGLDRAWELEMENTSINDIRECTPROC$FUNC
+    static final MethodHandle glVertexAttribI2iv$MH = RuntimeHelper.downcallHandle(
+        "glVertexAttribI2iv",
+        constants$206.glVertexAttribI2iv$FUNC
     );
-    static final FunctionDescriptor PFNGLUNIFORM1DPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glVertexAttribI3iv$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_DOUBLE$LAYOUT
+        Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLUNIFORM1DPROC$MH = RuntimeHelper.downcallHandle(
-        constants$206.PFNGLUNIFORM1DPROC$FUNC
+    static final MethodHandle glVertexAttribI3iv$MH = RuntimeHelper.downcallHandle(
+        "glVertexAttribI3iv",
+        constants$206.glVertexAttribI3iv$FUNC
     );
-    static final FunctionDescriptor PFNGLUNIFORM2DPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glVertexAttribI4iv$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_DOUBLE$LAYOUT,
-        Constants$root.C_DOUBLE$LAYOUT
+        Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLUNIFORM2DPROC$MH = RuntimeHelper.downcallHandle(
-        constants$206.PFNGLUNIFORM2DPROC$FUNC
+    static final MethodHandle glVertexAttribI4iv$MH = RuntimeHelper.downcallHandle(
+        "glVertexAttribI4iv",
+        constants$206.glVertexAttribI4iv$FUNC
+    );
+    static final FunctionDescriptor glVertexAttribI1uiv$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glVertexAttribI1uiv$MH = RuntimeHelper.downcallHandle(
+        "glVertexAttribI1uiv",
+        constants$206.glVertexAttribI1uiv$FUNC
+    );
+    static final FunctionDescriptor glVertexAttribI2uiv$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glVertexAttribI2uiv$MH = RuntimeHelper.downcallHandle(
+        "glVertexAttribI2uiv",
+        constants$206.glVertexAttribI2uiv$FUNC
+    );
+    static final FunctionDescriptor glVertexAttribI3uiv$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glVertexAttribI3uiv$MH = RuntimeHelper.downcallHandle(
+        "glVertexAttribI3uiv",
+        constants$206.glVertexAttribI3uiv$FUNC
     );
 }
 

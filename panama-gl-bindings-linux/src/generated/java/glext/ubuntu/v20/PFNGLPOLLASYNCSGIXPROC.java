@@ -11,13 +11,13 @@ public interface PFNGLPOLLASYNCSGIXPROC {
 
     int apply(java.lang.foreign.MemoryAddress markerp);
     static MemorySegment allocate(PFNGLPOLLASYNCSGIXPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLPOLLASYNCSGIXPROC.class, fi, constants$891.PFNGLPOLLASYNCSGIXPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLPOLLASYNCSGIXPROC.class, fi, constants$1290.PFNGLPOLLASYNCSGIXPROC$FUNC, session);
     }
     static PFNGLPOLLASYNCSGIXPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (java.lang.foreign.MemoryAddress _markerp) -> {
             try {
-                return (int)constants$891.PFNGLPOLLASYNCSGIXPROC$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)_markerp);
+                return (int)constants$1290.PFNGLPOLLASYNCSGIXPROC$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)_markerp);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

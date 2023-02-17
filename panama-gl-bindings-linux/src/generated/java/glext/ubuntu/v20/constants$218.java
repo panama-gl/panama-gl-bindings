@@ -9,28 +9,38 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$218 {
 
-    static final FunctionDescriptor PFNGLDRAWTRANSFORMFEEDBACKSTREAMPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLGETACTIVEUNIFORMNAMEPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLDRAWTRANSFORMFEEDBACKSTREAMPROC$MH = RuntimeHelper.downcallHandle(
-        constants$218.PFNGLDRAWTRANSFORMFEEDBACKSTREAMPROC$FUNC
+    static final MethodHandle PFNGLGETACTIVEUNIFORMNAMEPROC$MH = RuntimeHelper.downcallHandle(
+        constants$218.PFNGLGETACTIVEUNIFORMNAMEPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLBEGINQUERYINDEXEDPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLGETUNIFORMBLOCKINDEXPROC$FUNC = FunctionDescriptor.of(Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle PFNGLGETUNIFORMBLOCKINDEXPROC$MH = RuntimeHelper.downcallHandle(
+        constants$218.PFNGLGETUNIFORMBLOCKINDEXPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLGETACTIVEUNIFORMBLOCKIVPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT
-    );
-    static final MethodHandle PFNGLBEGINQUERYINDEXEDPROC$MH = RuntimeHelper.downcallHandle(
-        constants$218.PFNGLBEGINQUERYINDEXEDPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLENDQUERYINDEXEDPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT
+        Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLENDQUERYINDEXEDPROC$MH = RuntimeHelper.downcallHandle(
-        constants$218.PFNGLENDQUERYINDEXEDPROC$FUNC
+    static final MethodHandle PFNGLGETACTIVEUNIFORMBLOCKIVPROC$MH = RuntimeHelper.downcallHandle(
+        constants$218.PFNGLGETACTIVEUNIFORMBLOCKIVPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLGETACTIVEUNIFORMBLOCKNAMEPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
 }
 

@@ -9,35 +9,55 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$611 {
 
-    static final FunctionDescriptor PFNGLPROGRAMUNIFORM3DEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glLightxOES$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_DOUBLE$LAYOUT,
-        Constants$root.C_DOUBLE$LAYOUT,
-        Constants$root.C_DOUBLE$LAYOUT
+        Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLPROGRAMUNIFORM3DEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$611.PFNGLPROGRAMUNIFORM3DEXTPROC$FUNC
+    static final MethodHandle glLightxOES$MH = RuntimeHelper.downcallHandle(
+        "glLightxOES",
+        constants$611.glLightxOES$FUNC
     );
-    static final FunctionDescriptor PFNGLPROGRAMUNIFORM4DEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_DOUBLE$LAYOUT,
-        Constants$root.C_DOUBLE$LAYOUT,
-        Constants$root.C_DOUBLE$LAYOUT,
-        Constants$root.C_DOUBLE$LAYOUT
-    );
-    static final MethodHandle PFNGLPROGRAMUNIFORM4DEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$611.PFNGLPROGRAMUNIFORM4DEXTPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLPROGRAMUNIFORM1DVEXTPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
+    static final FunctionDescriptor glLightxvOES$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLPROGRAMUNIFORM1DVEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$611.PFNGLPROGRAMUNIFORM1DVEXTPROC$FUNC
+    static final MethodHandle glLightxvOES$MH = RuntimeHelper.downcallHandle(
+        "glLightxvOES",
+        constants$611.glLightxvOES$FUNC
+    );
+    static final FunctionDescriptor glLineWidthxOES$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle glLineWidthxOES$MH = RuntimeHelper.downcallHandle(
+        "glLineWidthxOES",
+        constants$611.glLineWidthxOES$FUNC
+    );
+    static final FunctionDescriptor glLoadMatrixxOES$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glLoadMatrixxOES$MH = RuntimeHelper.downcallHandle(
+        "glLoadMatrixxOES",
+        constants$611.glLoadMatrixxOES$FUNC
+    );
+    static final FunctionDescriptor glMaterialxOES$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle glMaterialxOES$MH = RuntimeHelper.downcallHandle(
+        "glMaterialxOES",
+        constants$611.glMaterialxOES$FUNC
+    );
+    static final FunctionDescriptor glMaterialxvOES$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glMaterialxvOES$MH = RuntimeHelper.downcallHandle(
+        "glMaterialxvOES",
+        constants$611.glMaterialxvOES$FUNC
     );
 }
 

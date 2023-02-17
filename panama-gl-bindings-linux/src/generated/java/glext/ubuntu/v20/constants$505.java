@@ -9,27 +9,60 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$505 {
 
-    static final FunctionDescriptor PFNGLVERTEXSTREAM2FVATIPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glUniform1fARB$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
+        Constants$root.C_FLOAT$LAYOUT
     );
-    static final MethodHandle PFNGLVERTEXSTREAM2FVATIPROC$MH = RuntimeHelper.downcallHandle(
-        constants$505.PFNGLVERTEXSTREAM2FVATIPROC$FUNC
+    static final MethodHandle glUniform1fARB$MH = RuntimeHelper.downcallHandle(
+        "glUniform1fARB",
+        constants$505.glUniform1fARB$FUNC
     );
-    static final FunctionDescriptor PFNGLVERTEXSTREAM2DATIPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glUniform2fARB$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_DOUBLE$LAYOUT,
-        Constants$root.C_DOUBLE$LAYOUT
+        Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT
     );
-    static final MethodHandle PFNGLVERTEXSTREAM2DATIPROC$MH = RuntimeHelper.downcallHandle(
-        constants$505.PFNGLVERTEXSTREAM2DATIPROC$FUNC
+    static final MethodHandle glUniform2fARB$MH = RuntimeHelper.downcallHandle(
+        "glUniform2fARB",
+        constants$505.glUniform2fARB$FUNC
     );
-    static final FunctionDescriptor PFNGLVERTEXSTREAM2DVATIPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glUniform3fARB$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
+        Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT
     );
-    static final MethodHandle PFNGLVERTEXSTREAM2DVATIPROC$MH = RuntimeHelper.downcallHandle(
-        constants$505.PFNGLVERTEXSTREAM2DVATIPROC$FUNC
+    static final MethodHandle glUniform3fARB$MH = RuntimeHelper.downcallHandle(
+        "glUniform3fARB",
+        constants$505.glUniform3fARB$FUNC
+    );
+    static final FunctionDescriptor glUniform4fARB$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT
+    );
+    static final MethodHandle glUniform4fARB$MH = RuntimeHelper.downcallHandle(
+        "glUniform4fARB",
+        constants$505.glUniform4fARB$FUNC
+    );
+    static final FunctionDescriptor glUniform1iARB$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle glUniform1iARB$MH = RuntimeHelper.downcallHandle(
+        "glUniform1iARB",
+        constants$505.glUniform1iARB$FUNC
+    );
+    static final FunctionDescriptor glUniform2iARB$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle glUniform2iARB$MH = RuntimeHelper.downcallHandle(
+        "glUniform2iARB",
+        constants$505.glUniform2iARB$FUNC
     );
 }
 

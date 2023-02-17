@@ -11,13 +11,13 @@ public interface PFNGLFINISHTEXTURESUNXPROC {
 
     void apply();
     static MemorySegment allocate(PFNGLFINISHTEXTURESUNXPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLFINISHTEXTURESUNXPROC.class, fi, constants$909.PFNGLFINISHTEXTURESUNXPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLFINISHTEXTURESUNXPROC.class, fi, constants$1317.PFNGLFINISHTEXTURESUNXPROC$FUNC, session);
     }
     static PFNGLFINISHTEXTURESUNXPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return () -> {
             try {
-                constants$909.PFNGLFINISHTEXTURESUNXPROC$MH.invokeExact((Addressable)symbol);
+                constants$1318.PFNGLFINISHTEXTURESUNXPROC$MH.invokeExact((Addressable)symbol);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

@@ -9,21 +9,41 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$357 {
 
-    static final FunctionDescriptor PFNGLEVALUATEDEPTHVALUESARBPROC$FUNC = FunctionDescriptor.ofVoid();
-    static final MethodHandle PFNGLEVALUATEDEPTHVALUESARBPROC$MH = RuntimeHelper.downcallHandle(
-        constants$357.PFNGLEVALUATEDEPTHVALUESARBPROC$FUNC
+    static final FunctionDescriptor PFNGLBINDSAMPLERSPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
-    static final FunctionDescriptor PFNGLMINSAMPLESHADINGARBPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_FLOAT$LAYOUT
+    static final MethodHandle PFNGLBINDSAMPLERSPROC$MH = RuntimeHelper.downcallHandle(
+        constants$357.PFNGLBINDSAMPLERSPROC$FUNC
     );
-    static final MethodHandle PFNGLMINSAMPLESHADINGARBPROC$MH = RuntimeHelper.downcallHandle(
-        constants$357.PFNGLMINSAMPLESHADINGARBPROC$FUNC
+    static final FunctionDescriptor PFNGLBINDIMAGETEXTURESPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
-    static final FunctionDescriptor PFNGLDELETEOBJECTARBPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final MethodHandle PFNGLBINDIMAGETEXTURESPROC$MH = RuntimeHelper.downcallHandle(
+        constants$357.PFNGLBINDIMAGETEXTURESPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLBINDVERTEXBUFFERSPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle PFNGLBINDVERTEXBUFFERSPROC$MH = RuntimeHelper.downcallHandle(
+        constants$357.PFNGLBINDVERTEXBUFFERSPROC$FUNC
+    );
+    static final FunctionDescriptor glBufferStorage$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
         Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLDELETEOBJECTARBPROC$MH = RuntimeHelper.downcallHandle(
-        constants$357.PFNGLDELETEOBJECTARBPROC$FUNC
+    static final MethodHandle glBufferStorage$MH = RuntimeHelper.downcallHandle(
+        "glBufferStorage",
+        constants$357.glBufferStorage$FUNC
     );
 }
 

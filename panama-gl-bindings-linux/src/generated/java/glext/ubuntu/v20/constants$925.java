@@ -9,33 +9,50 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$925 {
 
-    static final FunctionDescriptor PFNGLREPLACEMENTCODEUICOLOR3FVERTEX3FVSUNPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle PFNGLREPLACEMENTCODEUICOLOR3FVERTEX3FVSUNPROC$MH = RuntimeHelper.downcallHandle(
-        constants$925.PFNGLREPLACEMENTCODEUICOLOR3FVERTEX3FVSUNPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLREPLACEMENTCODEUINORMAL3FVERTEX3FSUNPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLIMPORTMEMORYWIN32NAMEEXTPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT
-    );
-    static final MethodHandle PFNGLREPLACEMENTCODEUINORMAL3FVERTEX3FSUNPROC$MH = RuntimeHelper.downcallHandle(
-        constants$925.PFNGLREPLACEMENTCODEUINORMAL3FVERTEX3FSUNPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLREPLACEMENTCODEUINORMAL3FVERTEX3FVSUNPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLREPLACEMENTCODEUINORMAL3FVERTEX3FVSUNPROC$MH = RuntimeHelper.downcallHandle(
-        constants$925.PFNGLREPLACEMENTCODEUINORMAL3FVERTEX3FVSUNPROC$FUNC
+    static final MethodHandle PFNGLIMPORTMEMORYWIN32NAMEEXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$925.PFNGLIMPORTMEMORYWIN32NAMEEXTPROC$FUNC
+    );
+    static final FunctionDescriptor glImportMemoryWin32HandleEXT$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glImportMemoryWin32HandleEXT$MH = RuntimeHelper.downcallHandle(
+        "glImportMemoryWin32HandleEXT",
+        constants$925.glImportMemoryWin32HandleEXT$FUNC
+    );
+    static final FunctionDescriptor glImportMemoryWin32NameEXT$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glImportMemoryWin32NameEXT$MH = RuntimeHelper.downcallHandle(
+        "glImportMemoryWin32NameEXT",
+        constants$925.glImportMemoryWin32NameEXT$FUNC
+    );
+    static final FunctionDescriptor PFNGLMULTIDRAWARRAYSEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle PFNGLMULTIDRAWARRAYSEXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$925.PFNGLMULTIDRAWARRAYSEXTPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLMULTIDRAWELEMENTSEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_INT$LAYOUT
     );
 }
 

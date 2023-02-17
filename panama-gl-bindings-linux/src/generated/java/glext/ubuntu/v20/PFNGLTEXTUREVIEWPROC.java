@@ -11,13 +11,13 @@ public interface PFNGLTEXTUREVIEWPROC {
 
     void apply(int texture, int target, int origtexture, int internalformat, int minlevel, int numlevels, int minlayer, int numlayers);
     static MemorySegment allocate(PFNGLTEXTUREVIEWPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLTEXTUREVIEWPROC.class, fi, constants$261.PFNGLTEXTUREVIEWPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLTEXTUREVIEWPROC.class, fi, constants$342.PFNGLTEXTUREVIEWPROC$FUNC, session);
     }
     static PFNGLTEXTUREVIEWPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _texture, int _target, int _origtexture, int _internalformat, int _minlevel, int _numlevels, int _minlayer, int _numlayers) -> {
             try {
-                constants$261.PFNGLTEXTUREVIEWPROC$MH.invokeExact((Addressable)symbol, _texture, _target, _origtexture, _internalformat, _minlevel, _numlevels, _minlayer, _numlayers);
+                constants$342.PFNGLTEXTUREVIEWPROC$MH.invokeExact((Addressable)symbol, _texture, _target, _origtexture, _internalformat, _minlevel, _numlevels, _minlayer, _numlayers);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

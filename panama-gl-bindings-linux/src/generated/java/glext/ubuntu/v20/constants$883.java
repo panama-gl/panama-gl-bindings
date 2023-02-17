@@ -9,31 +9,79 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$883 {
 
-    static final FunctionDescriptor PFNGLFRAMEBUFFERTEXTUREMULTIVIEWOVRPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glTextureStorage3DEXT$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle glTextureStorage3DEXT$MH = RuntimeHelper.downcallHandle(
+        "glTextureStorage3DEXT",
+        constants$883.glTextureStorage3DEXT$FUNC
+    );
+    static final FunctionDescriptor glTextureStorage2DMultisampleEXT$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_CHAR$LAYOUT
+    );
+    static final MethodHandle glTextureStorage2DMultisampleEXT$MH = RuntimeHelper.downcallHandle(
+        "glTextureStorage2DMultisampleEXT",
+        constants$883.glTextureStorage2DMultisampleEXT$FUNC
+    );
+    static final FunctionDescriptor glTextureStorage3DMultisampleEXT$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_CHAR$LAYOUT
+    );
+    static final MethodHandle glTextureStorage3DMultisampleEXT$MH = RuntimeHelper.downcallHandle(
+        "glTextureStorage3DMultisampleEXT",
+        constants$883.glTextureStorage3DMultisampleEXT$FUNC
+    );
+    static final FunctionDescriptor glVertexArrayBindVertexBufferEXT$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_LONG_LONG$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle glVertexArrayBindVertexBufferEXT$MH = RuntimeHelper.downcallHandle(
+        "glVertexArrayBindVertexBufferEXT",
+        constants$883.glVertexArrayBindVertexBufferEXT$FUNC
+    );
+    static final FunctionDescriptor glVertexArrayVertexAttribFormatEXT$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_CHAR$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle glVertexArrayVertexAttribFormatEXT$MH = RuntimeHelper.downcallHandle(
+        "glVertexArrayVertexAttribFormatEXT",
+        constants$883.glVertexArrayVertexAttribFormatEXT$FUNC
+    );
+    static final FunctionDescriptor glVertexArrayVertexAttribIFormatEXT$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLFRAMEBUFFERTEXTUREMULTIVIEWOVRPROC$MH = RuntimeHelper.downcallHandle(
-        constants$883.PFNGLFRAMEBUFFERTEXTUREMULTIVIEWOVRPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLHINTPGIPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT
-    );
-    static final MethodHandle PFNGLHINTPGIPROC$MH = RuntimeHelper.downcallHandle(
-        constants$883.PFNGLHINTPGIPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLDETAILTEXFUNCSGISPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle PFNGLDETAILTEXFUNCSGISPROC$MH = RuntimeHelper.downcallHandle(
-        constants$883.PFNGLDETAILTEXFUNCSGISPROC$FUNC
+    static final MethodHandle glVertexArrayVertexAttribIFormatEXT$MH = RuntimeHelper.downcallHandle(
+        "glVertexArrayVertexAttribIFormatEXT",
+        constants$883.glVertexArrayVertexAttribIFormatEXT$FUNC
     );
 }
 

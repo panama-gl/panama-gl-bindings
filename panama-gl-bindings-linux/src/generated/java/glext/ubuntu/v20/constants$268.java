@@ -9,41 +9,29 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$268 {
 
-    static final FunctionDescriptor PFNGLCLEARTEXSUBIMAGEPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
+    static final FunctionDescriptor PFNGLGETUNIFORMDVPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLCLEARTEXSUBIMAGEPROC$MH = RuntimeHelper.downcallHandle(
-        constants$268.PFNGLCLEARTEXSUBIMAGEPROC$FUNC
+    static final MethodHandle PFNGLGETUNIFORMDVPROC$MH = RuntimeHelper.downcallHandle(
+        constants$268.PFNGLGETUNIFORMDVPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLBINDBUFFERSBASEPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
+    static final FunctionDescriptor PFNGLGETSUBROUTINEUNIFORMLOCATIONPROC$FUNC = FunctionDescriptor.of(Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLBINDBUFFERSBASEPROC$MH = RuntimeHelper.downcallHandle(
-        constants$268.PFNGLBINDBUFFERSBASEPROC$FUNC
+    static final MethodHandle PFNGLGETSUBROUTINEUNIFORMLOCATIONPROC$MH = RuntimeHelper.downcallHandle(
+        constants$268.PFNGLGETSUBROUTINEUNIFORMLOCATIONPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLBINDBUFFERSRANGEPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLGETSUBROUTINEINDEXPROC$FUNC = FunctionDescriptor.of(Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLBINDBUFFERSRANGEPROC$MH = RuntimeHelper.downcallHandle(
-        constants$268.PFNGLBINDBUFFERSRANGEPROC$FUNC
+    static final MethodHandle PFNGLGETSUBROUTINEINDEXPROC$MH = RuntimeHelper.downcallHandle(
+        constants$268.PFNGLGETSUBROUTINEINDEXPROC$FUNC
     );
 }
 

@@ -9,36 +9,56 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$622 {
 
-    static final FunctionDescriptor PFNGLDRAWRANGEELEMENTSEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glRasterPos3xOES$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle glRasterPos3xOES$MH = RuntimeHelper.downcallHandle(
+        "glRasterPos3xOES",
+        constants$622.glRasterPos3xOES$FUNC
+    );
+    static final FunctionDescriptor glRasterPos3xvOES$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLDRAWRANGEELEMENTSEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$622.PFNGLDRAWRANGEELEMENTSEXTPROC$FUNC
+    static final MethodHandle glRasterPos3xvOES$MH = RuntimeHelper.downcallHandle(
+        "glRasterPos3xvOES",
+        constants$622.glRasterPos3xvOES$FUNC
     );
-    static final FunctionDescriptor PFNGLBUFFERSTORAGEEXTERNALEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glRasterPos4xOES$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_LONG_LONG$LAYOUT,
-        Constants$root.C_LONG_LONG$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLBUFFERSTORAGEEXTERNALEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$622.PFNGLBUFFERSTORAGEEXTERNALEXTPROC$FUNC
+    static final MethodHandle glRasterPos4xOES$MH = RuntimeHelper.downcallHandle(
+        "glRasterPos4xOES",
+        constants$622.glRasterPos4xOES$FUNC
     );
-    static final FunctionDescriptor PFNGLNAMEDBUFFERSTORAGEEXTERNALEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glRasterPos4xvOES$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glRasterPos4xvOES$MH = RuntimeHelper.downcallHandle(
+        "glRasterPos4xvOES",
+        constants$622.glRasterPos4xvOES$FUNC
+    );
+    static final FunctionDescriptor glRectxOES$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_LONG_LONG$LAYOUT,
-        Constants$root.C_LONG_LONG$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLNAMEDBUFFERSTORAGEEXTERNALEXTPROC$MH = RuntimeHelper.downcallHandle(
-        constants$622.PFNGLNAMEDBUFFERSTORAGEEXTERNALEXTPROC$FUNC
+    static final MethodHandle glRectxOES$MH = RuntimeHelper.downcallHandle(
+        "glRectxOES",
+        constants$622.glRectxOES$FUNC
+    );
+    static final FunctionDescriptor glRectxvOES$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glRectxvOES$MH = RuntimeHelper.downcallHandle(
+        "glRectxvOES",
+        constants$622.glRectxvOES$FUNC
     );
 }
 

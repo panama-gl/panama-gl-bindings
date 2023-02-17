@@ -11,13 +11,13 @@ public interface PFNGLBEGINCONDITIONALRENDERNVXPROC {
 
     void apply(int id);
     static MemorySegment allocate(PFNGLBEGINCONDITIONALRENDERNVXPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLBEGINCONDITIONALRENDERNVXPROC.class, fi, constants$720.PFNGLBEGINCONDITIONALRENDERNVXPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLBEGINCONDITIONALRENDERNVXPROC.class, fi, constants$1033.PFNGLBEGINCONDITIONALRENDERNVXPROC$FUNC, session);
     }
     static PFNGLBEGINCONDITIONALRENDERNVXPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _id) -> {
             try {
-                constants$720.PFNGLBEGINCONDITIONALRENDERNVXPROC$MH.invokeExact((Addressable)symbol, _id);
+                constants$1033.PFNGLBEGINCONDITIONALRENDERNVXPROC$MH.invokeExact((Addressable)symbol, _id);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

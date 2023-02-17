@@ -9,47 +9,54 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$943 {
 
-    static final FunctionDescriptor glutSetWindow$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT
-    );
-    static final MethodHandle glutSetWindow$MH = RuntimeHelper.downcallHandle(
-        "glutSetWindow",
-        constants$943.glutSetWindow$FUNC
-    );
-    static final FunctionDescriptor glutGetWindow$FUNC = FunctionDescriptor.of(Constants$root.C_INT$LAYOUT);
-    static final MethodHandle glutGetWindow$MH = RuntimeHelper.downcallHandle(
-        "glutGetWindow",
-        constants$943.glutGetWindow$FUNC
-    );
-    static final FunctionDescriptor glutSetWindowTitle$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glSecondaryColor3ubvEXT$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle glutSetWindowTitle$MH = RuntimeHelper.downcallHandle(
-        "glutSetWindowTitle",
-        constants$943.glutSetWindowTitle$FUNC
+    static final MethodHandle glSecondaryColor3ubvEXT$MH = RuntimeHelper.downcallHandle(
+        "glSecondaryColor3ubvEXT",
+        constants$943.glSecondaryColor3ubvEXT$FUNC
     );
-    static final FunctionDescriptor glutSetIconTitle$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle glutSetIconTitle$MH = RuntimeHelper.downcallHandle(
-        "glutSetIconTitle",
-        constants$943.glutSetIconTitle$FUNC
-    );
-    static final FunctionDescriptor glutReshapeWindow$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glSecondaryColor3uiEXT$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle glutReshapeWindow$MH = RuntimeHelper.downcallHandle(
-        "glutReshapeWindow",
-        constants$943.glutReshapeWindow$FUNC
+    static final MethodHandle glSecondaryColor3uiEXT$MH = RuntimeHelper.downcallHandle(
+        "glSecondaryColor3uiEXT",
+        constants$943.glSecondaryColor3uiEXT$FUNC
     );
-    static final FunctionDescriptor glutPositionWindow$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glSecondaryColor3uivEXT$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glSecondaryColor3uivEXT$MH = RuntimeHelper.downcallHandle(
+        "glSecondaryColor3uivEXT",
+        constants$943.glSecondaryColor3uivEXT$FUNC
+    );
+    static final FunctionDescriptor glSecondaryColor3usEXT$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_SHORT$LAYOUT,
+        Constants$root.C_SHORT$LAYOUT,
+        Constants$root.C_SHORT$LAYOUT
+    );
+    static final MethodHandle glSecondaryColor3usEXT$MH = RuntimeHelper.downcallHandle(
+        "glSecondaryColor3usEXT",
+        constants$943.glSecondaryColor3usEXT$FUNC
+    );
+    static final FunctionDescriptor glSecondaryColor3usvEXT$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glSecondaryColor3usvEXT$MH = RuntimeHelper.downcallHandle(
+        "glSecondaryColor3usvEXT",
+        constants$943.glSecondaryColor3usvEXT$FUNC
+    );
+    static final FunctionDescriptor glSecondaryColorPointerEXT$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle glutPositionWindow$MH = RuntimeHelper.downcallHandle(
-        "glutPositionWindow",
-        constants$943.glutPositionWindow$FUNC
+    static final MethodHandle glSecondaryColorPointerEXT$MH = RuntimeHelper.downcallHandle(
+        "glSecondaryColorPointerEXT",
+        constants$943.glSecondaryColorPointerEXT$FUNC
     );
 }
 

@@ -9,28 +9,28 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$247 {
 
-    static final FunctionDescriptor PFNGLSCISSORINDEXEDVPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLMULTITEXCOORDP4UIPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle PFNGLMULTITEXCOORDP4UIPROC$MH = RuntimeHelper.downcallHandle(
+        constants$247.PFNGLMULTITEXCOORDP4UIPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLMULTITEXCOORDP4UIVPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLSCISSORINDEXEDVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$247.PFNGLSCISSORINDEXEDVPROC$FUNC
+    static final MethodHandle PFNGLMULTITEXCOORDP4UIVPROC$MH = RuntimeHelper.downcallHandle(
+        constants$247.PFNGLMULTITEXCOORDP4UIVPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLDEPTHRANGEARRAYVPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLNORMALP3UIPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
+        Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLDEPTHRANGEARRAYVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$247.PFNGLDEPTHRANGEARRAYVPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLDEPTHRANGEINDEXEDPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_DOUBLE$LAYOUT,
-        Constants$root.C_DOUBLE$LAYOUT
-    );
-    static final MethodHandle PFNGLDEPTHRANGEINDEXEDPROC$MH = RuntimeHelper.downcallHandle(
-        constants$247.PFNGLDEPTHRANGEINDEXEDPROC$FUNC
+    static final MethodHandle PFNGLNORMALP3UIPROC$MH = RuntimeHelper.downcallHandle(
+        constants$247.PFNGLNORMALP3UIPROC$FUNC
     );
 }
 

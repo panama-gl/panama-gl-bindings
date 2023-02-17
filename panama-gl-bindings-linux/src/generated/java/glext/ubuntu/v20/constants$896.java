@@ -9,29 +9,37 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$896 {
 
-    static final FunctionDescriptor PFNGLFRAGMENTMATERIALFSGIXPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLFRAMEBUFFERTEXTURE3DEXTPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT
-    );
-    static final MethodHandle PFNGLFRAGMENTMATERIALFSGIXPROC$MH = RuntimeHelper.downcallHandle(
-        constants$896.PFNGLFRAGMENTMATERIALFSGIXPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLFRAGMENTMATERIALFVSGIXPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle PFNGLFRAGMENTMATERIALFVSGIXPROC$MH = RuntimeHelper.downcallHandle(
-        constants$896.PFNGLFRAGMENTMATERIALFVSGIXPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLFRAGMENTMATERIALISGIXPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLFRAGMENTMATERIALISGIXPROC$MH = RuntimeHelper.downcallHandle(
-        constants$896.PFNGLFRAGMENTMATERIALISGIXPROC$FUNC
+    static final MethodHandle PFNGLFRAMEBUFFERTEXTURE3DEXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$896.PFNGLFRAMEBUFFERTEXTURE3DEXTPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLFRAMEBUFFERRENDERBUFFEREXTPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle PFNGLFRAMEBUFFERRENDERBUFFEREXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$896.PFNGLFRAMEBUFFERRENDERBUFFEREXTPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLGETFRAMEBUFFERATTACHMENTPARAMETERIVEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle PFNGLGETFRAMEBUFFERATTACHMENTPARAMETERIVEXTPROC$MH = RuntimeHelper.downcallHandle(
+        constants$896.PFNGLGETFRAMEBUFFERATTACHMENTPARAMETERIVEXTPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLGENERATEMIPMAPEXTPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT
     );
 }
 

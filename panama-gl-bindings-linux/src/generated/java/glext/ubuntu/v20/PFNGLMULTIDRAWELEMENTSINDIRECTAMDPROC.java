@@ -11,13 +11,13 @@ public interface PFNGLMULTIDRAWELEMENTSINDIRECTAMDPROC {
 
     void apply(int mode, int type, java.lang.foreign.MemoryAddress indirect, int primcount, int stride);
     static MemorySegment allocate(PFNGLMULTIDRAWELEMENTSINDIRECTAMDPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLMULTIDRAWELEMENTSINDIRECTAMDPROC.class, fi, constants$467.PFNGLMULTIDRAWELEMENTSINDIRECTAMDPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLMULTIDRAWELEMENTSINDIRECTAMDPROC.class, fi, constants$654.PFNGLMULTIDRAWELEMENTSINDIRECTAMDPROC$FUNC, session);
     }
     static PFNGLMULTIDRAWELEMENTSINDIRECTAMDPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _mode, int _type, java.lang.foreign.MemoryAddress _indirect, int _primcount, int _stride) -> {
             try {
-                constants$467.PFNGLMULTIDRAWELEMENTSINDIRECTAMDPROC$MH.invokeExact((Addressable)symbol, _mode, _type, (java.lang.foreign.Addressable)_indirect, _primcount, _stride);
+                constants$655.PFNGLMULTIDRAWELEMENTSINDIRECTAMDPROC$MH.invokeExact((Addressable)symbol, _mode, _type, (java.lang.foreign.Addressable)_indirect, _primcount, _stride);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

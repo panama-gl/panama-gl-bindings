@@ -9,30 +9,27 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$423 {
 
-    static final FunctionDescriptor PFNGLROTATEXOESPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
+    static final FunctionDescriptor PFNGLGETTEXTUREHANDLEARBPROC$FUNC = FunctionDescriptor.of(Constants$root.C_LONG_LONG$LAYOUT,
+        Constants$root.C_INT$LAYOUT
+    );
+    static final MethodHandle PFNGLGETTEXTUREHANDLEARBPROC$MH = RuntimeHelper.downcallHandle(
+        constants$423.PFNGLGETTEXTUREHANDLEARBPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLGETTEXTURESAMPLERHANDLEARBPROC$FUNC = FunctionDescriptor.of(Constants$root.C_LONG_LONG$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT
     );
-    static final MethodHandle PFNGLROTATEXOESPROC$MH = RuntimeHelper.downcallHandle(
-        constants$423.PFNGLROTATEXOESPROC$FUNC
+    static final MethodHandle PFNGLGETTEXTURESAMPLERHANDLEARBPROC$MH = RuntimeHelper.downcallHandle(
+        constants$423.PFNGLGETTEXTURESAMPLERHANDLEARBPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLSCALEXOESPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT
+    static final FunctionDescriptor PFNGLMAKETEXTUREHANDLERESIDENTARBPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_LONG_LONG$LAYOUT
     );
-    static final MethodHandle PFNGLSCALEXOESPROC$MH = RuntimeHelper.downcallHandle(
-        constants$423.PFNGLSCALEXOESPROC$FUNC
+    static final MethodHandle PFNGLMAKETEXTUREHANDLERESIDENTARBPROC$MH = RuntimeHelper.downcallHandle(
+        constants$423.PFNGLMAKETEXTUREHANDLERESIDENTARBPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLTEXENVXOESPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT
-    );
-    static final MethodHandle PFNGLTEXENVXOESPROC$MH = RuntimeHelper.downcallHandle(
-        constants$423.PFNGLTEXENVXOESPROC$FUNC
+    static final FunctionDescriptor PFNGLMAKETEXTUREHANDLENONRESIDENTARBPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_LONG_LONG$LAYOUT
     );
 }
 

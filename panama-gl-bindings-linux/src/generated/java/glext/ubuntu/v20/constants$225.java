@@ -9,31 +9,35 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$225 {
 
-    static final FunctionDescriptor PFNGLPROGRAMUNIFORM1IVPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLGETINTEGER64VPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle PFNGLGETINTEGER64VPROC$MH = RuntimeHelper.downcallHandle(
+        constants$225.PFNGLGETINTEGER64VPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLGETSYNCIVPROC$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle PFNGLGETSYNCIVPROC$MH = RuntimeHelper.downcallHandle(
+        constants$225.PFNGLGETSYNCIVPROC$FUNC
+    );
+    static final FunctionDescriptor PFNGLGETINTEGER64I_VPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLPROGRAMUNIFORM1IVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$225.PFNGLPROGRAMUNIFORM1IVPROC$FUNC
+    static final MethodHandle PFNGLGETINTEGER64I_VPROC$MH = RuntimeHelper.downcallHandle(
+        constants$225.PFNGLGETINTEGER64I_VPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLPROGRAMUNIFORM1FPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_FLOAT$LAYOUT
-    );
-    static final MethodHandle PFNGLPROGRAMUNIFORM1FPROC$MH = RuntimeHelper.downcallHandle(
-        constants$225.PFNGLPROGRAMUNIFORM1FPROC$FUNC
-    );
-    static final FunctionDescriptor PFNGLPROGRAMUNIFORM1FVPROC$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_INT$LAYOUT,
+    static final FunctionDescriptor PFNGLGETBUFFERPARAMETERI64VPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle PFNGLPROGRAMUNIFORM1FVPROC$MH = RuntimeHelper.downcallHandle(
-        constants$225.PFNGLPROGRAMUNIFORM1FVPROC$FUNC
     );
 }
 

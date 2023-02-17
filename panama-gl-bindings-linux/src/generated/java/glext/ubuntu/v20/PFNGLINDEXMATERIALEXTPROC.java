@@ -11,13 +11,13 @@ public interface PFNGLINDEXMATERIALEXTPROC {
 
     void apply(int face, int mode);
     static MemorySegment allocate(PFNGLINDEXMATERIALEXTPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLINDEXMATERIALEXTPROC.class, fi, constants$639.PFNGLINDEXMATERIALEXTPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLINDEXMATERIALEXTPROC.class, fi, constants$912.PFNGLINDEXMATERIALEXTPROC$FUNC, session);
     }
     static PFNGLINDEXMATERIALEXTPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (int _face, int _mode) -> {
             try {
-                constants$639.PFNGLINDEXMATERIALEXTPROC$MH.invokeExact((Addressable)symbol, _face, _mode);
+                constants$912.PFNGLINDEXMATERIALEXTPROC$MH.invokeExact((Addressable)symbol, _face, _mode);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

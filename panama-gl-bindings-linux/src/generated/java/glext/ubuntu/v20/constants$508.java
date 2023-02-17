@@ -9,31 +9,61 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$508 {
 
-    static final FunctionDescriptor PFNGLVERTEXSTREAM3DATIPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glUniformMatrix4fvARB$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_DOUBLE$LAYOUT,
-        Constants$root.C_DOUBLE$LAYOUT,
-        Constants$root.C_DOUBLE$LAYOUT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_CHAR$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLVERTEXSTREAM3DATIPROC$MH = RuntimeHelper.downcallHandle(
-        constants$508.PFNGLVERTEXSTREAM3DATIPROC$FUNC
+    static final MethodHandle glUniformMatrix4fvARB$MH = RuntimeHelper.downcallHandle(
+        "glUniformMatrix4fvARB",
+        constants$508.glUniformMatrix4fvARB$FUNC
     );
-    static final FunctionDescriptor PFNGLVERTEXSTREAM3DVATIPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glGetObjectParameterfvARB$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLVERTEXSTREAM3DVATIPROC$MH = RuntimeHelper.downcallHandle(
-        constants$508.PFNGLVERTEXSTREAM3DVATIPROC$FUNC
+    static final MethodHandle glGetObjectParameterfvARB$MH = RuntimeHelper.downcallHandle(
+        "glGetObjectParameterfvARB",
+        constants$508.glGetObjectParameterfvARB$FUNC
     );
-    static final FunctionDescriptor PFNGLVERTEXSTREAM4SATIPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor glGetObjectParameterivARB$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_SHORT$LAYOUT,
-        Constants$root.C_SHORT$LAYOUT,
-        Constants$root.C_SHORT$LAYOUT,
-        Constants$root.C_SHORT$LAYOUT
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLVERTEXSTREAM4SATIPROC$MH = RuntimeHelper.downcallHandle(
-        constants$508.PFNGLVERTEXSTREAM4SATIPROC$FUNC
+    static final MethodHandle glGetObjectParameterivARB$MH = RuntimeHelper.downcallHandle(
+        "glGetObjectParameterivARB",
+        constants$508.glGetObjectParameterivARB$FUNC
+    );
+    static final FunctionDescriptor glGetInfoLogARB$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glGetInfoLogARB$MH = RuntimeHelper.downcallHandle(
+        "glGetInfoLogARB",
+        constants$508.glGetInfoLogARB$FUNC
+    );
+    static final FunctionDescriptor glGetAttachedObjectsARB$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glGetAttachedObjectsARB$MH = RuntimeHelper.downcallHandle(
+        "glGetAttachedObjectsARB",
+        constants$508.glGetAttachedObjectsARB$FUNC
+    );
+    static final FunctionDescriptor glGetUniformLocationARB$FUNC = FunctionDescriptor.of(Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glGetUniformLocationARB$MH = RuntimeHelper.downcallHandle(
+        "glGetUniformLocationARB",
+        constants$508.glGetUniformLocationARB$FUNC
     );
 }
 

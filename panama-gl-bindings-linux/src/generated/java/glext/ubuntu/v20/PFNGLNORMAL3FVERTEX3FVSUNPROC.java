@@ -11,13 +11,13 @@ public interface PFNGLNORMAL3FVERTEX3FVSUNPROC {
 
     void apply(java.lang.foreign.MemoryAddress n, java.lang.foreign.MemoryAddress v);
     static MemorySegment allocate(PFNGLNORMAL3FVERTEX3FVSUNPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLNORMAL3FVERTEX3FVSUNPROC.class, fi, constants$917.PFNGLNORMAL3FVERTEX3FVSUNPROC$FUNC, session);
+        return RuntimeHelper.upcallStub(PFNGLNORMAL3FVERTEX3FVSUNPROC.class, fi, constants$1328.PFNGLNORMAL3FVERTEX3FVSUNPROC$FUNC, session);
     }
     static PFNGLNORMAL3FVERTEX3FVSUNPROC ofAddress(MemoryAddress addr, MemorySession session) {
         MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
         return (java.lang.foreign.MemoryAddress _n, java.lang.foreign.MemoryAddress _v) -> {
             try {
-                constants$917.PFNGLNORMAL3FVERTEX3FVSUNPROC$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)_n, (java.lang.foreign.Addressable)_v);
+                constants$1328.PFNGLNORMAL3FVERTEX3FVSUNPROC$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)_n, (java.lang.foreign.Addressable)_v);
             } catch (Throwable ex$) {
                 throw new AssertionError("should not reach here", ex$);
             }

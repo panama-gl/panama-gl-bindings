@@ -9,29 +9,35 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$301 {
 
-    static final FunctionDescriptor PFNGLCREATEPROGRAMPIPELINESPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLPROGRAMUNIFORMMATRIX2X3FVPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_CHAR$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLCREATEPROGRAMPIPELINESPROC$MH = RuntimeHelper.downcallHandle(
-        constants$301.PFNGLCREATEPROGRAMPIPELINESPROC$FUNC
+    static final MethodHandle PFNGLPROGRAMUNIFORMMATRIX2X3FVPROC$MH = RuntimeHelper.downcallHandle(
+        constants$301.PFNGLPROGRAMUNIFORMMATRIX2X3FVPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLCREATEQUERIESPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLPROGRAMUNIFORMMATRIX3X2FVPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
+        Constants$root.C_INT$LAYOUT,
+        Constants$root.C_CHAR$LAYOUT,
         Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLCREATEQUERIESPROC$MH = RuntimeHelper.downcallHandle(
-        constants$301.PFNGLCREATEQUERIESPROC$FUNC
+    static final MethodHandle PFNGLPROGRAMUNIFORMMATRIX3X2FVPROC$MH = RuntimeHelper.downcallHandle(
+        constants$301.PFNGLPROGRAMUNIFORMMATRIX3X2FVPROC$FUNC
     );
-    static final FunctionDescriptor PFNGLGETQUERYBUFFEROBJECTI64VPROC$FUNC = FunctionDescriptor.ofVoid(
+    static final FunctionDescriptor PFNGLPROGRAMUNIFORMMATRIX2X4FVPROC$FUNC = FunctionDescriptor.ofVoid(
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
         Constants$root.C_INT$LAYOUT,
-        Constants$root.C_LONG_LONG$LAYOUT
+        Constants$root.C_CHAR$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
     );
-    static final MethodHandle PFNGLGETQUERYBUFFEROBJECTI64VPROC$MH = RuntimeHelper.downcallHandle(
-        constants$301.PFNGLGETQUERYBUFFEROBJECTI64VPROC$FUNC
+    static final MethodHandle PFNGLPROGRAMUNIFORMMATRIX2X4FVPROC$MH = RuntimeHelper.downcallHandle(
+        constants$301.PFNGLPROGRAMUNIFORMMATRIX2X4FVPROC$FUNC
     );
 }
 
