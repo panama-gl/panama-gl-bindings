@@ -15,7 +15,7 @@ $JEXTRACT \
   -I /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/ \
   -lOpenGL.framework \
   -lGLUT.framework \
-  --target-package glext.macos.v10_15_7 \
+  --target-package glext.macos.x86 \
   --output ../../panama-gl-bindings-macos/src/generated/java/ \
   --source \
   --header-class-name glext_h \
