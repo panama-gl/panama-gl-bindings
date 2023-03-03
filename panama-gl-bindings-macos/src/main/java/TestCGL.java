@@ -1,5 +1,5 @@
 import java.util.Arrays;
-import cgl.macos.v10_15_7.cgl_h;
+import cgl.macos.x86.cgl_h;
 import java.lang.foreign.MemorySession;
 import java.lang.foreign.MemorySegment;
 import java.lang.foreign.SegmentAllocator;
