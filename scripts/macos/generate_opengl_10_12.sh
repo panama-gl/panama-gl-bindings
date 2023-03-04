@@ -15,7 +15,7 @@ $JEXTRACT \
   -I /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/ \
   -lOpenGL.framework \
   -lGLUT.framework \
-  --target-package opengl.macos.x86 \
+  --target-package opengl.macos.v1012 \
   --output ../../panama-gl-bindings-macos/src/generated/java/ \
   --source \
   --header-class-name glut_h \
