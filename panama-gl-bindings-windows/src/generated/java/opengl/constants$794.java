@@ -9,12 +9,42 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$794 {
 
-    static final MemorySegment SMB_CCF_APP_INSTANCE_EA_NAME$SEGMENT = RuntimeHelper.CONSTANT_ALLOCATOR.allocateUtf8String("ClusteredApplicationInstance");
-    static final MemorySegment IMAGE_ARCHIVE_START$SEGMENT = RuntimeHelper.CONSTANT_ALLOCATOR.allocateUtf8String("!<arch>\n");
-    static final MemorySegment IMAGE_ARCHIVE_END$SEGMENT = RuntimeHelper.CONSTANT_ALLOCATOR.allocateUtf8String("`\n");
-    static final MemorySegment IMAGE_ARCHIVE_PAD$SEGMENT = RuntimeHelper.CONSTANT_ALLOCATOR.allocateUtf8String("\n");
-    static final MemorySegment IMAGE_ARCHIVE_LINKER_MEMBER$SEGMENT = RuntimeHelper.CONSTANT_ALLOCATOR.allocateUtf8String("/               ");
-    static final MemorySegment IMAGE_ARCHIVE_LONGNAMES_MEMBER$SEGMENT = RuntimeHelper.CONSTANT_ALLOCATOR.allocateUtf8String("//              ");
+    static final FunctionDescriptor glutMultiMotionFunc$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glutMultiMotionFunc$MH = RuntimeHelper.downcallHandle(
+        "glutMultiMotionFunc",
+        constants$794.glutMultiMotionFunc$FUNC
+    );
+    static final FunctionDescriptor glutMultiPassiveFunc$callback$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_LONG$LAYOUT,
+        Constants$root.C_LONG$LAYOUT,
+        Constants$root.C_LONG$LAYOUT
+    );
+    static final MethodHandle glutMultiPassiveFunc$callback$MH = RuntimeHelper.downcallHandle(
+        constants$794.glutMultiPassiveFunc$callback$FUNC
+    );
+    static final FunctionDescriptor glutMultiPassiveFunc$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glutMultiPassiveFunc$MH = RuntimeHelper.downcallHandle(
+        "glutMultiPassiveFunc",
+        constants$794.glutMultiPassiveFunc$FUNC
+    );
+    static final FunctionDescriptor glutJoystickGetNumAxes$FUNC = FunctionDescriptor.of(Constants$root.C_LONG$LAYOUT,
+        Constants$root.C_LONG$LAYOUT
+    );
+    static final MethodHandle glutJoystickGetNumAxes$MH = RuntimeHelper.downcallHandle(
+        "glutJoystickGetNumAxes",
+        constants$794.glutJoystickGetNumAxes$FUNC
+    );
+    static final FunctionDescriptor glutJoystickGetNumButtons$FUNC = FunctionDescriptor.of(Constants$root.C_LONG$LAYOUT,
+        Constants$root.C_LONG$LAYOUT
+    );
+    static final MethodHandle glutJoystickGetNumButtons$MH = RuntimeHelper.downcallHandle(
+        "glutJoystickGetNumButtons",
+        constants$794.glutJoystickGetNumButtons$FUNC
+    );
 }
 
 

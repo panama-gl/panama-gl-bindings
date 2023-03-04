@@ -9,12 +9,45 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$816 {
 
-    static final MemoryAddress GLUT_STROKE_ROMAN$ADDR = MemoryAddress.ofLong(0L);
-    static final MemoryAddress GLUT_STROKE_MONO_ROMAN$ADDR = MemoryAddress.ofLong(1L);
-    static final MemoryAddress GLUT_BITMAP_9_BY_15$ADDR = MemoryAddress.ofLong(2L);
-    static final MemoryAddress GLUT_BITMAP_8_BY_13$ADDR = MemoryAddress.ofLong(3L);
-    static final MemoryAddress GLUT_BITMAP_TIMES_ROMAN_10$ADDR = MemoryAddress.ofLong(4L);
-    static final MemoryAddress GLUT_BITMAP_TIMES_ROMAN_24$ADDR = MemoryAddress.ofLong(5L);
+    static final FunctionDescriptor glutMultiMotionFuncUcall$callback$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_LONG$LAYOUT,
+        Constants$root.C_LONG$LAYOUT,
+        Constants$root.C_LONG$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glutMultiMotionFuncUcall$callback$MH = RuntimeHelper.downcallHandle(
+        constants$816.glutMultiMotionFuncUcall$callback$FUNC
+    );
+    static final FunctionDescriptor glutMultiMotionFuncUcall$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glutMultiMotionFuncUcall$MH = RuntimeHelper.downcallHandle(
+        "glutMultiMotionFuncUcall",
+        constants$816.glutMultiMotionFuncUcall$FUNC
+    );
+    static final FunctionDescriptor glutMultiPassiveFuncUcall$callback$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_LONG$LAYOUT,
+        Constants$root.C_LONG$LAYOUT,
+        Constants$root.C_LONG$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glutMultiPassiveFuncUcall$callback$MH = RuntimeHelper.downcallHandle(
+        constants$816.glutMultiPassiveFuncUcall$callback$FUNC
+    );
+    static final FunctionDescriptor glutMultiPassiveFuncUcall$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glutMultiPassiveFuncUcall$MH = RuntimeHelper.downcallHandle(
+        "glutMultiPassiveFuncUcall",
+        constants$816.glutMultiPassiveFuncUcall$FUNC
+    );
+    static final FunctionDescriptor glutInitErrorFuncUcall$callback$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
 }
 
 

@@ -9,12 +9,56 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$791 {
 
-    static final MemorySegment SE_MANAGE_VOLUME_NAME$SEGMENT = RuntimeHelper.CONSTANT_ALLOCATOR.allocateUtf8String("SeManageVolumePrivilege");
-    static final MemorySegment SE_IMPERSONATE_NAME$SEGMENT = RuntimeHelper.CONSTANT_ALLOCATOR.allocateUtf8String("SeImpersonatePrivilege");
-    static final MemorySegment SE_CREATE_GLOBAL_NAME$SEGMENT = RuntimeHelper.CONSTANT_ALLOCATOR.allocateUtf8String("SeCreateGlobalPrivilege");
-    static final MemorySegment SE_TRUSTED_CREDMAN_ACCESS_NAME$SEGMENT = RuntimeHelper.CONSTANT_ALLOCATOR.allocateUtf8String("SeTrustedCredManAccessPrivilege");
-    static final MemorySegment SE_RELABEL_NAME$SEGMENT = RuntimeHelper.CONSTANT_ALLOCATOR.allocateUtf8String("SeRelabelPrivilege");
-    static final MemorySegment SE_INC_WORKING_SET_NAME$SEGMENT = RuntimeHelper.CONSTANT_ALLOCATOR.allocateUtf8String("SeIncreaseWorkingSetPrivilege");
+    static final FunctionDescriptor glutSolidSierpinskiSponge$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_LONG$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_DOUBLE$LAYOUT
+    );
+    static final MethodHandle glutSolidSierpinskiSponge$MH = RuntimeHelper.downcallHandle(
+        "glutSolidSierpinskiSponge",
+        constants$791.glutSolidSierpinskiSponge$FUNC
+    );
+    static final FunctionDescriptor glutWireCylinder$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_DOUBLE$LAYOUT,
+        Constants$root.C_DOUBLE$LAYOUT,
+        Constants$root.C_LONG$LAYOUT,
+        Constants$root.C_LONG$LAYOUT
+    );
+    static final MethodHandle glutWireCylinder$MH = RuntimeHelper.downcallHandle(
+        "glutWireCylinder",
+        constants$791.glutWireCylinder$FUNC
+    );
+    static final FunctionDescriptor glutSolidCylinder$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_DOUBLE$LAYOUT,
+        Constants$root.C_DOUBLE$LAYOUT,
+        Constants$root.C_LONG$LAYOUT,
+        Constants$root.C_LONG$LAYOUT
+    );
+    static final MethodHandle glutSolidCylinder$MH = RuntimeHelper.downcallHandle(
+        "glutSolidCylinder",
+        constants$791.glutSolidCylinder$FUNC
+    );
+    static final FunctionDescriptor glutWireTeacup$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_DOUBLE$LAYOUT
+    );
+    static final MethodHandle glutWireTeacup$MH = RuntimeHelper.downcallHandle(
+        "glutWireTeacup",
+        constants$791.glutWireTeacup$FUNC
+    );
+    static final FunctionDescriptor glutSolidTeacup$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_DOUBLE$LAYOUT
+    );
+    static final MethodHandle glutSolidTeacup$MH = RuntimeHelper.downcallHandle(
+        "glutSolidTeacup",
+        constants$791.glutSolidTeacup$FUNC
+    );
+    static final FunctionDescriptor glutWireTeaspoon$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_DOUBLE$LAYOUT
+    );
+    static final MethodHandle glutWireTeaspoon$MH = RuntimeHelper.downcallHandle(
+        "glutWireTeaspoon",
+        constants$791.glutWireTeaspoon$FUNC
+    );
 }
 
 

@@ -9,12 +9,31 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$792 {
 
-    static final MemorySegment SE_TIME_ZONE_NAME$SEGMENT = RuntimeHelper.CONSTANT_ALLOCATOR.allocateUtf8String("SeTimeZonePrivilege");
-    static final MemorySegment SE_CREATE_SYMBOLIC_LINK_NAME$SEGMENT = RuntimeHelper.CONSTANT_ALLOCATOR.allocateUtf8String("SeCreateSymbolicLinkPrivilege");
-    static final MemorySegment SE_DELEGATE_SESSION_USER_IMPERSONATE_NAME$SEGMENT = RuntimeHelper.CONSTANT_ALLOCATOR.allocateUtf8String("SeDelegateSessionUserImpersonatePrivilege");
-    static final MemorySegment SE_ACTIVATE_AS_USER_CAPABILITY$SEGMENT = RuntimeHelper.CONSTANT_ALLOCATOR.allocateUtf8String("a");
-    static final MemorySegment SE_CONSTRAINED_IMPERSONATION_CAPABILITY$SEGMENT = RuntimeHelper.CONSTANT_ALLOCATOR.allocateUtf8String("c");
-    static final MemorySegment SE_SESSION_IMPERSONATION_CAPABILITY$SEGMENT = RuntimeHelper.CONSTANT_ALLOCATOR.allocateUtf8String("s");
+    static final FunctionDescriptor glutSolidTeaspoon$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_DOUBLE$LAYOUT
+    );
+    static final MethodHandle glutSolidTeaspoon$MH = RuntimeHelper.downcallHandle(
+        "glutSolidTeaspoon",
+        constants$792.glutSolidTeaspoon$FUNC
+    );
+    static final FunctionDescriptor GLUTproc$FUNC = FunctionDescriptor.ofVoid();
+    static final MethodHandle GLUTproc$MH = RuntimeHelper.downcallHandle(
+        constants$792.GLUTproc$FUNC
+    );
+    static final FunctionDescriptor glutGetProcAddress$FUNC = FunctionDescriptor.of(Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glutGetProcAddress$MH = RuntimeHelper.downcallHandle(
+        "glutGetProcAddress",
+        constants$792.glutGetProcAddress$FUNC
+    );
+    static final FunctionDescriptor glutMultiEntryFunc$callback$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_LONG$LAYOUT,
+        Constants$root.C_LONG$LAYOUT
+    );
+    static final MethodHandle glutMultiEntryFunc$callback$MH = RuntimeHelper.downcallHandle(
+        constants$792.glutMultiEntryFunc$callback$FUNC
+    );
 }
 
 

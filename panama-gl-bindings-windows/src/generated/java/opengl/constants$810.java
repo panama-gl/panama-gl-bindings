@@ -9,12 +9,43 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$810 {
 
-    static final MemoryAddress IDI_APPLICATION$ADDR = MemoryAddress.ofLong(32512L);
-    static final MemoryAddress IDI_HAND$ADDR = MemoryAddress.ofLong(32513L);
-    static final MemoryAddress IDI_QUESTION$ADDR = MemoryAddress.ofLong(32514L);
-    static final MemoryAddress IDI_EXCLAMATION$ADDR = MemoryAddress.ofLong(32515L);
-    static final MemoryAddress IDI_ASTERISK$ADDR = MemoryAddress.ofLong(32516L);
-    static final MemoryAddress IDI_WINLOGO$ADDR = MemoryAddress.ofLong(32517L);
+    static final FunctionDescriptor glutSpaceballButtonFuncUcall$callback$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_LONG$LAYOUT,
+        Constants$root.C_LONG$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glutSpaceballButtonFuncUcall$callback$MH = RuntimeHelper.downcallHandle(
+        constants$810.glutSpaceballButtonFuncUcall$callback$FUNC
+    );
+    static final FunctionDescriptor glutSpaceballButtonFuncUcall$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glutSpaceballButtonFuncUcall$MH = RuntimeHelper.downcallHandle(
+        "glutSpaceballButtonFuncUcall",
+        constants$810.glutSpaceballButtonFuncUcall$FUNC
+    );
+    static final FunctionDescriptor glutButtonBoxFuncUcall$callback$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_LONG$LAYOUT,
+        Constants$root.C_LONG$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glutButtonBoxFuncUcall$callback$MH = RuntimeHelper.downcallHandle(
+        constants$810.glutButtonBoxFuncUcall$callback$FUNC
+    );
+    static final FunctionDescriptor glutButtonBoxFuncUcall$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glutButtonBoxFuncUcall$MH = RuntimeHelper.downcallHandle(
+        "glutButtonBoxFuncUcall",
+        constants$810.glutButtonBoxFuncUcall$FUNC
+    );
+    static final FunctionDescriptor glutDialsFuncUcall$callback$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_LONG$LAYOUT,
+        Constants$root.C_LONG$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
 }
 
 

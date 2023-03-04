@@ -9,12 +9,45 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$809 {
 
-    static final MemoryAddress IDC_NO$ADDR = MemoryAddress.ofLong(32648L);
-    static final MemoryAddress IDC_HAND$ADDR = MemoryAddress.ofLong(32649L);
-    static final MemoryAddress IDC_APPSTARTING$ADDR = MemoryAddress.ofLong(32650L);
-    static final MemoryAddress IDC_HELP$ADDR = MemoryAddress.ofLong(32651L);
-    static final MemoryAddress IDC_PIN$ADDR = MemoryAddress.ofLong(32671L);
-    static final MemoryAddress IDC_PERSON$ADDR = MemoryAddress.ofLong(32672L);
+    static final FunctionDescriptor glutSpaceballMotionFuncUcall$callback$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_LONG$LAYOUT,
+        Constants$root.C_LONG$LAYOUT,
+        Constants$root.C_LONG$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glutSpaceballMotionFuncUcall$callback$MH = RuntimeHelper.downcallHandle(
+        constants$809.glutSpaceballMotionFuncUcall$callback$FUNC
+    );
+    static final FunctionDescriptor glutSpaceballMotionFuncUcall$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glutSpaceballMotionFuncUcall$MH = RuntimeHelper.downcallHandle(
+        "glutSpaceballMotionFuncUcall",
+        constants$809.glutSpaceballMotionFuncUcall$FUNC
+    );
+    static final FunctionDescriptor glutSpaceballRotateFuncUcall$callback$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_LONG$LAYOUT,
+        Constants$root.C_LONG$LAYOUT,
+        Constants$root.C_LONG$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glutSpaceballRotateFuncUcall$callback$MH = RuntimeHelper.downcallHandle(
+        constants$809.glutSpaceballRotateFuncUcall$callback$FUNC
+    );
+    static final FunctionDescriptor glutSpaceballRotateFuncUcall$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glutSpaceballRotateFuncUcall$MH = RuntimeHelper.downcallHandle(
+        "glutSpaceballRotateFuncUcall",
+        constants$809.glutSpaceballRotateFuncUcall$FUNC
+    );
+    static final FunctionDescriptor glutSpaceballButtonFuncUcall$callback$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_LONG$LAYOUT,
+        Constants$root.C_LONG$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
 }
 
 

@@ -9,12 +9,32 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$787 {
 
-    static final MemorySegment SE_INCREASE_QUOTA_NAME$SEGMENT = RuntimeHelper.CONSTANT_ALLOCATOR.allocateUtf8String("SeIncreaseQuotaPrivilege");
-    static final MemorySegment SE_UNSOLICITED_INPUT_NAME$SEGMENT = RuntimeHelper.CONSTANT_ALLOCATOR.allocateUtf8String("SeUnsolicitedInputPrivilege");
-    static final MemorySegment SE_MACHINE_ACCOUNT_NAME$SEGMENT = RuntimeHelper.CONSTANT_ALLOCATOR.allocateUtf8String("SeMachineAccountPrivilege");
-    static final MemorySegment SE_TCB_NAME$SEGMENT = RuntimeHelper.CONSTANT_ALLOCATOR.allocateUtf8String("SeTcbPrivilege");
-    static final MemorySegment SE_SECURITY_NAME$SEGMENT = RuntimeHelper.CONSTANT_ALLOCATOR.allocateUtf8String("SeSecurityPrivilege");
-    static final MemorySegment SE_TAKE_OWNERSHIP_NAME$SEGMENT = RuntimeHelper.CONSTANT_ALLOCATOR.allocateUtf8String("SeTakeOwnershipPrivilege");
+    static final FunctionDescriptor glutPositionFunc$callback$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_LONG$LAYOUT,
+        Constants$root.C_LONG$LAYOUT
+    );
+    static final MethodHandle glutPositionFunc$callback$MH = RuntimeHelper.downcallHandle(
+        constants$787.glutPositionFunc$callback$FUNC
+    );
+    static final FunctionDescriptor glutPositionFunc$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glutPositionFunc$MH = RuntimeHelper.downcallHandle(
+        "glutPositionFunc",
+        constants$787.glutPositionFunc$FUNC
+    );
+    static final FunctionDescriptor glutCloseFunc$callback$FUNC = FunctionDescriptor.ofVoid();
+    static final MethodHandle glutCloseFunc$callback$MH = RuntimeHelper.downcallHandle(
+        constants$787.glutCloseFunc$callback$FUNC
+    );
+    static final FunctionDescriptor glutCloseFunc$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glutCloseFunc$MH = RuntimeHelper.downcallHandle(
+        "glutCloseFunc",
+        constants$787.glutCloseFunc$FUNC
+    );
+    static final FunctionDescriptor glutWMCloseFunc$callback$FUNC = FunctionDescriptor.ofVoid();
 }
 
 

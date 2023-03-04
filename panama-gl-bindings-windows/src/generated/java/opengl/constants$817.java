@@ -9,9 +9,41 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$817 {
 
-    static final MemoryAddress GLUT_BITMAP_HELVETICA_10$ADDR = MemoryAddress.ofLong(6L);
-    static final MemoryAddress GLUT_BITMAP_HELVETICA_12$ADDR = MemoryAddress.ofLong(7L);
-    static final MemoryAddress GLUT_BITMAP_HELVETICA_18$ADDR = MemoryAddress.ofLong(8L);
+    static final FunctionDescriptor glutInitErrorFuncUcall$callback$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glutInitErrorFuncUcall$callback$MH = RuntimeHelper.downcallHandle(
+        constants$817.glutInitErrorFuncUcall$callback$FUNC
+    );
+    static final FunctionDescriptor glutInitErrorFuncUcall$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glutInitErrorFuncUcall$MH = RuntimeHelper.downcallHandle(
+        "glutInitErrorFuncUcall",
+        constants$817.glutInitErrorFuncUcall$FUNC
+    );
+    static final FunctionDescriptor glutInitWarningFuncUcall$callback$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glutInitWarningFuncUcall$callback$MH = RuntimeHelper.downcallHandle(
+        constants$817.glutInitWarningFuncUcall$callback$FUNC
+    );
+    static final FunctionDescriptor glutInitWarningFuncUcall$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glutInitWarningFuncUcall$MH = RuntimeHelper.downcallHandle(
+        "glutInitWarningFuncUcall",
+        constants$817.glutInitWarningFuncUcall$FUNC
+    );
+    static final FunctionDescriptor glutInitContextFuncUcall$callback$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_POINTER$LAYOUT
+    );
 }
 
 

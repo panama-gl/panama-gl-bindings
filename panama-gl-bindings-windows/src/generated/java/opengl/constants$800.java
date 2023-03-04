@@ -9,12 +9,41 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$800 {
 
-    static final MemoryAddress RT_STRING$ADDR = MemoryAddress.ofLong(6L);
-    static final MemoryAddress RT_FONTDIR$ADDR = MemoryAddress.ofLong(7L);
-    static final MemoryAddress RT_FONT$ADDR = MemoryAddress.ofLong(8L);
-    static final MemoryAddress RT_ACCELERATOR$ADDR = MemoryAddress.ofLong(9L);
-    static final MemoryAddress RT_RCDATA$ADDR = MemoryAddress.ofLong(10L);
-    static final MemoryAddress RT_MESSAGETABLE$ADDR = MemoryAddress.ofLong(11L);
+    static final FunctionDescriptor glutCreateMenuUcall$callback$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_LONG$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glutCreateMenuUcall$callback$MH = RuntimeHelper.downcallHandle(
+        constants$800.glutCreateMenuUcall$callback$FUNC
+    );
+    static final FunctionDescriptor glutCreateMenuUcall$FUNC = FunctionDescriptor.of(Constants$root.C_LONG$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glutCreateMenuUcall$MH = RuntimeHelper.downcallHandle(
+        "glutCreateMenuUcall",
+        constants$800.glutCreateMenuUcall$FUNC
+    );
+    static final FunctionDescriptor glutTimerFuncUcall$callback$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_LONG$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glutTimerFuncUcall$callback$MH = RuntimeHelper.downcallHandle(
+        constants$800.glutTimerFuncUcall$callback$FUNC
+    );
+    static final FunctionDescriptor glutTimerFuncUcall$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_LONG$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_LONG$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glutTimerFuncUcall$MH = RuntimeHelper.downcallHandle(
+        "glutTimerFuncUcall",
+        constants$800.glutTimerFuncUcall$FUNC
+    );
+    static final FunctionDescriptor glutIdleFuncUcall$callback$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_POINTER$LAYOUT
+    );
 }
 
 

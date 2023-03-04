@@ -9,12 +9,54 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$796 {
 
-    static final MemorySegment TRANSACTIONMANAGER_OBJECT_PATH$SEGMENT = RuntimeHelper.CONSTANT_ALLOCATOR.allocateUtf8String("\\");
-    static final MemorySegment TRANSACTION_OBJECT_PATH$SEGMENT = RuntimeHelper.CONSTANT_ALLOCATOR.allocateUtf8String("\\");
-    static final MemorySegment ENLISTMENT_OBJECT_PATH$SEGMENT = RuntimeHelper.CONSTANT_ALLOCATOR.allocateUtf8String("\\");
-    static final MemorySegment RESOURCE_MANAGER_OBJECT_PATH$SEGMENT = RuntimeHelper.CONSTANT_ALLOCATOR.allocateUtf8String("\\");
-    static final MemoryAddress DPI_AWARENESS_CONTEXT_UNAWARE$ADDR = MemoryAddress.ofLong(-1L);
-    static final MemoryAddress DPI_AWARENESS_CONTEXT_SYSTEM_AWARE$ADDR = MemoryAddress.ofLong(-2L);
+    static final FunctionDescriptor glutJoystickSetMaxRange$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_LONG$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glutJoystickSetMaxRange$MH = RuntimeHelper.downcallHandle(
+        "glutJoystickSetMaxRange",
+        constants$796.glutJoystickSetMaxRange$FUNC
+    );
+    static final FunctionDescriptor glutJoystickSetCenter$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_LONG$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glutJoystickSetCenter$MH = RuntimeHelper.downcallHandle(
+        "glutJoystickSetCenter",
+        constants$796.glutJoystickSetCenter$FUNC
+    );
+    static final FunctionDescriptor glutJoystickGetMinRange$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_LONG$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glutJoystickGetMinRange$MH = RuntimeHelper.downcallHandle(
+        "glutJoystickGetMinRange",
+        constants$796.glutJoystickGetMinRange$FUNC
+    );
+    static final FunctionDescriptor glutJoystickGetMaxRange$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_LONG$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glutJoystickGetMaxRange$MH = RuntimeHelper.downcallHandle(
+        "glutJoystickGetMaxRange",
+        constants$796.glutJoystickGetMaxRange$FUNC
+    );
+    static final FunctionDescriptor glutJoystickGetCenter$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_LONG$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glutJoystickGetCenter$MH = RuntimeHelper.downcallHandle(
+        "glutJoystickGetCenter",
+        constants$796.glutJoystickGetCenter$FUNC
+    );
+    static final FunctionDescriptor glutInitContextVersion$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_LONG$LAYOUT,
+        Constants$root.C_LONG$LAYOUT
+    );
+    static final MethodHandle glutInitContextVersion$MH = RuntimeHelper.downcallHandle(
+        "glutInitContextVersion",
+        constants$796.glutInitContextVersion$FUNC
+    );
 }
 
 

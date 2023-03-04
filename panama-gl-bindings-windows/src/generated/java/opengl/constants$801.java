@@ -9,12 +9,43 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$801 {
 
-    static final MemoryAddress RT_GROUP_CURSOR$ADDR = MemoryAddress.ofLong(12L);
-    static final MemoryAddress RT_GROUP_ICON$ADDR = MemoryAddress.ofLong(14L);
-    static final MemoryAddress RT_VERSION$ADDR = MemoryAddress.ofLong(16L);
-    static final MemoryAddress RT_DLGINCLUDE$ADDR = MemoryAddress.ofLong(17L);
-    static final MemoryAddress RT_PLUGPLAY$ADDR = MemoryAddress.ofLong(19L);
-    static final MemoryAddress RT_VXD$ADDR = MemoryAddress.ofLong(20L);
+    static final FunctionDescriptor glutIdleFuncUcall$callback$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glutIdleFuncUcall$callback$MH = RuntimeHelper.downcallHandle(
+        constants$801.glutIdleFuncUcall$callback$FUNC
+    );
+    static final FunctionDescriptor glutIdleFuncUcall$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glutIdleFuncUcall$MH = RuntimeHelper.downcallHandle(
+        "glutIdleFuncUcall",
+        constants$801.glutIdleFuncUcall$FUNC
+    );
+    static final FunctionDescriptor glutKeyboardFuncUcall$callback$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_CHAR$LAYOUT,
+        Constants$root.C_LONG$LAYOUT,
+        Constants$root.C_LONG$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glutKeyboardFuncUcall$callback$MH = RuntimeHelper.downcallHandle(
+        constants$801.glutKeyboardFuncUcall$callback$FUNC
+    );
+    static final FunctionDescriptor glutKeyboardFuncUcall$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glutKeyboardFuncUcall$MH = RuntimeHelper.downcallHandle(
+        "glutKeyboardFuncUcall",
+        constants$801.glutKeyboardFuncUcall$FUNC
+    );
+    static final FunctionDescriptor glutSpecialFuncUcall$callback$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_LONG$LAYOUT,
+        Constants$root.C_LONG$LAYOUT,
+        Constants$root.C_LONG$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
 }
 
 

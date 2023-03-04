@@ -22,10 +22,26 @@ class constants$785 {
         "glutCreateMenu_ATEXIT_HACK",
         constants$785.glutCreateMenu_ATEXIT_HACK$FUNC
     );
-    static final MemoryAddress NULL$ADDR = MemoryAddress.ofLong(0L);
-    static final MemorySegment __FILEW__$SEGMENT = RuntimeHelper.CONSTANT_ALLOCATOR.allocateUtf8String("C");
-    static final MemorySegment OUT_OF_PROCESS_FUNCTION_TABLE_CALLBACK_EXPORT_NAME$SEGMENT = RuntimeHelper.CONSTANT_ALLOCATOR.allocateUtf8String("OutOfProcessFunctionTableCallback");
-    static final MemorySegment ACCESS_DS_SOURCE_A$SEGMENT = RuntimeHelper.CONSTANT_ALLOCATOR.allocateUtf8String("DS");
+    static final FunctionDescriptor glutMainLoopEvent$FUNC = FunctionDescriptor.ofVoid();
+    static final MethodHandle glutMainLoopEvent$MH = RuntimeHelper.downcallHandle(
+        "glutMainLoopEvent",
+        constants$785.glutMainLoopEvent$FUNC
+    );
+    static final FunctionDescriptor glutLeaveMainLoop$FUNC = FunctionDescriptor.ofVoid();
+    static final MethodHandle glutLeaveMainLoop$MH = RuntimeHelper.downcallHandle(
+        "glutLeaveMainLoop",
+        constants$785.glutLeaveMainLoop$FUNC
+    );
+    static final FunctionDescriptor glutExit$FUNC = FunctionDescriptor.ofVoid();
+    static final MethodHandle glutExit$MH = RuntimeHelper.downcallHandle(
+        "glutExit",
+        constants$785.glutExit$FUNC
+    );
+    static final FunctionDescriptor glutFullScreenToggle$FUNC = FunctionDescriptor.ofVoid();
+    static final MethodHandle glutFullScreenToggle$MH = RuntimeHelper.downcallHandle(
+        "glutFullScreenToggle",
+        constants$785.glutFullScreenToggle$FUNC
+    );
 }
 
 

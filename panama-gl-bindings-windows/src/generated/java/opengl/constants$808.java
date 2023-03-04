@@ -9,12 +9,41 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$808 {
 
-    static final MemoryAddress IDC_ICON$ADDR = MemoryAddress.ofLong(32641L);
-    static final MemoryAddress IDC_SIZENWSE$ADDR = MemoryAddress.ofLong(32642L);
-    static final MemoryAddress IDC_SIZENESW$ADDR = MemoryAddress.ofLong(32643L);
-    static final MemoryAddress IDC_SIZEWE$ADDR = MemoryAddress.ofLong(32644L);
-    static final MemoryAddress IDC_SIZENS$ADDR = MemoryAddress.ofLong(32645L);
-    static final MemoryAddress IDC_SIZEALL$ADDR = MemoryAddress.ofLong(32646L);
+    static final FunctionDescriptor glutOverlayDisplayFuncUcall$callback$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glutOverlayDisplayFuncUcall$callback$MH = RuntimeHelper.downcallHandle(
+        constants$808.glutOverlayDisplayFuncUcall$callback$FUNC
+    );
+    static final FunctionDescriptor glutOverlayDisplayFuncUcall$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glutOverlayDisplayFuncUcall$MH = RuntimeHelper.downcallHandle(
+        "glutOverlayDisplayFuncUcall",
+        constants$808.glutOverlayDisplayFuncUcall$FUNC
+    );
+    static final FunctionDescriptor glutWindowStatusFuncUcall$callback$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_LONG$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glutWindowStatusFuncUcall$callback$MH = RuntimeHelper.downcallHandle(
+        constants$808.glutWindowStatusFuncUcall$callback$FUNC
+    );
+    static final FunctionDescriptor glutWindowStatusFuncUcall$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glutWindowStatusFuncUcall$MH = RuntimeHelper.downcallHandle(
+        "glutWindowStatusFuncUcall",
+        constants$808.glutWindowStatusFuncUcall$FUNC
+    );
+    static final FunctionDescriptor glutSpaceballMotionFuncUcall$callback$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_LONG$LAYOUT,
+        Constants$root.C_LONG$LAYOUT,
+        Constants$root.C_LONG$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
 }
 
 

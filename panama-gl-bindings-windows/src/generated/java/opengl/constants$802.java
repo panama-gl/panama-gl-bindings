@@ -9,12 +9,43 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$802 {
 
-    static final MemoryAddress RT_ANICURSOR$ADDR = MemoryAddress.ofLong(21L);
-    static final MemoryAddress RT_ANIICON$ADDR = MemoryAddress.ofLong(22L);
-    static final MemoryAddress RT_HTML$ADDR = MemoryAddress.ofLong(23L);
-    static final MemoryAddress RT_MANIFEST$ADDR = MemoryAddress.ofLong(24L);
-    static final MemoryAddress CREATEPROCESS_MANIFEST_RESOURCE_ID$ADDR = MemoryAddress.ofLong(1L);
-    static final MemoryAddress ISOLATIONAWARE_MANIFEST_RESOURCE_ID$ADDR = MemoryAddress.ofLong(2L);
+    static final FunctionDescriptor glutSpecialFuncUcall$callback$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_LONG$LAYOUT,
+        Constants$root.C_LONG$LAYOUT,
+        Constants$root.C_LONG$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glutSpecialFuncUcall$callback$MH = RuntimeHelper.downcallHandle(
+        constants$802.glutSpecialFuncUcall$callback$FUNC
+    );
+    static final FunctionDescriptor glutSpecialFuncUcall$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glutSpecialFuncUcall$MH = RuntimeHelper.downcallHandle(
+        "glutSpecialFuncUcall",
+        constants$802.glutSpecialFuncUcall$FUNC
+    );
+    static final FunctionDescriptor glutReshapeFuncUcall$callback$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_LONG$LAYOUT,
+        Constants$root.C_LONG$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glutReshapeFuncUcall$callback$MH = RuntimeHelper.downcallHandle(
+        constants$802.glutReshapeFuncUcall$callback$FUNC
+    );
+    static final FunctionDescriptor glutReshapeFuncUcall$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glutReshapeFuncUcall$MH = RuntimeHelper.downcallHandle(
+        "glutReshapeFuncUcall",
+        constants$802.glutReshapeFuncUcall$FUNC
+    );
+    static final FunctionDescriptor glutVisibilityFuncUcall$callback$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_LONG$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
 }
 
 

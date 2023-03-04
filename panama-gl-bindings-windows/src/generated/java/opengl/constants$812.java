@@ -9,12 +9,47 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$812 {
 
-    static final MemoryAddress GEO_NAME_USER_DEFAULT$ADDR = MemoryAddress.ofLong(0L);
-    static final MemoryAddress LOCALE_NAME_USER_DEFAULT$ADDR = MemoryAddress.ofLong(0L);
-    static final MemorySegment LOCALE_NAME_INVARIANT$SEGMENT = RuntimeHelper.CONSTANT_ALLOCATOR.allocateUtf8String("");
-    static final MemorySegment LOCALE_NAME_SYSTEM_DEFAULT$SEGMENT = RuntimeHelper.CONSTANT_ALLOCATOR.allocateUtf8String("!");
-    static final MemoryAddress VS_FILE_INFO$ADDR = MemoryAddress.ofLong(16L);
-    static final MemoryAddress HKEY_CLASSES_ROOT$ADDR = MemoryAddress.ofLong(-2147483648L);
+    static final FunctionDescriptor glutTabletButtonFuncUcall$callback$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_LONG$LAYOUT,
+        Constants$root.C_LONG$LAYOUT,
+        Constants$root.C_LONG$LAYOUT,
+        Constants$root.C_LONG$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glutTabletButtonFuncUcall$callback$MH = RuntimeHelper.downcallHandle(
+        constants$812.glutTabletButtonFuncUcall$callback$FUNC
+    );
+    static final FunctionDescriptor glutTabletButtonFuncUcall$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glutTabletButtonFuncUcall$MH = RuntimeHelper.downcallHandle(
+        "glutTabletButtonFuncUcall",
+        constants$812.glutTabletButtonFuncUcall$FUNC
+    );
+    static final FunctionDescriptor glutMouseWheelFuncUcall$callback$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_LONG$LAYOUT,
+        Constants$root.C_LONG$LAYOUT,
+        Constants$root.C_LONG$LAYOUT,
+        Constants$root.C_LONG$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glutMouseWheelFuncUcall$callback$MH = RuntimeHelper.downcallHandle(
+        constants$812.glutMouseWheelFuncUcall$callback$FUNC
+    );
+    static final FunctionDescriptor glutMouseWheelFuncUcall$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glutMouseWheelFuncUcall$MH = RuntimeHelper.downcallHandle(
+        "glutMouseWheelFuncUcall",
+        constants$812.glutMouseWheelFuncUcall$FUNC
+    );
+    static final FunctionDescriptor glutPositionFuncUcall$callback$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_LONG$LAYOUT,
+        Constants$root.C_LONG$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
 }
 
 

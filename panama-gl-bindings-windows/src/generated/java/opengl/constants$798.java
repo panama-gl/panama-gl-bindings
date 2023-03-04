@@ -9,12 +9,42 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$798 {
 
-    static final MemorySegment GET_SYSTEM_WOW64_DIRECTORY_NAME_A_T$SEGMENT = RuntimeHelper.CONSTANT_ALLOCATOR.allocateUtf8String("GetSystemWow64DirectoryA");
-    static final MemorySegment GET_SYSTEM_WOW64_DIRECTORY_NAME_W_A$SEGMENT = RuntimeHelper.CONSTANT_ALLOCATOR.allocateUtf8String("GetSystemWow64DirectoryW");
-    static final MemorySegment GET_SYSTEM_WOW64_DIRECTORY_NAME_W_W$SEGMENT = RuntimeHelper.CONSTANT_ALLOCATOR.allocateUtf8String("G");
-    static final MemorySegment GET_SYSTEM_WOW64_DIRECTORY_NAME_W_T$SEGMENT = RuntimeHelper.CONSTANT_ALLOCATOR.allocateUtf8String("GetSystemWow64DirectoryW");
-    static final MemorySegment GET_SYSTEM_WOW64_DIRECTORY_NAME_T_A$SEGMENT = RuntimeHelper.CONSTANT_ALLOCATOR.allocateUtf8String("GetSystemWow64DirectoryA");
-    static final MemorySegment GET_SYSTEM_WOW64_DIRECTORY_NAME_T_W$SEGMENT = RuntimeHelper.CONSTANT_ALLOCATOR.allocateUtf8String("G");
+    static final FunctionDescriptor glutInitWarningFunc$callback$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glutInitWarningFunc$callback$MH = RuntimeHelper.downcallHandle(
+        constants$798.glutInitWarningFunc$callback$FUNC
+    );
+    static final FunctionDescriptor glutInitWarningFunc$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glutInitWarningFunc$MH = RuntimeHelper.downcallHandle(
+        "glutInitWarningFunc",
+        constants$798.glutInitWarningFunc$FUNC
+    );
+    static final FunctionDescriptor glutSetVertexAttribCoord3$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_LONG$LAYOUT
+    );
+    static final MethodHandle glutSetVertexAttribCoord3$MH = RuntimeHelper.downcallHandle(
+        "glutSetVertexAttribCoord3",
+        constants$798.glutSetVertexAttribCoord3$FUNC
+    );
+    static final FunctionDescriptor glutSetVertexAttribNormal$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_LONG$LAYOUT
+    );
+    static final MethodHandle glutSetVertexAttribNormal$MH = RuntimeHelper.downcallHandle(
+        "glutSetVertexAttribNormal",
+        constants$798.glutSetVertexAttribNormal$FUNC
+    );
+    static final FunctionDescriptor glutSetVertexAttribTexCoord2$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_LONG$LAYOUT
+    );
+    static final MethodHandle glutSetVertexAttribTexCoord2$MH = RuntimeHelper.downcallHandle(
+        "glutSetVertexAttribTexCoord2",
+        constants$798.glutSetVertexAttribTexCoord2$FUNC
+    );
+    static final FunctionDescriptor glutInitContextFunc$callback$FUNC = FunctionDescriptor.ofVoid();
 }
 
 

@@ -9,12 +9,48 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$790 {
 
-    static final MemorySegment SE_SYSTEM_ENVIRONMENT_NAME$SEGMENT = RuntimeHelper.CONSTANT_ALLOCATOR.allocateUtf8String("SeSystemEnvironmentPrivilege");
-    static final MemorySegment SE_CHANGE_NOTIFY_NAME$SEGMENT = RuntimeHelper.CONSTANT_ALLOCATOR.allocateUtf8String("SeChangeNotifyPrivilege");
-    static final MemorySegment SE_REMOTE_SHUTDOWN_NAME$SEGMENT = RuntimeHelper.CONSTANT_ALLOCATOR.allocateUtf8String("SeRemoteShutdownPrivilege");
-    static final MemorySegment SE_UNDOCK_NAME$SEGMENT = RuntimeHelper.CONSTANT_ALLOCATOR.allocateUtf8String("SeUndockPrivilege");
-    static final MemorySegment SE_SYNC_AGENT_NAME$SEGMENT = RuntimeHelper.CONSTANT_ALLOCATOR.allocateUtf8String("SeSyncAgentPrivilege");
-    static final MemorySegment SE_ENABLE_DELEGATION_NAME$SEGMENT = RuntimeHelper.CONSTANT_ALLOCATOR.allocateUtf8String("SeEnableDelegationPrivilege");
+    static final FunctionDescriptor glutStrokeHeight$FUNC = FunctionDescriptor.of(Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glutStrokeHeight$MH = RuntimeHelper.downcallHandle(
+        "glutStrokeHeight",
+        constants$790.glutStrokeHeight$FUNC
+    );
+    static final FunctionDescriptor glutBitmapString$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glutBitmapString$MH = RuntimeHelper.downcallHandle(
+        "glutBitmapString",
+        constants$790.glutBitmapString$FUNC
+    );
+    static final FunctionDescriptor glutStrokeString$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glutStrokeString$MH = RuntimeHelper.downcallHandle(
+        "glutStrokeString",
+        constants$790.glutStrokeString$FUNC
+    );
+    static final FunctionDescriptor glutWireRhombicDodecahedron$FUNC = FunctionDescriptor.ofVoid();
+    static final MethodHandle glutWireRhombicDodecahedron$MH = RuntimeHelper.downcallHandle(
+        "glutWireRhombicDodecahedron",
+        constants$790.glutWireRhombicDodecahedron$FUNC
+    );
+    static final FunctionDescriptor glutSolidRhombicDodecahedron$FUNC = FunctionDescriptor.ofVoid();
+    static final MethodHandle glutSolidRhombicDodecahedron$MH = RuntimeHelper.downcallHandle(
+        "glutSolidRhombicDodecahedron",
+        constants$790.glutSolidRhombicDodecahedron$FUNC
+    );
+    static final FunctionDescriptor glutWireSierpinskiSponge$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_LONG$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_DOUBLE$LAYOUT
+    );
+    static final MethodHandle glutWireSierpinskiSponge$MH = RuntimeHelper.downcallHandle(
+        "glutWireSierpinskiSponge",
+        constants$790.glutWireSierpinskiSponge$FUNC
+    );
 }
 
 

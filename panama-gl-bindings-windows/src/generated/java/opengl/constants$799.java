@@ -9,12 +9,34 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$799 {
 
-    static final MemorySegment GET_SYSTEM_WOW64_DIRECTORY_NAME_T_T$SEGMENT = RuntimeHelper.CONSTANT_ALLOCATOR.allocateUtf8String("GetSystemWow64DirectoryA");
-    static final MemoryAddress RT_CURSOR$ADDR = MemoryAddress.ofLong(1L);
-    static final MemoryAddress RT_BITMAP$ADDR = MemoryAddress.ofLong(2L);
-    static final MemoryAddress RT_ICON$ADDR = MemoryAddress.ofLong(3L);
-    static final MemoryAddress RT_MENU$ADDR = MemoryAddress.ofLong(4L);
-    static final MemoryAddress RT_DIALOG$ADDR = MemoryAddress.ofLong(5L);
+    static final FunctionDescriptor glutInitContextFunc$callback$FUNC = FunctionDescriptor.ofVoid();
+    static final MethodHandle glutInitContextFunc$callback$MH = RuntimeHelper.downcallHandle(
+        constants$799.glutInitContextFunc$callback$FUNC
+    );
+    static final FunctionDescriptor glutInitContextFunc$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glutInitContextFunc$MH = RuntimeHelper.downcallHandle(
+        "glutInitContextFunc",
+        constants$799.glutInitContextFunc$FUNC
+    );
+    static final FunctionDescriptor glutAppStatusFunc$callback$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_LONG$LAYOUT
+    );
+    static final MethodHandle glutAppStatusFunc$callback$MH = RuntimeHelper.downcallHandle(
+        constants$799.glutAppStatusFunc$callback$FUNC
+    );
+    static final FunctionDescriptor glutAppStatusFunc$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glutAppStatusFunc$MH = RuntimeHelper.downcallHandle(
+        "glutAppStatusFunc",
+        constants$799.glutAppStatusFunc$FUNC
+    );
+    static final FunctionDescriptor glutCreateMenuUcall$callback$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_LONG$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
 }
 
 

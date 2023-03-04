@@ -9,12 +9,39 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$813 {
 
-    static final MemoryAddress HKEY_CURRENT_USER$ADDR = MemoryAddress.ofLong(-2147483647L);
-    static final MemoryAddress HKEY_LOCAL_MACHINE$ADDR = MemoryAddress.ofLong(-2147483646L);
-    static final MemoryAddress HKEY_USERS$ADDR = MemoryAddress.ofLong(-2147483645L);
-    static final MemoryAddress HKEY_PERFORMANCE_DATA$ADDR = MemoryAddress.ofLong(-2147483644L);
-    static final MemoryAddress HKEY_PERFORMANCE_TEXT$ADDR = MemoryAddress.ofLong(-2147483568L);
-    static final MemoryAddress HKEY_PERFORMANCE_NLSTEXT$ADDR = MemoryAddress.ofLong(-2147483552L);
+    static final FunctionDescriptor glutPositionFuncUcall$callback$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_LONG$LAYOUT,
+        Constants$root.C_LONG$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glutPositionFuncUcall$callback$MH = RuntimeHelper.downcallHandle(
+        constants$813.glutPositionFuncUcall$callback$FUNC
+    );
+    static final FunctionDescriptor glutPositionFuncUcall$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glutPositionFuncUcall$MH = RuntimeHelper.downcallHandle(
+        "glutPositionFuncUcall",
+        constants$813.glutPositionFuncUcall$FUNC
+    );
+    static final FunctionDescriptor glutCloseFuncUcall$callback$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glutCloseFuncUcall$callback$MH = RuntimeHelper.downcallHandle(
+        constants$813.glutCloseFuncUcall$callback$FUNC
+    );
+    static final FunctionDescriptor glutCloseFuncUcall$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glutCloseFuncUcall$MH = RuntimeHelper.downcallHandle(
+        "glutCloseFuncUcall",
+        constants$813.glutCloseFuncUcall$FUNC
+    );
+    static final FunctionDescriptor glutWMCloseFuncUcall$callback$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_POINTER$LAYOUT
+    );
 }
 
 

@@ -9,12 +9,39 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$786 {
 
-    static final MemorySegment ACCESS_DS_SOURCE_W$SEGMENT = RuntimeHelper.CONSTANT_ALLOCATOR.allocateUtf8String("D");
-    static final MemorySegment ACCESS_DS_OBJECT_TYPE_NAME_A$SEGMENT = RuntimeHelper.CONSTANT_ALLOCATOR.allocateUtf8String("Directory Service Object");
-    static final MemorySegment ACCESS_DS_OBJECT_TYPE_NAME_W$SEGMENT = RuntimeHelper.CONSTANT_ALLOCATOR.allocateUtf8String("D");
-    static final MemorySegment SE_CREATE_TOKEN_NAME$SEGMENT = RuntimeHelper.CONSTANT_ALLOCATOR.allocateUtf8String("SeCreateTokenPrivilege");
-    static final MemorySegment SE_ASSIGNPRIMARYTOKEN_NAME$SEGMENT = RuntimeHelper.CONSTANT_ALLOCATOR.allocateUtf8String("SeAssignPrimaryTokenPrivilege");
-    static final MemorySegment SE_LOCK_MEMORY_NAME$SEGMENT = RuntimeHelper.CONSTANT_ALLOCATOR.allocateUtf8String("SeLockMemoryPrivilege");
+    static final FunctionDescriptor glutLeaveFullScreen$FUNC = FunctionDescriptor.ofVoid();
+    static final MethodHandle glutLeaveFullScreen$MH = RuntimeHelper.downcallHandle(
+        "glutLeaveFullScreen",
+        constants$786.glutLeaveFullScreen$FUNC
+    );
+    static final FunctionDescriptor glutSetMenuFont$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_LONG$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glutSetMenuFont$MH = RuntimeHelper.downcallHandle(
+        "glutSetMenuFont",
+        constants$786.glutSetMenuFont$FUNC
+    );
+    static final FunctionDescriptor glutMouseWheelFunc$callback$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_LONG$LAYOUT,
+        Constants$root.C_LONG$LAYOUT,
+        Constants$root.C_LONG$LAYOUT,
+        Constants$root.C_LONG$LAYOUT
+    );
+    static final MethodHandle glutMouseWheelFunc$callback$MH = RuntimeHelper.downcallHandle(
+        constants$786.glutMouseWheelFunc$callback$FUNC
+    );
+    static final FunctionDescriptor glutMouseWheelFunc$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glutMouseWheelFunc$MH = RuntimeHelper.downcallHandle(
+        "glutMouseWheelFunc",
+        constants$786.glutMouseWheelFunc$FUNC
+    );
+    static final FunctionDescriptor glutPositionFunc$callback$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_LONG$LAYOUT,
+        Constants$root.C_LONG$LAYOUT
+    );
 }
 
 

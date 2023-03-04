@@ -9,12 +9,38 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$793 {
 
-    static final MemorySegment SE_MUMA_CAPABILITY$SEGMENT = RuntimeHelper.CONSTANT_ALLOCATOR.allocateUtf8String("m");
-    static final MemorySegment SE_DEVELOPMENT_MODE_NETWORK_CAPABILITY$SEGMENT = RuntimeHelper.CONSTANT_ALLOCATOR.allocateUtf8String("d");
-    static final MemorySegment SE_PERMISSIVE_LEARNING_MODE_CAPABILITY$SEGMENT = RuntimeHelper.CONSTANT_ALLOCATOR.allocateUtf8String("p");
-    static final MemoryAddress MEMORY_CURRENT_PARTITION_HANDLE$ADDR = MemoryAddress.ofLong(-1L);
-    static final MemoryAddress MEMORY_SYSTEM_PARTITION_HANDLE$ADDR = MemoryAddress.ofLong(-2L);
-    static final MemoryAddress MEMORY_EXISTING_VAD_PARTITION_HANDLE$ADDR = MemoryAddress.ofLong(-3L);
+    static final FunctionDescriptor glutMultiEntryFunc$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glutMultiEntryFunc$MH = RuntimeHelper.downcallHandle(
+        "glutMultiEntryFunc",
+        constants$793.glutMultiEntryFunc$FUNC
+    );
+    static final FunctionDescriptor glutMultiButtonFunc$callback$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_LONG$LAYOUT,
+        Constants$root.C_LONG$LAYOUT,
+        Constants$root.C_LONG$LAYOUT,
+        Constants$root.C_LONG$LAYOUT,
+        Constants$root.C_LONG$LAYOUT
+    );
+    static final MethodHandle glutMultiButtonFunc$callback$MH = RuntimeHelper.downcallHandle(
+        constants$793.glutMultiButtonFunc$callback$FUNC
+    );
+    static final FunctionDescriptor glutMultiButtonFunc$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glutMultiButtonFunc$MH = RuntimeHelper.downcallHandle(
+        "glutMultiButtonFunc",
+        constants$793.glutMultiButtonFunc$FUNC
+    );
+    static final FunctionDescriptor glutMultiMotionFunc$callback$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_LONG$LAYOUT,
+        Constants$root.C_LONG$LAYOUT,
+        Constants$root.C_LONG$LAYOUT
+    );
+    static final MethodHandle glutMultiMotionFunc$callback$MH = RuntimeHelper.downcallHandle(
+        constants$793.glutMultiMotionFunc$callback$FUNC
+    );
 }
 
 

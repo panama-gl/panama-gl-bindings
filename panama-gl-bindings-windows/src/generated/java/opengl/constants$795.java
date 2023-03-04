@@ -9,12 +9,55 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$795 {
 
-    static final MemorySegment IMAGE_ARCHIVE_HYBRIDMAP_MEMBER$SEGMENT = RuntimeHelper.CONSTANT_ALLOCATOR.allocateUtf8String("/<HYBRIDMAP>/   ");
-    static final MemorySegment IMAGE_POLICY_SECTION_NAME$SEGMENT = RuntimeHelper.CONSTANT_ALLOCATOR.allocateUtf8String(".tPolicy");
-    static final MemorySegment UNIFIEDBUILDREVISION_KEY$SEGMENT = RuntimeHelper.CONSTANT_ALLOCATOR.allocateUtf8String("\\");
-    static final MemorySegment UNIFIEDBUILDREVISION_VALUE$SEGMENT = RuntimeHelper.CONSTANT_ALLOCATOR.allocateUtf8String("U");
-    static final MemorySegment DEVICEFAMILYDEVICEFORM_KEY$SEGMENT = RuntimeHelper.CONSTANT_ALLOCATOR.allocateUtf8String("\\");
-    static final MemorySegment DEVICEFAMILYDEVICEFORM_VALUE$SEGMENT = RuntimeHelper.CONSTANT_ALLOCATOR.allocateUtf8String("D");
+    static final FunctionDescriptor glutJoystickNotWorking$FUNC = FunctionDescriptor.of(Constants$root.C_LONG$LAYOUT,
+        Constants$root.C_LONG$LAYOUT
+    );
+    static final MethodHandle glutJoystickNotWorking$MH = RuntimeHelper.downcallHandle(
+        "glutJoystickNotWorking",
+        constants$795.glutJoystickNotWorking$FUNC
+    );
+    static final FunctionDescriptor glutJoystickGetDeadBand$FUNC = FunctionDescriptor.of(Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_LONG$LAYOUT,
+        Constants$root.C_LONG$LAYOUT
+    );
+    static final MethodHandle glutJoystickGetDeadBand$MH = RuntimeHelper.downcallHandle(
+        "glutJoystickGetDeadBand",
+        constants$795.glutJoystickGetDeadBand$FUNC
+    );
+    static final FunctionDescriptor glutJoystickSetDeadBand$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_LONG$LAYOUT,
+        Constants$root.C_LONG$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT
+    );
+    static final MethodHandle glutJoystickSetDeadBand$MH = RuntimeHelper.downcallHandle(
+        "glutJoystickSetDeadBand",
+        constants$795.glutJoystickSetDeadBand$FUNC
+    );
+    static final FunctionDescriptor glutJoystickGetSaturation$FUNC = FunctionDescriptor.of(Constants$root.C_FLOAT$LAYOUT,
+        Constants$root.C_LONG$LAYOUT,
+        Constants$root.C_LONG$LAYOUT
+    );
+    static final MethodHandle glutJoystickGetSaturation$MH = RuntimeHelper.downcallHandle(
+        "glutJoystickGetSaturation",
+        constants$795.glutJoystickGetSaturation$FUNC
+    );
+    static final FunctionDescriptor glutJoystickSetSaturation$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_LONG$LAYOUT,
+        Constants$root.C_LONG$LAYOUT,
+        Constants$root.C_FLOAT$LAYOUT
+    );
+    static final MethodHandle glutJoystickSetSaturation$MH = RuntimeHelper.downcallHandle(
+        "glutJoystickSetSaturation",
+        constants$795.glutJoystickSetSaturation$FUNC
+    );
+    static final FunctionDescriptor glutJoystickSetMinRange$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_LONG$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glutJoystickSetMinRange$MH = RuntimeHelper.downcallHandle(
+        "glutJoystickSetMinRange",
+        constants$795.glutJoystickSetMinRange$FUNC
+    );
 }
 
 

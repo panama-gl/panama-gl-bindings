@@ -9,12 +9,47 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$815 {
 
-    static final MemorySegment SERVICES_ACTIVE_DATABASEA$SEGMENT = RuntimeHelper.CONSTANT_ALLOCATOR.allocateUtf8String("ServicesActive");
-    static final MemorySegment SERVICES_FAILED_DATABASEA$SEGMENT = RuntimeHelper.CONSTANT_ALLOCATOR.allocateUtf8String("ServicesFailed");
-    static final MemorySegment SERVICES_ACTIVE_DATABASE$SEGMENT = RuntimeHelper.CONSTANT_ALLOCATOR.allocateUtf8String("ServicesActive");
-    static final MemorySegment SERVICES_FAILED_DATABASE$SEGMENT = RuntimeHelper.CONSTANT_ALLOCATOR.allocateUtf8String("ServicesFailed");
-    static final MemorySegment SERVICE_TRIGGER_STARTED_ARGUMENT$SEGMENT = RuntimeHelper.CONSTANT_ALLOCATOR.allocateUtf8String("T");
-    static final MemorySegment SC_AGGREGATE_STORAGE_KEY$SEGMENT = RuntimeHelper.CONSTANT_ALLOCATOR.allocateUtf8String("S");
+    static final FunctionDescriptor glutMultiEntryFuncUcall$callback$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_LONG$LAYOUT,
+        Constants$root.C_LONG$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glutMultiEntryFuncUcall$callback$MH = RuntimeHelper.downcallHandle(
+        constants$815.glutMultiEntryFuncUcall$callback$FUNC
+    );
+    static final FunctionDescriptor glutMultiEntryFuncUcall$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glutMultiEntryFuncUcall$MH = RuntimeHelper.downcallHandle(
+        "glutMultiEntryFuncUcall",
+        constants$815.glutMultiEntryFuncUcall$FUNC
+    );
+    static final FunctionDescriptor glutMultiButtonFuncUcall$callback$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_LONG$LAYOUT,
+        Constants$root.C_LONG$LAYOUT,
+        Constants$root.C_LONG$LAYOUT,
+        Constants$root.C_LONG$LAYOUT,
+        Constants$root.C_LONG$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glutMultiButtonFuncUcall$callback$MH = RuntimeHelper.downcallHandle(
+        constants$815.glutMultiButtonFuncUcall$callback$FUNC
+    );
+    static final FunctionDescriptor glutMultiButtonFuncUcall$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glutMultiButtonFuncUcall$MH = RuntimeHelper.downcallHandle(
+        "glutMultiButtonFuncUcall",
+        constants$815.glutMultiButtonFuncUcall$FUNC
+    );
+    static final FunctionDescriptor glutMultiMotionFuncUcall$callback$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_LONG$LAYOUT,
+        Constants$root.C_LONG$LAYOUT,
+        Constants$root.C_LONG$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
 }
 
 

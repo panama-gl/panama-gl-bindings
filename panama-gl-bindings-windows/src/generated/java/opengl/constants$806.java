@@ -9,12 +9,47 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$806 {
 
-    static final MemoryAddress HBMMENU_MBAR_CLOSE_D$ADDR = MemoryAddress.ofLong(6L);
-    static final MemoryAddress HBMMENU_MBAR_MINIMIZE_D$ADDR = MemoryAddress.ofLong(7L);
-    static final MemoryAddress HBMMENU_POPUP_CLOSE$ADDR = MemoryAddress.ofLong(8L);
-    static final MemoryAddress HBMMENU_POPUP_RESTORE$ADDR = MemoryAddress.ofLong(9L);
-    static final MemoryAddress HBMMENU_POPUP_MAXIMIZE$ADDR = MemoryAddress.ofLong(10L);
-    static final MemoryAddress HBMMENU_POPUP_MINIMIZE$ADDR = MemoryAddress.ofLong(11L);
+    static final FunctionDescriptor glutKeyboardUpFuncUcall$callback$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_CHAR$LAYOUT,
+        Constants$root.C_LONG$LAYOUT,
+        Constants$root.C_LONG$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glutKeyboardUpFuncUcall$callback$MH = RuntimeHelper.downcallHandle(
+        constants$806.glutKeyboardUpFuncUcall$callback$FUNC
+    );
+    static final FunctionDescriptor glutKeyboardUpFuncUcall$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glutKeyboardUpFuncUcall$MH = RuntimeHelper.downcallHandle(
+        "glutKeyboardUpFuncUcall",
+        constants$806.glutKeyboardUpFuncUcall$FUNC
+    );
+    static final FunctionDescriptor glutSpecialUpFuncUcall$callback$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_LONG$LAYOUT,
+        Constants$root.C_LONG$LAYOUT,
+        Constants$root.C_LONG$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glutSpecialUpFuncUcall$callback$MH = RuntimeHelper.downcallHandle(
+        constants$806.glutSpecialUpFuncUcall$callback$FUNC
+    );
+    static final FunctionDescriptor glutSpecialUpFuncUcall$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glutSpecialUpFuncUcall$MH = RuntimeHelper.downcallHandle(
+        "glutSpecialUpFuncUcall",
+        constants$806.glutSpecialUpFuncUcall$FUNC
+    );
+    static final FunctionDescriptor glutJoystickFuncUcall$callback$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_LONG$LAYOUT,
+        Constants$root.C_LONG$LAYOUT,
+        Constants$root.C_LONG$LAYOUT,
+        Constants$root.C_LONG$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
 }
 
 

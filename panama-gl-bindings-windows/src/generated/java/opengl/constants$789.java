@@ -9,12 +9,45 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$789 {
 
-    static final MemorySegment SE_CREATE_PERMANENT_NAME$SEGMENT = RuntimeHelper.CONSTANT_ALLOCATOR.allocateUtf8String("SeCreatePermanentPrivilege");
-    static final MemorySegment SE_BACKUP_NAME$SEGMENT = RuntimeHelper.CONSTANT_ALLOCATOR.allocateUtf8String("SeBackupPrivilege");
-    static final MemorySegment SE_RESTORE_NAME$SEGMENT = RuntimeHelper.CONSTANT_ALLOCATOR.allocateUtf8String("SeRestorePrivilege");
-    static final MemorySegment SE_SHUTDOWN_NAME$SEGMENT = RuntimeHelper.CONSTANT_ALLOCATOR.allocateUtf8String("SeShutdownPrivilege");
-    static final MemorySegment SE_DEBUG_NAME$SEGMENT = RuntimeHelper.CONSTANT_ALLOCATOR.allocateUtf8String("SeDebugPrivilege");
-    static final MemorySegment SE_AUDIT_NAME$SEGMENT = RuntimeHelper.CONSTANT_ALLOCATOR.allocateUtf8String("SeAuditPrivilege");
+    static final FunctionDescriptor glutGetModeValues$FUNC = FunctionDescriptor.of(Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_LONG$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glutGetModeValues$MH = RuntimeHelper.downcallHandle(
+        "glutGetModeValues",
+        constants$789.glutGetModeValues$FUNC
+    );
+    static final FunctionDescriptor glutGetWindowData$FUNC = FunctionDescriptor.of(Constants$root.C_POINTER$LAYOUT);
+    static final MethodHandle glutGetWindowData$MH = RuntimeHelper.downcallHandle(
+        "glutGetWindowData",
+        constants$789.glutGetWindowData$FUNC
+    );
+    static final FunctionDescriptor glutSetWindowData$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glutSetWindowData$MH = RuntimeHelper.downcallHandle(
+        "glutSetWindowData",
+        constants$789.glutSetWindowData$FUNC
+    );
+    static final FunctionDescriptor glutGetMenuData$FUNC = FunctionDescriptor.of(Constants$root.C_POINTER$LAYOUT);
+    static final MethodHandle glutGetMenuData$MH = RuntimeHelper.downcallHandle(
+        "glutGetMenuData",
+        constants$789.glutGetMenuData$FUNC
+    );
+    static final FunctionDescriptor glutSetMenuData$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glutSetMenuData$MH = RuntimeHelper.downcallHandle(
+        "glutSetMenuData",
+        constants$789.glutSetMenuData$FUNC
+    );
+    static final FunctionDescriptor glutBitmapHeight$FUNC = FunctionDescriptor.of(Constants$root.C_LONG$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glutBitmapHeight$MH = RuntimeHelper.downcallHandle(
+        "glutBitmapHeight",
+        constants$789.glutBitmapHeight$FUNC
+    );
 }
 
 

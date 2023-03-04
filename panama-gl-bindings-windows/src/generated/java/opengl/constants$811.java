@@ -9,12 +9,45 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.*;
 class constants$811 {
 
-    static final MemoryAddress IDI_SHIELD$ADDR = MemoryAddress.ofLong(32518L);
-    static final MemoryAddress IDI_WARNING$ADDR = MemoryAddress.ofLong(32515L);
-    static final MemoryAddress IDI_ERROR$ADDR = MemoryAddress.ofLong(32513L);
-    static final MemoryAddress IDI_INFORMATION$ADDR = MemoryAddress.ofLong(32516L);
-    static final MemoryAddress WC_DIALOG$ADDR = MemoryAddress.ofLong(32770L);
-    static final MemoryAddress GR_GLOBAL$ADDR = MemoryAddress.ofLong(-2L);
+    static final FunctionDescriptor glutDialsFuncUcall$callback$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_LONG$LAYOUT,
+        Constants$root.C_LONG$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glutDialsFuncUcall$callback$MH = RuntimeHelper.downcallHandle(
+        constants$811.glutDialsFuncUcall$callback$FUNC
+    );
+    static final FunctionDescriptor glutDialsFuncUcall$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glutDialsFuncUcall$MH = RuntimeHelper.downcallHandle(
+        "glutDialsFuncUcall",
+        constants$811.glutDialsFuncUcall$FUNC
+    );
+    static final FunctionDescriptor glutTabletMotionFuncUcall$callback$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_LONG$LAYOUT,
+        Constants$root.C_LONG$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glutTabletMotionFuncUcall$callback$MH = RuntimeHelper.downcallHandle(
+        constants$811.glutTabletMotionFuncUcall$callback$FUNC
+    );
+    static final FunctionDescriptor glutTabletMotionFuncUcall$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_POINTER$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
+    static final MethodHandle glutTabletMotionFuncUcall$MH = RuntimeHelper.downcallHandle(
+        "glutTabletMotionFuncUcall",
+        constants$811.glutTabletMotionFuncUcall$FUNC
+    );
+    static final FunctionDescriptor glutTabletButtonFuncUcall$callback$FUNC = FunctionDescriptor.ofVoid(
+        Constants$root.C_LONG$LAYOUT,
+        Constants$root.C_LONG$LAYOUT,
+        Constants$root.C_LONG$LAYOUT,
+        Constants$root.C_LONG$LAYOUT,
+        Constants$root.C_POINTER$LAYOUT
+    );
 }
 
 
