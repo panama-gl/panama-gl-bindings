@@ -2,7 +2,7 @@
 @echo off
 jextract^
  -I .^
- --target-package opengl^
+ --target-package freeglut.windows.x86^
  --header-class-name freeglut_h^
  --source^
  --output ../../panama-gl-bindings-windows/src/generated/java^
