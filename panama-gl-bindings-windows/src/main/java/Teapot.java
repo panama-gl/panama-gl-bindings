@@ -29,12 +29,12 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import static opengl.windows.x86.freeglut_h.*;
+import static freeglut.windows.x86.freeglut_h.*;
 
 import java.lang.foreign.MemorySession;
 import java.lang.foreign.SegmentAllocator;
 
-import opengl.windows.x86.*;
+import freeglut.windows.x86.*;
 
 public class Teapot {
     private float rot = 0;
