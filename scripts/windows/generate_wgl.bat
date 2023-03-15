@@ -1,7 +1,11 @@
+set SDK_DIR=C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0
+set JEXTRACT="C:\Program Files\Java\jextract-19\bin\jextract"
+
 @REM uses the binaries from C:\Windows\System32\opengl32.dll
 @echo off
-"C:\Program Files\Java\jextract-19\bin\jextract"^
- -I "C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\um"^
+call %JEXTRACT%^
+ -I "%SDK_DIR%\um" ^
+ -I "%SDK_DIR%\shared" ^
  --target-package wgl.windows.x86^
  --header-class-name wgl_h^
  --source^
