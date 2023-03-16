@@ -20,6 +20,7 @@ build:
 deploy:
   stage: deploy
   script:
+    - export MAVEN_OPS=-Xmx1024m
     - mvn $MAVEN_CLI_OPTS deploy
   only:
     - main
