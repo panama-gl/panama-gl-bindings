@@ -37,7 +37,7 @@ final class RuntimeHelper {
             (size, align) -> MemorySegment.allocateNative(size, align, MemorySession.openImplicit());
 
     static {
-        System.loadLibrary("GL"); System.loadLibrary("GLX");
+        //System.loadLibrary("GL"); System.loadLibrary("GLX");
         SymbolLookup loaderLookup = SymbolLookup.loaderLookup();
         SYMBOL_LOOKUP = name -> loaderLookup.lookup(name).or(() -> LINKER.defaultLookup().lookup(name));
     }
