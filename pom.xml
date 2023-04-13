@@ -1,32 +1,26 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>org.jzy3d</groupId>
 	<artifactId>panama-gl-bindings</artifactId>
 	<version>1.0.1-SNAPSHOT</version>
 	<name>Panama GL Bindings</name>
 	<packaging>pom</packaging>
-
 	<scm>
 		<connection>scm:git:https://gitlab.org/jzy3d/panama-gl-bindings</connection>
 		<tag>panama-gl-2.0.1</tag>
 	</scm>
-
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<jdk.version>19</jdk.version>
 	</properties>
-
 	<modules>
 		<module>panama-gl-bindings-linux</module>
 		<module>panama-gl-bindings-macos</module>
 		<module>panama-gl-bindings-windows</module>
 	</modules>
-
 	<dependencies>
-
 		<!-- OTHER MODULES -->
 		<dependency>
 			<groupId>log4j</groupId>
@@ -56,33 +50,42 @@
 			<version>4.10.0</version>
 			<scope>test</scope>
 		</dependency>
-
 	</dependencies>
-
 	<build>
 		<plugins>
-
+			<!-- Defines compiler flags and source/byte code version  -->
+			<plugin>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.8.1</version>
+				<configuration>
+					<source>19</source>
+					<target>19</target>
+					<encoding>UTF-8</encoding>
+					<compilerArgs>
+						<arg>--enable-preview</arg>
+					</compilerArgs>
+				</configuration>
+			</plugin>
 			<!-- Add generated folder to build path -->
 			<plugin>
-        <groupId>org.codehaus.mojo</groupId>
-        <artifactId>build-helper-maven-plugin</artifactId>
-        <version>3.2.0</version>
-        <executions>
-          <execution>
-            <id>add-source</id>
-            <phase>generate-sources</phase>
-            <goals>
-              <goal>add-source</goal>
-            </goals>
-            <configuration>
-              <sources>
-                <source>src/generated/java</source>
-              </sources>
-            </configuration>
-          </execution>
-        </executions>
-      </plugin>
-
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>build-helper-maven-plugin</artifactId>
+				<version>3.2.0</version>
+				<executions>
+					<execution>
+						<id>add-source</id>
+						<phase>generate-sources</phase>
+						<goals>
+							<goal>add-source</goal>
+						</goals>
+						<configuration>
+							<sources>
+								<source>src/generated/java</source>
+							</sources>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
 			<!-- SOURCE JAR -->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
@@ -97,7 +100,6 @@
 					</execution>
 				</executions>
 			</plugin>
-
 			<!-- Defines tests to include -->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
@@ -111,7 +113,6 @@
 					</includes>
 				</configuration>
 			</plugin>
-
 			<!-- Defines compiler flags and source/byte code version  -->
 			<plugin>
 				<artifactId>maven-compiler-plugin</artifactId>
@@ -125,19 +126,13 @@
 					</compilerArgs>
 				</configuration>
 			</plugin>
-
-
-
 			<!-- RELEASE PLUGIN TO HELP CREATE RELEASE BRANCHES -->
 			<plugin>
 				<artifactId>maven-release-plugin</artifactId>
 				<version>3.8.1</version>
 			</plugin>
-
 		</plugins>
-
 		<!-- DEPLOY TO FTP -->
-
 		<extensions>
 			<extension>
 				<groupId>org.apache.maven.wagon</groupId>
@@ -145,14 +140,10 @@
 				<version>2.10</version>
 			</extension>
 		</extensions>
-
 	</build>
-
 	<!-- ============================================================== -->
-
 	<!-- This section defines the path to natives. Debug how the OS and CPU
 		names are detected by maven with mvn enforcer:display-info -->
-
 	<profiles>
 		<!-- Unix related settings -->
 		<profile>
@@ -162,11 +153,9 @@
 					<family>unix</family>
 				</os>
 			</activation>
-
 			<properties>
 				<vtk.platform>Linux-x86_64</vtk.platform>
 			</properties>
-
 			<build>
 				<plugins>
 					<plugin>
@@ -176,7 +165,6 @@
 						<configuration>
 							<!-- Ensure stack trace get displayed -->
 							<trimStackTrace>false</trimStackTrace>
-
 							<!-- Configure Panama -->
 							<argLine>
 								--enable-native-access=ALL-UNNAMED --enable-preview -Djava.library.path=.:/usr/lib/x86_64-linux-gnu/
@@ -186,7 +174,6 @@
 				</plugins>
 			</build>
 		</profile>
-
 		<!-- Mac Intel related settings -->
 		<profile>
 			<id>MacOS x86_64</id>
@@ -196,11 +183,9 @@
 					<arch>x86_64</arch>
 				</os>
 			</activation>
-
 			<properties>
 				<vtk.platform>Darwin-x86_64</vtk.platform>
 			</properties>
-
 			<build>
 				<plugins>
 					<plugin>
@@ -210,7 +195,6 @@
 						<configuration>
 							<!-- Ensure stack trace get displayed -->
 							<trimStackTrace>false</trimStackTrace>
-
 							<!-- Configure Panama -->
 							<argLine>
 								-XstartOnFirstThread --enable-native-access=ALL-UNNAMED --enable-preview -Djava.library.path=.:/System/Library/Frameworks/OpenGL.framework/Versions/Current/Libraries/
@@ -220,7 +204,6 @@
 				</plugins>
 			</build>
 		</profile>
-
 		<!-- Mac M1 related settings -->
 		<profile>
 			<id>MacOS Aarch64</id>
@@ -230,11 +213,9 @@
 					<arch>aarch64</arch>
 				</os>
 			</activation>
-
 			<properties>
 				<vtk.platform>Darwin-arm64</vtk.platform>
 			</properties>
-
 			<build>
 				<plugins>
 					<plugin>
@@ -244,7 +225,6 @@
 						<configuration>
 							<!-- Ensure stack trace get displayed -->
 							<trimStackTrace>false</trimStackTrace>
-
 							<!-- Configure Panama -->
 							<argLine>
 								-XstartOnFirstThread --enable-native-access=ALL-UNNAMED --enable-preview -Djava.library.path=.:/System/Library/Frameworks/OpenGL.framework/Versions/Current/Libraries/
@@ -254,7 +234,6 @@
 				</plugins>
 			</build>
 		</profile>
-
 		<!-- Windows related settings -->
 		<profile>
 			<id>Windows</id>
@@ -263,11 +242,9 @@
 					<family>Windows</family>
 				</os>
 			</activation>
-
 			<properties>
 				<vtk.platform>Windows-x86_64</vtk.platform>
 			</properties>
-
 			<build>
 				<plugins>
 					<plugin>
@@ -277,7 +254,6 @@
 						<configuration>
 							<!-- Ensure stack trace get displayed -->
 							<trimStackTrace>false</trimStackTrace>
-
 							<!-- Configure Panama -->
 							<argLine>
 								-XstartOnFirstThread --enable-native-access=ALL-UNNAMED --enable-preview -Djava.library.path=.:/System/Library/Frameworks/OpenGL.framework/Versions/Current/Libraries/
@@ -287,8 +263,6 @@
 				</plugins>
 			</build>
 		</profile>
-
-
 		<!-- JDK related activations -->
 		<profile>
 			<id>disable-java8-doclint</id>
@@ -299,9 +273,7 @@
 				<additionalparam>-Xdoclint:none</additionalparam>
 			</properties>
 		</profile>
-
 	</profiles>
-
 	<!-- Extra Maven Repositories to fetch artifacts from -->
 	<repositories>
 		<repository>
@@ -315,7 +287,6 @@
 			<url>https://maven.jzy3d.org/releases/</url>
 		</repository>
 	</repositories>
-
 	<!-- Used to deploy to Jzy3d repository -->
 	<distributionManagement>
 		<repository>
@@ -329,5 +300,4 @@
 			<url>${env.MAVEN_REPO_URL}/maven/snapshots</url>
 		</snapshotRepository>
 	</distributionManagement>
-
 </project>
